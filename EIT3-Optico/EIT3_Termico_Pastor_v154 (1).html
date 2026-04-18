@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EIT-3 Térmico v1.5.4 | Pastor del Borde + Día/Noche Integrado</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0a0e1a;--panel:#111827;--line:#243047;--soft:#334155;--text:#e5eefc;--muted:#9fb2cc;--accent:#14b8a6;--accent2:#38bdf8;--vivo:#10b981}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#0f172a 0%,#0a0e1a 55%,#050814 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px}
+.container{max-width:1520px;margin:0 auto;padding:16px}.layout{display:grid;grid-template-columns:360px 1fr;gap:16px}.panel{background:linear-gradient(180deg,rgba(17,24,39,.95),rgba(15,23,42,.96));border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.25);padding:16px}.sidebar{display:flex;flex-direction:column;gap:14px}.section{padding:14px;border:1px solid rgba(255,255,255,.04);border-radius:12px;background:rgba(255,255,255,.02)}.section h3{margin:0 0 10px;font-size:0.95rem;color:#d8e5fb;text-transform:uppercase;letter-spacing:.08em;font-weight:600}.control{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;margin-bottom:10px}.control label{font-size:0.88rem;color:#d7e5fa;font-weight:500}.control small{grid-column:1/-1;color:var(--muted);margin-top:-2px;font-size:0.74rem}.value{font-variant-numeric:tabular-nums;color:var(--accent2);font-weight:700;font-size:0.95rem}input[type="range"]{width:100%;accent-color:var(--accent)}.inline{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding:10px 12px;border:1px solid var(--soft);border-radius:10px;background:rgba(255,255,255,.02)}.switch{position:relative;display:inline-block;width:52px;height:30px}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#334155;border-radius:999px;transition:.2s}.slider:before{content:"";position:absolute;height:22px;width:22px;left:4px;top:4px;background:white;border-radius:50%;transition:.2s}.switch input:checked + .slider{background:linear-gradient(90deg,var(--accent),#0f766e)}.switch input:checked + .slider:before{transform:translateX(22px)}button{width:100%;background:#0b1220;color:var(--text);border:1px solid var(--soft);border-radius:10px;padding:10px;font-weight:700;cursor:pointer;transition:.2s}button:hover{border-color:var(--accent);transform:translateY(-1px)}button.primary{background:linear-gradient(90deg,var(--accent),#0f766e);border-color:var(--accent)}button.secondary{background:linear-gradient(90deg,#1d4ed8,#1e40af);border-color:#1e40af}button.ghost{background:transparent}.main{display:grid;grid-template-rows:auto auto auto;gap:16px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.hero-right{display:flex;flex-direction:column;gap:12px}.canvas-wrap,.chart-card,.table-wrap{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{padding:12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}.metric .k{color:var(--muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em}.metric .v{font-size:1.3rem;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}.metric .s{margin-top:2px;color:var(--muted);font-size:0.78rem}.metric.big{grid-column:1/-1}.regime{padding:14px;border-radius:14px;font-size:1.1rem;font-weight:800;text-align:center;border:1px solid var(--line);background:linear-gradient(90deg,rgba(20,184,166,.14),rgba(56,189,248,.1))}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 0 16px}.card{padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.gauge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 0 16px}.gauge-card{padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;gap:8px}.gauge-wrap{position:relative;width:100%;max-width:180px;aspect-ratio:1/1}.gauge-wrap canvas{width:100%!important;height:100%!important}.gauge-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 0 16px}.chart-wrap{height:300px}.table-box{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;font-size:.84rem}th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05);text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}th{position:sticky;top:0;background:#0b1220;color:#dce8fb;z-index:2}.quadrant-box{margin-top:12px;width:100%}#quadrantCanvas{display:block;width:100%;height:220px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(0,0,0,0.25)}.footer-note{padding:10px 0 0;color:var(--muted);font-size:.82rem}@media (max-width: 1280px){.layout{grid-template-columns:1fr}.hero-grid,.charts,.cards,.gauge-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}}@media (max-width: 760px){.hero-grid,.charts,.cards,.inline,.metrics,.gauge-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="layout">
+<aside class="panel sidebar">
+<section class="section"><h3>Modo Operación</h3><div class="inline"><button id="btnManual" class="secondary">Manual</button><button id="btnAuto" class="ghost">Pastor Auto</button></div><div class="toggle-row"><label for="dayNightToggle">Día/Noche</label><label class="switch"><input id="dayNightToggle" type="checkbox"><span class="slider"></span></label></div><div class="inline" style="margin-top:10px;"><button id="btnStopDayNight" class="ghost">Detener Día/Noche</button><button id="btnApplyDayNight" class="ghost">Aplicar ciclo</button></div><div class="control"><label for="minTemp">Mínima</label><span id="minTempVal" class="value">-6.0°C</span><input id="minTemp" type="range" min="-60" max="0" step="0.1" value="-6"><small>Rango mínimo universal</small></div><div class="control"><label for="maxTemp">Máxima</label><span id="maxTempVal" class="value">25.0°C</span><input id="maxTemp" type="range" min="0" max="60" step="0.1" value="25"><small>Rango máximo universal</small></div></section>
+<section class="section"><h3>Parámetros</h3><div class="control"><label for="powerBase">PowerBase</label><span id="powerBaseVal" class="value">0.500</span><input id="powerBase" type="range" min="0" max="1" step="0.001" value="0.47"><small>Consigna base del operador</small></div><div class="control"><label for="beta">β Rel</label><span id="betaVal" class="value">0.820</span><input id="beta" type="range" min="0.5" max="0.99" step="0.001" value="0.94"><small>Persistencia del sistema</small></div><div class="control"><label for="sigma">σ Att</label><span id="sigmaVal" class="value">6.8</span><input id="sigma" type="range" min="1" max="8" step="0.1" value="6.8"><small>Suavizado / difusión térmica</small></div><div class="control"><label for="noise">E</label><span id="noiseVal" class="value">0.0079</span><input id="noise" type="range" min="0" max="0.01" step="0.0001" value="0.0079"><small>Ruido estocástico</small></div><div class="control"><label for="band">Banda</label><span id="bandVal" class="value">1.105</span><input id="band" type="range" min="0.2" max="2.5" step="0.01" value="1.105"><small>Elasticidad del borde fértil</small></div><div class="control"><label for="luminosity">Luminosidad</label><span id="lumVal" class="value">0.94</span><input id="luminosity" type="range" min="0.6" max="1.4" step="0.01" value="0.94"><small>Forzante radiativa global</small></div><div class="control"><label for="tOpt">T óptima</label><span id="tOptVal" class="value">25.0°C</span><input id="tOpt" type="range" min="20" max="30" step="0.1" value="25.0"><small>Centro del borde fértil</small></div><div class="control"><label for="ptcTc">Tc PTC</label><span id="ptcTcVal" class="value">25.0°C</span><input id="ptcTc" type="range" min="18" max="35" step="0.1" value="25.0"><small>Temperatura crítica del sensor</small></div><div class="control"><label for="ptcSharp">Exponente PTC</label><span id="ptcSharpVal" class="value">8.0</span><input id="ptcSharp" type="range" min="1" max="16" step="0.1" value="8.0"><small>Curvatura del lazo pasivo</small></div></section>
+<section class="section"><h3>Acciones</h3><div class="inline"><button id="btnStart" class="primary">▶ Iniciar</button><button id="btnPause" class="ghost">⏸ Pausa</button></div><div class="inline" style="margin-top:10px;"><button id="btnReset" class="ghost">↺ Reiniciar</button><button id="btnExport" class="ghost">Descargar CSV</button></div></section>
+</aside>
+<main class="main">
+<section class="panel"><div class="hero-grid"><div class="canvas-wrap"><div class="canvas-head"><h2>Campo térmico</h2><div class="canvas-meta"><span>t=<strong id="timeLabel">0</strong></span><span>PowerLive=<strong id="powerLiveLabel">0.500</strong></span><span>ω=<strong id="omegaLabel">0.000</strong></span></div></div><canvas id="fieldCanvas" width="520" height="520"></canvas></div><div class="hero-right"><div class="metrics"><div class="metric"><div class="k">Tf</div><div class="v" id="tfMetric">24.600</div><div class="s">Temperatura efectiva</div></div><div class="metric"><div class="k">envTemp</div><div class="v" id="envMetric">0.000</div><div class="s">Entorno externo</div></div><div class="metric"><div class="k">stress</div><div class="v" id="stressMetric">0.000</div><div class="s">Desacople normalizado</div></div><div class="metric"><div class="k">LF</div><div class="v" id="lfMetric">0.000</div><div class="s">Función canónica</div></div><div class="metric"><div class="k">Δ_struct</div><div class="v" id="deltaStructMetric">0.000</div><div class="s">Estructura espacial</div></div><div class="metric"><div class="k">A_sys_env</div><div class="v" id="asysMetric">0.000</div><div class="s">Acoplamiento</div></div><div class="metric big"><div class="k">Régimen</div><div class="regime" id="regimeMetric">RÍGIDO</div><div class="s" id="actionMetric" style="margin-top:8px">dejar oscilar</div></div></div><div class="quadrant-box"><canvas id="quadrantCanvas"></canvas></div></div></div></section>
+<section class="panel"><div class="cards"><div class="card"><div class="label">PowerBase</div><div class="num" id="cardPowerBase">0.500</div></div><div class="card"><div class="label">PowerLive</div><div class="num" id="cardPowerLive">0.500</div></div><div class="card"><div class="label">Lambda</div><div class="num" id="cardLambda">0.100</div></div><div class="card"><div class="label">R_PTC</div><div class="num" id="cardRptc">1.000</div></div></div><div class="gauge-grid"><div class="gauge-card"><div class="gauge-title">Δ_struct</div><div class="gauge-wrap"><canvas id="gaugeDeltaStruct"></canvas><div class="gauge-center"><div class="gauge-value" id="gaugeDeltaStructVal">0.000</div></div></div></div><div class="gauge-card"><div class="gauge-title">A_sys_env</div><div class="gauge-wrap"><canvas id="gaugeAsys"></canvas><div class="gauge-center"><div class="gauge-value" id="gaugeAsysVal">0.000</div></div></div></div><div class="gauge-card"><div class="gauge-title">LF_exp</div><div class="gauge-wrap"><canvas id="gaugeLfExp"></canvas><div class="gauge-center"><div class="gauge-value" id="gaugeLfExpVal">0.000</div></div></div></div><div class="gauge-card"><div class="gauge-title">Λ_exp</div><div class="gauge-wrap"><canvas id="gaugeLambdaExp"></canvas><div class="gauge-center"><div class="gauge-value" id="gaugeLambdaExpVal">0.000</div></div></div></div></div><div class="charts"><div class="chart-card"><h3>Evolución temporal</h3><div class="chart-wrap"><canvas id="evoChart"></canvas></div></div><div class="chart-card"><h3>Mapa del Pastor</h3><div class="chart-wrap"><canvas id="phaseChart"></canvas></div></div></div></section>
+<section class="panel table-wrap"><h3>Historial de resultados</h3><div class="table-box"><table><thead><tr><th>t</th><th>PowerBase</th><th>PowerLive</th><th>Th</th><th>Tc</th><th>Tf</th><th>env</th><th>stress</th><th>LF</th><th>Δ_struct</th><th>A_sys_env</th><th>LF_exp</th><th>Λ_exp</th><th>Régimen</th></tr></thead><tbody id="historyBody"></tbody></table></div><div class="footer-note">v1.5.4 — LF cosmosemiótico · Λ unificada · inercia PTC · régimen por error real · sin sobreescritura</div></section>
+</main></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const els={powerBase:$('powerBase'),beta:$('beta'),sigma:$('sigma'),noise:$('noise'),band:$('band'),luminosity:$('luminosity'),tOpt:$('tOpt'),ptcTc:$('ptcTc'),ptcSharp:$('ptcSharp'),minTemp:$('minTemp'),maxTemp:$('maxTemp'),dayNightToggle:$('dayNightToggle'),powerBaseVal:$('powerBaseVal'),betaVal:$('betaVal'),sigmaVal:$('sigmaVal'),noiseVal:$('noiseVal'),bandVal:$('bandVal'),lumVal:$('lumVal'),tOptVal:$('tOptVal'),ptcTcVal:$('ptcTcVal'),ptcSharpVal:$('ptcSharpVal'),minTempVal:$('minTempVal'),maxTempVal:$('maxTempVal')};
+const state={running:false,auto:false,dayNightMode:false,step:0,tick:0,dt:5,dayNightSpeed:1/60,maxCycles:1000,cyclesVivo:0,isVivo:false,lambdaHistory:[],powerBase:0.47,powerLive:0.47,beta:0.94,sigma:6.8,noise:0.0079,band:1.105,luminosity:0.94,tOpt:25,ptcTc:25,ptcSharp:8,minTemp:-6,maxTemp:25,ptcR:1,Tf:24.6,Tc:25,Th:28,delta:3.4,LF:0,err:0,Lambda:0.1,deltaStruct:0,A_sys_env:0,LF_exp:0,err_exp:0,Lambda_exp:0,fertileScore:0,action:'dejar oscilar',regime:'RÍGIDO',omega:0,envTemp:24.6,externalStress:0,envDrift:0,history:[],black:0.18,white:0.14,bare:0.68,albedoBlack:0.25,albedoWhite:0.75,albedoBare:0.5};
+const fieldCanvas=$('fieldCanvas'),fctx=fieldCanvas.getContext('2d'),gridSize=64;
+let field=Array.from({length:gridSize},()=>Array.from({length:gridSize},()=>24.5));
+let evoChart,phaseChart,gaugeDeltaStruct,gaugeAsys,gaugeLfExp,gaugeLambdaExp;
+let lastStableState=false,stableCycles=0;
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)),lerp=(a,b,t)=>a+(b-a)*t,gauss=(x,m,s)=>Math.exp(-0.5*Math.pow((x-m)/Math.max(s,1e-6),2));
+function fertileWindow(temp,opt,band){return clamp(1-Math.pow(Math.abs(temp-opt)/Math.max(0.001,band*2.3),2),0,1)}
+function pseudoNoise(x,y,t){const s=Math.sin(x*12.9898+y*78.233+t*0.021)*43758.5453;return(s-Math.floor(s))*2-1}
+function computeDeltaStruct(field){let sum=0,sumSq=0,n=0;for(let y=0;y<field.length;y++)for(let x=0;x<field[0].length;x++){const v=field[y][x];sum+=v;sumSq+=v*v;n++}const mean=sum/n;return Math.sqrt(Math.max(sumSq/n-mean*mean,0))}
+function computeCoupling(Tf,targetTf){const diff=Math.abs(Tf-targetTf);return Math.max(0,1-diff/Math.max(2.5,state.band*10))}
+function ptcResponse(temp){const ratio=clamp(temp/Math.max(0.1,state.ptcTc),0.2,3);state.ptcR=Math.max(0.15,Math.pow(ratio,state.ptcSharp));return clamp(1/state.ptcR,0.05,1.2)}
+function computeDaisyworld(){state.bare=clamp(1-state.black-state.white,0,1);const albedo=state.black*state.albedoBlack+state.white*state.albedoWhite+state.bare*state.albedoBare;const absorbed=state.luminosity*(1-albedo);const Tplanet=12+34*absorbed;const localBlack=Tplanet+(albedo-state.albedoBlack)*14;const localWhite=Tplanet+(albedo-state.albedoWhite)*14;const growthBlack=clamp(1-0.003265*Math.pow(state.tOpt-localBlack,2),0,1);const growthWhite=clamp(1-0.003265*Math.pow(state.tOpt-localWhite,2),0,1);const death=0.28+state.noise*10;const spawn=Math.max(0,state.bare);state.black=clamp(state.black+(state.black*(growthBlack*spawn-death))*0.08,0,0.9);state.white=clamp(state.white+(state.white*(growthWhite*spawn-death))*0.08,0,0.9);state.bare=clamp(1-state.black-state.white,0,1);return{albedo:state.black*state.albedoBlack+state.white*state.albedoWhite+state.bare*state.albedoBare,targetTf:12+34*state.luminosity*(1-(state.black*state.albedoBlack+state.white*state.albedoWhite+state.bare*state.albedoBare))}}
+function getDayNightTemp(hour){const lo=state.minTemp,hi=state.maxTemp;const phase=(hour/24)*Math.PI*2;const normalized=(Math.sin(phase-Math.PI/2)+1)/2;return lo+normalized*(hi-lo)}
+
+// BLOQUE 6 — thresholds ajustados: régimen depende de error real, no solo temperatura
+function classifyRegime(){
+  if(state.deltaStruct<0.2&&state.LF<0.15) return['CERRADO','dejar oscilar'];
+  if(state.deltaStruct>=0.2&&state.deltaStruct<1.2&&state.fertileScore>=0.05) return['TRANSICIÓN','dejar oscilar'];
+  if(state.deltaStruct>1.4||state.err>2.5) return['SOBRECARGA','enfriar borde'];
+  return['RÍGIDO','reanclar'];
+}
+
+function pastorAutoAdjust(){if(!state.auto)return;if(state.regime==='RÍGIDO'){state.powerBase=clamp(state.powerBase+0.01,0,1);state.band=clamp(state.band+0.01,0.2,2.5)}else if(state.regime==='SOBRECARGA'){state.powerBase=clamp(state.powerBase-0.012,0,1);state.band=clamp(state.band+0.02,0.2,2.5)}else if(state.regime==='TRANSICIÓN'){state.powerBase=clamp(lerp(state.powerBase,0.48,0.05),0,1);state.band=clamp(lerp(state.band,1.0,0.05),0.2,2.5)}els.powerBase.value=state.powerBase.toFixed(3);els.band.value=state.band.toFixed(3);updateLabels()}
+function updateLabels(){els.powerBaseVal.textContent=Number(state.powerBase).toFixed(3);els.betaVal.textContent=Number(state.beta).toFixed(3);els.sigmaVal.textContent=Number(state.sigma).toFixed(1);els.noiseVal.textContent=Number(state.noise).toFixed(4);els.bandVal.textContent=Number(state.band).toFixed(3);els.lumVal.textContent=Number(state.luminosity).toFixed(2);els.tOptVal.textContent=Number(state.tOpt).toFixed(1)+'°C';els.ptcTcVal.textContent=Number(state.ptcTc).toFixed(1)+'°C';els.ptcSharpVal.textContent=Number(state.ptcSharp).toFixed(1);els.minTempVal.textContent=Number(state.minTemp).toFixed(1)+'°C';els.maxTempVal.textContent=Number(state.maxTemp).toFixed(1)+'°C'}
+function syncStateFromUI(){state.powerBase=Number(els.powerBase.value);state.beta=Number(els.beta.value);state.sigma=Number(els.sigma.value);state.noise=Number(els.noise.value);state.band=Number(els.band.value);state.luminosity=Number(els.luminosity.value);state.tOpt=Number(els.tOpt.value);state.ptcTc=Number(els.ptcTc.value);state.ptcSharp=Number(els.ptcSharp.value);state.minTemp=Number(els.minTemp.value);state.maxTemp=Number(els.maxTemp.value)}
+
+// Helper compartido para LF y err — usado en ambos modos
+function computeLFandErr(daisiesTargetTf){
+  // BLOQUE 4 — inercia del sistema: respuesta no instantánea
+  const targetPower=state.powerBase*ptcResponse(state.Tf);
+  state.powerLive=lerp(state.powerLive,targetPower,0.08);
+
+  // BLOQUE 1 v2 — LF solo dinámica interna, sin deltaStruct (elimina circularidad)
+  const deviation=Math.abs(state.powerLive-state.powerBase);
+  const inertiaPenalty=Math.exp(-deviation*4);
+  state.LF=clamp(deviation*(1-inertiaPenalty),0,1);
+
+  // BLOQUE 2 v2 — err = pérdida de acoplamiento puro; err_exp = presión externa (no mezclar)
+  const envTarget=state.dayNightMode ? lerp(state.envTemp,state.tOpt,0.5) : state.tOpt;
+  state.err=Math.abs(state.Tf-envTarget);
+  state.err_exp=state.externalStress;
+}
+
+function applyDayNightCycle(){
+  const cycleHour=(state.tick*state.dayNightSpeed)%24;
+  const envTemp=getDayNightTemp(cycleHour);
+  state.envTemp=envTemp;
+  state.envDrift=envTemp-state.Tf;
+  state.externalStress=Math.abs(state.envDrift)/Math.max(1,state.maxTemp-state.minTemp);
+  const daisies=computeDaisyworld();
+  computeLFandErr(daisies.targetTf);
+  const thermalDrive=8.2*state.powerLive+0.46*(daisies.targetTf-state.Tf);
+  const envForce=(envTemp-state.Tf);
+  const damping=0.09+(1-state.beta)*0.65;
+  const stochastic=(Math.random()-0.5)*state.noise*10;
+  state.Tf=state.Tf+thermalDrive*0.12+envForce*0.12-damping*(state.Tf-state.tOpt)*0.05+stochastic;
+  state.Th=lerp(state.Th,state.Tf+0.9+0.4*Math.sin(cycleHour/24*Math.PI*2),0.08);
+  state.Tc=lerp(state.Tc,state.Tf+0.4,0.05);
+  state.delta=state.Th-state.Tf;
+  evolveField(daisies.albedo);
+  state.deltaStruct=computeDeltaStruct(field);
+  state.A_sys_env=computeCoupling(state.Tf,lerp(envTemp,daisies.targetTf,0.5));
+  state.LF_exp=clamp(Math.abs(state.powerLive-state.powerBase),0,1);
+  // BLOQUE 3 — Lambda cosmosemiótica unificada
+  state.Lambda=clamp((state.deltaStruct*state.LF)/Math.max(state.err,0.001)*state.A_sys_env,0,4);
+  state.Lambda_exp=state.Lambda;
+  state.fertileScore=clamp(state.LF*(0.55+state.powerLive*0.25),0,1);
+  state.omega=Math.sin(cycleHour/24*Math.PI*2)*0.12;
+  state.action='reacoplar al entorno';
+  state.lambdaHistory.push(state.Lambda_exp);
+  if(state.lambdaHistory.length>50)state.lambdaHistory.shift();
+  detectPuntoVivo();
+}
+
+function evolveField(albedo){const next=field.map(r=>r.slice());const cx=gridSize/2,cy=gridSize/2;for(let y=0;y<gridSize;y++)for(let x=0;x<gridSize;x++){const dx=(x-cx)/cx,dy=(y-cy)/cy,r=Math.sqrt(dx*dx+dy*dy),edge=gauss(r,0.72,0.11+state.band*0.03),daisyMix=state.black*(1-r)+state.white*r,noise=(pseudoNoise(x,y,state.tick)-0.5)*state.noise*16,target=state.Tf+edge*state.delta*1.8+daisyMix*1.2-albedo*1.8+noise,smooth=clamp(0.05+state.sigma*0.01,0.04,0.16);let n=0,c=0;for(let oy=-1;oy<=1;oy++)for(let ox=-1;ox<=1;ox++){const nx=x+ox,ny=y+oy;if(nx>=0&&nx<gridSize&&ny>=0&&ny<gridSize){n+=field[ny][nx];c++}}next[y][x]=lerp(n/c,target,smooth)}field=next}
+
+function detectPuntoVivo(){if(state.lambdaHistory.length<20)return false;const recent=state.lambdaHistory.slice(-20),mean=recent.reduce((a,b)=>a+b,0)/20,std=Math.sqrt(recent.reduce((a,b)=>a+Math.pow(b-mean,2),0)/20),stable=(std<0.002&&state.deltaStruct>0.36&&state.externalStress>0.05&&state.A_sys_env>0.55);if(stable&&!lastStableState){stableCycles=0;state.isVivo=true}if(stable){stableCycles++;state.cyclesVivo=stableCycles;if(stableCycles>=state.maxCycles){state.running=false}}else{state.isVivo=false;stableCycles=0}lastStableState=stable;return stable}
+
+function updateSimulation(){
+  syncStateFromUI();
+  if(state.dayNightMode){
+    applyDayNightCycle();
+  } else {
+    const daisies=computeDaisyworld();
+    computeLFandErr(daisies.targetTf);
+    const thermalDrive=8.2*state.powerLive+0.46*(daisies.targetTf-state.Tf);
+    const damping=0.09+(1-state.beta)*0.65;
+    const stochastic=(Math.random()-0.5)*state.noise*14;
+    state.Tf=state.Tf+thermalDrive*0.12-damping*(state.Tf-state.tOpt)*0.05+stochastic;
+    const edgeBias=(state.black-state.white)*4.2;
+    state.Tc=lerp(state.Tc,state.Tf+edgeBias*0.18,0.12);
+    state.Th=lerp(state.Th,state.Tf+0.65+state.powerLive*1.8+edgeBias*0.32,0.10);
+    state.delta=state.Th-state.Tf;
+    // BLOQUE 3 — Lambda cosmosemiótica unificada
+    state.Lambda=clamp((state.deltaStruct*state.LF)/Math.max(state.err,0.001)*state.A_sys_env,0,4);
+    state.Lambda_exp=state.Lambda;
+    state.fertileScore=clamp(state.LF*clamp(1-Math.abs(state.delta-1.1)/1.6,0,1)*(0.4+Math.abs(state.black-state.white)+state.Lambda*0.12),0,1);
+    state.omega=(state.black-state.white)*state.powerLive*0.12;
+    evolveField(daisies.albedo);
+    state.deltaStruct=computeDeltaStruct(field);
+    state.A_sys_env=computeCoupling(state.Tf,daisies.targetTf);
+    state.LF_exp=clamp(Math.abs(state.powerLive-state.powerBase),0,1);
+    state.lambdaHistory.push(state.Lambda_exp);
+    if(state.lambdaHistory.length>50)state.lambdaHistory.shift();
+  }
+  // BLOQUE 5 — régimen basado en estructura real, sin sobreescritura por isVivo
+  const rr=classifyRegime();
+  state.regime=rr[0];
+  state.action=rr[1];
+  if(state.auto)pastorAutoAdjust();
+  pushHistory();renderAll();state.step+=state.dt;state.tick+=1;
+}
+
+function colorForTemp(t){const min=18,max=32,u=clamp((t-min)/(max-min),0,1),stops=[[56,189,248],[34,197,94],[234,179,8],[245,158,11],[239,68,68]],p=u*(stops.length-1),i=Math.floor(p),f=p-i,a=stops[Math.min(i,stops.length-1)],b=stops[Math.min(i+1,stops.length-1)]||a;return`rgb(${Math.round(lerp(a[0],b[0],f))},${Math.round(lerp(a[1],b[1],f))},${Math.round(lerp(a[2],b[2],f))})`}
+function drawField(){const w=fieldCanvas.width,h=fieldCanvas.height,cw=w/gridSize,ch=h/gridSize;fctx.clearRect(0,0,w,h);for(let y=0;y<gridSize;y++)for(let x=0;x<gridSize;x++){fctx.fillStyle=colorForTemp(field[y][x]);fctx.fillRect(x*cw,y*ch,cw+0.5,ch+0.5)}const cx=w/2,cy=h/2,radius=w*0.36;fctx.strokeStyle='rgba(255,255,255,.65)';fctx.lineWidth=2;fctx.beginPath();fctx.arc(cx,cy,radius,0,Math.PI*2);fctx.stroke();fctx.setLineDash([6,5]);fctx.strokeStyle=state.isVivo?'rgba(16,185,129,.95)':'rgba(20,184,166,.95)';fctx.beginPath();fctx.arc(cx,cy,radius*(0.78+state.band*0.05),0,Math.PI*2);fctx.stroke();fctx.setLineDash([])}
+
+// ─── PLANO COSMOSEMIÓTICO ─────────────────────────────────────────────────
+const _quadTrail = [];
+const _quadTrailMax = 80;
+
+function drawQuadrant(){
+  const canvas = document.getElementById('quadrantCanvas');
+  if(!canvas) return;
+  // Sincronizar resolución del canvas con tamaño CSS real
+  const rect = canvas.getBoundingClientRect();
+  const W = Math.round(rect.width)  || 400;
+  const H = Math.round(rect.height) || 220;
+  if(canvas.width !== W || canvas.height !== H){ canvas.width=W; canvas.height=H; }
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  // Cuadrantes
+  ctx.fillStyle = "rgba(16,185,129,0.15)";  // Jardín Fértil  — ↑ izq
+  ctx.fillRect(0,0,w/2,h/2);
+  ctx.fillStyle = "rgba(239,68,68,0.15)";   // Colapso        — ↑ der
+  ctx.fillRect(w/2,0,w/2,h/2);
+  ctx.fillStyle = "rgba(59,130,246,0.15)";  // Cerrado        — ↓ izq
+  ctx.fillRect(0,h/2,w/2,h/2);
+  ctx.fillStyle = "rgba(245,158,11,0.15)";  // Selva Hostil   — ↓ der
+  ctx.fillRect(w/2,h/2,w/2,h/2);
+
+  // Ejes
+  ctx.strokeStyle = "rgba(255,255,255,0.2)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(w/2,0); ctx.lineTo(w/2,h);
+  ctx.moveTo(0,h/2); ctx.lineTo(w,h/2);
+  ctx.stroke();
+
+  // Etiquetas de cuadrante
+  ctx.font = "10px Inter,sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.fillText("Fértil",     6,        12);
+  ctx.fillText("Colapso",    w/2+6,    12);
+  ctx.fillText("Cerrado",    6,        h/2+12);
+  ctx.fillText("Hostil",     w/2+6,    h/2+12);
+
+  // Etiquetas de ejes
+  ctx.fillStyle = "rgba(255,255,255,0.3)";
+  ctx.font = "9px Inter,sans-serif";
+  ctx.fillText("LF →",       w-28,     h-3);
+  ctx.fillText("Δ↑",         2,        9);
+
+  // Posición actual — X=LF, Y=Δ_struct (normalizado 0–2)
+  const x = clamp(state.LF, 0, 1);
+  const y = clamp(state.deltaStruct / 2, 0, 1);
+  const px = x * w;
+  const py = h - y * h;
+
+  // Guardar trayectoria
+  _quadTrail.push({px, py});
+  if(_quadTrail.length > _quadTrailMax) _quadTrail.shift();
+
+  // Dibujar trayectoria con fade
+  for(let i = 1; i < _quadTrail.length; i++){
+    const alpha = (i / _quadTrail.length) * 0.4;
+    ctx.beginPath();
+    ctx.moveTo(_quadTrail[i-1].px, _quadTrail[i-1].py);
+    ctx.lineTo(_quadTrail[i].px,   _quadTrail[i].py);
+    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Color del punto según régimen
+  const regimeColor = {
+    'TRANSICIÓN': '#10b981',
+    'CERRADO':    '#38bdf8',
+    'SOBRECARGA': '#8b5cf6',
+    'RÍGIDO':     '#ef4444',
+  }[state.regime] || '#ffffff';
+
+  // Punto actual
+  ctx.beginPath();
+  ctx.arc(px, py, 5, 0, Math.PI*2);
+  ctx.fillStyle = regimeColor;
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+}
+// ─────────────────────────────────────────────────────────────────────────
+function pushHistory(){state.history.push({t:state.step,PowerBase:state.powerBase,PowerLive:state.powerLive,beta:state.beta,sigma:state.sigma,noise:state.noise,band:state.band,Th:state.Th,Tc:state.Tc,Tf:state.Tf,envTemp:state.envTemp,stress:state.externalStress,LF:state.LF,deltaStruct:state.deltaStruct,A_sys_env:state.A_sys_env,LF_exp:state.LF_exp,Lambda_exp:state.Lambda_exp,Regimen:state.regime});if(state.history.length>220)state.history.shift()}
+function updateMetrics(){$('timeLabel').textContent=state.step;$('powerLiveLabel').textContent=state.powerLive.toFixed(3);$('omegaLabel').textContent=state.omega.toFixed(3);$('tfMetric').textContent=state.Tf.toFixed(3);$('envMetric').textContent=state.envTemp.toFixed(3);$('stressMetric').textContent=state.externalStress.toFixed(3);$('lfMetric').textContent=state.LF.toFixed(3);$('deltaStructMetric').textContent=state.deltaStruct.toFixed(3);$('asysMetric').textContent=state.A_sys_env.toFixed(3);$('regimeMetric').textContent=state.regime;$('actionMetric').textContent=state.action;$('cardPowerBase').textContent=state.powerBase.toFixed(3);$('cardPowerLive').textContent=state.powerLive.toFixed(3);$('cardLambda').textContent=state.Lambda.toFixed(3);$('cardRptc').textContent=state.ptcR.toFixed(3);$('gaugeDeltaStructVal').textContent=state.deltaStruct.toFixed(3);$('gaugeAsysVal').textContent=state.A_sys_env.toFixed(3);$('gaugeLfExpVal').textContent=state.LF_exp.toFixed(3);$('gaugeLambdaExpVal').textContent=state.Lambda_exp.toFixed(3);}
+function updateTable(){$('historyBody').innerHTML=state.history.slice(-40).reverse().map(r=>`<tr><td>${r.t}</td><td>${r.PowerBase.toFixed(3)}</td><td>${r.PowerLive.toFixed(3)}</td><td>${r.Th.toFixed(3)}</td><td>${r.Tc.toFixed(3)}</td><td>${r.Tf.toFixed(3)}</td><td>${r.envTemp.toFixed(3)}</td><td>${r.stress.toFixed(3)}</td><td>${r.LF.toFixed(3)}</td><td>${r.deltaStruct.toFixed(3)}</td><td>${r.A_sys_env.toFixed(3)}</td><td>${r.LF_exp.toFixed(3)}</td><td>${r.Lambda_exp.toFixed(3)}</td><td>${r.Regimen}</td></tr>`).join('');}
+function makeGauge(id,color,maxVal){return new Chart($(id).getContext('2d'),{type:'doughnut',data:{datasets:[{data:[0,maxVal],backgroundColor:[color,'rgba(255,255,255,.08)'],borderWidth:0,cutout:'78%'}]},options:{responsive:true,maintainAspectRatio:false,rotation:-90,circumference:180,plugins:{legend:{display:false},tooltip:{enabled:false}},animation:false}})}
+function makeCharts(){const common={responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{labels:{color:'#dce8fb'}}},scales:{x:{ticks:{color:'#9fb2cc'},grid:{color:'rgba(255,255,255,.06)'}},y:{ticks:{color:'#9fb2cc'},grid:{color:'rgba(255,255,255,.06)'}}}};evoChart=new Chart($('evoChart').getContext('2d'),{type:'line',data:{labels:[],datasets:[{label:'Tf',data:[],borderColor:'#38bdf8',tension:.22,pointRadius:0},{label:'envTemp',data:[],borderColor:'#f59e0b',tension:.22,pointRadius:0},{label:'stress',data:[],borderColor:'#ef4444',tension:.22,pointRadius:0,yAxisID:'y1'},{label:'LF',data:[],borderColor:'#eab308',tension:.22,pointRadius:0,yAxisID:'y1'},{label:'Λ_exp',data:[],borderColor:'#a78bfa',tension:.22,pointRadius:0,yAxisID:'y1'}]},options:{...common,scales:{x:common.scales.x,y:{...common.scales.y},y1:{position:'right',ticks:{color:'#9fb2cc'},grid:{display:false},min:0,max:4}}}});phaseChart=new Chart($('phaseChart').getContext('2d'),{type:'scatter',data:{datasets:[{label:'stress vs Δ_struct',data:[],pointRadius:4,backgroundColor:'#8b5cf6'}]},options:{...common,scales:{x:{...common.scales.x,title:{display:true,text:'Δ_struct',color:'#dce8fb'}},y:{...common.scales.y,title:{display:true,text:'stress',color:'#dce8fb'},min:0,max:1}}}});gaugeDeltaStruct=makeGauge('gaugeDeltaStruct','#f59e0b',2.5);gaugeAsys=makeGauge('gaugeAsys','#22d3ee',1);gaugeLfExp=makeGauge('gaugeLfExp','#eab308',1);gaugeLambdaExp=makeGauge('gaugeLambdaExp','#a78bfa',4)}
+function updateCharts(){const rows=state.history.slice(-120);evoChart.data.labels=rows.map(r=>r.t);evoChart.data.datasets[0].data=rows.map(r=>r.Tf);evoChart.data.datasets[1].data=rows.map(r=>r.envTemp);evoChart.data.datasets[2].data=rows.map(r=>r.stress);evoChart.data.datasets[3].data=rows.map(r=>r.LF);evoChart.data.datasets[4].data=rows.map(r=>Math.min(r.Lambda_exp,4));evoChart.update();phaseChart.data.datasets[0].data=rows.map(r=>({x:r.deltaStruct,y:r.stress}));phaseChart.data.datasets[0].pointBackgroundColor=rows.map(r=>r.Regimen==='CERRADO'?'#22c55e':r.Regimen==='TRANSICIÓN'?'#f59e0b':r.Regimen==='SOBRECARGA'?'#8b5cf6':'#ef4444');phaseChart.update();gaugeDeltaStruct.data.datasets[0].data=[Math.min(state.deltaStruct,2.5),Math.max(0,2.5-Math.min(state.deltaStruct,2.5))];gaugeAsys.data.datasets[0].data=[Math.min(state.A_sys_env,1),Math.max(0,1-Math.min(state.A_sys_env,1))];gaugeLfExp.data.datasets[0].data=[Math.min(state.LF_exp,1),Math.max(0,1-Math.min(state.LF_exp,1))];gaugeLambdaExp.data.datasets[0].data=[Math.min(state.Lambda_exp,4),Math.max(0,4-Math.min(state.Lambda_exp,4))];gaugeDeltaStruct.update();gaugeAsys.update();gaugeLfExp.update();gaugeLambdaExp.update()}
+function renderAll(){drawField();updateMetrics();updateTable();updateCharts();drawQuadrant();}
+function resetField(){field=Array.from({length:gridSize},()=>Array.from({length:gridSize},()=>24.5))}
+function resetSimulation(){Object.assign(state,{step:0,tick:0,cyclesVivo:0,isVivo:false,lambdaHistory:[],powerBase:0.47,powerLive:0.47,ptcR:1,Tf:24.6,Tc:25,Th:28,delta:3.4,LF:0,err:0,Lambda:0.1,deltaStruct:0,A_sys_env:0,LF_exp:0,err_exp:0,Lambda_exp:0,fertileScore:0,regime:'RÍGIDO',action:'dejar oscilar',omega:0,envTemp:24.6,externalStress:0,envDrift:0,history:[],black:0.18,white:0.14,bare:0.68});lastStableState=false;stableCycles=0;els.dayNightToggle.checked=false;state.dayNightMode=false;resetField();pushHistory();renderAll()}
+function exportCSV(){const header=['t','PowerBase','PowerLive','beta','sigma','noise','band','Th','Tc','Tf','envTemp','stress','LF','deltaStruct','A_sys_env','LF_exp','Lambda_exp','Regimen'];const rows=state.history.map(r=>[r.t,r.PowerBase.toFixed(3),r.PowerLive.toFixed(3),r.beta.toFixed(3),r.sigma.toFixed(1),r.noise.toFixed(4),r.band.toFixed(3),r.Th.toFixed(3),r.Tc.toFixed(3),r.Tf.toFixed(3),r.envTemp.toFixed(3),r.stress.toFixed(3),r.LF.toFixed(3),r.deltaStruct.toFixed(3),r.A_sys_env.toFixed(3),r.LF_exp.toFixed(3),r.Lambda_exp.toFixed(3),r.Regimen]);const csv=[header.join(','),...rows.map(r=>r.join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EIT3_Termico_PastorDelBorde_v154_cosmo.csv';a.click()}
+$('btnStart').onclick=()=>state.running=true;$('btnPause').onclick=()=>state.running=false;$('btnReset').onclick=()=>{state.running=false;resetSimulation()};$('btnExport').onclick=exportCSV;$('btnManual').onclick=()=>{state.auto=false;$('btnManual').className='secondary';$('btnAuto').className='ghost'};$('btnAuto').onclick=()=>{state.auto=true;$('btnAuto').className='secondary';$('btnManual').className='ghost'};els.dayNightToggle.onchange=()=>{state.dayNightMode=els.dayNightToggle.checked;renderAll()};$('btnStopDayNight').onclick=()=>{els.dayNightToggle.checked=false;state.dayNightMode=false;renderAll()};$('btnApplyDayNight').onclick=()=>{els.dayNightToggle.checked=true;state.dayNightMode=true;renderAll()};Object.values(els).forEach(el=>{if(el&&el.tagName==='INPUT'&&el.id!=='dayNightToggle')el.oninput=()=>{updateLabels();syncStateFromUI();renderAll()}});
+function loop(){if(state.running)updateSimulation();requestAnimationFrame(loop)}
+updateLabels();makeCharts();resetSimulation();loop();
+</script>
+</body>
+</html>
