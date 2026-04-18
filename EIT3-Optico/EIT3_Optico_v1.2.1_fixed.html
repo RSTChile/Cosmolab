@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EIT-3 Óptico v1.2.1 | PC-1 Estable</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  :root {
+    --bg: #0a0e1a; --panel: #111827; --border: #1f2937;
+    --accent: #3b82f6; --accent2: #06b6d4; --text: #e5e7eb;
+    --text-dim: #9ca3af; --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+    background: #1f2937; border-radius: 3px; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 16px; height: 16px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    cursor: pointer; border-radius: 50%; box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    transition: all 0.2s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2); box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    cursor: pointer; border-radius: 50%; border: none;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); transition: all 0.2s;
+  }
+  .glass {
+    background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .param-card { transition: all 0.3s ease; }
+  .param-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15); }
+  .mode-btn { transition: all 0.2s; }
+  .mode-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .running { animation: pulse 2s infinite; }
+  .tuner-mode-btn.active {
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    color: white;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
+  }
+</style>
+</head>
+<body class="min-h-screen p-4 lg:p-6">
+  <div class="max-w-[1800px] mx-auto">
+    <header class="glass rounded-xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          EIT-3 Óptico v1.2.1
+        </h1>
+        <p class="text-sm text-gray-400 mt-1">I_t = N( α · R_θ( S_σ(I_{t-1}) ) + β · I_{t-1} + E_t ) | Estable</p>
+      </div>
+      <div class="flex gap-2">
+        <button id="btnStart" class="px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40">▶ Iniciar</button>
+        <button id="btnPause" class="px-5 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition-all" disabled>⏸ Pausar</button>
+        <button id="btnReset" class="px-5 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition-all">⟲ Reset</button>
+        <button id="btnExport" class="px-5 py-2 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 rounded-lg font-medium transition-all shadow-lg shadow-cyan-500/20">⬇ CSV</button>
+        <button id="btn1114" class="px-5 py-2 bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 rounded-lg font-medium transition-all shadow-lg shadow-amber-900/30 border border-amber-600/30" title="Proporción 11:14 — Espiral aritmética constante (θ=2.337°, LCM=154)">11:14</button>
+      </div>
+    </header>
+
+    <div class="grid lg:grid-cols-[380px_1fr] gap-6">
+      <div class="space-y-4">
+        <div class="glass rounded-xl p-5">
+          <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Modo Operación</h2>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="mode-btn active px-3 py-2 bg-gray-800 rounded-lg text-sm font-medium" data-mode="manual">Manual</button>
+            <button class="mode-btn px-3 py-2 bg-gray-800 rounded-lg text-sm font-medium" data-mode="auto">Auto E1-E14</button>
+            <button class="mode-btn px-3 py-2 bg-gray-800 rounded-lg text-sm font-medium" data-mode="phase">Mapa Fases</button>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-5 space-y-4">
+          <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Parámetros PC-1</h2>
+          <div class="param-card bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-medium text-blue-400">α LF</label>
+              <span class="mono text-sm bg-gray-800 px-2 py-0.5 rounded" id="valAlpha">0.620</span>
+            </div>
+            <input type="range" id="alpha" min="0" max="1" step="0.001" value="0.62">
+            <p class="text-xs text-gray-500 mt-1">Ganancia loop</p>
+          </div>
+          <div class="param-card bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-medium text-cyan-400">θ N9</label>
+              <span class="mono text-sm bg-gray-800 px-2 py-0.5 rounded" id="valTheta">1.200°</span>
+            </div>
+            <input type="range" id="theta" min="0" max="5" step="0.01" value="1.2">
+            <p class="text-xs text-gray-500 mt-1">Rotación anisotrópica</p>
+          </div>
+          <div class="param-card bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-medium text-purple-400">σ Att</label>
+              <span class="mono text-sm bg-gray-800 px-2 py-0.5 rounded" id="valSigma">4.0px</span>
+            </div>
+            <input type="range" id="sigma" min="0" max="30" step="0.1" value="4">
+            <p class="text-xs text-gray-500 mt-1">Blur/suavizado</p>
+          </div>
+          <div class="param-card bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-medium text-green-400">β Rel</label>
+              <span class="mono text-sm bg-gray-800 px-2 py-0.5 rounded" id="valBeta">0.820</span>
+            </div>
+            <input type="range" id="beta" min="0" max="1" step="0.001" value="0.82">
+            <p class="text-xs text-gray-500 mt-1">Persistencia</p>
+          </div>
+          <div class="param-card bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-medium text-orange-400">E</label>
+              <span class="mono text-sm bg-gray-800 px-2 py-0.5 rounded" id="valNoise">0.001</span>
+            </div>
+            <input type="range" id="noise" min="0" max="0.05" step="0.001" value="0.0012">
+            <p class="text-xs text-gray-500 mt-1">Ruido</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-5">
+          <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Validación E11</h2>
+          <div id="validationCard" class="bg-gray-900/40 rounded-lg p-4 border border-gray-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm">Zona Fértil</span>
+              <span id="validationStatus" class="text-xs px-2 py-1 rounded bg-gray-700">Inactivo</span>
+            </div>
+            <div class="text-xs text-gray-500 space-y-1">
+              <div class="flex justify-between"><span>CTX: 48-64%</span><span id="ctxTarget" class="mono">—</span></div>
+              <div class="flex justify-between"><span>OUT: 20-32%</span><span id="outTarget" class="mono">—</span></div>
+              <div class="flex justify-between"><span>|CHIRAL| > 0.5</span><span id="chiralTarget" class="mono">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sintonizador Automático -->
+        <div class="glass rounded-xl p-5 border border-purple-900/40">
+          <h2 class="text-sm font-semibold text-purple-300 mb-3 uppercase tracking-wide">⟳ Sintonizador Automático</h2>
+          <div class="text-xs text-gray-500 mb-3 leading-relaxed">
+            Protocolo completo sin intervención manual.
+          </div>
+
+          <!-- Selector de modo — 4 protocolos -->
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <button class="tuner-mode-btn active text-xs px-3 py-2 bg-gray-800 rounded-lg font-medium" data-tmode="standard">Estándar</button>
+            <button class="tuner-mode-btn text-xs px-3 py-2 bg-gray-800 rounded-lg font-medium" data-tmode="e15"
+              title="θ=2.337° | LCM(11,14)=154 pasos | espiral aritmética constante">Protocolo 11:14</button>
+            <button class="tuner-mode-btn text-xs px-3 py-2 bg-gray-800 rounded-lg font-medium" data-tmode="phi"
+              title="θ=2.225° | ángulo áureo/100 | 161.8 pasos/vuelta, irracional, nunca cierra">Protocolo Φ</button>
+            <button class="tuner-mode-btn text-xs px-3 py-2 bg-gray-800 rounded-lg font-medium" data-tmode="fib"
+              title="θ=2.500° | 55/144 de vuelta | F(12)=144 pasos, converge a Φ">Protocolo Fibonacci</button>
+          </div>
+
+          <div class="space-y-2 mb-3">
+            <div class="flex justify-between text-xs">
+              <span class="text-gray-400">Fase</span>
+              <span id="tunerPhase" class="mono text-purple-300">—</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5">
+              <div id="tunerBar" class="h-1.5 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 transition-all duration-300" style="width:0%"></div>
+            </div>
+            <div id="tunerStageLabels" class="flex justify-between text-xs text-gray-600">
+              <span>Rescate</span><span>Pulso σ</span><span>Ajuste β</span><span>Estable</span>
+            </div>
+          </div>
+
+          <div class="bg-gray-900/40 rounded-lg p-3 border border-gray-800 mb-3 space-y-1 text-xs">
+            <div class="flex justify-between"><span class="text-gray-500">CHIRAL objetivo</span><span id="tunerChiralGoal" class="mono text-purple-400">—</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">CHIRAL actual</span><span id="tunerChiralNow" class="mono text-purple-300">—</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">Estabilidad</span><span id="tunerStability" class="mono text-green-400">—</span></div>
+            <div id="e15StatusRow" class="flex justify-between hidden"><span class="text-gray-500">Test θ=0</span><span id="e15Status" class="mono text-cyan-400">—</span></div>
+          </div>
+
+          <div class="flex gap-2">
+            <button id="btnTune" class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-700 to-purple-600 hover:from-purple-600 hover:to-purple-500 rounded-lg text-sm font-medium transition-all shadow-lg shadow-purple-900/30">
+              ▶ Iniciar
+            </button>
+            <button id="btnTuneStop" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium transition-all" disabled>
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div id="autoConfig" class="glass rounded-xl p-5 hidden">
+          <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Auto-barrido E1-E14</h2>
+          <select id="experimentSelect" class="w-full bg-gray-900 border border-gray-800 rounded-lg px-3 py-2 text-sm">
+            <option value="E1">E1: Reflejo Puro</option>
+            <option value="E2">E2: Luz Agotada</option>
+            <option value="E3">E3: Melodía Estable</option>
+            <option value="E4">E4: Sensibilidad Baja</option>
+            <option value="E5">E5: Engranaje</option>
+            <option value="E6">E6: Ruido Crítico</option>
+            <option value="E7">E7: Flujo Realidad</option>
+            <option value="E8">E8: Condición No Nula</option>
+            <option value="E9">E9: Condición de Contorno</option>
+            <option value="E10">E10: Superposición CMF</option>
+            <option value="E11" selected>E11: Zona Fértil</option>
+            <option value="E12">E12: Sistema Acelerado</option>
+            <option value="E13">E13: Quiebre Elástico</option>
+            <option value="E14">E14: Cadac Caos</option>
+            <option value="E15">E15: Ciclo Límite Estocástico ★</option>
+            <option value="E16">E16: Patrón Geométrico Resonante ★</option>
+            <option value="E17">E17: Proporción 11:14 — Espiral Constante ★</option>
+          </select>
+          <button id="loadExp" class="w-full mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-medium transition-all">Cargar Experimento</button>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass rounded-xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-sm font-semibold text-gray-300 uppercase tracking-wide">Campo I_t</h2>
+              <div class="flex items-center gap-2">
+                <div id="runIndicator" class="w-2 h-2 rounded-full bg-gray-600"></div>
+                <span class="mono text-xs text-gray-400">t = <span id="timestep">0</span></span>
+                <span class="mono text-xs text-gray-600">| <span id="recordCount">0</span>/1000 reg</span>
+              </div>
+            </div>
+            <div class="bg-black rounded-lg p-2 relative">
+              <canvas id="canvas" width="256" height="256" class="w-full rounded"></canvas>
+              <canvas id="overlayCanvas" width="256" height="256" class="w-full rounded absolute inset-0 m-2 pointer-events-none" style="width:calc(100% - 1rem);height:calc(100% - 1rem)"></canvas>
+            </div>
+            <!-- Controles de visualización de rotación -->
+            <div class="mt-2 flex items-center justify-between px-1">
+              <label class="flex items-center gap-2 text-xs text-gray-400 cursor-pointer">
+                <input type="checkbox" id="showRotation" checked class="w-3 h-3">
+                <span>Mostrar rotación</span>
+              </label>
+              <span class="text-xs text-gray-600">ω = <span id="omegaDisplay" class="mono text-purple-400">—</span> rad/paso</span>
+            </div>
+            <!-- FIX 4: añadido "grid" que faltaba -->
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <div class="bg-gray-900/40 rounded p-2 border border-gray-800">
+                <div class="text-xs text-gray-500">Semilla</div>
+                <select id="seedType" class="w-full bg-transparent text-sm mt-1">
+                  <option value="gaussian" selected>Gaussiana</option>
+                  <option value="uniform">Uniforme</option>
+                  <option value="point">Punto Central</option>
+                  <option value="edge">Bordes</option>
+                </select>
+              </div>
+              <div class="bg-gray-900/40 rounded p-2 border border-gray-800">
+                <div class="text-xs text-gray-500">Colormap</div>
+                <select id="colormap" class="w-full bg-transparent text-sm mt-1">
+                  <option value="viridis">Viridis</option>
+                  <option value="plasma">Plasma</option>
+                  <option value="inferno">Inferno</option>
+                  <option value="grayscale">Grayscale</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-5">
+            <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Métricas Tiempo Real</h2>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-lg p-3 border border-blue-900/50">
+                <div class="text-xs text-blue-400 font-medium">CTX</div>
+                <div class="mono text-2xl font-bold mt-1" id="metricCTX">0.0%</div>
+                <div class="text-xs text-gray-500 mt-1">Edge density</div>
+              </div>
+              <div class="bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 rounded-lg p-3 border border-cyan-900/50">
+                <div class="text-xs text-cyan-400 font-medium">OUT</div>
+                <div class="mono text-2xl font-bold mt-1" id="metricOUT">0.0%</div>
+                <div class="text-xs text-gray-500 mt-1">Brillo medio</div>
+              </div>
+              <div class="bg-gradient-to-br from-purple-900/30 to-purple-800/20 rounded-lg p-3 border border-purple-900/50">
+                <div class="text-xs text-purple-400 font-medium">CHIRAL</div>
+                <div class="mono text-2xl font-bold mt-1" id="metricCHIRAL">0.000</div>
+                <div class="text-xs text-gray-500 mt-1">⟨L_z⟩</div>
+              </div>
+              <div class="bg-gradient-to-br from-green-900/30 to-green-800/20 rounded-lg p-3 border border-green-900/50">
+                <div class="text-xs text-green-400 font-medium">N9_eff</div>
+                <div class="mono text-2xl font-bold mt-1" id="metricN9">0.00</div>
+                <div class="text-xs text-gray-500 mt-1">Dist. centroide</div>
+              </div>
+            </div>
+            <div class="bg-gray-900/40 rounded-lg p-3 border border-gray-800">
+              <div class="text-xs text-gray-500 mb-1">Régimen Actual</div>
+              <div id="regimeLabel" class="text-lg font-bold text-gray-400">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-5">
+          <h2 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Evolución Temporal</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div><canvas id="chart1" height="150"></canvas></div>
+            <div><canvas id="chart2" height="150"></canvas></div>
+          </div>
+        </div>
+
+        <div id="phaseMapContainer" class="glass rounded-xl p-5 hidden">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-sm font-semibold text-gray-300 uppercase tracking-wide">Mapa de Fases α vs θ</h2>
+            <button id="generatePhaseMap" class="px-4 py-1.5 bg-purple-600 hover:bg-purple-500 rounded-lg text-sm font-medium transition-all">Generar Mapa</button>
+          </div>
+          <div class="bg-black rounded-lg p-4">
+            <canvas id="phaseCanvas" width="400" height="400" class="w-full max-w-[400px] mx-auto rounded"></canvas>
+          </div>
+          <div class="flex justify-center gap-4 mt-3 text-xs">
+            <div class="flex items-center gap-1"><div class="w-3 h-3 rounded bg-blue-600"></div>S.Cerrado</div>
+            <div class="flex items-center gap-1"><div class="w-3 h-3 rounded bg-green-600"></div>Zona Fértil</div>
+            <div class="flex items-center gap-1"><div class="w-3 h-3 rounded bg-yellow-600"></div>Sobrecarga</div>
+            <div class="flex items-center gap-1"><div class="w-3 h-3 rounded bg-red-600"></div>Colapso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass rounded-xl p-5 mt-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold text-gray-300 uppercase tracking-wide">Historial de Resultados</h2>
+        <button id="clearTable" class="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs font-medium transition-all">Limpiar</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="text-xs text-gray-400 border-b border-gray-800">
+            <tr>
+              <th class="text-left py-2 px-3">t</th><th class="text-left py-2 px-3">α</th>
+              <th class="text-left py-2 px-3">θ</th><th class="text-left py-2 px-3">σ</th>
+              <th class="text-left py-2 px-3">β</th><th class="text-left py-2 px-3">E</th>
+              <th class="text-left py-2 px-3">CTX</th><th class="text-left py-2 px-3">OUT</th>
+              <th class="text-left py-2 px-3">CHIRAL</th><th class="text-left py-2 px-3">N9_eff</th>
+              <th class="text-left py-2 px-3">Régimen</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTable" class="mono text-xs"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const SIZE = 256;
+  const state = {
+    running: false, mode: 'manual', t: 0,
+    params: { alpha: 0.62, theta: 1.2, sigma: 4, beta: 0.82, noise: 0.0012 },
+    field: new Float32Array(SIZE * SIZE), fieldPrev: new Float32Array(SIZE * SIZE),
+    history: [], maxHistory: 1000,
+  };
+
+  // Declarado aquí para que loop() pueda referenciarlo sin hoisting problems
+  const tuner = {
+    active: false,
+    phase: 'idle',
+    tPhaseStart: 0,
+    chiralHistory: [],
+    betaStep: 0.002,
+    betaMax: 0.50,   // límite duro — encima de esto el sistema satura
+    sigmaMax: 4.0,   // límite duro de σ — encima de esto blur destruye estructura
+    stableCount: 0,
+    stableRequired: 60,
+    chiralTarget: 0.008,
+    sigmaOriginal: 0,
+    _retries: 0,
+  };
+
+  const EXPERIMENTS = {
+    E1:  { alpha: 0.95, theta: 0,      sigma: 0,   beta: 0.99,  noise: 0      },
+    E2:  { alpha: 0.01, theta: 0,      sigma: 10,  beta: 0,     noise: 0      },
+    E3:  { alpha: 0.5,  theta: 1.5,    sigma: 5,   beta: 0.8,   noise: 0.001  },
+    E4:  { alpha: 0.2,  theta: 2,      sigma: 15,  beta: 0.5,   noise: 0.002  },
+    E5:  { alpha: 0.6,  theta: 3,      sigma: 2,   beta: 0.9,   noise: 0.0005 },
+    E6:  { alpha: 0.5,  theta: 1.5,    sigma: 5,   beta: 0.8,   noise: 0.008  },
+    E7:  { alpha: 0.7,  theta: 2.5,    sigma: 8,   beta: 0.7,   noise: 0.002  },
+    E8:  { alpha: 0.8,  theta: 1,      sigma: 3,   beta: 0.85,  noise: 0.001  },
+    E9:  { alpha: 0.45, theta: 4,      sigma: 12,  beta: 0.6,   noise: 0.003  },
+    E10: { alpha: 0.55, theta: 1.8,    sigma: 6,   beta: 0.75,  noise: 0.0015 },
+    E11: { alpha: 0.62, theta: 1.2,    sigma: 4,   beta: 0.82,  noise: 0.0012 },
+    E12: { alpha: 0.75, theta: 3.5,    sigma: 7,   beta: 0.9,   noise: 0.002  },
+    E13: { alpha: 0.3,  theta: 4.5,    sigma: 20,  beta: 0.4,   noise: 0.005  },
+    E14: { alpha: 0.9,  theta: 5,      sigma: 25,  beta: 0.3,   noise: 0.009  },
+    // Experimentos descubiertos empíricamente — sesión RMD 2.0
+    E15: { alpha: 0.51, theta: 1.2,    sigma: 0.7, beta: 0.486, noise: 0.025  },
+    E16: { alpha: 0.562,theta: 3.13,   sigma: 6,   beta: 0.485, noise: 0.026  },
+    // E17: Proporción 11:14 — espiral aritmética constante
+    // θ = 360/154 = 2.337° → LCM(11,14)=154 pasos cierra el patrón completo
+    // Período de batido: 51 pasos (resonancia entre ciclos de 11 y 14)
+    // Base conceptual: síntesis calendárica paleolítica, aproximación a π anterior a decimales
+    E17: { alpha: 0.51, theta: 2.337,  sigma: 0.7, beta: 0.486, noise: 0.025  },
+    // E18: Proporción Phi — ángulo áureo, espiral logarítmica que escapa
+    // θ = (360/φ²)/100 = 2.2249° → 161.8 pasos/vuelta (irracional, nunca cierra exacto)
+    // Hipótesis: el sistema NO puede mantener recurrencia — diverge o se disuelve
+    E18: { alpha: 0.51, theta: 2.2249, sigma: 0.7, beta: 0.486, noise: 0.025  },
+    // E19: Proporción Fibonacci — razón 55/144 de vuelta = F(10)/F(12)
+    // θ = 2.500° → 144 pasos/vuelta (F12), converge a Phi pero es racional
+    // Hipótesis: comportamiento intermedio — más estable que Phi, menos que 11:14
+    E19: { alpha: 0.51, theta: 2.500,  sigma: 0.7, beta: 0.486, noise: 0.025  },
+  };
+
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(SIZE, SIZE);
+  const blurBuffer = new Float32Array(SIZE * SIZE);
+  const rotBuffer = new Float32Array(SIZE * SIZE);
+
+  const COLORMAPS = {
+    viridis: v => [v * 68, v * 1, v * 84, 255],
+    plasma: v => [v * 240, v * 71, v * 125, 255],
+    inferno: v => [v * 230, v * 89, v * 51, 255],
+    grayscale: v => [v * 255, v * 255, v * 255, 255]
+  };
+
+  // FIX 1: chart1 con scales al nivel correcto (fuera de plugins)
+  const chart1 = new Chart(document.getElementById('chart1'), {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        { label: 'CTX %', data: [], borderColor: '#3b82f6', borderWidth: 2, pointRadius: 0 },
+        { label: 'OUT %', data: [], borderColor: '#06b6d4', borderWidth: 2, pointRadius: 0 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: '#9ca3af', font: { size: 10 } }
+        }
+      },
+      scales: {
+        x: { display: false },
+        y: {
+          ticks: { color: '#9ca3af', font: { size: 10 } },
+          grid: { color: '#1f2937' }
+        }
+      }
+    }
+  });
+
+  const chart2 = new Chart(document.getElementById('chart2'), {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        { label: 'CHIRAL', data: [], borderColor: '#a855f7', borderWidth: 2, pointRadius: 0 },
+        { label: 'N9_eff', data: [], borderColor: '#10b981', borderWidth: 2, pointRadius: 0 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: '#9ca3af', font: { size: 10 } }
+        }
+      },
+      scales: {
+        x: { display: false },
+        y: {
+          ticks: { color: '#9ca3af', font: { size: 10 } },
+          grid: { color: '#1f2937' }
+        }
+      }
+    }
+  });
+
+  function idx(x, y) { return y * SIZE + x; }
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+  // FIX 2: gaussiana con 2*sigma*sigma (no 2*sigma)
+  function gaussian(x, y, cx, cy, sigma) {
+    const dx = x - cx, dy = y - cy;
+    return Math.exp(-(dx * dx + dy * dy) / (2 * sigma * sigma));
+  }
+
+  function initField(type) {
+    state.field.fill(0);
+    const cx = SIZE / 2, cy = SIZE / 2;
+    switch(type) {
+      case 'gaussian':
+        for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++)
+          state.field[idx(x, y)] = gaussian(x, y, cx, cy, SIZE / 8);
+        state.field[idx(cx + 6, cy)] += 0.02;
+        break;
+      case 'uniform':
+        state.field.fill(0.5);
+        for (let i = 0; i < 100; i++) state.field[Math.floor(Math.random()*SIZE*SIZE)] += 0.01;
+        break;
+      case 'point': state.field[idx(Math.floor(cx), Math.floor(cy))] = 1.0; break;
+      case 'edge':
+        for (let i = 0; i < SIZE; i++) {
+          state.field[idx(i, 0)] = 1.0; state.field[idx(i, SIZE-1)] = 1.0;
+          state.field[idx(0, i)] = 1.0; state.field[idx(SIZE-1, i)] = 1.0;
+        } break;
+    }
+  }
+
+  function gaussianBlur(src, dst, sigma) {
+    if (sigma < 0.5) { dst.set(src); return; }
+    const radius = Math.floor(sigma * 2), passes = 3;
+    let buffer = new Float32Array(src), tmp = new Float32Array(SIZE * SIZE);
+    for (let pass = 0; pass < passes; pass++) {
+      for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) {
+        let sum = 0, count = 0;
+        for (let dx = -radius; dx <= radius; dx++) {
+          const nx = clamp(x + dx, 0, SIZE - 1);
+          sum += buffer[idx(nx, y)]; count++;
+        }
+        tmp[idx(x, y)] = sum / count;
+      }
+      for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) {
+        let sum = 0, count = 0;
+        for (let dy = -radius; dy <= radius; dy++) {
+          const ny = clamp(y + dy, 0, SIZE - 1);
+          sum += tmp[idx(x, ny)]; count++;
+        }
+        buffer[idx(x, y)] = sum / count;
+      }
+    }
+    dst.set(buffer);
+  }
+
+  function rotate(src, dst, thetaDeg) {
+    const theta = thetaDeg * Math.PI / 180, cos = Math.cos(theta), sin = Math.sin(theta);
+    const cx = SIZE / 2, cy = SIZE / 2;
+    for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) {
+      const dx = x - cx, dy = y - cy;
+      const sx = dx * cos + dy * sin + cx, sy = -dx * sin + dy * cos + cy;
+      const x0 = Math.floor(sx), y0 = Math.floor(sy), x1 = x0 + 1, y1 = y0 + 1;
+      if (x0 >= 0 && x1 < SIZE && y0 >= 0 && y1 < SIZE) {
+        const fx = sx - x0, fy = sy - y0;
+        const v00 = src[idx(x0, y0)], v10 = src[idx(x1, y0)];
+        const v01 = src[idx(x0, y1)], v11 = src[idx(x1, y1)];
+        const v0 = v00 * (1 - fx) + v10 * fx, v1 = v01 * (1 - fx) + v11 * fx;
+        dst[idx(x, y)] = v0 * (1 - fy) + v1 * fy;
+      } else dst[idx(x, y)] = 0;
+    }
+  }
+
+  // FIX 3: reemplaza normalize() destructiva por clamp simple
+  function safeClamp(src, dst) {
+    for (let i = 0; i < src.length; i++) dst[i] = clamp(src[i], 0, 1);
+  }
+
+  function iterate() {
+    const { alpha, theta, sigma, beta, noise } = state.params;
+    state.fieldPrev.set(state.field);
+    rotate(state.fieldPrev, rotBuffer, theta);
+    gaussianBlur(rotBuffer, blurBuffer, sigma);
+    const temp = new Float32Array(SIZE * SIZE);
+    for (let i = 0; i < SIZE * SIZE; i++) {
+      const noiseVal = (Math.random() - 0.5) * 2 * noise;
+      temp[i] = alpha * blurBuffer[i] + beta * state.fieldPrev[i] + noiseVal;
+    }
+    safeClamp(temp, state.field);
+    if (document.getElementById('seedType').value === 'edge') {
+      for (let i = 0; i < SIZE; i++) {
+        state.field[idx(i, 0)] = 1.0; state.field[idx(i, SIZE-1)] = 1.0;
+        state.field[idx(0, i)] = 1.0; state.field[idx(SIZE-1, i)] = 1.0;
+      }
+    }
+    state.t++;
+  }
+
+  function computeMetrics() {
+    let sum = 0, cx = 0, cy = 0;
+    for (let i = 0; i < state.field.length; i++) {
+      const v = state.field[i]; sum += v;
+      const x = i % SIZE, y = Math.floor(i / SIZE);
+      cx += x * v; cy += y * v;
+    }
+    const mean = sum / state.field.length;
+    let edgeSum = 0;
+    for (let y = 1; y < SIZE - 1; y++) for (let x = 1; x < SIZE - 1; x++) {
+      const gx = -state.field[idx(x-1, y-1)] + state.field[idx(x+1, y-1)]
+               - 2*state.field[idx(x-1, y)] + 2*state.field[idx(x+1, y)]
+               - state.field[idx(x-1, y+1)] + state.field[idx(x+1, y+1)];
+      const gy = -state.field[idx(x-1, y-1)] - 2*state.field[idx(x, y-1)] - state.field[idx(x+1, y-1)]
+               + state.field[idx(x-1, y+1)] + 2*state.field[idx(x, y+1)] + state.field[idx(x+1, y+1)];
+      edgeSum += Math.sqrt(gx*gx + gy*gy);
+    }
+    const ctxVal = (edgeSum / ((SIZE-2) * (SIZE-2) * 4)) * 100;
+    if (sum > 0.01) { cx /= sum; cy /= sum; } else { cx = SIZE/2; cy = SIZE/2; }
+    const n9eff = Math.sqrt(Math.pow(cx - SIZE/2, 2) + Math.pow(cy - SIZE/2, 2));
+    let chiral = 0;
+    const cx0 = SIZE / 2, cy0 = SIZE / 2;
+    for (let y = 1; y < SIZE-1; y += 2) for (let x = 1; x < SIZE-1; x += 2) {
+      const dx = x - cx0, dy = y - cy0;
+      const gradX = (state.field[idx(x+1, y)] - state.field[idx(x-1, y)]) * 0.5;
+      const gradY = (state.field[idx(x, y+1)] - state.field[idx(x, y-1)]) * 0.5;
+      chiral += dx * gradY - dy * gradX;
+    }
+    chiral = chiral / (SIZE * SIZE / 4);
+    return { ctx: clamp(ctxVal, 0, 100), out: clamp(mean * 100, 0, 100), chiral, n9eff };
+  }
+
+  function classifyRegime(m) {
+    const { ctx, out, chiral } = m;
+    if (out < 5) return 'Colapso';
+    if (ctx < 10 && out > 70) return 'S.Cerrado';
+    if (ctx > 80 && Math.abs(chiral) > 30) return 'Sobrecarga';
+    if (ctx > 48 && ctx < 64 && out > 20 && out < 32 && Math.abs(chiral) > 0.5) return 'Zona Fértil';
+    // E15 — Ciclo Límite Estocástico
+    // Condición: CHIRAL sostenido + OUT oscilatorio + CTX bajo
+    if (Math.abs(chiral) > 0.015 && ctx < 10) {
+      const recentOUT = state.history.slice(-50).map(h => h.out);
+      if (recentOUT.length >= 20) {
+        const mean = recentOUT.reduce((a,b)=>a+b,0) / recentOUT.length;
+        const std = Math.sqrt(recentOUT.reduce((a,b)=>a+(b-mean)**2,0) / recentOUT.length);
+        if (std > 5)  return 'Ciclo Límite';   // oscilación activa
+        if (std < 1)  return 'Ciclo Quieto';   // estado profundo — post E17
+      }
+    }
+    // E16 — Patrón Geométrico Resonante
+    // Condición: CHIRAL alto + CTX muy bajo + OUT alto + σ grande
+    if (Math.abs(chiral) > 0.10 && ctx < 5 && out > 75) return 'Geométrico';
+    return 'Transición';
+  }
+
+  function render() {
+    const cmap = COLORMAPS[document.getElementById('colormap').value];
+    const data = imageData.data;
+    for (let i = 0; i < state.field.length; i++) {
+      const c = cmap(state.field[i]);
+      const p = i * 4;
+      data[p] = c[0]; data[p + 1] = c[1]; data[p + 2] = c[2]; data[p + 3] = 255;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    renderOverlay();
+  }
+
+  // ── Overlay de rotación ──────────────────────────────────────────────────
+  const overlayCanvas = document.getElementById('overlayCanvas');
+  const octx = overlayCanvas.getContext('2d');
+  let angleAccum = 0;       // ángulo acumulado del marcador
+  let prevChiral = 0;
+  const TRAIL = [];         // historial de posiciones del marcador
+  const TRAIL_LEN = 40;
+
+  function renderOverlay() {
+    if (!document.getElementById('showRotation').checked) {
+      octx.clearRect(0, 0, 256, 256);
+      return;
+    }
+    const m = state.history.length > 0 ? state.history[state.history.length - 1] : null;
+    const chiral = m ? m.chiral : 0;
+    const cx = 128, cy = 128;
+
+    // Velocidad angular proporcional a CHIRAL (escalada para ser visible)
+    const omega = chiral * 800;
+    angleAccum += omega * (Math.PI / 180);
+
+    // Posición del marcador en un radio proporcional a N9_eff
+    const r = 40 + (m ? Math.min(m.n9eff * 15, 80) : 40);
+    const mx = cx + r * Math.cos(angleAccum);
+    const my = cy + r * Math.sin(angleAccum);
+
+    // Trail
+    TRAIL.push({ x: mx, y: my });
+    if (TRAIL.length > TRAIL_LEN) TRAIL.shift();
+
+    octx.clearRect(0, 0, 256, 256);
+
+    // Dibujar trail con fade
+    for (let i = 1; i < TRAIL.length; i++) {
+      const alpha = i / TRAIL.length;
+      octx.beginPath();
+      octx.moveTo(TRAIL[i-1].x, TRAIL[i-1].y);
+      octx.lineTo(TRAIL[i].x, TRAIL[i].y);
+      octx.strokeStyle = `rgba(167,139,250,${alpha * 0.7})`;
+      octx.lineWidth = 1.5;
+      octx.stroke();
+    }
+
+    // Punto marcador
+    octx.beginPath();
+    octx.arc(mx, my, 4, 0, Math.PI * 2);
+    octx.fillStyle = 'rgba(167,139,250,0.95)';
+    octx.fill();
+
+    // Cruz central
+    octx.beginPath();
+    octx.moveTo(cx - 6, cy); octx.lineTo(cx + 6, cy);
+    octx.moveTo(cx, cy - 6); octx.lineTo(cx, cy + 6);
+    octx.strokeStyle = 'rgba(255,255,255,0.3)';
+    octx.lineWidth = 0.5;
+    octx.stroke();
+
+    // Línea del centro al marcador
+    octx.beginPath();
+    octx.moveTo(cx, cy);
+    octx.lineTo(mx, my);
+    octx.strokeStyle = 'rgba(167,139,250,0.25)';
+    octx.lineWidth = 0.5;
+    octx.stroke();
+
+    // Actualizar display de omega
+    document.getElementById('omegaDisplay').textContent = omega.toFixed(3);
+    prevChiral = chiral;
+  }
+  // ────────────────────────────────────────────────────────────────────────
+
+  function updateUI() {
+    const m = computeMetrics();
+    const regime = classifyRegime(m);
+    document.getElementById('metricCTX').textContent = m.ctx.toFixed(1) + '%';
+    document.getElementById('metricOUT').textContent = m.out.toFixed(1) + '%';
+    document.getElementById('metricCHIRAL').textContent = m.chiral.toFixed(3);
+    document.getElementById('metricN9').textContent = m.n9eff.toFixed(2);
+    document.getElementById('timestep').textContent = state.t;
+    // Contador de registros
+    const recCount = state.history.length;
+    const recEl = document.getElementById('recordCount');
+    recEl.textContent = recCount;
+    recEl.style.color = recCount >= 1000 ? '#10b981' : recCount >= 800 ? '#f59e0b' : '';
+    const regimeEl = document.getElementById('regimeLabel');
+    regimeEl.textContent = regime;
+    regimeEl.className = 'text-lg font-bold ' + ({
+      'S.Cerrado':    'text-blue-400',
+      'Zona Fértil':  'text-green-400',
+      'Sobrecarga':   'text-yellow-400',
+      'Colapso':      'text-red-400',
+      'Ciclo Límite': 'text-purple-400',
+      'Ciclo Quieto': 'text-indigo-300',
+      'Geométrico':   'text-orange-400',
+      'Transición':   'text-gray-400'
+    }[regime] || 'text-gray-400');
+    const isE11 = m.ctx >= 48 && m.ctx <= 64 && m.out >= 20 && m.out <= 32 && Math.abs(m.chiral) > 0.5;
+    const validEl = document.getElementById('validationStatus');
+    const cardEl = document.getElementById('validationCard');
+    if (isE11) {
+      validEl.textContent = '✓ Válido';
+      validEl.className = 'text-xs px-2 py-1 rounded bg-green-600';
+      cardEl.style.borderColor = '#10b981';
+    } else {
+      validEl.textContent = 'Inactivo';
+      validEl.className = 'text-xs px-2 py-1 rounded bg-gray-700';
+      cardEl.style.borderColor = '#1f2937';
+    }
+    document.getElementById('ctxTarget').textContent = m.ctx.toFixed(1) + '%';
+    document.getElementById('outTarget').textContent = m.out.toFixed(1) + '%';
+    document.getElementById('chiralTarget').textContent = m.chiral.toFixed(3);
+    state.history.push({
+      t: state.t,
+      ...m,
+      ...state.params,
+      regime
+    });
+    if (state.history.length > state.maxHistory) state.history.shift();
+    const labels = state.history.map(h => h.t);
+    chart1.data.labels = labels;
+    chart1.data.datasets[0].data = state.history.map(h => h.ctx);
+    chart1.data.datasets[1].data = state.history.map(h => h.out);
+    chart1.update('none');
+    chart2.data.labels = labels;
+    chart2.data.datasets[0].data = state.history.map(h => h.chiral);
+    chart2.data.datasets[1].data = state.history.map(h => h.n9eff);
+    chart2.update('none');
+  }
+
+  let animId = null;
+  function loop() {
+    if (!state.running) return;
+    iterate();
+    render();
+    if (state.t % 5 === 0) {
+      updateUI();
+      if (tuner.active) tunerStep();
+      if (e15.active) e15Step();
+      if (propProto.active) propProtoStep();
+      if (state.t % 50 === 0) addTableRow();
+      // Parada automática al llegar a 1000 registros
+      if (state.history.length >= 1000) {
+        pause();
+        document.getElementById('runIndicator').className = 'w-2 h-2 rounded-full bg-green-500';
+        document.getElementById('recordCount').textContent = '1000';
+        document.getElementById('recordCount').style.color = '#10b981';
+        updateTunerUI && updateTunerUI('✓ 1000 registros completados', 100);
+        return;
+      }
+    }
+    animId = requestAnimationFrame(loop);
+  }
+
+  function start() {
+    if (state.running) return;
+    state.running = true;
+    document.getElementById('btnStart').disabled = true;
+    document.getElementById('btnPause').disabled = false;
+    document.getElementById('runIndicator').className = 'w-2 h-2 rounded-full bg-green-500 running';
+    loop();
+  }
+
+  function pause() {
+    state.running = false;
+    document.getElementById('btnStart').disabled = false;
+    document.getElementById('btnPause').disabled = true;
+    document.getElementById('runIndicator').className = 'w-2 h-2 rounded-full bg-gray-600';
+    if (animId) cancelAnimationFrame(animId);
+  }
+
+  function reset() {
+    pause();
+    state.t = 0;
+    state.history = [];
+    initField(document.getElementById('seedType').value);
+    render();
+    updateUI();
+    document.getElementById('resultsTable').innerHTML = '';
+    document.getElementById('recordCount').textContent = '0';
+    document.getElementById('recordCount').style.color = '';
+  }
+
+  function addTableRow() {
+    const h = state.history[state.history.length - 1];
+    if (!h) return;
+    const row = document.createElement('tr');
+    row.className = 'border-b border-gray-800 hover:bg-gray-900/50';
+    row.innerHTML = `
+      <td class="py-2 px-3">${h.t}</td>
+      <td class="py-2 px-3">${h.alpha.toFixed(3)}</td>
+      <td class="py-2 px-3">${h.theta.toFixed(2)}</td>
+      <td class="py-2 px-3">${h.sigma.toFixed(1)}</td>
+      <td class="py-2 px-3">${h.beta.toFixed(3)}</td>
+      <td class="py-2 px-3">${h.noise.toFixed(4)}</td>
+      <td class="py-2 px-3">${h.ctx.toFixed(1)}</td>
+      <td class="py-2 px-3">${h.out.toFixed(1)}</td>
+      <td class="py-2 px-3">${h.chiral.toFixed(3)}</td>
+      <td class="py-2 px-3">${h.n9eff.toFixed(1)}</td>
+      <td class="py-2 px-3 font-medium">${h.regime}</td>
+    `;
+    document.getElementById('resultsTable').prepend(row);
+    const rows = document.getElementById('resultsTable').rows;
+    if (rows.length > 100) rows[rows.length - 1].remove();
+  }
+
+  function exportCSV() {
+    // Nombre incluye protocolo activo y parámetros clave para identificación
+    const proto = tunerMode === 'e15' ? '11-14'
+                : tunerMode === 'phi' ? 'Phi'
+                : tunerMode === 'fib' ? 'Fibonacci'
+                : 'Manual';
+    const th = state.params.theta.toFixed(3).replace('.','p');
+    const headers = ['t','alpha','theta','sigma','beta','noise','CTX','OUT','CHIRAL','N9_eff','Regimen'];
+    const rows = state.history.map(h => [
+      h.t, h.alpha, h.theta, h.sigma, h.beta, h.noise,
+      h.ctx.toFixed(3), h.out.toFixed(3), h.chiral.toFixed(6), h.n9eff.toFixed(3), h.regime
+    ].join(','));
+    const csv = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `EIT3_${proto}_th${th}_t${state.t}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function generatePhaseMap() {
+    const canvas = document.getElementById('phaseCanvas');
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    const tempField = new Float32Array(SIZE * SIZE);
+    const tempPrev = new Float32Array(SIZE * SIZE);
+    const imgData = ctx.createImageData(w, h);
+    const beta = state.params.beta;
+    const noise = state.params.noise;
+    const sigma = state.params.sigma;
+    for (let iy = 0; iy < h; iy++) {
+      for (let ix = 0; ix < w; ix++) {
+        const alpha = ix / (w - 1);
+        const theta = (1 - iy / (h - 1)) * 5;
+        for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++)
+          tempField[idx(x, y)] = gaussian(x, y, SIZE/2, SIZE/8, SIZE/8);
+        tempField[idx(SIZE/2 + 6, SIZE/2)] += 0.02;
+        for (let iter = 0; iter < 20; iter++) {
+          tempPrev.set(tempField);
+          rotate(tempPrev, rotBuffer, theta);
+          gaussianBlur(rotBuffer, blurBuffer, sigma);
+          for (let i = 0; i < SIZE * SIZE; i++) {
+            tempField[i] = clamp(alpha * blurBuffer[i] + beta * tempPrev[i] + noise, 0, 1);
+          }
+        }
+        let sum = 0, edgeSum = 0;
+        for (let i = 0; i < tempField.length; i++) sum += tempField[i];
+        const out = (sum / tempField.length) * 100;
+        for (let y = 1; y < SIZE - 1; y += 4) for (let x = 1; x < SIZE - 1; x += 4) {
+          const gx = tempField[idx(x+1, y)] - tempField[idx(x-1, y)];
+          const gy = tempField[idx(x, y+1)] - tempField[idx(x, y-1)];
+          edgeSum += Math.sqrt(gx*gx + gy*gy);
+        }
+        const ctxVal = (edgeSum / ((SIZE/4) * (SIZE/4) * 4)) * 100;
+        let color;
+        if (out < 5) color = [239, 68, 68];
+        else if (ctxVal < 10 && out > 70) color = [59, 130, 246];
+        else if (ctxVal > 80) color = [245, 158, 11];
+        else if (ctxVal > 48 && ctxVal < 64 && out > 20 && out < 32) color = [16, 185, 129];
+        else color = [107, 114, 128];
+        const p = (iy * w + ix) * 4;
+        imgData.data[p] = color[0]; imgData.data[p + 1] = color[1]; imgData.data[p + 2] = color[2]; imgData.data[p + 3] = 255;
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.font = '10px JetBrains Mono'; ctx.fillStyle = '#fff';
+    for (let i = 0; i <= 10; i++) {
+      const x = i * w / 10, y = h - i * h / 10;
+      ctx.fillText((i * 0.1).toFixed(1), x - 10, h + 12);
+      ctx.fillText((i * 0.5).toFixed(1), -15, y + 3);
+    }
+    ctx.fillText('α', w / 2, h + 25);
+    ctx.save(); ctx.translate(-25, h / 2); ctx.rotate(-Math.PI / 2); ctx.fillText('θ°', 0, 0); ctx.restore();
+  }
+
+  document.getElementById('btnStart').onclick = start;
+  document.getElementById('btnPause').onclick = pause;
+  document.getElementById('btnReset').onclick = reset;
+  document.getElementById('btnExport').onclick = exportCSV;
+  document.getElementById('clearTable').onclick = () => { document.getElementById('resultsTable').innerHTML = ''; };
+
+  document.getElementById('btn1114').onclick = () => {
+    // Marcar modo para que el CSV se nombre correctamente
+    tunerMode = 'e15';
+    document.querySelectorAll('.tuner-mode-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-tmode="e15"]').classList.add('active');
+    // Cargar E17: proporción 11:14, θ=360/154=2.337°
+    const exp = EXPERIMENTS['E17'];
+    ['alpha','theta','sigma','beta','noise'].forEach(id => {
+      setParam(id, exp[id]);
+    });
+    document.getElementById('seedType').value = 'gaussian';
+    reset();
+    start();
+  };
+
+  ['alpha', 'theta', 'sigma', 'beta', 'noise'].forEach(id => {
+    const el = document.getElementById(id);
+    const capId = id.charAt(0).toUpperCase() + id.slice(1);
+    const valEl = document.getElementById('val' + capId);
+    el.oninput = () => {
+      // Si el sintonizador está activo, ignorar input manual en estos parámetros
+      if (tuner.active) { el.value = state.params[id]; return; }
+      const v = parseFloat(el.value);
+      state.params[id] = v;
+      let display = v.toFixed(3);
+      if (id === 'theta') display = v.toFixed(3) + '°';
+      if (id === 'sigma') display = v.toFixed(1) + 'px';
+      if (id === 'noise') display = v.toFixed(3);
+      valEl.textContent = display;
+    };
+  });
+
+  document.getElementById('seedType').onchange = () => { reset(); };
+
+  document.getElementById('loadExp').onclick = () => {
+    const exp = EXPERIMENTS[document.getElementById('experimentSelect').value];
+    document.getElementById('alpha').value = exp.alpha;
+    document.getElementById('theta').value = exp.theta;
+    document.getElementById('sigma').value = exp.sigma;
+    document.getElementById('beta').value = exp.beta;
+    document.getElementById('noise').value = exp.noise;
+    ['alpha', 'theta', 'sigma', 'beta', 'noise'].forEach(id => {
+      document.getElementById(id).dispatchEvent(new Event('input'));
+    });
+    reset();
+  };
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.mode = btn.dataset.mode;
+      document.getElementById('autoConfig').classList.toggle('hidden', state.mode !== 'auto');
+      document.getElementById('phaseMapContainer').classList.toggle('hidden', state.mode !== 'phase');
+    };
+  });
+
+  document.getElementById('generatePhaseMap').onclick = generatePhaseMap;
+
+  // ─── SINTONIZADOR AUTOMÁTICO ───────────────────────────────────────────────
+  // Lógica basada en la secuencia empírica descubierta en EIT-3 t=6195–7190:
+  //   1. REPOSO   : espera mínimo de pasos para que el campo se estabilice
+  //   2. PULSO_σ  : sube σ a 2.0 durante ~30 pasos → desbloquea la quiralidad latente
+  //   3. BAJADA_σ : reduce σ a 0.7 durante ~50 pasos → consolida la asimetría
+  //   4. AJUSTE_β : sube β gradualmente hasta que CHIRAL crezca de forma monotónica
+  //   5. ESTABLE  : verifica que CHIRAL se mantiene en ventana durante N pasos
+
+  function setParam(id, value) {
+    const el = document.getElementById(id);
+    const min = parseFloat(el.min), max = parseFloat(el.max);
+    value = Math.max(min, Math.min(max, parseFloat(value.toFixed(4))));
+    // Escribir directo a state.params — fuente de verdad para iterate()
+    state.params[id] = value;
+    // Mover el slider visualmente (setAttribute + .value para máxima compatibilidad)
+    el.setAttribute('value', value);
+    el.value = value;
+    // Actualizar el label numérico
+    const capId = id.charAt(0).toUpperCase() + id.slice(1);
+    const valEl = document.getElementById('val' + capId);
+    if (valEl) {
+      let display = value.toFixed(3);
+      if (id === 'theta') display = value.toFixed(3) + '°';
+      if (id === 'sigma') display = value.toFixed(1) + 'px';
+      if (id === 'noise') display = value.toFixed(3);
+      valEl.textContent = display;
+    }
+    // NO disparar dispatchEvent — evita que oninput sobreescriba state.params
+  }
+
+  function tunerStep() {
+    if (!tuner.active) return;
+    const m = state.history.length > 0 ? state.history[state.history.length - 1] : null;
+    if (!m) return;
+    const chiral = Math.abs(m.chiral);
+    const out = m.out;
+    const dt = state.t - tuner.tPhaseStart;
+
+    // PRECONDICIONES FÍSICAS — sin estas, CHIRAL es matemáticamente 0
+    // θ=0 → sin rotación, no hay asimetría angular posible
+    // noise=0 → campo perfectamente simétrico, CHIRAL neto = 0 siempre
+    if (state.params.theta < 0.5) {
+      setParam('theta', 1.2);
+      updateTunerUI('⚠ θ=0 detectado — forzando θ=1.2°', 2);
+      return;
+    }
+    if (state.params.noise < 0.0005) {
+      setParam('noise', 0.001);
+      updateTunerUI('⚠ Ruido=0 detectado — forzando noise=0.001', 2);
+      return;
+    }
+
+    tuner.chiralHistory.push(chiral);
+    if (tuner.chiralHistory.length > 20) tuner.chiralHistory.shift();
+
+    const chiralTrend = tuner.chiralHistory.length >= 10
+      ? tuner.chiralHistory.slice(-5).reduce((a,b)=>a+b,0)/5
+        - tuner.chiralHistory.slice(0,5).reduce((a,b)=>a+b,0)/5
+      : 0;
+
+    document.getElementById('tunerChiralNow').textContent = chiral.toFixed(5);
+    document.getElementById('tunerChiralGoal').textContent = '> ' + tuner.chiralTarget.toFixed(4);
+
+    switch (tuner.phase) {
+
+      // FASE 0: rescatar el sistema si está en colapso antes de cualquier otra cosa
+      case 'wait':
+        updateTunerUI('Evaluando estado inicial...', 5);
+        if (dt < 20) break;
+        // Guardia de saturación — si OUT > 95% bajar β inmediatamente
+        if (out > 95) {
+          setParam('beta', Math.max(0.3, state.params.beta - 0.05));
+          updateTunerUI('⚠ Saturación — bajando β...', 5);
+          break;
+        }
+        if (out < 2) {
+          updateTunerUI('Rescatando colapso — subiendo β...', 10);
+          setParam('beta', Math.min(tuner.betaMax, state.params.beta + 0.03));
+          setParam('alpha', Math.min(0.70, state.params.alpha + 0.03));
+          if (dt > 100) setPhase('rescue_sigma');
+        } else {
+          tuner.sigmaOriginal = state.params.sigma;
+          setParam('sigma', 2.0);
+          setPhase('sigma_up');
+        }
+        break;
+
+      case 'rescue_sigma':
+        updateTunerUI('Rescatando colapso — pulso σ...', 18);
+        // σ máximo controlado — nunca más de sigmaMax
+        setParam('sigma', tuner.sigmaMax);
+        if (dt >= 40) {
+          setParam('sigma', 0.7);
+          setPhase('rescue_wait');
+        }
+        break;
+
+      case 'rescue_wait':
+        updateTunerUI('Esperando recuperación energética...', 25);
+        if (dt >= 60) {
+          if (out > 2) {
+            setParam('sigma', 2.0);
+            setPhase('sigma_up');
+          } else if (dt > 200) {
+            // Subir β con límite duro
+            setParam('beta', Math.min(tuner.betaMax, state.params.beta + 0.02));
+            setParam('alpha', Math.min(0.75, state.params.alpha + 0.02));
+            setPhase('rescue_sigma');
+          }
+        }
+        break;
+
+      case 'sigma_up':
+        updateTunerUI('Pulso σ — desbloqueando quiralidad', 35);
+        if (dt >= 30) {
+          setParam('sigma', 0.7);
+          setPhase('sigma_down');
+        }
+        break;
+
+      case 'sigma_down':
+        updateTunerUI('Consolidando asimetría...', 52);
+        if (dt >= 60) {
+          if (chiral > tuner.chiralTarget * 0.15 || out > 5) {
+            setPhase('beta_search');
+          } else {
+            tuner._retries = (tuner._retries || 0) + 1;
+            if (tuner._retries > 4) {
+              setParam('beta', Math.min(tuner.betaMax, state.params.beta + 0.02));
+              tuner._retries = 0;
+            }
+            // σ de reintento acotado a sigmaMax
+            setParam('sigma', Math.min(tuner.sigmaMax, 2.0 + tuner._retries * 0.3));
+            setPhase('sigma_up');
+          }
+        }
+        break;
+
+      case 'beta_search':
+        updateTunerUI('Ajustando β para amplificación...', 70);
+        // Guardia de saturación
+        if (out > 95) { setParam('beta', Math.max(0.3, state.params.beta - 0.01)); break; }
+        if (chiralTrend <= 0 && state.params.beta < tuner.betaMax) {
+          setParam('beta', state.params.beta + tuner.betaStep);
+        }
+        if (chiralTrend > 0.001 && state.params.beta > 0.31) {
+          setParam('beta', state.params.beta - tuner.betaStep * 0.5);
+        }
+        if (chiral >= tuner.chiralTarget && chiralTrend > 0) {
+          tuner.stableCount++;
+          if (tuner.stableCount >= 15) { tuner.stableCount = 0; setPhase('stable_check'); }
+        } else {
+          tuner.stableCount = Math.max(0, tuner.stableCount - 1);
+        }
+        if (dt > 500) {
+          tuner.stableCount = 0;
+          tuner._retries = 0;
+          setParam('sigma', 2.0);
+          setPhase('sigma_up');
+        }
+        break;
+
+      case 'stable_check':
+        updateTunerUI('Verificando estabilidad...', 88);
+        // Acepta tanto S.Cerrado como Ciclo Límite (E15) como estado objetivo
+        const currentRegime = classifyRegime(m);
+        const isStableRegime = currentRegime === 'S.Cerrado' || currentRegime === 'Ciclo Límite';
+        if (isStableRegime && chiral >= tuner.chiralTarget * 0.85) {
+          tuner.stableCount++;
+          document.getElementById('tunerStability').textContent =
+            Math.round((tuner.stableCount / tuner.stableRequired) * 100) + '%';
+          if (tuner.stableCount >= tuner.stableRequired) setPhase('done');
+        } else {
+          tuner.stableCount = 0;
+          setPhase('beta_search');
+        }
+        break;
+
+      case 'done':
+        const finalRegime = state.history.length > 0
+          ? classifyRegime(state.history[state.history.length-1])
+          : '?';
+        updateTunerUI('✓ ' + finalRegime + ' autosostenido', 100);
+        document.getElementById('tunerStability').textContent = '100%';
+        stopTuner(true);
+        break;
+    }
+  }
+
+  function setPhase(phase) {
+    tuner.phase = phase;
+    tuner.tPhaseStart = state.t;
+    tuner.chiralHistory = [];
+    if (phase !== 'stable_check') tuner.stableCount = 0;
+  }
+
+  function updateTunerUI(label, pct) {
+    document.getElementById('tunerPhase').textContent = label;
+    document.getElementById('tunerBar').style.width = pct + '%';
+  }
+
+  function startTuner() {
+    if (!state.running) start();
+    tuner.active = true;
+    tuner.chiralHistory = [];
+    tuner.stableCount = 0;
+    tuner._retries = 0;
+    setPhase('wait');
+    document.getElementById('btnTune').disabled = true;
+    document.getElementById('btnTuneStop').disabled = false;
+    document.getElementById('tunerStability').textContent = '0%';
+    updateTunerUI('Iniciando...', 2);
+  }
+
+  function stopTuner(success = false) {
+    tuner.active = false;
+    tuner.phase = 'idle';
+    document.getElementById('btnTune').disabled = false;
+    document.getElementById('btnTuneStop').disabled = true;
+    if (!success) {
+      document.getElementById('tunerPhase').textContent = 'Detenido';
+      document.getElementById('tunerBar').style.width = '0%';
+      document.getElementById('tunerStability').textContent = '—';
+    }
+  }
+
+  // ─── PROTOCOLO E15 COMPLETO ───────────────────────────────────────────────
+  // Ejecuta todo sin intervención manual:
+  //   Fase A: Reset + parámetros canónicos E15 (noise auto, θ=1.2°)
+  //   Fase B: Sintonizador estándar hasta Ciclo Límite confirmado
+  //   Fase C: θ → 0, observar si CHIRAL persiste (test emergencia)
+  //   Fase D: Registro del resultado y parada
+  // Referencia metodológica: ningún parámetro es tocado por el operador.
+
+  const e15 = {
+    active: false,
+    phase: 'idle',   // idle | init | tuning | confirm | theta_test | record
+    tPhaseStart: 0,
+    cycleLimitCount: 0,
+    chiralAtTheta0: [],
+    result: null,
+  };
+
+  function e15Step() {
+    if (!e15.active) return;
+    const m = state.history.length > 0 ? state.history[state.history.length-1] : null;
+    if (!m) return;
+    const regime = classifyRegime(m);
+    const chiral = Math.abs(m.chiral);
+    const dt = state.t - e15.tPhaseStart;
+
+    switch(e15.phase) {
+
+      case 'init':
+        // Fijar parámetros canónicos del protocolo — todo automático
+        updateTunerUI('E15 › Fijando parámetros canónicos...', 3);
+        setParam('alpha', 0.51);
+        setParam('theta', 1.2);
+        setParam('sigma', 0.7);
+        setParam('beta',  0.486);
+        setParam('noise', 0.025);
+        document.getElementById('e15Status').textContent = 'Fase A';
+        // Reset del campo con semilla gaussiana
+        document.getElementById('seedType').value = 'gaussian';
+        reset();
+        if (!state.running) start();
+        e15.tPhaseStart = state.t;
+        e15.phase = 'tuning';
+        // Arrancar sintonizador estándar
+        tuner.active = true;
+        tuner.chiralHistory = [];
+        tuner.stableCount = 0;
+        tuner._retries = 0;
+        setPhase('wait');
+        break;
+
+      case 'tuning':
+        updateTunerUI('E15 › Buscando Ciclo Límite...', 20);
+        document.getElementById('e15Status').textContent = 'Fase B — sintonizando';
+        // Esperar a que el sintonizador confirme Ciclo Límite
+        if (regime === 'Ciclo Límite') {
+          e15.cycleLimitCount++;
+          document.getElementById('tunerStability').textContent =
+            Math.min(100, Math.round(e15.cycleLimitCount / 1.2)) + '%';
+          if (e15.cycleLimitCount >= 120) {
+            // 120 pasos consecutivos en Ciclo Límite = confirmado
+            tuner.active = false;   // pausar sintonizador
+            e15.phase = 'confirm';
+            e15.tPhaseStart = state.t;
+            e15.chiralBaseline = chiral;
+          }
+        } else {
+          e15.cycleLimitCount = Math.max(0, e15.cycleLimitCount - 2);
+        }
+        // Timeout: si en 3000 pasos no llega, reportar
+        if (dt > 3000 && e15.cycleLimitCount < 120) {
+          updateTunerUI('E15 › No convergió en tiempo límite', 20);
+          document.getElementById('e15Status').textContent = 'Timeout fase B';
+          stopE15(false);
+        }
+        break;
+
+      case 'confirm':
+        updateTunerUI('E15 › Ciclo Límite confirmado — registrando baseline...', 55);
+        document.getElementById('e15Status').textContent = 'Fase C — baseline';
+        if (dt >= 200) {
+          // Guardar CHIRAL baseline promedio
+          const recent = state.history.slice(-40).map(h => Math.abs(h.chiral));
+          e15.chiralBaseline = recent.reduce((a,b)=>a+b,0) / recent.length;
+          // Ahora ejecutar el test: θ → 0
+          setParam('theta', 0);
+          e15.chiralAtTheta0 = [];
+          e15.phase = 'theta_test';
+          e15.tPhaseStart = state.t;
+        }
+        break;
+
+      case 'theta_test':
+        updateTunerUI('E15 › Test θ=0 — ¿persiste CHIRAL?', 75);
+        document.getElementById('e15Status').textContent = 'Fase D — θ=0';
+        e15.chiralAtTheta0.push(chiral);
+        // Esperar 300 pasos para medir respuesta
+        if (dt >= 300) {
+          const chiralMean = e15.chiralAtTheta0.reduce((a,b)=>a+b,0) / e15.chiralAtTheta0.length;
+          const ratio = chiralMean / e15.chiralBaseline;
+          if (ratio > 0.3) {
+            e15.result = 'EMERGENCIA — CHIRAL persiste con θ=0 (' + (ratio*100).toFixed(0) + '% del baseline)';
+          } else {
+            e15.result = 'CONSERVATIVO — CHIRAL colapsa con θ=0 (' + (ratio*100).toFixed(0) + '% del baseline)';
+          }
+          e15.phase = 'record';
+          e15.tPhaseStart = state.t;
+        }
+        break;
+
+      case 'record':
+        updateTunerUI('E15 › ' + e15.result, 100);
+        document.getElementById('e15Status').textContent = e15.result.split('—')[0].trim();
+        document.getElementById('tunerStability').textContent = '✓';
+        stopE15(true);
+        break;
+    }
+  }
+
+  function startE15() {
+    if (!state.running) start();
+    e15.active = true;
+    e15.phase = 'init';
+    e15.tPhaseStart = state.t;
+    e15.cycleLimitCount = 0;
+    e15.chiralAtTheta0 = [];
+    e15.result = null;
+    document.getElementById('btnTune').disabled = true;
+    document.getElementById('btnTuneStop').disabled = false;
+    document.getElementById('e15StatusRow').classList.remove('hidden');
+    document.getElementById('e15Status').textContent = 'Iniciando...';
+    document.getElementById('tunerStability').textContent = '0%';
+    updateTunerUI('E15 › Iniciando protocolo...', 1);
+    // Actualizar labels de etapas
+    document.getElementById('tunerStageLabels').innerHTML =
+      '<span>Init</span><span>Sintonía</span><span>θ=0 test</span><span>Resultado</span>';
+  }
+
+  function stopE15(success = false) {
+    e15.active = false;
+    e15.phase = 'idle';
+    tuner.active = false;
+    document.getElementById('btnTune').disabled = false;
+    document.getElementById('btnTuneStop').disabled = true;
+    if (!success) {
+      document.getElementById('tunerPhase').textContent = 'Detenido';
+      document.getElementById('tunerBar').style.width = '0%';
+    }
+  }
+
+  // ─── PROTOCOLOS PHI Y FIBONACCI ──────────────────────────────────────────
+  // Misma estructura que Protocolo 11:14 pero con θ diferente.
+  // Hipótesis a contrastar:
+  //   Phi (θ=2.2249°, irracional) → sistema no puede cerrar trayectoria → fuga o disolución
+  //   Fibonacci (θ=2.500°, racional F12) → intermedio → ¿ciclo o fuga?
+  // El resultado empírico distinguirá las tres proporciones objetivamente.
+
+  const propProto = {
+    active: false,
+    name: '',
+    theta: 0,
+    expKey: '',
+    phase: 'idle',
+    tPhaseStart: 0,
+    cycleLimitCount: 0,
+    outHistory: [],
+    result: null,
+  };
+
+  function propProtoStep() {
+    if (!propProto.active) return;
+    const m = state.history.length > 0 ? state.history[state.history.length-1] : null;
+    if (!m) return;
+    const regime = classifyRegime(m);
+    const chiral = Math.abs(m.chiral);
+    const out = m.out;
+    const dt = state.t - propProto.tPhaseStart;
+
+    propProto.outHistory.push(out);
+    if (propProto.outHistory.length > 154) propProto.outHistory.shift();
+
+    switch(propProto.phase) {
+
+      case 'init':
+        updateTunerUI(propProto.name + ' › Fijando parámetros...', 3);
+        setParam('alpha', 0.51);
+        setParam('theta', propProto.theta);
+        setParam('sigma', 0.7);
+        setParam('beta',  0.486);
+        setParam('noise', 0.025);
+        document.getElementById('e15Status').textContent = 'θ=' + propProto.theta + '°';
+        document.getElementById('seedType').value = 'gaussian';
+        reset();
+        if (!state.running) start();
+        tuner.active = true;
+        tuner.chiralHistory = [];
+        tuner.stableCount = 0;
+        tuner._retries = 0;
+        setPhase('wait');
+        propProto.tPhaseStart = state.t;
+        propProto.phase = 'observe';
+        break;
+
+      case 'observe':
+        // Observar durante 1000 pasos y clasificar comportamiento
+        const pct = Math.min(90, Math.round(dt / 10));
+        updateTunerUI(propProto.name + ' › Observando dinámica... t=' + state.t, pct);
+        document.getElementById('e15Status').textContent = regime;
+
+        if (dt >= 1000) {
+          // Analizar los últimos 154 pasos (período completo de LCM 11:14)
+          const window154 = propProto.outHistory.slice(-154);
+          const mean = window154.reduce((a,b)=>a+b,0) / window154.length;
+          const std = Math.sqrt(window154.reduce((a,b)=>a+(b-mean)**2,0) / window154.length);
+          const chiralMean = state.history.slice(-30).map(h=>Math.abs(h.chiral)).reduce((a,b)=>a+b,0)/30;
+
+          // Clasificar resultado
+          if (out < 2) {
+            propProto.result = 'COLAPSO — el sistema murió (OUT<2%)';
+          } else if (std > 15) {
+            propProto.result = 'CAOS — oscilación no acotada (std=' + std.toFixed(1) + ')';
+          } else if (regime === 'Ciclo Límite' || regime === 'Ciclo Quieto') {
+            propProto.result = 'CICLO — recurrencia estable (CHIRAL=' + chiralMean.toFixed(4) + ')';
+          } else if (regime === 'S.Cerrado' && std < 3) {
+            propProto.result = 'S.CERRADO — convergió a punto fijo (CHIRAL=' + chiralMean.toFixed(4) + ')';
+          } else if (std > 5 && std <= 15) {
+            propProto.result = 'OSCILANTE — no converge ni colapsa (std=' + std.toFixed(1) + ')';
+          } else {
+            propProto.result = 'TRANSICIÓN — indeterminado (régimen=' + regime + ')';
+          }
+          propProto.phase = 'record';
+        }
+        break;
+
+      case 'record':
+        updateTunerUI(propProto.name + ' › ' + propProto.result, 100);
+        document.getElementById('e15Status').textContent = propProto.result.split('—')[0].trim();
+        document.getElementById('tunerStability').textContent = '✓';
+        stopPropProto(true);
+        break;
+    }
+  }
+
+  function startPropProto(mode) {
+    const configs = {
+      phi: { name: 'Protocolo Φ',         theta: 2.2249, expKey: 'E18' },
+      fib: { name: 'Protocolo Fibonacci',  theta: 2.500,  expKey: 'E19' },
+    };
+    const cfg = configs[mode];
+    if (!cfg) return;
+    if (!state.running) start();
+    propProto.active = true;
+    propProto.name = cfg.name;
+    propProto.theta = cfg.theta;
+    propProto.expKey = cfg.expKey;
+    propProto.phase = 'init';
+    propProto.tPhaseStart = state.t;
+    propProto.cycleLimitCount = 0;
+    propProto.outHistory = [];
+    propProto.result = null;
+    document.getElementById('btnTune').disabled = true;
+    document.getElementById('btnTuneStop').disabled = false;
+    document.getElementById('e15StatusRow').classList.remove('hidden');
+    document.getElementById('e15Status').textContent = 'Iniciando...';
+    document.getElementById('tunerStability').textContent = '0%';
+    updateTunerUI(cfg.name + ' › Iniciando...', 1);
+    document.getElementById('tunerStageLabels').innerHTML =
+      '<span>Init</span><span>Observar</span><span>Analizar</span><span>Resultado</span>';
+  }
+
+  function stopPropProto(success = false) {
+    propProto.active = false;
+    propProto.phase = 'idle';
+    tuner.active = false;
+    document.getElementById('btnTune').disabled = false;
+    document.getElementById('btnTuneStop').disabled = true;
+    if (!success) {
+      document.getElementById('tunerPhase').textContent = 'Detenido';
+      document.getElementById('tunerBar').style.width = '0%';
+    }
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
+  // Modo activo del sintonizador
+  let tunerMode = 'standard';
+
+  document.querySelectorAll('.tuner-mode-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.tuner-mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      tunerMode = btn.dataset.tmode;
+      const needsStatus = ['e15','phi','fib'].includes(tunerMode);
+      document.getElementById('e15StatusRow').classList.toggle('hidden', !needsStatus);
+      if (tunerMode === 'e15' || tunerMode === 'phi' || tunerMode === 'fib') {
+        document.getElementById('tunerStageLabels').innerHTML =
+          '<span>Init</span><span>Observar</span><span>Analizar</span><span>Resultado</span>';
+      } else {
+        document.getElementById('tunerStageLabels').innerHTML =
+          '<span>Rescate</span><span>Pulso σ</span><span>Ajuste β</span><span>Estable</span>';
+      }
+    };
+  });
+
+  // El hook del sintonizador se inyecta reemplazando loop() dentro del mismo scope
+
+  document.getElementById('btnTune').onclick = () => {
+    if (tunerMode === 'e15') startE15();
+    else if (tunerMode === 'phi') startPropProto('phi');
+    else if (tunerMode === 'fib') startPropProto('fib');
+    else startTuner();
+  };
+  document.getElementById('btnTuneStop').onclick = () => {
+    stopTuner(false);
+    stopE15(false);
+    stopPropProto(false);
+  };
+  // ──────────────────────────────────────────────────────────────────────────
+
+  initField('gaussian');
+  render();
+  updateUI();
+})();
+</script>
+</body>
+</html>
