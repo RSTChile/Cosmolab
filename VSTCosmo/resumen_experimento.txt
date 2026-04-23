@@ -1,0 +1,53 @@
+============================================================
+EXPERIMENTO COSMOSEMIÓTICO - RESUMEN
+Fecha: 2026-04-23 06:55:52
+============================================================
+
+Experimento: viento_puro
+  Vivo: NO
+  Duración (ventanas): 3746
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
+Experimento: voz_viento1_alfa05
+  Vivo: NO
+  Duración (ventanas): 3722
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
+Experimento: voz_viento2_alfa05
+  Vivo: NO
+  Duración (ventanas): 3734
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
+Experimento: voz_viento2_alfa00
+  Vivo: NO
+  Duración (ventanas): 3734
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
+Experimento: voz_viento2_alfa10
+  Vivo: NO
+  Duración (ventanas): 3734
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
+Experimento: voz_viento2_energia02
+  Vivo: NO
+  Duración (ventanas): 3734
+  Acoplamiento final: 0.000
+  Error final: 1.000
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+
