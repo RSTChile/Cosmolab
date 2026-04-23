@@ -1,0 +1,77 @@
+============================================================
+EXPERIMENTO COSMOSEMIÓTICO - VALIDACIÓN CON GRABACIONES REALES
+============================================================
+Fecha: 2026-04-23 06:55:26
+Directorio: /Volumes/LaCie/RMD/Cosmolab/VSTCosmo
+
+[1] Cargando archivos...
+  Frecuencias: Voz_Estudio=48000, Voz+Viento1=48000, Voz+Viento2=48000, Viento=48000
+
+[2] Ejecutando experimentos...
+
+--- Ejecutando: Control: Viento Puro | α=0.5 | E=0.9 ---
+  Ventanas procesadas: 3746
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_viento_puro.png
+  CSV guardado: historial_viento_puro.csv
+
+--- Ejecutando: Voz+Viento 1 | α=0.5 | E=0.9 ---
+  Ventanas procesadas: 3722
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_voz_viento1_alfa05.png
+  CSV guardado: historial_voz_viento1_alfa05.csv
+
+--- Ejecutando: Voz+Viento 2 | α=0.5 | E=0.9 ---
+  Ventanas procesadas: 3734
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_voz_viento2_alfa05.png
+  CSV guardado: historial_voz_viento2_alfa05.csv
+
+--- Ejecutando: Voz+Viento 2 α=0.0 | α=0.0 | E=0.9 ---
+  Ventanas procesadas: 3734
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_voz_viento2_alfa00.png
+  CSV guardado: historial_voz_viento2_alfa00.csv
+
+--- Ejecutando: Voz+Viento 2 α=1.0 | α=1.0 | E=0.9 ---
+  Ventanas procesadas: 3734
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_voz_viento2_alfa10.png
+  CSV guardado: historial_voz_viento2_alfa10.csv
+
+--- Ejecutando: Voz+Viento 2 E=0.2 | α=0.5 | E=0.2 ---
+  Ventanas procesadas: 3734
+  Resultado: COLAPSADO
+  Modo final: NO_SE
+  Plan final: PRESERVAR
+  Gráfico guardado: resultado_voz_viento2_energia02.png
+  CSV guardado: historial_voz_viento2_energia02.csv
+
+[3] RESUMEN GENERAL DE RESULTADOS
+------------------------------------------------------------
+Experimento                         Vivo     Modo Final   Plan Final  
+------------------------------------------------------------
+viento_puro                         NO       NO_SE        PRESERVAR   
+voz_viento1_alfa05                  NO       NO_SE        PRESERVAR   
+voz_viento2_alfa05                  NO       NO_SE        PRESERVAR   
+voz_viento2_alfa00                  NO       NO_SE        PRESERVAR   
+voz_viento2_alfa10                  NO       NO_SE        PRESERVAR   
+voz_viento2_energia02               NO       NO_SE        PRESERVAR   
+------------------------------------------------------------
+
+Archivos generados:
+  - resumen_experimento.txt
+  - resultado_*.png (6 gráficos)
+  - historial_*.csv (6 archivos con datos por ventana)
+
+¡Experimento completado!
