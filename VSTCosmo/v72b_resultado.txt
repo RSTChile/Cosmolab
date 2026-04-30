@@ -1,0 +1,19 @@
+============================================================
+VSTCosmos v72-B Fase 1 - Resultado
+============================================================
+
+GAMMA_MEMORIA = 0.08
+BETA_MEMORIA = 2.0
+TAU_HISTORIA = 0.0005
+
+Test A (Persistencia > 20s): 0.17s -> FALLA
+Test B (Asimetria real):
+  ruido->voz: no alcanzado -> FALLA
+  voz->ruido: no alcanzado -> PASA
+Test C (Acoplamiento > 0.01): min=0.249397 -> PASA
+
+============================================================
+DECISION: NO VALIDADO - Ajustar parametros
+- Aumentar GAMMA_MEMORIA a 0.12 o reducir TAU_HISTORIA a 0.0002
+- Aumentar BETA_MEMORIA a 2.5
+============================================================

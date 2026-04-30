@@ -1,0 +1,11 @@
+metric,value
+w_tras_entreno,0.04244220501737779
+grad_acoplado,0.2392975816786221
+grad_desacoplado,0.5289744321568446
+freq_dom_acoplado,19
+freq_dom_desacoplado,38
+grad_esp_acoplado,0.009951443308221293
+grad_esp_desacoplado,7.877494299123725e-05
+ratio_esp,9.951443308221293
+riqueza_acoplado,25
+riqueza_desacoplado,21

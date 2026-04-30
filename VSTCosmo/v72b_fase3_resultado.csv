@@ -1,0 +1,10 @@
+test,metric,value,criterio
+A,w_tras_entreno,0.0325,>0.001
+A,grad_estable,0.5320,>0.15
+A,persistencia_s,27.0,>20
+A,min_acop,0.071688,>0.01
+B,grad_estable,0.5320,>0.08
+B,min_acop,0.071688,>0.01
+C,grad_estable_silencio,0.4966,<0.03
+C,min_acop,0.075939,>0.01
+decision,v72_b_fase3,PENDIENTE,

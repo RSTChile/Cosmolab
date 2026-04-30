@@ -1,0 +1,6 @@
+test,metric,value,criterio
+A,persistencia_s,0.17,>20
+B,ruido_voz_s,no alcanzado,>2.0
+B,voz_ruido_s,no alcanzado,<0.5
+C,min_acoplamiento,0.249397,>0.01
+decision,v72_b_fase1,NO_VALIDADO,
