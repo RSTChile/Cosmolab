@@ -1,0 +1,608 @@
+#!/usr/bin/env python3
+"""
+VSTCosmo - v36: Zona de Asimilación
+El sistema evalúa si una experiencia es asimilable según:
+asimilacion = intensidad * exp(-costo_estructural)
+
+Una experiencia es nutritiva si genera cambio controlado
+sin destruir la capacidad del sistema de seguir diferenciando.
+"""
+
+import numpy as np
+import scipy.io.wavfile as wav
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+# ============================================================
+# PARÁMETROS DEL SISTEMA (heredados, SIN MODIFICAR)
+# ============================================================
+DIM_FREQ = 32
+DIM_TIME = 100
+DT = 0.01
+DURACION_SIM = 60.0
+DURACION_REPOSO = 30.0
+N_PASOS = int(DURACION_SIM / DT)
+N_REPOSO = int(DURACION_REPOSO / DT)
+
+DECAIMIENTO_PHI = 0.01
+GANANCIA_GENERACION_BASE = 0.05
+GANANCIA_SOSTENIMIENTO = 0.25
+DIFUSION_BASE = 0.20
+
+REFUERZO_A = 0.15
+INHIBICION_A = 0.2
+DIFUSION_A = 0.08
+FUERZA_RELIEVE = 0.08
+K_COMP_BASE = 0.05
+
+LIMITE_ATENCION = DIM_FREQ * DIM_TIME * 0.35
+INHIB_GLOBAL = 0.5
+
+MOD_DECAY = 1.0
+MOD_GENERACION = 1.5
+
+TASA_CRECIMIENTO = 0.10
+TASA_DISIPACION = 0.03
+GANANCIA_HISTORIA = 0.5
+FUERZA_ESTABILIDAD = 0.1
+BLOQUEO_MAXIMO_BASE = 0.8
+
+TASA_OMEGA = 0.15
+DISIPACION_OMEGA = 0.05
+FUERZA_COHERENCIA = 0.2
+
+A_RANGE_MIN = 0.24
+A_RANGE_MAX = 0.61
+PHI_RANGE_MIN = 0.08
+PHI_RANGE_MAX = 0.37
+
+HOMEOSTASIS_INTERVALO = 500
+
+ETA_MEMORIA = 0.02
+ETA_DECAY = 0.005
+K_MEMORIA = 0.10
+UMBRAL_MEMORIA = 0.35
+
+ETA_L = 0.01
+DECAY_L_DINAMICO = 0.002
+INFLUENCIA_L = 0.5
+PERSISTENCIA_UMBRAL = 0.05
+
+LIMITE_MIN = 0.0
+LIMITE_MAX = 1.0
+
+# Parámetros de continuidad entre experiencias (heredados)
+DECAY_M = 0.995
+DECAY_L_ENTRE = 0.970
+DECAY_PSI = 0.900
+PESO_M_PARA_A = 0.3
+A_BASAL = 0.1
+
+# ============================================================
+# NUEVOS PARÁMETROS DE ASIMILACIÓN
+# ============================================================
+BETA_L = 1.0      # Peso del aumento de rigidez
+BETA_VAR = 0.5    # Peso de la variación de A (costo estructural)
+
+# Umbrales para clasificación (solo observación, NO reglas duras)
+UMBRAL_NUTRITIVO = 0.01
+UMBRAL_TOXICO = -0.01
+
+# ============================================================
+# FUNCIONES BASE (SIN MODIFICAR)
+# ============================================================
+def cargar_audio(ruta):
+    if "Tono puro" in ruta:
+        sr = 48000
+        t = np.arange(int(sr * DURACION_SIM)) / sr
+        return sr, 0.5 * np.sin(2 * np.pi * 440 * t)
+    elif "Ruido blanco" in ruta:
+        sr = 48000
+        return sr, np.random.normal(0, 0.3, int(sr * DURACION_SIM))
+    elif "Silencio" in ruta:
+        sr = 48000
+        return sr, np.zeros(int(sr * DURACION_SIM))
+    else:
+        sr, data = wav.read(ruta)
+        if data.dtype == np.int16:
+            data = data.astype(np.float32) / 32768.0
+        if data.ndim == 2:
+            data = data.mean(axis=1)
+        max_val = np.max(np.abs(data))
+        if max_val > 0:
+            data = data / max_val
+        muestras_necesarias = int(sr * DURACION_SIM)
+        if len(data) < muestras_necesarias:
+            data = np.pad(data, (0, muestras_necesarias - len(data)))
+        else:
+            data = data[:muestras_necesarias]
+        return sr, data
+
+
+def inicializar_campo():
+    np.random.seed(42)
+    return np.random.rand(DIM_FREQ, DIM_TIME) * 0.2 + 0.4
+
+
+def inicializar_atencion():
+    return np.ones((DIM_FREQ, DIM_TIME), dtype=np.float32) * A_BASAL
+
+
+def inicializar_memoria():
+    return np.zeros((DIM_FREQ, DIM_TIME), dtype=np.float32)
+
+
+def inicializar_anclaje():
+    return np.zeros((DIM_FREQ, DIM_TIME), dtype=np.float32)
+
+
+def vecinos(X):
+    return (np.roll(X, 1, axis=0) + np.roll(X, -1, axis=0) +
+            np.roll(X, 1, axis=1) + np.roll(X, -1, axis=1)) / 4.0
+
+
+def perfil_modulacion(muestra):
+    m = (muestra + 1.0) / 2.0
+    m = np.clip(m, 0.0, 1.0)
+    banda = int(m * (DIM_FREQ - 1))
+    perfil = np.zeros(DIM_FREQ)
+    for i in range(DIM_FREQ):
+        distancia = min(abs(i - banda), DIM_FREQ - abs(i - banda))
+        perfil[i] = np.exp(-(distancia ** 2) / 8.0)
+    return perfil
+
+
+def actualizar_memoria_estabilidad(Psi, Phi, A):
+    cambio_local = np.abs(Phi - vecinos(Phi))
+    cambio_norm = cambio_local / (cambio_local + 0.1)
+    dPsi = (TASA_CRECIMIENTO * A * (1 - cambio_norm) * (1 - Psi) -
+            TASA_DISIPACION * Psi) * DT
+    Psi = Psi + dPsi
+    return np.clip(Psi, 0.0, 1.0)
+
+
+def actualizar_memoria_coherencia(Omega, Phi, Phi_prev, Phi_prev2, A):
+    cambio_actual = Phi - Phi_prev
+    cambio_anterior = Phi_prev - Phi_prev2
+    signo_actual = np.tanh(cambio_actual * 10)
+    signo_anterior = np.tanh(cambio_anterior * 10)
+    coherencia = (1 + signo_actual * signo_anterior) / 2
+    dOmega = (TASA_OMEGA * A * coherencia * (1 - Omega) -
+              DISIPACION_OMEGA * Omega) * DT
+    Omega = Omega + dOmega
+    return np.clip(Omega, 0.0, 1.0)
+
+
+def actualizar_campo(Phi, A, muestra, Psi, ganancia_gen, bloqueo_max):
+    perfil = perfil_modulacion(muestra)
+    promedio_local = vecinos(Phi)
+    perfil_2d = perfil.reshape(-1, 1)
+    
+    difusion = DIFUSION_BASE * (promedio_local - Phi)
+    
+    desviacion = Phi - promedio_local
+    generacion_base = ganancia_gen * desviacion * (1 - desviacion**2)
+    mod_entrada = (1 + MOD_GENERACION * perfil_2d)
+    mod_memoria = (1 - GANANCIA_HISTORIA * Psi)
+    generacion = generacion_base * mod_entrada * mod_memoria
+    
+    mod_entrada_decay = 1 - MOD_DECAY * perfil_2d
+    decaimiento = -DECAIMIENTO_PHI * (Phi - promedio_local) * mod_entrada_decay
+    
+    sostenimiento = GANANCIA_SOSTENIMIENTO * A * (Phi - promedio_local)
+    
+    dPhi_propuesto = difusion + generacion + decaimiento + sostenimiento
+    dPhi_real = dPhi_propuesto * (1 - bloqueo_max * Psi)
+    
+    Phi = Phi + DT * dPhi_real
+    return np.clip(Phi, LIMITE_MIN, LIMITE_MAX)
+
+
+def actualizar_atencion(A, Phi, Psi, Omega, M, L, k_comp):
+    vA = vecinos(A)
+    auto = REFUERZO_A * A * (1.0 - A)
+    inhib_local = -INHIBICION_A * vA
+    difusion = DIFUSION_A * (vA - A)
+    
+    relieve_local = np.abs(Phi - vecinos(Phi))
+    max_relieve = np.max(relieve_local)
+    if max_relieve > 0:
+        relieve_local = relieve_local / max_relieve
+    
+    acoplamiento_relieve = FUERZA_RELIEVE * (relieve_local - A)
+    acoplamiento_estabilidad = FUERZA_ESTABILIDAD * (Psi - A)
+    acoplamiento_coherencia = FUERZA_COHERENCIA * (Omega - A)
+    
+    A_mean = np.mean(A)
+    competencia = -k_comp * (A - A_mean)
+    sesgo_memoria = K_MEMORIA * (M - A)
+    
+    dA = (auto + inhib_local + difusion +
+          acoplamiento_relieve +
+          acoplamiento_estabilidad +
+          acoplamiento_coherencia +
+          competencia +
+          sesgo_memoria)
+    
+    factor_anclaje = 1.0 - INFLUENCIA_L * L
+    dA = dA * factor_anclaje
+    
+    atencion_total = np.sum(A)
+    if atencion_total > LIMITE_ATENCION:
+        exceso = (atencion_total - LIMITE_ATENCION) / LIMITE_ATENCION
+        dA += -INHIB_GLOBAL * exceso * A
+    
+    dA += np.random.randn(*A.shape) * 0.001
+    A = A + DT * dA
+    return np.clip(A, LIMITE_MIN, LIMITE_MAX)
+
+
+def actualizar_memoria_configuracion(M, A, rango_A):
+    if rango_A > UMBRAL_MEMORIA:
+        M += ETA_MEMORIA * (A - M)
+    else:
+        M *= (1 - ETA_DECAY)
+    return np.clip(M, 0.0, 1.0)
+
+
+def actualizar_anclaje(L, A):
+    cambio_local = np.abs(A - np.roll(A, 1, axis=1))
+    persistencia = 1.0 - cambio_local / (cambio_local + PERSISTENCIA_UMBRAL)
+    dL = (ETA_L * persistencia * (1 - L) - DECAY_L_DINAMICO * L) * DT
+    L = L + dL
+    return np.clip(L, 0.0, 1.0)
+
+
+def homeostasis(A, Phi, G, R, C, a_min, a_max, p_min, p_max):
+    rango_A = np.max(A) - np.min(A)
+    rango_Phi = np.max(Phi) - np.min(Phi)
+    
+    if rango_A < a_min:
+        G *= 1.02
+        C *= 1.02
+    elif rango_A > a_max:
+        R *= 1.02
+        G *= 0.98
+    
+    if rango_Phi < p_min:
+        G *= 1.02
+    elif rango_Phi > p_max:
+        R *= 1.03
+        G *= 0.97
+    
+    G = np.clip(G, 0.3, 3.0)
+    R = np.clip(R, 0.3, 3.0)
+    C = np.clip(C, 0.3, 3.0)
+    
+    return G, R, C
+
+
+def extraer_estado(S):
+    Phi, A, Psi, Omega, M, L = S
+    return {
+        'rango_A': np.max(A) - np.min(A),
+        'rango_Phi': np.max(Phi) - np.min(Phi),
+        'media_L': np.mean(L),
+        'media_M': np.mean(M),
+        'var_A': np.var(A)
+    }
+
+
+def calcular_variacion_A(A_prev, A_curr):
+    """Calcula cuánto cambió A durante la experiencia"""
+    return np.mean(np.abs(A_curr - A_prev))
+
+
+# ============================================================
+# NUEVA FUNCIÓN DE ASIMILACIÓN (reemplaza prueba_digestion)
+# ============================================================
+def calcular_asimilacion(estado, delta_rango_A, delta_rango_Phi, delta_L, variacion_A):
+    """
+    Calcula la asimilación de una experiencia:
+    asimilacion = intensidad * exp(-costo_estructural)
+    
+    donde:
+    intensidad = |Δrango_A| + |Δrango_Phi|
+    costo = β_L * ΔL + β_var * variacion_A
+    """
+    intensidad = abs(delta_rango_A) + abs(delta_rango_Phi)
+    costo = BETA_L * max(0, delta_L) + BETA_VAR * variacion_A  # solo penaliza aumento de rigidez
+    
+    asimilacion = intensidad * np.exp(-costo)
+    
+    return asimilacion
+
+
+# ============================================================
+# FUNCIONES DE SIMULACIÓN (con nuevo IM basado en asimilación)
+# ============================================================
+def simular_experiencia(S, entrada_nombre, G, R, C):
+    """Simula una experiencia y retorna el estado final + métricas"""
+    Phi, A, Psi, Omega, M, L = S
+    
+    # Guardar estado inicial para métricas
+    A_prev = A.copy()
+    rango_A_pre = np.max(A) - np.min(A)
+    rango_Phi_pre = np.max(Phi) - np.min(Phi)
+    media_L_pre = np.mean(L)
+    
+    sr, audio = cargar_audio(entrada_nombre)
+    
+    Phi_prev = Phi.copy()
+    Phi_prev2 = Phi.copy()
+    
+    for paso in range(N_PASOS):
+        t = paso * DT
+        idx = int(t * sr)
+        idx = min(idx, len(audio) - 1)
+        muestra = audio[idx] if idx >= 0 else 0.0
+        
+        ganancia_gen = GANANCIA_GENERACION_BASE * G
+        bloqueo_max = np.clip(BLOQUEO_MAXIMO_BASE * R, 0.3, 0.95)
+        k_comp = K_COMP_BASE * C
+        
+        A = actualizar_atencion(A, Phi, Psi, Omega, M, L, k_comp)
+        M = actualizar_memoria_configuracion(M, A, np.max(A)-np.min(A))
+        L = actualizar_anclaje(L, A)
+        Phi = actualizar_campo(Phi, A, muestra, Psi, ganancia_gen, bloqueo_max)
+        Psi = actualizar_memoria_estabilidad(Psi, Phi, A)
+        Omega = actualizar_memoria_coherencia(Omega, Phi, Phi_prev, Phi_prev2, A)
+        
+        if paso > 0 and paso % HOMEOSTASIS_INTERVALO == 0:
+            G, R, C = homeostasis(A, Phi, G, R, C,
+                                  A_RANGE_MIN, A_RANGE_MAX,
+                                  PHI_RANGE_MIN, PHI_RANGE_MAX)
+        
+        Phi_prev2 = Phi_prev.copy()
+        Phi_prev = Phi.copy()
+    
+    # Calcular métricas post-experiencia
+    rango_A_post = np.max(A) - np.min(A)
+    rango_Phi_post = np.max(Phi) - np.min(Phi)
+    media_L_post = np.mean(L)
+    variacion_A = calcular_variacion_A(A_prev, A)
+    
+    metricas = {
+        'delta_rango_A': rango_A_post - rango_A_pre,
+        'delta_rango_Phi': rango_Phi_post - rango_Phi_pre,
+        'delta_L': media_L_post - media_L_pre,
+        'variacion_A': variacion_A,
+        'rango_A_post': rango_A_post,
+        'rango_Phi_post': rango_Phi_post,
+        'media_L_post': media_L_post
+    }
+    
+    return (Phi, A, Psi, Omega, M, L), G, R, C, metricas
+
+
+def simular_reposo(S, G, R, C):
+    """Simula reposo sin entrada (metabolización)"""
+    Phi, A, Psi, Omega, M, L = S
+    
+    for paso in range(N_REPOSO):
+        muestra = 0.0
+        
+        ganancia_gen = GANANCIA_GENERACION_BASE * G
+        bloqueo_max = np.clip(BLOQUEO_MAXIMO_BASE * R, 0.3, 0.95)
+        k_comp = K_COMP_BASE * C
+        
+        A = actualizar_atencion(A, Phi, Psi, Omega, M, L, k_comp)
+        Phi = actualizar_campo(Phi, A, muestra, Psi, ganancia_gen, bloqueo_max)
+        Psi = actualizar_memoria_estabilidad(Psi, Phi, A)
+        Omega = actualizar_memoria_coherencia(Omega, Phi, Phi, Phi, A)
+        
+        if paso > 0 and paso % HOMEOSTASIS_INTERVALO == 0:
+            G, R, C = homeostasis(A, Phi, G, R, C,
+                                  A_RANGE_MIN, A_RANGE_MAX,
+                                  PHI_RANGE_MIN, PHI_RANGE_MAX)
+    
+    return (Phi, A, Psi, Omega, M, L), G, R, C
+
+
+def respirar_entre_experiencias(M, Psi, L, A):
+    """Decaimiento diferencial entre experiencias"""
+    M = M * DECAY_M
+    Psi = Psi * DECAY_PSI
+    L = L * DECAY_L_ENTRE
+    A_nueva = A_BASAL * (1 - PESO_M_PARA_A) + PESO_M_PARA_A * M
+    return M, Psi, L, A_nueva
+
+
+# ============================================================
+# SIMULACIÓN PRINCIPAL
+# ============================================================
+def simular_secuencia(orden):
+    """Procesa secuencia de experiencias con nuevo IM basado en asimilación"""
+    print("=" * 100)
+    print("VSTCosmo - v36: Zona de Asimilación")
+    print("IM = asimilacion_post - asimilacion_pre")
+    print("asimilacion = intensidad * exp(-costo_estructural)")
+    print("=" * 100)
+    
+    # Estado inicial
+    np.random.seed(42)
+    Phi = inicializar_campo()
+    A = inicializar_atencion()
+    Psi = inicializar_memoria()
+    Omega = inicializar_memoria()
+    M = inicializar_memoria()
+    L = inicializar_anclaje()
+    
+    G, R, C = 1.0, 1.0, 1.0
+    
+    registro = []
+    
+    # Calcular asimilación basal (sin experiencia previa)
+    S_basal = (Phi.copy(), A.copy(), Psi.copy(), Omega.copy(), M.copy(), L.copy())
+    estado_basal = extraer_estado(S_basal)
+    # Para la asimilación basal, usamos valores neutros
+    asimilacion_basal = 0.0
+    
+    for exp_idx, entrada_nombre in enumerate(orden):
+        print(f"\n{'='*80}")
+        print(f"Experiencia {exp_idx + 1}: {entrada_nombre}")
+        print(f"{'='*80}")
+        
+        # Estado antes
+        S_before = (Phi.copy(), A.copy(), Psi.copy(), Omega.copy(), M.copy(), L.copy())
+        estado_before = extraer_estado(S_before)
+        
+        # EXPERIENCIA
+        print(f"  [Ingesta]...")
+        S_after, G, R, C, metricas_post = simular_experiencia(S_before, entrada_nombre, G, R, C)
+        
+        # REPOSO
+        print(f"  [Metabolización]...")
+        S_post, G, R, C = simular_reposo(S_after, G, R, C)
+        
+        estado_post = extraer_estado(S_post)
+        
+        # CALCULAR ASIMILACIÓN
+        # Asimilación de la experiencia (usando métricas durante la ingesta)
+        asimilacion_exp = calcular_asimilacion(
+            estado_post,
+            metricas_post['delta_rango_A'],
+            metricas_post['delta_rango_Phi'],
+            metricas_post['delta_L'],
+            metricas_post['variacion_A']
+        )
+        
+        # Asimilación previa (antes de la experiencia)
+        # Usamos métricas del reposo anterior o estado basal
+        if exp_idx == 0:
+            asimilacion_pre = asimilacion_basal
+        else:
+            # Usar asimilación calculada en experiencia anterior
+            asimilacion_pre = registro[-1]['asimilacion_exp']
+        
+        # ÍNDICE METABÓLICO
+        IM = asimilacion_exp - asimilacion_pre
+        
+        # CLASIFICACIÓN
+        if IM > UMBRAL_NUTRITIVO:
+            clasificacion = "NUTRITIVA ✨"
+        elif IM < UMBRAL_TOXICO:
+            clasificacion = "TÓXICA 💀"
+        else:
+            clasificacion = "NEUTRA"
+        
+        print(f"\n  RESULTADOS:")
+        print(f"    Δrango_A = {metricas_post['delta_rango_A']:+.4f}")
+        print(f"    Δrango_Φ = {metricas_post['delta_rango_Phi']:+.4f}")
+        print(f"    ΔL = {metricas_post['delta_L']:+.4f}")
+        print(f"    variación_A = {metricas_post['variacion_A']:.4f}")
+        print(f"    intensidad = {abs(metricas_post['delta_rango_A']) + abs(metricas_post['delta_rango_Phi']):.4f}")
+        print(f"    costo = {BETA_L * max(0, metricas_post['delta_L']) + BETA_VAR * metricas_post['variacion_A']:.4f}")
+        print(f"    asimilación = {asimilacion_exp:.4f}")
+        print(f"    IM = {IM:+.4f} → {clasificacion}")
+        
+        # ACTUALIZAR MEMORIA M con el nuevo IM
+        # (manteniendo la estructura existente)
+        rango_A_post = estado_post['rango_A']
+        if rango_A_post > UMBRAL_MEMORIA:
+            M = M + ETA_MEMORIA * (A - M)
+        else:
+            M = M * (1 - ETA_DECAY * max(0, IM))  # Decae más si IM es negativo
+        
+        # RESPIRAR
+        M, Psi, L, A = respirar_entre_experiencias(M, Psi, L, A)
+        Phi, A, Psi, Omega, M, L = S_post
+        
+        # REGISTRO
+        registro.append({
+            'experiencia': exp_idx + 1,
+            'entrada': entrada_nombre,
+            'IM': IM,
+            'asimilacion_exp': asimilacion_exp,
+            'asimilacion_pre': asimilacion_pre,
+            'clasificacion': clasificacion,
+            'delta_rango_A': metricas_post['delta_rango_A'],
+            'delta_rango_Phi': metricas_post['delta_rango_Phi'],
+            'delta_L': metricas_post['delta_L'],
+            'variacion_A': metricas_post['variacion_A'],
+            'rango_A_post': estado_post['rango_A'],
+            'media_L_post': estado_post['media_L'],
+            'media_M_post': estado_post['media_M']
+        })
+        
+        print(f"\n  Estado final: rango_A={estado_post['rango_A']:.3f}, media_L={estado_post['media_L']:.3f}")
+    
+    return registro
+
+
+# ============================================================
+# MAIN
+# ============================================================
+def main():
+    # Secuencia mixta para probar zona de asimilación
+    secuencia = [
+        "Silencio",
+        "Ruido blanco",
+        "Tono puro",
+        "Voz_Estudio.wav",
+        "Brandemburgo.wav",
+        "Voz+Viento_1.wav",
+        "Voz_Estudio.wav",
+        "Brandemburgo.wav"
+    ]
+    
+    print("\n" + "=" * 100)
+    print("SECUENCIA DE EXPERIENCIAS")
+    print("=" * 100)
+    for i, exp in enumerate(secuencia, 1):
+        print(f"  {i}. {exp}")
+    
+    resultados = simular_secuencia(secuencia)
+    
+    # ============================================================
+    # ANÁLISIS
+    # ============================================================
+    print("\n" + "=" * 100)
+    print("RESUMEN DE ÍNDICES METABÓLICOS (ASIMILACIÓN)")
+    print("=" * 100)
+    
+    print(f"\n{'Exp':<4} | {'Entrada':<22} | {'IM':>10} | {'Clasificación':<12} | {'Asimilación':>12}")
+    print("-" * 70)
+    
+    for res in resultados:
+        nombre = res['entrada'][:22]
+        print(f"{res['experiencia']:<4} | {nombre:<22} | {res['IM']:10.4f} | {res['clasificacion']:<12} | {res['asimilacion_exp']:12.4f}")
+    
+    # Estadísticas por tipo de entrada
+    print("\n" + "=" * 100)
+    print("ESTADÍSTICAS POR TIPO DE ENTRADA")
+    print("=" * 100)
+    
+    tipos = {}
+    for res in resultados:
+        tipo = res['entrada']
+        if tipo not in tipos:
+            tipos[tipo] = {'IM': [], 'asimilacion': []}
+        tipos[tipo]['IM'].append(res['IM'])
+        tipos[tipo]['asimilacion'].append(res['asimilacion_exp'])
+    
+    print(f"\n{'Entrada':<25} | {'IM promedio':>12} | {'Asimilación prom':>16}")
+    print("-" * 60)
+    
+    for tipo, datos in tipos.items():
+        im_prom = np.mean(datos['IM'])
+        asim_prom = np.mean(datos['asimilacion'])
+        print(f"{tipo[:25]:<25} | {im_prom:12.4f} | {asim_prom:16.4f}")
+    
+    # Verificar si hay IM positivos
+    im_positivos = [r for r in resultados if r['IM'] > 0]
+    print(f"\nExperiencias con IM > 0: {len(im_positivos)}/{len(resultados)}")
+    
+    if im_positivos:
+        print("\nExperiencias NUTRITIVAS:")
+        for res in im_positivos:
+            print(f"  {res['experiencia']}. {res['entrada']} (IM={res['IM']:.4f})")
+    
+    print("\n" + "=" * 100)
+    print("EXPERIMENTO COMPLETADO")
+    print("=" * 100)
+
+
+if __name__ == "__main__":
+    main()
