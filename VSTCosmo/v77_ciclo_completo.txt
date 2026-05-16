@@ -1,0 +1,18 @@
+============================================================
+VSTCosmos v77 — El ciclo completo
+============================================================
+
+MÉTRICAS DE ÉXITO
+----------------------------------------
+Ciclos LF cerrados:        21
+W norma Fase 2:            0.2080
+W norma Fase 7:            0.9997
+Dominio ampliado (>1.2x):  4.81
+GED > 0.008 en Fase 2:     0.00s
+GED > 0.008 en Fase 7:     infs
+LF activa final:           99.8%
+
+VEREDICTO
+----------------------------------------
+⚠️ CICLO PARCIAL: dominio ampliado pero retorno no más rápido.
+============================================================

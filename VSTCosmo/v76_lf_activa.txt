@@ -1,0 +1,26 @@
+============================================================
+VSTCosmos v76 - LF Activa: ¿Hace algo?
+============================================================
+
+Opción 1 (Exploración):
+  GED Fase 2: 0.016717
+  GED Fase 7: 0.000123
+  Velocidad reacoplamiento: -0.000075
+  Resultado: ❌ Sin efecto exploratorio
+
+Opción 2 (Aprendizaje):
+  W_exp bajo voz: 0.0000
+  W_exp bajo música: 0.0984
+  W_exp bajo ruido: 0.9073
+  Resultado: ✅ LF activa aprendizaje nuevo
+
+Opción 3 (Generación):
+  Phi_gen vs historia (música): 0.5854
+  Phi_gen vs estímulo (música): 0.5567
+  Resultado: ✅ LF genera algo nuevo
+
+============================================================
+CONCLUSION: LF Activa SÍ produce exaptación computacional
+- Aprende correlaciones bajo LF
+- Genera actividad nueva distinta del atractor y del estímulo
+============================================================

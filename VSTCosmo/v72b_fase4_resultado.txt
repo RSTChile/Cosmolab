@@ -1,0 +1,20 @@
+============================================================
+VSTCosmos v72-B Fase 4 - Resultado
+============================================================
+
+ETA_HEBB = 0.05, TAU_W = 0.008, GAMMA_PLAST = 0.01
+Umbral correlación = 0.1
+
+Test A (voz->voz): grad_estable=0.5266, persistencia=29.9s, W=0.0689, riqueza=24
+Test B (voz->ruido): grad_estable=0.5258, riqueza=23
+Test C (ruido control): grad_estable=0.3893, riqueza=23
+
+Criterios:
+  Ratio A/C gradiente: 1.353 (criterio >3.0)
+  Ratio A/C riqueza: 1.04 (criterio >2.0)
+  Persistencia Test A: 29.9s (criterio >20s)
+  Acoplamiento mínimo: 0.1173 (criterio >0.01)
+
+============================================================
+DECISION: GAMMA_PLAST INSUFICIENTE - Subir a 0.02.
+============================================================

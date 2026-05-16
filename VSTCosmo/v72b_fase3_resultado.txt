@@ -1,0 +1,25 @@
+============================================================
+VSTCosmos v72-B Fase 3 - Resultado
+============================================================
+
+ETA_HEBB = 0.02
+TAU_W = 0.005
+GAMMA_PLAST = 0.15
+
+Test A (Persistencia - voz->voz):
+  w_tras_entreno = 0.0325
+  grad_estable = 0.5320
+  persistencia = 27.0s
+  min_acop = 0.071688
+
+Test B (Asimetría - voz->ruido):
+  grad_estable = 0.5320
+  min_acop = 0.071688
+
+Test C (Especificidad - SILENCIO):
+  grad_estable = 0.4966
+  min_acop = 0.075939
+
+============================================================
+DECISION: PENDIENTE - Ajustar parametros
+============================================================

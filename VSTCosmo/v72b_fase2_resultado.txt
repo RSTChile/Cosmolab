@@ -1,0 +1,18 @@
+============================================================
+VSTCosmos v72-B Fase 2 - Resultado
+============================================================
+
+GAMMA_MEMORIA = 0.15
+BETA_MEMORIA = 3.0
+TAU_HISTORIA = 0.0001
+K_INERCIA = 0.05
+
+Test A (Persistencia > 20s): 0.15s
+Test B (Gradiente estable ruido->voz): 0.0141
+Test B (Ratio estable/basal): 0.217
+Test C (Acoplamiento > 0.01): min=0.249397
+
+============================================================
+DECISION: ABANDONAR HISTERESIS
+Pasar directamente a v72-B Fase 3: Plasticidad Hebbiana
+============================================================

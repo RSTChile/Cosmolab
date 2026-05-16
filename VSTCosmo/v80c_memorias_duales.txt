@@ -1,0 +1,12 @@
+============================================================
+VSTCosmos v80c — Diagnóstico
+============================================================
+
+Criterio 1 — Error Fase 2 < 1.0:     0.129973 ✅
+Criterio 2 — Error F2 < Error F6:     0.129973 < 0.198199 ✅
+Criterio 3 — Balance 0.1-10 en F7:    1.882 ✅
+Criterio 4 — W_prof creció:           0.0010 → 0.0024 ✅
+Criterio 5 — W_rec olvida en F7:      0.4201 → 0.4306 ❌
+
+VEREDICTO: ❌ v80c NO VALIDADO
+============================================================
