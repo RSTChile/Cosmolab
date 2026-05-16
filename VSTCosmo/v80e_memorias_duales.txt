@@ -1,0 +1,16 @@
+============================================================
+VSTCosmos v80e — Diagnóstico
+============================================================
+
+ERROR_EQUILIBRIO_W_REC = 0.203016 (medido)
+
+Criterio 1 — Error F2 < 1.0:                0.087391 ✅
+Criterio 2 — Error F2 < Error F6:            0.087391 < 0.191836 ✅
+Criterio 3 — Balance 0.1-10 en F7:           1.852 ✅
+Criterio 4 — W_prof creció:                  0.0010 → 0.0024 ✅
+Criterio 5 — W_rec olvida en F7:             0.3595 → 0.3762 ❌
+Criterio 6 — Coherencia F7 > F6:             0.5401 → 0.5239 ❌
+Criterio 7 — Error F7 < Equilibrio:          0.196383 < 0.203016 ✅
+
+VEREDICTO: ❌ v80e NO VALIDADO
+============================================================
