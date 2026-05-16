@@ -1,0 +1,13 @@
+============================================================
+VSTCosmos v80d — Diagnóstico
+============================================================
+
+Criterio 1 — Error F2 < 1.0:          0.150427 ✅
+Criterio 2 — Error F2 < Error F6:      0.150427 < 0.221347 ✅
+Criterio 3 — Balance 0.1-10 en F7:     2.014 ✅
+Criterio 4 — W_prof creció:            0.0010 → 0.0024 ✅
+Criterio 5 — W_rec olvida en F7:       0.9970 → 1.0000 ❌
+Criterio 6 — Coherencia F7 > F6:       0.0924 → 0.0920 ❌
+
+VEREDICTO: ❌ v80d NO VALIDADO
+============================================================
