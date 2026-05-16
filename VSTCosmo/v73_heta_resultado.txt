@@ -1,0 +1,14 @@
+============================================================
+VSTCosmos v73 - HETA: Resultado
+============================================================
+
+Criterio 1 (Caída resonancia < 0.5×): 0.964 -> FALLA
+  Resonancia F2: 0.9509, F3: 0.9167
+Criterio 2 (LF activa > 50% en F3): 0.0% -> FALLA
+Criterio 3 (LF estable > 30s): 39.7s -> PASA
+Criterio 4 (Reserva F3 > 2× F2): 1.46 -> FALLA
+  Reserva F2: 0.0476, F3: 0.0697
+
+============================================================
+CONCLUSION: HETA NO VALIDADO
+============================================================

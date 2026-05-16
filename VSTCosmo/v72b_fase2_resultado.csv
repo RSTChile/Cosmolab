@@ -1,0 +1,6 @@
+test,metric,value,criterio
+A,persistencia_s,0.15,>20
+B,grad_estable_ruido_voz,0.0141,>0.15
+B,ratio_estable_basal,0.217,>2.0
+C,min_acoplamiento,0.249397,>0.01
+decision,v72_b_fase2,ABANDONAR_HISTERESIS,pasar_a_hebbiana
