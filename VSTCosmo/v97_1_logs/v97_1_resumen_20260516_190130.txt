@@ -1,0 +1,25 @@
+VSTCosmos v97.1 — Resumen
+Timestamp: 20260516_190130
+Seed: 42
+Entrenamiento: 60.0s
+Evaluación: 232.0s
+
+--- Distancias post-entrenamiento (normalizadas) ---
+A vs B: 0.000000
+A vs C: 0.209545
+B vs C: 0.209545
+
+--- Resultados de evaluación ---
+Ω_A final: +0.773766
+Ω_B final: +0.634147
+Ω_C final: +0.634154
+
+|Ω_B - Ω_A| medio: 0.139619
+|Ω_B|       medio: 0.634147
+|Ω_B - Ω_C| medio: 0.000042
+
+H1 mantención:     False
+H2 desorientación: False
+H3 reorientación:  True
+
+Tiempo de rendición: 10.0
