@@ -1,0 +1,29 @@
+VSTCosmos v97.3 — Resumen
+Timestamp: 20260516_195548
+Seed: 42
+Duración entrenamiento: 232.0s
+
+--- Distancias post-entrenamiento ---
+A vs B: 0.000000
+A vs C: 0.132612
+B vs C: 0.132612
+
+--- Ω final ---
+Ω_A: +0.773774
+Ω_B: +0.634147
+Ω_C: +0.634146
+
+H1: False
+H2: False
+H3: True
+Tiempo de rendición: 10.0
+
+--- Análisis asim_geom ---
+  asim_B_post: 0.3512805719227073
+  asim_B_inicio: 0.364708964908977
+  salto_B: 0.013428392986269688
+  cruce_cero_B: 5.98
+  t_separacion_BA: 5.92
+  t_conv_asim_BC: 10.0
+  asim_B_final: -0.3049776154258834
+  asim_C_final: -0.30439420903508807
