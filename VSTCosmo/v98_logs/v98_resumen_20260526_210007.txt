@@ -1,0 +1,24 @@
+VSTCosmos v98 — Reporte de observaciones
+Timestamp: 20260526_210007
+
+INSTANCIA A (entrenada +60°)
+  Ω Pos1 final: 0.7455
+  Ω Neg final:  0.6491
+  Ω Pos2 final: 0.9393
+  act_mant final: N/D
+  Rango Ω: N/D
+
+INSTANCIA B (entrenada +60°)
+  Ω Neg final:  0.6491
+  Ω Pos final:  0.7620
+  act_mant final: N/D
+  Rango Ω: N/D
+
+INSTANCIA C (entrenada -60°)
+  Ω Pos final:  0.7462
+  Ω Neg final:  0.6491
+  act_mant final: N/D
+  Rango Ω: N/D
+DIFERENCIAS OBSERVADAS
+  B_pos - A_pos2: -0.1773
+  B_neg - C_neg: -0.0000

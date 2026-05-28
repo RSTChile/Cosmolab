@@ -1,0 +1,32 @@
+VSTCosmos v99 - Reporte de observaciones
+Timestamp: 20260526_215030
+
+INSTANCIA D (180s +60 grados continua)
+  Omega final: 0.7674
+  Tendencia: +0.0027
+  act_mant: 0.4916
+
+INSTANCIA E (-60 grados -> +60 grados)
+  Omega Neg: 0.6490
+  Omega Pos: 0.7620
+  Tendencia Pos: -0.0003
+  act_mant: 0.4954
+
+INSTANCIA F (+60 grados -> -60 grados -> +60 grados)
+  Omega Pos1: 0.7455
+  Omega Neg: 0.6491
+  Omega Pos2: 0.9393
+  Tendencia Pos2: +0.0021
+  act_mant: 0.4945
+
+INSTANCIA G (+60 grados(120s) -> -60 grados -> +60 grados)
+  Omega Pos1: 0.7619
+  Omega Neg: 0.6491
+  Omega Pos2: 0.7620
+  Tendencia Pos2: -0.0003
+  act_mant: 0.4955
+
+COMPARACIONES
+  E_pos - F_pos2: -0.1773
+  F_pos2 - G_pos2: +0.1773
+  D_final - F_pos2: -0.1719
