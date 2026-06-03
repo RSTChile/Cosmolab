@@ -1,0 +1,833 @@
+{
+  "generated_at": "2026-06-03T10:39:59.270436+00:00",
+  "repo": "https://github.com/RSTChile/Cosmolab/tree/main/VSTCosmo",
+  "note": "Métricas extraídas heurísticamente de logs de corridas. Para datos completos ver archivos fuente y PDFs canónicos.",
+  "runs": [
+    {
+      "file": "v100_logs/v100_resultados_20260526_234211.csv",
+      "version": "v100_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 9,
+        "cols": [
+          "instancia",
+          "duracion_inicial",
+          "omega_bigbang_neg",
+          "omega_bigbang_pos_final"
+        ],
+        "numeric_means": {
+          "duracion_inicial": 60.0,
+          "omega_bigbang_neg": 0.7652025133743176,
+          "omega_bigbang_pos_final": 0.649712523322018
+        }
+      }
+    },
+    {
+      "file": "v101_logs/v101_resultados_20260527_030855.csv",
+      "version": "v101_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 9,
+        "cols": [
+          "instancia",
+          "duracion_inicial",
+          "omega_bigbang_neg",
+          "omega_bigbang_pos_final"
+        ],
+        "numeric_means": {
+          "duracion_inicial": 60.0,
+          "omega_bigbang_neg": 0.650666036533978,
+          "omega_bigbang_pos_final": 0.760851587621637
+        }
+      }
+    },
+    {
+      "file": "v102_logs/v102_resultados_20260527_150635.csv",
+      "version": "v102_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 4,
+        "cols": [
+          "configuracion",
+          "bigbang_pos",
+          "bigbang_neg",
+          "voz_pos",
+          "voz_neg"
+        ],
+        "numeric_means": {
+          "bigbang_pos": 0.7608497774002205,
+          "bigbang_neg": 0.6506735191748148,
+          "voz_pos": 0.8511646822492829
+        }
+      }
+    },
+    {
+      "file": "v103_logs/v103_resultados_20260527_153253.csv",
+      "version": "v103_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 28,
+        "cols": [
+          "estimulo",
+          "omega"
+        ],
+        "numeric_means": {
+          "omega": 0.6145610998073282
+        }
+      }
+    },
+    {
+      "file": "v111b_logs/v111b_datos_20260527_203059.json",
+      "version": "v111b_logs",
+      "metrics": {},
+      "json_keys": [
+        "t",
+        "omega_A",
+        "omega_B",
+        "Lambda_Cos_A",
+        "Lambda_Cos_B",
+        "S_shared",
+        "LF_A",
+        "LF_B"
+      ],
+      "sample": "{'t': [0.0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3, 0.31, 0.32,"
+    },
+    {
+      "file": "v156_logs/v156_run_20260601_201901.log",
+      "version": "v156_logs",
+      "metrics": {
+        "version": "v156_logs",
+        "source": null,
+        "fatiga_final": 4207.0,
+        "historia_final": 2708.0
+      }
+    },
+    {
+      "file": "v157_logs/v157_run_20260601_203257.log",
+      "version": "v157_logs",
+      "metrics": {
+        "version": "v157_logs",
+        "source": null,
+        "fatiga_final": 12913.0,
+        "historia_final": 648.0
+      }
+    },
+    {
+      "file": "v157_logs/v157_run_20260601_rerun.log",
+      "version": "v157_logs",
+      "metrics": {
+        "version": "v157_logs",
+        "source": null
+      }
+    },
+    {
+      "file": "v159_logs/v158_run_20260601_210714.log",
+      "version": "v159_logs",
+      "metrics": {
+        "version": "v159_logs",
+        "source": null
+      }
+    },
+    {
+      "file": "v164_logs/v164_run_20260602_215018.log",
+      "version": "v164_logs",
+      "metrics": {
+        "version": "v164_logs",
+        "source": null,
+        "ritual_activo_f4": false,
+        "fatiga_final": 10288.0,
+        "historia_final": 3194.0
+      }
+    },
+    {
+      "file": "v167_logs/v167_run_20260603_044554.log",
+      "version": "v167_logs",
+      "metrics": {
+        "version": "v167_logs",
+        "source": null,
+        "correlacion_ritual_senal": 0.988,
+        "n_correlacion": 21677,
+        "ritual_activo_f4": true,
+        "fatiga_final": 4793.0,
+        "historia_final": 243.0
+      }
+    },
+    {
+      "file": "v167_logs/v167_run_corrfix_20260603_051840.log",
+      "version": "v167_logs",
+      "metrics": {
+        "version": "v167_logs",
+        "source": null,
+        "correlacion_ritual_senal": 0.885,
+        "n_correlacion": 80000,
+        "ritual_activo_f4": true,
+        "fatiga_final": 4793.0,
+        "historia_final": 243.0
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_A_estimulo_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17166655172413792,
+          "energia_L_alta": 0.02093972413793103
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_A_estimulo_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17166655172413792,
+          "energia_L_alta": 0.02093972413793103
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_A_log_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014319822413793105,
+          "var_int": 0.0022349847844827585
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_A_log_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014319822413793105,
+          "var_int": 0.0022349847844827585
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_B_estimulo_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_B_estimulo_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_B_log_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014057818318965517,
+          "var_int": 0.0022188172413793107
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_B_log_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014057818318965517,
+          "var_int": 0.0022188172413793107
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_C_estimulo_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_C_estimulo_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_C_log_20260505_140118.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014390952370689656,
+          "var_int": 0.0022270716594827585
+        }
+      }
+    },
+    {
+      "file": "v97_1_logs/v97_1_C_log_20260516_190130.csv",
+      "version": "v97_1_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014390952370689656,
+          "var_int": 0.0022270716594827585
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_A_estimulo_20260516_192241.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 0,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {}
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_A_estimulo_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17166655172413792,
+          "energia_L_alta": 0.02093972413793103
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_A_log_20260516_192241.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 0,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {}
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_A_log_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014319822413793105,
+          "var_int": 0.0022349847844827585
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_B_estimulo_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_B_log_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014057818318965517,
+          "var_int": 0.0022188172413793107
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_C_estimulo_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_2_logs/v97_2_C_log_20260516_193157.csv",
+      "version": "v97_2_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014390952370689656,
+          "var_int": 0.0022270716594827585
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_A_estimulo_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17166655172413792,
+          "energia_L_alta": 0.02093972413793103
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_A_log_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014708254956896554,
+          "var_int": 0.0020802529525862073
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_B_estimulo_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_B_log_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0013816135775862068,
+          "var_int": 0.0020187042004310343
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_C_estimulo_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_3_logs/v97_3_C_log_20260516_195548.csv",
+      "version": "v97_3_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.001441225668103448,
+          "var_int": 0.0020572258879310345
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_A_estimulo_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17166655172413792,
+          "energia_L_alta": 0.02093972413793103
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_A_log_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014319822413793105,
+          "var_int": 0.0022349847844827585
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_B_estimulo_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_B_log_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.0014392435560344828,
+          "var_int": 0.0022627021551724137
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_C_estimulo_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "energia_L_baja",
+          "energia_L_alta",
+          "energia_R_baja",
+          "energia_R_alta",
+          "gradE_calc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "energia_L_baja": 0.17006137500000001,
+          "energia_L_alta": 0.02377951293103448
+        }
+      }
+    },
+    {
+      "file": "v97_logs/v97_C_log_20260505_133447.csv",
+      "version": "v97_logs",
+      "metrics": {},
+      "csv_summary": {
+        "rows": 464,
+        "cols": [
+          "t",
+          "ged",
+          "var_int",
+          "efic",
+          "geom",
+          "busc"
+        ],
+        "numeric_means": {
+          "t": 115.75,
+          "ged": 0.001445230625,
+          "var_int": 0.0022241322198275864
+        }
+      }
+    }
+  ]
+}
