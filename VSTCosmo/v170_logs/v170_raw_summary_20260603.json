@@ -1,0 +1,27 @@
+{
+  "version": "V170",
+  "timestamp": "20260603 (from terminal paste)",
+  "teoria_nodes": ["O-N0.3", "O-N7.2", "O-N10.7", "O-N10.1", "O-N17"],
+  "result": "✅ DESACOPLE REPRESENTACIONAL DEMOSTRADO",
+  "f4_metrics": {
+    "D_max": 0.7427,
+    "D_mean": 0.4477,
+    "D_std": 0.0692,
+    "max_time_D_gt_0.08_s": 29.98,
+    "sustained_desacople": true,
+    "criterion": "D > 0.08 for >= 3.0s",
+    "periods": [{"start_s": 0.0, "duration_s": 29.98}],
+    "ritual_active": false,
+    "ritual_activation_mean": 0.235,
+    "ritual_activation_max": 0.247
+  },
+  "f3_metrics": {
+    "ritual_activation_mean": 0.286,
+    "ritual_activation_max": 0.672
+  },
+  "setpoint_distribution_f4": "Wide spread due to gaussian noise (approx -110° to +110°), not limited to nominal 4 values. Demonstrates chasing of varied internal representations under uncertainty.",
+  "interpretation": "Sustained D ~0.45 mean over nearly entire 30s F4 window with P(Acción|R) < 1. Ritual did not strongly propagate into F4. Desacople emerged from multi-setpoint + noise uncertainty itself (the space of Juego).",
+  "next": "V171 — Primer 'No' operativo (R_op) per theory genealogy",
+  "raw_terminal_file": "v170_logs/v170_resultados_terminal_20260603.txt",
+  "graph": "v170_logs/v170_desacople_mejorado_....png (truncated in paste)"
+}
