@@ -1,0 +1,33 @@
+
+====================================================================================================
+V159 — ANIMA-2 Etapa 3: RITUAL
+Fijación de marcos conductuales por repetición enactuada
+====================================================================================================
+
+====================================================================================================
+EXPERIMENTO V159 — ANIMA-2 Etapa 3: RITUAL
+====================================================================================================
+  Objetivo: Fijar marcos conductuales mediante repetición enactuada
+
+  Parámetros:
+    τ_ritual = 120.0s
+    repetición_min = 3
+    patron_temporal = 30.0s
+    umbral_ritual = 0.7
+====================================================================================================
+
+  Creando organismos paralelos...
+  Entrenando lateralidad...
+Traceback (most recent call last):
+  File "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/V158.py", line 845, in <module>
+    resultados = experimento.run()
+  File "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/V158.py", line 831, in run
+    return self.ejecutar()
+           ~~~~~~~~~~~~~^^
+  File "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/V158.py", line 534, in ejecutar
+    self.entrenar_lateralidad(organismo_control)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/V158.py", line 507, in entrenar_lateralidad
+    organismo.step(30.0, 0.0, ritual_forzado=False)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: OrganismoRitual.step() got an unexpected keyword argument 'ritual_forzado'. Did you mean 'modo_ritual_forzado'?

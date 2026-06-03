@@ -1,0 +1,146 @@
+====================================================================================================
+EXPERIMENTO V164 — ANIMA-2 Etapa 3: RITUAL CON JERARQUÍA DE ETAPAS
+====================================================================================================
+  PRINCIPIO:
+    - Etapa 0 (Memoria): siempre activa
+    - Etapa 1 (Cb): siempre activa
+    - Etapa 2 (Juego): se INHIBE si Ritual está activo
+    - Etapa 3 (Ritual): puede usar Cb, historia, memoria
+
+  CRITERIOS DE CIERRE E3:
+    1. Tiempo ritual activo > 15%
+    2. Activación ritual final > 0.2 (persistencia)
+    3. Historia ritual < 0.8 × historia control (compresión)
+    4. Ritual activo durante F4 (rigidez)
+====================================================================================================
+
+  Creando organismos paralelos...
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  F1: Baseline (3 ciclos)...
+
+  F2: Control - 20 ciclos SIN ritual...
+
+  ============================================================
+  CONTROL ciclo 5/20
+    [Memoria]  confianza=1.00, τ_mem=46.0s
+    [Cb]       Cb=409.2
+    [Juego]    activo=True, tiempo=492.2s
+    [Física]   fatiga=10288°, historia=3194°
+
+  ============================================================
+  CONTROL ciclo 10/20
+    [Memoria]  confianza=1.00, τ_mem=55.4s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=818.2s
+    [Física]   fatiga=15930°, historia=5078°
+
+  ============================================================
+  CONTROL ciclo 15/20
+    [Memoria]  confianza=1.00, τ_mem=56.4s
+    [Cb]       Cb=466.8
+    [Juego]    activo=True, tiempo=1218.2s
+    [Física]   fatiga=19885°, historia=5275°
+
+  ============================================================
+  CONTROL ciclo 20/20
+    [Memoria]  confianza=1.00, τ_mem=60.1s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=1561.3s
+    [Física]   fatiga=20000°, historia=6014°
+
+  F3: Experimental - 20 ciclos CON ritual...
+      (Ritual inhibe juego cuando está activo)
+
+  ============================================================
+  RITUAL ciclo 5/20
+    [Memoria]  confianza=1.00, τ_mem=33.6s
+    [Cb]       Cb=475.2
+    [Juego]    activo=True, tiempo=596.6s
+    [Ritual]   activo=False, act=0.131, cruces=25
+    [Física]   fatiga=8532°, historia=712°
+
+  ============================================================
+  RITUAL ciclo 10/20
+    [Memoria]  confianza=1.00, τ_mem=34.8s
+    [Cb]       Cb=201.9
+    [Juego]    activo=True, tiempo=978.5s
+    [Ritual]   activo=False, act=0.328, cruces=69
+    [Física]   fatiga=11695°, historia=955°
+
+  ============================================================
+  RITUAL ciclo 15/20
+    [Memoria]  confianza=1.00, τ_mem=36.3s
+    [Cb]       Cb=495.7
+    [Juego]    activo=True, tiempo=1354.7s
+    [Ritual]   activo=False, act=0.185, cruces=119
+    [Física]   fatiga=15096°, historia=1263°
+
+  ============================================================
+  RITUAL ciclo 20/20
+    [Memoria]  confianza=1.00, τ_mem=55.0s
+    [Cb]       Cb=0.0
+    [Juego]    activo=False, tiempo=1615.6s
+    [Ritual]   activo=True, act=0.546, cruces=158
+    [Física]   fatiga=20000°, historia=4992°
+
+  F4: Test post (3 ciclos) - midiendo persistencia del ritual...
+
+================================================================================
+RESULTADOS V164 — Etapa 3: Ritual con jerarquía
+================================================================================
+
+  📊 MÉTRICAS POR ETAPA:
+
+  [Etapa 0 - Memoria de ausencia]
+    τ_mem final ritual: 57.9s
+    Confianza final ritual: 1.000
+
+  [Etapa 1 - Consciencia básica]
+    Cb final control: 467.4
+    Cb final ritual: 492.8
+
+  [Etapa 2 - Juego enactuado]
+    Tiempo juego control: 1734.2s
+    Tiempo juego ritual: 1811.6s
+    Diferencia (ritual inhibe): -77.4s
+
+  [Etapa 3 - Ritual]
+    Tiempo ritual activo: 233.6s (14.6% del tiempo)
+    Activación ritual final: 0.165
+    Cruces detectados: 161
+    Ritual activo en F4: False
+
+  [Física - Trabajo y aprendizaje]
+    Fatiga control: 20000°
+    Fatiga ritual: 20000°
+    Historia control: 7502°
+    Historia ritual: 5579°
+    Compresión (hist_ritual/hist_control): 0.74
+
+  [Test post - Error RMS]
+    Error RMS control: 38.33°
+    Error RMS ritual: 62.80°
+
+================================================================================
+CRITERIOS DE CIERRE ETAPA 3 (Ritual)
+================================================================================
+  1. Tiempo ritual activo > 15%: 14.6% -> ❌
+  2. Activación ritual final > 0.2: 0.165 -> ❌
+  3. Compresión (hist_ritual < 0.8×hist_control): 5579 < 6002 -> ✅
+  4. Rigidez (ritual activo en F4): False -> ❌
+
+================================================================================
+  ⚠️ ETAPA 3 PARCIAL
+     Ritual necesita más tiempo activo
+     Activación necesita más persistencia
+     Rigidez no demostrada (ritual se apaga en F4)
+================================================================================
+
+  📊 Gráficos guardados: v164_logs/v164_ritual_jerarquia_20260602_221451.png
+
+  ⏱️ Tiempo de ejecución: 24.6 minutos
+
+  V164 completado. Éxito: False

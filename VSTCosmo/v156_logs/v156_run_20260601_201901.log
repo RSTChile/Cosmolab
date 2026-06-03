@@ -1,0 +1,57 @@
+====================================================================================================
+EXPERIMENTO V156 — ANIMA-2 Etapa 2: Juego enactuado
+====================================================================================================
+  Modo JUEGO: misma dinámica, consecuencias amortiguadas
+  Costo energético REAL (se paga siempre)
+  Cb influye en activación del juego
+
+  Parámetros:
+    - Kp_base = 0.002
+    - K_HOLD = 0.001
+    - tau_cb = 10.0s
+    - lambda_fisico = 0.1 (movimiento real reducido)
+    - lambda_costo = 1.0 (costo real)
+    - umbral_cb_juego = 35.0
+====================================================================================================
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  Iniciando test de juego enactuado...
+
+  F1: Baseline fresco (3 ciclos)...
+      T_settle control: No alcanzado
+
+  F2: Grupo Control (20 ciclos SIN juego)...
+      Ciclo 10/20 control, fatiga=4207°, historia=2708°
+      Ciclo 20/20 control, fatiga=6506°, historia=4602°
+
+  F3: Grupo Experimental (20 ciclos CON juego)...
+      (Modo juego se activa automáticamente cuando Cb > umbral)
+      Ciclo 5/20 juego, fatiga=6920°, historia=5502°
+      Ciclo 10/20 juego, fatiga=7092°, historia=6397°
+      Ciclo 15/20 juego, fatiga=7270°, historia=7303°
+      Ciclo 20/20 juego, fatiga=7467°, historia=8204°
+
+  F4: Test post-juego (3 ciclos)...
+      T_settle post-juego: No alcanzado
+
+================================================================================
+RESULTADOS V156 — Juego enactuado
+================================================================================
+
+  Historia acumulada final: 8743°
+
+================================================================================
+CONCLUSION V156
+================================================================================
+
+  ⚠️ ETAPA 2 PARCIAL
+     Control sin T_settle medible
+     Post-juego sin T_settle medible
+
+  📊 Gráficos guardados: v156_logs/v156_juego_enactuado_20260601_203145.png
+
+  ⏱️ Tiempo de ejecución: 12.7 minutos
+
+  V156 completado. Éxito: False

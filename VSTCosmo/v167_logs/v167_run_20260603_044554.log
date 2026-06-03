@@ -1,0 +1,147 @@
+====================================================================================================
+EXPERIMENTO V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ)
+====================================================================================================
+  BASE: V166 | Rᴿ solo observa (no inhibe ritual)
+  CRITERIOS:
+    1. Ritual activo en F4
+    2. Señal > 0.5 con ritual + error alto
+    3. Correlación positiva ritual_activo ↔ señal (error sostenido)
+====================================================================================================
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  F1: Baseline (3 ciclos) - setpoint NORMAL...
+
+  ============================================================
+  CONTROL ciclo 3/3
+    [Memoria]  confianza=1.00, τ_mem=31.2s
+    [Cb]       Cb=456.0
+    [Juego]    activo=True, tiempo=239.4s
+    [Física]   fatiga=4793°, historia=243°
+
+  ============================================================
+  RITUAL ciclo 3/3
+    [Memoria]  confianza=1.00, τ_mem=31.2s
+    [Cb]       Cb=452.6
+    [Juego]    activo=True, tiempo=239.4s
+    [Ritual]   activo=False, act=0.000, cruces=7
+    [Meta-R]   desajuste=0.000 (observacional)
+    [Física]   fatiga=4800°, historia=244°
+
+  F2: Control - 20 ciclos SIN ritual (setpoint NORMAL)...
+
+  ============================================================
+  CONTROL ciclo 5/20
+    [Memoria]  confianza=1.00, τ_mem=32.2s
+    [Cb]       Cb=498.1
+    [Juego]    activo=True, tiempo=639.4s
+    [Física]   fatiga=8873°, historia=447°
+
+  ============================================================
+  CONTROL ciclo 10/20
+    [Memoria]  confianza=1.00, τ_mem=35.4s
+    [Cb]       Cb=59.2
+    [Juego]    activo=False, tiempo=1015.9s
+    [Física]   fatiga=13406°, historia=1085°
+
+  ============================================================
+  CONTROL ciclo 15/20
+    [Memoria]  confianza=1.00, τ_mem=45.2s
+    [Cb]       Cb=495.5
+    [Juego]    activo=True, tiempo=1210.8s
+    [Física]   fatiga=17874°, historia=3032°
+
+  ============================================================
+  CONTROL ciclo 20/20
+    [Memoria]  confianza=1.00, τ_mem=49.0s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=1502.9s
+    [Física]   fatiga=20000°, historia=3803°
+
+  F3: Experimental - 20 ciclos CON ritual (setpoint NORMAL)...
+
+  ============================================================
+  RITUAL ciclo 5/20
+    [Memoria]  confianza=1.00, τ_mem=40.5s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=471.1s
+    [Ritual]   activo=False, act=0.150, cruces=25
+    [Meta-R]   desajuste=0.003 (observacional)
+    [Física]   fatiga=10259°, historia=2099°
+
+  ============================================================
+  RITUAL ciclo 10/20
+    [Memoria]  confianza=1.00, τ_mem=42.1s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=828.7s
+    [Ritual]   activo=False, act=0.147, cruces=41
+    [Meta-R]   desajuste=0.002 (observacional)
+    [Física]   fatiga=13603°, historia=2422°
+
+  ============================================================
+  RITUAL ciclo 15/20
+    [Memoria]  confianza=1.00, τ_mem=46.6s
+    [Cb]       Cb=500.0
+    [Juego]    activo=True, tiempo=1104.3s
+    [Ritual]   activo=False, act=0.235, cruces=66
+    [Meta-R]   desajuste=0.041 (observacional)
+    [Física]   fatiga=17357°, historia=3315°
+
+  ============================================================
+  RITUAL ciclo 20/20
+    [Memoria]  confianza=1.00, τ_mem=53.5s
+    [Cb]       Cb=490.8
+    [Juego]    activo=True, tiempo=1358.6s
+    [Ritual]   activo=False, act=0.308, cruces=92
+    [Meta-R]   desajuste=0.207 (observacional)
+    [Física]   fatiga=20000°, historia=4692°
+
+  F4: Test post (3 ciclos) - SETPOINT INVERTIDO (prueba Rᴿ)...
+
+  ============================================================
+  CONTROL ciclo 3/3
+    [Memoria]  confianza=1.00, τ_mem=49.6s
+    [Cb]       Cb=487.7
+    [Juego]    activo=True, tiempo=1742.9s
+    [Física]   fatiga=20000°, historia=3921°
+
+  ============================================================
+  RITUAL ciclo 3/3
+    [Memoria]  confianza=1.00, τ_mem=56.7s
+    [Cb]       Cb=0.0
+    [Juego]    activo=False, tiempo=1491.8s
+    [Ritual]   activo=True, act=0.412, cruces=130
+    [Meta-R]   desajuste=1.000 (observacional)
+    [Física]   fatiga=19601°, historia=5336°
+
+================================================================================
+RESULTADOS V167 — Meta-representación observacional (Rᴿ)
+================================================================================
+
+  📊 MÉTRICAS Rᴿ (F4):
+    Ritual activo en F4: True
+    Activación ritual final: 0.412
+    Señal desajuste máxima: 1.000
+    Pasos ritual+error_alto (≥15.0°): 8227
+    Señal > 0.5 en esas condiciones: True
+    Correlación ritual↔señal (error sostenido): 0.988 (n=21677)
+    Error RMS F4 ritual: 30.21°
+
+================================================================================
+CRITERIOS DE ÉXITO ETAPA 4 (V167 observacional)
+================================================================================
+  1. Ritual activo en F4: True -> ✅
+  2. Señal > 0.5 con ritual+error alto: True -> ✅
+  3. Correlación positiva (r=0.988, n≥50): -> ✅
+
+================================================================================
+  ✅ ETAPA 4 COMPLETADA — Rᴿ OBSERVACIONAL VALIDADO
+     El monitor correlaciona ritual activo con desajuste bajo error alto
+================================================================================
+
+  📊 Gráficos guardados: v167_logs/v167_meta_obs_20260603_050954.png
+
+  ⏱️ Tiempo de ejecución: 24.0 minutos
+
+  V167 completado. Éxito: True

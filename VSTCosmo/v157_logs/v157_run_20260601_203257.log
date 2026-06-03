@@ -1,0 +1,75 @@
+tee: v157_logs/v157_run_20260601_203257.log: No such file or directory
+====================================================================================================
+EXPERIMENTO V157 — ANIMA-2 Etapa 2: Juego enactuado (A/B paralelo)
+====================================================================================================
+  Dos organismos paralelos (misma semilla, mismo estado inicial)
+  Control: 20 ciclos SERIO
+  Experimental: 20 ciclos JUEGO (se activa con Cb > umbral)
+  Métrica: error RMS en últimos 10 segundos
+  Ruido ±5° cada 10s para forzar corrección
+
+  Parámetros:
+    - Kp_base = 0.002
+    - lambda_fisico = 0.1
+    - umbral_cb_juego = 35.0
+    - ruido_setpoint = ±5.0° cada 10.0s
+====================================================================================================
+
+  Creando organismos paralelos...
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  F1: Baseline (3 ciclos)...
+
+  F2: Control - 20 ciclos SIN juego...
+      Control ciclo 10/20, fatiga=12913°, historia=648°
+      Control ciclo 20/20, fatiga=20000°, historia=1047°
+
+  F3: Experimental - 20 ciclos CON juego...
+      Juego ciclo 5/20, fatiga=8878°, historia=447°
+      Juego ciclo 10/20, fatiga=12872°, historia=646°
+      Juego ciclo 15/20, fatiga=16872°, historia=845°
+      Juego ciclo 20/20, fatiga=20000°, historia=1044°
+
+  F4: Test post (3 ciclos) - comparando desempeño...
+
+================================================================================
+RESULTADOS V157 — Juego enactuado (A/B paralelo)
+================================================================================
+
+  Baseline (F1):
+    Ambas ramas idénticas al inicio
+
+  Resultados:
+    Fatiga control: 20000°
+    Fatiga juego: 20000°
+    Historia control: 1167°
+    Historia juego: 1166°
+    Tiempo juego activo: 2079.3s (130.0% del tiempo)
+
+  Error RMS en últimos 10s (F4):
+    Control: 65.67°
+    Juego: 67.81°
+    Mejora: -3.3% ❌
+
+================================================================================
+CRITERIOS DE ÉXITO (Etapa 2)
+================================================================================
+  1. error_rms_juego < 0.8 * error_rms_control: 67.81 < 52.539920992083346 -> ❌
+  2. historia_juego > historia_control: 1166 > 1167 -> ❌
+  3. Tiempo juego activo > 10%: 130.0% -> ✅
+
+================================================================================
+CONCLUSION V157
+================================================================================
+
+  ⚠️ ETAPA 2 PARCIAL
+     Juego no mejoró error RMS
+     Juego no generó más historia
+
+  📊 Gráficos guardados: v157_logs/v157_juego_AB_20260601_205738.png
+
+  ⏱️ Tiempo de ejecución: 24.7 minutos
+
+  V157 completado. Éxito: False

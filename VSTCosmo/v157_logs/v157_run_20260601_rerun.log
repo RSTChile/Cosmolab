@@ -1,0 +1,20 @@
+====================================================================================================
+EXPERIMENTO V157 — ANIMA-2 Etapa 2: Juego enactuado (A/B paralelo)
+====================================================================================================
+  Dos organismos paralelos (misma semilla, mismo estado inicial)
+  Control: 20 ciclos SERIO
+  Experimental: 20 ciclos JUEGO (se activa con Cb > umbral)
+  Métrica: error RMS en últimos 10 segundos
+  Ruido ±5° cada 10s para forzar corrección
+
+  Parámetros:
+    - Kp_base = 0.002
+    - lambda_fisico = 0.1
+    - umbral_cb_juego = 35.0
+    - ruido_setpoint = ±5.0° cada 10.0s
+====================================================================================================
+
+  Creando organismos paralelos...
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
