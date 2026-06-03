@@ -1,6 +1,6 @@
 # Evidencia Extraída Automáticamente (resumen vivo)
 
-Generado: 2026-06-03T10:39:59.270436+00:00
+Generado: 2026-06-03T10:54:23.249357+00:00
 
 Este archivo es complementario a DATOS_Y_MECANISMOS_VERIFICABLES.md .
 

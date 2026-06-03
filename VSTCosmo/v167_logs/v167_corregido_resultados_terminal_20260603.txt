@@ -1,0 +1,54 @@
+(venv) alexis@imac VSTCosmo % 
+================================================================================
+RESULTADOS V167 CORREGIDO — Meta-representación observacional (Rᴿ)
+================================================================================
+
+  📊 MÉTRICAS POR ETAPA:
+
+  [Etapa 0-2 - Base funcional]
+    Historia control: 3269°
+    Historia ritual: 3024°
+    Compresión: 0.925
+
+  [Etapa 3 - Ritual]
+    Tiempo ritual activo: 382.8s (23.9%)
+    Activación ritual final: 0.415
+    Ritual activo en F4: True
+
+  [Etapa 4 - Meta-representación observacional (Rᴿ)]
+    Señal desajuste máxima en F4: 1.000
+    Señal desajuste media en F4: 0.274
+    Detección de desajuste (> 0.5): True
+    Correlación ritual_señal (F3): 0.901
+
+  [Test post - Error RMS F4]
+    Error RMS Control: 10.45°
+    Error RMS Ritual: 30.03°
+    Cb final control: 115.3
+    Cb final ritual: 0.9
+
+================================================================================
+CRITERIOS DE ÉXITO ETAPA 4 (Meta-representación observacional)
+================================================================================
+  1. Suficiente activación (>12%): 23.9% -> ✅
+  2. Persistencia del ritual en F4: True -> ✅
+  3. Detección de desajuste (señal > 0.5): 1.000 -> ✅
+  4. Correlación ritual-señal > 0.3: 0.901 -> ✅
+
+================================================================================
+  ✅ ETAPA 4 COMPLETADA — META-REPRESENTACIÓN OBSERVACIONAL VALIDADA
+
+     El organismo DEMUESTRA:
+     ✓ Persistencia del ritual (Etapa 3)
+     ✓ Capacidad de DETECTAR desajuste (ritual + error sostenido)
+     ✓ Correlación positiva entre ritual activo y señal de desajuste
+
+  ANIMA-2 listo para Etapa 5: Primer 'No' operativo (R_op)
+================================================================================
+
+  📊 Gráficos guardados: v167_logs/v167_meta_observacional_corregido_20260603_064549.png
+
+  ⏱️ Tiempo de ejecución: 23.6 minutos
+
+  V167 CORREGIDO completado. Éxito: True
+(venv) alexis@imac VSTCosmo % 

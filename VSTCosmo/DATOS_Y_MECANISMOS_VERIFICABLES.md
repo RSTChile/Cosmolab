@@ -210,6 +210,99 @@ Este documento puede actualizarse automáticamente o manualmente tras cada hito.
 
 *Generado con acceso completo al workspace VSTCosmo. Versión local tiene commits ahead + logs recientes no necesariamente pushed aún.*
 
+## 9. Actualización: V167 CORREGIDO (respuesta directa a demanda de código completo + logs raw)
+
+**Fecha de la corrida**: 2026-06-03 (terminal output pegado por el usuario).
+
+**Script ejecutado**: `v167-ob.py` (título interno: "V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) - CORREGIDO" — la corrección fue al cálculo de correlación para evitar NaN).
+
+**Resultados exactos reportados en terminal** (ver también el archivo de texto crudo):
+```
+  [Etapa 3 - Ritual]
+    Tiempo ritual activo: 382.8s (23.9%)
+    Activación ritual final: 0.415
+    Ritual activo en F4: True
+
+  [Etapa 4 - Meta-representación observacional (Rᴿ)]
+    Señal desajuste máxima en F4: 1.000
+    Señal desajuste media en F4: 0.274
+    Detección de desajuste (> 0.5): True
+    Correlación ritual_señal (F3): 0.901
+
+  [Test post - Error RMS F4]
+    Error RMS Control: 10.45°
+    Error RMS Ritual: 30.03°
+    Cb final control: 115.3
+    Cb final ritual: 0.9
+
+CRITERIOS (los 4 cumplidos ✅)
+  1. Suficiente activación (>12%): 23.9% -> ✅
+  2. Persistencia del ritual en F4: True -> ✅
+  3. Detección de desajuste (señal > 0.5): 1.000 -> ✅
+  4. Correlación ritual-señal > 0.3: 0.901 -> ✅
+```
+
+**Código completo de las clases que fueron cuestionadas** (Ritual detector de cruces, umbral Cb, decaimiento exp, presión error_norm·Cb_norm, integrador de desajuste, cálculo de correlación corregido):
+
+→ [clases_completas_Ritual_Meta_V167_corregido.py](clases_completas_Ritual_Meta_V167_corregido.py)
+
+Este archivo es un extracto autocontenido con:
+- Todos los parámetros numéricos exactos (RITUAL_UMBRAL_CB = 28.0, RITUAL_TAU=180.0 → exp(-dt/180), RITUAL_PATRON_TEMPORAL=40.0, META_TAU=30, error_norm = min(1, err/60), Cb_norm=min(1, Cb/500), el caso "ritual ciego", el integrador leaky, etc.).
+- `RitualV167` completa (métodos `__init__`, `detectar_cruce_por_cero`, `actualizar`, `modular_correccion`, `reset`).
+- `MetaRepresentacionObservacional` completa (el monitor observacional, sin inhibición).
+- Fragmentos del motor que muestran la jerarquía (ritual se actualiza antes, juego se inhibe si ritual_activo, meta solo observa y devuelve señal).
+- La función de correlación corregida (ventana central + chequeo de std > 1e-6 + fallback downsample).
+
+**Logs raw / artefactos de esta corrida exacta**:
+- `v167_logs/v167_corregido_resultados_terminal_20260603.txt` — el output completo del terminal que pegaste.
+- `v167_logs/v167_meta_observacional_corregido_20260603_064549.png` — gráfico generado.
+- Script fuente completo: `v167-ob.py`
+
+**Respuesta a la afirmación "el software define las leyes"**:
+Totalmente de acuerdo. Por eso publicamos el código completo de las reglas (arriba). La pregunta científica que el proyecto está haciendo no es "apareció magia", sino:
+
+"Cuando integramos estas reglas explícitas (campo + memoria de ausencia + Cb como presión de desacople + fatiga recuperable + detector de patrón ritual + monitor observacional) bajo un protocolo de exposición prolongada + desafío (F4 invertido), ¿emergen correlaciones altas, persistencia del marco ritual, y trade-offs medibles (ej. RMS control 10.45° vs ritual 30.03° en esta corrida, o a la inversa en corridas anteriores) que son útiles para modelar exaptación / rigidez funcional?"
+
+Los 4 criterios se definieron *antes* de la corrida y se cumplieron. Los controles previos (V159, V164, A/B) muestran que sin las condiciones (historia + presión + patrón) el detector no se activa o produce efectos diferentes.
+
+Esto es verificable porque el código y los historiales que alimentan la correlación están en el repo y en los logs de cada fase.
+
+**Próximo paso natural (Etapa 5)**: Primer 'No' operativo (R_op) — usar la señal de desajuste para que el sistema *decida* inhibir o modificar el ritual. Eso será la primera vez que el monitor deja de ser puramente observacional.
+
+## 10. Preparación para Etapa 5 (V168): Primer "No" operativo (R_op)
+
+**Corrección**: El último output compartido por el usuario correspondía a `v167-ob.py` (versión corregida de la Etapa 4). El título del output lo confirma ("RESULTADOS V167 CORREGIDO"). 
+
+El paquete para v167-ob.py ya está completo:
+- [clases_completas_Ritual_Meta_V167_corregido.py](clases_completas_Ritual_Meta_V167_corregido.py)
+- `v167_logs/v167_corregido_resultados_terminal_20260603.txt`
+
+**Código preparado para la Etapa 5 real**:
+
+El workspace contiene `v168.py` (implementación de "Primer 'No' operativo (R_op)").
+
+Extracto limpio con la clase completa:
+→ [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py)
+
+**Lógica de R_op** (preparada para cuando se corra la Etapa 5 real):
+
+El extracto [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py) contiene la clase completa `R_op` tal como está implementada en `v168.py`.
+
+Resumen:
+- Recibe `señal_desajuste` de la Meta-representación (Rᴿ validada en v167-ob.py).
+- Aplica histéresis (0.5 s por encima de 0.7) para activar inhibición.
+- Mantiene la inhibición mínimo 5 s.
+- Desinhibe cuando la señal baja de 0.3.
+- En el motor: si R_op devuelve true, fuerza `ritual_activo = False`.
+
+Esto implementa el primer "No" operativo: el sistema usa su propia meta-representación para suspender un comportamiento ritual que está generando desajuste sostenido.
+
+Cuando compartas el output completo de una corrida de `v168.py` (o el archivo que llames v168-ob.py), guardaré el terminal raw, extraeré las métricas de inhibición (si se activó en F4, si el error mejoró, reducción de tiempo ritual) y actualizaré esta sección + el borrador de respuesta.
+
+El código ya está listo para citar.
+
+Datos y código > analogías. Aquí están.
+
 ## 8. Resumen extraído automáticamente (última corrida de exportar_evidencia.py)
 
 Ver evidencia_resumen.md y evidencia_publica.json generados junto a este script.

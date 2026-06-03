@@ -54,6 +54,10 @@ def find_log_files():
             logs.append(Path(f))
         for f in glob.glob(os.path.join(d, "*.json")):
             logs.append(Path(f))
+        for f in glob.glob(os.path.join(d, "*corregido*.txt")):
+            logs.append(Path(f))
+        for f in glob.glob(os.path.join(d, "*resultados*.txt")):
+            logs.append(Path(f))
     return sorted(logs)
 
 def parse_log_text(text, version_hint=""):
