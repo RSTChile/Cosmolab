@@ -1057,9 +1057,9 @@ def ejecutar_v165():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v165_logs', exist_ok=True)
-    plt.savefig(f'v165_logs/v165_ritual_persistencia_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v165_logs/v165_ritual_persistencia_{timestamp}.png")
+    os.makedirs('V165_logs', exist_ok=True)
+    plt.savefig(f'V165_logs/v165_ritual_persistencia_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V165_logs/v165_ritual_persistencia_{timestamp}.png")
     
     return organismo_control, organismo_ritual, exito
 

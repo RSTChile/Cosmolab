@@ -27,9 +27,9 @@ El archivo incluye:
 
 **Logs raw / datos de ESTA corrida exacta (V167 CORREGIDO):**
 
-- Resultados completos del terminal: [v167_logs/v167_corregido_resultados_terminal_20260603.txt](v167_logs/v167_corregido_resultados_terminal_20260603.txt)
-- Gráfico generado: `v167_logs/v167_meta_observacional_corregido_20260603_064549.png`
-- Script completo que se corrió: `v167-ob.py`
+- Resultados completos del terminal: [V167_logs/v167_corregido_resultados_terminal_20260603.txt](V167_logs/v167_corregido_resultados_terminal_20260603.txt)
+- Gráfico generado: `V167_logs/v167_meta_observacional_corregido_20260603_064549.png`
+- Script completo que se corrió: `V167.py`
 
 **Métricas frescas de esta corrida (las que pegaste):**
 - Etapa 3: 382.8 s de ritual activo (23.9%), activation final 0.415, ritual_activo_en_F4 = True
@@ -88,7 +88,7 @@ En el motor:
       ritual_activo = False
       ritual.active = False   # el organismo "dice no" a su propio marco ritual
 
-Resultado base reportado de la corrida v167-ob.py (validación de Etapa 4 + "listo para la nueva etapa"):
+Resultado base reportado de la corrida V167.py (validación de Etapa 4 + "listo para la nueva etapa"):
   (pegar el bloque que el usuario acaba de mandar)
 
 Criterios Etapa 5 (pre-definidos):
@@ -137,9 +137,9 @@ El "No", si aparece, sería una especialización natural de esa no-determinació
 - Distribución de setpoints muy extendida por el ruido ( -110° a +110° ), mostrando persecución de R internas variadas.
 
 Archivos públicos:
-- Terminal crudo completo: v170_logs/v170_resultados_terminal_20260603.txt
+- Terminal crudo completo: V170_logs/v170_resultados_terminal_20260603.txt
 - JSON resumen + clases completas aisladas: clases_completas_V170_RegistroRepresentaciones.py + v170_raw_summary_20260603.json
-- Gráfico: v170_logs/v170_desacople_mejorado_20260603_082632.png
+- Gráfico: V170_logs/v170_desacople_mejorado_20260603_082632.png
 
 El extracto completo de la clase que calcula esto (RegistroRepresentaciones) + explicación del rediseño está en:
 
@@ -158,9 +158,9 @@ Por eso aquí está **el código completo** de RitualV167 + MetaRepresentacionOb
 https://.../clases_completas_Ritual_Meta_V167_corregido.py
 
 + log raw completo de la corrida que produjo corr=0.901, 23.9% activación, ritual persistente en F4, etc.:
-https://.../v167_logs/v167_corregido_resultados_terminal_20260603.txt
+https://.../V167_logs/v167_corregido_resultados_terminal_20260603.txt
 
-Todo el script: v167-ob.py
+Todo el script: V167.py
 
 Los 4 criterios se cumplieron. La "emergencia" (persistencia + correlación alta bajo desafío) surge de la interacción de esas reglas explícitas + el resto de la arquitectura bajo el protocolo de 4 etapas. 
 

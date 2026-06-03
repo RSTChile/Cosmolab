@@ -1,32 +1,15 @@
 #!/usr/bin/env python3
 """
-V168 — ANIMA-2 Etapa 5: PRIMER "NO" OPERATIVO (R_op)
+V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ)
 ================================================================================
-BASE: V167 (meta-representación observacional validada)
+BASE: V166 (ritual validado)
 
-NUEVO: Inhibición activa del ritual basada en señal de desajuste (R_op)
-  - Cuando la señal de desajuste supera el umbral (0.7), se INHIBE el ritual
-  - El organismo puede SUSPENDER voluntariamente un marco histórico disfuncional
-  - Es el primer "No" operativo: capacidad de rechazar la propia conducta ritualizada
+Rᴿ: monitor de desajuste — SOLO OBSERVACIONAL (no inhibe ritual)
 
-JUSTIFICACIÓN (Grok + GPT + Alexis):
-  - V167 demostró que el ritual persiste ciegamente y genera desajuste
-  - La correlación 0.901 indica que el ritual es la CAUSA del desajuste
-  - El paso siguiente es que el organismo USE esa información para inhibir el ritual
-  - Esto es el "No" operativo: la capacidad de decir "no" a un marco histórico
-
-ARQUITECTURA:
-  Etapa 0 (Memoria) → siempre activa
-  Etapa 1 (Cb) → siempre activa
-  Etapa 2 (Juego) → se activa por Cb, INHIBIDO por ritual
-  Etapa 3 (Ritual) → conserva modos de acoplamiento
-  Etapa 4 (Rᴿ) → monitor observacional de desajuste
-  Etapa 5 (R_op) → NUEVO: puede INHIBIR el ritual cuando es disfuncional
-
-CRITERIOS DE ÉXITO ETAPA 5:
-  1. Ritual se inhibe en F4 cuando la señal de desajuste supera umbral
-  2. Tras la inhibición, el error disminuye (el organismo se adapta mejor)
-  3. La señal de desajuste correlaciona con la inhibición (causalidad)
+CRITERIOS V167:
+  1. Ritual activo en F4 (persistencia, heredado de V166)
+  2. Señal > 0.5 cuando ritual persiste con error alto
+  3. Correlación positiva ritual_activo ↔ señal en ventanas de error sostenido
 ================================================================================
 """
 
@@ -37,7 +20,7 @@ import os
 from collections import deque
 
 # ============================================================
-# PARAMETROS (DESDE V167, FUNCIONAN)
+# PARAMETROS (DESDE V157, FUNCIONAN)
 # ============================================================
 DT = 0.01
 TIEMPO_POR_REPETICION = 452.0
@@ -80,7 +63,7 @@ K_INFLUENCIA_JUEGO = 0.00035
 RUIDO_SETPOINT_AMP = 5.0
 RUIDO_SETPOINT_PERIODO = 10.0
 
-# PARAMETROS RITUAL
+# PARAMETROS RITUAL (DESDE V165, FUNCIONAN)
 RITUAL_TAU = 180.0
 RITUAL_REPETICION_MIN = 3
 RITUAL_GAIN = 0.05
@@ -91,32 +74,21 @@ RITUAL_UMBRAL_CB = 28.0
 RITUAL_SALIDA_SUAVE = 0.95
 RITUAL_PERSISTENCIA_MIN = 3
 
-# ============================================================
-# PARAMETROS META-REPRESENTACIÓN
-# ============================================================
-META_TAU = 30.0
-META_UMBRAL_DESAJUSTE = 0.7          # Umbral para inhibición (más alto que en V167)
-META_VENTANA_ERROR = 200
-META_K_SUAVIDAD = 0.1
-
-# ============================================================
-# PARAMETROS R_op (PRIMER "NO" OPERATIVO)
-# ============================================================
-R_OP_UMBRAL_INHIBICION = 0.7          # Mismo que umbral de desajuste
-R_OP_HISTERESIS = 0.5                 # Necesita señal > umbral por 0.5s para inhibir
-R_OP_INHIBITION_DURATION = 5.0        # Duración mínima de inhibición (segundos)
-R_OP_DESINHIBICION_THRESHOLD = 0.3    # Señal debe caer bajo este umbral para desinhibir
-
-
 SEMILLA_BASE = 44
 PERIODO_ALTERNANCIA = 80.0
 
+# Meta-representación observacional (Rᴿ)
+META_TAU = 30.0
+META_UMBRAL_SENAL = 0.5
+META_UMBRAL_ERROR = 15.0
+META_VENTANA_ERROR = 200
+
 
 # ============================================================
-# HEMISFERIO
+# HEMISFERIO (DESDE V157)
 # ============================================================
 
-class HemisferioV168:
+class HemisferioV166:
     def __init__(self, nombre, tau, generar_entrada_func, seed=None, sesgo=0.0):
         if seed is not None:
             np.random.seed(seed)
@@ -172,10 +144,10 @@ class HemisferioV168:
 
 
 # ============================================================
-# FATIGA METABOLICA
+# FATIGA METABOLICA (DESDE V157)
 # ============================================================
 
-class FatigaMetabolicaV168:
+class FatigaMetabolicaV166:
     def __init__(self, k_gain=K_GAIN, k_precision=K_PRECISION,
                  k_temblor=K_TEMBLOR, tau_recuperacion=TAU_RECUPERACION):
         self.k_gain = k_gain
@@ -218,10 +190,10 @@ class FatigaMetabolicaV168:
 
 
 # ============================================================
-# MEMORIA DE AUSENCIA
+# MEMORIA DE AUSENCIA (DESDE V157)
 # ============================================================
 
-class MemoriaAusenciaV168:
+class MemoriaAusenciaV166:
     def __init__(self, tau_base=TAU_BASE, k_mem=K_MEM, suelo_confianza=SUELO_CONFIANZA):
         self.setpoint_last = 0.0
         self.t_ausencia = 0.0
@@ -242,7 +214,7 @@ class MemoriaAusenciaV168:
             return self.setpoint_last, confianza
     
     def get_confianza(self):
-        return 1.0
+        return 1.0  # Placeholder
     
     def get_tau_mem(self):
         return self.tau_mem
@@ -254,34 +226,31 @@ class MemoriaAusenciaV168:
 
 
 # ============================================================
-# CONSCIENCIA BÁSICA (Cb)
+# CONSCIENCIA BÁSICA (DESDE V157)
 # ============================================================
 
-class ConscienciaBasicaV168:
+class ConscienciaBasicaV166:
     def __init__(self, tau_cb=TAU_CB, cb_max=CB_MAX):
         self.Cb = 0.0
         self.tau_cb = tau_cb
         self.cb_max = cb_max
-        self.historial_presion = []
     
     def actualizar(self, e_R, A_sys_env, dt):
         presion = e_R * (1.0 - A_sys_env)
         dCb_dt = presion - self.Cb / self.tau_cb
         self.Cb += dCb_dt * dt
         self.Cb = max(0.0, min(self.cb_max, self.Cb))
-        self.historial_presion.append(presion)
         return self.Cb
     
     def reset(self):
         self.Cb = 0.0
-        self.historial_presion = []
 
 
 # ============================================================
-# MODO JUEGO
+# MODO JUEGO (DESDE V157)
 # ============================================================
 
-class ModoJuegoV168:
+class ModoJuegoV166:
     def __init__(self, lambda_fisico=LAMBDA_FISICO, lambda_costo=LAMBDA_COSTO,
                  umbral_cb=UMBRAL_CB_JUEGO, k_influencia=K_INFLUENCIA_JUEGO):
         self.lambda_fisico = lambda_fisico
@@ -322,10 +291,10 @@ class ModoJuegoV168:
 
 
 # ============================================================
-# RITUAL
+# RITUAL (CON DETECTOR DE CRUCES POR CERO, DESDE V162)
 # ============================================================
 
-class RitualV168:
+class RitualV166:
     def __init__(self, tau=RITUAL_TAU, repeticion_min=RITUAL_REPETICION_MIN,
                  ritual_gain=RITUAL_GAIN, patron_temporal=RITUAL_PATRON_TEMPORAL,
                  tolerancia=RITUAL_TOLERANCIA, umbral_activacion=RITUAL_UMBRAL_ACTIVACION,
@@ -350,9 +319,6 @@ class RitualV168:
         self.ultima_orientacion = 0.0
         self.cruces = 0
         self.ciclos_sin_cruce = 0
-        
-        # Para R_op: inhibición externa
-        self.inhibido_por_rop = False
     
     def detectar_cruce_por_cero(self, orientacion):
         cruce = (self.ultima_orientacion < 0 and orientacion >= 0) or \
@@ -366,18 +332,11 @@ class RitualV168:
             self.ciclos_sin_cruce += 1
             return False
     
-    def actualizar(self, orientacion, Cb, tiempo_actual, dt, inhibir_por_rop=False):
-        # R_op puede inhibir el ritual externamente
-        self.inhibido_por_rop = inhibir_por_rop
-        
-        if inhibir_por_rop:
-            # Si está inhibido por R_op, no se activa
-            self.active = False
-            return self.active
-        
+    def actualizar(self, orientacion, Cb, tiempo_actual, dt):
         es_cruce = self.detectar_cruce_por_cero(orientacion)
         
         if es_cruce and Cb > self.umbral_cb:
+            # Buscar patrón temporal con cruces previos
             es_patron = False
             for t_prev in self.patron_buffer:
                 dt_desde_prev = tiempo_actual - t_prev
@@ -416,7 +375,7 @@ class RitualV168:
         return self.active
     
     def modular_correccion(self, delta_raw, correccion_ritual):
-        if self.active and not self.inhibido_por_rop:
+        if self.active:
             return delta_raw * (1 - self.activation * 0.3) + correccion_ritual * self.activation
         return delta_raw
     
@@ -429,147 +388,49 @@ class RitualV168:
         self.ultima_orientacion = 0.0
         self.cruces = 0
         self.ciclos_sin_cruce = 0
-        self.inhibido_por_rop = False
 
 
 # ============================================================
-# META-REPRESENTACIÓN OBSERVACIONAL
+# META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) — sin inhibición
 # ============================================================
 
 class MetaRepresentacionObservacional:
-    def __init__(self, tau=META_TAU, umbral_desajuste=META_UMBRAL_DESAJUSTE,
-                 ventana_error=META_VENTANA_ERROR, k_suavidad=META_K_SUAVIDAD):
+    """Monitor de desajuste: ritual activo + error sostenido alto → señal integrada."""
+
+    def __init__(self, tau=META_TAU, ventana_error=META_VENTANA_ERROR):
         self.tau = tau
-        self.umbral_desajuste = umbral_desajuste
         self.ventana_error = ventana_error
-        self.k_suavidad = k_suavidad
-        
         self.desajuste = 0.0
-        self.historial_desajuste = []
         self.buffer_error = deque(maxlen=ventana_error)
-        self.buffer_Cb = deque(maxlen=ventana_error)
-        self.buffer_ritual = deque(maxlen=ventana_error)
-    
-    def actualizar(self, error, Cb, ritual_activo, dt):
+
+    def actualizar(self, error, ritual_activo, dt):
         self.buffer_error.append(abs(error))
-        self.buffer_Cb.append(Cb)
-        self.buffer_ritual.append(ritual_activo)
-        
         if len(self.buffer_error) > self.ventana_error // 2:
             error_sostenido = np.mean(self.buffer_error)
-            Cb_sostenido = np.mean(self.buffer_Cb)
-            ritual_sostenido = np.mean(self.buffer_ritual) > 0.5
         else:
             error_sostenido = abs(error)
-            Cb_sostenido = Cb
-            ritual_sostenido = ritual_activo
-        
-        if ritual_sostenido:
-            error_norm = min(1.0, error_sostenido / 60.0)
-            Cb_norm = min(1.0, Cb_sostenido / 500.0)
-            presion_activa = error_norm * Cb_norm
-            
-            if Cb_sostenido < 50 and error_sostenido > 30:
-                presion_ciega = error_norm * 0.8
-            else:
-                presion_ciega = 0.0
-            
-            presion = max(presion_activa, presion_ciega)
+
+        if ritual_activo and error_sostenido >= META_UMBRAL_ERROR:
+            presion = min(1.0, error_sostenido / 60.0)
         else:
             presion = 0.0
-        
+
         d_desajuste = presion - self.desajuste / self.tau
         self.desajuste += d_desajuste * dt
         self.desajuste = max(0.0, min(1.0, self.desajuste))
-        
-        self.historial_desajuste.append(self.desajuste)
-        
-        return self.desajuste, self.desajuste > self.umbral_desajuste
-    
+        return self.desajuste
+
     def reset(self):
         self.desajuste = 0.0
-        self.historial_desajuste = []
         self.buffer_error.clear()
-        self.buffer_Cb.clear()
-        self.buffer_ritual.clear()
 
 
 # ============================================================
-# R_op (PRIMER "NO" OPERATIVO)
+# APARATO MOTOR V166 (CON TODA LA DINÁMICA DE V157)
 # ============================================================
 
-class R_op:
-    """
-    Primer "No" operativo: capacidad de inhibir el ritual
-    cuando la señal de desajuste supera un umbral.
-    
-    Incluye:
-    - Histéresis para evitar oscilaciones
-    - Duración mínima de inhibición
-    - Desinhibición gradual cuando la señal cae
-    """
-    
-    def __init__(self, umbral_inhibicion=R_OP_UMBRAL_INHIBICION,
-                 histéresis=R_OP_HISTERESIS,
-                 duracion_minima=R_OP_INHIBITION_DURATION,
-                 umbral_desinhibicion=R_OP_DESINHIBICION_THRESHOLD):
-        self.umbral_inhibicion = umbral_inhibicion
-        self.histeresis = histéresis
-        self.duracion_minima = duracion_minima
-        self.umbral_desinhibicion = umbral_desinhibicion
-        
-        self.inhibicion_activa = False
-        self.tiempo_en_inhibicion = 0.0
-        self.historial_inhibicion = []
-        self.señal_para_historial = []
-        self.tiempo_desde_ultimo_cruce = 0.0
-    
-    def actualizar(self, señal_desajuste, dt):
-        """
-        Decide si inhibir el ritual basado en la señal de desajuste.
-        
-        Reglas:
-        1. Si la señal supera el umbral por más de 'histeresis' segundos, inhibir
-        2. Mantener inhibición por al menos 'duracion_minima'
-        3. Desinhibir cuando la señal cae bajo 'umbral_desinhibicion'
-        """
-        self.señal_para_historial.append(señal_desajuste)
-        
-        if not self.inhibicion_activa:
-            # Verificar si hay que inhibir
-            if señal_desajuste > self.umbral_inhibicion:
-                self.tiempo_desde_ultimo_cruce += dt
-                if self.tiempo_desde_ultimo_cruce >= self.histeresis:
-                    self.inhibicion_activa = True
-                    self.tiempo_en_inhibicion = 0.0
-            else:
-                self.tiempo_desde_ultimo_cruce = 0.0
-        else:
-            # Ya inhibido: verificar si hay que desinhibir
-            self.tiempo_en_inhibicion += dt
-            
-            if (señal_desajuste < self.umbral_desinhibicion and 
-                self.tiempo_en_inhibicion >= self.duracion_minima):
-                self.inhibicion_activa = False
-                self.tiempo_en_inhibicion = 0.0
-        
-        self.historial_inhibicion.append(self.inhibicion_activa)
-        return self.inhibicion_activa
-    
-    def reset(self):
-        self.inhibicion_activa = False
-        self.tiempo_en_inhibicion = 0.0
-        self.historial_inhibicion = []
-        self.señal_para_historial = []
-        self.tiempo_desde_ultimo_cruce = 0.0
-
-
-# ============================================================
-# APARATO MOTOR V168 (CON R_op)
-# ============================================================
-
-class AparatoMotorV168:
-    def __init__(self, enable_rop=True):
+class AparatoMotorV166:
+    def __init__(self):
         self.orientacion = 0.0
         self.Kp_base = KP_BASE
         self.Kp_actual = KP_BASE
@@ -582,16 +443,14 @@ class AparatoMotorV168:
         self.sensibilidad_grad = SENSIBILIDAD_GRAD
         self.t = 0.0
         
-        self.fatiga = FatigaMetabolicaV168()
-        self.memoria = MemoriaAusenciaV168()
-        self.consciencia = ConscienciaBasicaV168()
-        self.juego = ModoJuegoV168()
-        self.ritual = RitualV168()
+        self.fatiga = FatigaMetabolicaV166()
+        self.memoria = MemoriaAusenciaV166()
+        self.consciencia = ConscienciaBasicaV166()
+        self.juego = ModoJuegoV166()
+        self.ritual = RitualV166()
         self.meta = MetaRepresentacionObservacional()
-        self.rop = R_op() if enable_rop else None
         
         self.memoria_error = deque(maxlen=VENTANA_OSCILACION)
-        self.enable_rop = enable_rop
     
     def calcular_factor_freno(self, error):
         return 1 - np.exp(-abs(error) / 30.0)
@@ -609,12 +468,11 @@ class AparatoMotorV168:
     
     def actuar(self, gradiente, LF_activa, fuente_activa, t, setpoint_raw, dt=DT):
         if not LF_activa:
-            return (self.orientacion, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
-                    False, 0.0, False, 0.0, 0, 0.0, False, False)
+            return self.orientacion, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, False, 0.0, False, 0.0, 0, 0.0
         
         if abs(gradiente) < 0.01:
             return (self.orientacion, self.fatiga.get_historia(), self.fatiga.get_fatiga(),
-                    0.0, 0.0, 0.0, 0.0, False, 0.0, False, 0.0, 0, 0.0, False, False)
+                    0.0, 0.0, 0.0, 0.0, False, 0.0, False, 0.0, 0, 0.0)
         
         # ============================================================
         # ETAPA 0: Memoria de ausencia
@@ -642,22 +500,8 @@ class AparatoMotorV168:
         # ============================================================
         ritual_activo = self.ritual.actualizar(self.orientacion, Cb, t, dt)
         
-        # ============================================================
-        # ETAPA 4: Meta-representación observacional
-        # ============================================================
-        senal_desajuste, hay_desajuste = self.meta.actualizar(error, Cb, ritual_activo, dt)
-        
-        # ============================================================
-        # ETAPA 5: R_op (Primer "No" operativo) - puede inhibir el ritual
-        # ============================================================
-        inhibir_ritual = False
-        if self.enable_rop and self.rop is not None:
-            inhibir_ritual = self.rop.actualizar(senal_desajuste, dt)
-        
-        # Si R_op inhibe, forzar ritual inactivo
-        if inhibir_ritual:
-            ritual_activo = False
-            self.ritual.active = False
+        # Etapa 4: Rᴿ observacional (no modifica ritual)
+        senal_desajuste = self.meta.actualizar(error, ritual_activo, dt)
         
         # ============================================================
         # ETAPA 2: Juego (INHIBIDO si ritual está activo)
@@ -678,7 +522,7 @@ class AparatoMotorV168:
             return (self.orientacion, self.fatiga.get_historia(), self.fatiga.get_fatiga(),
                     confianza, zona_muerta_efectiva, Cb, setpoint_objetivo, juego_activo,
                     self.juego.get_tiempo_activo(), ritual_activo, self.ritual.activation,
-                    self.ritual.cruces, senal_desajuste, hay_desajuste, inhibir_ritual)
+                    self.ritual.cruces, senal_desajuste)
         
         # ============================================================
         # CÁLCULO DE CORRECCIÓN MOTORA
@@ -701,7 +545,7 @@ class AparatoMotorV168:
         
         delta_raw = delta_error + torque_memoria
         
-        # Influencia del juego
+        # Influencia del juego (solo si está activo y ritual NO activo)
         if juego_activo and not ritual_activo:
             influencia_juego = self.juego.get_influencia(Cb, confianza)
             if influencia_juego != 0:
@@ -710,7 +554,7 @@ class AparatoMotorV168:
         # Influencia del ritual
         correccion_ritual = 0.0
         if ritual_activo and self.ritual.patron_buffer:
-            correccion_ritual = 5.0 * self.ritual.ritual_gain
+            correccion_ritual = 5.0 * self.ritual.ritual_gain  # Modulación simple
         
         delta_raw = self.ritual.modular_correccion(delta_raw, correccion_ritual)
         
@@ -737,7 +581,7 @@ class AparatoMotorV168:
         return (self.orientacion, self.fatiga.get_historia(), self.fatiga.get_fatiga(),
                 confianza, zona_muerta_efectiva, Cb, setpoint_objetivo, juego_activo,
                 self.juego.get_tiempo_activo(), ritual_activo, self.ritual.activation,
-                self.ritual.cruces, senal_desajuste, hay_desajuste, inhibir_ritual)
+                self.ritual.cruces, senal_desajuste)
     
     def reset(self):
         self.orientacion = 0.0
@@ -751,18 +595,15 @@ class AparatoMotorV168:
         self.juego.reset()
         self.ritual.reset()
         self.meta.reset()
-        if self.rop:
-            self.rop.reset()
 
 
 # ============================================================
-# SISTEMA V168 (ORGANISMO COMPLETO)
+# SISTEMA V166 (ORGANISMO COMPLETO)
 # ============================================================
 
-class SistemaV168:
-    def __init__(self, nombre, seed=SEMILLA_BASE, enable_rop=True):
+class SistemaV166:
+    def __init__(self, nombre, seed=SEMILLA_BASE):
         self.nombre = nombre
-        self.enable_rop = enable_rop
 
         def generar_ruido_rosa(duracion, sr):
             n = int(duracion * sr)
@@ -784,13 +625,13 @@ class SistemaV168:
                     clicks[pos] = 1.0
             return clicks
 
-        self.izquierdo = HemisferioV168("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
-        self.derecho = HemisferioV168("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
+        self.izquierdo = HemisferioV166("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
+        self.derecho = HemisferioV166("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
         
-        self.sistema_B_izq = HemisferioV168("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
-        self.sistema_B_der = HemisferioV168("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
+        self.sistema_B_izq = HemisferioV166("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
+        self.sistema_B_der = HemisferioV166("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
         
-        self.motor = AparatoMotorV168(enable_rop=enable_rop)
+        self.motor = AparatoMotorV166()
         self.modo_entrenamiento = True
 
     def actualizar(self, t, dt, duracion_total, setpoint_real):
@@ -811,13 +652,12 @@ class SistemaV168:
         
         (orientacion, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
          juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces,
-         senal_desajuste, hay_desajuste, inhibir_ritual) = self.motor.actuar(
+         senal_desajuste) = self.motor.actuar(
             gradiente, LF_activa, True, t, setpoint_real, dt
         )
         
         return (orientacion, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
-                juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces,
-                senal_desajuste, hay_desajuste, inhibir_ritual)
+                juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces, senal_desajuste)
 
     def set_modo_entrenamiento(self, entrenamiento=True):
         self.modo_entrenamiento = entrenamiento
@@ -844,42 +684,58 @@ def generar_setpoint_con_ruido(t, setpoint_func, periodo=PERIODO_ALTERNANCIA, am
 
 
 # ============================================================
-# EXPERIMENTO V168
+# EXPERIMENTO V167
 # ============================================================
 
-def ejecutar_v168():
+def _correlacion_f3_centra(f3_ritual):
+    """Correlación directa ritual↔señal en ventana central de F3 (sin filtrar por ritual>0.5)."""
+    if len(f3_ritual['ritual_activo']) > 100 and len(f3_ritual['senal_desajuste']) > 100:
+        inicio = len(f3_ritual['ritual_activo']) // 4
+        fin = 3 * len(f3_ritual['ritual_activo']) // 4
+        ritual_vals = np.array(f3_ritual['ritual_activo'][inicio:fin], dtype=float)
+        senal_vals = np.array(f3_ritual['senal_desajuste'][inicio:fin], dtype=float)
+        if np.std(ritual_vals) > 1e-6 and np.std(senal_vals) > 1e-6:
+            correlacion = np.corrcoef(ritual_vals, senal_vals)[0, 1]
+            if np.isnan(correlacion):
+                correlacion = 0.0
+        else:
+            correlacion = 0.0
+        n_muestras = fin - inicio
+    else:
+        correlacion = 0.0
+        n_muestras = 0
+    return correlacion, n_muestras
+
+
+def ejecutar_v167():
     print("=" * 100)
-    print("EXPERIMENTO V168 — ANIMA-2 Etapa 5: PRIMER 'NO' OPERATIVO (R_op)")
+    print("EXPERIMENTO V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ)")
     print("=" * 100)
-    print("  BASE: V167 (meta-representación observacional validada)")
-    print("  NUEVO: R_op — inhibición activa del ritual cuando es disfuncional")
-    print("")
-    print("  CRITERIOS DE ÉXITO ETAPA 5:")
-    print("    1. El ritual se INHIBE en F4 cuando la señal de desajuste supera umbral")
-    print("    2. Tras la inhibición, el error disminuye (adaptación)")
-    print("    3. La inhibición correlaciona con la señal de desajuste")
+    print("  BASE: V166 | Rᴿ solo observa (no inhibe ritual)")
+    print("  CRITERIOS:")
+    print("    1. Ritual activo en F4")
+    print("    2. Señal > 0.5 con ritual + error alto")
+    print("    3. Correlación positiva ritual_activo ↔ señal (ventana central F3)")
     print("=" * 100)
 
-    # Control: SIN R_op (solo ritual + meta observacional)
-    organismo_control = SistemaV168("Control_V168", seed=SEMILLA_BASE, enable_rop=False)
-    # Experimental: CON R_op (puede inhibir el ritual)
-    organismo_experimental = SistemaV168("Rop_V168", seed=SEMILLA_BASE, enable_rop=True)
+    organismo_control = SistemaV166("Control_V166", seed=SEMILLA_BASE)
+    organismo_ritual = SistemaV166("Ritual_V166", seed=SEMILLA_BASE + 1000)
 
     print("\n  Entrenando lateralidad (10 repeticiones)...")
     
     organismo_control.set_modo_entrenamiento(True)
-    organismo_experimental.set_modo_entrenamiento(True)
+    organismo_ritual.set_modo_entrenamiento(True)
     
     for rep in range(REPETICIONES_LENTAS):
         for i in range(int(TIEMPO_POR_REPETICION / DT)):
             t = rep * TIEMPO_POR_REPETICION + i * DT
             organismo_control.actualizar(t, DT, TIEMPO_POR_REPETICION * REPETICIONES_LENTAS, 0.0)
-            organismo_experimental.actualizar(t, DT, TIEMPO_POR_REPETICION * REPETICIONES_LENTAS, 0.0)
+            organismo_ritual.actualizar(t, DT, TIEMPO_POR_REPETICION * REPETICIONES_LENTAS, 0.0)
     
     print("  Entrenamiento completado.")
     
     organismo_control.set_modo_entrenamiento(False)
-    organismo_experimental.set_modo_entrenamiento(False)
+    organismo_ritual.set_modo_entrenamiento(False)
     
     t_actual = TIEMPO_POR_REPETICION * REPETICIONES_LENTAS
 
@@ -889,7 +745,7 @@ def ejecutar_v168():
             't': [], 'orient': [], 'setpoint': [], 'historia': [], 'fatiga': [],
             'confianza': [], 'Cb': [], 'juego_activo': [], 'tiempo_juego': [],
             'ritual_activo': [], 'ritual_act': [], 'cruces': [],
-            'senal_desajuste': [], 'hay_desajuste': [], 'inhibir_ritual': []
+            'senal_desajuste': [], 'error_abs': []
         }
         
         tiempo_abs = t_actual
@@ -897,14 +753,14 @@ def ejecutar_v168():
         for ciclo in range(num_ciclos):
             for i in range(int(PERIODO_ALTERNANCIA / DT)):
                 t = tiempo_abs + i * DT
-                setpoint = generar_setpoint_con_ruido(t, onda_cuadrada, periodo=PERIODO_ALTERNANCIA, 
-                                                     amplitud=60.0, invertido=invertido)
+                setpoint = generar_setpoint_con_ruido(t, onda_cuadrada, periodo=PERIODO_ALTERNANCIA, amplitud=60.0, invertido=invertido)
                 
                 (orient, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
                  juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces,
-                 senal_desajuste, hay_desajuste, inhibir_ritual) = organismo.actualizar(
+                 senal_desajuste) = organismo.actualizar(
                     t, DT, t_actual + 300, setpoint
                 )
+                error_abs = abs(orient - setpoint)
                 
                 acumuladores['t'].append(t)
                 acumuladores['orient'].append(orient)
@@ -919,8 +775,7 @@ def ejecutar_v168():
                 acumuladores['ritual_act'].append(ritual_act)
                 acumuladores['cruces'].append(cruces)
                 acumuladores['senal_desajuste'].append(senal_desajuste)
-                acumuladores['hay_desajuste'].append(hay_desajuste)
-                acumuladores['inhibir_ritual'].append(inhibir_ritual)
+                acumuladores['error_abs'].append(error_abs)
             
             if (ciclo + 1) % 5 == 0 or ciclo == num_ciclos - 1:
                 print(f"\n  {'='*60}")
@@ -930,8 +785,7 @@ def ejecutar_v168():
                 print(f"    [Juego]    activo={juego_activo}, tiempo={tiempo_juego:.1f}s")
                 if not es_control:
                     print(f"    [Ritual]   activo={ritual_activo}, act={ritual_act:.3f}, cruces={cruces}")
-                    print(f"    [Rᴿ]       desajuste={senal_desajuste:.3f}, umbral={META_UMBRAL_DESAJUSTE}")
-                    print(f"    [R_op]     inhibir={inhibir_ritual}")
+                    print(f"    [Meta-R]   desajuste={senal_desajuste:.3f} (observacional)")
                 print(f"    [Física]   fatiga={fatiga:.0f}°, historia={historia:.0f}°")
             
             tiempo_abs += PERIODO_ALTERNANCIA
@@ -941,188 +795,130 @@ def ejecutar_v168():
     # F1: Baseline
     print("\n  F1: Baseline (3 ciclos) - setpoint NORMAL...")
     t_actual, f1_control = ejecutar_ciclos(organismo_control, t_actual, 3, "Control", es_control=True)
-    t_actual, f1_rop = ejecutar_ciclos(organismo_experimental, t_actual, 3, "R_op", es_control=False)
+    t_actual, f1_ritual = ejecutar_ciclos(organismo_ritual, t_actual, 3, "Ritual", es_control=False)
 
-    # F2: Control (sin R_op)
-    print("\n  F2: Control - 20 ciclos (setpoint NORMAL)...")
+    # F2: Control
+    print("\n  F2: Control - 20 ciclos SIN ritual (setpoint NORMAL)...")
     t_actual, f2_control = ejecutar_ciclos(organismo_control, t_actual, 20, "Control", es_control=True)
 
-    # F3: Experimental (CON R_op)
-    print("\n  F3: Experimental - 20 ciclos CON R_op (setpoint NORMAL)...")
-    t_actual, f3_rop = ejecutar_ciclos(organismo_experimental, t_actual, 20, "R_op", es_control=False)
+    # F3: Experimental
+    print("\n  F3: Experimental - 20 ciclos CON ritual (setpoint NORMAL)...")
+    t_actual, f3_ritual = ejecutar_ciclos(organismo_ritual, t_actual, 20, "Ritual", es_control=False)
 
     # F4: Test post con setpoint INVERTIDO
-    print("\n  F4: Test post (3 ciclos) - SETPOINT INVERTIDO (prueba de R_op)...")
+    print("\n  F4: Test post (3 ciclos) - SETPOINT INVERTIDO (prueba Rᴿ)...")
     t_actual, f4_control = ejecutar_ciclos(organismo_control, t_actual, 3, "Control", es_control=True, invertido=True)
-    t_actual, f4_rop = ejecutar_ciclos(organismo_experimental, t_actual, 3, "R_op", es_control=False, invertido=True)
+    t_actual, f4_ritual = ejecutar_ciclos(organismo_ritual, t_actual, 3, "Ritual", es_control=False, invertido=True)
 
     # ============================================================
     # ANÁLISIS FINAL
     # ============================================================
     print("\n" + "=" * 80)
-    print("RESULTADOS V168 — Primer 'No' operativo (R_op)")
+    print("RESULTADOS V167 — Meta-representación observacional (Rᴿ)")
     print("=" * 80)
 
-    # Calcular error RMS en últimos 10s de F4
+    ritual_activo_en_F4 = any(f4_ritual['ritual_activo']) if f4_ritual['ritual_activo'] else False
+    ritual_activation_final = f4_ritual['ritual_act'][-1] if f4_ritual['ritual_act'] else 0
+    senal_max_f4 = max(f4_ritual['senal_desajuste']) if f4_ritual['senal_desajuste'] else 0.0
+
+    ritual_arr = np.array(f4_ritual['ritual_activo'], dtype=float)
+    senal_arr = np.array(f4_ritual['senal_desajuste'], dtype=float)
+    error_arr = np.array(f4_ritual['error_abs'], dtype=float)
+
+    mask_ritual_error = (ritual_arr > 0.5) & (error_arr >= META_UMBRAL_ERROR)
+    detectable_en_condicion = (
+        np.any(senal_arr[mask_ritual_error] > META_UMBRAL_SENAL) if mask_ritual_error.any() else False
+    )
+    n_pasos_condicion = int(mask_ritual_error.sum())
+
+    corr, n_ventana = _correlacion_f3_centra(f3_ritual)
+
     ventana_rms = int(10.0 / DT)
-    
-    if len(f4_control['orient']) > ventana_rms and len(f4_rop['orient']) > ventana_rms:
-        orient_control = np.array(f4_control['orient'][-ventana_rms:])
-        orient_rop = np.array(f4_rop['orient'][-ventana_rms:])
-        setpoint_nominal = f4_control['setpoint'][-1] if f4_control['setpoint'] else 60.0
-        
-        errores_control = np.abs(orient_control - setpoint_nominal)
-        errores_rop = np.abs(orient_rop - setpoint_nominal)
-        
-        error_rms_control = np.sqrt(np.mean(errores_control**2))
-        error_rms_rop = np.sqrt(np.mean(errores_rop**2))
+    if len(f4_ritual['orient']) > ventana_rms:
+        error_rms_ritual = np.sqrt(np.mean(np.array(f4_ritual['error_abs'][-ventana_rms:])**2))
     else:
-        error_rms_control = error_rms_rop = 0
-    
-    historia_control = f2_control['historia'][-1] if f2_control['historia'] else 0
-    historia_rop = f3_rop['historia'][-1] if f3_rop['historia'] else 0
-    
-    tiempo_ritual_control = organismo_control.motor.ritual.tiempo_activo
-    tiempo_ritual_rop = organismo_experimental.motor.ritual.tiempo_activo
-    tiempo_total = 20 * PERIODO_ALTERNANCIA
-    pct_ritual_control = (tiempo_ritual_control / tiempo_total) * 100 if tiempo_total > 0 else 0
-    pct_ritual_rop = (tiempo_ritual_rop / tiempo_total) * 100 if tiempo_total > 0 else 0
-    
-    ritual_activo_en_F4_control = any(f4_control['ritual_activo']) if f4_control['ritual_activo'] else False
-    ritual_activo_en_F4_rop = any(f4_rop['ritual_activo']) if f4_rop['ritual_activo'] else False
-    
-    # Métricas de R_op
-    inhibicion_activa_en_F4 = any(f4_rop['inhibir_ritual']) if f4_rop['inhibir_ritual'] else False
-    senal_desajuste_max_rop = max(f4_rop['senal_desajuste']) if f4_rop['senal_desajuste'] else 0
-    
-    Cb_control_final = f4_control['Cb'][-1] if f4_control['Cb'] else 0
-    Cb_rop_final = f4_rop['Cb'][-1] if f4_rop['Cb'] else 0
-    
-    print(f"\n  📊 MÉTRICAS POR ETAPA:")
-    print(f"\n  [Etapa 0-2 - Base funcional]")
-    print(f"    Historia control: {historia_control:.0f}°")
-    print(f"    Historia R_op: {historia_rop:.0f}°")
-    print(f"    Compresión: {historia_rop/max(1,historia_control):.3f}")
-    
-    print(f"\n  [Etapa 3 - Ritual]")
-    print(f"    Tiempo ritual activo (control): {tiempo_ritual_control:.1f}s ({pct_ritual_control:.1f}%)")
-    print(f"    Tiempo ritual activo (R_op): {tiempo_ritual_rop:.1f}s ({pct_ritual_rop:.1f}%)")
-    print(f"    Ritual activo en F4 (control): {ritual_activo_en_F4_control}")
-    print(f"    Ritual activo en F4 (R_op): {ritual_activo_en_F4_rop}")
-    
-    print(f"\n  [Etapa 5 - R_op (Primer 'No' operativo)]")
-    print(f"    Señal desajuste máxima (R_op): {senal_desajuste_max_rop:.3f}")
-    print(f"    Inhibición activa en F4: {inhibicion_activa_en_F4}")
-    
-    print(f"\n  [Test post - Error RMS F4]")
-    print(f"    Error RMS Control: {error_rms_control:.2f}°")
-    print(f"    Error RMS R_op: {error_rms_rop:.2f}°")
-    print(f"    Cb final control: {Cb_control_final:.1f}")
-    print(f"    Cb final R_op: {Cb_rop_final:.1f}")
-    
-    # Criterios de éxito Etapa 5
-    exito_1 = inhibicion_activa_en_F4  # El ritual se inhibe
-    exito_2 = error_rms_rop < error_rms_control  # Tras inhibición, menor error
-    exito_3 = pct_ritual_rop < pct_ritual_control  # Menos tiempo ritual (inhibido)
-    
+        error_rms_ritual = 0.0
+
+    print(f"\n  📊 MÉTRICAS Rᴿ (F4):")
+    print(f"    Ritual activo en F4: {ritual_activo_en_F4}")
+    print(f"    Activación ritual final: {ritual_activation_final:.3f}")
+    print(f"    Señal desajuste máxima: {senal_max_f4:.3f}")
+    print(f"    Pasos ritual+error_alto (≥{META_UMBRAL_ERROR}°): {n_pasos_condicion}")
+    print(f"    Señal > {META_UMBRAL_SENAL} en esas condiciones: {detectable_en_condicion}")
+    print(f"    Correlación ritual↔señal (F3 ventana central): {corr:.3f} (n={n_ventana})")
+    print(f"    Error RMS F4 ritual: {error_rms_ritual:.2f}°")
+
+    exito_1 = ritual_activo_en_F4
+    exito_2 = detectable_en_condicion
+    exito_3 = corr > 0.0 and n_ventana >= 100
+
     exito = exito_1 and exito_2 and exito_3
-    
+
     print("\n" + "=" * 80)
-    print("CRITERIOS DE ÉXITO ETAPA 5 (R_op — Primer 'No' operativo)")
+    print("CRITERIOS DE ÉXITO ETAPA 4 (V167 observacional)")
     print("=" * 80)
-    print(f"  1. Inhibición activa en F4: {inhibicion_activa_en_F4} -> {'✅' if exito_1 else '❌'}")
-    print(f"  2. Menor error tras inhibición: {error_rms_rop:.2f} < {error_rms_control:.2f} -> {'✅' if exito_2 else '❌'}")
-    print(f"  3. Menor tiempo ritual (inhibido): {pct_ritual_rop:.1f}% < {pct_ritual_control:.1f}% -> {'✅' if exito_3 else '❌'}")
+    print(f"  1. Ritual activo en F4: {ritual_activo_en_F4} -> {'✅' if exito_1 else '❌'}")
+    print(f"  2. Señal > {META_UMBRAL_SENAL} con ritual+error alto: {detectable_en_condicion} -> {'✅' if exito_2 else '❌'}")
+    print(f"  3. Correlación positiva (r={corr:.3f}, n≥50): -> {'✅' if exito_3 else '❌'}")
     
     print("\n" + "=" * 80)
     if exito:
-        print("  ✅ ETAPA 5 COMPLETADA — PRIMER 'NO' OPERATIVO (R_op) VALIDADO")
-        print("")
-        print("     El organismo DEMUESTRA:")
-        print("     ✓ Capacidad de INHIBIR el ritual cuando es disfuncional")
-        print("     ✓ Mejor adaptación tras la inhibición (menor error)")
-        print("     ✓ Reducción del tiempo ritual (inhibición activa)")
-        print("")
-        print("  ANIMA-2 ha completado el ciclo cosmosemiótico:")
-        print("     Memoria → Cb → Juego → Ritual → Rᴿ → R_op")
+        print("  ✅ ETAPA 4 COMPLETADA — Rᴿ OBSERVACIONAL VALIDADO")
+        print("     El monitor correlaciona ritual activo con desajuste bajo error alto")
     else:
-        print("  ⚠️ ETAPA 5 PARCIAL")
+        print("  ⚠️ ETAPA 4 PARCIAL")
         if not exito_1:
-            print("     No se detectó inhibición activa en F4")
+            print("     Sin persistencia ritual en F4")
         if not exito_2:
-            print("     El error no mejoró tras inhibición")
+            print("     Señal no detectable bajo ritual+error alto")
         if not exito_3:
-            print("     El tiempo ritual no se redujo")
+            print("     Correlación insuficiente o pocas muestras")
     print("=" * 80)
-    
-    # Gráficos
-    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
-    
-    # Orientación F4 comparativa
+
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+
     ax = axes[0, 0]
-    ax.plot(f4_control['setpoint'][:2000], 'r--', linewidth=0.5, alpha=0.7, label='Setpoint')
-    ax.plot(f4_control['orient'][:2000], 'b-', linewidth=0.5, label='Control')
-    ax.plot(f4_rop['orient'][:2000], 'orange', linewidth=0.5, label='R_op')
-    ax.set_title('F4: Respuesta al setpoint invertido')
+    ax.plot(f4_ritual['setpoint'][:2000], 'r--', linewidth=0.5, alpha=0.7, label='Setpoint')
+    ax.plot(f4_ritual['orient'][:2000], 'orange', linewidth=0.5, label='Orientación')
+    ax.set_title('F4: Setpoint invertido')
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
-    
-    # Cb
+
     ax = axes[0, 1]
-    ax.plot(f4_control['Cb'], 'b-', linewidth=0.5, label='Control')
-    ax.plot(f4_rop['Cb'], 'orange', linewidth=0.5, label='R_op')
-    ax.set_title('Cb en F4')
-    ax.legend(fontsize=8)
+    ax.plot(f4_ritual['ritual_activo'], 'g-', linewidth=0.4, alpha=0.7, label='Ritual activo')
+    ax2 = ax.twinx()
+    ax2.plot(f4_ritual['senal_desajuste'], 'purple', linewidth=0.5, label='Señal Rᴿ')
+    ax2.axhline(y=META_UMBRAL_SENAL, color='red', linestyle='--', alpha=0.5)
+    ax.set_title('Ritual activo vs señal desajuste (F4)')
     ax.grid(True, alpha=0.3)
-    
-    # R_op: inhibición activa
-    ax = axes[0, 2]
-    ax.plot(f4_rop['senal_desajuste'], 'purple', linewidth=0.5, label='Señal desajuste')
-    ax.plot(f4_rop['inhibir_ritual'], 'red', linewidth=0.5, label='Inhibición activa')
-    ax.axhline(y=META_UMBRAL_DESAJUSTE, color='orange', linestyle='--', alpha=0.5, label='Umbral')
-    ax.set_title('R_op: Señal de desajuste e inhibición')
-    ax.legend(fontsize=8)
-    ax.grid(True, alpha=0.3)
-    
-    # Ritual activation comparativa F3
+
     ax = axes[1, 0]
-    ax.plot(f3_rop['ritual_act'], 'purple', linewidth=0.5)
-    ax.axhline(y=RITUAL_UMBRAL_ACTIVACION, color='red', linestyle='--', alpha=0.5, label='Umbral ritual')
-    ax.set_title('Activación ritual en F3 (con R_op)')
+    ax.scatter(ritual_arr[::10], senal_arr[::10], s=2, alpha=0.3, c=error_arr[::10], cmap='hot')
+    ax.set_xlabel('Ritual activo')
+    ax.set_ylabel('Señal desajuste')
+    ax.set_title(f'Correlación F3 centra (r={corr:.2f})')
+    ax.grid(True, alpha=0.3)
+
+    ax = axes[1, 1]
+    ax.plot(f4_ritual['error_abs'], 'b-', linewidth=0.4, label='|error|')
+    ax.axhline(y=META_UMBRAL_ERROR, color='red', linestyle='--', alpha=0.5, label='Umbral error')
+    ax.set_title('Error absoluto en F4')
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
-    
-    # Historia acumulada comparativa
-    ax = axes[1, 1]
-    categorias = ['Control', 'R_op']
-    historias = [historia_control, historia_rop]
-    colors_bar = ['blue', 'orange']
-    ax.bar(categorias, historias, color=colors_bar)
-    ax.set_title(f'Historia acumulada (compresión: {historia_rop/max(1,historia_control):.2f})')
-    ax.grid(True, alpha=0.3, axis='y')
-    
-    # Error F4 comparativo
-    ax = axes[1, 2]
-    categorias_error = ['Control', 'R_op']
-    errores = [error_rms_control, error_rms_rop]
-    colors_error = ['blue', 'green' if error_rms_rop < error_rms_control else 'red']
-    ax.bar(categorias_error, errores, color=colors_error)
-    ax.set_title(f'Error RMS en F4 (mejora: {(1 - error_rms_rop/error_rms_control)*100:.1f}%)' if error_rms_control > 0 else 'Error RMS en F4')
-    ax.grid(True, alpha=0.3, axis='y')
-    
+
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v168_logs', exist_ok=True)
-    plt.savefig(f'v168_logs/v168_primer_no_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v168_logs/v168_primer_no_{timestamp}.png")
-    
-    return organismo_control, organismo_experimental, exito
+    os.makedirs('v167_logs', exist_ok=True)
+    plt.savefig(f'v167_logs/v167_meta_obs_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: v167_logs/v167_meta_obs_{timestamp}.png")
+
+    return organismo_control, organismo_ritual, exito
 
 
 if __name__ == "__main__":
     import time
     start = time.time()
-    control, rop, exito = ejecutar_v168()
+    control, ritual, exito = ejecutar_v167()
     elapsed = time.time() - start
     print(f"\n  ⏱️ Tiempo de ejecución: {elapsed/60:.1f} minutos")
-    print(f"\n  V168 completado. Éxito: {exito}")
+    print(f"\n  V167 completado. Éxito: {exito}")

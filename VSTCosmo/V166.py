@@ -843,9 +843,9 @@ def ejecutar_v166():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v166_logs', exist_ok=True)
-    plt.savefig(f'v166_logs/v166_final_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v166_logs/v166_final_{timestamp}.png")
+    os.makedirs('V166_logs', exist_ok=True)
+    plt.savefig(f'V166_logs/v166_final_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V166_logs/v166_final_{timestamp}.png")
     
     return organismo_control, organismo_ritual, exito
 

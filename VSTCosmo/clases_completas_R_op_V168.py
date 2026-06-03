@@ -2,7 +2,7 @@
 """
 ================================================================================
 CÓDIGO COMPLETO — R_op : PRIMER "NO" OPERATIVO (Etapa 5 de ANIMA-2)
-V168 (basado en v168.py)
+V168 (basado en V168.py)
 ================================================================================
 
 Este archivo contiene el código completo de la nueva capacidad:
@@ -22,7 +22,7 @@ El "No" no es programado como "si error_alto entonces no ritual".
 Es consecuencia de:
   Señal_desajuste (de Rᴿ) → R_op decide inhibir → fuerza ritual_activo=False
 
-Fuente: v168.py
+Fuente: V168.py
 
 Parámetros exactos de inhibición:
   R_OP_UMBRAL_INHIBICION = 0.7
@@ -53,7 +53,7 @@ R_OP_HISTERESIS = 0.5                 # Necesita señal > umbral por 0.5s para i
 R_OP_INHIBITION_DURATION = 5.0        # Duración mínima de inhibición (segundos)
 R_OP_DESINHIBICION_THRESHOLD = 0.3    # Señal debe caer bajo este umbral para desinhibir
 
-# (Otros parámetros heredados de V167 se omiten aquí por brevedad; ver v168.py)
+# (Otros parámetros heredados de V167 se omiten aquí por brevedad; ver V168.py)
 
 
 # ============================================================
@@ -166,7 +166,7 @@ En AparatoMotorV168.actuar(...):
 """
 
 # ============================================================
-# CÓDIGO DE USO / CRITERIOS (del análisis en v168.py)
+# CÓDIGO DE USO / CRITERIOS (del análisis en V168.py)
 # ============================================================
 
 def ejemplo_uso_rop():
@@ -180,5 +180,5 @@ def ejemplo_uso_rop():
 
 if __name__ == "__main__":
     ejemplo_uso_rop()
-    print("\nVer v168.py para el protocolo completo de control vs experimental (CON R_op),")
+    print("\nVer V168.py para el protocolo completo de control vs experimental (CON R_op),")
     print("logging de 'inhibir_ritual', criterios de éxito y gráficos comparativos.")

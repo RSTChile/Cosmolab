@@ -848,9 +848,9 @@ def ejecutar_v157():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v157_logs', exist_ok=True)
-    plt.savefig(f'v157_logs/v157_juego_AB_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v157_logs/v157_juego_AB_{timestamp}.png")
+    os.makedirs('V157_logs', exist_ok=True)
+    plt.savefig(f'V157_logs/v157_juego_AB_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V157_logs/v157_juego_AB_{timestamp}.png")
     
     return organismo_control, organismo_juego, exito
 

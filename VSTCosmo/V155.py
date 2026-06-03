@@ -719,9 +719,9 @@ def ejecutar_v155():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v155_logs', exist_ok=True)
-    plt.savefig(f'v155_logs/v155_consciencia_presion_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v155_logs/v155_consciencia_presion_{timestamp}.png")
+    os.makedirs('V155_logs', exist_ok=True)
+    plt.savefig(f'V155_logs/v155_consciencia_presion_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V155_logs/v155_consciencia_presion_{timestamp}.png")
     
     return sistema, exito
 

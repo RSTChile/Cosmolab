@@ -711,9 +711,9 @@ def ejecutar_v154():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v154_logs', exist_ok=True)
-    plt.savefig(f'v154_logs/v154_consciencia_basica_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v154_logs/v154_consciencia_basica_{timestamp}.png")
+    os.makedirs('V154_logs', exist_ok=True)
+    plt.savefig(f'V154_logs/v154_consciencia_basica_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V154_logs/v154_consciencia_basica_{timestamp}.png")
     
     return sistema, exito
 

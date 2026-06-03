@@ -1037,9 +1037,9 @@ def ejecutar_v161():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v161_logs', exist_ok=True)
-    plt.savefig(f'v161_logs/v161_ritual_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v161_logs/v161_ritual_{timestamp}.png")
+    os.makedirs('V161_logs', exist_ok=True)
+    plt.savefig(f'V161_logs/v161_ritual_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V161_logs/v161_ritual_{timestamp}.png")
     
     return organismo_control, organismo_ritual, exito
 

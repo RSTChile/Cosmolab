@@ -52,7 +52,7 @@ Criterio de éxito:
 Esto responde directamente a la crítica de "programar el No y luego descubrirlo".
 Aquí no hay "if ... rechazar". Hay apertura de posibilidades y medición de si el sistema las mantiene abiertas.
 
-Fuente: v169.py + RegistroRepresentaciones
+Fuente: V169.py + RegistroRepresentaciones
 
 ================================================================================
 """
@@ -172,7 +172,7 @@ class RegistroRepresentaciones:
 # ============================================================
 
 """
-En el protocolo de V169 (ver ejecutar_v169 en v169.py):
+En el protocolo de V169 (ver ejecutar_v169 en V169.py):
 
 F1-F3: setpoint normal (onda cuadrada ±60°). El sistema consolida ritual.
 

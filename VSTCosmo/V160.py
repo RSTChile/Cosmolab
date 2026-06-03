@@ -302,7 +302,7 @@ class ExperimentoV160:
         self.verbose = verbose
         self.params = ParamsCosmosemiotica()
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.log_dir = f"v160_logs"
+        self.log_dir = f"V160_logs"
         os.makedirs(self.log_dir, exist_ok=True)
     
     def ejecutar_ciclo(self, organismo: OrganismoV160, duracion: float,

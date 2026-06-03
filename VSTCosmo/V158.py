@@ -439,7 +439,7 @@ class ExperimentoV159:
         
         # Crear directorio de logs
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.log_dir = f"v159_logs"
+        self.log_dir = f"V159_logs"
         os.makedirs(self.log_dir, exist_ok=True)
     
     def ejecutar_ciclo(self, organismo: OrganismoRitual, duracion: float,

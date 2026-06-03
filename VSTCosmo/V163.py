@@ -982,9 +982,9 @@ def ejecutar_v163():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v163_logs', exist_ok=True)
-    plt.savefig(f'v163_logs/v163_ritual_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v163_logs/v163_ritual_{timestamp}.png")
+    os.makedirs('V163_logs', exist_ok=True)
+    plt.savefig(f'V163_logs/v163_ritual_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V163_logs/v163_ritual_{timestamp}.png")
     
     return organismo_control, organismo_ritual, exito
 

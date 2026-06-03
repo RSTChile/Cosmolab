@@ -138,9 +138,9 @@ Métricas Rᴿ:
 Estos controles muestran que el surgimiento/efecto del ritual **depende de la integración** con Cb (presión), historia de trabajo, y el detector de patrón temporal bajo las condiciones del aparato motor fatigable.
 
 **Evidencia en repo**:
-- v167_logs/*.log (prints detallados + métricas finales + correlación)
-- v167_logs/*.png (plots)
-- v165_logs/, v164_logs/, v163_logs/, v162_logs/, v159_logs/ (serie completa de etapas)
+- V167_logs/*.log (prints detallados + métricas finales + correlación)
+- V167_logs/*.png (plots)
+- V165_logs/, V164_logs/, v163_logs/, v162_logs/, v159_logs/ (serie completa de etapas)
 - V167.py (código completo + prints de validación)
 - Similar para V150 y previos.
 
@@ -195,7 +195,7 @@ Si ejecutas `python exportar_evidencia.py` (a implementar), producirá artefacto
 ## 7. Referencias internas clave (archivos en este dir)
 
 - V150.py, V167.py (y previos V122+, V153+)
-- v150_logs/, v167_logs/, v165_logs/ ... (ejecutados)
+- v150_logs/, V167_logs/, V165_logs/ ... (ejecutados)
 - TeoriaCosmosemiotica Addendum CN202 EvidenciaComputacional Abril2026.pdf (v72c datos)
 - Síntesis de Experimentos V90 a V103.pdf
 - INFORME CANÓNICO ... VSTCosmo 150.pdf
@@ -214,7 +214,7 @@ Este documento puede actualizarse automáticamente o manualmente tras cada hito.
 
 **Fecha de la corrida**: 2026-06-03 (terminal output pegado por el usuario).
 
-**Script ejecutado**: `v167-ob.py` (título interno: "V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) - CORREGIDO" — la corrección fue al cálculo de correlación para evitar NaN).
+**Script ejecutado**: `V167.py` (título interno: "V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) - CORREGIDO" — la corrección fue al cálculo de correlación para evitar NaN).
 
 **Resultados exactos reportados en terminal** (ver también el archivo de texto crudo):
 ```
@@ -254,9 +254,9 @@ Este archivo es un extracto autocontenido con:
 - La función de correlación corregida (ventana central + chequeo de std > 1e-6 + fallback downsample).
 
 **Logs raw / artefactos de esta corrida exacta**:
-- `v167_logs/v167_corregido_resultados_terminal_20260603.txt` — el output completo del terminal que pegaste.
-- `v167_logs/v167_meta_observacional_corregido_20260603_064549.png` — gráfico generado.
-- Script fuente completo: `v167-ob.py`
+- `V167_logs/v167_corregido_resultados_terminal_20260603.txt` — el output completo del terminal que pegaste.
+- `V167_logs/v167_meta_observacional_corregido_20260603_064549.png` — gráfico generado.
+- Script fuente completo: `V167.py`
 
 **Respuesta a la afirmación "el software define las leyes"**:
 Totalmente de acuerdo. Por eso publicamos el código completo de las reglas (arriba). La pregunta científica que el proyecto está haciendo no es "apareció magia", sino:
@@ -271,25 +271,25 @@ Esto es verificable porque el código y los historiales que alimentan la correla
 
 ## 10. Preparación para Etapa 5 (V168): Primer "No" operativo (R_op)
 
-**Corrección**: El último output compartido por el usuario correspondía a `v167-ob.py` (versión corregida de la Etapa 4). El título del output lo confirma ("RESULTADOS V167 CORREGIDO"). 
+**Corrección**: El último output compartido por el usuario correspondía a `V167.py` (versión corregida de la Etapa 4). El título del output lo confirma ("RESULTADOS V167 CORREGIDO"). 
 
-El paquete para v167-ob.py ya está completo:
+El paquete para V167.py ya está completo:
 - [clases_completas_Ritual_Meta_V167_corregido.py](clases_completas_Ritual_Meta_V167_corregido.py)
-- `v167_logs/v167_corregido_resultados_terminal_20260603.txt`
+- `V167_logs/v167_corregido_resultados_terminal_20260603.txt`
 
 **Código preparado para la Etapa 5 real**:
 
-El workspace contiene `v168.py` (implementación de "Primer 'No' operativo (R_op)").
+El workspace contiene `V168.py` (implementación de "Primer 'No' operativo (R_op)").
 
 Extracto limpio con la clase completa:
 → [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py)
 
 **Lógica de R_op** (preparada para cuando se corra la Etapa 5 real):
 
-El extracto [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py) contiene la clase completa `R_op` tal como está implementada en `v168.py`.
+El extracto [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py) contiene la clase completa `R_op` tal como está implementada en `V168.py`.
 
 Resumen:
-- Recibe `señal_desajuste` de la Meta-representación (Rᴿ validada en v167-ob.py).
+- Recibe `señal_desajuste` de la Meta-representación (Rᴿ validada en V167.py).
 - Aplica histéresis (0.5 s por encima de 0.7) para activar inhibición.
 - Mantiene la inhibición mínimo 5 s.
 - Desinhibe cuando la señal baja de 0.3.
@@ -297,7 +297,7 @@ Resumen:
 
 Esto implementa el primer "No" operativo: el sistema usa su propia meta-representación para suspender un comportamiento ritual que está generando desajuste sostenido.
 
-Cuando compartas el output completo de una corrida de `v168.py` (o el archivo que llames v168-ob.py), guardaré el terminal raw, extraeré las métricas de inhibición (si se activó en F4, si el error mejoró, reducción de tiempo ritual) y actualizaré esta sección + el borrador de respuesta.
+Cuando compartas el output completo de una corrida de `V168.py` (o el archivo que llames v168-ob.py), guardaré el terminal raw, extraeré las métricas de inhibición (si se activó en F4, si el error mejoró, reducción de tiempo ritual) y actualizaré esta sección + el borrador de respuesta.
 
 El código ya está listo para citar.
 
@@ -312,191 +312,11 @@ Ejemplo de métricas recientes parseadas (truncado):
 
 | Versión / Log | Métricas clave extraídas | Notas |
 |---------------|---------------------------|-------|
-| v100_logs / v100_resultados_20260526_234211.csv | ver archivo | logs/v100_logs |
-| v101_logs / v101_resultados_20260527_030855.csv | ver archivo | logs/v101_logs |
-| v102_logs / v102_resultados_20260527_150635.csv | ver archivo | logs/v102_logs |
-| v103_logs / v103_resultados_20260527_153253.csv | ver archivo | logs/v103_logs |
-| v111b_logs / v111b_datos_20260527_203059.json | ver archivo | logs/v111b_logs |
-| v156_logs / v156_run_20260601_201901.log | version=v156_logs, source=None, fatiga_final=4207.0, historia_final=2708.0 | logs/v156_logs |
-| v157_logs / v157_run_20260601_203257.log | version=v157_logs, source=None, fatiga_final=12913.0, historia_final=648.0 | logs/v157_logs |
-
-
----
-
-## 11. Corrección epistemológica importante (V169 → V170 — Desacople Representacional)
-
-**V170** (en ejecución al momento de esta nota) es la iteración mejorada de V169 con:
-- 4 setpoints inciertos uniformes [-60°, -20°, +20°, +60°] + ruido gaussiano σ=15° (mayor apertura estructural).
-- Propagación ritual F3→F4 más fuerte (τ=300s, persistencia_min=5, umbrales bajados).
-- Ventana F4 de 30s intensivos.
-- Export automático de raw JSON completo (series t, setpoint externo, R=setpoint_objetivo interno, D(t), ritual, Cb, proxies) en v170_logs/ para verificabilidad total.
-- Criterio ajustado: D > 0.08 sostenido ≥3s (relajado para dar tiempo al "dudar").
-
-Todo anclado en el canon (ver citas en v170.py y clases_completas_V170_RegistroRepresentaciones.py).
-
-Sigue sin inyectar "No" explícito. Mide el germen de Juego.
-
----
-
-## 11. (Anterior) Corrección epistemológica importante (V169 — Desacople Representacional)
-
-Durante el desarrollo se realizó una corrección profunda en el enfoque (comunicada mientras se diseñaba V169):
-
-**La trampa que se estaba construyendo:**
-
-Escribir reglas explícitas del tipo  
-`if costo > beneficio: rechazar`  
-o  
-`if señal_desajuste > umbral: inhibir_ritual = True`  
-
-y luego correr el experimento, observar el rechazo/inhibición, y concluir  
-"¡el sistema dijo No de forma emergente!".
-
-Eso no es descubrimiento. Es teatro.
-
-**Fundamento canónico (Teoría Cosmosemiótica Canónica, PDF Definitiva 01-06-2026):**
-
-- O-N7.2 (p. 16): "Genealogía evolutiva de LF: juego → ritual → negación operativa".  
-  "El juego introduce el desacople entre acción y significado: la acción se ejecuta pero su significado está suspendido por un marco implícito (...). Es proto-negación enactuada, no declarada. El ritual fija ese desacople en estructuras reproducibles pero no negables desde dentro (...). La negación operativa aparece cuando el sistema puede declarar el desacople, operar sobre él y regularlo."
-
-- O-N10.7 (p. 22): "Juego = {Rᵢ | P(Acción|Rᵢ) < 1}".  
-  "El juego es el espacio donde la acción no está determinada."
-
-- O-N0.3 (p. 11): "Δ_struct > 0 ⇒ ◊(R ↛ Acción)". La diferencia hace posible que una representación no determine la acción.
-
-- O-N17 (p. 31): "¬ ∃ meta final del proceso semiótico". "El proceso semiótico no tiene meta final: opera por condiciones locales, no por destino." (Anti-teleología: no se inyecta el "No"; se abren condiciones estructurales para que emerja o no.)
-
-- O-N10.1 (p. 22): Distinción estructural Inhibición ≠ Negación operativa (primera orden vs. segunda orden sobre la representación).
-
-La corrección de V169 implementa exactamente este principio metodológico: crear las condiciones (incertidumbre en F4) para que el espacio de Juego sea observable (D>0), sin programar la negación operativa.
-
-**Distinción clave:**
-
-| Enfoque programado (evitar)                  | Enfoque emergente (buscado)                     |
-|----------------------------------------------|-------------------------------------------------|
-| Reglas de costo/beneficio                    | Desacople natural                               |
-| Decisión externa (el código decide por el sistema) | Suspensión interna (el sistema no se determina) |
-| Optimización / filtro                        | Apertura / contingencia                         |
-| Programar el resultado                       | Medir la condición estructural que hace posible el resultado |
-
-**La métrica correcta: Desacople representacional (D)**
-
-D = Var(R) × (1 − Pmax)
-
-- **Var(R)** = diversidad de representaciones que el sistema está considerando (medida vía entropía de los setpoint_objetivo internos en una ventana).
-- **Pmax** = probabilidad de la representación dominante.
-
-Interpretación:
-- D = 0 → Una sola representación fuerte → la acción es inevitable (determinismo representacional).
-- D > 0 → Coexisten alternativas → P(Acción | R) puede ser < 1 para algunas de ellas → hay espacio estructural para no actuar.
-
-**Hipótesis fuerte (del rediseño, anclada en canon):**
-
-El modo Juego ya contiene el germen lógico del "No".
-
-Juego = { Rᵢ | P(Acción | Rᵢ) < 1 }  (O-N10.7, p.22; ver también O-N7.2 genealogía y O-N0.3 posibilidad de R ↛ Acción).
-
-El "No" operativo (¬R_op) es una especialización declarativa de esa capacidad de no-determinación cuando LF ≥ 1 (O-N10.2: ¬R_op ⟺ LF ≥ 1). No se programa; se mide si las condiciones de apertura (Var(R)>0 + P<1 sostenido) aparecen bajo incertidumbre estructural.
-
-**Rediseño de V169 (implementado en v169.py):**
-
-- F1-F3: Consolidación normal de ritual (setpoint claro, onda cuadrada ±60°).
-- F4: **Setpoint incierto** — en cada paso se muestrea aleatoriamente de {-60°, 0°, +60°} (con probabilidades ~equiprobables).
-- **No se inyecta ninguna regla de rechazo ni inhibición explícita.**
-- En cada paso se registra:
-  - La representación interna (`setpoint_objetivo` que el sistema está persiguiendo vía memoria de ausencia + Cb).
-  - Si ejecutó acción significativa (`abs(ultimo_delta) > 0.01`) o la suspendió.
-- Se calcula continuamente:
-  D = Var(R) · (1 - Pmax)
-  usando la clase `RegistroRepresentaciones`.
-- Criterio de éxito pre-definido:
-  D > 0.1 sostenido durante al menos 5 segundos en F4.
-
-**Clase central del nuevo diseño:**
-
-→ [clases_completas_V169_RegistroRepresentaciones.py](clases_completas_V169_RegistroRepresentaciones.py)
-
-Esta clase + el muestreo de setpoints inciertos en F4 es lo que permite **medir apertura** en lugar de inyectar cierre.
-
-**Por qué importa para la conversación con Grok (y para rigor científico):**
-
-Esto responde directamente a la crítica legítima y repetida de que versiones anteriores (incluyendo la R_op explícita de V168 y cualquier "if señal > umbral → inhibir") estaban demasiado cerca de programar el fenómeno que luego se celebra como descubrimiento emergente.
-
-Ahora el experimento pregunta algo más limpio:
-
-> Cuando el entorno presenta **múltiples posibilidades simultáneas**, ¿el sistema genera diversidad representacional interna y reduce la determinación de su propia acción?
-
-Si D > 0 de forma sostenida, tenemos la condición estructural previa a cualquier "No" que no haya sido codificado directamente.
-
-Este es el tipo de rigor que el proyecto necesita para que las afirmaciones sobre emergencia, organismicidad y exaptación sean defendibles ante un escrutinio serio.
-
-## 12. Resultados V170 — Desacople representacional con incertidumbre aumentada (ÉXITO)
-
-**Script**: `v170.py` (ejecutado 2026-06-03)
-
-**Mejoras implementadas respecto a V169** (basado en análisis previo):
-- 4 setpoints inciertos: `[-60°, -20°, +20°, +60°]` distribución uniforme.
-- Ruido gaussiano σ=15° en el setpoint externo (evitar memorización rígida).
-- Ritual ajustado para propagación F3→F4: `RITUAL_TAU=300.0`, `RITUAL_PERSISTENCIA_MIN=5`, umbral activación bajado a 0.35.
-- Ventana F4 intensiva de 30 segundos.
-- Criterio: `D > 0.08` sostenido por ≥ 3.0 s (ajustado para dar "tiempo para dudar").
-- Registro de `setpoint_objetivo` (R interna) + D(t) en cada paso.
-
-**Clase núcleo**:
-→ [clases_completas_V170_RegistroRepresentaciones.py](clases_completas_V170_RegistroRepresentaciones.py) (aislada para pasting público, con citas completas a nodos del canon).
-
-**Resultados exactos de la corrida (terminal crudo guardado)**:
-
-```
-  📊 MÉTRICAS DE DESACOPLE (F4):
-    D (desacople) máximo: 0.7427
-    D (desacople) medio: 0.4477
-    D (desacople) std: 0.0692
-    Máximo tiempo con D > 0.08: 29.98s
-    Número de periodos de desacople: 1
-    Periodos: [('0.0s', '29.98s')]
-    Desacople sostenido (>=3.0s): True
-```
-
-**Métricas de ritual y setpoints**:
-- Ritual en F4: activo=False, activación media=0.235, máx=0.247 (no se propagó fuertemente; el desacople surgió principalmente de la incertidumbre).
-- F3 (consolidación): ritual media=0.286, máx=0.672.
-- Distribución de setpoints en F4: muy extendida por el ruido gaussiano (aprox. -110° a +110°, con picos alrededor de los valores nominales pero continuo). Demuestra que el sistema perseguía representaciones internas variadas.
-
-**Criterio de éxito**:
-- Desacople sostenido (D > 0.08 por 3.0s): **True → ✅**
-- **✅ DESACOPLE REPRESENTACIONAL DEMOSTRADO**
-- "ANIMA-2 muestra P(Acción|R) < 1 sostenido. La condición estructural para el 'No' está presente."
-
-**Archivos de evidencia cruda**:
-- Terminal verbatim: [v170_logs/v170_resultados_terminal_20260603.txt](v170_logs/v170_resultados_terminal_20260603.txt)
-- JSON resumen estructurado: [v170_logs/v170_raw_summary_20260603.json](v170_logs/v170_raw_summary_20260603.json)
-- Gráfico: `v170_logs/v170_desacople_mejorado_20260603_082632.png` (muestra D(t) alto y sostenido en F4, setpoints ruidosos, etc.)
-- (Nota: la corrida que produjo estos números fue previa a la adición de export JSON completo automático en el script; re-ejecuciones futuras con el código actual generarán `v170_raw_history_*.json` con series completas de R interno, D, acciones, etc.)
-
-**Interpretación alineada con la Teoría Canónica** (PDF Definitiva 01-06-2026):
-- D medio ~0.45 sostenido durante **casi toda** la ventana de 30s (29.98s) es evidencia fuerte de que bajo incertidumbre estructural (múltiples posibles + ruido), el sistema genera Var(R) > 0 y reduce la determinación de la acción (P(Acción|R) < 1 para las representaciones que considera).
-- Esto es exactamente **O-N10.7**: el espacio de Juego = {Rᵢ | P(Acción|Rᵢ) < 1}.
-- Ritual bajo en F4 (0.235) indica que el desacople no requirió conflicto con un marco ritual persistente; surgió de la apertura misma (incertidumbre como condición local per O-N17).
-- F3 mostró consolidación ritual (hasta 0.672), cumpliendo el protocolo de "ritual previo" antes del desafío incierto.
-- **O-N7.2** (genealogía juego → ritual → negación): aquí medimos el germen en el "juego" bajo condiciones inciertas, sin inyectar la negación operativa.
-- **O-N0.3 + O-N17**: Δ_struct (vía setpoints múltiples + ruido) abre ◊(R ↛ Acción). No hay meta final inyectada; se crearon condiciones y se observó si el sistema las usa para sostener desacople.
-- Ritual en F4 no dominó → el "No" potencial no es solo "rechazo de marco viejo", sino no-determinación representacional básica.
-
-**Distinción programado vs. emergente** (tabla actualizada):
-| Aspecto                  | Programado (reglas explícitas)                          | Observado / Emergente (V170 F4)                          |
-|--------------------------|---------------------------------------------------------|----------------------------------------------------------|
-| Setpoints en F4          | 4 valores nominales + sampling uniforme + ruido gaussiano | El sistema persiguió R internas variadas (setpoint_objetivo) |
-| Acción                   | Controlador PID + modulación ritual/juego + inercia + zona muerta + fatiga | Para muchas R, a menudo no se tradujo en delta significativo (P<1) |
-| Ritual                   | Parámetros para persistencia (τ=300, etc.)             | Activación baja en F4 (0.235); no dominó el desacople     |
-| D (desacople)            | Cálculo vía RegistroRepresentaciones (entropía + Pmax) | D_max=0.7427, medio=0.4477 sostenido 29.98s → ✅          |
-| "No"                     | Ninguna regla de inhibición o rechazo                   | Espacio estructural P(Acción|R)<1 presente de forma sostenida |
-
-Esto responde directamente a críticas de "programas el resultado": la incertidumbre es la condición estructural; el alto D sostenido es lo que el sistema *hizo* con ella.
-
-**Evidencia para respuesta a @grok**: Datos verificables (D=0.74 sostenido, raw logs + JSON + PNG + código completo de Registro) > analogías. El germen del No (juego como no-determinación) se midió, no se codificó.
-
-Siguiente: Preparar V171 para introducir la negación operativa *después* de haber establecido el espacio (usando D alto como condición habilitante, no como output forzado).
-
----
+| V156_logs / v156_run_20260601_201901.log | version=V156_logs, source=None, fatiga_final=4207.0, historia_final=2708.0 | logs/V156_logs |
+| V157_logs / v157_run_20260601_203257.log | version=V157_logs, source=None, fatiga_final=12913.0, historia_final=648.0 | logs/V157_logs |
+| V157_logs / v157_run_20260601_rerun.log | version=V157_logs, source=None | logs/V157_logs |
+| V159_logs / v158_run_20260601_210714.log | version=V159_logs, source=None | logs/V159_logs |
+| V164_logs / v164_run_20260602_215018.log | version=V164_logs, source=None, ritual_activo_f4=False, fatiga_final=10288.0 | logs/V164_logs |
+| V167_logs / v167_run_20260603_044554.log | version=V167_logs, source=None, correlacion_ritual_senal=0.988, n_correlacion=21677 | logs/V167_logs |
+| V167_logs / v167_run_corrfix_20260603_051840.log | version=V167_logs, source=None, correlacion_ritual_senal=0.885, n_correlacion=80000 | logs/V167_logs |
 

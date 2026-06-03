@@ -13,7 +13,7 @@ Este archivo contiene:
 
 Propósito: Responder directamente a la solicitud de "código completo de la clase (no solo snippets) y logs raw".
 
-Fuente: v167-ob.py (el script "CORREGIDO" que produjo los resultados del terminal pegados abajo).
+Fuente: V167.py (el script "CORREGIDO" que produjo los resultados del terminal pegados abajo).
 
 NOTA IMPORTANTE (para transparencia):
 - Todo lo que el monitor "detecta" está definido por estas reglas explícitas.
@@ -21,9 +21,9 @@ NOTA IMPORTANTE (para transparencia):
 - El monitor NO modifica el comportamiento del ritual (es puramente observacional en esta etapa; la inhibición vendrá en Etapa 5 = R_op).
 
 Logs raw / resultados de esta corrida exacta:
-- v167_logs/v167_corregido_resultados_terminal_20260603.txt  (el output completo del terminal)
-- Gráfico: v167_logs/v167_meta_observacional_corregido_20260603_064549.png
-- Script completo que se ejecutó: v167-ob.py (en este directorio)
+- V167_logs/v167_corregido_resultados_terminal_20260603.txt  (el output completo del terminal)
+- Gráfico: V167_logs/v167_meta_observacional_corregido_20260603_064549.png
+- Script completo que se ejecutó: V167.py (en este directorio)
 
 Métricas clave de ESTA corrida (V167 CORREGIDO):
   Tiempo ritual activo: 382.8s (23.9%)
@@ -40,7 +40,7 @@ import numpy as np
 from collections import deque
 
 # ============================================================
-# PARÁMETROS (copiados exactamente del script v167-ob.py CORREGIDO)
+# PARÁMETROS (copiados exactamente del script V167.py CORREGIDO)
 # ============================================================
 
 DT = 0.01
@@ -299,7 +299,7 @@ class MetaRepresentacionObservacional:
 # (Se incluyen solo las partes relevantes para que se vea cómo Ritual y Meta se cablean.
 # El motor completo también contiene FatigaMetabolicaV167, MemoriaAusenciaV167, etc.)
 
-class AparatoMotorV167:  # versión simplificada para el extracto — ver v167-ob.py para el resto
+class AparatoMotorV167:  # versión simplificada para el extracto — ver V167.py para el resto
     def __init__(self, enable_meta=True):
         # ... (inicializaciones de fatiga, memoria, consciencia, juego, etc.)
         self.ritual = RitualV167()
@@ -342,7 +342,7 @@ class AparatoMotorV167:  # versión simplificada para el extracto — ver v167-o
 def calcular_correlacion_ritual_senal_corregida(f3_ritual):
     """
     Versión corregida (evita NaN) usada en los resultados V167 CORREGIDO.
-    Extraída de v167-ob.py líneas ~916-940.
+    Extraída de V167.py líneas ~916-940.
     """
     correlacion = 0.0
     if len(f3_ritual['ritual_activo']) > 100 and len(f3_ritual['senal_desajuste']) > 100:
@@ -380,4 +380,4 @@ if __name__ == "__main__":
 
     r = RitualV167()
     m = MetaRepresentacionObservacional()
-    print("\nInstancias creadas exitosamente. Ver v167-ob.py para el protocolo completo de 4 etapas + logging de historiales.")
+    print("\nInstancias creadas exitosamente. Ver V167.py para el protocolo completo de 4 etapas + logging de historiales.")

@@ -40,7 +40,7 @@ Incluye:
 - Fragmento del motor donde se registra (AparatoMotorV170.actuar)
 - Función de setpoint incierto (4 valores + gaussiano)
 
-Fuente principal: v170.py (ejecución en curso al momento de extracción)
+Fuente principal: V170.py (ejecución en curso al momento de extracción)
 
 ================================================================================
 """

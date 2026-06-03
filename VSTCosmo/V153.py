@@ -633,9 +633,9 @@ def ejecutar_v153():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v153_logs', exist_ok=True)
-    plt.savefig(f'v153_logs/v153_memoria_torque_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v153_logs/v153_memoria_torque_{timestamp}.png")
+    os.makedirs('V153_logs', exist_ok=True)
+    plt.savefig(f'V153_logs/v153_memoria_torque_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V153_logs/v153_memoria_torque_{timestamp}.png")
     
     return sistema, exito
 

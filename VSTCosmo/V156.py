@@ -820,9 +820,9 @@ def ejecutar_v156():
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v156_logs', exist_ok=True)
-    plt.savefig(f'v156_logs/v156_juego_enactuado_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v156_logs/v156_juego_enactuado_{timestamp}.png")
+    os.makedirs('V156_logs', exist_ok=True)
+    plt.savefig(f'V156_logs/v156_juego_enactuado_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V156_logs/v156_juego_enactuado_{timestamp}.png")
     
     return sistema, exito
 

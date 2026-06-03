@@ -26,7 +26,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-LOGS_DIR_PATTERN = "v*logs"
+LOGS_DIR_PATTERN = "*[vV]*logs"
 OUTPUT_JSON = "evidencia_publica.json"
 OUTPUT_MD = "evidencia_resumen.md"
 

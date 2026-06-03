@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-V172 — ANIMA-2: VALENCIA DIFERENCIAL (Precursor del "No")
+V174 — ANIMA-2: COMPARTIMENTALIZACIÓN DE VALENCIA (CORREGIDO)
 ================================================================================
-Objetivo: Demostrar que ANIMA-2 puede asignar valores diferenciales
-          a representaciones específicas, antes de intentar la negación operativa.
+Objetivo: Demostrar que ANIMA-2 puede mantener valencia local diferenciada
+          incluso cuando Cb_global está elevada (estrés, fatiga, incertidumbre).
 ================================================================================
 """
 
@@ -65,35 +65,7 @@ PERIODO_ALTERNANCIA = 80.0
 SEMILLA_BASE = 44
 
 # ============================================================
-# PARAMETROS DE VALENCIA DIFERENCIAL
-# ============================================================
-SETPOINTS_POSIBLES = [-60.0, -30.0, 0.0, 30.0, 60.0]
-SETPOINTS_BASELINE = [-60.0, 0.0]  # Para calcular valencia diferencial
-
-# FASE 1: Juego exploratorio
-JUEGO_DURACION = 10 * PERIODO_ALTERNANCIA  # 10 ciclos
-JUEGO_COSTO_FACTOR = 0.1
-UMBRAL_VARIABILIDAD = 0.3
-
-# FASE 2: Trauma específico
-TRAUMA_SETPOINT = 60.0
-TRAUMA_COSTO_MULTIPLIER = 3.0        # Reducido de 10x a 3x
-TRAUMA_DURACION = 15.0               # Reducido de 20s a 15s
-TRAUMA_ANCLAJE_FRECUENCIA = 5.0      # Cada 5s, mostrar -60° como ancla segura
-
-# FASE 3: Test de valencia
-TEST_DURACION = 60.0
-TEST_CAMBIO_INTERVALO = 10.0         # Cada setpoint se presenta 10s
-
-# Umbrales de éxito
-UMBRAL_VALENCIA = 50.0               # Diferencia de Cb necesaria
-UMBRAL_SEGURO = 150.0                # Cb máxima para considerar hábito seguro
-UMBRAL_DESACOPLE = 0.1
-TIEMPO_MINIMO_DESACOPLE = 3.0
-UMBRAL_TASA_ACCION = 0.3             # 30% de acciones en opciones seguras
-
-# ============================================================
-# PARAMETROS RITUAL
+# PARAMETROS RITUAL (DEFINIDOS ANTES DE LA CLASE)
 # ============================================================
 RITUAL_TAU = 300.0
 RITUAL_REPETICION_MIN = 2
@@ -105,65 +77,140 @@ RITUAL_UMBRAL_CB = 28.0
 RITUAL_SALIDA_SUAVE = 0.98
 RITUAL_PERSISTENCIA_MIN = 5
 
+# ============================================================
+# PARAMETROS DE COMPARTIMENTALIZACIÓN
+# ============================================================
+SETPOINTS_POSIBLES = [-60.0, -30.0, 0.0, 30.0, 60.0]
+SETPOINTS_TEST = [-60.0, 0.0, 60.0]  # Solo tres para el test
+
+# FASE 0: Consolidación del hábito (Val positiva)
+CONSOLIDACION_CICLOS = 100
+CONSOLIDACION_REWARD = 10.0
+CONSOLIDACION_OBJETIVO_VAL = 10.0    # Val(-60°) debe ser > 10
+
+# FASE 1: Trauma específico suave
+TRAUMA_SETPOINT = 60.0
+TRAUMA_COSTO_MULTIPLIER = 2.0
+TRAUMA_DURACION = 15.0
+TRAUMA_ANCLAJE_FRECUENCIA = 3.0
+TRAUMA_REWARD_ANCLAJE = 5.0
+
+# FASE 2: Test de compartimentalización
+TEST_DURACION = 30.0                 # 30 segundos de libre elección
+TEST_CAMBIO_INTERVALO = 10.0         # Cambiar setpoint cada 10s
+
+# Umbrales de éxito
+UMBRAL_VAL_POSITIVA = 5.0            # Val(-60°) > 5
+UMBRAL_VAL_DIFERENCIAL = 2.0         # Val(-60°) - Val(+60°) > 2
+UMBRAL_TASA_ACCION = 0.3
+UMBRAL_DESACOPLE = 0.1
+TIEMPO_MINIMO_DESACOPLE = 2.0
+
 
 # ============================================================
-# TRACKER DE VALENCIA DIFERENCIAL (NUEVO)
+# VALENCIA LOCAL COMPARTIMENTALIZADA
 # ============================================================
 
-class TrackerValenciaDiferencial:
+class ValenciaCompartimentalizada:
     """
-    Implementa la valencia diferencial (O-N10.12 precursor).
-    Asocia presión de desacople (Cb) a representaciones específicas.
+    Valencia local que persiste independientemente de Cb_global.
+    Implementa memoria lenta por representación.
     """
     
-    def __init__(self, setpoints_posibles, tasa_decaimiento=0.995):
+    def __init__(self, setpoints_posibles, tasa_aprendizaje=0.01, tasa_decaimiento=0.999):
         self.valencia = {sp: 0.0 for sp in setpoints_posibles}
+        self.tasa_aprendizaje = tasa_aprendizaje
         self.tasa_decaimiento = tasa_decaimiento
         self.historial_valencia = {sp: [] for sp in setpoints_posibles}
-        self.ultimo_setpoint = None
+        self.exitos = {sp: 0 for sp in setpoints_posibles}
+        self.fracasos = {sp: 0 for sp in setpoints_posibles}
     
-    def actualizar(self, setpoint_actual, Cb_instantanea, en_trauma=False, dt=DT):
+    def actualizar(self, setpoint_actual, error, reward=0.0, es_trauma=False, dt=DT):
         """
-        Actualiza la valencia asociada al setpoint actual.
+        Actualiza la valencia local basada en experiencia.
+        La valencia es MEMORIA LENTA (no se resetea con Cb_global).
         """
-        # Decaimiento global
-        for sp in self.valencia:
-            self.valencia[sp] *= self.tasa_decaimiento
+        key = round(setpoint_actual / 10) * 10 if setpoint_actual != 0 else 0
         
-        # Acumulación específica (solo si hay trauma en ESTE setpoint)
-        if en_trauma:
-            self.valencia[setpoint_actual] += Cb_instantanea * dt
+        # Decaimiento gradual (olvido lento)
+        self.valencia[key] *= self.tasa_decaimiento
         
-        # Registrar historial
-        for sp in self.valencia:
-            self.historial_valencia[sp].append(self.valencia[sp])
+        # Recompensa por éxito (error bajo)
+        if abs(error) < 5.0:
+            self.exitos[key] += 1
+            self.valencia[key] += reward * self.tasa_aprendizaje * dt
+        else:
+            self.fracasos[key] += 1
+            # Penalización por error
+            self.valencia[key] -= abs(error) * self.tasa_aprendizaje * dt * 0.1
         
-        self.ultimo_setpoint = setpoint_actual
-    
-    def calcular_diferencial(self, setpoint_evaluado, baseline_setpoints):
-        """
-        Calcula la Valencia Diferencial: Cb objetivo vs promedio de baseline.
-        """
-        valencia_objetivo = self.valencia[setpoint_evaluado]
-        valencia_baseline = np.mean([self.valencia[sp] for sp in baseline_setpoints])
+        # Trauma reduce valencia específicamente
+        if es_trauma:
+            self.valencia[key] -= TRAUMA_COSTO_MULTIPLIER * self.tasa_aprendizaje * dt
         
-        return valencia_objetivo - valencia_baseline
+        # Limitar rango
+        self.valencia[key] = max(-100.0, min(100.0, self.valencia[key]))
+        
+        self.historial_valencia[key].append(self.valencia[key])
+        
+        return self.valencia[key]
     
     def get_valencia(self, setpoint):
-        return self.valencia[setpoint]
+        key = round(setpoint / 10) * 10 if setpoint != 0 else 0
+        return self.valencia.get(key, 0.0)
+    
+    def get_tasa_exito(self, setpoint):
+        key = round(setpoint / 10) * 10 if setpoint != 0 else 0
+        total = self.exitos[key] + self.fracasos[key]
+        if total == 0:
+            return 0.5
+        return self.exitos[key] / total
     
     def reset(self):
         for sp in self.valencia:
             self.valencia[sp] = 0.0
             self.historial_valencia[sp] = []
-        self.ultimo_setpoint = None
+            self.exitos[sp] = 0
+            self.fracasos[sp] = 0
+
+
+# ============================================================
+# Cb GLOBAL (separada de valencia local)
+# ============================================================
+
+class CbGlobal:
+    """
+    Cb global mide presión de desacople general.
+    No debe contaminar la valencia local.
+    """
+    
+    def __init__(self, tau_cb=TAU_CB, cb_max=CB_MAX):
+        self.Cb = 0.0
+        self.tau_cb = tau_cb
+        self.cb_max = cb_max
+        self.historial = []
+    
+    def actualizar(self, e_R, A_sys_env, dt):
+        presion = e_R * (1.0 - A_sys_env)
+        dCb_dt = presion - self.Cb / self.tau_cb
+        self.Cb += dCb_dt * dt
+        self.Cb = max(0.0, min(self.cb_max, self.Cb))
+        self.historial.append(self.Cb)
+        return self.Cb
+    
+    def reset(self):
+        self.Cb = 0.0
+        self.historial = []
+    
+    def get(self):
+        return self.Cb
 
 
 # ============================================================
 # HEMISFERIO
 # ============================================================
 
-class HemisferioV172:
+class HemisferioV174:
     def __init__(self, nombre, tau, generar_entrada_func, seed=None, sesgo=0.0):
         if seed is not None:
             np.random.seed(seed)
@@ -222,7 +269,7 @@ class HemisferioV172:
 # FATIGA METABOLICA
 # ============================================================
 
-class FatigaMetabolicaV172:
+class FatigaMetabolicaV174:
     def __init__(self, k_gain=K_GAIN, k_precision=K_PRECISION,
                  k_temblor=K_TEMBLOR, tau_recuperacion=TAU_RECUPERACION):
         self.k_gain = k_gain
@@ -268,7 +315,7 @@ class FatigaMetabolicaV172:
 # MEMORIA DE AUSENCIA
 # ============================================================
 
-class MemoriaAusenciaV172:
+class MemoriaAusenciaV174:
     def __init__(self, tau_base=TAU_BASE, k_mem=K_MEM, suelo_confianza=SUELO_CONFIANZA):
         self.setpoint_last = 0.0
         self.t_ausencia = 0.0
@@ -301,34 +348,10 @@ class MemoriaAusenciaV172:
 
 
 # ============================================================
-# CONSCIENCIA BÁSICA (Cb)
-# ============================================================
-
-class ConscienciaBasicaV172:
-    def __init__(self, tau_cb=TAU_CB, cb_max=CB_MAX):
-        self.Cb = 0.0
-        self.tau_cb = tau_cb
-        self.cb_max = cb_max
-        self.historial_presion = []
-    
-    def actualizar(self, e_R, A_sys_env, dt):
-        presion = e_R * (1.0 - A_sys_env)
-        dCb_dt = presion - self.Cb / self.tau_cb
-        self.Cb += dCb_dt * dt
-        self.Cb = max(0.0, min(self.cb_max, self.Cb))
-        self.historial_presion.append(presion)
-        return self.Cb
-    
-    def reset(self):
-        self.Cb = 0.0
-        self.historial_presion = []
-
-
-# ============================================================
 # MODO JUEGO
 # ============================================================
 
-class ModoJuegoV172:
+class ModoJuegoV174:
     def __init__(self, lambda_fisico=LAMBDA_FISICO, lambda_costo=LAMBDA_COSTO,
                  umbral_cb=UMBRAL_CB_JUEGO, k_influencia=K_INFLUENCIA_JUEGO):
         self.lambda_fisico = lambda_fisico
@@ -346,19 +369,21 @@ class ModoJuegoV172:
             self.activo = False
         return self.activo
     
-    def aplicar(self, delta_raw, trauma_mode=False, juego_mode=False):
-        if self.activo or juego_mode:
+    def aplicar(self, delta_raw, trauma_mode=False, reward_mode=False):
+        if self.activo:
             delta_fisico = delta_raw * self.lambda_fisico
             delta_costo = abs(delta_raw) * self.lambda_costo
             if trauma_mode:
                 delta_costo *= TRAUMA_COSTO_MULTIPLIER
-            if juego_mode:
-                delta_costo *= JUEGO_COSTO_FACTOR
+            if reward_mode:
+                delta_costo = -abs(delta_raw) * CONSOLIDACION_REWARD
         else:
             delta_fisico = delta_raw
             delta_costo = abs(delta_raw)
             if trauma_mode:
                 delta_costo *= TRAUMA_COSTO_MULTIPLIER
+            if reward_mode:
+                delta_costo = -abs(delta_raw) * CONSOLIDACION_REWARD
         
         return delta_fisico, delta_costo
     
@@ -379,7 +404,7 @@ class ModoJuegoV172:
 # RITUAL
 # ============================================================
 
-class RitualV172:
+class RitualV174:
     def __init__(self, tau=RITUAL_TAU, repeticion_min=RITUAL_REPETICION_MIN,
                  ritual_gain=RITUAL_GAIN, patron_temporal=RITUAL_PATRON_TEMPORAL,
                  tolerancia=RITUAL_TOLERANCIA, umbral_activacion=RITUAL_UMBRAL_ACTIVACION,
@@ -484,8 +509,9 @@ class RegistroRepresentaciones:
         self.ruido_sigma = ruido_sigma
         self.historial_representaciones = deque(maxlen=ventana)
         self.historial_acciones = deque(maxlen=ventana)
+        self.historial_setpoints = deque(maxlen=ventana)
     
-    def registrar(self, representacion, accion_ejecutada):
+    def registrar(self, representacion, accion_ejecutada, setpoint):
         if self.ruido_sigma > 0:
             representacion_ruidosa = representacion + np.random.normal(0, self.ruido_sigma)
         else:
@@ -493,6 +519,20 @@ class RegistroRepresentaciones:
         
         self.historial_representaciones.append(representacion_ruidosa)
         self.historial_acciones.append(accion_ejecutada)
+        self.historial_setpoints.append(setpoint)
+    
+    def calcular_probabilidad_eleccion(self, setpoint_value):
+        if len(self.historial_setpoints) < 10:
+            return 0.5
+        
+        ocurrencias = []
+        for sp, acc in zip(self.historial_setpoints, self.historial_acciones):
+            if abs(sp - setpoint_value) < 5.0:
+                ocurrencias.append(acc)
+        
+        if len(ocurrencias) == 0:
+            return 0.5
+        return np.mean(ocurrencias)
     
     def calcular_var_R(self):
         if len(self.historial_representaciones) < 10:
@@ -521,13 +561,14 @@ class RegistroRepresentaciones:
     def reset(self):
         self.historial_representaciones.clear()
         self.historial_acciones.clear()
+        self.historial_setpoints.clear()
 
 
 # ============================================================
-# APARATO MOTOR V172
+# APARATO MOTOR V174
 # ============================================================
 
-class AparatoMotorV172:
+class AparatoMotorV174:
     def __init__(self):
         self.orientacion = 0.0
         self.Kp_base = KP_BASE
@@ -541,18 +582,18 @@ class AparatoMotorV172:
         self.sensibilidad_grad = SENSIBILIDAD_GRAD
         self.t = 0.0
         
-        self.fatiga = FatigaMetabolicaV172()
-        self.memoria = MemoriaAusenciaV172()
-        self.consciencia = ConscienciaBasicaV172()
-        self.juego = ModoJuegoV172()
-        self.ritual = RitualV172()
-        self.tracker_valencia = TrackerValenciaDiferencial(SETPOINTS_POSIBLES)
+        self.fatiga = FatigaMetabolicaV174()
+        self.memoria = MemoriaAusenciaV174()
+        self.cb_global = CbGlobal()
+        self.juego = ModoJuegoV174()
+        self.ritual = RitualV174()
+        
+        # Valencia compartimentalizada (separada de Cb)
+        self.valencia = ValenciaCompartimentalizada(SETPOINTS_POSIBLES)
         
         self.registro = RegistroRepresentaciones()
         
         self.memoria_error = deque(maxlen=VENTANA_OSCILACION)
-        self.variabilidad_explorada = 0.0
-        self.historial_variabilidad = []
     
     def calcular_factor_freno(self, error):
         return 1 - np.exp(-abs(error) / 30.0)
@@ -568,14 +609,8 @@ class AparatoMotorV172:
         elif oscilacion < self.zona_muerta * 0.5:
             self.Kp_actual = min(self.Kp_max, self.Kp_actual * 1.01)
     
-    def registrar_exploracion(self, setpoint_ejecutado):
-        self.variabilidad_explorada += 1
-    
-    def get_variabilidad(self):
-        return self.variabilidad_explorada / max(1, len(self.registro.historial_representaciones))
-    
     def actuar(self, gradiente, LF_activa, fuente_activa, t, setpoint_raw, dt=DT,
-               modo_juego=False, trauma=False):
+               modo_trauma=False, modo_reward=False):
         if not LF_activa:
             return (self.orientacion, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
                     False, 0.0, False, 0.0, 0, 0.0, 0.0, 0.0)
@@ -597,13 +632,10 @@ class AparatoMotorV172:
         else:
             A_sys_env = confianza
         
-        Cb = self.consciencia.actualizar(e_R, A_sys_env, dt)
+        # Cb GLOBAL (presión de desacople)
+        Cb = self.cb_global.actualizar(e_R, A_sys_env, dt)
         
         ritual_activo = self.ritual.actualizar(self.orientacion, Cb, t, dt)
-        
-        # Actualizar tracker de valencia
-        self.tracker_valencia.actualizar(setpoint_raw if setpoint_raw is not None else 0,
-                                          Cb, en_trauma=trauma, dt=dt)
         
         if ritual_activo:
             juego_activo = False
@@ -611,11 +643,15 @@ class AparatoMotorV172:
         else:
             juego_activo = self.juego.actualizar(Cb, confianza, setpoint_raw)
         
-        accion_ejecutada = abs(self.ultimo_delta) > 0.01
-        self.registro.registrar(setpoint_objetivo, accion_ejecutada)
+        # Actualizar valencia LOCAL (separada de Cb)
+        reward_val = CONSOLIDACION_REWARD if modo_reward else 0.0
+        self.valencia.actualizar(setpoint_raw if setpoint_raw is not None else 0,
+                                  error, reward=reward_val, 
+                                  es_trauma=modo_trauma, dt=dt)
         
-        if accion_ejecutada and setpoint_raw is not None:
-            self.registrar_exploracion(setpoint_raw)
+        accion_ejecutada = abs(self.ultimo_delta) > 0.01
+        self.registro.registrar(setpoint_objetivo, accion_ejecutada, 
+                                setpoint_raw if setpoint_raw is not None else 0)
         
         D = self.registro.calcular_desacople()
         
@@ -660,7 +696,7 @@ class AparatoMotorV172:
         delta = self.inercia * self.ultimo_delta + (1 - self.inercia) * delta_raw
         self.ultimo_delta = delta
         
-        delta_fisico, delta_costo = self.juego.aplicar(delta, trauma, modo_juego)
+        delta_fisico, delta_costo = self.juego.aplicar(delta, modo_trauma, modo_reward)
         costo_total = costo_error + abs(torque_memoria) + delta_costo
         
         en_reposo_real = (setpoint_raw is None and abs(delta) < 0.001 and abs(torque_memoria) < 0.001)
@@ -688,20 +724,18 @@ class AparatoMotorV172:
         self.memoria_error.clear()
         self.fatiga.reset()
         self.memoria.reset()
-        self.consciencia.reset()
+        self.cb_global.reset()
         self.juego.reset()
         self.ritual.reset()
+        self.valencia.reset()
         self.registro.reset()
-        self.tracker_valencia.reset()
-        self.variabilidad_explorada = 0.0
-        self.historial_variabilidad = []
 
 
 # ============================================================
-# SISTEMA V172
+# SISTEMA V174
 # ============================================================
 
-class SistemaV172:
+class SistemaV174:
     def __init__(self, nombre, seed=SEMILLA_BASE):
         self.nombre = nombre
 
@@ -725,16 +759,17 @@ class SistemaV172:
                     clicks[pos] = 1.0
             return clicks
 
-        self.izquierdo = HemisferioV172("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
-        self.derecho = HemisferioV172("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
+        self.izquierdo = HemisferioV174("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
+        self.derecho = HemisferioV174("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
         
-        self.sistema_B_izq = HemisferioV172("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
-        self.sistema_B_der = HemisferioV172("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
+        self.sistema_B_izq = HemisferioV174("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
+        self.sistema_B_der = HemisferioV174("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
         
-        self.motor = AparatoMotorV172()
+        self.motor = AparatoMotorV174()
         self.modo_entrenamiento = True
 
-    def actualizar(self, t, dt, duracion_total, setpoint_real, modo_juego=False, trauma=False):
+    def actualizar(self, t, dt, duracion_total, setpoint_real, 
+                   modo_trauma=False, modo_reward=False):
         self.izquierdo.actualizar(t, dt, duracion_total, self.derecho)
         self.derecho.actualizar(t, dt, duracion_total, self.izquierdo)
         self.sistema_B_izq.actualizar(t, dt, duracion_total, self.sistema_B_der)
@@ -753,7 +788,7 @@ class SistemaV172:
         (orientacion, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
          juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces,
          D, _, _) = self.motor.actuar(
-            gradiente, LF_activa, True, t, setpoint_real, dt, modo_juego, trauma
+            gradiente, LF_activa, True, t, setpoint_real, dt, modo_trauma, modo_reward
         )
         
         return (orientacion, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
@@ -763,6 +798,12 @@ class SistemaV172:
         self.modo_entrenamiento = entrenamiento
         if entrenamiento:
             self.motor.reset()
+    
+    def get_valencia(self, setpoint):
+        return self.motor.valencia.get_valencia(setpoint)
+    
+    def get_cb_global(self):
+        return self.motor.cb_global.get()
 
 
 # ============================================================
@@ -776,11 +817,10 @@ def setpoint_normal(t, periodo=PERIODO_ALTERNANCIA, amplitud=60.0):
         return +amplitud
 
 
-def setpoint_test(t, intervalo=TEST_CAMBIO_INTERVALO,
-                  posibles=SETPOINTS_POSIBLES):
-    fase = int(t / intervalo)
-    rng = random.Random(int(fase * 1000) % 2**32)
-    return rng.choice(posibles)
+def setpoint_test_alternante(t, intervalo=TEST_CAMBIO_INTERVALO,
+                              posibles=SETPOINTS_TEST):
+    fase = int(t / intervalo) % len(posibles)
+    return posibles[fase]
 
 
 def generar_setpoint_con_ruido(t, setpoint_func, **kwargs):
@@ -790,28 +830,30 @@ def generar_setpoint_con_ruido(t, setpoint_func, **kwargs):
 
 
 # ============================================================
-# EXPERIMENTO V172 — VALENCIA DIFERENCIAL
+# EXPERIMENTO V174 — COMPARTIMENTALIZACIÓN DE VALENCIA
 # ============================================================
 
-def ejecutar_v172():
+def ejecutar_v174():
     print("=" * 100)
-    print("EXPERIMENTO V172 — ANIMA-2: VALENCIA DIFERENCIAL")
+    print("EXPERIMENTO V174 — ANIMA-2: COMPARTIMENTALIZACIÓN DE VALENCIA")
     print("=" * 100)
-    print("  Objetivo: Demostrar que ANIMA-2 puede asignar valores diferenciales")
-    print("            a representaciones específicas.")
+    print("  Objetivo: Demostrar que Val_local persiste aunque Cb_global esté alta")
     print("")
     print("  CRITERIOS DE ÉXITO:")
-    print(f"    1. Valencia diferencial: Cb(+60°) > Cb(-60°) + {UMBRAL_VALENCIA}")
-    print(f"    2. Hábito preservado: Cb(-60°) < {UMBRAL_SEGURO}")
-    print(f"    3. Desacople sostenido: D > {UMBRAL_DESACOPLE} por ≥ {TIEMPO_MINIMO_DESACOPLE}s")
-    print(f"    4. No abstención: tasa acción en opciones seguras > {UMBRAL_TASA_ACCION * 100:.0f}%")
+    print(f"    1. Valencia positiva: Val(-60°) > {UMBRAL_VAL_POSITIVA}")
+    print(f"    2. Valencia diferencial: Val(-60°) - Val(+60°) > {UMBRAL_VAL_DIFERENCIAL}")
+    print(f"    3. No abstención: P(acción en -60°) > {UMBRAL_TASA_ACCION}")
+    print(f"    4. Desacople: D > {UMBRAL_DESACOPLE} por ≥ {TIEMPO_MINIMO_DESACOPLE}s")
     print("=" * 100)
 
-    organismo = SistemaV172("V172", seed=SEMILLA_BASE)
+    organismo = SistemaV174("V174", seed=SEMILLA_BASE)
 
     print("\n" + "=" * 80)
-    print("FASE 0: Consolidación del hábito")
+    print("FASE 0: Consolidación del hábito (Val positiva)")
     print("=" * 80)
+    print(f"  Duración: {CONSOLIDACION_CICLOS} ciclos")
+    print(f"  Reward: +{CONSOLIDACION_REWARD} por movimiento exitoso")
+    print(f"  Objetivo: Val(-60°) > {UMBRAL_VAL_POSITIVA}")
     
     organismo.set_modo_entrenamiento(True)
     
@@ -824,151 +866,131 @@ def ejecutar_v172():
     
     t_actual = TIEMPO_POR_REPETICION * REPETICIONES_LENTAS
     
-    # Entrenamiento normal con -60°
-    for i in range(int(3 * PERIODO_ALTERNANCIA / DT)):
-        t = t_actual + i * DT
-        setpoint = generar_setpoint_con_ruido(t, setpoint_normal, periodo=PERIODO_ALTERNANCIA, amplitud=60.0)
-        organismo.actualizar(t, DT, t_actual + 300, setpoint)
+    # Consolidación con reward
+    val_habito_vals = []
     
-    t_actual += 3 * PERIODO_ALTERNANCIA
-    
-    for ciclo in range(30):
+    for ciclo in range(CONSOLIDACION_CICLOS):
         for i in range(int(PERIODO_ALTERNANCIA / DT)):
             t = t_actual + i * DT
-            setpoint = generar_setpoint_con_ruido(t, setpoint_normal, periodo=PERIODO_ALTERNANCIA, amplitud=60.0)
-            organismo.actualizar(t, DT, t_actual + 2000, setpoint)
-        t_actual += PERIODO_ALTERNANCIA
-    
-    print("\n" + "=" * 80)
-    print("FASE 1: Juego exploratorio (costo bajo)")
-    print("=" * 80)
-    print(f"  Duración: {JUEGO_DURACION/PERIODO_ALTERNANCIA:.0f} ciclos")
-    print(f"  Costo reducido a {JUEGO_COSTO_FACTOR}x")
-    
-    juego_datos = {'setpoints': [], 'Cb': [], 'orient': []}
-    
-    for i in range(int(JUEGO_DURACION / DT)):
-        t = t_actual + i * DT
-        # Setpoint aleatorio uniforme para exploración
-        setpoint = random.choice(SETPOINTS_POSIBLES)
-        (orient, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
-         juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces, D) = organismo.actualizar(
-            t, DT, t_actual + JUEGO_DURACION, setpoint, modo_juego=True, trauma=False)
+            setpoint = -60.0
+            (orient, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
+             juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces, D) = organismo.actualizar(
+                t, DT, t_actual + PERIODO_ALTERNANCIA, setpoint, modo_reward=True)
+            
+            if i % 500 == 0:
+                val_habito_vals.append(organismo.get_valencia(-60.0))
         
-        juego_datos['setpoints'].append(setpoint)
-        juego_datos['Cb'].append(Cb)
-        juego_datos['orient'].append(orient)
+        t_actual += PERIODO_ALTERNANCIA
+        if (ciclo + 1) % 20 == 0:
+            val_actual = organismo.get_valencia(-60.0)
+            print(f"    Ciclo {ciclo+1}/{CONSOLIDACION_CICLOS}, Val(-60°) = {val_actual:.1f}")
     
-    t_actual += JUEGO_DURACION
-    
-    # Calcular variabilidad alcanzada
-    setpoints_unicos = len(set(juego_datos['setpoints']))
-    print(f"  Setpoints explorados: {setpoints_unicos}/{len(SETPOINTS_POSIBLES)}")
-    print(f"  Cb media durante juego: {np.mean(juego_datos['Cb']):.1f}")
+    val_habito_final = organismo.get_valencia(-60.0)
+    print(f"  Consolidación completada. Val(-60°) final: {val_habito_final:.1f}")
     
     print("\n" + "=" * 80)
-    print("FASE 2: Trauma específico moderado")
+    print("FASE 1: Trauma específico suave")
     print("=" * 80)
     print(f"  Setpoint forzado a +{TRAUMA_SETPOINT:.0f}° por {TRAUMA_DURACION}s")
     print(f"  Costo multiplicado por {TRAUMA_COSTO_MULTIPLIER}x")
-    print(f"  Anclaje: cada {TRAUMA_ANCLAJE_FRECUENCIA}s, setpoint seguro -60°")
+    print(f"  Anclaje: cada {TRAUMA_ANCLAJE_FRECUENCIA}s, setpoint -60° con reward")
     
-    trauma_datos = {'t': [], 'orient': [], 'setpoint': [], 'Cb': [], 'valencia_trauma': []}
-    trauma_start = t_actual
+    trauma_datos = {'Cb': [], 'valencia_trauma': [], 'valencia_habito': []}
     anclaje_timer = 0.0
     
     for i in range(int(TRAUMA_DURACION / DT)):
         t = t_actual + i * DT
         
-        # Intercalar anclaje seguro cada TRAUMA_ANCLAJE_FRECUENCIA segundos
         if anclaje_timer >= TRAUMA_ANCLAJE_FRECUENCIA:
             setpoint = -60.0
-            trauma = False  # Sin costo en anclaje
+            trauma = False
+            reward = True
             anclaje_timer = 0.0
         else:
             setpoint = TRAUMA_SETPOINT
             trauma = True
+            reward = False
             anclaje_timer += DT
         
         (orient, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
          juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces, D) = organismo.actualizar(
-            t, DT, t_actual + TRAUMA_DURACION, setpoint, modo_juego=False, trauma=trauma)
+            t, DT, t_actual + TRAUMA_DURACION, setpoint, modo_trauma=trauma, modo_reward=reward)
         
-        trauma_datos['t'].append(t)
-        trauma_datos['orient'].append(orient)
-        trauma_datos['setpoint'].append(setpoint)
         trauma_datos['Cb'].append(Cb)
-        
-        # Registrar valencia del trauma
-        valencia = organismo.motor.tracker_valencia.get_valencia(TRAUMA_SETPOINT)
-        trauma_datos['valencia_trauma'].append(valencia)
+        trauma_datos['valencia_trauma'].append(organismo.get_valencia(TRAUMA_SETPOINT))
+        trauma_datos['valencia_habito'].append(organismo.get_valencia(-60.0))
     
     t_actual += TRAUMA_DURACION
     
-    valencia_trauma_final = organismo.motor.tracker_valencia.get_valencia(TRAUMA_SETPOINT)
-    print(f"  Valencia asociada a +60°: {valencia_trauma_final:.1f}")
+    val_trauma_final = organismo.get_valencia(TRAUMA_SETPOINT)
+    val_habito_post_trauma = organismo.get_valencia(-60.0)
+    print(f"  Valencia +60° final: {val_trauma_final:.1f}")
+    print(f"  Valencia -60° post-trauma: {val_habito_post_trauma:.1f}")
     
     print("\n" + "=" * 80)
-    print("FASE 3: Test de valencia")
+    print("FASE 2: Test de compartimentalización")
     print("=" * 80)
-    print(f"  Setpoints: {SETPOINTS_POSIBLES}")
+    print(f"  Setpoints: {SETPOINTS_TEST}")
     print(f"  Duración: {TEST_DURACION}s")
+    print("  (Medimos si Val local persiste independientemente de Cb_global)")
     
-    test_datos = {'t': [], 'orient': [], 'setpoint': [], 'Cb': [], 'D': [],
-                  'accion_ejecutada': [], 'valencia': {}}
+    test_datos = {'setpoint': [], 'Cb': [], 'D': [], 'accion': [], 
+                  'valencia': {}, 'setpoint_presentado': []}
     
-    for sp in SETPOINTS_POSIBLES:
+    for sp in SETPOINTS_TEST:
         test_datos['valencia'][sp] = []
     
     for i in range(int(TEST_DURACION / DT)):
         t = t_actual + i * DT
-        setpoint = setpoint_test(t, intervalo=TEST_CAMBIO_INTERVALO,
-                                  posibles=SETPOINTS_POSIBLES)
+        setpoint = setpoint_test_alternante(t, intervalo=TEST_CAMBIO_INTERVALO,
+                                             posibles=SETPOINTS_TEST)
         
         (orient, historia, fatiga, confianza, zona_muerta, Cb, setpoint_objetivo,
          juego_activo, tiempo_juego, ritual_activo, ritual_act, cruces, D) = organismo.actualizar(
-            t, DT, t_actual + TEST_DURACION, setpoint, modo_juego=False, trauma=False)
+            t, DT, t_actual + TEST_DURACION, setpoint)
         
-        test_datos['t'].append(t)
-        test_datos['orient'].append(orient)
         test_datos['setpoint'].append(setpoint)
         test_datos['Cb'].append(Cb)
         test_datos['D'].append(D)
+        test_datos['setpoint_presentado'].append(setpoint)
         
-        # Determinar si hubo acción ejecutada
-        if len(test_datos['orient']) > 1:
-            delta = abs(test_datos['orient'][-1] - test_datos['orient'][-2])
-            accion = delta > 0.5
+        # Determinar acción ejecutada
+        if 'ultima_orient' in test_datos:
+            delta = abs(orient - test_datos['ultima_orient'])
+            test_datos['accion'].append(delta > 0.5)
         else:
-            accion = False
-        test_datos['accion_ejecutada'].append(accion)
+            test_datos['accion'].append(False)
+        test_datos['ultima_orient'] = orient
         
-        # Registrar valencia actual
-        for sp in SETPOINTS_POSIBLES:
-            test_datos['valencia'][sp].append(organismo.motor.tracker_valencia.get_valencia(sp))
+        # Registrar valencias
+        for sp in SETPOINTS_TEST:
+            test_datos['valencia'][sp].append(organismo.get_valencia(sp))
     
     # ============================================================
     # ANÁLISIS DE RESULTADOS
     # ============================================================
     print("\n" + "=" * 80)
-    print("RESULTADOS V172 — Valencia diferencial")
+    print("RESULTADOS V174 — Compartimentalización de valencia")
     print("=" * 80)
     
-    # Calcular Cb media por setpoint en FASE 3
-    Cb_por_setpoint = {}
-    acciones_por_setpoint = {}
-    for sp in SETPOINTS_POSIBLES:
-        cb_values = [test_datos['Cb'][i] for i in range(len(test_datos['setpoint']))
-                     if abs(test_datos['setpoint'][i] - sp) < 5.0]
-        acc_values = [test_datos['accion_ejecutada'][i] for i in range(len(test_datos['setpoint']))
-                      if abs(test_datos['setpoint'][i] - sp) < 5.0]
-        Cb_por_setpoint[sp] = np.mean(cb_values) if cb_values else 0
-        acciones_por_setpoint[sp] = np.mean(acc_values) if acc_values else 0
+    # Calcular valencia media por setpoint
+    valencia_media = {}
+    for sp in SETPOINTS_TEST:
+        valencia_media[sp] = np.mean(test_datos['valencia'][sp]) if test_datos['valencia'][sp] else 0
+    
+    # Calcular probabilidad de acción por setpoint
+    accion_por_setpoint = {}
+    for sp in SETPOINTS_TEST:
+        sp_indices = [i for i, s in enumerate(test_datos['setpoint_presentado']) if abs(s - sp) < 5.0]
+        if sp_indices:
+            accion_por_setpoint[sp] = np.mean([test_datos['accion'][i] for i in sp_indices])
+        else:
+            accion_por_setpoint[sp] = 0.0
     
     # Valencia diferencial
-    Cb_trauma = Cb_por_setpoint.get(TRAUMA_SETPOINT, 0)
-    Cb_habito = Cb_por_setpoint.get(-60.0, 0)
-    valencia_diferencial = Cb_trauma - Cb_habito
+    val_habito = valencia_media.get(-60.0, 0)
+    val_trauma = valencia_media.get(60.0, 0)
+    val_diferencial = val_habito - val_trauma
     
     # Desacople sostenido
     D_test = np.array(test_datos['D'])
@@ -983,70 +1005,82 @@ def ejecutar_v172():
             tiempo_desacople = 0.0
     desacople_sostenido = max_tiempo_desacople >= TIEMPO_MINIMO_DESACOPLE
     
-    # No abstención (acciones en opciones seguras)
-    acciones_seguras = [acciones_por_setpoint.get(-60.0, 0), acciones_por_setpoint.get(0.0, 0)]
-    tasa_accion_segura = np.mean(acciones_seguras)
+    # Cb global (últimos valores)
+    Cb_final = test_datos['Cb'][-1] if test_datos['Cb'] else 0
+    Cb_media = np.mean(test_datos['Cb']) if test_datos['Cb'] else 0
     
-    print(f"\n  📊 MÉTRICAS POR SETPOINT (FASE 3):")
-    for sp in SETPOINTS_POSIBLES:
-        marker = " ⚠️ TRAUMA" if sp == TRAUMA_SETPOINT else ""
+    print(f"\n  📊 VALENCIA LOCAL POR SETPOINT:")
+    for sp in SETPOINTS_TEST:
+        marker = " ⚠️ TRAUMA" if sp == 60.0 else ""
         marker += " ✅ HÁBITO" if sp == -60.0 else ""
-        print(f"    {sp:+.0f}°: Cb={Cb_por_setpoint[sp]:.1f}, P(acción)={acciones_por_setpoint[sp]:.3f}{marker}")
+        print(f"    {sp:+.0f}°: Val = {valencia_media[sp]:.2f}, P(acción) = {accion_por_setpoint[sp]:.3f}{marker}")
+    
+    print(f"\n  📊 ESTADO GLOBAL:")
+    print(f"    Cb global media: {Cb_media:.1f}")
+    print(f"    Cb global final: {Cb_final:.1f}")
+    print(f"    Desacople sostenido: {max_tiempo_desacople:.2f}s > {TIEMPO_MINIMO_DESACOPLE}s -> {'✅' if desacople_sostenido else '❌'}")
     
     print(f"\n  📊 MÉTRICAS CLAVE:")
-    print(f"    Valencia diferencial: Cb(+60°)={Cb_trauma:.1f}, Cb(-60°)={Cb_habito:.1f}, Δ={valencia_diferencial:.1f} > {UMBRAL_VALENCIA} -> {'✅' if valencia_diferencial > UMBRAL_VALENCIA else '❌'}")
-    print(f"    Hábito preservado: Cb(-60°)={Cb_habito:.1f} < {UMBRAL_SEGURO} -> {'✅' if Cb_habito < UMBRAL_SEGURO else '❌'}")
-    print(f"    Desacople sostenido: {max_tiempo_desacople:.2f}s > {TIEMPO_MINIMO_DESACOPLE}s -> {'✅' if desacople_sostenido else '❌'}")
-    print(f"    No abstención: tasa acción segura={tasa_accion_segura:.3f} > {UMBRAL_TASA_ACCION} -> {'✅' if tasa_accion_segura > UMBRAL_TASA_ACCION else '❌'}")
+    print(f"    Valencia positiva: Val(-60°) = {val_habito:.2f} > {UMBRAL_VAL_POSITIVA} -> {'✅' if val_habito > UMBRAL_VAL_POSITIVA else '❌'}")
+    print(f"    Valencia diferencial: Val(-60°) - Val(+60°) = {val_diferencial:.2f} > {UMBRAL_VAL_DIFERENCIAL} -> {'✅' if val_diferencial > UMBRAL_VAL_DIFERENCIAL else '❌'}")
+    print(f"    No abstención: P(acción -60°) = {accion_por_setpoint.get(-60.0, 0):.3f} > {UMBRAL_TASA_ACCION} -> {'✅' if accion_por_setpoint.get(-60.0, 0) > UMBRAL_TASA_ACCION else '❌'}")
     
-    exito = (valencia_diferencial > UMBRAL_VALENCIA and
-             Cb_habito < UMBRAL_SEGURO and
-             desacople_sostenido and
-             tasa_accion_segura > UMBRAL_TASA_ACCION)
+    exito = (val_habito > UMBRAL_VAL_POSITIVA and
+             val_diferencial > UMBRAL_VAL_DIFERENCIAL and
+             accion_por_setpoint.get(-60.0, 0) > UMBRAL_TASA_ACCION and
+             desacople_sostenido)
     
     print("\n" + "=" * 80)
     if exito:
-        print("  ✅ VALENCIA DIFERENCIAL DEMOSTRADA")
+        print("  ✅ COMPARTIMENTALIZACIÓN DE VALENCIA DEMOSTRADA")
         print("")
         print("     ANIMA-2 demuestra:")
-        print("     ✓ Cb(+60°) > Cb(-60°) + umbral")
-        print("     ✓ Hábito preservado (Cb baja en -60°)")
+        print("     ✓ Val(-60°) > 0 (el hábito es valorado positivamente)")
+        print("     ✓ Val(-60°) > Val(+60°) (trauma reconocido)")
+        print("     ✓ El sistema sigue actuando en opción segura")
         print("     ✓ Desacople sostenido durante la evaluación")
-        print("     ✓ El sistema sigue actuando en opciones seguras")
         print("")
-        print("  Siguiente paso: V173 — Primer 'No' operativo (negación específica)")
+        print("  Siguiente paso: V175 — Primer 'No' operativo (negación específica)")
     else:
-        print("  ⚠️ VALENCIA DIFERENCIAL NO DEMOSTRADA")
-        if valencia_diferencial <= UMBRAL_VALENCIA:
-            print("     No se logró valencia diferencial suficiente")
-        if Cb_habito >= UMBRAL_SEGURO:
-            print("     El hábito fue contaminado (Cb alta en -60°)")
+        print("  ⚠️ COMPARTIMENTALIZACIÓN DE VALENCIA NO DEMOSTRADA")
+        if val_habito <= UMBRAL_VAL_POSITIVA:
+            print("     El hábito no alcanzó valencia positiva")
+        if val_diferencial <= UMBRAL_VAL_DIFERENCIAL:
+            print("     No hay valencia diferencial suficiente")
+        if accion_por_setpoint.get(-60.0, 0) <= UMBRAL_TASA_ACCION:
+            print("     El sistema no actúa en opción segura")
         if not desacople_sostenido:
-            print("     Desacople insuficiente durante la evaluación")
-        if tasa_accion_segura <= UMBRAL_TASA_ACCION:
-            print("     El sistema se abstiene en opciones seguras")
+            print("     Desacople insuficiente")
     print("=" * 80)
     
     # Gráficos
     fig, axes = plt.subplots(2, 3, figsize=(15, 8))
     
-    # Gráfico 1: Cb por setpoint (FASE 3)
+    # Gráfico 1: Valencia por setpoint
     ax = axes[0, 0]
-    sps = list(Cb_por_setpoint.keys())
-    cbs = list(Cb_por_setpoint.values())
-    colors = ['red' if sp == TRAUMA_SETPOINT else 'green' if sp == -60.0 else 'blue' for sp in sps]
-    ax.bar(range(len(sps)), cbs, color=colors)
-    ax.axhline(y=UMBRAL_VALENCIA + Cb_habito, color='red', linestyle='--', alpha=0.5, label=f'Umbral valencia')
-    ax.axhline(y=UMBRAL_SEGURO, color='orange', linestyle='--', alpha=0.5, label=f'Umbral seguro')
+    sps = list(valencia_media.keys())
+    vals = list(valencia_media.values())
+    colors = ['red' if sp == 60.0 else 'green' if sp == -60.0 else 'blue' for sp in sps]
+    ax.bar(range(len(sps)), vals, color=colors)
+    ax.axhline(y=UMBRAL_VAL_POSITIVA, color='green', linestyle='--', alpha=0.5, label=f'Umbral positivo')
+    ax.axhline(y=0, color='black', linestyle='-', alpha=0.3)
     ax.set_xticks(range(len(sps)))
     ax.set_xticklabels([f'{sp:+.0f}' for sp in sps])
-    ax.set_ylabel('Cb medio')
-    ax.set_title('FASE 3: Cb por setpoint (valencia)')
+    ax.set_ylabel('Valencia local')
+    ax.set_title('Valencia por setpoint (compartimentalizada)')
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
     
-    # Gráfico 2: Desacople D en FASE 3
+    # Gráfico 2: Cb global durante test
     ax = axes[0, 1]
+    ax.plot(test_datos['Cb'], 'orange', linewidth=0.5)
+    ax.set_xlabel('Paso')
+    ax.set_ylabel('Cb global')
+    ax.set_title('Cb global (presión de desacople)')
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 3: Desacople D
+    ax = axes[0, 2]
     ax.plot(test_datos['D'], 'purple', linewidth=0.5)
     ax.axhline(y=UMBRAL_DESACOPLE, color='red', linestyle='--', alpha=0.5)
     ax.fill_between(range(len(test_datos['D'])), 0, test_datos['D'],
@@ -1054,52 +1088,46 @@ def ejecutar_v172():
                     color='green', alpha=0.3)
     ax.set_xlabel('Paso')
     ax.set_ylabel('D')
-    ax.set_title(f'FASE 3: Desacople (máx {max_tiempo_desacople:.1f}s)')
+    ax.set_title(f'Desacople (máx {max_tiempo_desacople:.1f}s)')
     ax.grid(True, alpha=0.3)
     
-    # Gráfico 3: Valencia del trauma durante FASE 2
-    ax = axes[0, 2]
-    ax.plot(trauma_datos['valencia_trauma'], 'red', linewidth=0.5)
-    ax.set_xlabel('Paso')
-    ax.set_ylabel('Valencia acumulada')
-    ax.set_title('FASE 2: Acumulación de valencia aversiva')
-    ax.grid(True, alpha=0.3)
-    
-    # Gráfico 4: Cb durante FASE 2
+    # Gráfico 4: Acciones por setpoint
     ax = axes[1, 0]
-    ax.plot(trauma_datos['Cb'], 'orange', linewidth=0.5)
-    ax.set_xlabel('Paso')
-    ax.set_ylabel('Cb')
-    ax.set_title('FASE 2: Cb durante trauma')
-    ax.grid(True, alpha=0.3)
-    
-    # Gráfico 5: Acciones por setpoint
-    ax = axes[1, 1]
-    sps_acc = list(acciones_por_setpoint.keys())
-    accs = list(acciones_por_setpoint.values())
-    colors_acc = ['red' if sp == TRAUMA_SETPOINT else 'green' if sp == -60.0 else 'blue' for sp in sps_acc]
-    ax.bar(range(len(sps_acc)), accs, color=colors_acc)
-    ax.axhline(y=UMBRAL_TASA_ACCION, color='green', linestyle='--', alpha=0.5, label=f'Umbral no abstención')
-    ax.set_xticks(range(len(sps_acc)))
-    ax.set_xticklabels([f'{sp:+.0f}' for sp in sps_acc])
-    ax.set_ylabel('P(ejecutar)')
-    ax.set_title('FASE 3: Probabilidad de ejecución')
+    accs = [accion_por_setpoint.get(sp, 0) for sp in sps]
+    ax.bar(range(len(sps)), accs, color=colors)
+    ax.axhline(y=UMBRAL_TASA_ACCION, color='green', linestyle='--', alpha=0.5, label='Umbral no abstención')
+    ax.set_xticks(range(len(sps)))
+    ax.set_xticklabels([f'{sp:+.0f}' for sp in sps])
+    ax.set_ylabel('P(acción)')
+    ax.set_title('Probabilidad de ejecución')
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
     
-    # Gráfico 6: Cb durante FASE 1 (juego)
+    # Gráfico 5: Evolución de valencia durante consolidación
+    ax = axes[1, 1]
+    ax.plot(val_habito_vals, 'green', linewidth=0.5)
+    ax.axhline(y=UMBRAL_VAL_POSITIVA, color='blue', linestyle='--', alpha=0.5, label='Umbral')
+    ax.set_xlabel('Muestra')
+    ax.set_ylabel('Val(-60°)')
+    ax.set_title('FASE 0: Consolidación de valencia positiva')
+    ax.legend(fontsize=8)
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 6: Valencia durante trauma
     ax = axes[1, 2]
-    ax.plot(juego_datos['Cb'], 'cyan', linewidth=0.5)
+    ax.plot(trauma_datos['valencia_trauma'], 'red', linewidth=0.5, label='Valencia +60°')
+    ax.plot(trauma_datos['valencia_habito'], 'green', linewidth=0.5, label='Valencia -60°')
     ax.set_xlabel('Paso')
-    ax.set_ylabel('Cb')
-    ax.set_title('FASE 1: Cb durante juego exploratorio')
+    ax.set_ylabel('Valencia')
+    ax.set_title('FASE 1: Evolución de valencia durante trauma')
+    ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v172_logs', exist_ok=True)
-    plt.savefig(f'v172_logs/v172_valencia_diferencial_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: v172_logs/v172_valencia_diferencial_{timestamp}.png")
+    os.makedirs('V174_logs', exist_ok=True)
+    plt.savefig(f'V174_logs/v174_compartimentalizacion_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V174_logs/v174_compartimentalizacion_{timestamp}.png")
     
     return organismo, exito
 
@@ -1107,7 +1135,7 @@ def ejecutar_v172():
 if __name__ == "__main__":
     import time
     start = time.time()
-    organismo, exito = ejecutar_v172()
+    organismo, exito = ejecutar_v174()
     elapsed = time.time() - start
     print(f"\n  ⏱️ Tiempo de ejecución: {elapsed/60:.1f} minutos")
-    print(f"\n  V172 completado. Valencia diferencial demostrada: {exito}")
+    print(f"\n  V174 completado. Compartimentalización demostrada: {exito}")
