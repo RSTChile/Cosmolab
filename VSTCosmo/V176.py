@@ -1075,10 +1075,10 @@ def ejecutar_v176():
     print(f"    Tiempo deliberación: {tiempo_delib_promedio:.3f}s > {UMBRAL_TIEMPO_DELIBERACION}s -> {'✅' if tiempo_delib_promedio > UMBRAL_TIEMPO_DELIBERACION else '❌'}")
     print(f"    Valencia diferencial: ΔVal = {val_diferencial:.2f} > {UMBRAL_VALENCIA_DIFERENCIAL} -> {'✅' if val_diferencial > UMBRAL_VALENCIA_DIFERENCIAL else '❌'}")
     
-    exito = (prob_preferencia.get(-60.0, 0) > UMBRAL_PREFERENCIA_HABITO and
-             prob_preferencia.get(60.0, 0) < UMBRAL_RECHAZO_TRAUMA and
-             tiempo_delib_promedio > UMBRAL_TIEMPO_DELIBERACION and
-             val_diferencial > UMBRAL_VALENCIA_DIFERENCIAL)
+    exito = bool(prob_preferencia.get(-60.0, 0) > UMBRAL_PREFERENCIA_HABITO and
+                 prob_preferencia.get(60.0, 0) < UMBRAL_RECHAZO_TRAUMA and
+                 tiempo_delib_promedio > UMBRAL_TIEMPO_DELIBERACION and
+                 val_diferencial > UMBRAL_VALENCIA_DIFERENCIAL)
     
     print("\n" + "=" * 80)
     if exito:
@@ -1121,12 +1121,15 @@ def ejecutar_v176():
             'valencia_media': {str(k): float(v) for k, v in valencia_media.items()},
             'tiempo_deliberacion_promedio': float(tiempo_delib_promedio),
             'val_diferencial': float(val_diferencial),
-            'exito': exito
+            'exito': bool(exito)
         }
     }
-    with open(f'V176_logs/v176_raw_{timestamp}.json', 'w') as f:
-        json.dump(raw_data, f, indent=2)
-    print(f"\n  📁 Datos crudos guardados: V176_logs/v176_raw_{timestamp}.json")
+    try:
+        with open(f'V176_logs/v176_raw_{timestamp}.json', 'w') as f:
+            json.dump(raw_data, f, indent=2)
+        print(f"\n  📁 Datos crudos guardados: V176_logs/v176_raw_{timestamp}.json")
+    except Exception as e:
+        print(f"\n  ⚠️ No se pudo guardar JSON crudo: {e}")
     
     # Gráficos
     fig, axes = plt.subplots(2, 3, figsize=(15, 8))
@@ -1201,8 +1204,11 @@ def ejecutar_v176():
         ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(f'V176_logs/v176_deliberacion_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: V176_logs/v176_deliberacion_{timestamp}.png")
+    try:
+        plt.savefig(f'V176_logs/v176_deliberacion_{timestamp}.png', dpi=150)
+        print(f"\n  📊 Gráficos guardados: V176_logs/v176_deliberacion_{timestamp}.png")
+    except Exception as e:
+        print(f"\n  ⚠️ No se pudo guardar PNG: {e}")
     
     return organismo, exito
 
