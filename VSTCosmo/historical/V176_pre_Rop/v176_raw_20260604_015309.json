@@ -1,0 +1,29 @@
+{
+  "version": "V176",
+  "timestamp": "20260604_015309",
+  "params": {
+    "CONSOLIDACION_CICLOS": 30,
+    "TRAUMA_DURACION": 15.0,
+    "TEST_DURACION": 30.0,
+    "DELIBERACION_STEPS_POR_OPCION": 50,
+    "UMBRAL_PREFERENCIA_HABITO": 0.6,
+    "UMBRAL_RECHAZO_TRAUMA": 0.1
+  },
+  "resultados": {
+    "preferencias": {
+      "-60.0": 0.6479625918503674,
+      "-30.0": 0.050100200400801605,
+      "0.0": 0.17234468937875752,
+      "30.0": 0.1295925183700735,
+      "60.0": 0.0
+    },
+    "valencia_media": {
+      "-60.0": 24.294633695142103,
+      "-30.0": -0.03216691036470261,
+      "0.0": -0.032094153729040405,
+      "30.0": -0.03202155106190891,
+      "60.0": -0.9753207257158105
+    },
+    "tiempo_deliberacion_promedio": 1.6773547094188377,
+    "val_diferencial": 25.269954420857914,
+    "exito": 
