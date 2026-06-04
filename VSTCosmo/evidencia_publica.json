@@ -1,8 +1,97 @@
 {
-  "generated_at": "2026-06-03T10:39:59.270436+00:00",
+  "generated_at": "2026-06-03T23:11:48.512549+00:00",
   "repo": "https://github.com/RSTChile/Cosmolab/tree/main/VSTCosmo",
   "note": "Métricas extraídas heurísticamente de logs de corridas. Para datos completos ver archivos fuente y PDFs canónicos.",
   "runs": [
+    {
+      "file": "V156_logs/v156_run_20260601_201901.log",
+      "version": "V156_logs",
+      "metrics": {
+        "version": "V156_logs",
+        "source": null,
+        "fatiga_final": 4207.0,
+        "historia_final": 2708.0
+      }
+    },
+    {
+      "file": "V157_logs/v157_run_20260601_203257.log",
+      "version": "V157_logs",
+      "metrics": {
+        "version": "V157_logs",
+        "source": null,
+        "fatiga_final": 12913.0,
+        "historia_final": 648.0
+      }
+    },
+    {
+      "file": "V157_logs/v157_run_20260601_rerun.log",
+      "version": "V157_logs",
+      "metrics": {
+        "version": "V157_logs",
+        "source": null
+      }
+    },
+    {
+      "file": "V159_logs/v158_run_20260601_210714.log",
+      "version": "V159_logs",
+      "metrics": {
+        "version": "V159_logs",
+        "source": null
+      }
+    },
+    {
+      "file": "V164_logs/v164_run_20260602_215018.log",
+      "version": "V164_logs",
+      "metrics": {
+        "version": "V164_logs",
+        "source": null,
+        "ritual_activo_f4": false,
+        "fatiga_final": 10288.0,
+        "historia_final": 3194.0
+      }
+    },
+    {
+      "file": "V167_logs/v167_run_20260603_044554.log",
+      "version": "V167_logs",
+      "metrics": {
+        "version": "V167_logs",
+        "source": null,
+        "correlacion_ritual_senal": 0.988,
+        "n_correlacion": 21677,
+        "ritual_activo_f4": true,
+        "fatiga_final": 4793.0,
+        "historia_final": 243.0
+      }
+    },
+    {
+      "file": "V167_logs/v167_run_corrfix_20260603_051840.log",
+      "version": "V167_logs",
+      "metrics": {
+        "version": "V167_logs",
+        "source": null,
+        "correlacion_ritual_senal": 0.885,
+        "n_correlacion": 80000,
+        "ritual_activo_f4": true,
+        "fatiga_final": 4793.0,
+        "historia_final": 243.0
+      }
+    },
+    {
+      "file": "V170_logs/v170_raw_summary_20260603.json",
+      "version": "V170_logs",
+      "metrics": {},
+      "json_keys": [
+        "version",
+        "timestamp",
+        "teoria_nodes",
+        "result",
+        "f4_metrics",
+        "f3_metrics",
+        "setpoint_distribution_f4",
+        "interpretation"
+      ],
+      "sample": "{'version': 'V170', 'timestamp': '20260603 (from terminal paste)', 'teoria_nodes': ['O-N0.3', 'O-N7.2', 'O-N10.7', 'O-N10.1', 'O-N17'], 'result': '✅ DESACOPLE REPRESENTACIONAL DEMOSTRADO', 'f4_metrics"
+    },
     {
       "file": "v100_logs/v100_resultados_20260526_234211.csv",
       "version": "v100_logs",
@@ -91,79 +180,6 @@
         "LF_B"
       ],
       "sample": "{'t': [0.0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3, 0.31, 0.32,"
-    },
-    {
-      "file": "v156_logs/v156_run_20260601_201901.log",
-      "version": "v156_logs",
-      "metrics": {
-        "version": "v156_logs",
-        "source": null,
-        "fatiga_final": 4207.0,
-        "historia_final": 2708.0
-      }
-    },
-    {
-      "file": "v157_logs/v157_run_20260601_203257.log",
-      "version": "v157_logs",
-      "metrics": {
-        "version": "v157_logs",
-        "source": null,
-        "fatiga_final": 12913.0,
-        "historia_final": 648.0
-      }
-    },
-    {
-      "file": "v157_logs/v157_run_20260601_rerun.log",
-      "version": "v157_logs",
-      "metrics": {
-        "version": "v157_logs",
-        "source": null
-      }
-    },
-    {
-      "file": "v159_logs/v158_run_20260601_210714.log",
-      "version": "v159_logs",
-      "metrics": {
-        "version": "v159_logs",
-        "source": null
-      }
-    },
-    {
-      "file": "v164_logs/v164_run_20260602_215018.log",
-      "version": "v164_logs",
-      "metrics": {
-        "version": "v164_logs",
-        "source": null,
-        "ritual_activo_f4": false,
-        "fatiga_final": 10288.0,
-        "historia_final": 3194.0
-      }
-    },
-    {
-      "file": "v167_logs/v167_run_20260603_044554.log",
-      "version": "v167_logs",
-      "metrics": {
-        "version": "v167_logs",
-        "source": null,
-        "correlacion_ritual_senal": 0.988,
-        "n_correlacion": 21677,
-        "ritual_activo_f4": true,
-        "fatiga_final": 4793.0,
-        "historia_final": 243.0
-      }
-    },
-    {
-      "file": "v167_logs/v167_run_corrfix_20260603_051840.log",
-      "version": "v167_logs",
-      "metrics": {
-        "version": "v167_logs",
-        "source": null,
-        "correlacion_ritual_senal": 0.885,
-        "n_correlacion": 80000,
-        "ritual_activo_f4": true,
-        "fatiga_final": 4793.0,
-        "historia_final": 243.0
-      }
     },
     {
       "file": "v97_1_logs/v97_1_A_estimulo_20260505_140118.csv",

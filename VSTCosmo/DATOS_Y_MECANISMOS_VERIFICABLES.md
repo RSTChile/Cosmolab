@@ -138,9 +138,9 @@ Métricas Rᴿ:
 Estos controles muestran que el surgimiento/efecto del ritual **depende de la integración** con Cb (presión), historia de trabajo, y el detector de patrón temporal bajo las condiciones del aparato motor fatigable.
 
 **Evidencia en repo**:
-- v167_logs/*.log (prints detallados + métricas finales + correlación)
-- v167_logs/*.png (plots)
-- v165_logs/, v164_logs/, v163_logs/, v162_logs/, v159_logs/ (serie completa de etapas)
+- V167_logs/*.log (prints detallados + métricas finales + correlación)
+- V167_logs/*.png (plots)
+- V165_logs/, V164_logs/, v163_logs/, v162_logs/, v159_logs/ (serie completa de etapas)
 - V167.py (código completo + prints de validación)
 - Similar para V150 y previos.
 
@@ -195,7 +195,7 @@ Si ejecutas `python exportar_evidencia.py` (a implementar), producirá artefacto
 ## 7. Referencias internas clave (archivos en este dir)
 
 - V150.py, V167.py (y previos V122+, V153+)
-- v150_logs/, v167_logs/, v165_logs/ ... (ejecutados)
+- v150_logs/, V167_logs/, V165_logs/ ... (ejecutados)
 - TeoriaCosmosemiotica Addendum CN202 EvidenciaComputacional Abril2026.pdf (v72c datos)
 - Síntesis de Experimentos V90 a V103.pdf
 - INFORME CANÓNICO ... VSTCosmo 150.pdf
@@ -210,6 +210,99 @@ Este documento puede actualizarse automáticamente o manualmente tras cada hito.
 
 *Generado con acceso completo al workspace VSTCosmo. Versión local tiene commits ahead + logs recientes no necesariamente pushed aún.*
 
+## 9. Actualización: V167 CORREGIDO (respuesta directa a demanda de código completo + logs raw)
+
+**Fecha de la corrida**: 2026-06-03 (terminal output pegado por el usuario).
+
+**Script ejecutado**: `V167.py` (título interno: "V167 — ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) - CORREGIDO" — la corrección fue al cálculo de correlación para evitar NaN).
+
+**Resultados exactos reportados en terminal** (ver también el archivo de texto crudo):
+```
+  [Etapa 3 - Ritual]
+    Tiempo ritual activo: 382.8s (23.9%)
+    Activación ritual final: 0.415
+    Ritual activo en F4: True
+
+  [Etapa 4 - Meta-representación observacional (Rᴿ)]
+    Señal desajuste máxima en F4: 1.000
+    Señal desajuste media en F4: 0.274
+    Detección de desajuste (> 0.5): True
+    Correlación ritual_señal (F3): 0.901
+
+  [Test post - Error RMS F4]
+    Error RMS Control: 10.45°
+    Error RMS Ritual: 30.03°
+    Cb final control: 115.3
+    Cb final ritual: 0.9
+
+CRITERIOS (los 4 cumplidos ✅)
+  1. Suficiente activación (>12%): 23.9% -> ✅
+  2. Persistencia del ritual en F4: True -> ✅
+  3. Detección de desajuste (señal > 0.5): 1.000 -> ✅
+  4. Correlación ritual-señal > 0.3: 0.901 -> ✅
+```
+
+**Código completo de las clases que fueron cuestionadas** (Ritual detector de cruces, umbral Cb, decaimiento exp, presión error_norm·Cb_norm, integrador de desajuste, cálculo de correlación corregido):
+
+→ [clases_completas_Ritual_Meta_V167_corregido.py](clases_completas_Ritual_Meta_V167_corregido.py)
+
+Este archivo es un extracto autocontenido con:
+- Todos los parámetros numéricos exactos (RITUAL_UMBRAL_CB = 28.0, RITUAL_TAU=180.0 → exp(-dt/180), RITUAL_PATRON_TEMPORAL=40.0, META_TAU=30, error_norm = min(1, err/60), Cb_norm=min(1, Cb/500), el caso "ritual ciego", el integrador leaky, etc.).
+- `RitualV167` completa (métodos `__init__`, `detectar_cruce_por_cero`, `actualizar`, `modular_correccion`, `reset`).
+- `MetaRepresentacionObservacional` completa (el monitor observacional, sin inhibición).
+- Fragmentos del motor que muestran la jerarquía (ritual se actualiza antes, juego se inhibe si ritual_activo, meta solo observa y devuelve señal).
+- La función de correlación corregida (ventana central + chequeo de std > 1e-6 + fallback downsample).
+
+**Logs raw / artefactos de esta corrida exacta**:
+- `V167_logs/v167_corregido_resultados_terminal_20260603.txt` — el output completo del terminal que pegaste.
+- `V167_logs/v167_meta_observacional_corregido_20260603_064549.png` — gráfico generado.
+- Script fuente completo: `V167.py`
+
+**Respuesta a la afirmación "el software define las leyes"**:
+Totalmente de acuerdo. Por eso publicamos el código completo de las reglas (arriba). La pregunta científica que el proyecto está haciendo no es "apareció magia", sino:
+
+"Cuando integramos estas reglas explícitas (campo + memoria de ausencia + Cb como presión de desacople + fatiga recuperable + detector de patrón ritual + monitor observacional) bajo un protocolo de exposición prolongada + desafío (F4 invertido), ¿emergen correlaciones altas, persistencia del marco ritual, y trade-offs medibles (ej. RMS control 10.45° vs ritual 30.03° en esta corrida, o a la inversa en corridas anteriores) que son útiles para modelar exaptación / rigidez funcional?"
+
+Los 4 criterios se definieron *antes* de la corrida y se cumplieron. Los controles previos (V159, V164, A/B) muestran que sin las condiciones (historia + presión + patrón) el detector no se activa o produce efectos diferentes.
+
+Esto es verificable porque el código y los historiales que alimentan la correlación están en el repo y en los logs de cada fase.
+
+**Próximo paso natural (Etapa 5)**: Primer 'No' operativo (R_op) — usar la señal de desajuste para que el sistema *decida* inhibir o modificar el ritual. Eso será la primera vez que el monitor deja de ser puramente observacional.
+
+## 10. Preparación para Etapa 5 (V168): Primer "No" operativo (R_op)
+
+**Corrección**: El último output compartido por el usuario correspondía a `V167.py` (versión corregida de la Etapa 4). El título del output lo confirma ("RESULTADOS V167 CORREGIDO"). 
+
+El paquete para V167.py ya está completo:
+- [clases_completas_Ritual_Meta_V167_corregido.py](clases_completas_Ritual_Meta_V167_corregido.py)
+- `V167_logs/v167_corregido_resultados_terminal_20260603.txt`
+
+**Código preparado para la Etapa 5 real**:
+
+El workspace contiene `V168.py` (implementación de "Primer 'No' operativo (R_op)").
+
+Extracto limpio con la clase completa:
+→ [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py)
+
+**Lógica de R_op** (preparada para cuando se corra la Etapa 5 real):
+
+El extracto [clases_completas_R_op_V168.py](clases_completas_R_op_V168.py) contiene la clase completa `R_op` tal como está implementada en `V168.py`.
+
+Resumen:
+- Recibe `señal_desajuste` de la Meta-representación (Rᴿ validada en V167.py).
+- Aplica histéresis (0.5 s por encima de 0.7) para activar inhibición.
+- Mantiene la inhibición mínimo 5 s.
+- Desinhibe cuando la señal baja de 0.3.
+- En el motor: si R_op devuelve true, fuerza `ritual_activo = False`.
+
+Esto implementa el primer "No" operativo: el sistema usa su propia meta-representación para suspender un comportamiento ritual que está generando desajuste sostenido.
+
+Cuando compartas el output completo de una corrida de `V168.py` (o el archivo que llames v168-ob.py), guardaré el terminal raw, extraeré las métricas de inhibición (si se activó en F4, si el error mejoró, reducción de tiempo ritual) y actualizaré esta sección + el borrador de respuesta.
+
+El código ya está listo para citar.
+
+Datos y código > analogías. Aquí están.
+
 ## 8. Resumen extraído automáticamente (última corrida de exportar_evidencia.py)
 
 Ver evidencia_resumen.md y evidencia_publica.json generados junto a este script.
@@ -219,11 +312,11 @@ Ejemplo de métricas recientes parseadas (truncado):
 
 | Versión / Log | Métricas clave extraídas | Notas |
 |---------------|---------------------------|-------|
-| v100_logs / v100_resultados_20260526_234211.csv | ver archivo | logs/v100_logs |
-| v101_logs / v101_resultados_20260527_030855.csv | ver archivo | logs/v101_logs |
-| v102_logs / v102_resultados_20260527_150635.csv | ver archivo | logs/v102_logs |
-| v103_logs / v103_resultados_20260527_153253.csv | ver archivo | logs/v103_logs |
-| v111b_logs / v111b_datos_20260527_203059.json | ver archivo | logs/v111b_logs |
-| v156_logs / v156_run_20260601_201901.log | version=v156_logs, source=None, fatiga_final=4207.0, historia_final=2708.0 | logs/v156_logs |
-| v157_logs / v157_run_20260601_203257.log | version=v157_logs, source=None, fatiga_final=12913.0, historia_final=648.0 | logs/v157_logs |
+| V156_logs / v156_run_20260601_201901.log | version=V156_logs, source=None, fatiga_final=4207.0, historia_final=2708.0 | logs/V156_logs |
+| V157_logs / v157_run_20260601_203257.log | version=V157_logs, source=None, fatiga_final=12913.0, historia_final=648.0 | logs/V157_logs |
+| V157_logs / v157_run_20260601_rerun.log | version=V157_logs, source=None | logs/V157_logs |
+| V159_logs / v158_run_20260601_210714.log | version=V159_logs, source=None | logs/V159_logs |
+| V164_logs / v164_run_20260602_215018.log | version=V164_logs, source=None, ritual_activo_f4=False, fatiga_final=10288.0 | logs/V164_logs |
+| V167_logs / v167_run_20260603_044554.log | version=V167_logs, source=None, correlacion_ritual_senal=0.988, n_correlacion=21677 | logs/V167_logs |
+| V167_logs / v167_run_corrfix_20260603_051840.log | version=V167_logs, source=None, correlacion_ritual_senal=0.885, n_correlacion=80000 | logs/V167_logs |
 

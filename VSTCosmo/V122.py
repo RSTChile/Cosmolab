@@ -372,10 +372,10 @@ def ejecutar_v122():
     ax.grid(True, alpha=0.3)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('v122_logs', exist_ok=True)
+    os.makedirs('V122_logs', exist_ok=True)
     plt.tight_layout()
-    plt.savefig(f'v122_logs/v122_resultados_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráfico: v122_logs/v122_resultados_{timestamp}.png")
+    plt.savefig(f'V122_logs/v122_resultados_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráfico: V122_logs/v122_resultados_{timestamp}.png")
     
     return S2, S3, R2 and lateralidad
 
