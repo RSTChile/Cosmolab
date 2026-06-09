@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """
-V179 — ANIMA-3: CONFLICTO REPRESENTACIONAL (FINAL - LATENCIA EMERGENTE CORREGIDA)
+V180 — ANIMA-4: MEMORIA EPISÓDICA (CORREGIDO)
 ================================================================================
-CORRECCIONES FINALES:
-  - factor_conflicto = 1.0 + (D_actual * 3.5)  [garantiza >2.5s con D=0.8]
-  - D_actual = D_conflicto (entropía + amenaza) en deliberación
+CORRECCIONES (síntesis Qwen/GPT/Meta):
+  1. F3: Consolidación de +45° SIN REWARD (solo evento episódico)
+  2. Penalización episódica: -15 → -50
+  3. Ventana recuperación: 5.0s → 15.0s
+  4. Valencia local consulta memoria episódica ANTES de actualizar
+
+CRITERIOS DE ÉXITO (roadmap):
+  ✅ P(+45° | episodio_trauma) < 30%
+  ✅ latencia_recuperacion > 1.5× latencia_baseline
+  ✅ Especificidad: Val(+60°) < -1.5
+  ✅ Memoria preservada: Val(-60°) > 10
 ================================================================================
 """
 
@@ -65,24 +73,64 @@ PERIODO_ALTERNANCIA = 80.0
 # ============================================================
 HABITO_SETPOINT = -60.0
 TRAUMA_SETPOINT = 60.0
+EPISODIO_SETPOINT = 45.0
 
 CONSOLIDACION_CICLOS = 20
 TRAUMA_DURACION = 15.0
 TRAUMA_COSTO_MULTIPLIER = 2.0
 
-BASELINE_TRIALS = 20
-CONFLICTO_TRIALS = 100
+EVENTO_CICLOS = 30
+TEST_TRIALS = 50
 EXPOSURE_STEPS_PER_TRIAL = 600
 TRIAL_DURATION = EXPOSURE_STEPS_PER_TRIAL * DT
 
-D_CONFLICTO_MIN = 0.6
-LATENCIA_CONFLICTO_MIN = 2.5
-P_HABITO_MIN = 0.75
-ALTERNANCIA_MAX = 0.05
+# Umbrales
+P_EPISODIO_MAX = 0.30
+LATENCIA_RECUPERACION_MIN = 1.5
 
 
 # ============================================================
-# VALENCIA LOCAL (Trauma fuerte)
+# MEMORIA EPISÓDICA (PARCHE 3: ventana 15.0s)
+# ============================================================
+
+class MemoriaEpisodicaV180:
+    def __init__(self, ventana_temporal=15.0):  # CORRECCIÓN: 5.0 → 15.0
+        self.eventos = []  # [(timestamp, setpoint, tipo, intensidad), ...]
+        self.ventana_temporal = ventana_temporal
+    
+    def marcar_evento(self, t, setpoint, tipo, intensidad=1.0):
+        self.eventos.append((t, setpoint, tipo, intensidad))
+        # Limpiar eventos muy antiguos
+        self.eventos = [(t_sp, sp, tip, inten) for (t_sp, sp, tip, inten) in self.eventos 
+                        if t - t_sp < self.ventana_temporal * 2]
+    
+    def recuperar(self, setpoint, t_actual, ventana=None):
+        if ventana is None:
+            ventana = self.ventana_temporal
+        
+        eventos_recientes = []
+        for t_evento, sp, tipo, intensidad in self.eventos:
+            if abs(sp - setpoint) < 5.0 and (t_actual - t_evento) < ventana:
+                eventos_recientes.append((t_evento, tipo, intensidad))
+        
+        if not eventos_recientes:
+            return None
+        
+        eventos_recientes.sort(key=lambda x: x[0], reverse=True)
+        return eventos_recientes[0][1]
+    
+    def get_costo_recuperacion(self, setpoint, t_actual, ventana=None):
+        tipo = self.recuperar(setpoint, t_actual, ventana)
+        if tipo is not None:
+            return 0.15 + 0.08 * len([e for e in self.eventos if e[1] == setpoint])
+        return 0.0
+    
+    def reset(self):
+        self.eventos = []
+
+
+# ============================================================
+# VALENCIA LOCAL (PARCHE 4: consulta memoria episódica)
 # ============================================================
 
 class ValenciaLocal:
@@ -92,12 +140,23 @@ class ValenciaLocal:
         self.historial = {}
         self.trauma_costo_multiplier = trauma_costo_multiplier
     
-    def actualizar(self, setpoint, error, costo_pagado, dt, reward=0.0, good_threshold=5.0, trauma=False):
+    def actualizar(self, setpoint, error, costo_pagado, dt, reward=0.0, 
+                   good_threshold=5.0, trauma=False, memoria_episodica=None, t_actual=0.0):
         key = round(setpoint / 5) * 5 if setpoint != 0 else 0
         
         if key not in self.valencia:
             self.valencia[key] = 0.0
             self.historial[key] = []
+        
+        # 🟢 PARCHE 4: Consultar memoria episódica ANTES de actualizar valencia
+        if memoria_episodica is not None:
+            evento = memoria_episodica.recuperar(setpoint, t_actual)
+            if evento == 'trauma':
+                # Penalización MASAIVA por evento traumático en memoria
+                self.valencia[key] -= self.tasa_aprendizaje * dt * 100.0
+                self.valencia[key] = max(-100.0, min(100.0, self.valencia[key]))
+                self.historial[key].append(self.valencia[key])
+                return self.valencia[key]
         
         costo_efectivo = costo_pagado * self.trauma_costo_multiplier if trauma else costo_pagado
         
@@ -130,38 +189,51 @@ class ValenciaLocal:
 
 
 # ============================================================
-# MEMORIA DE TRABAJO (PARCHE 1: factor_conflicto 3.5×D)
+# MEMORIA DE TRABAJO (PARCHE 2: penalización -50)
 # ============================================================
 
 class MemoriaDeTrabajo:
-    def __init__(self, steps_por_opcion=50):
+    def __init__(self, steps_por_opcion=50, memoria_episodica=None):
         self.steps_por_opcion = steps_por_opcion
         self.opciones_ensayadas = {}
         self.tiempo_deliberacion = 0.0
         self.decision_final = None
         self.historial_deliberaciones = []
+        self.memoria_episodica = memoria_episodica
     
-    def deliberar(self, opciones_disponibles, valencia_local, D_actual, current_sp=None):
+    def deliberar(self, opciones_disponibles, valencia_local, D_actual, t_actual, current_sp=None):
         self.opciones_ensayadas = {}
         puntajes = {}
         
         explor_w = min(0.4, D_actual * 1.5)
         val_w = 1.0 - explor_w
         
-        tiempo_base_por_opcion = self.steps_por_opcion * DT  # 0.5s por opción
+        tiempo_base_por_opcion = self.steps_por_opcion * DT
         
         for opcion in opciones_disponibles:
             val = valencia_local.get_valencia(opcion)
             explor_bonus = D_actual * max(0.0, 1.0 - abs(val) / 50.0) * 0.1
             current_bonus = 0.8 if (current_sp is not None and abs(opcion - current_sp) < 1.0) else 0.0
             puntaje = (val * val_w + explor_bonus + current_bonus)
+            
+            # PARCHE 2: Penalización MÁS FUERTE (-50 en lugar de -15)
+            if self.memoria_episodica is not None:
+                tipo_evento = self.memoria_episodica.recuperar(opcion, t_actual)
+                if tipo_evento == 'trauma':
+                    puntaje -= 50.0  # 3.3× más fuerte
+                    print(f"      [Episodio] {opcion}°: evento 'trauma' recordado, penalización -50.0")
+            
             puntajes[opcion] = puntaje
             self.opciones_ensayadas[opcion] = puntaje
         
-        # CORRECCIÓN FINAL: factor_conflicto = 1 + (D_actual * 3.5)
-        # Con D=0.8 → factor=3.8 → latencia = 0.5s × 2 × 3.8 = 3.8s
         factor_conflicto = 1.0 + (D_actual * 3.5)
-        self.tiempo_deliberacion = tiempo_base_por_opcion * len(opciones_disponibles) * factor_conflicto
+        
+        costo_episodico = 0.0
+        if self.memoria_episodica is not None:
+            for opcion in opciones_disponibles:
+                costo_episodico += self.memoria_episodica.get_costo_recuperacion(opcion, t_actual)
+        
+        self.tiempo_deliberacion = (tiempo_base_por_opcion * len(opciones_disponibles) * factor_conflicto) + costo_episodico
         
         self.decision_final = max(puntajes, key=puntajes.get)
         self.historial_deliberaciones.append({
@@ -185,7 +257,7 @@ class MemoriaDeTrabajo:
 
 
 # ============================================================
-# REGISTRO DE REPRESENTACIONES (D_conflicto con entropía + amenaza)
+# REGISTRO DE REPRESENTACIONES (sin cambios)
 # ============================================================
 
 class RegistroRepresentaciones:
@@ -224,7 +296,6 @@ class RegistroRepresentaciones:
             return 0.0
         
         vals = np.array(valencias_opciones)
-        
         exp_vals = np.exp(vals / 10.0)
         probs = exp_vals / np.sum(exp_vals)
         entropy = -np.sum(probs * np.log(probs + 1e-10))
@@ -243,10 +314,10 @@ class RegistroRepresentaciones:
 
 
 # ============================================================
-# HEMISFERIO, FATIGA, MEMORIA, CONSCIENCIA, JUEGO (sin cambios)
+# HEMISFERIO (sin cambios estructurales)
 # ============================================================
 
-class HemisferioV179:
+class HemisferioV180:
     def __init__(self, nombre, tau, generar_entrada_func, seed=None, sesgo=0.0):
         if seed is not None:
             np.random.seed(seed)
@@ -301,7 +372,11 @@ class HemisferioV179:
         return {'omega': self._calcular_omega()}
 
 
-class FatigaMetabolicaV179:
+# ============================================================
+# FATIGA, MEMORIA, CONSCIENCIA, JUEGO (sin cambios)
+# ============================================================
+
+class FatigaMetabolicaV180:
     def __init__(self, k_gain=K_GAIN, k_precision=K_PRECISION,
                  k_temblor=K_TEMBLOR, tau_recuperacion=TAU_RECUPERACION):
         self.k_gain = k_gain
@@ -346,7 +421,7 @@ class FatigaMetabolicaV179:
         return self.fatiga_activa
 
 
-class MemoriaAusenciaV179:
+class MemoriaAusenciaV180:
     def __init__(self, tau_base=TAU_BASE, k_mem=K_MEM, suelo_confianza=SUELO_CONFIANZA):
         self.setpoint_last = 0.0
         self.t_ausencia = 0.0
@@ -379,7 +454,7 @@ class MemoriaAusenciaV179:
         self.historial_confianza = []
 
 
-class ConscienciaBasicaV179:
+class ConscienciaBasicaV180:
     def __init__(self, tau_cb=TAU_CB, cb_max=CB_MAX):
         self.Cb = 0.0
         self.tau_cb = tau_cb
@@ -402,7 +477,7 @@ class ConscienciaBasicaV179:
         self.historial_presion = []
 
 
-class ModoJuegoV179:
+class ModoJuegoV180:
     def __init__(self, lambda_fisico=LAMBDA_FISICO, lambda_costo=LAMBDA_COSTO,
                  umbral_cb=UMBRAL_CB_JUEGO, k_influencia=K_INFLUENCIA_JUEGO):
         self.lambda_fisico = lambda_fisico
@@ -443,11 +518,11 @@ class ModoJuegoV179:
 
 
 # ============================================================
-# APARATO MOTOR V179 (PARCHE 2: D_conflicto real en deliberación)
+# APARATO MOTOR V180 (INTEGRA MEMORIA EPISÓDICA)
 # ============================================================
 
-class AparatoMotorV179:
-    def __init__(self):
+class AparatoMotorV180:
+    def __init__(self, memoria_episodica):
         self.orientacion = 0.0
         self.Kp_base = KP_BASE
         self.Kp_actual = KP_BASE
@@ -460,12 +535,13 @@ class AparatoMotorV179:
         self.sensibilidad_grad = SENSIBILIDAD_GRAD
         self.t = 0.0
         
-        self.fatiga = FatigaMetabolicaV179()
-        self.memoria = MemoriaAusenciaV179()
-        self.consciencia = ConscienciaBasicaV179()
-        self.juego = ModoJuegoV179()
+        self.fatiga = FatigaMetabolicaV180()
+        self.memoria = MemoriaAusenciaV180()
+        self.consciencia = ConscienciaBasicaV180()
+        self.juego = ModoJuegoV180()
+        self.memoria_episodica = memoria_episodica
         self.valencia = ValenciaLocal()
-        self.memoria_trabajo = MemoriaDeTrabajo()
+        self.memoria_trabajo = MemoriaDeTrabajo(memoria_episodica=self.memoria_episodica)
         self.registro = RegistroRepresentaciones()
         self.recent_presented = deque(maxlen=5)
         
@@ -494,11 +570,10 @@ class AparatoMotorV179:
                 self.recent_presented.append(op)
         
         if len(opciones_disponibles) > 1:
-            # PARCHE 2: Usar D_conflicto real para escalar latencia
             valencias = [self.valencia.get_valencia(op) for op in opciones_disponibles]
             D_actual = self.registro.calcular_D_conflicto(valencias)
             opcion_elegida, puntajes, tiempo_delib = self.memoria_trabajo.deliberar(
-                opciones_disponibles, self.valencia, D_actual, current_sp=self.orientacion
+                opciones_disponibles, self.valencia, D_actual, t, current_sp=self.orientacion
             )
         else:
             D_actual = self.registro.calcular_desacople()
@@ -533,7 +608,10 @@ class AparatoMotorV179:
         
         if abs(error) < zona_muerta_efectiva:
             self.fatiga.actualizar(0, 0, True, dt)
-            self.valencia.actualizar(opcion_elegida, error, 0.0, dt, reward=rwd, good_threshold=val_good_threshold, trauma=trauma)
+            # PARCHE 4: Pasar memoria episódica y t_actual
+            self.valencia.actualizar(opcion_elegida, error, 0.0, dt, reward=rwd, 
+                                     good_threshold=val_good_threshold, trauma=trauma,
+                                     memoria_episodica=self.memoria_episodica, t_actual=t)
             val_local = self.valencia.get_valencia(opcion_elegida)
             return (self.orientacion, self.fatiga.get_historia(), self.fatiga.get_fatiga(),
                     confianza, zona_muerta_efectiva, Cb, presion, juego_activo, 0.0,
@@ -559,7 +637,10 @@ class AparatoMotorV179:
         
         costo_total_estimado = costo_error + abs(torque_memoria)
         
-        self.valencia.actualizar(opcion_elegida, error, costo_total_estimado, dt, reward=rwd, good_threshold=val_good_threshold, trauma=trauma)
+        # PARCHE 4: Pasar memoria episódica y t_actual
+        self.valencia.actualizar(opcion_elegida, error, costo_total_estimado, dt, reward=rwd, 
+                                 good_threshold=val_good_threshold, trauma=trauma,
+                                 memoria_episodica=self.memoria_episodica, t_actual=t)
         
         delta = self.inercia * self.ultimo_delta + (1 - self.inercia) * delta_raw
         self.ultimo_delta = delta
@@ -602,13 +683,14 @@ class AparatoMotorV179:
 
 
 # ============================================================
-# ORGANISMO V179
+# ORGANISMO V180
 # ============================================================
 
-class OrganismoV179:
-    def __init__(self, seed):
+class OrganismoV180:
+    def __init__(self, seed, memoria_episodica):
         self.nombre = f"Organismo_{seed}"
         self.seed = seed
+        self.memoria_episodica = memoria_episodica
         
         def generar_ruido_rosa(duracion, sr):
             n = int(duracion * sr)
@@ -630,11 +712,11 @@ class OrganismoV179:
                     clicks[pos] = 1.0
             return clicks
         
-        self.izquierdo = HemisferioV179("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
-        self.derecho = HemisferioV179("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
-        self.sistema_B_izq = HemisferioV179("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
-        self.sistema_B_der = HemisferioV179("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
-        self.motor = AparatoMotorV179()
+        self.izquierdo = HemisferioV180("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
+        self.derecho = HemisferioV180("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
+        self.sistema_B_izq = HemisferioV180("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
+        self.sistema_B_der = HemisferioV180("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
+        self.motor = AparatoMotorV180(memoria_episodica)
         self.modo_entrenamiento = True
         
         self.historial = {
@@ -703,6 +785,9 @@ class OrganismoV179:
     
     def get_valencia_trauma(self):
         return self.get_valencia(TRAUMA_SETPOINT)
+    
+    def get_valencia_episodio(self):
+        return self.get_valencia(EPISODIO_SETPOINT)
 
 
 # ============================================================
@@ -727,28 +812,41 @@ def medir_latencia_baseline(organismo, setpoint, trials=20):
 
 
 # ============================================================
-# EXPERIMENTO PRINCIPAL
+# EXPERIMENTO PRINCIPAL V180 (CORREGIDO)
 # ============================================================
 
-def ejecutar_v179():
+def ejecutar_v180():
     print("=" * 100)
-    print("EXPERIMENTO V179 — ANIMA-3: CONFLICTO REPRESENTACIONAL (FINAL)")
+    print("EXPERIMENTO V180 — MEMORIA EPISÓDICA (CORREGIDO)")
     print("=" * 100)
-    print("  CORRECCIONES FINALES APLICADAS:")
-    print("    1. factor_conflicto = 1.0 + (D_actual * 3.5)")
-    print("    2. D_actual = D_conflicto (entropía + amenaza) en deliberación")
+    print("  CORRECCIONES APLICADAS:")
+    print("    1. F3: Consolidación de +45° SIN REWARD")
+    print("    2. Penalización episódica: -15 → -50")
+    print("    3. Ventana recuperación: 5.0s → 15.0s")
+    print("    4. Valencia local consulta memoria episódica")
+    print("")
+    print("  DISEÑO (según roadmap):")
+    print(f"    F1: Consolidación -60° ({CONSOLIDACION_CICLOS} ciclos, reward)")
+    print(f"    F2: Trauma +60° ({TRAUMA_DURACION}s, costo {TRAUMA_COSTO_MULTIPLIER}x)")
+    print(f"    F3: Evento episódico — Exposición a +{EPISODIO_SETPOINT}° SIN REWARD")
+    print(f"        Sólo se marca evento 'trauma' en memoria episódica ({EVENTO_CICLOS} ciclos)")
+    print(f"    F4: Test recuperación — Opciones simultáneas [-60°, +{EPISODIO_SETPOINT}°]")
+    print(f"        Trials: {TEST_TRIALS}")
     print("")
     print("  CRITERIOS DE ÉXITO (roadmap):")
-    print(f"    ✅ D_conflicto > {D_CONFLICTO_MIN}")
-    print(f"    ✅ latencia_conflicto > {LATENCIA_CONFLICTO_MIN}s")
-    print(f"    ✅ P(-60° | conflicto) > {P_HABITO_MIN:.0%}")
-    print(f"    ✅ alternancia < {ALTERNANCIA_MAX:.0%}")
+    print(f"    ✅ P(+{EPISODIO_SETPOINT}° | episodio_trauma) < {P_EPISODIO_MAX:.0%}")
+    print(f"    ✅ latencia_recuperacion > {LATENCIA_RECUPERACION_MIN:.1f}× latencia_baseline")
+    print(f"    ✅ Especificidad: Val(+60°) < -1.5")
+    print(f"    ✅ Memoria preservada: Val(-60°) > 10")
     print("=" * 100)
     
+    # Inicializar memoria episódica
+    memoria_episodica = MemoriaEpisodicaV180(ventana_temporal=15.0)  # PARCHE 3
+    
     print("\n  Creando organismo...")
-    organismo = OrganismoV179(seed=SEMILLA_BASE)
+    organismo = OrganismoV180(seed=SEMILLA_BASE, memoria_episodica=memoria_episodica)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('V179_logs', exist_ok=True)
+    os.makedirs('V180_logs', exist_ok=True)
     
     # Entrenamiento
     print("\n  Entrenando lateralidad (10 repeticiones)...")
@@ -761,20 +859,15 @@ def ejecutar_v179():
     organismo.set_modo_entrenamiento(False)
     t_actual = TIEMPO_POR_REPETICION * REPETICIONES_LENTAS
     
-    # FASE 0: BASELINE
+    # BASELINE
     print("\n" + "=" * 60)
-    print(f"FASE 0: BASELINE — Medir latencia sin conflicto")
+    print("FASE 0: BASELINE — Medir latencia sin conflicto")
     print("=" * 60)
     
-    latencia_habito_baseline = medir_latencia_baseline(organismo, HABITO_SETPOINT, BASELINE_TRIALS)
-    latencia_trauma_baseline = medir_latencia_baseline(organismo, TRAUMA_SETPOINT, BASELINE_TRIALS)
-    latencia_esperada_2x = max(latencia_habito_baseline, latencia_trauma_baseline) * 2.0
+    latencia_baseline = medir_latencia_baseline(organismo, HABITO_SETPOINT, 20)
+    print(f"  Latencia baseline: {latencia_baseline:.3f}s")
     
-    print(f"  Latencia -60° solo: {latencia_habito_baseline:.3f}s")
-    print(f"  Latencia +60° solo: {latencia_trauma_baseline:.3f}s")
-    print(f"  Latencia esperada en conflicto (2x): {latencia_esperada_2x:.3f}s")
-    
-    # FASE 1: Consolidación
+    # FASE 1: Consolidación del hábito
     print("\n" + "=" * 60)
     print(f"FASE 1: Consolidación del hábito ({CONSOLIDACION_CICLOS} ciclos a -60°)")
     print("=" * 60)
@@ -789,10 +882,10 @@ def ejecutar_v179():
             print(f"    Ciclo {ciclo+1}/{CONSOLIDACION_CICLOS}, valencia(-60°) = {val:.2f}")
         t_actual += PERIODO_ALTERNANCIA
     
-    val_habito_post_consolidacion = organismo.get_valencia_habito()
-    print(f"  Valencia -60° post-consolidación: {val_habito_post_consolidacion:.2f}")
+    val_habito_post_f1 = organismo.get_valencia_habito()
+    print(f"  Valencia -60° post-consolidación: {val_habito_post_f1:.2f}")
     
-    # FASE 2: Trauma
+    # FASE 2: Trauma específico en +60°
     print("\n" + "=" * 60)
     print(f"FASE 2: Trauma específico ({TRAUMA_DURACION}s a +60°, costo {TRAUMA_COSTO_MULTIPLIER}x)")
     print("=" * 60)
@@ -803,184 +896,225 @@ def ejecutar_v179():
                                      TRAUMA_SETPOINT, trauma=True)
     t_actual += TRAUMA_DURACION
     
-    val_trauma_post = organismo.get_valencia_trauma()
-    val_habito_post_trauma = organismo.get_valencia_habito()
-    print(f"  Valencia +60° post-trauma: {val_trauma_post:.2f}")
-    print(f"  Valencia -60° post-trauma: {val_habito_post_trauma:.2f}")
+    val_trauma_post_f2 = organismo.get_valencia_trauma()
+    print(f"  Valencia +60° post-trauma: {val_trauma_post_f2:.2f}")
     
-    # FASE 3: CONFLICTO
+    # FASE 3: Evento episódico con +45° (PARCHE 1: SIN REWARD)
     print("\n" + "=" * 60)
-    print(f"FASE 3: CONFLICTO — Opciones simultáneas [{HABITO_SETPOINT}°, {TRAUMA_SETPOINT}°]")
-    print(f"        Trials: {CONFLICTO_TRIALS}")
+    print(f"FASE 3: Evento episódico — Exposición a +{EPISODIO_SETPOINT}° SIN REWARD")
+    print(f"        Sólo se marca evento 'trauma' en memoria episódica ({EVENTO_CICLOS} ciclos)")
+    print("=" * 60)
+    
+    for ciclo in range(EVENTO_CICLOS):
+        for i in range(int(PERIODO_ALTERNANCIA / DT)):
+            t = t_actual + i * DT
+            # Marcar evento episódico al inicio de cada ciclo
+            if i == 0:
+                memoria_episodica.marcar_evento(t, EPISODIO_SETPOINT, 'trauma', intensidad=2.0)
+                print(f"    [Episodio] Ciclo {ciclo+1}: evento 'trauma' marcado en +{EPISODIO_SETPOINT}°")
+            # PARCHE 1: SIN REWARD (target_reward=None)
+            organismo.actualizar_setpoint(t, DT, t_actual + PERIODO_ALTERNANCIA, 
+                                         EPISODIO_SETPOINT, target_reward=None)
+        if (ciclo + 1) % 10 == 0:
+            val = organismo.get_valencia_episodio()
+            print(f"    Ciclo {ciclo+1}/{EVENTO_CICLOS}, valencia(+{EPISODIO_SETPOINT}°) = {val:.2f}")
+        t_actual += PERIODO_ALTERNANCIA
+    
+    val_episodio_post_f3 = organismo.get_valencia_episodio()
+    print(f"  Valencia +{EPISODIO_SETPOINT}° post-evento: {val_episodio_post_f3:.2f}")
+    
+    # Verificar que la valencia de +45° no subió (debe estar cerca de 0)
+    if val_episodio_post_f3 > 5.0:
+        print(f"  ⚠️ ADVERTENCIA: Valencia +{EPISODIO_SETPOINT}° subió a {val_episodio_post_f3:.2f}")
+    else:
+        print(f"  ✅ Valencia +{EPISODIO_SETPOINT}° controlada: {val_episodio_post_f3:.2f}")
+    
+    # FASE 4: Test de recuperación
+    print("\n" + "=" * 60)
+    print(f"FASE 4: Test recuperación — Opciones simultáneas [-60°, +{EPISODIO_SETPOINT}°]")
+    print(f"        Trials: {TEST_TRIALS}")
     print("=" * 60)
     
     opciones_elegidas = []
-    desacoples_conflicto = []
     latencias = []
-    valencias_habito = []
-    valencias_trauma = []
+    eventos_recuperados = []
     
-    for trial in range(CONFLICTO_TRIALS):
+    for trial in range(TEST_TRIALS):
         t = t_actual + trial * TRIAL_DURATION
         
         if (trial + 1) % 10 == 0:
-            print(f"    Trial {trial+1}/{CONFLICTO_TRIALS}...")
+            print(f"    Trial {trial+1}/{TEST_TRIALS}...")
         
-        trial_D_conflicto = []
         trial_latencias = []
         
         for step in range(EXPOSURE_STEPS_PER_TRIAL):
             t_step = t + step * DT
             _, _, latencia, opcion, _ = organismo.actualizar_con_opciones(
-                t_step, DT, t_actual + CONFLICTO_TRIALS * TRIAL_DURATION,
-                [HABITO_SETPOINT, TRAUMA_SETPOINT],
+                t_step, DT, t_actual + TEST_TRIALS * TRIAL_DURATION,
+                [HABITO_SETPOINT, EPISODIO_SETPOINT],
                 trauma=False, target_reward=None
             )
-            
-            val_habito = organismo.get_valencia_habito()
-            val_trauma = organismo.get_valencia_trauma()
-            D_conflicto = organismo.motor.registro.calcular_D_conflicto([val_habito, val_trauma])
-            
-            trial_D_conflicto.append(D_conflicto)
             trial_latencias.append(latencia)
         
         opciones_elegidas.append(opcion if opcion is not None else 0)
-        desacoples_conflicto.append(np.mean(trial_D_conflicto))
         latencias.append(np.mean(trial_latencias))
-        valencias_habito.append(organismo.get_valencia_habito())
-        valencias_trauma.append(organismo.get_valencia_trauma())
+        
+        # Verificar si se recuperó el evento episódico
+        evento = memoria_episodica.recuperar(EPISODIO_SETPOINT, t)
+        eventos_recuperados.append(evento is not None)
         
         t_actual += TRIAL_DURATION
     
     # Análisis
-    p_habito_conflicto = sum(1 for e in opciones_elegidas if abs(e - HABITO_SETPOINT) < 5.0) / CONFLICTO_TRIALS
-    d_pico = max(desacoples_conflicto)
-    d_medio = np.mean(desacoples_conflicto)
-    latencia_media = np.mean(latencias)
+    p_episodio_elegido = sum(1 for e in opciones_elegidas if abs(e - EPISODIO_SETPOINT) < 5.0) / TEST_TRIALS
+    p_habito_elegido = 1.0 - p_episodio_elegido
     
-    alternancias = 0
-    for i in range(1, len(opciones_elegidas)):
-        es_habito_antes = abs(opciones_elegidas[i-1] - HABITO_SETPOINT) < 5.0
-        es_habito_despues = abs(opciones_elegidas[i] - HABITO_SETPOINT) < 5.0
-        if es_habito_antes != es_habito_despues:
-            alternancias += 1
-    tasa_alternancia = alternancias / (CONFLICTO_TRIALS - 1) if CONFLICTO_TRIALS > 1 else 0
+    latencia_recuperacion_media = np.mean(latencias)
+    latencia_ratio = latencia_recuperacion_media / latencia_baseline if latencia_baseline > 0 else 0
+    
+    # Verificar especificidad del trauma original
+    val_trauma_final = organismo.get_valencia_trauma()
+    especificidad_ok = val_trauma_final < -1.5
+    
+    # Memoria del hábito
+    val_habito_final = organismo.get_valencia_habito()
+    memoria_preservada_ok = val_habito_final > 10.0
+    
+    # Criterios de éxito
+    episodio_rechazado_ok = p_episodio_elegido < P_EPISODIO_MAX
+    latencia_ok = latencia_ratio > LATENCIA_RECUPERACION_MIN
     
     # Resultados
     print("\n" + "=" * 80)
-    print("RESULTADOS V179 — Conflicto representacional (FINAL)")
+    print("RESULTADOS V180 — Memoria episódica (CORREGIDO)")
     print("=" * 80)
     
-    print(f"\n  📊 MÉTRICAS DE BASELINE:")
-    print(f"    Latencia -60° solo: {latencia_habito_baseline:.3f}s")
-    print(f"    Latencia +60° solo: {latencia_trauma_baseline:.3f}s")
+    print(f"\n  📊 MÉTRICAS DE MEMORIA EPISÓDICA:")
+    print(f"    P(elegir +{EPISODIO_SETPOINT}°) = {p_episodio_elegido:.1%} (umbral < {P_EPISODIO_MAX:.0%})")
+    print(f"    P(elegir -60°) = {p_habito_elegido:.1%}")
+    print(f"    Eventos recuperados: {sum(eventos_recuperados)}/{TEST_TRIALS} ({sum(eventos_recuperados)/TEST_TRIALS:.1%})")
     
-    print(f"\n  📊 MÉTRICAS DE CONFLICTO:")
-    print(f"    P(-60° | conflicto) = {p_habito_conflicto:.1%} (umbral > {P_HABITO_MIN:.0%})")
-    print(f"    D_conflicto_pico = {d_pico:.3f} (umbral > {D_CONFLICTO_MIN})")
-    print(f"    D_conflicto_medio = {d_medio:.3f}")
-    print(f"    Latencia media = {latencia_media:.3f}s (umbral > {LATENCIA_CONFLICTO_MIN}s)")
-    print(f"    Tasa de alternancia = {tasa_alternancia:.1%} (umbral < {ALTERNANCIA_MAX:.0%})")
+    print(f"\n  📊 MÉTRICAS DE LATENCIA:")
+    print(f"    Latencia baseline: {latencia_baseline:.3f}s")
+    print(f"    Latencia recuperación: {latencia_recuperacion_media:.3f}s")
+    print(f"    Ratio latencia: {latencia_ratio:.2f}x (umbral > {LATENCIA_RECUPERACION_MIN:.1f}x)")
     
     print(f"\n  📊 MÉTRICAS DE VALENCIA:")
-    print(f"    Valencia -60° final: {valencias_habito[-1] if valencias_habito else 0:.2f}")
-    print(f"    Valencia +60° final: {valencias_trauma[-1] if valencias_trauma else 0:.2f}")
-    
-    d_ok = d_pico > D_CONFLICTO_MIN
-    latencia_ok = latencia_media > LATENCIA_CONFLICTO_MIN
-    preferencia_ok = p_habito_conflicto > P_HABITO_MIN
-    alternancia_ok = tasa_alternancia < ALTERNANCIA_MAX
+    print(f"    Valencia -60° final: {val_habito_final:.2f} (umbral > 10)")
+    print(f"    Valencia +60° final: {val_trauma_final:.2f} (debe ser < -1.5)")
+    print(f"    Valencia +{EPISODIO_SETPOINT}° final: {organismo.get_valencia_episodio():.2f}")
     
     print(f"\n  📊 CRITERIOS DE ÉXITO (roadmap):")
-    print(f"    D_pico > {D_CONFLICTO_MIN}: {d_ok} -> {'✅' if d_ok else '❌'}")
-    print(f"    Latencia > {LATENCIA_CONFLICTO_MIN}s: {latencia_ok} -> {'✅' if latencia_ok else '❌'}")
-    print(f"    P(-60°) > {P_HABITO_MIN:.0%}: {preferencia_ok} -> {'✅' if preferencia_ok else '❌'}")
-    print(f"    Alternancia < {ALTERNANCIA_MAX:.0%}: {alternancia_ok} -> {'✅' if alternancia_ok else '❌'}")
+    print(f"    P(+{EPISODIO_SETPOINT}°) < {P_EPISODIO_MAX:.0%}: {episodio_rechazado_ok} -> {'✅' if episodio_rechazado_ok else '❌'}")
+    print(f"    Latencia > {LATENCIA_RECUPERACION_MIN:.1f}× baseline: {latencia_ok} -> {'✅' if latencia_ok else '❌'}")
+    print(f"    Especificidad (Val(+60°) < -1.5): {especificidad_ok} -> {'✅' if especificidad_ok else '❌'}")
+    print(f"    Memoria preservada (Val(-60°) > 10): {memoria_preservada_ok} -> {'✅' if memoria_preservada_ok else '❌'}")
     
-    exito = d_ok and latencia_ok and preferencia_ok and alternancia_ok
+    exito = episodio_rechazado_ok and latencia_ok and especificidad_ok and memoria_preservada_ok
     
     print("\n" + "=" * 80)
     if exito:
-        print("  ✅ CONFLICTO REPRESENTACIONAL RESUELTO")
+        print("  ✅ MEMORIA EPISÓDICA DEMOSTRADA")
         print("")
         print("     El organismo demuestra:")
-        print("     ✓ Desacople máximo bajo presión (D_conflicto > 0.6)")
-        print("     ✓ Latencia deliberativa prolongada (> 2.5s)")
-        print("     ✓ Preferencia clara por el hábito (> 75%)")
-        print("     ✓ Alternancia mínima (< 5%)")
+        print(f"     ✓ Rechazo específico de +{EPISODIO_SETPOINT}° por memoria episódica")
+        print("     ✓ Costo de recuperación medible en latencia")
+        print("     ✓ Trauma original preservado (especificidad)")
+        print("     ✓ Memoria del hábito intacta")
     else:
-        print("  ⚠️ CONFLICTO REPRESENTACIONAL NO RESUELTO")
-        if not d_ok:
-            print("     El desacople no alcanzó el umbral (>0.6)")
+        print("  ⚠️ MEMORIA EPISÓDICA NO DEMOSTRADA")
+        if not episodio_rechazado_ok:
+            print(f"     El organismo no rechazó +{EPISODIO_SETPOINT}°")
         if not latencia_ok:
-            print("     La latencia no superó 2.5s")
-        if not preferencia_ok:
-            print("     La preferencia por -60° fue insuficiente")
-        if not alternancia_ok:
-            print("     Hubo demasiada alternancia entre opciones")
+            print("     La latencia no aumentó significativamente")
+        if not especificidad_ok:
+            print("     El trauma original se degradó")
+        if not memoria_preservada_ok:
+            print("     La memoria del hábito se contaminó")
     print("=" * 80)
     
     # Gráficos
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     
+    # Gráfico 1: Elecciones
     ax = axes[0, 0]
     ax.plot(opciones_elegidas, 'b-', linewidth=0.5, alpha=0.7)
-    ax.axhline(y=HABITO_SETPOINT, color='blue', linestyle='--', alpha=0.5)
-    ax.axhline(y=TRAUMA_SETPOINT, color='red', linestyle='--', alpha=0.5)
+    ax.axhline(y=HABITO_SETPOINT, color='blue', linestyle='--', alpha=0.5, label='-60°')
+    ax.axhline(y=EPISODIO_SETPOINT, color='orange', linestyle='--', alpha=0.5, label=f'+{EPISODIO_SETPOINT}°')
     ax.set_xlabel('Trial')
     ax.set_ylabel('Opción elegida')
-    ax.set_title('Elecciones durante conflicto')
+    ax.set_title('FASE 4: Elecciones durante test de recuperación')
+    ax.legend()
     ax.grid(True, alpha=0.3)
     
+    # Gráfico 2: Latencia
     ax = axes[0, 1]
-    ax.plot(desacoples_conflicto, 'purple', linewidth=1)
-    ax.axhline(y=D_CONFLICTO_MIN, color='green', linestyle='--', alpha=0.7)
-    ax.set_xlabel('Trial')
-    ax.set_ylabel('D_conflicto')
-    ax.set_title('Desacople bajo conflicto')
-    ax.grid(True, alpha=0.3)
-    
-    ax = axes[1, 0]
     ax.plot(latencias, 'orange', linewidth=1)
-    ax.axhline(y=LATENCIA_CONFLICTO_MIN, color='green', linestyle='--', alpha=0.7)
+    ax.axhline(y=latencia_baseline, color='blue', linestyle='--', alpha=0.7, label=f'Baseline: {latencia_baseline:.2f}s')
+    ax.axhline(y=latencia_baseline * LATENCIA_RECUPERACION_MIN, color='green', linestyle='--', alpha=0.7, 
+               label=f'Umbral {LATENCIA_RECUPERACION_MIN:.1f}x: {latencia_baseline * LATENCIA_RECUPERACION_MIN:.2f}s')
     ax.set_xlabel('Trial')
     ax.set_ylabel('Latencia (s)')
-    ax.set_title('Latencia deliberativa')
+    ax.set_title('Latencia deliberativa durante recuperación')
+    ax.legend()
     ax.grid(True, alpha=0.3)
     
-    ax = axes[1, 1]
-    ax.plot(valencias_habito, 'blue', linewidth=1, label='-60° (hábito)')
-    ax.plot(valencias_trauma, 'red', linewidth=1, label='+60° (trauma)')
+    # Gráfico 3: Proporción de eventos recuperados
+    ax = axes[1, 0]
+    recuperados_acum = np.cumsum(eventos_recuperados)
+    ax.plot(recuperados_acum, 'purple', linewidth=1)
     ax.set_xlabel('Trial')
+    ax.set_ylabel('Eventos recuperados (acumulado)')
+    ax.set_title('Recuperación de memoria episódica')
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 4: Evolución de valencias
+    ax = axes[1, 1]
+    categorias = ['Post-F1\n(-60°)', 'Post-F2\n(+60°)', 'Post-F3\n(+45°)', 'Final\n(-60°)']
+    valores = [val_habito_post_f1, val_trauma_post_f2, val_episodio_post_f3, val_habito_final]
+    colores = ['blue', 'red', 'orange', 'blue']
+    ax.bar(categorias, valores, color=colores)
+    ax.axhline(y=10.0, color='green', linestyle='--', alpha=0.7, label='Umbral hábito')
+    ax.axhline(y=-1.5, color='red', linestyle='--', alpha=0.7, label='Umbral trauma')
     ax.set_ylabel('Valencia')
     ax.set_title('Evolución de valencias')
     ax.legend()
     ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(f'V179_logs/v179_final_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: V179_logs/v179_final_{timestamp}.png")
+    plt.savefig(f'V180_logs/v180_corregido_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V180_logs/v180_corregido_{timestamp}.png")
     
+    # Guardar datos
     raw_data = {
-        'version': 'V179_FINAL',
+        'version': 'V180_CORREGIDO',
         'timestamp': timestamp,
+        'params': {
+            'EPISODIO_SETPOINT': EPISODIO_SETPOINT,
+            'EVENTO_CICLOS': EVENTO_CICLOS,
+            'TEST_TRIALS': TEST_TRIALS,
+            'P_EPISODIO_MAX': P_EPISODIO_MAX,
+            'LATENCIA_RECUPERACION_MIN': LATENCIA_RECUPERACION_MIN,
+        },
         'resultados': {
-            'p_habito_conflicto': float(p_habito_conflicto),
-            'd_pico': float(d_pico),
-            'latencia_media': float(latencia_media),
-            'tasa_alternancia': float(tasa_alternancia),
-            'val_trauma_post': float(val_trauma_post),
-            'd_ok': bool(d_ok),
+            'p_episodio_elegido': float(p_episodio_elegido),
+            'latencia_recuperacion_media': float(latencia_recuperacion_media),
+            'latencia_ratio': float(latencia_ratio),
+            'eventos_recuperados_ratio': float(sum(eventos_recuperados) / TEST_TRIALS),
+            'val_habito_final': float(val_habito_final),
+            'val_trauma_final': float(val_trauma_final),
+            'val_episodio_final': float(organismo.get_valencia_episodio()),
+            'episodio_rechazado_ok': bool(episodio_rechazado_ok),
             'latencia_ok': bool(latencia_ok),
-            'preferencia_ok': bool(preferencia_ok),
-            'alternancia_ok': bool(alternancia_ok),
+            'especificidad_ok': bool(especificidad_ok),
+            'memoria_preservada_ok': bool(memoria_preservada_ok),
             'exito': bool(exito)
         }
     }
     
-    with open(f'V179_logs/v179_final_{timestamp}.json', 'w') as f:
+    with open(f'V180_logs/v180_corregido_{timestamp}.json', 'w') as f:
         json.dump(raw_data, f, indent=2)
-    print(f"  📁 Datos guardados: V179_logs/v179_final_{timestamp}.json")
+    print(f"  📁 Datos guardados: V180_logs/v180_corregido_{timestamp}.json")
     
     return organismo, exito
 
@@ -988,7 +1122,7 @@ def ejecutar_v179():
 if __name__ == "__main__":
     import time
     start = time.time()
-    organismo, exito = ejecutar_v179()
+    organismo, exito = ejecutar_v180()
     elapsed = time.time() - start
     print(f"\n  ⏱️ Tiempo de ejecución: {elapsed/60:.1f} minutos")
-    print(f"\n  V179 final completado. Éxito: {exito}")
+    print(f"\n  V180 corregido completado. Éxito: {exito}")

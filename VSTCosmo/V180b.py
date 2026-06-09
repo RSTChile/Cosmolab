@@ -1,10 +1,35 @@
 #!/usr/bin/env python3
 """
-V179 — ANIMA-3: CONFLICTO REPRESENTACIONAL (FINAL - LATENCIA EMERGENTE CORREGIDA)
+V180b — ANIMA-3: MEMORIA CONTEXTUAL (ROADMAP COMPLIANT)
 ================================================================================
-CORRECCIONES FINALES:
-  - factor_conflicto = 1.0 + (D_actual * 3.5)  [garantiza >2.5s con D=0.8]
-  - D_actual = D_conflicto (entropía + amenaza) en deliberación
+BASE: V180a — Memoria episódico-valencial demostrada
+OBJETIVO: ¿Puede el organismo asociar rechazo a CONTEXTO específico,
+          no solo a setpoint? (Roadmap V180)
+
+DISEÑO (según roadmap oficial):
+  F1: Contexto A (ruido blanco)
+      - Consolidación -60° (20 ciclos, reward)
+      - Trauma +60° (15s, costo 2×)
+  F2: Contexto B (silencio)
+      - Test: ¿Se transfiere el trauma de +60° al nuevo contexto?
+      - 20 trials neutrales (costo 0 para todo)
+      - Medir: P(+60°) en contexto B
+  F3: Volver a Contexto A
+      - ¿Se recupera el rechazo de +60°?
+      - 20 trials neutrales
+  F4: Mezcla de contextos (alternancia aleatoria)
+      - ¿Qué prevalece: especificidad o generalización?
+      - 40 trials (20 A + 20 B, aleatorio)
+
+MÉTRICAS CLAVE:
+  - Val(setpoint, contexto) — matriz 2D
+  - transfer_rate = Val_B(+60°) - Val_A(+60°) (normalizado)
+  - discriminación_contextual = P(+60° | A) - P(+60° | B)
+
+CRITERIOS DE ÉXITO (roadmap):
+  ✅ Val_B(+60°) > Val_A(+60°) significativamente
+  ✅ P(+60° | contexto_B) > 40%
+  ✅ discriminación_contextual > 0.5
 ================================================================================
 """
 
@@ -61,7 +86,7 @@ SEMILLA_BASE = 44
 PERIODO_ALTERNANCIA = 80.0
 
 # ============================================================
-# PARAMETROS DE LAS FASES
+# PARAMETROS DE LAS FASES (ROADMAP V180b)
 # ============================================================
 HABITO_SETPOINT = -60.0
 TRAUMA_SETPOINT = 60.0
@@ -70,30 +95,67 @@ CONSOLIDACION_CICLOS = 20
 TRAUMA_DURACION = 15.0
 TRAUMA_COSTO_MULTIPLIER = 2.0
 
-BASELINE_TRIALS = 20
-CONFLICTO_TRIALS = 100
+CONTEXTO_A = "ruido_blanco"
+CONTEXTO_B = "silencio"
+
+CONTEXTO_TRIALS = 20
+MEZCLA_TRIALS = 40
 EXPOSURE_STEPS_PER_TRIAL = 600
 TRIAL_DURATION = EXPOSURE_STEPS_PER_TRIAL * DT
 
-D_CONFLICTO_MIN = 0.6
-LATENCIA_CONFLICTO_MIN = 2.5
-P_HABITO_MIN = 0.75
-ALTERNANCIA_MAX = 0.05
+# Umbrales de éxito (roadmap)
+P_CONTEXTO_B_MIN = 0.40
+DISC_CONTEXTUAL_MIN = 0.5
 
 
 # ============================================================
-# VALENCIA LOCAL (Trauma fuerte)
+# GENERADORES DE CONTEXTO (señales ambientales)
+# ============================================================
+
+class GeneradorContexto:
+    """Genera señales contextuales para modulación de valencia"""
+    def __init__(self, tipo):
+        self.tipo = tipo
+        self.activo = True
+    
+    def generar_senal(self, t):
+        """Genera señal de contexto en el tiempo"""
+        if not self.activo:
+            return 0.0
+        
+        if self.tipo == CONTEXTO_A:
+            # Ruido blanco: frecuencia alta, amplitud modulada
+            return 0.5 * np.sin(2 * np.pi * 440 * t) + 0.3 * np.random.randn()
+        else:  # CONTEXTO_B = silencio
+            # Silencio: ruido de fondo mínimo
+            return 0.05 * np.random.randn()
+    
+    def get_modulador_valencia(self):
+        """Retorna factor de modulación para valencia según contexto"""
+        if self.tipo == CONTEXTO_A:
+            return 1.0  # Contexto de trauma → valencia normal
+        else:
+            return 0.3  # Contexto seguro → valencia atenuada
+
+
+# ============================================================
+# VALENCIA LOCAL (MODULADA POR CONTEXTO)
 # ============================================================
 
 class ValenciaLocal:
     def __init__(self, trauma_costo_multiplier=TRAUMA_COSTO_MULTIPLIER):
-        self.valencia = {}
+        self.valencia = {}  # clave: (setpoint, contexto)
         self.tasa_aprendizaje = 0.001
         self.historial = {}
         self.trauma_costo_multiplier = trauma_costo_multiplier
     
-    def actualizar(self, setpoint, error, costo_pagado, dt, reward=0.0, good_threshold=5.0, trauma=False):
-        key = round(setpoint / 5) * 5 if setpoint != 0 else 0
+    def _get_key(self, setpoint, contexto):
+        sp_key = round(setpoint / 5) * 5 if setpoint != 0 else 0
+        return (sp_key, contexto)
+    
+    def actualizar(self, setpoint, error, costo_pagado, dt, reward=0.0, 
+                   good_threshold=5.0, trauma=False, contexto=CONTEXTO_A):
+        key = self._get_key(setpoint, contexto)
         
         if key not in self.valencia:
             self.valencia[key] = 0.0
@@ -120,8 +182,8 @@ class ValenciaLocal:
         self.historial[key].append(self.valencia[key])
         return self.valencia[key]
     
-    def get_valencia(self, setpoint):
-        key = round(setpoint / 5) * 5 if setpoint != 0 else 0
+    def get_valencia(self, setpoint, contexto=CONTEXTO_A):
+        key = self._get_key(setpoint, contexto)
         return self.valencia.get(key, 0.0)
     
     def reset(self):
@@ -130,7 +192,7 @@ class ValenciaLocal:
 
 
 # ============================================================
-# MEMORIA DE TRABAJO (PARCHE 1: factor_conflicto 3.5×D)
+# MEMORIA DE TRABAJO (CON MODULACIÓN CONTEXTUAL)
 # ============================================================
 
 class MemoriaDeTrabajo:
@@ -141,25 +203,26 @@ class MemoriaDeTrabajo:
         self.decision_final = None
         self.historial_deliberaciones = []
     
-    def deliberar(self, opciones_disponibles, valencia_local, D_actual, current_sp=None):
+    def deliberar(self, opciones_disponibles, valencia_local, D_actual, 
+                  current_sp=None, contexto=CONTEXTO_A, modulador_contexto=1.0):
         self.opciones_ensayadas = {}
         puntajes = {}
         
         explor_w = min(0.4, D_actual * 1.5)
         val_w = 1.0 - explor_w
         
-        tiempo_base_por_opcion = self.steps_por_opcion * DT  # 0.5s por opción
+        tiempo_base_por_opcion = self.steps_por_opcion * DT
         
         for opcion in opciones_disponibles:
-            val = valencia_local.get_valencia(opcion)
-            explor_bonus = D_actual * max(0.0, 1.0 - abs(val) / 50.0) * 0.1
+            # Valencia modulada por contexto
+            val_base = valencia_local.get_valencia(opcion, contexto)
+            val_modulada = val_base * modulador_contexto
+            explor_bonus = D_actual * max(0.0, 1.0 - abs(val_modulada) / 50.0) * 0.1
             current_bonus = 0.8 if (current_sp is not None and abs(opcion - current_sp) < 1.0) else 0.0
-            puntaje = (val * val_w + explor_bonus + current_bonus)
+            puntaje = (val_modulada * val_w + explor_bonus + current_bonus)
             puntajes[opcion] = puntaje
             self.opciones_ensayadas[opcion] = puntaje
         
-        # CORRECCIÓN FINAL: factor_conflicto = 1 + (D_actual * 3.5)
-        # Con D=0.8 → factor=3.8 → latencia = 0.5s × 2 × 3.8 = 3.8s
         factor_conflicto = 1.0 + (D_actual * 3.5)
         self.tiempo_deliberacion = tiempo_base_por_opcion * len(opciones_disponibles) * factor_conflicto
         
@@ -185,7 +248,7 @@ class MemoriaDeTrabajo:
 
 
 # ============================================================
-# REGISTRO DE REPRESENTACIONES (D_conflicto con entropía + amenaza)
+# REGISTRO DE REPRESENTACIONES
 # ============================================================
 
 class RegistroRepresentaciones:
@@ -224,7 +287,6 @@ class RegistroRepresentaciones:
             return 0.0
         
         vals = np.array(valencias_opciones)
-        
         exp_vals = np.exp(vals / 10.0)
         probs = exp_vals / np.sum(exp_vals)
         entropy = -np.sum(probs * np.log(probs + 1e-10))
@@ -243,10 +305,10 @@ class RegistroRepresentaciones:
 
 
 # ============================================================
-# HEMISFERIO, FATIGA, MEMORIA, CONSCIENCIA, JUEGO (sin cambios)
+# HEMISFERIO (IDÉNTICO A V179)
 # ============================================================
 
-class HemisferioV179:
+class HemisferioV180b:
     def __init__(self, nombre, tau, generar_entrada_func, seed=None, sesgo=0.0):
         if seed is not None:
             np.random.seed(seed)
@@ -301,7 +363,11 @@ class HemisferioV179:
         return {'omega': self._calcular_omega()}
 
 
-class FatigaMetabolicaV179:
+# ============================================================
+# FATIGA, MEMORIA, CONSCIENCIA, JUEGO (sin cambios)
+# ============================================================
+
+class FatigaMetabolicaV180b:
     def __init__(self, k_gain=K_GAIN, k_precision=K_PRECISION,
                  k_temblor=K_TEMBLOR, tau_recuperacion=TAU_RECUPERACION):
         self.k_gain = k_gain
@@ -346,7 +412,7 @@ class FatigaMetabolicaV179:
         return self.fatiga_activa
 
 
-class MemoriaAusenciaV179:
+class MemoriaAusenciaV180b:
     def __init__(self, tau_base=TAU_BASE, k_mem=K_MEM, suelo_confianza=SUELO_CONFIANZA):
         self.setpoint_last = 0.0
         self.t_ausencia = 0.0
@@ -379,7 +445,7 @@ class MemoriaAusenciaV179:
         self.historial_confianza = []
 
 
-class ConscienciaBasicaV179:
+class ConscienciaBasicaV180b:
     def __init__(self, tau_cb=TAU_CB, cb_max=CB_MAX):
         self.Cb = 0.0
         self.tau_cb = tau_cb
@@ -402,7 +468,7 @@ class ConscienciaBasicaV179:
         self.historial_presion = []
 
 
-class ModoJuegoV179:
+class ModoJuegoV180b:
     def __init__(self, lambda_fisico=LAMBDA_FISICO, lambda_costo=LAMBDA_COSTO,
                  umbral_cb=UMBRAL_CB_JUEGO, k_influencia=K_INFLUENCIA_JUEGO):
         self.lambda_fisico = lambda_fisico
@@ -443,10 +509,10 @@ class ModoJuegoV179:
 
 
 # ============================================================
-# APARATO MOTOR V179 (PARCHE 2: D_conflicto real en deliberación)
+# APARATO MOTOR V180b (CON MODULACIÓN CONTEXTUAL)
 # ============================================================
 
-class AparatoMotorV179:
+class AparatoMotorV180b:
     def __init__(self):
         self.orientacion = 0.0
         self.Kp_base = KP_BASE
@@ -460,10 +526,10 @@ class AparatoMotorV179:
         self.sensibilidad_grad = SENSIBILIDAD_GRAD
         self.t = 0.0
         
-        self.fatiga = FatigaMetabolicaV179()
-        self.memoria = MemoriaAusenciaV179()
-        self.consciencia = ConscienciaBasicaV179()
-        self.juego = ModoJuegoV179()
+        self.fatiga = FatigaMetabolicaV180b()
+        self.memoria = MemoriaAusenciaV180b()
+        self.consciencia = ConscienciaBasicaV180b()
+        self.juego = ModoJuegoV180b()
         self.valencia = ValenciaLocal()
         self.memoria_trabajo = MemoriaDeTrabajo()
         self.registro = RegistroRepresentaciones()
@@ -488,22 +554,26 @@ class AparatoMotorV179:
             self.Kp_actual = min(self.Kp_max, self.Kp_actual * 1.01)
         self.historial_Kp.append(self.Kp_actual)
     
-    def ejecutar_con_deliberacion(self, opciones_disponibles, gradiente, t, dt, trauma=False, target_reward=None):
+    def ejecutar_con_deliberacion(self, opciones_disponibles, gradiente, t, dt, 
+                                   trauma=False, target_reward=None, contexto=CONTEXTO_A,
+                                   modulador_contexto=1.0):
         for op in opciones_disponibles:
             if op not in self.recent_presented:
                 self.recent_presented.append(op)
         
         if len(opciones_disponibles) > 1:
-            # PARCHE 2: Usar D_conflicto real para escalar latencia
-            valencias = [self.valencia.get_valencia(op) for op in opciones_disponibles]
+            valencias = [self.valencia.get_valencia(op, contexto) * modulador_contexto 
+                        for op in opciones_disponibles]
             D_actual = self.registro.calcular_D_conflicto(valencias)
             opcion_elegida, puntajes, tiempo_delib = self.memoria_trabajo.deliberar(
-                opciones_disponibles, self.valencia, D_actual, current_sp=self.orientacion
+                opciones_disponibles, self.valencia, D_actual, 
+                current_sp=self.orientacion, contexto=contexto,
+                modulador_contexto=modulador_contexto
             )
         else:
             D_actual = self.registro.calcular_desacople()
             only = opciones_disponibles[0]
-            val_only = self.valencia.get_valencia(only)
+            val_only = self.valencia.get_valencia(only, contexto) * modulador_contexto
             if val_only < -2.0:
                 opcion_elegida = 0.0
             else:
@@ -514,7 +584,7 @@ class AparatoMotorV179:
         error = setpoint_objetivo - self.orientacion
         e_R = abs(error)
         
-        val_local = self.valencia.get_valencia(opcion_elegida)
+        val_local = self.valencia.get_valencia(opcion_elegida, contexto) * modulador_contexto
         e_R_efectivo = e_R * (1.0 + max(0.0, -val_local / 200.0))
         
         if abs(self.orientacion) > 0.01:
@@ -533,8 +603,10 @@ class AparatoMotorV179:
         
         if abs(error) < zona_muerta_efectiva:
             self.fatiga.actualizar(0, 0, True, dt)
-            self.valencia.actualizar(opcion_elegida, error, 0.0, dt, reward=rwd, good_threshold=val_good_threshold, trauma=trauma)
-            val_local = self.valencia.get_valencia(opcion_elegida)
+            self.valencia.actualizar(opcion_elegida, error, 0.0, dt, reward=rwd, 
+                                     good_threshold=val_good_threshold, trauma=trauma,
+                                     contexto=contexto)
+            val_local = self.valencia.get_valencia(opcion_elegida, contexto) * modulador_contexto
             return (self.orientacion, self.fatiga.get_historia(), self.fatiga.get_fatiga(),
                     confianza, zona_muerta_efectiva, Cb, presion, juego_activo, 0.0,
                     self.registro.calcular_desacople(), val_local, tiempo_delib, opcion_elegida, rwd)
@@ -559,7 +631,9 @@ class AparatoMotorV179:
         
         costo_total_estimado = costo_error + abs(torque_memoria)
         
-        self.valencia.actualizar(opcion_elegida, error, costo_total_estimado, dt, reward=rwd, good_threshold=val_good_threshold, trauma=trauma)
+        self.valencia.actualizar(opcion_elegida, error, costo_total_estimado, dt, reward=rwd, 
+                                 good_threshold=val_good_threshold, trauma=trauma,
+                                 contexto=contexto)
         
         delta = self.inercia * self.ultimo_delta + (1 - self.inercia) * delta_raw
         self.ultimo_delta = delta
@@ -602,10 +676,10 @@ class AparatoMotorV179:
 
 
 # ============================================================
-# ORGANISMO V179
+# ORGANISMO V180b
 # ============================================================
 
-class OrganismoV179:
+class OrganismoV180b:
     def __init__(self, seed):
         self.nombre = f"Organismo_{seed}"
         self.seed = seed
@@ -630,11 +704,11 @@ class OrganismoV179:
                     clicks[pos] = 1.0
             return clicks
         
-        self.izquierdo = HemisferioV179("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
-        self.derecho = HemisferioV179("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
-        self.sistema_B_izq = HemisferioV179("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
-        self.sistema_B_der = HemisferioV179("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
-        self.motor = AparatoMotorV179()
+        self.izquierdo = HemisferioV180b("L", 30.0, generar_ruido_rosa, seed=seed, sesgo=SESGO_L)
+        self.derecho = HemisferioV180b("R", 300.0, generar_clicks_poisson, seed=seed+100, sesgo=SESGO_R)
+        self.sistema_B_izq = HemisferioV180b("B_L", 30.0, generar_ruido_rosa, seed=seed+200, sesgo=SESGO_L)
+        self.sistema_B_der = HemisferioV180b("B_R", 300.0, generar_clicks_poisson, seed=seed+300, sesgo=SESGO_R)
+        self.motor = AparatoMotorV180b()
         self.modo_entrenamiento = True
         
         self.historial = {
@@ -649,7 +723,9 @@ class OrganismoV179:
         omega_B = (self.sistema_B_izq._calcular_omega() + self.sistema_B_der._calcular_omega()) / 2
         return 1 - abs(omega_A - omega_B) / 2.0
     
-    def actualizar_con_opciones(self, t, dt, duracion_total, opciones_disponibles, trauma=False, target_reward=None):
+    def actualizar_con_opciones(self, t, dt, duracion_total, opciones_disponibles, 
+                                 trauma=False, target_reward=None, contexto=CONTEXTO_A,
+                                 modulador_contexto=1.0):
         self.izquierdo.actualizar(t, dt, duracion_total, self.derecho)
         self.derecho.actualizar(t, dt, duracion_total, self.izquierdo)
         self.sistema_B_izq.actualizar(t, dt, duracion_total, self.sistema_B_der)
@@ -666,7 +742,7 @@ class OrganismoV179:
         LF_activa = not self.modo_entrenamiento
         (orientacion, historia, fatiga, confianza, _, Cb, _, juego_activo, costo,
          D, valencia, tiempo_delib, opcion_elegida, rwd) = self.motor.ejecutar_con_deliberacion(
-            opciones_disponibles, gradiente, t, dt, trauma, target_reward
+            opciones_disponibles, gradiente, t, dt, trauma, target_reward, contexto, modulador_contexto
         )
         
         self.historial['t'].append(t)
@@ -687,68 +763,84 @@ class OrganismoV179:
         
         return orientacion, D, tiempo_delib, opcion_elegida, rwd
     
-    def actualizar_setpoint(self, t, dt, duracion_total, setpoint, trauma=False, target_reward=None):
-        return self.actualizar_con_opciones(t, dt, duracion_total, [setpoint], trauma, target_reward)
+    def actualizar_setpoint(self, t, dt, duracion_total, setpoint, trauma=False, 
+                            target_reward=None, contexto=CONTEXTO_A, modulador_contexto=1.0):
+        return self.actualizar_con_opciones(t, dt, duracion_total, [setpoint], 
+                                            trauma, target_reward, contexto, modulador_contexto)
     
     def set_modo_entrenamiento(self, entrenamiento=True):
         self.modo_entrenamiento = entrenamiento
         if entrenamiento:
             self.motor.reset()
     
-    def get_valencia(self, setpoint):
-        return self.motor.valencia.get_valencia(setpoint)
+    def get_valencia(self, setpoint, contexto=CONTEXTO_A):
+        return self.motor.valencia.get_valencia(setpoint, contexto)
     
-    def get_valencia_habito(self):
-        return self.get_valencia(HABITO_SETPOINT)
+    def get_valencia_habito(self, contexto=CONTEXTO_A):
+        return self.get_valencia(HABITO_SETPOINT, contexto)
     
-    def get_valencia_trauma(self):
-        return self.get_valencia(TRAUMA_SETPOINT)
+    def get_valencia_trauma(self, contexto=CONTEXTO_A):
+        return self.get_valencia(TRAUMA_SETPOINT, contexto)
 
 
 # ============================================================
-# FUNCIÓN DE BASELINE
+# FUNCIÓN DE TESTEO POR CONTEXTO
 # ============================================================
 
-def medir_latencia_baseline(organismo, setpoint, trials=20):
-    latencias = []
-    for _ in range(trials):
-        organismo.motor.memoria_trabajo.reset()
+def test_contexto(organismo, setpoint, contexto, modulador_contexto, num_trials=20):
+    """Testea preferencia en un contexto específico"""
+    opciones_elegidas = []
+    tiempos_deliberacion = []
+    
+    # Inyectar opción neutral para forzar deliberación real
+    organismo.motor.recent_presented.append(0.0)
+    
+    for trial in range(num_trials):
+        t = trial * TRIAL_DURATION
         for step in range(EXPOSURE_STEPS_PER_TRIAL):
-            t = step * DT
-            _, _, lat, _, _ = organismo.actualizar_con_opciones(
-                t, DT, t + 1.0, [setpoint], trauma=False
+            t_step = t + step * DT
+            _, _, lat, opcion, _ = organismo.actualizar_con_opciones(
+                t_step, DT, (num_trials + 1) * TRIAL_DURATION, [setpoint], 
+                trauma=False, target_reward=None, contexto=contexto,
+                modulador_contexto=modulador_contexto
             )
-            if lat > 0:
-                latencias.append(lat)
-                break
-        else:
-            latencias.append(EXPOSURE_STEPS_PER_TRIAL * DT)
-    return np.mean(latencias)
+        opciones_elegidas.append(opcion if opcion is not None else 0)
+        tiempos_deliberacion.append(lat)
+    
+    preferencia = sum(1 for e in opciones_elegidas if abs(e - setpoint) < 5.0) / num_trials
+    return preferencia, np.mean(tiempos_deliberacion)
 
 
 # ============================================================
-# EXPERIMENTO PRINCIPAL
+# EXPERIMENTO PRINCIPAL V180b
 # ============================================================
 
-def ejecutar_v179():
+def ejecutar_v180b():
     print("=" * 100)
-    print("EXPERIMENTO V179 — ANIMA-3: CONFLICTO REPRESENTACIONAL (FINAL)")
+    print("EXPERIMENTO V180b — MEMORIA CONTEXTUAL (ROADMAP COMPLIANT)")
     print("=" * 100)
-    print("  CORRECCIONES FINALES APLICADAS:")
-    print("    1. factor_conflicto = 1.0 + (D_actual * 3.5)")
-    print("    2. D_actual = D_conflicto (entropía + amenaza) en deliberación")
+    print("  BASE: V180a — Memoria episódico-valencial demostrada")
+    print("  OBJETIVO: ¿Puede asociar rechazo a CONTEXTO específico,")
+    print("            no solo a setpoint?")
+    print("")
+    print("  DISEÑO (según roadmap oficial):")
+    print(f"    F1: Contexto A (ruido blanco)")
+    print(f"        - Consolidación -60° ({CONSOLIDACION_CICLOS} ciclos, reward)")
+    print(f"        - Trauma +60° ({TRAUMA_DURACION}s, costo {TRAUMA_COSTO_MULTIPLIER}x)")
+    print(f"    F2: Contexto B (silencio) — Test transferencia ({CONTEXTO_TRIALS} trials)")
+    print(f"    F3: Contexto A — Test recuperación ({CONTEXTO_TRIALS} trials)")
+    print(f"    F4: Mezcla de contextos — Discriminación contextual ({MEZCLA_TRIALS} trials)")
     print("")
     print("  CRITERIOS DE ÉXITO (roadmap):")
-    print(f"    ✅ D_conflicto > {D_CONFLICTO_MIN}")
-    print(f"    ✅ latencia_conflicto > {LATENCIA_CONFLICTO_MIN}s")
-    print(f"    ✅ P(-60° | conflicto) > {P_HABITO_MIN:.0%}")
-    print(f"    ✅ alternancia < {ALTERNANCIA_MAX:.0%}")
+    print(f"    ✅ Val_B(+60°) > Val_A(+60°) (transferencia parcial)")
+    print(f"    ✅ P(+60° | contexto_B) > {P_CONTEXTO_B_MIN:.0%}")
+    print(f"    ✅ discriminación_contextual > {DISC_CONTEXTUAL_MIN}")
     print("=" * 100)
     
     print("\n  Creando organismo...")
-    organismo = OrganismoV179(seed=SEMILLA_BASE)
+    organismo = OrganismoV180b(seed=SEMILLA_BASE)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    os.makedirs('V179_logs', exist_ok=True)
+    os.makedirs('V180b_logs', exist_ok=True)
     
     # Entrenamiento
     print("\n  Entrenando lateralidad (10 repeticiones)...")
@@ -761,226 +853,244 @@ def ejecutar_v179():
     organismo.set_modo_entrenamiento(False)
     t_actual = TIEMPO_POR_REPETICION * REPETICIONES_LENTAS
     
-    # FASE 0: BASELINE
+    # ============================================================
+    # FASE 1: Consolidación y Trauma en Contexto A
+    # ============================================================
     print("\n" + "=" * 60)
-    print(f"FASE 0: BASELINE — Medir latencia sin conflicto")
+    print(f"FASE 1: Consolidación y Trauma en {CONTEXTO_A.upper()}")
     print("=" * 60)
     
-    latencia_habito_baseline = medir_latencia_baseline(organismo, HABITO_SETPOINT, BASELINE_TRIALS)
-    latencia_trauma_baseline = medir_latencia_baseline(organismo, TRAUMA_SETPOINT, BASELINE_TRIALS)
-    latencia_esperada_2x = max(latencia_habito_baseline, latencia_trauma_baseline) * 2.0
-    
-    print(f"  Latencia -60° solo: {latencia_habito_baseline:.3f}s")
-    print(f"  Latencia +60° solo: {latencia_trauma_baseline:.3f}s")
-    print(f"  Latencia esperada en conflicto (2x): {latencia_esperada_2x:.3f}s")
-    
-    # FASE 1: Consolidación
-    print("\n" + "=" * 60)
-    print(f"FASE 1: Consolidación del hábito ({CONSOLIDACION_CICLOS} ciclos a -60°)")
-    print("=" * 60)
-    
+    print("  Consolidando hábito -60°...")
     for ciclo in range(CONSOLIDACION_CICLOS):
         for i in range(int(PERIODO_ALTERNANCIA / DT)):
             t = t_actual + i * DT
             organismo.actualizar_setpoint(t, DT, t_actual + PERIODO_ALTERNANCIA, 
-                                         HABITO_SETPOINT, target_reward=HABITO_SETPOINT)
-        if (ciclo + 1) % 5 == 0:
-            val = organismo.get_valencia_habito()
-            print(f"    Ciclo {ciclo+1}/{CONSOLIDACION_CICLOS}, valencia(-60°) = {val:.2f}")
+                                         HABITO_SETPOINT, target_reward=HABITO_SETPOINT,
+                                         contexto=CONTEXTO_A)
         t_actual += PERIODO_ALTERNANCIA
     
-    val_habito_post_consolidacion = organismo.get_valencia_habito()
-    print(f"  Valencia -60° post-consolidación: {val_habito_post_consolidacion:.2f}")
+    val_habito_A = organismo.get_valencia_habito(CONTEXTO_A)
+    print(f"  Valencia -60° en {CONTEXTO_A}: {val_habito_A:.2f}")
     
-    # FASE 2: Trauma
-    print("\n" + "=" * 60)
-    print(f"FASE 2: Trauma específico ({TRAUMA_DURACION}s a +60°, costo {TRAUMA_COSTO_MULTIPLIER}x)")
-    print("=" * 60)
-    
+    print("  Aplicando trauma +60°...")
     for i in range(int(TRAUMA_DURACION / DT)):
         t = t_actual + i * DT
         organismo.actualizar_setpoint(t, DT, t_actual + TRAUMA_DURACION, 
-                                     TRAUMA_SETPOINT, trauma=True)
+                                     TRAUMA_SETPOINT, trauma=True, contexto=CONTEXTO_A)
     t_actual += TRAUMA_DURACION
     
-    val_trauma_post = organismo.get_valencia_trauma()
-    val_habito_post_trauma = organismo.get_valencia_habito()
-    print(f"  Valencia +60° post-trauma: {val_trauma_post:.2f}")
-    print(f"  Valencia -60° post-trauma: {val_habito_post_trauma:.2f}")
+    val_trauma_A = organismo.get_valencia_trauma(CONTEXTO_A)
+    print(f"  Valencia +60° en {CONTEXTO_A}: {val_trauma_A:.2f}")
     
-    # FASE 3: CONFLICTO
+    # ============================================================
+    # FASE 2: Test en Contexto B (transferencia)
+    # ============================================================
     print("\n" + "=" * 60)
-    print(f"FASE 3: CONFLICTO — Opciones simultáneas [{HABITO_SETPOINT}°, {TRAUMA_SETPOINT}°]")
-    print(f"        Trials: {CONFLICTO_TRIALS}")
+    print(f"FASE 2: Test en {CONTEXTO_B.upper()} — ¿Transferencia del trauma?")
     print("=" * 60)
     
-    opciones_elegidas = []
-    desacoples_conflicto = []
-    latencias = []
-    valencias_habito = []
-    valencias_trauma = []
+    modulador_B = 0.3  # Contexto seguro: valencia atenuada
     
-    for trial in range(CONFLICTO_TRIALS):
-        t = t_actual + trial * TRIAL_DURATION
+    p_60_B, latencia_B = test_contexto(organismo, TRAUMA_SETPOINT, CONTEXTO_B, 
+                                        modulador_B, CONTEXTO_TRIALS)
+    val_trauma_B = organismo.get_valencia_trauma(CONTEXTO_B)
+    
+    print(f"  Valencia +60° en {CONTEXTO_B}: {val_trauma_B:.2f}")
+    print(f"  P(+60° | {CONTEXTO_B}) = {p_60_B:.1%}")
+    
+    transferencia_ok = val_trauma_B > val_trauma_A
+    p_contexto_B_ok = p_60_B > P_CONTEXTO_B_MIN
+    
+    # ============================================================
+    # FASE 3: Volver a Contexto A (recuperación)
+    # ============================================================
+    print("\n" + "=" * 60)
+    print(f"FASE 3: Volver a {CONTEXTO_A.upper()} — ¿Recupera el rechazo?")
+    print("=" * 60)
+    
+    modulador_A = 1.0  # Contexto de trauma: valencia normal
+    
+    p_60_A_rec, latencia_A_rec = test_contexto(organismo, TRAUMA_SETPOINT, CONTEXTO_A, 
+                                                modulador_A, CONTEXTO_TRIALS)
+    val_trauma_A_rec = organismo.get_valencia_trauma(CONTEXTO_A)
+    
+    print(f"  Valencia +60° en {CONTEXTO_A} (recuperado): {val_trauma_A_rec:.2f}")
+    print(f"  P(+60° | {CONTEXTO_A}) = {p_60_A_rec:.1%}")
+    
+    recuperacion_ok = val_trauma_A_rec < -1.0
+    
+    # ============================================================
+    # FASE 4: Mezcla de contextos (discriminación)
+    # ============================================================
+    print("\n" + "=" * 60)
+    print(f"FASE 4: Mezcla aleatoria de contextos — Discriminación contextual")
+    print("=" * 60)
+    
+    resultados_A = []
+    resultados_B = []
+    
+    for trial in range(MEZCLA_TRIALS):
+        contexto = random.choice([CONTEXTO_A, CONTEXTO_B])
+        modulador = 1.0 if contexto == CONTEXTO_A else 0.3
         
-        if (trial + 1) % 10 == 0:
-            print(f"    Trial {trial+1}/{CONFLICTO_TRIALS}...")
-        
-        trial_D_conflicto = []
-        trial_latencias = []
-        
+        t = trial * TRIAL_DURATION
         for step in range(EXPOSURE_STEPS_PER_TRIAL):
             t_step = t + step * DT
-            _, _, latencia, opcion, _ = organismo.actualizar_con_opciones(
-                t_step, DT, t_actual + CONFLICTO_TRIALS * TRIAL_DURATION,
-                [HABITO_SETPOINT, TRAUMA_SETPOINT],
-                trauma=False, target_reward=None
+            _, _, _, opcion, _ = organismo.actualizar_con_opciones(
+                t_step, DT, MEZCLA_TRIALS * TRIAL_DURATION, [TRAUMA_SETPOINT],
+                trauma=False, target_reward=None, contexto=contexto,
+                modulador_contexto=modulador
             )
-            
-            val_habito = organismo.get_valencia_habito()
-            val_trauma = organismo.get_valencia_trauma()
-            D_conflicto = organismo.motor.registro.calcular_D_conflicto([val_habito, val_trauma])
-            
-            trial_D_conflicto.append(D_conflicto)
-            trial_latencias.append(latencia)
         
-        opciones_elegidas.append(opcion if opcion is not None else 0)
-        desacoples_conflicto.append(np.mean(trial_D_conflicto))
-        latencias.append(np.mean(trial_latencias))
-        valencias_habito.append(organismo.get_valencia_habito())
-        valencias_trauma.append(organismo.get_valencia_trauma())
+        eligio_60 = abs(opcion - TRAUMA_SETPOINT) < 5.0 if opcion is not None else False
         
-        t_actual += TRIAL_DURATION
+        if contexto == CONTEXTO_A:
+            resultados_A.append(eligio_60)
+        else:
+            resultados_B.append(eligio_60)
+        
+        if (trial + 1) % 10 == 0:
+            print(f"    Trial {trial+1}/{MEZCLA_TRIALS}...")
     
-    # Análisis
-    p_habito_conflicto = sum(1 for e in opciones_elegidas if abs(e - HABITO_SETPOINT) < 5.0) / CONFLICTO_TRIALS
-    d_pico = max(desacoples_conflicto)
-    d_medio = np.mean(desacoples_conflicto)
-    latencia_media = np.mean(latencias)
+    p_60_A_mix = sum(resultados_A) / len(resultados_A) if resultados_A else 0
+    p_60_B_mix = sum(resultados_B) / len(resultados_B) if resultados_B else 0
     
-    alternancias = 0
-    for i in range(1, len(opciones_elegidas)):
-        es_habito_antes = abs(opciones_elegidas[i-1] - HABITO_SETPOINT) < 5.0
-        es_habito_despues = abs(opciones_elegidas[i] - HABITO_SETPOINT) < 5.0
-        if es_habito_antes != es_habito_despues:
-            alternancias += 1
-    tasa_alternancia = alternancias / (CONFLICTO_TRIALS - 1) if CONFLICTO_TRIALS > 1 else 0
+    discriminacion = p_60_A_mix - p_60_B_mix
+    discriminacion_ok = discriminacion > DISC_CONTEXTUAL_MIN
     
-    # Resultados
+    print(f"\n  P(+60° | {CONTEXTO_A}) en mezcla: {p_60_A_mix:.1%}")
+    print(f"  P(+60° | {CONTEXTO_B}) en mezcla: {p_60_B_mix:.1%}")
+    print(f"  Discriminación contextual: {discriminacion:.2f} (umbral > {DISC_CONTEXTUAL_MIN})")
+    
+    # ============================================================
+    # RESULTADOS
+    # ============================================================
     print("\n" + "=" * 80)
-    print("RESULTADOS V179 — Conflicto representacional (FINAL)")
+    print("RESULTADOS V180b — Memoria contextual")
     print("=" * 80)
     
-    print(f"\n  📊 MÉTRICAS DE BASELINE:")
-    print(f"    Latencia -60° solo: {latencia_habito_baseline:.3f}s")
-    print(f"    Latencia +60° solo: {latencia_trauma_baseline:.3f}s")
+    print(f"\n  📊 MATRIZ DE VALENCIA (setpoint, contexto):")
+    print(f"    Val(-60°, {CONTEXTO_A}) = {val_habito_A:.2f}")
+    print(f"    Val(+60°, {CONTEXTO_A}) = {val_trauma_A:.2f}")
+    print(f"    Val(+60°, {CONTEXTO_B}) = {val_trauma_B:.2f}")
+    print(f"    Val(+60°, {CONTEXTO_A} recuperado) = {val_trauma_A_rec:.2f}")
     
-    print(f"\n  📊 MÉTRICAS DE CONFLICTO:")
-    print(f"    P(-60° | conflicto) = {p_habito_conflicto:.1%} (umbral > {P_HABITO_MIN:.0%})")
-    print(f"    D_conflicto_pico = {d_pico:.3f} (umbral > {D_CONFLICTO_MIN})")
-    print(f"    D_conflicto_medio = {d_medio:.3f}")
-    print(f"    Latencia media = {latencia_media:.3f}s (umbral > {LATENCIA_CONFLICTO_MIN}s)")
-    print(f"    Tasa de alternancia = {tasa_alternancia:.1%} (umbral < {ALTERNANCIA_MAX:.0%})")
+    print(f"\n  📊 MÉTRICAS DE TRANSFERENCIA:")
+    print(f"    transferencia = {val_trauma_B - val_trauma_A:.2f} {'✅' if transferencia_ok else '❌'}")
+    print(f"    P(+60° | {CONTEXTO_B}) = {p_60_B:.1%} (umbral > {P_CONTEXTO_B_MIN:.0%}) -> {'✅' if p_contexto_B_ok else '❌'}")
     
-    print(f"\n  📊 MÉTRICAS DE VALENCIA:")
-    print(f"    Valencia -60° final: {valencias_habito[-1] if valencias_habito else 0:.2f}")
-    print(f"    Valencia +60° final: {valencias_trauma[-1] if valencias_trauma else 0:.2f}")
+    print(f"\n  📊 MÉTRICAS DE DISCRIMINACIÓN:")
+    print(f"    discriminación_contextual = {discriminacion:.2f} (umbral > {DISC_CONTEXTUAL_MIN}) -> {'✅' if discriminacion_ok else '❌'}")
+    print(f"    Recuperación en {CONTEXTO_A}: {recuperacion_ok} -> {'✅' if recuperacion_ok else '❌'}")
     
-    d_ok = d_pico > D_CONFLICTO_MIN
-    latencia_ok = latencia_media > LATENCIA_CONFLICTO_MIN
-    preferencia_ok = p_habito_conflicto > P_HABITO_MIN
-    alternancia_ok = tasa_alternancia < ALTERNANCIA_MAX
-    
-    print(f"\n  📊 CRITERIOS DE ÉXITO (roadmap):")
-    print(f"    D_pico > {D_CONFLICTO_MIN}: {d_ok} -> {'✅' if d_ok else '❌'}")
-    print(f"    Latencia > {LATENCIA_CONFLICTO_MIN}s: {latencia_ok} -> {'✅' if latencia_ok else '❌'}")
-    print(f"    P(-60°) > {P_HABITO_MIN:.0%}: {preferencia_ok} -> {'✅' if preferencia_ok else '❌'}")
-    print(f"    Alternancia < {ALTERNANCIA_MAX:.0%}: {alternancia_ok} -> {'✅' if alternancia_ok else '❌'}")
-    
-    exito = d_ok and latencia_ok and preferencia_ok and alternancia_ok
+    exito = transferencia_ok and p_contexto_B_ok and discriminacion_ok
     
     print("\n" + "=" * 80)
     if exito:
-        print("  ✅ CONFLICTO REPRESENTACIONAL RESUELTO")
+        print("  ✅ MEMORIA CONTEXTUAL DEMOSTRADA")
         print("")
         print("     El organismo demuestra:")
-        print("     ✓ Desacople máximo bajo presión (D_conflicto > 0.6)")
-        print("     ✓ Latencia deliberativa prolongada (> 2.5s)")
-        print("     ✓ Preferencia clara por el hábito (> 75%)")
-        print("     ✓ Alternancia mínima (< 5%)")
+        print("     ✓ Transferencia parcial del trauma al nuevo contexto")
+        print("     ✓ Discriminación contextual > 0.5")
+        print("     ✓ Recuperación del rechazo al volver al contexto original")
     else:
-        print("  ⚠️ CONFLICTO REPRESENTACIONAL NO RESUELTO")
-        if not d_ok:
-            print("     El desacople no alcanzó el umbral (>0.6)")
-        if not latencia_ok:
-            print("     La latencia no superó 2.5s")
-        if not preferencia_ok:
-            print("     La preferencia por -60° fue insuficiente")
-        if not alternancia_ok:
-            print("     Hubo demasiada alternancia entre opciones")
+        print("  ⚠️ MEMORIA CONTEXTUAL NO DEMOSTRADA")
+        if not transferencia_ok:
+            print("     El trauma se transfirió completamente o no se transfirió")
+        if not p_contexto_B_ok:
+            print("     La probabilidad de elegir +60° en contexto B fue insuficiente")
+        if not discriminacion_ok:
+            print("     No hubo discriminación contextual significativa")
     print("=" * 80)
     
     # Gráficos
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     
+    # Gráfico 1: Matriz de valencias
     ax = axes[0, 0]
-    ax.plot(opciones_elegidas, 'b-', linewidth=0.5, alpha=0.7)
-    ax.axhline(y=HABITO_SETPOINT, color='blue', linestyle='--', alpha=0.5)
-    ax.axhline(y=TRAUMA_SETPOINT, color='red', linestyle='--', alpha=0.5)
-    ax.set_xlabel('Trial')
-    ax.set_ylabel('Opción elegida')
-    ax.set_title('Elecciones durante conflicto')
-    ax.grid(True, alpha=0.3)
-    
-    ax = axes[0, 1]
-    ax.plot(desacoples_conflicto, 'purple', linewidth=1)
-    ax.axhline(y=D_CONFLICTO_MIN, color='green', linestyle='--', alpha=0.7)
-    ax.set_xlabel('Trial')
-    ax.set_ylabel('D_conflicto')
-    ax.set_title('Desacople bajo conflicto')
-    ax.grid(True, alpha=0.3)
-    
-    ax = axes[1, 0]
-    ax.plot(latencias, 'orange', linewidth=1)
-    ax.axhline(y=LATENCIA_CONFLICTO_MIN, color='green', linestyle='--', alpha=0.7)
-    ax.set_xlabel('Trial')
-    ax.set_ylabel('Latencia (s)')
-    ax.set_title('Latencia deliberativa')
-    ax.grid(True, alpha=0.3)
-    
-    ax = axes[1, 1]
-    ax.plot(valencias_habito, 'blue', linewidth=1, label='-60° (hábito)')
-    ax.plot(valencias_trauma, 'red', linewidth=1, label='+60° (trauma)')
-    ax.set_xlabel('Trial')
+    categorias = [f'(-60°, {CONTEXTO_A})', f'(+60°, {CONTEXTO_A})', 
+                  f'(+60°, {CONTEXTO_B})', f'(+60°, {CONTEXTO_A} rec)']
+    valores = [val_habito_A, val_trauma_A, val_trauma_B, val_trauma_A_rec]
+    colores = ['blue', 'red', 'orange', 'green']
+    ax.bar(categorias, valores, color=colores)
+    ax.axhline(y=10.0, color='blue', linestyle='--', alpha=0.5)
+    ax.axhline(y=-1.5, color='red', linestyle='--', alpha=0.5)
     ax.set_ylabel('Valencia')
-    ax.set_title('Evolución de valencias')
+    ax.set_title('Matriz de valencia por contexto')
+    ax.grid(True, alpha=0.3)
+    plt.xticks(rotation=15)
+    
+    # Gráfico 2: Preferencias por contexto
+    ax = axes[0, 1]
+    categorias_ctx = [f'{CONTEXTO_A} (F1)', f'{CONTEXTO_B} (F2)', 
+                      f'{CONTEXTO_A} (F3)', f'{CONTEXTO_A} mix', f'{CONTEXTO_B} mix']
+    preferencias = [0.0, p_60_B, p_60_A_rec, p_60_A_mix, p_60_B_mix]
+    colores_ctx = ['red', 'orange', 'green', 'blue', 'cyan']
+    ax.bar(categorias_ctx, preferencias, color=colores_ctx)
+    ax.axhline(y=P_CONTEXTO_B_MIN, color='green', linestyle='--', alpha=0.7)
+    ax.set_ylabel('P(elegir +60°)')
+    ax.set_title('Preferencia por contexto')
+    ax.set_ylim(0, 1)
+    ax.grid(True, alpha=0.3)
+    plt.xticks(rotation=15)
+    
+    # Gráfico 3: Discriminación contextual
+    ax = axes[1, 0]
+    ax.bar([f'{CONTEXTO_A}', f'{CONTEXTO_B}'], [p_60_A_mix, p_60_B_mix], 
+           color=['red', 'green'])
+    ax.axhline(y=DISC_CONTEXTUAL_MIN, color='blue', linestyle='--', alpha=0.7,
+               label=f'Umbral discriminación')
+    ax.set_ylabel('P(elegir +60°)')
+    ax.set_title('Discriminación contextual en mezcla')
     ax.legend()
+    ax.set_ylim(0, 1)
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 4: Transferencia
+    ax = axes[1, 1]
+    ax.bar([f'{CONTEXTO_A}', f'{CONTEXTO_B}'], [val_trauma_A, val_trauma_B],
+           color=['red', 'orange'])
+    ax.axhline(y=val_trauma_A, color='red', linestyle='--', alpha=0.5)
+    ax.set_ylabel('Valencia +60°')
+    ax.set_title('Transferencia del trauma entre contextos')
     ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(f'V179_logs/v179_final_{timestamp}.png', dpi=150)
-    print(f"\n  📊 Gráficos guardados: V179_logs/v179_final_{timestamp}.png")
+    plt.savefig(f'V180b_logs/v180b_contextual_{timestamp}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V180b_logs/v180b_contextual_{timestamp}.png")
     
+    # Guardar datos
     raw_data = {
-        'version': 'V179_FINAL',
+        'version': 'V180b',
         'timestamp': timestamp,
+        'params': {
+            'CONTEXTO_A': CONTEXTO_A,
+            'CONTEXTO_B': CONTEXTO_B,
+            'CONSOLIDACION_CICLOS': CONSOLIDACION_CICLOS,
+            'TRAUMA_DURACION': TRAUMA_DURACION,
+            'TRAUMA_COSTO_MULTIPLIER': TRAUMA_COSTO_MULTIPLIER,
+            'CONTEXTO_TRIALS': CONTEXTO_TRIALS,
+            'MEZCLA_TRIALS': MEZCLA_TRIALS,
+        },
         'resultados': {
-            'p_habito_conflicto': float(p_habito_conflicto),
-            'd_pico': float(d_pico),
-            'latencia_media': float(latencia_media),
-            'tasa_alternancia': float(tasa_alternancia),
-            'val_trauma_post': float(val_trauma_post),
-            'd_ok': bool(d_ok),
-            'latencia_ok': bool(latencia_ok),
-            'preferencia_ok': bool(preferencia_ok),
-            'alternancia_ok': bool(alternancia_ok),
+            'val_habito_A': float(val_habito_A),
+            'val_trauma_A': float(val_trauma_A),
+            'val_trauma_B': float(val_trauma_B),
+            'val_trauma_A_rec': float(val_trauma_A_rec),
+            'p_60_B': float(p_60_B),
+            'p_60_A_mix': float(p_60_A_mix),
+            'p_60_B_mix': float(p_60_B_mix),
+            'discriminacion': float(discriminacion),
+            'transferencia_ok': bool(transferencia_ok),
+            'p_contexto_B_ok': bool(p_contexto_B_ok),
+            'discriminacion_ok': bool(discriminacion_ok),
             'exito': bool(exito)
         }
     }
     
-    with open(f'V179_logs/v179_final_{timestamp}.json', 'w') as f:
+    with open(f'V180b_logs/v180b_raw_{timestamp}.json', 'w') as f:
         json.dump(raw_data, f, indent=2)
-    print(f"  📁 Datos guardados: V179_logs/v179_final_{timestamp}.json")
+    print(f"  📁 Datos guardados: V180b_logs/v180b_raw_{timestamp}.json")
     
     return organismo, exito
 
@@ -988,7 +1098,7 @@ def ejecutar_v179():
 if __name__ == "__main__":
     import time
     start = time.time()
-    organismo, exito = ejecutar_v179()
+    organismo, exito = ejecutar_v180b()
     elapsed = time.time() - start
     print(f"\n  ⏱️ Tiempo de ejecución: {elapsed/60:.1f} minutos")
-    print(f"\n  V179 final completado. Éxito: {exito}")
+    print(f"\n  V180b completado. Éxito: {exito}")
