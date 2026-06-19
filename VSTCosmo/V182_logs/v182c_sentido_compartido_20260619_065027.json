@@ -1,0 +1,221 @@
+{
+  "aislada": {
+    "brazo": "aislada",
+    "filas": [
+      {
+        "par": 0,
+        "coord": 0.45,
+        "dom": null,
+        "fuerza": 0.625,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 1,
+        "coord": 0.4,
+        "dom": null,
+        "fuerza": 0.6,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 2,
+        "coord": 0.65,
+        "dom": null,
+        "fuerza": 0.575,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 3,
+        "coord": 0.4,
+        "dom": null,
+        "fuerza": 0.55,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 4,
+        "coord": 0.4,
+        "dom": null,
+        "fuerza": 0.6,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 5,
+        "coord": 0.5,
+        "dom": null,
+        "fuerza": 0.6,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 6,
+        "coord": 0.55,
+        "dom": null,
+        "fuerza": 0.525,
+        "conv": false,
+        "bloqueo": null
+      },
+      {
+        "par": 7,
+        "coord": 0.35,
+        "dom": null,
+        "fuerza": 0.625,
+        "conv": false,
+        "bloqueo": null
+      }
+    ],
+    "n_conv": 0,
+    "n_neg": 0,
+    "n_pos": 0,
+    "bloqueo_medio": null
+  },
+  "comunic": {
+    "brazo": "comunic",
+    "filas": [
+      {
+        "par": 0,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 39
+      },
+      {
+        "par": 1,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 26
+      },
+      {
+        "par": 2,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 23
+      },
+      {
+        "par": 3,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 56
+      },
+      {
+        "par": 4,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 53
+      },
+      {
+        "par": 5,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 22
+      },
+      {
+        "par": 6,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 24
+      },
+      {
+        "par": 7,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 20
+      }
+    ],
+    "n_conv": 8,
+    "n_neg": 5,
+    "n_pos": 3,
+    "bloqueo_medio": 32.875
+  },
+  "memoria": {
+    "brazo": "memoria",
+    "filas": [
+      {
+        "par": 0,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 85
+      },
+      {
+        "par": 1,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 30
+      },
+      {
+        "par": 2,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 23
+      },
+      {
+        "par": 3,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 63
+      },
+      {
+        "par": 4,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 73
+      },
+      {
+        "par": 5,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 22
+      },
+      {
+        "par": 6,
+        "coord": 1.0,
+        "dom": -60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 49
+      },
+      {
+        "par": 7,
+        "coord": 1.0,
+        "dom": 60.0,
+        "fuerza": 1.0,
+        "conv": true,
+        "bloqueo": 32
+      }
+    ],
+    "n_conv": 8,
+    "n_neg": 5,
+    "n_pos": 3,
+    "bloqueo_medio": 47.125
+  }
+}
