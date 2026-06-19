@@ -1,0 +1,182 @@
+{
+  "version": "V182A-v10",
+  "timestamp": "20260606_230336",
+  "tiempo_real_minutos": 0.7076237003008524,
+  "audios_procesados": 23,
+  "params": {
+    "RONDAS_POR_AUDIO": 20,
+    "SEGUNDOS_POR_RONDA": 1.0,
+    "PESO_ESTIMULO": 0.3,
+    "TASA_APRENDIZAJE": 0.01
+  },
+  "resultados": {
+    "convergencia_ratio": 0.0,
+    "reduccion_media": 0.056373062541619175,
+    "exito_convergencia": false,
+    "exito_reduccion": false,
+    "exito": false
+  },
+  "discrepancias_audio": {
+    "BigBang_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "BigBang_pos60deg.wav": {
+      "inicial": 49.7,
+      "final": 44.329996017389604,
+      "reduccion": 0.10804836987143662,
+      "val_A": -22.164998008694802,
+      "val_B": 22.164998008694802
+    },
+    "Blue_Monday_binaural_expandido_left_binaural.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Blue_Monday_binaural_expandido_right_binaural.wav": {
+      "inicial": 44.064016041285264,
+      "final": 39.30297093803556,
+      "reduccion": 0.10804836987143662,
+      "val_A": -19.65148546901778,
+      "val_B": 19.65148546901778
+    },
+    "Do_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Do_pos60deg.wav": {
+      "inicial": 39.06715311240735,
+      "final": 34.84601090309391,
+      "reduccion": 0.10804836987143662,
+      "val_A": -17.423005451546956,
+      "val_B": 17.423005451546956
+    },
+    "Re_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Re_pos60deg.wav": {
+      "inicial": 34.63693483767535,
+      "final": 30.89447049112134,
+      "reduccion": 0.10804836987143707,
+      "val_A": -15.44723524556067,
+      "val_B": 15.44723524556067
+    },
+    "Mi_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Mi_pos60deg.wav": {
+      "inicial": 30.70910366817461,
+      "final": 27.39103507661539,
+      "reduccion": 0.10804836987143662,
+      "val_A": -13.695517538307694,
+      "val_B": 13.695517538307694
+    },
+    "Fa_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Fa_pos60deg.wav": {
+      "inicial": 27.226688866155698,
+      "final": 24.284889517170775,
+      "reduccion": 0.10804836987143684,
+      "val_A": -12.142444758585388,
+      "val_B": 12.142444758585388
+    },
+    "Sol_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Sol_pos60deg.wav": {
+      "inicial": 24.13918018006775,
+      "final": 21.530981111578544,
+      "reduccion": 0.1080483698714364,
+      "val_A": -10.765490555789272,
+      "val_B": 10.765490555789272
+    },
+    "La_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "La_pos60deg.wav": {
+      "inicial": 21.401795224909073,
+      "final": 19.089366138535343,
+      "reduccion": 0.10804836987143696,
+      "val_A": -9.544683069267672,
+      "val_B": 9.544683069267672
+    },
+    "Si_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "Si_pos60deg.wav": {
+      "inicial": 18.97482994170413,
+      "final": 16.924630497915263,
+      "reduccion": 0.10804836987143707,
+      "val_A": -8.462315248957632,
+      "val_B": 8.462315248957632
+    },
+    "voz_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "voz_pos60deg.wav": {
+      "inicial": 16.82308271492777,
+      "final": 15.005376051367485,
+      "reduccion": 0.10804836987143651,
+      "val_A": -7.502688025683742,
+      "val_B": 7.502688025683742
+    },
+    "musica_pos60deg.wav": {
+      "inicial": 14.915343795059279,
+      "final": 13.303765211931074,
+      "reduccion": 0.10804836987143684,
+      "val_A": -6.651882605965537,
+      "val_B": 6.651882605965537
+    },
+    "escala_do_mayor_piano_like_neg60deg.wav": {
+      "inicial": 0.0,
+      "final": 0.0,
+      "reduccion": 0,
+      "val_A": 0.0,
+      "val_B": 0.0
+    },
+    "escala_do_mayor_piano_like_pos60deg.wav": {
+      "inicial": 13.223942620659487,
+      "final": 11.795117177223812,
+      "reduccion": 0.10804836987143696,
+      "val_A": -5.897558588611906,
+      "val_B": 5.897558588611906
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "version": "V182.3",
+  "timestamp": "20260606_214245",
+  "params": {
+    "RONDAS_COMUNICACION": 3,
+    "CAMBIO_MIN": 0.15,
+    "LATENCIA_AUMENTO_MIN": 0.1
+  },
+  "resultados": {
+    "val_A_trauma": -90.56571417613556,
+    "val_B_post_com": -0.0036012312830423854,
+    "p_B_sin": 0.5,
+    "p_B_con": 0.98,
+    "cambio": -0.48,
+    "lat_B_sin": 0.0015742381413777669,
+    "lat_B_post": 0.0003119373321533203,
+    "aumento_latencia": -0.801848701315092,
+    "exito": false
+  }
+}

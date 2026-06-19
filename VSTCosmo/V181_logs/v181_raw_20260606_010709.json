@@ -1,0 +1,26 @@
+{
+  "version": "V181",
+  "timestamp": "20260606_010709",
+  "params": {
+    "REWARD_ALTO": 2.0,
+    "CONSOLIDACION_CICLOS": 20,
+    "AFIRMACION_TRIALS": 50,
+    "NEGACION_TRIALS": 50
+  },
+  "resultados": {
+    "p_habito_afirm": 0.0,
+    "p_habito_neg": 0.0,
+    "latencia_baseline": 0.25,
+    "latencia_afirm": 1.5,
+    "latencia_neg": 1.5,
+    "dif_latencia": 0.0,
+    "caida_latencia": -5.0,
+    "val_habito_final": 15.384542900746782,
+    "val_trauma_final": 0.0,
+    "latencias_similares_ok": true,
+    "afirmacion_ok": false,
+    "busqueda_activa_ok": false,
+    "memoria_preservada_ok": true,
+    "exito": false
+  }
+}

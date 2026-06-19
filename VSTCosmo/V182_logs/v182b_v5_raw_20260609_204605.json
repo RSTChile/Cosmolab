@@ -1,0 +1,56 @@
+{
+  "version": "V182B-v5",
+  "timestamp": "20260609_204605",
+  "params": {
+    "SETPOINTS": [
+      -60,
+      0,
+      60
+    ],
+    "RONDAS_BASELINE": 30,
+    "RONDAS_COMUNICACION": 200,
+    "DROP_OUT": 0.95,
+    "PESO_A": 0.7,
+    "PESO_B": 0.3,
+    "MEJORA_ERROR_MIN": 0.2,
+    "AUMENTO_LATENCIA_MIN": 0.1
+  },
+  "resultados": [
+    {
+      "setpoint": -60,
+      "error_solo": 0,
+      "error_con": 0,
+      "mejora_error": 0.0,
+      "lat_solo": 0.1,
+      "lat_con": 5.1,
+      "aumento_latencia": 50.0,
+      "conf_solo": 0.48785555116036844,
+      "conf_con": NaN,
+      "exito_parcial": false
+    },
+    {
+      "setpoint": 0,
+      "error_solo": 0,
+      "error_con": 60,
+      "mejora_error": 0.0,
+      "lat_solo": 0.1,
+      "lat_con": 5.1,
+      "aumento_latencia": 50.0,
+      "conf_solo": 0.8668133321973348,
+      "conf_con": 0.0,
+      "exito_parcial": false
+    },
+    {
+      "setpoint": 60,
+      "error_solo": 60,
+      "error_con": 120,
+      "mejora_error": -1.0,
+      "lat_solo": 0.1,
+      "lat_con": 5.1,
+      "aumento_latencia": 50.0,
+      "conf_solo": 0.8668133321973348,
+      "conf_con": 0.0,
+      "exito_parcial": false
+    }
+  ]
+}

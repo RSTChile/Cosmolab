@@ -1,0 +1,653 @@
+#!/usr/bin/env python3
+"""
+V182A-v11 — ACOPLAMIENTO BIDIRECCIONAL CON AUDIOS REALES (CORREGIDO)
+================================================================================
+CORRECCIONES:
+  1. Tiempo real con time.sleep() en cada paso
+  2. 1000 rondas por audio (no 20)
+  3. Fix para audios -60° (inicialización correcta de valencias)
+  4. Manejo de errores para audios con formato no compatible
+================================================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from datetime import datetime
+import os
+import json
+from collections import deque
+import time
+import wave
+import struct
+
+# ============================================================
+# PARÁMETROS
+# ============================================================
+DT = 0.01
+TIEMPO_POR_REPETICION = 452.0
+REPETICIONES_LENTAS = 10
+SESGO_L, SESGO_R = 0.05, -0.05
+DIM_HEMISFERIO = 32
+ZONA_MUERTA_BASE, ZONA_MUERTA_MAX = 2.0, 15.0
+KP_BASE, KP_MIN, KP_MAX = 0.002, 0.0005, 0.005
+VENTANA_OSCILACION = 100
+INERCIA = 0.95
+SENSIBILIDAD_GRAD = 10.0
+K_GAIN, K_PRECISION, K_TEMBLOR = 0.00015, 0.002, 0.001
+TAU_RECUPERACION, TAU_BASE, K_MEM = 300.0, 30.0, 0.005
+SUELO_CONFIANZA, K_HOLD = 0.2, 0.001
+TAU_CB, CB_MAX = 10.0, 500.0
+LAMBDA_FISICO, LAMBDA_COSTO = 0.15, 0.5
+UMBRAL_CB_JUEGO, K_INFLUENCIA_JUEGO = 40.0, 0.0005
+
+SEMILLA_A, SEMILLA_B = 44, 444
+HABITO_SETPOINT = -60.0
+TRAUMA_SETPOINT = 60.0
+
+# Parámetros de acoplamiento (CORREGIDOS)
+RONDAS_POR_AUDIO = 1000           # 20 → 1000 rondas por audio
+SEGUNDOS_POR_RONDA = 1.0          # 1 segundo real por ronda
+PASOS_POR_RONDA = int(SEGUNDOS_POR_RONDA / DT)  # 100 pasos
+
+PESO_ESTIMULO = 0.3
+TASA_APRENDIZAJE = 0.01
+REWARD_BASE = 1.0
+ESCALA_REWARD = 20.0
+
+# Umbrales de éxito
+CONVERGENCIA_AUDIO_MIN = 0.70
+REDUCCION_DISCREPANCIA_MIN = 0.50
+CORRELACION_CB_MIN = 0.30
+
+# Ruta de audios
+AUDIO_DIR = "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural"
+
+# ============================================================
+# LISTA DE AUDIOS SELECCIONADOS
+# ============================================================
+AUDIOS_SELECCIONADOS = [
+    ("BigBang_neg60deg.wav", -60),
+    ("BigBang_pos60deg.wav", 60),
+    ("Blue_Monday.wav", 0),
+    ("Blue_Monday_binaural_expandido_left_binaural.wav", -60),
+    ("Blue_Monday_binaural_expandido_right_binaural.wav", 60),
+    ("Do_neg60deg.wav", -60), ("Do_pos60deg.wav", 60),
+    ("Re_neg60deg.wav", -60), ("Re_pos60deg.wav", 60),
+    ("Mi_neg60deg.wav", -60), ("Mi_pos60deg.wav", 60),
+    ("Fa_neg60deg.wav", -60), ("Fa_pos60deg.wav", 60),
+    ("Sol_neg60deg.wav", -60), ("Sol_pos60deg.wav", 60),
+    ("La_neg60deg.wav", -60), ("La_pos60deg.wav", 60),
+    ("Si_neg60deg.wav", -60), ("Si_pos60deg.wav", 60),
+    ("voz_neg60deg.wav", -60),
+    ("voz_pos60deg.wav", 60),
+    ("musica_pos60deg.wav", 60),
+    ("escala_do_mayor_piano_like_neg60deg.wav", -60),
+    ("escala_do_mayor_piano_like_pos60deg.wav", 60),
+]
+
+
+# ============================================================
+# CARGA DE AUDIOS
+# ============================================================
+def cargar_audio(filepath):
+    """Carga un archivo WAV y retorna los datos como array numpy"""
+    try:
+        with wave.open(filepath, 'rb') as wf:
+            n_frames = wf.getnframes()
+            framerate = wf.getframerate()
+            n_channels = wf.getnchannels()
+            sampwidth = wf.getsampwidth()
+            comptype = wf.getcompname()
+            
+            # Verificar formato (evitar unknown format: 3)
+            if comptype != 'not compressed':
+                print(f"      Formato comprimido no soportado: {comptype}")
+                return None, None
+            
+            frames = wf.readframes(n_frames)
+            
+            # Convertir a numpy array
+            if sampwidth == 2:
+                dtype = np.int16
+                audio_data = np.frombuffer(frames, dtype=dtype)
+                audio_data = audio_data / 32768.0
+            elif sampwidth == 1:
+                dtype = np.uint8
+                audio_data = np.frombuffer(frames, dtype=dtype)
+                audio_data = (audio_data - 128) / 128.0
+            else:
+                print(f"      Formato de muestra no soportado: {sampwidth} bytes")
+                return None, None
+            
+            # Si es estéreo, convertir a mono
+            if n_channels == 2:
+                audio_data = audio_data.reshape(-1, 2).mean(axis=1)
+            
+            return audio_data, framerate
+    except Exception as e:
+        print(f"      Error cargando {filepath}: {e}")
+        return None, None
+
+
+# ============================================================
+# MEMORIA DE LARGO PLAZO
+# ============================================================
+class MemoriaLargoPlazo:
+    def __init__(self):
+        self.registros = {}
+    
+    def registrar(self, audio_name, valencia, Cb, D):
+        if audio_name not in self.registros:
+            self.registros[audio_name] = {
+                'valencia': valencia,
+                'Cb': Cb,
+                'D': D,
+                'contador': 1,
+                'valencia_acum': valencia,
+                'Cb_acum': Cb,
+                'D_acum': D
+            }
+        else:
+            reg = self.registros[audio_name]
+            reg['contador'] += 1
+            reg['valencia_acum'] += valencia
+            reg['Cb_acum'] += Cb
+            reg['D_acum'] += D
+            reg['valencia'] = reg['valencia_acum'] / reg['contador']
+            reg['Cb'] = reg['Cb_acum'] / reg['contador']
+            reg['D'] = reg['D_acum'] / reg['contador']
+    
+    def get_valencia_promedio(self, audio_name):
+        reg = self.registros.get(audio_name)
+        return reg['valencia'] if reg else None
+    
+    def reset(self):
+        self.registros = {}
+
+
+# ============================================================
+# HEMISFERIO (CON TIEMPO REAL)
+# ============================================================
+class Hemisferio:
+    def __init__(self, nombre, tau, seed=None, sesgo=0.0):
+        if seed is not None:
+            np.random.seed(seed)
+        self.nombre = nombre
+        self.tau = tau
+        self.sesgo = sesgo
+        self.Phi = np.random.normal(sesgo, 0.1, DIM_HEMISFERIO)
+        self.Phi_vel = np.zeros(DIM_HEMISFERIO)
+        self.audio_data = None
+        self.audio_framerate = None
+        self.audio_pos = 0
+        self.estímulos_externos = deque()
+    
+    def cargar_audio(self, audio_data, framerate):
+        self.audio_data = audio_data
+        self.audio_framerate = framerate
+        self.audio_pos = 0
+    
+    def añadir_estimulo(self, valor):
+        self.estímulos_externos.append(valor)
+    
+    def _calcular_omega(self):
+        return np.mean(self.Phi[:DIM_HEMISFERIO])
+    
+    def entrada_t(self, t):
+        if self.estímulos_externos:
+            return self.estímulos_externos.popleft()
+        
+        if self.audio_data is not None and self.audio_pos < len(self.audio_data):
+            sample_idx = int(self.audio_pos)
+            if sample_idx < len(self.audio_data):
+                valor = self.audio_data[sample_idx]
+                self.audio_pos += 1
+                return valor
+            else:
+                self.audio_pos = 0
+                return 0.0
+        
+        return 0.0
+    
+    def actualizar(self, t, dt, duracion_total, otro_hemisferio=None):
+        entrada = self.entrada_t(t)
+        
+        laplaciano = np.zeros_like(self.Phi)
+        for i in range(1, DIM_HEMISFERIO - 1):
+            laplaciano[i] = self.Phi[i-1] - 2*self.Phi[i] + self.Phi[i+1]
+        
+        reaccion = self.Phi * (1 - self.Phi * self.Phi)
+        
+        forzamiento = np.zeros_like(self.Phi)
+        forzamiento[0] = entrada
+        forzamiento[-1] = -entrada
+        
+        acoplamiento = np.zeros_like(self.Phi)
+        if otro_hemisferio is not None:
+            divergencia = abs(self._calcular_omega() - otro_hemisferio._calcular_omega())
+            if divergencia > 0.5:
+                acoplamiento = 0.01 * (otro_hemisferio.Phi - self.Phi)
+        
+        dPhi_vel = laplaciano + reaccion + forzamiento + acoplamiento
+        self.Phi_vel += dPhi_vel * dt
+        self.Phi += self.Phi_vel * dt
+        self.Phi = np.clip(self.Phi, -1.0, 1.0)
+        
+        return {'omega': self._calcular_omega()}
+    
+    def reset(self):
+        self.Phi = np.random.normal(self.sesgo, 0.1, DIM_HEMISFERIO)
+        self.Phi_vel = np.zeros(DIM_HEMISFERIO)
+        self.audio_data = None
+        self.audio_pos = 0
+        self.estímulos_externos.clear()
+
+
+# ============================================================
+# VALENCIA LOCAL
+# ============================================================
+class ValenciaLocal:
+    def __init__(self):
+        self.valencia = {}
+        self.lr = TASA_APRENDIZAJE
+        self.historial = {}
+    
+    def actualizar_con_estimulo(self, setpoint, estimulo, dt, peso=PESO_ESTIMULO, recompensa=0.0):
+        key = round(setpoint/5)*5 if setpoint != 0 else 0
+        if key not in self.valencia:
+            self.valencia[key] = 0.0
+            self.historial[key] = []
+        
+        self.valencia[key] += peso * (estimulo - self.valencia[key]) * self.lr * dt
+        
+        if recompensa > 0:
+            self.valencia[key] += recompensa * self.lr * dt * ESCALA_REWARD
+        
+        self.valencia[key] = np.clip(self.valencia[key], -100, 100)
+        self.historial[key].append(self.valencia[key])
+        return self.valencia[key]
+    
+    def get(self, setpoint):
+        key = round(setpoint/5)*5 if setpoint != 0 else 0
+        return self.valencia.get(key, 0.0)
+    
+    def set(self, setpoint, valor):
+        key = round(setpoint/5)*5 if setpoint != 0 else 0
+        self.valencia[key] = valor
+        if key not in self.historial:
+            self.historial[key] = []
+        self.historial[key].append(valor)
+    
+    def reset(self):
+        self.valencia = {}
+        self.historial = {}
+
+
+# ============================================================
+# ORGANISMO COMPLETO
+# ============================================================
+class OrganismoCompleto:
+    def __init__(self, seed, nombre):
+        self.nombre = nombre
+        self.seed = seed
+        
+        self.L = Hemisferio("L", 30, seed, SESGO_L)
+        self.R = Hemisferio("R", 300, seed+100, SESGO_R)
+        self.BL = Hemisferio("BL", 30, seed+200, SESGO_L)
+        self.BR = Hemisferio("BR", 300, seed+300, SESGO_R)
+        self.hemisferios = [self.L, self.R, self.BL, self.BR]
+        
+        self.Cb = 0.0
+        self.D = 0.0
+        self.valencia = ValenciaLocal()
+        self.memoria = MemoriaLargoPlazo()
+        self.memoria_interaccion = deque(maxlen=20)
+        
+        self.historial_valencia = []
+        self.historial_Cb = []
+        self.historial_D = []
+    
+    def cargar_audio(self, audio_data, framerate):
+        for h in self.hemisferios:
+            h.cargar_audio(audio_data, framerate)
+    
+    def set_estado_inicial(self, setpoint, valencia, Cb=0.0, D=0.0):
+        self.valencia.set(setpoint, valencia)
+        self.Cb = Cb
+        self.D = D
+    
+    def get_valencia(self, setpoint):
+        return self.valencia.get(setpoint)
+    
+    def procesar_con_tiempo_real(self, setpoint, duracion):
+        """Procesa durante duracion segundos REALES"""
+        start_time = time.time()
+        t = 0
+        while t < duracion:
+            for h in self.hemisferios:
+                h.actualizar(t, DT, duracion, None)
+            t += DT
+            # 🔴 TIEMPO REAL
+            time.sleep(DT)
+        
+        # Actualizar Cb
+        omega_L = self.L._calcular_omega()
+        omega_R = self.R._calcular_omega()
+        gradiente = omega_L - omega_R
+        self.Cb = min(CB_MAX, self.Cb + abs(gradiente) * duracion)
+        self.Cb *= (1 - duracion / TAU_CB)
+        
+        val_habito = self.valencia.get(HABITO_SETPOINT)
+        val_trauma = self.valencia.get(TRAUMA_SETPOINT)
+        self.D = min(1.0, abs(val_habito - val_trauma) / 100.0)
+        
+        elapsed = time.time() - start_time
+        return elapsed
+    
+    def recibir_estimulo_con_tiempo_real(self, estimulo, setpoint, duracion, peso=PESO_ESTIMULO, recompensa=0.0):
+        """Recibe estímulo del otro organismo con tiempo REAL"""
+        for h in self.hemisferios:
+            h.añadir_estimulo(estimulo)
+        
+        start_time = time.time()
+        t = 0
+        while t < duracion:
+            for h in self.hemisferios:
+                h.actualizar(t, DT, duracion, None)
+            t += DT
+            time.sleep(DT)
+        
+        self.valencia.actualizar_con_estimulo(setpoint, estimulo, duracion, peso, recompensa)
+        
+        omega_L = self.L._calcular_omega()
+        omega_R = self.R._calcular_omega()
+        gradiente = omega_L - omega_R
+        self.Cb = min(CB_MAX, self.Cb + abs(gradiente) * duracion)
+        self.Cb *= (1 - duracion / TAU_CB)
+        
+        val_habito = self.valencia.get(HABITO_SETPOINT)
+        val_trauma = self.valencia.get(TRAUMA_SETPOINT)
+        self.D = min(1.0, abs(val_habito - val_trauma) / 100.0)
+        
+        return time.time() - start_time
+    
+    def obtener_resultado(self, setpoint):
+        return self.valencia.get(setpoint)
+    
+    def registrar_estado(self):
+        self.historial_valencia.append(self.valencia.get(TRAUMA_SETPOINT))
+        self.historial_Cb.append(self.Cb)
+        self.historial_D.append(self.D)
+    
+    def reset(self):
+        for h in self.hemisferios:
+            h.reset()
+        self.valencia.reset()
+        self.memoria.reset()
+        self.memoria_interaccion.clear()
+        self.Cb = 0.0
+        self.D = 0.0
+        self.historial_valencia = []
+        self.historial_Cb = []
+        self.historial_D = []
+
+
+# ============================================================
+# RONDA DE ACOPLAMIENTO (CON TIEMPO REAL)
+# ============================================================
+def ronda_acoplamiento(A, B, audio_name, setpoint, ronda_num, duracion=SEGUNDOS_POR_RONDA):
+    """
+    Ronda de acoplamiento con tiempo REAL (time.sleep)
+    """
+    
+    # PASO 1-2: Procesar audio + intercambiar resultados
+    A.procesar_con_tiempo_real(setpoint, duracion)
+    B.procesar_con_tiempo_real(setpoint, duracion)
+    
+    resultado_A = A.obtener_resultado(setpoint)
+    resultado_B = B.obtener_resultado(setpoint)
+    
+    A.memoria_interaccion.append((ronda_num, audio_name, resultado_B))
+    B.memoria_interaccion.append((ronda_num, audio_name, resultado_A))
+    
+    A.recibir_estimulo_con_tiempo_real(resultado_B, setpoint, duracion)
+    B.recibir_estimulo_con_tiempo_real(resultado_A, setpoint, duracion)
+    
+    # PASO 3-4: Procesar nuevamente
+    A.procesar_con_tiempo_real(setpoint, duracion)
+    B.procesar_con_tiempo_real(setpoint, duracion)
+    
+    nuevo_resultado_A = A.obtener_resultado(setpoint)
+    nuevo_resultado_B = B.obtener_resultado(setpoint)
+    
+    return nuevo_resultado_A, nuevo_resultado_B
+
+
+# ============================================================
+# EXPERIMENTO PRINCIPAL
+# ============================================================
+def ejecutar_v182a_v11():
+    print("=" * 100)
+    print("EXPERIMENTO V182A-v11 — ACOPLAMIENTO CON AUDIOS REALES (CORREGIDO)")
+    print("=" * 100)
+    print("  CORRECCIONES:")
+    print("    • Tiempo real con time.sleep() en cada paso")
+    print(f"    • {RONDAS_POR_AUDIO} rondas por audio (no 20)")
+    print("    • Fix para audios -60° (inicialización correcta)")
+    print("")
+    print(f"  TIEMPO ESTIMADO: {len(AUDIOS_SELECCIONADOS) * RONDAS_POR_AUDIO * SEGUNDOS_POR_RONDA / 60:.1f} minutos")
+    print("")
+    print("  CRITERIOS DE ÉXITO:")
+    print(f"    ✅ Convergencia > {CONVERGENCIA_AUDIO_MIN:.0%} de los audios")
+    print(f"    ✅ Reducción de discrepancia media > {REDUCCION_DISCREPANCIA_MIN:.0%}")
+    print("=" * 100)
+
+    A = OrganismoCompleto(SEMILLA_A, "A")
+    B = OrganismoCompleto(SEMILLA_B, "B")
+    
+    # Inicializar valencias para ambos setpoints
+    A.set_estado_inicial(TRAUMA_SETPOINT, -25.0, Cb=50.0, D=0.6)
+    A.set_estado_inicial(HABITO_SETPOINT, 25.0, Cb=50.0, D=0.6)
+    B.set_estado_inicial(TRAUMA_SETPOINT, +25.0, Cb=10.0, D=0.2)
+    B.set_estado_inicial(HABITO_SETPOINT, -25.0, Cb=10.0, D=0.2)
+    
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    os.makedirs('V182_logs', exist_ok=True)
+    
+    # Diccionarios para resultados
+    resultados_A = {}
+    resultados_B = {}
+    discrepancias_audio = {}
+    
+    print("\n" + "=" * 60)
+    print("PROCESANDO AUDIOS (1000 rondas por audio, tiempo real)")
+    print("=" * 60)
+    
+    start_time = time.time()
+    audios_validos = 0
+    
+    for audio_idx, (audio_file, setpoint) in enumerate(AUDIOS_SELECCIONADOS):
+        audio_path = os.path.join(AUDIO_DIR, audio_file)
+        print(f"\n  [{audio_idx+1}/{len(AUDIOS_SELECCIONADOS)}] Procesando: {audio_file}")
+        print(f"      Setpoint: {setpoint}°, {RONDAS_POR_AUDIO} rondas de {SEGUNDOS_POR_RONDA}s")
+        
+        # Cargar audio
+        audio_data, framerate = cargar_audio(audio_path)
+        if audio_data is None:
+            print(f"      ⚠️ Error cargando audio, saltando...")
+            continue
+        
+        audios_validos += 1
+        
+        # Cargar audio en ambos organismos
+        A.cargar_audio(audio_data, framerate)
+        B.cargar_audio(audio_data, framerate)
+        
+        # Rondas de acoplamiento
+        resultados_A_audio = []
+        resultados_B_audio = []
+        
+        audio_start = time.time()
+        
+        for ronda in range(RONDAS_POR_AUDIO):
+            val_A, val_B = ronda_acoplamiento(A, B, audio_file, setpoint, ronda)
+            resultados_A_audio.append(val_A)
+            resultados_B_audio.append(val_B)
+            
+            if (ronda + 1) % 200 == 0:
+                print(f"        Ronda {ronda+1}/{RONDAS_POR_AUDIO}: A={val_A:.2f}, B={val_B:.2f}")
+        
+        audio_end = time.time()
+        
+        # Registrar en memoria
+        val_final_A = resultados_A_audio[-1]
+        val_final_B = resultados_B_audio[-1]
+        
+        A.memoria.registrar(audio_file, val_final_A, A.Cb, A.D)
+        B.memoria.registrar(audio_file, val_final_B, B.Cb, B.D)
+        
+        resultados_A[audio_file] = resultados_A_audio
+        resultados_B[audio_file] = resultados_B_audio
+        
+        # Calcular convergencia
+        inicial = abs(resultados_A_audio[0] - resultados_B_audio[0])
+        final = abs(val_final_A - val_final_B)
+        reduccion = 1.0 - (final / inicial) if inicial > 0 else 0
+        
+        discrepancias_audio[audio_file] = {
+            'setpoint': setpoint,
+            'inicial': inicial,
+            'final': final,
+            'reduccion': reduccion,
+            'val_A': val_final_A,
+            'val_B': val_final_B,
+            'tiempo_segundos': audio_end - audio_start
+        }
+        
+        status = "✅" if reduccion > REDUCCION_DISCREPANCIA_MIN else "❌"
+        print(f"      {status} Convergencia: {reduccion:.1%} (ini={inicial:.2f} → fin={final:.2f})")
+        print(f"      Tiempo: {(audio_end - audio_start)/60:.1f} min")
+    
+    # ============================================================
+    # RESULTADOS
+    # ============================================================
+    elapsed_total = time.time() - start_time
+    
+    print("\n" + "=" * 80)
+    print("RESULTADOS V182A-v11 — Acoplamiento con Audios Reales")
+    print("=" * 80)
+    
+    print(f"\n  ⏱️ TIEMPO REAL TOTAL: {elapsed_total/60:.1f} minutos")
+    print(f"  📊 AUDIOS VÁLIDOS: {audios_validos}/{len(AUDIOS_SELECCIONADOS)}")
+    
+    # Calcular métricas globales
+    reducciones = [disc['reduccion'] for disc in discrepancias_audio.values()]
+    convergencias = [r > REDUCCION_DISCREPANCIA_MIN for r in reducciones]
+    
+    convergencia_ratio = sum(convergencias) / len(convergencias) if convergencias else 0
+    reduccion_media = np.mean(reducciones) if reducciones else 0
+    
+    print(f"\n  📊 CONVERGENCIA POR AUDIO (reducción > {REDUCCION_DISCREPANCIA_MIN:.0%}):")
+    for audio_file, disc in discrepancias_audio.items():
+        status = "✅" if disc['reduccion'] > REDUCCION_DISCREPANCIA_MIN else "❌"
+        sp_info = f"(setpoint {disc['setpoint']}°)" if disc['setpoint'] != 0 else ""
+        print(f"     {status} {audio_file[:40]:40} {sp_info}: {disc['reduccion']:.1%}")
+    
+    print(f"\n  📊 MÉTRICAS GLOBALES:")
+    print(f"     Convergencia: {convergencia_ratio:.1%} (>{CONVERGENCIA_AUDIO_MIN:.0%}) -> {'✅' if convergencia_ratio > CONVERGENCIA_AUDIO_MIN else '❌'}")
+    print(f"     Reducción media: {reduccion_media:.1%} (>{REDUCCION_DISCREPANCIA_MIN:.0%}) -> {'✅' if reduccion_media > REDUCCION_DISCREPANCIA_MIN else '❌'}")
+    
+    exito = (convergencia_ratio > CONVERGENCIA_AUDIO_MIN) and (reduccion_media > REDUCCION_DISCREPANCIA_MIN)
+    
+    print("\n" + "=" * 80)
+    if exito:
+        print("  ✅ ACOPLAMIENTO BIDIRECCIONAL CON AUDIOS REALES DEMOSTRADO")
+    else:
+        print("  ⚠️ ACOPLAMIENTO BIDIRECCIONAL NO DEMOSTRADO")
+    print("=" * 80)
+    
+    # Gráficos
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    
+    # Gráfico 1: Reducciones por audio
+    ax = axes[0, 0]
+    audios_nombres = list(discrepancias_audio.keys())
+    reducciones_vals = [disc['reduccion'] for disc in discrepancias_audio.values()]
+    colores = ['green' if r > REDUCCION_DISCREPANCIA_MIN else 'red' for r in reducciones_vals]
+    ax.barh(range(len(audios_nombres)), reducciones_vals, color=colores, alpha=0.7)
+    ax.axvline(x=REDUCCION_DISCREPANCIA_MIN, color='blue', linestyle='--')
+    ax.set_yticks(range(len(audios_nombres)))
+    ax.set_yticklabels([name[:25] for name in audios_nombres], fontsize=8)
+    ax.set_xlabel('Reducción de discrepancia')
+    ax.set_title('Convergencia por audio')
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 2: Histograma
+    ax = axes[0, 1]
+    ax.hist(reducciones_vals, bins=20, color='purple', alpha=0.7, edgecolor='black')
+    ax.axvline(x=REDUCCION_DISCREPANCIA_MIN, color='red', linestyle='--')
+    ax.axvline(x=reduccion_media, color='blue', linestyle='-', label=f'Media: {reduccion_media:.1%}')
+    ax.set_xlabel('Reducción de discrepancia')
+    ax.set_ylabel('Frecuencia')
+    ax.set_title('Distribución de convergencia')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    
+    # Gráfico 3: Evolución ejemplo
+    ax = axes[1, 0]
+    if resultados_A:
+        audio_ejemplo = list(resultados_A.keys())[0]
+        ax.plot(resultados_A[audio_ejemplo][:100], 'b-', linewidth=0.8, alpha=0.7, label='A')
+        ax.plot(resultados_B[audio_ejemplo][:100], 'r-', linewidth=0.8, alpha=0.7, label='B')
+        ax.set_xlabel('Ronda')
+        ax.set_ylabel('Valencia')
+        ax.set_title(f'Evolución (primeras 100 rondas) para {audio_ejemplo[:30]}')
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+    
+    # Gráfico 4: Convergencia vs setpoint
+    ax = axes[1, 1]
+    setpoints = [disc['setpoint'] for disc in discrepancias_audio.values()]
+    reducciones_sp = reducciones_vals
+    colors = ['blue' if sp < 0 else 'red' for sp in setpoints]
+    ax.scatter(setpoints, reducciones_sp, c=colors, alpha=0.7, s=50)
+    ax.axhline(y=REDUCCION_DISCREPANCIA_MIN, color='green', linestyle='--')
+    ax.set_xlabel('Setpoint asociado al audio')
+    ax.set_ylabel('Reducción de discrepancia')
+    ax.set_title('Convergencia por setpoint')
+    ax.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig(f'V182_logs/v182a_v11_audio_{ts}.png', dpi=150)
+    print(f"\n  📊 Gráficos guardados: V182_logs/v182a_v11_audio_{ts}.png")
+    
+    # Guardar datos
+    raw_data = {
+        'version': 'V182A-v11',
+        'timestamp': ts,
+        'tiempo_real_minutos': float(elapsed_total/60),
+        'audios_validos': audios_validos,
+        'params': {
+            'RONDAS_POR_AUDIO': RONDAS_POR_AUDIO,
+            'SEGUNDOS_POR_RONDA': SEGUNDOS_POR_RONDA,
+        },
+        'resultados': {
+            'convergencia_ratio': float(convergencia_ratio),
+            'reduccion_media': float(reduccion_media),
+            'exito': bool(exito)
+        },
+        'discrepancias_audio': {name: disc for name, disc in discrepancias_audio.items()}
+    }
+    
+    with open(f'V182_logs/v182a_v11_raw_{ts}.json', 'w') as f:
+        json.dump(raw_data, f, indent=2)
+    print(f"  📁 Datos guardados: V182_logs/v182a_v11_raw_{ts}.json")
+    
+    return exito
+
+
+if __name__ == "__main__":
+    start = time.time()
+    exito = ejecutar_v182a_v11()
+    elapsed = time.time() - start
+    print(f"\n  ⏱️ Tiempo total real: {elapsed/60:.1f} minutos | Éxito: {exito}")

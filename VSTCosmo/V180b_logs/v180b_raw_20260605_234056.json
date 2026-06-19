@@ -1,0 +1,27 @@
+{
+  "version": "V180b",
+  "timestamp": "20260605_234056",
+  "params": {
+    "CONTEXTO_A": "ruido_blanco",
+    "CONTEXTO_B": "silencio",
+    "CONSOLIDACION_CICLOS": 20,
+    "TRAUMA_DURACION": 15.0,
+    "TRAUMA_COSTO_MULTIPLIER": 2.0,
+    "CONTEXTO_TRIALS": 20,
+    "MEZCLA_TRIALS": 40
+  },
+  "resultados": {
+    "val_habito_A": 16.93799290070262,
+    "val_trauma_A": -2.0010307393692246,
+    "val_trauma_B": 0.6542688192298826,
+    "val_trauma_A_rec": -2.0010307393692246,
+    "p_60_B": 1.0,
+    "p_60_A_mix": 0.0,
+    "p_60_B_mix": 1.0,
+    "discriminacion": -1.0,
+    "transferencia_ok": true,
+    "p_contexto_B_ok": true,
+    "discriminacion_ok": false,
+    "exito": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "version": "V182A-v13",
+  "timestamp": "20260607_195115",
+  "params": {
+    "RONDAS_ACP": 200,
+    "DT_PROCESAMIENTO": 0.1,
+    "PESO_ESTIMULO": 0.3
+  },
+  "condiciones": [
+    {
+      "nombre": "A: BigBang -60\u00b0 (audio real)",
+      "setpoint": -60,
+      "tipo": "referencia",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "B: BigBang +60\u00b0 (audio real)",
+      "setpoint": 60,
+      "tipo": "referencia",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "C: Silencio (control)",
+      "setpoint": -60,
+      "tipo": "control",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "D: Ruido blanco (control)",
+      "setpoint": -60,
+      "tipo": "control",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "E: Audio invertido (control)",
+      "setpoint": -60,
+      "tipo": "control",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "F: Canal izquierdo (control)",
+      "setpoint": -60,
+      "tipo": "control",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    },
+    {
+      "nombre": "G: Canal derecho (control)",
+      "setpoint": -60,
+      "tipo": "control",
+      "diferencia_final": 44.34442476896043,
+      "tau_factor": 0.9704367960828636,
+      "simetria": 0.0,
+      "val_A_fin": -22.172212384480215,
+      "val_B_fin": 22.172212384480215
+    }
+  ]
+}

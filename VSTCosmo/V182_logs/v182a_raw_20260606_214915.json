@@ -1,0 +1,24 @@
+{
+  "version": "V182A",
+  "timestamp": "20260606_214915",
+  "params": {
+    "BASELINE_TRIALS": 20,
+    "COUPLED_TRIALS": 50,
+    "DECOUPLING_TRIALS": 20,
+    "DELTA_D_MIN": 0.15,
+    "CORR_MIN": 0.25
+  },
+  "resultados": {
+    "baseline_A_D": 0.23971467385008177,
+    "baseline_B_D": 0.23993283825461167,
+    "coupled_A_D": 0.21498198859249007,
+    "coupled_B_D": 0.21514442062511002,
+    "decoupling_B_D": 0.1961003440792975,
+    "delta_D": 0.024788417629501652,
+    "correlacion": 0.9999999997911883,
+    "reversibilidad": true,
+    "exito_d": false,
+    "exito_corr": true,
+    "exito": false
+  }
+}

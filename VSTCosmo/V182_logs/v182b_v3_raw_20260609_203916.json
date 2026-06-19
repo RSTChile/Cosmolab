@@ -1,0 +1,36 @@
+{
+  "version": "V182B-v3",
+  "timestamp": "20260609_203916",
+  "params": {
+    "RONDAS_POR_CONDICION": 200,
+    "RUIDO_B_AMPLITUD": 0.8,
+    "PESO_ESTIMULO": 0.3,
+    "MEJORA_MIN": 0.2,
+    "LATENCIA_AUMENTO_MIN": 0.1,
+    "CORRELACION_MIN": 0.5
+  },
+  "resultados": [
+    {
+      "setpoint": -60.0,
+      "error_solo": 1.2,
+      "error_con": 0.0,
+      "mejora": 1.0,
+      "lat_solo": 9.241104125976562e-06,
+      "lat_con": 3.356337547302246e-05,
+      "aumento_latencia": 2.631965944272446,
+      "correlacion": 0.0,
+      "exito": false
+    },
+    {
+      "setpoint": 60.0,
+      "error_solo": 0.0,
+      "error_con": 0.0,
+      "mejora": 0,
+      "lat_solo": 8.751153945922851e-06,
+      "lat_con": 2.6901960372924803e-05,
+      "aumento_latencia": 2.0741043454570223,
+      "correlacion": 0.0,
+      "exito": false
+    }
+  ]
+}

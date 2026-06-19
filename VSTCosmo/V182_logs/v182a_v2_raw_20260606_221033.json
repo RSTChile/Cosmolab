@@ -1,0 +1,55 @@
+{
+  "version": "V182A-v2",
+  "timestamp": "20260606_221033",
+  "params": {
+    "RONDAS_ACP": 8,
+    "RANGO_VALENCIA_INICIAL": 50.0,
+    "REDUCCION_MIN": 0.5,
+    "DIFERENCIA_FINAL_MAX": 15.0,
+    "ESTABILIZACION_MAX": 3.0,
+    "MOVIMIENTO_MIN": 2.0
+  },
+  "resultados": {
+    "diferencia_inicial": 49.985,
+    "diferencia_final": 49.79290114445448,
+    "reduccion": 0.003843130049925314,
+    "estabilizacion": 0.022376060588751866,
+    "movimiento_A": 0.09604942777275838,
+    "movimiento_B": 0.09604942777275838,
+    "historial_A": [
+      -24.9925,
+      -24.9787559994375,
+      -24.965019557044506,
+      -24.951290668664598,
+      -24.93756933014363,
+      -24.92385553732975,
+      -24.910149286073384,
+      -24.89645057222724
+    ],
+    "historial_B": [
+      24.9925,
+      24.9787559994375,
+      24.965019557044506,
+      24.951290668664598,
+      24.93756933014363,
+      24.92385553732975,
+      24.910149286073384,
+      24.89645057222724
+    ],
+    "diferencias": [
+      49.985,
+      49.957511998875,
+      49.93003911408901,
+      49.902581337329195,
+      49.87513866028726,
+      49.8477110746595,
+      49.82029857214677,
+      49.79290114445448
+    ],
+    "exito_reduccion": false,
+    "exito_diferencia": false,
+    "exito_estabilizacion": true,
+    "exito_simetria": false,
+    "exito": false
+  }
+}

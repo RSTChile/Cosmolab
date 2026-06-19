@@ -1,0 +1,31 @@
+{
+  "version": "V182A-v8",
+  "timestamp": "20260606_224722",
+  "params": {
+    "RONDAS_ACP": 1000,
+    "DT_PROCESAMIENTO": 1.0,
+    "PESO_ESTIMULO": 0.3,
+    "TASA_APRENDIZAJE": 0.01,
+    "REWARD_BASE": 1.0,
+    "ESCALA_REWARD": 20.0,
+    "MEMORIA_CAPACIDAD": 10,
+    "REDUCCION_MIN": 0.4,
+    "DIFERENCIA_FINAL_MAX": 20.0,
+    "ESTABILIZACION_MAX": 5.0,
+    "MOVIMIENTO_MIN": 12.0,
+    "CORRELACION_CB_MIN": 0.3
+  },
+  "resultados": {
+    "diferencia_inicial": 49.7,
+    "diferencia_final": 4.952452305024539,
+    "reduccion": 0.9003530723335103,
+    "estabilizacion": 0.16178322531061287,
+    "movimiento_A": 22.432214885094254,
+    "movimiento_B": 22.31533280988121,
+    "correlacion_cb": 0.3988845202138282,
+    "discrepancia_media_A": 0.05868683743151377,
+    "discrepancia_media_B": 0.05868683743151377,
+    "recompensa_total": 2.2936829172,
+    "exito": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "V182A-v9",
+  "timestamp": "20260606_225237",
+  "tiempo_real_minutos": 0.4497767964998881,
+  "rondas_ejecutadas": 214,
+  "params": {
+    "RONDAS_ACP": 1000,
+    "SEGUNDOS_POR_RONDA": 1.0,
+    "PESO_ESTIMULO": 0.3,
+    "TASA_APRENDIZAJE": 0.01,
+    "REWARD_BASE": 1.0,
+    "ESCALA_REWARD": 20.0
+  },
+  "resultados": {
+    "diferencia_inicial": 49.7,
+    "diferencia_final": 4.952452305024539,
+    "reduccion": 0.9003530723335103,
+    "estabilizacion": 0.16178322531061287,
+    "movimiento_A": 22.432214885094254,
+    "movimiento_B": 22.31533280988121,
+    "correlacion_cb": 0.7629898331473832,
+    "discrepancia_media_A": 0.05868683743151377,
+    "discrepancia_media_B": 0.05868683743151377,
+    "recompensa_total": 2.2936829172,
+    "exito": true
+  }
+}

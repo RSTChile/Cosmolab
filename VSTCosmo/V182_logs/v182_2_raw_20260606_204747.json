@@ -1,0 +1,22 @@
+{
+  "version": "V182.2",
+  "timestamp": "20260606_204747",
+  "params": {
+    "CURIOSIDAD_B": 1.0,
+    "TRANSFERENCIA_MIN": 0.2,
+    "CORRELACION_MAX": -0.3
+  },
+  "resultados": {
+    "p_B_control": 1.0,
+    "p_B_conjunto": 1.0,
+    "transferencia": 0.0,
+    "lat_B_control": 7.184920171503009,
+    "lat_B_conjunto": 7.180466638410305,
+    "correlacion": 0.0,
+    "precondicion_cumplida": false,
+    "c1_transferencia": false,
+    "c2_latencia": false,
+    "c3_correlacion": false,
+    "exito": false
+  }
+}

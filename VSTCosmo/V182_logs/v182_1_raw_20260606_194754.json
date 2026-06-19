@@ -1,0 +1,13 @@
+{
+  "version": "V182.1",
+  "timestamp": "20260606_194754",
+  "resultados": {
+    "p_B_control": 1.0,
+    "p_B_conjunto": 1.0,
+    "transferencia": 0.0,
+    "lat_B_control": 6.752915909019668,
+    "lat_B_conjunto": 6.257549727656194,
+    "correlacion": 0.0,
+    "exito": false
+  }
+}

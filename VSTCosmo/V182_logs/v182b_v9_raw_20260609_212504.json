@@ -1,0 +1,10 @@
+{
+  "version": "V182B-v9",
+  "timestamp": "20260609_212504",
+  "resultados": [
+    {
+      "setpoint": -60.0,
+      "error_baseline": 97.54011369460314,
+      "error_comunicacion": 0.6,
+      "mejora": 0.9938486846357532,
+      "exito": 

@@ -1,0 +1,28 @@
+{
+  "version": "V178",
+  "timestamp": "20260605_021736",
+  "params": {
+    "TRAUMA_DURACION_F2": 30.0,
+    "TRAUMA_COSTO_MULTIPLIER": 4.0,
+    "EXTINCION_TRIALS": 50,
+    "EXTINCION_REWARD": 1.0,
+    "REVERIFICACION_TRIALS": 30,
+    "RE_CONSOLIDACION_DURACION": 15.0
+  },
+  "resultados": {
+    "val_trauma_post_f2": -1.5278387537257727,
+    "val_trauma_post_extincion": 1.157705443820477,
+    "val_trauma_post_reconsolidacion": 0.6214435453291745,
+    "val_habito_inicial": 16.570166131342518,
+    "val_habito_post_f2": 16.570166131342518,
+    "val_habito_post_extincion": 16.569968401302578,
+    "tasa_extincion": 0.010173695180363039,
+    "p_trauma_post_extincion": 1.0,
+    "tiempo_deliberacion_f4": 1.0,
+    "extincion_ok": true,
+    "reversibilidad_ok": true,
+    "priming_ok": true,
+    "memoria_preservada": true,
+    "exito": true
+  }
+}

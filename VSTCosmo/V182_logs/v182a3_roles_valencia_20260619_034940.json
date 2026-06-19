@@ -1,0 +1,72 @@
+{
+  "on": [
+    {
+      "banda": -60.0,
+      "vA": 16.867258458104544,
+      "vB": 0.9299530114126778,
+      "cAB": 0.07553483369427963,
+      "cBA": 0.8938002724947519,
+      "rol": "B defiere -> A ancla",
+      "lider": "A",
+      "experto": "A",
+      "coincide": true
+    },
+    {
+      "banda": 0.0,
+      "vA": 8.483566586369376,
+      "vB": 8.55663737753168,
+      "cAB": 0.4884763627470938,
+      "cBA": 0.48085874344193785,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "B",
+      "coincide": false
+    },
+    {
+      "banda": 60.0,
+      "vA": 0.7341606705009591,
+      "vB": 16.89150724602581,
+      "cAB": 0.895496355714071,
+      "cBA": 0.07383875047496068,
+      "rol": "A defiere -> B ancla",
+      "lider": "B",
+      "experto": "B",
+      "coincide": true
+    }
+  ],
+  "off": [
+    {
+      "banda": -60.0,
+      "vA": 16.867258458104544,
+      "vB": 0.9299530114126778,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "A",
+      "coincide": false
+    },
+    {
+      "banda": 0.0,
+      "vA": 8.483566586369376,
+      "vB": 8.55663737753168,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "B",
+      "coincide": false
+    },
+    {
+      "banda": 60.0,
+      "vA": 0.7341606705009591,
+      "vB": 16.89150724602581,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "B",
+      "coincide": false
+    }
+  ]
+}

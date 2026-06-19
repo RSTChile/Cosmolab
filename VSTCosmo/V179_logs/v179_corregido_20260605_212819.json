@@ -1,0 +1,17 @@
+{
+  "version": "V179_CORREGIDO",
+  "timestamp": "20260605_212819",
+  "resultados": {
+    "p_habito_conflicto": 1.0,
+    "d_pico": 0.8343689139545849,
+    "latencia_media": 1.0020811239583332,
+    "latencia_esperada_2x": 0.5,
+    "tasa_alternancia": 0.0,
+    "val_trauma_post": -2.0001372711504404,
+    "d_ok": true,
+    "latencia_ok": false,
+    "preferencia_ok": true,
+    "alternancia_ok": true,
+    "exito": false
+  }
+}

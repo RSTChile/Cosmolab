@@ -1,0 +1,32 @@
+{
+  "version": "V179",
+  "timestamp": "20260605_210729",
+  "params": {
+    "CONSOLIDACION_CICLOS": 20,
+    "TRAUMA_DURACION": 15.0,
+    "TRAUMA_COSTO_MULTIPLIER": 2.0,
+    "CONFLICTO_TRIALS": 100,
+    "D_CONFLICTO_MIN": 0.6,
+    "LATENCIA_CONFLICTO_MIN": 2.5,
+    "P_HABITO_MIN": 0.75,
+    "ALTERNANCIA_MAX": 0.05
+  },
+  "resultados": {
+    "p_habito_conflicto": 1.0,
+    "d_pico": 1.0,
+    "d_medio": 1.0,
+    "latencia_media": 2.5,
+    "latencia_esperada_2x": 0.0,
+    "tasa_alternancia": 0.0,
+    "val_habito_post_consolidacion": 17.2659922026178,
+    "val_habito_post_trauma": 17.2659922026178,
+    "val_habito_final": 22.410251752238924,
+    "val_trauma_post": -0.24327999665618474,
+    "val_trauma_final": -0.24327999665618474,
+    "d_ok": true,
+    "latencia_ok": false,
+    "preferencia_ok": true,
+    "alternancia_ok": true,
+    "exito": false
+  }
+}

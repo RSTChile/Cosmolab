@@ -1,0 +1,28 @@
+{
+  "version": "V181.3",
+  "timestamp": "20260606_043314",
+  "params": {
+    "REWARD_ALTO": 2.0,
+    "CONSOLIDACION_CICLOS": 20,
+    "AFIRMACION_TRIALS": 50,
+    "NEGACION_TRIALS": 50,
+    "LATENCIA_MIN": 1.5,
+    "LATENCIA_DIF_MAX": 0.3,
+    "P_AFIRMACION_MIN": 0.8,
+    "VALENCIA_MIN": 10.0
+  },
+  "resultados": {
+    "p_afirmacion": 1.0,
+    "p_negacion": 1.0,
+    "latencia_baseline": 0.625,
+    "latencia_afirmacion": 0.625,
+    "latencia_negacion": 3.746634189884871,
+    "diferencia_latencias": 0.8331836073862323,
+    "valencia_final": 36.879503505170206,
+    "c1_afirmacion": true,
+    "c2_latencia": false,
+    "c3_diferencia": false,
+    "c4_valencia": true,
+    "exito": false
+  }
+}

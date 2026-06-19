@@ -1,0 +1,32 @@
+{
+  "version": "V182A-v5",
+  "timestamp": "20260606_222709",
+  "params": {
+    "RONDAS_ACP": 100,
+    "DT_PROCESAMIENTO": 1.0,
+    "PESO_ESTIMULO": 0.05,
+    "REWARD_BASE": 0.3,
+    "ESCALA_REWARD": 10.0,
+    "REDUCCION_MIN": 0.4,
+    "DIFERENCIA_FINAL_MAX": 20.0,
+    "ESTABILIZACION_MAX": 5.0,
+    "MOVIMIENTO_MIN": 12.0,
+    "CORRELACION_CB_MIN": 0.3
+  },
+  "resultados": {
+    "diferencia_inicial": 49.9985,
+    "diferencia_final": 49.84289508223665,
+    "reduccion": 0.00311219172101862,
+    "estabilizacion": 0.004510332627850676,
+    "movimiento_A": 0.07780273794431736,
+    "movimiento_B": 0.07780217981903448,
+    "correlacion_cb": 0.42911329413191424,
+    "recompensa_total": 0.0,
+    "exito_reduccion": false,
+    "exito_diferencia": false,
+    "exito_estabilizacion": true,
+    "exito_simetria": false,
+    "exito_correlacion": true,
+    "exito": false
+  }
+}

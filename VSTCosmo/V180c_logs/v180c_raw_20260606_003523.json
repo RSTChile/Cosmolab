@@ -1,0 +1,17 @@
+{
+  "version": "V180c",
+  "timestamp": "20260606_003523",
+  "resultados": {
+    "p_episodio": 0.0,
+    "coherencia": 1.0,
+    "tasa_recuperacion": 0.0,
+    "latencia_baseline": 0.625,
+    "latencia_prueba": 7.865254194411886,
+    "ratio_latencia": 12.584406711059017,
+    "val_habito_final": 41.3889305314607,
+    "val_trauma_final": -2.0013667936720534,
+    "val_episodio_final": -2.0011802958436977,
+    "impacto_promedio": 0.0,
+    "exito": true
+  }
+}

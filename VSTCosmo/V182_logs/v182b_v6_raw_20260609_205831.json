@@ -1,0 +1,33 @@
+{
+  "version": "V182B-v6",
+  "timestamp": "20260609_205831",
+  "resultados": [
+    {
+      "setpoint": -60.0,
+      "error_solo": 20.889653504300036,
+      "error_con_A": 3.3614175005630944,
+      "mejora_error": 0.839086967149974,
+      "aumento_latencia": 9.000000000000002,
+      "exito": true
+    },
+    {
+      "setpoint": 0.0,
+      "error_solo": 8.542425406343312,
+      "error_con_A": 1.0579350726511583,
+      "mejora_error": 0.8761551875108476,
+      "aumento_latencia": 9.000000000000002,
+      "exito": true
+    },
+    {
+      "setpoint": 60.0,
+      "error_solo": 10.693409694226869,
+      "error_con_A": 3.3550959605440904,
+      "mejora_error": 0.6862463838493505,
+      "aumento_latencia": 9.000000000000002,
+      "exito": true
+    }
+  ],
+  "mejora_media": 0.8004961795033907,
+  "exitos_parciales": 3,
+  "exito_global": true
+}

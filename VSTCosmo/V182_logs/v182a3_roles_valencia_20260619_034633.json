@@ -1,0 +1,72 @@
+{
+  "on": [
+    {
+      "banda": -60.0,
+      "vA": 0.8308796127356244,
+      "vB": -0.17157114533737666,
+      "cAB": 0.43326794204407004,
+      "cBA": 0.5360671641449615,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "A",
+      "coincide": false
+    },
+    {
+      "banda": 0.0,
+      "vA": 0.4091794511734458,
+      "vB": 0.3680134300378871,
+      "cAB": 0.4825216331942721,
+      "cBA": 0.4868134729947595,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "\u2014",
+      "coincide": true
+    },
+    {
+      "banda": 60.0,
+      "vA": -0.1726241189986052,
+      "vB": 0.8573111403452943,
+      "cAB": 0.5374327292385668,
+      "cBA": 0.431902376950465,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "B",
+      "coincide": false
+    }
+  ],
+  "off": [
+    {
+      "banda": -60.0,
+      "vA": 0.8308796127356244,
+      "vB": -0.17157114533737666,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "A",
+      "coincide": false
+    },
+    {
+      "banda": 0.0,
+      "vA": 0.4091794511734458,
+      "vB": 0.3680134300378871,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "\u2014",
+      "coincide": true
+    },
+    {
+      "banda": 60.0,
+      "vA": -0.1726241189986052,
+      "vB": 0.8573111403452943,
+      "cAB": 0.3,
+      "cBA": 0.3,
+      "rol": "simetrico (sin rol)",
+      "lider": "\u2014",
+      "experto": "B",
+      "coincide": false
+    }
+  ]
+}

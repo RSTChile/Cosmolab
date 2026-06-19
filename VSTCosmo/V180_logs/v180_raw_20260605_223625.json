@@ -1,0 +1,25 @@
+{
+  "version": "V180",
+  "timestamp": "20260605_223625",
+  "params": {
+    "EPISODIO_SETPOINT": 45.0,
+    "EVENTO_CICLOS": 30,
+    "TEST_TRIALS": 50,
+    "P_EPISODIO_MAX": 0.3,
+    "LATENCIA_RECUPERACION_MIN": 1.5
+  },
+  "resultados": {
+    "p_episodio_elegido": 0.8,
+    "latencia_recuperacion_media": 2.6047642112570264,
+    "latencia_ratio": 10.419056845028106,
+    "eventos_recuperados_ratio": 0.2,
+    "val_habito_final": 16.800229284773174,
+    "val_trauma_final": -2.0010324383939824,
+    "val_episodio_final": 27.4928007325884,
+    "episodio_rechazado_ok": false,
+    "latencia_ok": true,
+    "especificidad_ok": true,
+    "memoria_preservada_ok": true,
+    "exito": false
+  }
+}

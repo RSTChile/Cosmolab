@@ -1,0 +1,34 @@
+{
+  "version": "V182B-v9-corregido",
+  "timestamp": "20260618_173301",
+  "params": {
+    "RONDAS": 200,
+    "VENTANA_SS": 100,
+    "N_TRIALS": 20,
+    "RUIDO_A_STD": 5.0,
+    "RUIDO_B_STD": 40.0,
+    "ALFA_CONFIANZA": 0.4
+  },
+  "detalle_por_setpoint": [
+    {
+      "setpoint": -60.0,
+      "error_B_solo": 55.82762659318608,
+      "error_B_con": 7.3199999999999985,
+      "mejora_media": 0.8714806736110973,
+      "mejora_std": 0.3613914404591809,
+      "frac_trials_mejora": 0.9,
+      "exito": true
+    },
+    {
+      "setpoint": 60.0,
+      "error_B_solo": 56.59283508458135,
+      "error_B_con": 1.26,
+      "mejora_media": 0.9776836311838485,
+      "mejora_std": 0.09727479645638686,
+      "frac_trials_mejora": 1.0,
+      "exito": true
+    }
+  ],
+  "mejora_global": 0.9245821523974729,
+  "exito_global": true
+}
