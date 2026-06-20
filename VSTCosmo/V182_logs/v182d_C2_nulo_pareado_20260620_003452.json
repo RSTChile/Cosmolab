@@ -1,0 +1,105 @@
+{
+  "version": "V182D_C2-nulo-pareado",
+  "disposicion": {
+    "-60.0": [
+      0.82,
+      0.08
+    ],
+    "0.0": [
+      0.4,
+      0.4
+    ],
+    "60.0": [
+      0.08,
+      0.82
+    ]
+  },
+  "alt1_AB": {
+    "-60.0": {
+      "genuino": 0.8400000000000001,
+      "umbral_nulo_p95": 0.11000000000000004,
+      "pasa": true
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_nulo_p95": 0.0,
+      "pasa": false
+    },
+    "60.0": {
+      "genuino": 0.7,
+      "umbral_nulo_p95": 0.11049999999999958,
+      "pasa": true
+    }
+  },
+  "alt1_BA": {
+    "-60.0": {
+      "genuino": 0.6299999999999999,
+      "umbral_nulo_p95": 0.11049999999999958,
+      "pasa": true
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_nulo_p95": 0.0,
+      "pasa": false
+    },
+    "60.0": {
+      "genuino": 0.8400000000000001,
+      "umbral_nulo_p95": 0.11000000000000004,
+      "pasa": true
+    }
+  },
+  "alt2_AB": {
+    "-60.0": {
+      "self_side": true,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    },
+    "0.0": {
+      "self_side": false,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": false,
+      "medible_estructural": false,
+      "coincide": true
+    },
+    "60.0": {
+      "self_side": false,
+      "model_side": true,
+      "obj_side_true": true,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    }
+  },
+  "alt2_BA": {
+    "-60.0": {
+      "self_side": false,
+      "model_side": true,
+      "obj_side_true": true,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    },
+    "0.0": {
+      "self_side": false,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": false,
+      "medible_estructural": false,
+      "coincide": true
+    },
+    "60.0": {
+      "self_side": true,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    }
+  },
+  "frontera_endogena_coincide_estructural": true,
+  "alteridad_bidireccional_endogena": true
+}

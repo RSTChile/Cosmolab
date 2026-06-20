@@ -1,0 +1,77 @@
+{
+  "version": "V182_amenaza_alerta_v1",
+  "oido_A": {
+    "-60.0": 1.1917520311548722,
+    "-30.0": 0.9791216983221344,
+    "0.0": 1.0153010781567255,
+    "30.0": 0.8967353323934001,
+    "60.0": 0.9170898599728678
+  },
+  "oido_B": {
+    "-60.0": 0.9163336660762075,
+    "-30.0": 0.8961566467134121,
+    "0.0": 1.0149796077643505,
+    "30.0": 0.9784871161568197,
+    "60.0": 1.1940429632892102
+  },
+  "medicion_con_vision": {
+    "n_reales": 159,
+    "n_falsas": 24,
+    "primero_A": 12,
+    "primero_B": 53,
+    "desfase_medio": 0.6352201257861635,
+    "desfase_min": 0,
+    "desfase_max": 4,
+    "tapadas_social": 79,
+    "tapadas_tarde": 0,
+    "social_en_falsa": 0
+  },
+  "medicion_sin_vision": {
+    "n_reales": 159,
+    "n_falsas": 24,
+    "primero_A": 72,
+    "primero_B": 53,
+    "desfase_medio": 2.0,
+    "desfase_min": 0,
+    "desfase_max": 4,
+    "tapadas_social": 0,
+    "tapadas_tarde": 0,
+    "social_en_falsa": 0
+  },
+  "band_primero": {
+    "-60.0": {
+      "A": 6,
+      "B": 0
+    },
+    "-30.0": {
+      "A": 6,
+      "B": 0
+    },
+    "60.0": {
+      "A": 0,
+      "B": 24
+    },
+    "30.0": {
+      "A": 0,
+      "B": 29
+    }
+  },
+  "confianza_A": {
+    "-60.0": 1.0,
+    "-30.0": 1.0,
+    "0.0": 1.0,
+    "30.0": 1.0,
+    "60.0": 1.0
+  },
+  "confianza_B": {
+    "-60.0": 1.0,
+    "-30.0": 1.0,
+    "0.0": 1.0,
+    "30.0": 1.0,
+    "60.0": 1.0
+  },
+  "contagio": false,
+  "aprende": true,
+  "mutuo": true,
+  "completa_los_tres": false
+}

@@ -1,0 +1,107 @@
+{
+  "version": "V182D-alteridad-B",
+  "margen": 0.15,
+  "margen_confirmado": false,
+  "criterio_degeneracion": "mismo lado del 0.5 (estructural, sin parametro)",
+  "disposicion": {
+    "-60.0": [
+      0.82,
+      0.08
+    ],
+    "0.0": [
+      0.4,
+      0.4
+    ],
+    "60.0": [
+      0.08,
+      0.82
+    ]
+  },
+  "modelo_A_de_B": {
+    "-60.0": 0.06,
+    "0.0": 0.44,
+    "60.0": 0.8
+  },
+  "modelo_B_de_A": {
+    "-60.0": 0.835,
+    "0.0": 0.36,
+    "60.0": 0.095
+  },
+  "AB": {
+    "-60.0": {
+      "acc_modelo": 0.93,
+      "acc_proyeccion": 0.07,
+      "genuino": 0.8600000000000001,
+      "degenerada": false,
+      "disp_predictor": 0.8227447610479706,
+      "disp_objetivo": 0.07761700482367187,
+      "lado_predictor": true,
+      "lado_objetivo": false
+    },
+    "0.0": {
+      "acc_modelo": 0.64,
+      "acc_proyeccion": 0.64,
+      "genuino": 0.0,
+      "degenerada": true,
+      "disp_predictor": 0.3977635194978542,
+      "disp_objetivo": 0.3966474434818152,
+      "lado_predictor": false,
+      "lado_objetivo": false
+    },
+    "60.0": {
+      "acc_modelo": 0.815,
+      "acc_proyeccion": 0.185,
+      "genuino": 0.6299999999999999,
+      "degenerada": false,
+      "disp_predictor": 0.0776338238852834,
+      "disp_objetivo": 0.824361216057762,
+      "lado_predictor": false,
+      "lado_objetivo": true
+    }
+  },
+  "BA": {
+    "-60.0": {
+      "acc_modelo": 0.84,
+      "acc_proyeccion": 0.16,
+      "genuino": 0.6799999999999999,
+      "degenerada": false,
+      "disp_predictor": 0.07761700482367187,
+      "disp_objetivo": 0.8227447610479706,
+      "lado_predictor": false,
+      "lado_objetivo": true
+    },
+    "0.0": {
+      "acc_modelo": 0.65,
+      "acc_proyeccion": 0.65,
+      "genuino": 0.0,
+      "degenerada": true,
+      "disp_predictor": 0.3966474434818152,
+      "disp_objetivo": 0.3977635194978542,
+      "lado_predictor": false,
+      "lado_objetivo": false
+    },
+    "60.0": {
+      "acc_modelo": 0.915,
+      "acc_proyeccion": 0.085,
+      "genuino": 0.8300000000000001,
+      "degenerada": false,
+      "disp_predictor": 0.824361216057762,
+      "disp_objetivo": 0.0776338238852834,
+      "lado_predictor": true,
+      "lado_objetivo": false
+    }
+  },
+  "adv_AB": {
+    "banda": -60.0,
+    "predijo_rechazo_del_otro": true,
+    "ajuste_propio": 0.8227447610479706
+  },
+  "adv_BA": {
+    "banda": 60.0,
+    "predijo_rechazo_del_otro": true,
+    "ajuste_propio": 0.824361216057762
+  },
+  "ok_AB": true,
+  "ok_BA": true,
+  "alteridad_bidireccional": true
+}

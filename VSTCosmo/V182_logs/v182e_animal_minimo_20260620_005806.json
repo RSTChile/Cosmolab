@@ -1,0 +1,94 @@
+{
+  "version": "V182E_animal_minimo",
+  "bandas": [
+    -60.0,
+    -30.0,
+    0.0,
+    30.0,
+    60.0
+  ],
+  "animalidad_A": {
+    "-60.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "-30.0": {
+      "fresco": 1.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 1.0
+    },
+    "0.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "30.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "60.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    }
+  },
+  "animalidad_B": {
+    "-60.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "-30.0": {
+      "fresco": 1.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 1.0
+    },
+    "0.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "30.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    },
+    "60.0": {
+      "fresco": 0.0,
+      "cansado": 0.0,
+      "recuperado": 0.0,
+      "swing": 0.0
+    }
+  },
+  "swing_max_A": 1.0,
+  "swing_max_B": 1.0,
+  "es_animal": true,
+  "A_lee_a_B": {
+    "media_acepta": 0.06666666666666667,
+    "err_planta": 0.06222222222222224,
+    "err_animal": 0.058333333333333334,
+    "acepta_baja_fatiga": 0.125,
+    "acepta_alta_fatiga": 0.0,
+    "mejora_leyendo_estado": 0.06250000000000028
+  },
+  "B_lee_a_A": {
+    "media_acepta": 0.06666666666666667,
+    "err_planta": 0.06222222222222224,
+    "err_animal": 0.058333333333333334,
+    "acepta_baja_fatiga": 0.125,
+    "acepta_alta_fatiga": 0.0,
+    "mejora_leyendo_estado": 0.06250000000000028
+  },
+  "estado_legible": true
+}

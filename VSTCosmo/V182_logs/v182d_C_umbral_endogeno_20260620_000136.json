@@ -1,0 +1,140 @@
+{
+  "version": "V182D_C-umbral-endogeno",
+  "disposicion": {
+    "-60.0": [
+      0.82,
+      0.08
+    ],
+    "0.0": [
+      0.4,
+      0.4
+    ],
+    "60.0": [
+      0.08,
+      0.82
+    ]
+  },
+  "alt1_AB": {
+    "-60.0": {
+      "genuino": 0.8400000000000001,
+      "umbral_nulo_p95": 0.8899999999999999,
+      "pasa": false
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_nulo_p95": 0.0,
+      "pasa": false
+    },
+    "60.0": {
+      "genuino": 0.7,
+      "umbral_nulo_p95": 0.69,
+      "pasa": true
+    }
+  },
+  "alt1_BA": {
+    "-60.0": {
+      "genuino": 0.6299999999999999,
+      "umbral_nulo_p95": 0.7004999999999998,
+      "pasa": false
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_nulo_p95": 0.0,
+      "pasa": false
+    },
+    "60.0": {
+      "genuino": 0.8400000000000001,
+      "umbral_nulo_p95": 0.8799999999999999,
+      "pasa": false
+    }
+  },
+  "alt2_AB": {
+    "-60.0": {
+      "self_side": true,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    },
+    "0.0": {
+      "self_side": false,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": false,
+      "medible_estructural": false,
+      "coincide": true
+    },
+    "60.0": {
+      "self_side": false,
+      "model_side": true,
+      "obj_side_true": true,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    }
+  },
+  "alt2_BA": {
+    "-60.0": {
+      "self_side": false,
+      "model_side": true,
+      "obj_side_true": true,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    },
+    "0.0": {
+      "self_side": false,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": false,
+      "medible_estructural": false,
+      "coincide": true
+    },
+    "60.0": {
+      "self_side": true,
+      "model_side": false,
+      "obj_side_true": false,
+      "medible_endogeno": true,
+      "medible_estructural": true,
+      "coincide": true
+    }
+  },
+  "alt3_AB": {
+    "-60.0": {
+      "genuino": 0.8600000000000001,
+      "umbral_tautologico": 0.8599999990000001,
+      "pasa": true
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_tautologico": -1e-09,
+      "pasa": true
+    },
+    "60.0": {
+      "genuino": 0.6299999999999999,
+      "umbral_tautologico": 0.6299999989999999,
+      "pasa": true
+    }
+  },
+  "alt3_BA": {
+    "-60.0": {
+      "genuino": 0.6799999999999999,
+      "umbral_tautologico": 0.679999999,
+      "pasa": true
+    },
+    "0.0": {
+      "genuino": 0.0,
+      "umbral_tautologico": -1e-09,
+      "pasa": true
+    },
+    "60.0": {
+      "genuino": 0.8300000000000001,
+      "umbral_tautologico": 0.8299999990000001,
+      "pasa": true
+    }
+  },
+  "frontera_endogena_coincide_estructural": true,
+  "alt3_no_falsable": true,
+  "alteridad_bidireccional_endogena": false
+}

@@ -1,0 +1,35 @@
+{
+  "version": "V182_amenaza_alerta_v3_falsacion",
+  "timpanos_sin": 59,
+  "timpanos_con": 48,
+  "cruces": {
+    "-60": 4,
+    "-30": 7,
+    "+30": 5,
+    "+60": 9
+  },
+  "recaidas": {
+    "-60": 4,
+    "-30": 0,
+    "+30": 0,
+    "+60": 2
+  },
+  "da\u00f1o_no_aprendido": 9,
+  "eventos_no_aprendido": 39,
+  "da\u00f1o_aprendido": 39,
+  "eventos_aprendido": 161,
+  "tasa_no_aprend": 0.23076923076923078,
+  "tasa_aprend": 0.2422360248447205,
+  "da\u00f1o_por_rampa": {
+    "lento": 18,
+    "medio": 13,
+    "rapido": 17
+  },
+  "da\u00f1o_aprendido_por_rampa": {
+    "lento": 14,
+    "medio": 10,
+    "rapido": 15
+  },
+  "H1_muere": false,
+  "H2_muere": true
+}
