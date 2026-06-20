@@ -1,0 +1,15 @@
+{
+  "version": "V182_amenaza_alerta_v3_falsacion2",
+  "dmg_actual": 48,
+  "dmg_siempre_confia": 41,
+  "desperdicio_siempre_confia": 21,
+  "recaidas_total": 6,
+  "recaidas_costaron": 3,
+  "desconfiar_pierde": true,
+  "honestidad_avisador": {
+    "-60": 0.72,
+    "-30": 1.0,
+    "+30": 1.0,
+    "+60": 0.7450980392156863
+  }
+}

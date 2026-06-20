@@ -39,3 +39,12 @@ env/
 # Project specific (logs are committed as evidence, but if wanted to ignore large dirs)
 # v*logs/
 # V*logs/
+
+# Audio — excluido del repo (archivos pesados >100MB rechazados por GitHub).
+# Se conservan en disco local; sacados de la historia con git filter-repo (2026-06-20).
+*.wav
+*.aif
+*.aiff
+*.flac
+*.mp3
+audio_binaural/
