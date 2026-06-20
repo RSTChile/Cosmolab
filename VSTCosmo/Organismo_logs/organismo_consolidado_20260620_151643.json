@@ -1,0 +1,43 @@
+{
+  "artefacto": "VST_Organismo_Individual",
+  "cuerpo_base": "V180c",
+  "refusionado": [
+    "Ritual(V165)",
+    "MetaRepresentacionObservacional/Rᴿ(V167)"
+  ],
+  "timestamp": "20260620_151643",
+  "seed": 44,
+  "viabilidad": {
+    "A_sys_env_min": 0.0002042607187442679,
+    "A_sys_env_mean": 0.6921105126411814,
+    "A_no_colapsa": true,
+    "historia_final": 504.83477965207703,
+    "fatiga_final": 1585.9292259247804,
+    "orientacion_std": 21.277860538364767,
+    "Cb_min": 0.0,
+    "Cb_max": 428.5065385905634,
+    "Cb_mean": 145.66764682054304,
+    "S_sostenido": true
+  },
+  "refusion_registro": {
+    "ritual_cruces": 262,
+    "ritual_activacion_max": 0.0,
+    "ritual_pct_activo": 0.0,
+    "meta_desajuste_max": 0.0,
+    "episodios_registrados": 50,
+    "p_episodio_trauma": 0.726
+  },
+  "capacidades_presentes": {
+    "Motor/orientación gradiente inter-sistemas": true,
+    "Fatiga = tiempo biológico (historia+fatiga_activa)": true,
+    "Memoria de ausencia (confianza decae en silencio)": true,
+    "Consciencia básica Cb (presión de desacople)": true,
+    "Juego enactuado": true,
+    "Valencia/deliberación = R_op (veto) + R_af": true,
+    "Memoria episódica (veto con costo cognitivo)": true,
+    "Ritual estabilizador [RE-FUSIONADO]": true,
+    "Meta-representación Rᴿ [RE-FUSIONADO]": true
+  },
+  "conmutabilidad_ok": true,
+  "consolidado": true
+}
