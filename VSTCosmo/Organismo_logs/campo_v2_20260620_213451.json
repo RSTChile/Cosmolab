@@ -1,0 +1,135 @@
+{
+  "artefacto": "VST_Organismo_Individual_v2",
+  "timestamp": "20260620_213451",
+  "seed": 44,
+  "invariante_OFF_eq_v1": true,
+  "smoke": {
+    "campo_W": true,
+    "campo_atractor": true,
+    "campo_oscilador": true,
+    "campo_dualW": true,
+    "campo_inhib_lateral": true
+  },
+  "on_flags": {
+    "memoria_campo": true,
+    "campo_W": true,
+    "campo_atractor": true,
+    "campo_oscilador": true,
+    "campo_dualW": true,
+    "campo_inhib_lateral": true,
+    "campo_lambda": true
+  },
+  "viabilidad_off": {
+    "A_min": 0.00021707359500757321,
+    "A_mean": 0.4923940232071034,
+    "orient_std": 28.522794483091705,
+    "historia": 411.64104252950546,
+    "S_sostenido": true
+  },
+  "viabilidad_on": {
+    "A_min": 0.00019629252787189722,
+    "A_mean": 0.49095178765656494,
+    "orient_std": 28.409382041437915,
+    "historia": 410.0545002908598,
+    "S_sostenido": true
+  },
+  "viable_on": true,
+  "multiestabilidad": {
+    "OFF (campo desnudo, = v1)": {
+      "cuencas_por_umbral": {
+        "0.1": 13,
+        "0.15": 9,
+        "0.2": 9,
+        "0.25": 6,
+        "0.3": 5,
+        "0.4": 5
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 3.16,
+      "finito": true,
+      "n_ci": 50
+    },
+    "W + atractor (osc OFF)": {
+      "cuencas_por_umbral": {
+        "0.1": 1,
+        "0.15": 1,
+        "0.2": 1,
+        "0.25": 1,
+        "0.3": 1,
+        "0.4": 1
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 6.0,
+      "finito": true,
+      "n_ci": 50
+    },
+    "oscilador solo": {
+      "cuencas_por_umbral": {
+        "0.1": 7,
+        "0.15": 6,
+        "0.2": 5,
+        "0.25": 5,
+        "0.3": 3,
+        "0.4": 3
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 7.06,
+      "finito": true,
+      "n_ci": 50
+    },
+    "oscilador + inhib_lateral": {
+      "cuencas_por_umbral": {
+        "0.1": 7,
+        "0.15": 6,
+        "0.2": 5,
+        "0.25": 5,
+        "0.3": 3,
+        "0.4": 3
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 7.06,
+      "finito": true,
+      "n_ci": 50
+    },
+    "TODO ON sin inhib_lateral": {
+      "cuencas_por_umbral": {
+        "0.1": 3,
+        "0.15": 3,
+        "0.2": 3,
+        "0.25": 3,
+        "0.3": 2,
+        "0.4": 2
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 7.16,
+      "finito": true,
+      "n_ci": 50
+    },
+    "TODO ON": {
+      "cuencas_por_umbral": {
+        "0.1": 3,
+        "0.15": 3,
+        "0.2": 3,
+        "0.25": 3,
+        "0.3": 2,
+        "0.4": 2
+      },
+      "LF_hist": 0.1,
+      "modos_medios": 7.16,
+      "finito": true,
+      "n_ci": 50
+    }
+  },
+  "canalizacion_ref025_NUMERICA": true,
+  "LF_nativo": {
+    "OFF": 0.1,
+    "ON": 0.1,
+    "plano": true
+  },
+  "limitacion_sonda": "historia ÚNICA: testea retorno a un estado aprendido, NO latencia multi-contexto",
+  "veredicto_celula_madre": "PENDIENTE — NI demostrada NI refutada; numerico != proto-diferenciacion; falta sonda multi-contexto, atribucion limpia inhib_lateral, y si la latencia espacial se expresa en conducta (Lambda/LF plano)",
+  "oscilador_smoke": {
+    "finito": true,
+    "modos_medios": 9.5
+  }
+}
