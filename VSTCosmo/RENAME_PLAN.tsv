@@ -1,0 +1,295 @@
+VIEJO	NUEVO	NOTA	FLAG	DESC_CABECERA
+Crear_Audios.py		EXCLUIDO (utilidad)		
+Procesar_Biaurales.py		EXCLUIDO (utilidad)		
+V100.py	v100_curva_de_dosis_respuesta_con_multiples_estimulos.py	pelado->cabecera		Curva de dosis-respuesta con múltiples estímulos
+V101.py	v101_entrenamiento_multi_estimulo_evaluacion_solo_bigbang.py	pelado->cabecera		Entrenamiento multi-estimulo, evaluacion SOLO BigBang
+V102.py	v102_naturaleza_de_omega_categorizacion_y_transferencia.py	pelado->cabecera		Naturaleza de Omega, categorizacion y transferencia
+V103.py	v103_clasificacion_de_multiples_estimulos.py	pelado->cabecera		Clasificacion de multiples estimulos
+V104.py	v104_distinguiendo_entre_lectura_fisica_y_cosmosemiotica.py	pelado->cabecera		Distinguiendo entre lectura fisica y cosmosemiotica
+V105.py	v105_forzando_lf_1_con_tonos_puros_monofonicos.py	pelado->cabecera		Forzando LF ≥ 1 con tonos puros monofónicos
+V105b.py	v105b_prueba_de_tonos_binaurales_sinteticos.py	pelado->cabecera		Prueba de tonos binaurales sintéticos
+V105c.py	v105c_caso_critico_tono_puro_original_de_v104_tonos_largos.py	pelado->cabecera		Caso crítico: tono_puro original de V104 + tonos largos
+V105d.py	v105d_prueba_de_tonos_largos_30s_por_frecuencia.py	pelado->cabecera		Prueba de tonos largos (30s) por frecuencia
+V105e.py	v105e_barrido_fino_alrededor_de_440_hz.py	pelado->cabecera		Barrido fino alrededor de 440 Hz
+V106.py	v106_dos_agentes_acoplados_corregido.py	pelado->cabecera		Dos agentes acoplados (CORREGIDO)
+V107.py	v107_clausura_semiotica_corregido.py	pelado->cabecera		Clausura Semiótica (CORREGIDO)
+V108.py	v108_blue_monday_estimulo_largo_y_complejo.py	pelado->cabecera		Blue Monday: Estímulo largo y complejo
+V109.py	v109_protocolo_canonico_corregido.py	pelado->cabecera		Protocolo Canónico (CORREGIDO)
+V110.py	v110_protocolo_de_diferencia_con_blue_monday.py	pelado->cabecera		Protocolo de Diferencia con Blue Monday
+V111.py	v111_fisiologia_corregida_auditoria_completa.py	pelado->cabecera		Fisiología corregida + Auditoría completa
+V112.py	v112_sin_parametros_externos_version_meta.py	pelado->cabecera		Sin parámetros externos (versión Meta)
+V113.py	v113_experimento_completo_sin_parametros.py	pelado->cabecera		Experimento completo sin parámetros
+V114.py	v114_alma_racional_estable.py	pelado->cabecera		Alma Racional estable
+V115.py	v115_blue_monday_expandido_dietas_espectrales.py	pelado->cabecera		Blue Monday expandido, dietas espectrales
+V116.py	v116_el_experimento_final.py	pelado->cabecera		El experimento final
+V117.py	v117_tiempos_completos_sin_apresurar.py	pelado->cabecera		Tiempos completos, sin apresurar
+V118.py	v118_memoria_larga_y_atencion_para_lateralidad.py	pelado->cabecera		Memoria larga y atención para lateralidad
+V119.py	v119_plasticidad_dual.py	pelado->cabecera		Plasticidad dual
+V120.py	v120_consolidacion_doble_canal_parcialmente_acoplado.py	pelado->cabecera		Consolidación: Doble canal parcialmente acoplado
+V121.py	v121_arquitectura_bihemisferica_con_cuerpo_calloso_selectivo.py	pelado->cabecera		Arquitectura Bihemisférica con Cuerpo Calloso Selectivo
+V122.py		CONGELADO (dependencia)		
+V122b.py	v122b_segregacion_fisica_organos_minimos.py	pelado->cabecera		Segregación Física + Órganos Mínimos
+V123.py	v123_anima_1_controlador_p_zona_muerta.py	pelado->cabecera		ANIMA-1: Controlador P + Zona Muerta
+V124.py	v124_anima_1_controlador_p_zona_muerta_audio_restaurado_en.py	pelado->cabecera		ANIMA-1: Controlador P + Zona Muerta + Audio Restaurado en F
+V125.py	v125_dos_sistemas_acoplados_con_orientacion_de_cabeza.py	pelado->cabecera		Dos sistemas acoplados con orientación de cabeza
+V126.py	v126_organismo_con_interfaz_motor_lateralidad_regulada.py	pelado->cabecera		Organismo con interfaz motor-lateralidad regulada
+V127.py	v127_correccion_de_signo_del_gradiente_binaural.py	pelado->cabecera		Corrección de signo del gradiente binaural
+V127b.py	v127b_correccion_de_gradiente_usar_diferencia_inter_sistemas.py	pelado->cabecera		Correccion de gradiente: usar diferencia inter-sistemas
+V128.py	v128_validacion_robusta_parkinson_computacional.py	pelado->cabecera		Validación Robusta + Parkinson Computacional
+V129.py	v129_supervivencia_no_perfeccion.py	pelado->cabecera		Supervivencia, no perfeccion
+V130.py	v130_organismo_plastico_aprende_a_vivir_con_su_fragilidad.py	pelado->cabecera		Organismo Plástico: Aprende a vivir con su fragilidad
+V131.py	v131_homeostasis_plasticidad_con_suelo.py	pelado->cabecera		Homeostasis: Plasticidad con suelo
+V132.py	v132_organismo_sano_en_accion.py	pelado->cabecera		Organismo sano en acción
+V133.py	v133_memoria_episodica_con_decaimiento.py	pelado->cabecera		Memoria episódica con decaimiento
+V134.py	v134_memoria_con_relajacion_homeostatica.py	pelado->cabecera		Memoria con relajacion homeostatica
+V135.py	v135_prediccion_de_trayectoria.py	pelado->cabecera		Predicción de trayectoria
+V136.py	v136_validacion_estadistica_de_prediccion.py	pelado->cabecera		Validación estadística de predicción
+V137.py	v137_prediccion_con_horizonte_adaptativo_y_ema.py	pelado->cabecera		Prediccion con horizonte adaptativo y EMA
+V138.py	v138_prediccion_con_aceleracion_variable.py	pelado->cabecera		Prediccion con aceleracion variable
+V139.py	v139_motor_con_inercia_sin_homunculo.py	pelado->cabecera		Motor con inercia (sin homúnculo)
+V140.py	v140_fatiga_la_esfera_con_orejas_se_cansa.py	pelado->cabecera		Fatiga: La esfera con orejas se cansa
+V141.py	v141_fatiga_real_3_mecanismos_acoplados.py	pelado->cabecera		Fatiga real (3 mecanismos acoplados)
+V142.py	v142_fatiga_real_corregida_con_alternancia_forzada.py	pelado->cabecera		Fatiga real corregida (con alternancia forzada)
+V143.py	v143_recuperacion_de_la_alternancia_sin_fatiga.py	pelado->cabecera		Recuperación de la alternancia (sin fatiga)
+V144.py	v144_correccion_de_signo_y_control_agresivo.py	pelado->cabecera		Corrección de signo y control agresivo
+V145.py	v145_correccion_quirurgica_de_signo.py	pelado->cabecera		Corrección quirúrgica de signo
+V146.py	v146_separacion_direccion_confianza.py	pelado->cabecera		Separación dirección/confianza
+V147.py	v147_alternancia_lenta_con_direccion_confianza.py	pelado->cabecera		Alternancia lenta con dirección/confianza
+V148.py	v148_fatiga_progresiva_sobre_baseline_sano.py	pelado->cabecera		Fatiga progresiva sobre baseline sano
+V149.py	v149_separacion_entre_historia_y_fatiga_activa.py	pelado->cabecera		Separación entre historia y fatiga activa
+V150.py	v150_cierre_de_anima_1.py	pelado->cabecera		CIERRE DE ANIMA-1
+V151.py	v151_anima_2_baseline_memoria_de_la_ausencia.py	pelado->cabecera		ANIMA-2 Baseline: Memoria de la ausencia
+V152.py	v152_anima_2_baseline_corregido.py	pelado->cabecera		ANIMA-2 Baseline corregido
+V153.py	v153_anima_2_baseline_con_torque_de_sujecion_corregido.py	pelado->cabecera		ANIMA-2 Baseline con torque de sujeción corregido
+V154.py	v154_anima_2_etapa_1_consciencia_basica_cb.py	pelado->cabecera		ANIMA-2 Etapa 1: Consciencia básica (Cb)
+V155.py	v155_anima_2_etapa_1_consciencia_basica_corregida.py	pelado->cabecera		ANIMA-2 Etapa 1: Consciencia básica corregida
+V156.py	v156_anima_2_etapa_2_juego_enactuado.py	pelado->cabecera		ANIMA-2 Etapa 2: Juego enactuado
+V157.py	v157_anima_2_etapa_2_juego_enactuado_a_b_paralelo.py	pelado->cabecera		ANIMA-2 Etapa 2: Juego enactuado (A/B paralelo)
+V158.py	v158_anima_2_etapa_3_ritual.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL
+V159.py	v159_anima_2_etapa_3_ritual_sin_entrenamiento_inicial.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL (SIN ENTRENAMIENTO INICIAL)
+V160.py	v160_anima_2_etapa_3_ritual_con_mundo.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL CON MUNDO
+V161.py	v161_anima_2_etapa_3_ritual_sobre_base_v157.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL (sobre base V157)
+V162.py	v162_anima_2_etapa_3_ritual_sobre_base_v157_detector_por.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL (sobre base V157, detector por cruce
+V163.py	v163_anima_2_etapa_3_ritual_con_todas_las_metricas.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL (con todas las métricas)
+V164.py	v164_anima_2_etapa_3_ritual_con_jerarquia_de_etapas.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL CON JERARQUÍA DE ETAPAS
+V165.py	v165_anima_2_etapa_3_ritual_con_persistencia_natural_cierre.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL CON PERSISTENCIA NATURAL (CIERRE)
+V166.py	v166_anima_2_etapa_3_ritual_con_inversion_de_gradiente.py	pelado->cabecera		ANIMA-2 Etapa 3: RITUAL CON INVERSIÓN DE GRADIENTE
+V167.py	v167_anima_2_etapa_4_meta_representacion_observacional_rr.py	pelado->cabecera		ANIMA-2 Etapa 4: META-REPRESENTACIÓN OBSERVACIONAL (Rᴿ) - CO
+V168.py	v168_anima_2_etapa_5_primer_no_operativo_r_op.py	pelado->cabecera		ANIMA-2 Etapa 5: PRIMER "NO" OPERATIVO (R_op)
+V169.py	v169_anima_2_desacople_representacional_d.py	pelado->cabecera		ANIMA-2: DESACOPLE REPRESENTACIONAL (D)
+V170.py	v170_anima_2_desacople_representacional_con_incertidumbre.py	pelado->cabecera		ANIMA-2: DESACOPLE REPRESENTACIONAL CON INCERTIDUMBRE AUMENT
+V171.py	v171_anima_2_primer_no_operativo_negacion_especifica.py	pelado->cabecera		ANIMA-2: PRIMER "NO" OPERATIVO (Negación específica)
+V172.py	v172_anima_2_valencia_diferencial_precursor_del_no.py	pelado->cabecera		ANIMA-2: VALENCIA DIFERENCIAL (Precursor del "No")
+V173.py	v173_anima_2_valencia_asociativa_local_precursor_del_no.py	pelado->cabecera		ANIMA-2: VALENCIA ASOCIATIVA LOCAL (Precursor del "No")
+V174.py	v174_anima_2_compartimentalizacion_de_valencia_corregido.py	pelado->cabecera		ANIMA-2: COMPARTIMENTALIZACIÓN DE VALENCIA (CORREGIDO)
+V175.py	v175_anima_2_primer_no_operativo_sobre_base_v157.py	pelado->cabecera		ANIMA-2: PRIMER "NO" OPERATIVO (Sobre base V157)
+V176.py	v176_anima_2_deliberacion_con_memoria_de_trabajo.py	pelado->cabecera		ANIMA-2: DELIBERACIÓN CON MEMORIA DE TRABAJO
+V177-Deepseek.py	v177_generalizacion_del_rechazo_deepseek.py	override-explicito		
+V177-Deepseek2.py	v177_generalizacion_del_rechazo_resolucion_fina_deepseek2.py	override-explicito		
+V177.py	v177_anima_2_generalizacion_del_rechazo.py	pelado->cabecera		ANIMA-2: GENERALIZACIÓN DEL RECHAZO
+V178.py	v178_anima_2_extincion_del_trauma.py	pelado->cabecera		ANIMA-2: EXTINCIÓN DEL TRAUMA
+V179.py	v179_anima_3_conflicto_representacional_final_latencia.py	pelado->cabecera		ANIMA-3: CONFLICTO REPRESENTACIONAL (FINAL - LATENCIA EMERGE
+V180.py		CONGELADO (dependencia)		
+V180b.py	v180b_anima_3_memoria_contextual_roadmap_compliant.py	pelado->cabecera		ANIMA-3: MEMORIA CONTEXTUAL (ROADMAP COMPLIANT)
+V180c.py	v180c_anima_3_memoria_episodica_corregido_y_final.py	pelado->cabecera		ANIMA-3: MEMORIA EPISÓDICA (CORREGIDO Y FINAL)
+V180—ANIMA-4-MEMORIA_EPISODICA_CORREGIDO.py	v180_memoria_episodica_corregido.py	override-explicito		
+V181.py	v181_anima_4_afirmacion_operativa_r_af_final.py	pelado->cabecera		ANIMA-4: AFIRMACIÓN OPERATIVA (R_af) [FINAL]
+V182.py	v182_comunicacion_como_estimulo_mutuo_corregido.py	override-explicito		
+V182A-v10.py	v182a_acoplamiento_bidireccional_audios_reales_memoria_lp_v10.py	override-explicito		
+V182A-v13.py	v182a_acoplamiento_bidireccional_audios_reales_v13.py	override-explicito		
+V182A-v2.py	v182a_acoplamiento_bidireccional_v2.py	override-explicito		
+V182A-v5.py	v182a_acoplamiento_bidireccional_reforzamiento_v5.py	override-explicito		
+V182A-v7.py	v182a_acoplamiento_bidireccional_memoria_relacional_v7.py	override-explicito		
+V182A-v8.py	v182a_acoplamiento_bidireccional_memoria_relacional_corregido_v8.py	override-explicito		
+V182A-v9.py	v182a_acoplamiento_bidireccional_tiempo_real_v9.py	override-explicito		
+V182A.py	v182a_acoplamiento_inter_organismo.py	override-explicito		
+V182A2_roles_campo.py	v182a2_roles_campo.py	override-explicito		
+V182A3_roles_valencia.py	v182a3_roles_valencia.py	override-explicito		
+V182A5_acumulacion.py	v182a5_acumulacion.py	override-explicito		
+V182B-v3.py	v182b_comunicacion_funcional_estimulos_explicitos_v3.py	override-explicito		
+V182B-v5.py	v182b_comunicacion_funcional_tarea_epistemica_v5.py	override-explicito		
+V182B-v6.py	v182b_comunicacion_funcional_tarea_epistemica_genuina_v6.py	override-explicito		
+V182B-v7.py	v182b_comunicacion_funcional_audios_reales_v7.py	override-explicito		
+V182B-v8.py	v182b_comunicacion_funcional_audios_reales_corregido_v8.py	override-explicito		
+V182B-v9.py	v182b_comunicacion_funcional_a_b_v9.py	override-explicito		
+V182B.py	v182b_comunicacion_funcional.py	override-explicito		
+V182B1.py	v182b1_comunicacion_bidireccional_a_b.py	override-explicito		
+V182C_sentido_compartido.py	v182c_sentido_compartido.py	override-explicito		
+V182D_C2_nulo_pareado.py	v182d_c2_nulo_pareado.py	override-explicito		
+V182D_alteridad_B.py	v182d_alteridad_b.py	override-explicito		
+V182E_animal_minimo.py	v182e_animal_minimo.py	override-explicito		
+V182E_animal_minimo_v2.py	v182e_animal_minimo_v2.py	override-explicito		
+V182_amenaza_alerta_v1.py	v182_amenaza_alerta_v1.py	override-explicito		
+V182_amenaza_alerta_v2.py	v182_amenaza_alerta_v2.py	override-explicito		
+V182_amenaza_alerta_v3.py	v182_amenaza_alerta_v3.py	override-explicito		
+V182_amenaza_alerta_v3_falsacion.py	v182_amenaza_alerta_v3_falsacion.py	override-explicito		
+V182_amenaza_alerta_v3_falsacion2.py	v182_amenaza_alerta_v3_falsacion2.py	override-explicito		
+V182a1.py	v182a1_roles_emergentes_por_memoria_relacional.py	override-explicito		
+V182a4-bidireccional.py	v182a4_bidireccional.py	override-explicito		
+V182dC_umbral_endogeno.py	v182dc_umbral_endogeno.py	override-explicito		
+V182d_alteridad.py	v182d_alteridad.py	override-explicito		
+V99.py	v099_exploracion_de_la_asimetria_de_omega_para_60_grados.py	pelado->cabecera		Exploracion de la asimetria de Omega para +60 grados
+VSTCosmo-Anima-1.py		SIN NUMERO (decision pendiente)	DECIDIR	
+VSTCosmos-v88-Gradiente-Energetico.py	v088_gradiente_energetico.py	VSTCosmos-		Gradiente energético dirigido como variable primaria de orie
+VSTCosmos-v93-Validacion-estructural.py	v093_validacion_estructural.py	VSTCosmos-		Validación estructural: A_sys-env combinado + control de inv
+VSTCosmos-v94-Cierre-W_rec→act_geom-dos-variantes.py	v094_cierre_w_rec_a_act_geom_dos_variantes.py	VSTCosmos-		Cierre W_rec → act_geom: dos variantes
+VSTCosmos-v95.py	v095_diagnostico_de_w_rec_y_correccion_arquitectural.py	VSTCosmos-		Diagnóstico de W_rec y corrección arquitectural
+VSTCosmos-v96.py	v096_diagnostico_de_rigidez_geometrica.py	VSTCosmos-		Diagnóstico de rigidez geométrica
+VSTCosmos-v97-1.py	v097_1.py	VSTCosmos-		BigBang con diagnóstico post-entrenamiento
+VSTCosmos-v97.py	v097_bigbang_como_eje_unico_del_experimento.py	VSTCosmos-		BigBang como eje único del experimento
+VSTCosmos-v98.py	v098_observacion_de_histeresis_act_mant_y_rango_de.py	VSTCosmos-		Observación de histéresis, act_mant y rango de Ω
+VST_Organismo_Individual.py		CONGELADO (dependencia)		
+VST_Organismo_Individual_v2.py		SIN NUMERO (decision pendiente)	DECIDIR	
+_dump_headers.py		EXCLUIDO (utilidad)		
+_rename_plan_gen.py		EXCLUIDO (utilidad)		
+barrido_fino.py		EXCLUIDO (utilidad)		
+biaurales.py		EXCLUIDO (utilidad)		
+caracterizacion_regimenes.py		EXCLUIDO (utilidad)		
+clases_completas_R_op_V168.py	v168_clases_completas_r_op.py	override-explicito		
+clases_completas_Ritual_Meta_V167_corregido.py	v167_clases_completas_ritual_meta_corregido.py	override-explicito		
+clases_completas_V169_RegistroRepresentaciones.py	v169_clases_completas_registro_representaciones.py	override-explicito		
+clases_completas_V170_RegistroRepresentaciones.py	v170_clases_completas_registro_representaciones.py	override-explicito		
+diagnostico_acoplamiento.py		EXCLUIDO (utilidad)		
+experimento_cosmosemiotico.py	v001_validacion_grabaciones_reales.py	override-explicito		
+experimento_cosmosemiotico_v2.py	v002_validacion_grabaciones_reales.py	override-explicito		
+experimento_cosmosemiotico_v3.py	v003_umbrales_ajustados.py	override-explicito		
+experimento_cosmosemiotico_v4.py	v004_correccion_energia_supervivencia.py	override-explicito		
+experimento_cosmosemiotico_v5.py	v005_umbral_silencio_adaptativo.py	override-explicito		
+experimento_cosmosemiotico_v51.py	v005_1_correccion_final_umbrales.py	override-explicito		
+exportar_evidencia.py		EXCLUIDO (utilidad)		
+generar_blue_monday_binaural.py		EXCLUIDO (utilidad)		
+generar_tonos_largos.py		EXCLUIDO (utilidad)		
+grafico.py		EXCLUIDO (utilidad)		
+prueba_umbrales.py		EXCLUIDO (utilidad)		
+prueba_umbrales_v2.py		EXCLUIDO (utilidad)		
+test_interpretacion.py		EXCLUIDO (utilidad)		
+v12_caracterizacion_cultural.py	v012_caracterizacion_cultural.py	lower->repad		Caracterización: Entradas Culturales
+v12_caracterizacion_desintegracion.py	v012_caracterizacion_desintegracion.py	lower->repad		Caracterización: Desintegración de entradas
+v12_caracterizacion_entradas.py	v012_caracterizacion_entradas.py	lower->repad		Caracterización: Diferentes tipos de entrada
+v12_caracterizacion_mezcla.py	v012_caracterizacion_mezcla.py	lower->repad		v12_caracterizacion_mezcla.py
+v12_estabilidad_voz_viento.py	v012_estabilidad_voz_viento.py	lower->repad		Estabilidad del régimen abierto
+v13_condicion_supervivencia.py	v013_condicion_supervivencia.py	lower->repad		v14: Acoplamiento Total
+v14_acoplamiento_total.py	v014_acoplamiento_total.py	lower->repad		v14: Acoplamiento Total
+v15_competencia_global.py	v015_competencia_global.py	lower->repad		v15: Competencia Global
+v16-dependencia_ontologica.py	v016_dependencia_ontologica.py	override-explicito		
+v17_comparar_mapas.py	v017_comparar_mapas.py	lower->repad		Comparación de mapas entre entradas
+v17_comparativa_entradas.py	v017_comparativa_entradas.py	lower->repad		v17: Comparativa de entradas
+v17_generacion_diferencia.py	v017_generacion_diferencia.py	lower->repad		v17: Campo con generación de diferencia
+v18_barrido_ancla.py	v018_barrido_ancla.py	lower->repad		v18: Entrada como ancla
+v19_barrido_multidimensional.py	v019_barrido_multidimensional.py	lower->repad		v19: Barrido multidimensional
+v19_barrido_multidimensional_relajado.py	v019_barrido_multidimensional_relajado.py	lower->repad		v19.2: Barrido multidimensional (criterios relajados)
+v20_barrido_memoria.py	v020_barrido_memoria.py	lower->repad		v20: Memoria estructural Ψ
+v21_restriccion.py	v021_restriccion.py	lower->repad		v21: Ψ como restricción de evolución de Φ
+v21_restriccion_corregido.py	v021_restriccion_corregido.py	lower->repad		v21.2: Ψ como restricción de evolución (corregido)
+v22_doble_memoria.py	v022_doble_memoria.py	lower->repad		v22: Doble memoria (Ψ y Ω)
+v23_exito.py	v023_exito.py	lower->repad		v23: Triple memoria (Ψ, Ω, Σ) - VERSIÓN CORREGIDA (Sigma por
+v23_triple_memoria.py	v023_triple_memoria.py	lower->repad		v23: Triple memoria (Ψ, Ω, Σ)
+v23_triple_memoria_corregido.py	v023_triple_memoria_corregido.py	lower->repad		v23: Triple memoria (Ψ, Ω, Σ) - VERSIÓN CORREGIDA
+v24_multiescala.py	v024_multiescala.py	lower->repad		v24: Dinámica multiescala
+v25_trayectoria.py	v025_trayectoria.py	lower->repad		v25: Memoria de trayectoria (Γ)
+v26_trayectoria_atencion.py	v026_trayectoria_atencion.py	lower->repad		v26: Memoria de trayectoria de la atención (Γ_A)
+v27.2_refuerzo_curvatura.py	v027_2_refuerzo_curvatura.py	override-explicito		
+v27.3_ultimo_intento.py	v027_3_ultimo_intento.py	override-explicito		
+v27_seleccion_curvatura.py	v027_seleccion_curvatura.py	lower->repad		v27: Selección de atención por curvatura
+v28_competencia_recurso.py	v028_competencia_recurso.py	lower->repad		v28: Competencia por recurso
+v29_homeostasis.py	v029_homeostasis.py	lower->repad		v29: Homeostasis del régimen fértil
+v30_homeostasis_recursiva.py	v030_homeostasis_recursiva.py	lower->repad		v30: Homeostasis recursiva (segunda capa)
+v31.1_perseverancia.py	v031_1_perseverancia.py	override-explicito		
+v31.2_memoria_persistente.py	v031_2_memoria_persistente.py	override-explicito		
+v31_memoria_configuraciones.py	v031_memoria_configuraciones.py	lower->repad		v31: Memoria de configuraciones persistentes (M)
+v32.1_anclaje_multiple.py	v032_1_anclaje_multiple.py	override-explicito		
+v32_anclaje_metastable.py	v032_anclaje_metastable.py	lower->repad		v32: Anclaje metastable (L)
+v33_ciclo_continuo.py	v033_ciclo_continuo.py	lower->repad		v33: Ciclo continuo de experiencia
+v34_metabolismo_experiencias.py	v034_metabolismo_experiencias.py	lower->repad		v34: Metabolismo de Experiencias
+v35_preferencia_alimentaria.py	v035_preferencia_alimentaria.py	lower->repad		v35: Preferencia Alimentaria Emergente (CORREGIDO)
+v36_zona_asimilacion.py	v036_zona_asimilacion.py	lower->repad		v36: Zona de Asimilación
+v37_expansion_asimilacion.py	v037_expansion_asimilacion.py	lower->repad		v37: Expansión de la Zona de Asimilación
+v38_silencio_ausencia.py	v038_silencio_ausencia.py	lower->repad		v38: Silencio como Ausencia de Entrada
+v39_silencio_contexto.py	v039_silencio_contexto.py	lower->repad		v39: Silencio como Contexto, no como Comida
+v41_umbral_habituacion.py	v041_umbral_habituacion.py	lower->repad		v41: Umbral Adaptativo + Habituación
+v42_habituacion_entrada.py	v042_habituacion_entrada.py	lower->repad		v42: Habituación como Modulación de Entrada
+v43_seleccion_autonoma.py	v043_seleccion_autonoma.py	lower->repad		v43: Selección Autónoma de Dieta
+v44_miedo_asimetria.py	v044_miedo_asimetria.py	lower->repad		v44: Asimetría Ganancia/Pérdida
+v45_miedo_no_lineal.py	v045_miedo_no_lineal.py	lower->repad		v45: Miedo No Lineal
+v46_miedo_umbral.py	v046_miedo_umbral.py	lower->repad		v46: Miedo con Umbral de Daño
+v47_miedo_acumulativo.py	v047_miedo_acumulativo.py	lower->repad		v47: Acumulación Sensible al Micro-Daño
+v48_costo_estructural.py	v048_costo_estructural.py	lower->repad		v48: Costo Estructural Real
+v49_regeneracion_real.py	v049_regeneracion_real.py	lower->repad		v49: Regeneración Real
+v50_fatiga_estructural.py	v050_fatiga_estructural.py	lower->repad		v50: Fatiga Estructural
+v51_identidad_estructural.py	v051_identidad_estructural.py	lower->repad		v51: Memoria de Valor Estructural
+v52_conviccion.py	v052_conviccion.py	lower->repad		v52: Refuerzo Estructural No Lineal
+v53.py	v053_modo_dominante_y_supervivencia_global.py	lower->repad		Modo dominante y supervivencia global
+v53_plasticidad_asimetrica.py	v053_plasticidad_asimetrica.py	lower->repad		v53: Plasticidad Asimétrica
+v54.py	v054_proporcion_de_energia_como_acoplamiento.py	lower->repad		Proporción de energía como acoplamiento
+v54_coherencia_temporal.py	v054_coherencia_temporal.py	lower->repad		v54: Coherencia Temporal (kappa)
+v55_omega_identidad.py	v055_omega_identidad.py	lower->repad		v55: Ω como señal de identidad
+v56_omega_antes_reposo.py	v056_omega_antes_reposo.py	lower->repad		v56: Ω con medición antes del reposo
+v57_contraste_estimulo.py	v057_contraste_estimulo.py	lower->repad		v57: Δ_estímulo por Contraste
+v58_excrecion_metabolica.py	v058_excrecion_metabolica.py	lower->repad		v58: Excreción Metabólica
+v59_espectral.py	v059_espectral.py	lower->repad		v59: Canal de Entrada Espectral
+v60_diagnostico_campo.py	v060_diagnostico_campo.py	lower->repad		v60: Caracterización Basal de Φ
+v61_espectral_aditivo.py	v061_espectral_aditivo.py	lower->repad		v61: Término Espectral Aditivo
+v62_ganancia_adaptativa.py	v062_ganancia_adaptativa.py	lower->repad		v62: Ganancia Espectral Adaptativa
+v63_trayectoria_espectral.py	v063_trayectoria_espectral.py	lower->repad		v63: Trayectoria Temporal del Espectro
+v64_zona_fertil.py	v064_zona_fertil.py	lower->repad		v64: Zona Fértil de Acoplamiento
+v65_osciladores_corticales.py	v065_osciladores_corticales.py	lower->repad		v65: Frecuencias Naturales Corticales
+v66_osciladores_bajo_amort.py	v066_osciladores_bajo_amort.py	lower->repad		v66: Osciladores con Amortiguamiento Bajo
+v67_firma_oscilatoria.py	v067_firma_oscilatoria.py	lower->repad		v67: Discriminación por Firma Oscilatoria
+v68_sistema_oscilatorio_completo.py	v068_sistema_oscilatorio_completo.py	lower->repad		v68: Integración del Mecanismo Oscilatorio
+v69_saciedad_diferencial.py	v069_saciedad_diferencial.py	lower->repad		v69: Saciedad Diferencial
+v70_campo_continuo.py	v070_campo_continuo.py	lower->repad		v71: Campo Continuo con Métricas Completas (C-N2.0)
+v71_metricas_completas.py	v071_metricas_completas.py	lower->repad		v71: Campo Continuo con Métricas Completas (C-N2.0)
+v72a_protocolo_causal.py	v072a_protocolo_causal.py	lower->repad		v72-A: Protocolo de Verificación Causal
+v72b_fase15_diagnostico.py	v072b_fase15_diagnostico.py	lower->repad		v72-B Fase 1.5: Diagnóstico de Gradiente Máximo
+v72b_fase2_resistencia_colapso.py	v072b_fase2_resistencia_colapso.py	lower->repad		v72-B Fase 2: Histéresis + Resistencia al Colapso
+v72b_fase3_corregida.py	v072b_fase3_corregida.py	lower->repad		v72-B Fase 3: Plasticidad Hebbiana (Corregida)
+v72b_fase3_diagnostico.py	v072b_fase3_diagnostico.py	lower->repad		v72-B Fase 3: Plasticidad Hebbiana (Diagnóstico)
+v72b_fase3_plasticidad_hebbiana.py	v072b_fase3_plasticidad_hebbiana.py	lower->repad		v72-B Fase 3: Plasticidad Hebbiana
+v72b_memoria_estructural.py	v072b_memoria_estructural.py	lower->repad		v72-B Fase 1: Campo con Memoria Estructural (Histéresis)
+v72c_fase4_5_gradiente_espectral.py	v072c_fase4_5_gradiente_espectral.py	lower->repad		v72-B Fase 4.5: Gradiente Espectral Diferencial
+v72c_fase4_plasticidad_selectiva.py	v072c_fase4_plasticidad_selectiva.py	lower->repad		v72-B Fase 4: Plasticidad Hebbiana Selectiva + Espectro de M
+v72c_fase5_mecanismos_complementarios.py	v072c_fase5_mecanismos_complementarios.py	lower->repad		v72c Fase 5: Mecanismos Complementarios
+v73_heta.py	v073_heta.py	lower->repad		v73: HETA (Hipótesis de Exaptación Tecnológica Autónoma)
+v74_heta_redefinido.py	v074_heta_redefinido.py	lower->repad		v74: HETA Redefinido
+v74_heta_redefinido_corregido.py	v074_heta_redefinido_corregido.py	lower->repad		v74: HETA Redefinido (Corregido)
+v75_ged_detector.py	v075_ged_detector.py	lower->repad		v75: GED como detector de LF
+v76_lf_activa.py	v076_lf_activa.py	lower->repad		v76: LF Activa: ¿Hace algo?
+v77_ciclo_completo.py	v077_ciclo_completo.py	lower->repad		El ciclo completo: salida, exploración, retorno
+v78_homeostasis_estructural.py	v078_homeostasis_estructural.py	lower->repad		Homeostasis estructural de LF
+v79_competencia_memorias.py	v079_competencia_memorias.py	lower->repad		Competencia de memorias
+v79_competencia_memorias_con_diagnostico.py	v079_competencia_memorias_con_diagnostico.py	lower->repad		Competencia de memorias con diagnóstico de estímulo nuevo
+v80_memorias_duales_espectrales.py	v080_memorias_duales_espectrales.py	lower->repad		Memorias duales por separación espectral
+v80b_memorias_duales_calibradas.py	v080b_memorias_duales_calibradas.py	lower->repad		Memorias duales calibradas estructuralmente
+v80c_memorias_duales_tanh.py	v080c_memorias_duales_tanh.py	lower->repad		Memorias duales con normalización tanh
+v80d_memorias_duales_olvido_adaptativo.py	v080d_memorias_duales_olvido_adaptativo.py	lower->repad		Memorias duales con olvido adaptativo
+v80e_memorias_duales_olvido_invertido.py	v080e_memorias_duales_olvido_invertido.py	lower->repad		Memorias duales con olvido invertido
+v80f_seleccion_interna.py	v080f_seleccion_interna.py	lower->repad		Selección interna por eficiencia de régimen
+v80g_seleccion_interna.py	v080g_seleccion_interna.py	lower->repad		Selección interna por eficiencia (sin piso de olvido)
+v80h_seleccion_interna.py	v080h_seleccion_interna.py	lower->repad		Selección interna por eficiencia con amplificación no lineal
+v81_campo_expandido.py	v081_campo_expandido.py	lower->repad		Campo expandido con ganglio coordinador
+v82_acoplamiento_activo.py	v082_acoplamiento_activo.py	lower->repad		Acoplamiento activo: entrada estéreo real, actuación cualita
+v83_orientacion_activa.py	v083_orientacion_activa.py	lower->repad		Orientación activa con entrada binaural real
+v84_campo_diferencial.py	v084_campo_diferencial.py	lower->repad		Campo diferencial: act_busc como órgano de gradiente L-R
+v84b_campo_diferencial.py	v084b_campo_diferencial.py	lower->repad		Campo diferencial: correcciones de signo y orientación
+v85_decision_interna.py	v085_decision_interna.py	lower->repad		Decisión interna: act_busc como integrador de coherencia
+v86_loop_cerrado.py	v086_loop_cerrado.py	lower->repad		Loop cerrado: forzamiento dirigido act_busc → G
+v87_coherencia_dirigida.py	v087_coherencia_dirigida.py	lower->repad		Coherencia espectral dirigida y protocolo completo
+v89_gradiente_canonico.py	v089_gradiente_canonico.py	lower->repad		Gradiente energético canónico y act_geom con escala propia
+v90_protocolo_ciclico.py	v090_protocolo_ciclico.py	lower->repad		Protocolo cíclico: 100 ciclos de 13 fases
+v91_capa1_accion_A.py	v091_capa1_accion_A.py	lower->repad		Capa 1: cierre del ciclo D→R→Acción→A
+v92_respuesta_orientacion.py	v092_respuesta_orientacion.py	lower->repad		Respuesta de orientación Ω_orient
+v97.2.py	v097_2_bigbang_diagnostico_post_entrenamiento.py	override-explicito		
+v97.3.py	v097_3_bigbang_entrenamiento_extendido_232s.py	override-explicito		
+vstcosmo_entrada_estructurada.py	v006b_entrada_estructurada_por_amplitud.py	override-explicito		
+vstcosmo_historia_diferencial.py	v006c_campo_inestabilidad_simetrica.py	override-explicito		
+vstcosmo_nucleo_minimo.py	v006_nucleo_minimo.py	override-explicito		
+vstcosmo_v10_supresion.py	v010_supresion.py	vstcosmo_vN_		Experimento v10: Supresión de Inestabilidad
+vstcosmo_v11_pastor.py	v011_pastor.py	vstcosmo_vN_		Experimento v11: Pastor Cosmosemiótico
+vstcosmo_v12_campo_permeable.py	v012_campo_permeable.py	vstcosmo_vN_		Experimento v12: Campo Permeable por Diseño
+vstcosmo_v7_con_mapas.py	v007_con_mapas.py	vstcosmo_vN_		Experimento v7 con mapas espaciales
+vstcosmo_v7_controles_reales.py	v007_controles_reales.py	vstcosmo_vN_		Experimento v7 con múltiples entradas
+vstcosmo_v7_ganancia_0.2.py	v007_ganancia_0_2.py	vstcosmo_vN_		Experimento v7 con GANANCIA_INEST = 0.2
+vstcosmo_v7_inestabilidad_con_acoplamiento.py	v007_inestabilidad_con_acoplamiento.py	vstcosmo_vN_		Experimento v7
+vstcosmo_v8_inercia_direccional.py	v008_inercia_direccional.py	vstcosmo_vN_		Experimento v8: Inercia Direccional
+vstcosmo_v8_suelto.py	v008_suelto.py	vstcosmo_vN_		Experimento v8: Suelto y Ruidoso
+vstcosmo_v9_reconfiguracion.py	v009_reconfiguracion.py	vstcosmo_vN_		Experimento v9: Reconfiguración del Campo
