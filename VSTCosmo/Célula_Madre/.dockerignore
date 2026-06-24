@@ -1,0 +1,7 @@
+# NO meter en la imagen: pesos de audio, estado en disco, cachés, salidas regenerables.
+estado_persistente/
+**/__pycache__/
+**/*.pyc
+experimentos/resultados/
+*.log
+.DS_Store

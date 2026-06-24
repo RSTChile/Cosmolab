@@ -92,7 +92,10 @@ MARCADORES en salidas/logs:  ✅ logrado · ❌ falla · ⊘ ausente/no aplica �
 ================================================================================
 """
 import numpy as np
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt          # SÓLO para graficar (CLI/__main__); el campo VIVO no lo necesita
+except Exception:                            # en el servidor/Docker matplotlib puede no estar → import perezoso
+    plt = None
 from datetime import datetime
 import os
 import json

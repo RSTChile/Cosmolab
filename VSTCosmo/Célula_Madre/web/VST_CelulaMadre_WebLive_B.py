@@ -48,7 +48,7 @@ for _d in ("genoma", "campo", "organelos", "diada", "web", "audio"):
     if os.path.isdir(_p) and _p not in sys.path:
         sys.path.insert(0, _p)
 
-from VST_RC_A import OrganoRC, COLS_RC
+from VST_RC_B import OrganoRC, COLS_RC
 from VST_HomeostasisEmergente import (HomeostasisEmergente, soporte_A_sys_env,
                                       permeabilidad_activa, COLS_HOMEO_EMERGENTE)
 from VST_Memoria import OrganeloMemoria, COLS_MEM
@@ -57,7 +57,7 @@ from VST_Metabolismo import OrganeloMetabolismo, COLS_MET
 # Reutiliza el motor validado y el catálogo de organelos de la interfaz anterior
 from VST_CelulaMadre_Web import cmf, ORG_UI
 
-PUERTO = int(os.environ.get("VST_PUERTO", "7788"))  # Organismo A por defecto
+PUERTO = int(os.environ.get("VST_PUERTO", "7799"))  # Organismo B por defecto
 SR = cmf.SR
 DT = cmf.DT
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -95,8 +95,8 @@ except Exception as e:
     OrganoComunicacion = None; audio_desde_url = None
     COM_OK = False; COM_ERR = f"{type(e).__name__}: {e}"
 
-ORGANISMO_ID = os.environ.get("VST_ORGANISMO_ID", "ANIMA_A")
-COMUNICACION_PEER_PORT = int(os.environ.get("VST_COMUNICACION_PEER_PORT", "7799"))
+ORGANISMO_ID = os.environ.get("VST_ORGANISMO_ID", "ANIMA_B")
+COMUNICACION_PEER_PORT = int(os.environ.get("VST_COMUNICACION_PEER_PORT", "7788"))
 COMUNICACION_PEER_URL = os.environ.get(
     "VST_COMUNICACION_PEER",
     f"http://127.0.0.1:{COMUNICACION_PEER_PORT}/comunicacion/bloque.wav",
@@ -161,7 +161,7 @@ def _autosave_daemon():
             _guardar_estado(r.soma)
 
 COMUNICACION_VOICE_GAIN = float(os.environ.get("VST_VOICE_GAIN", "20.0"))
-ORGANISMO_LABEL = os.environ.get("VST_ORGANISMO_LABEL", "Organismo A")
+ORGANISMO_LABEL = os.environ.get("VST_ORGANISMO_LABEL", "Organismo B")
 
 # --- Gobernanza de ALTRUISMO de la díada: aplica el locus del genoma (O-N22) a la comunicación A↔B.
 #     Lee el estado del par, conduce el locus, y MODULA la voz como señal costosa (∝ disposición). ---
@@ -392,10 +392,6 @@ class ActuadorEsferaV122:
             razon_l = 0.0
             razon_r = 0.0
         else:
-            # BRÚJULA POR ENERGÍA SEMIÓTICA (Alexis): la dirección emerge de DÓNDE se CONVIERTE más energía
-            # semiótica en sentido (ICES) — la comprensión por oído (que SÍ sigue al sonido). Orientar hacia
-            # ahí es ir a donde el organismo VIVE más (enérgeia), no a un compás arbitrario de RC. RC gatea
-            # (confianza/permiso en k_motor_eff; bloqueo_irde veta el riesgo). Cable A/volumen lo hace físico.
             # BRÚJULA HACIA EL SENTIDO RECONOCIDO: orienta hacia el oído con más ESTRUCTURA reconocida de la
             # historia (estructura_L/R) — voces/melodías/diálogos que el organismo conoce. Si no hay estructura
             # reconocida, cae a la comprensión por oído. RC gatea; Cable A/volumen lo hace físico.
@@ -1511,7 +1507,7 @@ def _monitor() -> MonitorNiveles:
 # ==============================================================================
 HTML = r"""<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Célula Madre — Organismo A — Laboratorio en vivo</title>
+<title>Célula Madre — Organismo B — Laboratorio en vivo</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
@@ -1838,7 +1834,7 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
   <!-- ================= CONTROLES ================= -->
   <div>
     <div class="panel">
-      <h1>🧬 Célula Madre — Organismo A — Laboratorio en vivo</h1>
+      <h1>🧬 Célula Madre — Organismo B — Laboratorio en vivo</h1>
       <div class="mut">Entrada biaural · observación en tiempo real · ablación real</div>
 
       <div class="mut" style="font-size:10.5px">Dos entradas INDEPENDIENTES. Cada una = un canal de
@@ -2246,7 +2242,7 @@ function pintarStatus(meta,live){
     s.dataset.fte=meta.fuente;s.dataset.dur=meta.sim_s+'s';s.dataset.ap=(meta.apagados&&meta.apagados.length)?meta.apagados.join(','):'ninguno';
     s.dataset.crit=meta.criterio_duracion||'-';s.dataset.latr=meta.lateralidad_real;}
   const p=live?live.pasos:0, fps=live?live.fps:'0';
-  s.innerHTML=`<span>org: <b>Organismo A</b></span><span>L: <b>${s.dataset.izq||'-'}</b></span><span>R: <b>${s.dataset.der||'-'}</b></span>
+  s.innerHTML=`<span>org: <b>Organismo B</b></span><span>L: <b>${s.dataset.izq||'-'}</b></span><span>R: <b>${s.dataset.der||'-'}</b></span>
     <span>fuente: <b>${s.dataset.fte||'-'}</b></span><span>lat.real: <b>${s.dataset.latr}</b></span>
     <span>dur: <b>${s.dataset.dur||'-'}</b></span><span>pasos: <b>${p||s.dataset.pasos||0}</b></span>
     <span>FPS: <b>${fps}</b></span><span>apagados: <b>${s.dataset.ap||'-'}</b></span>`;
@@ -2268,7 +2264,7 @@ $('bStop').onclick=()=>{fetch('/control',{method:'POST',headers:{'Content-Type':
 $('bClear').onclick=limpiar;
 $('bCsv').onclick=()=>{fetch('/csv').then(r=>r.text()).then(txt=>{if(!txt){ev('sin datos','bad');return;}
   const b=new Blob([txt],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);
-  a.download='Celula madre live - Organismo A - '+new Date().toISOString().slice(0,19).replace(/[:.]/g,'-')+'.csv';a.click();ev('CSV descargado','ok');});};
+  a.download='Celula madre live - Organismo B - '+new Date().toISOString().slice(0,19).replace(/[:.]/g,'-')+'.csv';a.click();ev('CSV descargado','ok');});};
 
 buildWins(); VENTANAS.forEach(v=>{if(!v.eventos&&!v.niveles&&!v.actuador)mkChart(v);}); mkActCharts(); buildTabs(); updateActuador({act_orientacion_deg:0,act_objetivo_deg:0,act_confianza:0,act_fatiga:0,act_zona_muerta:2,act_temblor_rms:0,act_lateralidad_dw:0,omega_L:0,omega_R:0,energia_L:0,energia_R:0});
 
@@ -2630,22 +2626,18 @@ def _nacer(cfg, toggles=None, sim_s=6):
     global RUN
     with RUN_LOCK:
         if RUN and not RUN.done:
-            RUN.stop = True                       # detener vida previa
+            RUN.stop = True
         RUN = Run(cfg or {}, toggles or {}, sim_s)
-        HOMEO_EMERGENTE.reset(); MEMORIA.reset(); METABOLISMO.reset()   # el _despertar restaura tras esto
+        HOMEO_EMERGENTE.reset(); MEMORIA.reset(); METABOLISMO.reset()
         RUN.start()
     return RUN
 
 
-# Vida en SOLEDAD: qué percibe el organismo cuando nadie lo alimenta (incremento 2). Por defecto
-# 'demo:silencio' = sigue vivo (metabolismo, memoria, dinámica endógena del campo) sin estímulo externo.
 ANIMA_AUTOSTART = os.environ.get("ANIMA_AUTOSTART", "0").lower() in ("1", "true", "yes", "on")
 ANIMA_FUENTE_DEFECTO = os.environ.get("ANIMA_FUENTE_DEFECTO", "demo:silencio")
 
 
 def _autoarranque_vida():
-    """Si ANIMA_AUTOSTART, el organismo NACE y vive en continuo al arrancar el servidor (no espera
-    a que nadie pulse 'start'). Es lo que lo vuelve un organismo-servidor 24/7, no una app."""
     if not ANIMA_AUTOSTART:
         return
     cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,

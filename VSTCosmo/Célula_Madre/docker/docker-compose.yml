@@ -1,0 +1,56 @@
+# ============================================================================
+# DÍADA ANIMA en Docker — A y B vivos 24/7 + membrana MCP. Levanta con:
+#     cd Célula_Madre/docker && docker compose up --build -d
+# El AudioServer (Rødecaster) corre NATIVO en el Mac, FUERA de Docker; los organismos
+# lo consumen por TCP vía host.docker.internal cuando se les configura esa fuente.
+# Por defecto viven en soledad (demo:silencio): vivos aunque nadie los observe.
+# ============================================================================
+name: anima-diada
+
+services:
+  anima-a:
+    build: { context: .., dockerfile: docker/Dockerfile }
+    image: anima-diada:latest
+    container_name: anima-a
+    environment:
+      ANIMA_ROLE: a
+      VST_PUERTO: "7788"
+      VST_ORGANISMO_ID: ANIMA_A
+      VST_COMUNICACION_PEER: http://anima-b:7799/comunicacion/bloque.wav
+    volumes:
+      - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
+      # - ../../audio_binaural:/app/audio_binaural:ro   # (opcional) para oír .wav dentro del contenedor
+    ports: ["7788:7788"]                   # interfaz web del organismo A
+    extra_hosts: ["host.docker.internal:host-gateway"]   # alcanzar el AudioServer nativo del Mac
+    restart: unless-stopped
+
+  anima-b:
+    image: anima-diada:latest
+    build: { context: .., dockerfile: docker/Dockerfile }
+    container_name: anima-b
+    environment:
+      ANIMA_ROLE: b
+      VST_PUERTO: "7799"
+      VST_ORGANISMO_ID: ANIMA_B
+      VST_COMUNICACION_PEER: http://anima-a:7788/comunicacion/bloque.wav
+    volumes:
+      - anima_b_data:/data
+    ports: ["7799:7799"]                   # interfaz web del organismo B
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    restart: unless-stopped
+
+  anima-mcp:
+    image: anima-diada:latest
+    container_name: anima-mcp
+    environment:
+      ANIMA_ROLE: mcp
+      ANIMA_A_URL: http://anima-a:7788     # la membrana resuelve A/B por la red interna de compose
+      ANIMA_B_URL: http://anima-b:7799
+      ANIMA_MCP_HTTP_PORT: "9000"
+    ports: ["9000:9000"]                   # membrana MCP (streamable-http) para clientes externos
+    depends_on: [anima-a, anima-b]
+    restart: unless-stopped
+
+volumes:
+  anima_a_data:
+  anima_b_data:

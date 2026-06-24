@@ -69,6 +69,14 @@ def _get_json(quien: str, path: str):
     return json.loads(_get(quien, path).decode("utf-8"))
 
 
+def _post(quien: str, path: str, obj: dict, timeout: float = TIMEOUT):
+    """POST a un endpoint del WebLive (para ALIMENTAR/investigar; nunca para decidir por el organismo)."""
+    req = urllib.request.Request(_url(quien) + path, data=json.dumps(obj).encode(),
+                                 headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
 def _vivo(quien: str) -> bool:
     """¿El servidor del organismo responde? (no si está vivo metabólicamente, sino si hay con quién hablar)."""
     try:
@@ -83,11 +91,12 @@ def _csv_filas(quien: str):
     txt = _get(quien, "/csv").decode("utf-8", "replace").strip()
     if not txt:
         return [], []
-    r = list(_csv.reader(io.StringIO(txt)))
-    if not r:
+    # /csv empieza con una línea de COMENTARIO (# organismo: ...); el header real es la 1ª línea no-#
+    filas_csv = [row for row in _csv.reader(io.StringIO(txt)) if row and not row[0].lstrip().startswith("#")]
+    if not filas_csv:
         return [], []
-    cab = r[0]
-    filas = [dict(zip(cab, row)) for row in r[1:] if row]
+    cab = filas_csv[0]
+    filas = [dict(zip(cab, row)) for row in filas_csv[1:] if row]
     return cab, filas
 
 
@@ -180,6 +189,38 @@ def _observar(quien: str, seg: float = 5.0) -> dict:
             "estado_final": {k: _num(filas[-1][k]) for k in _VITALES if k in filas[-1]}}
 
 
+# ================== ALIMENTAR / INVESTIGAR (escritura: mundo, no orden) ==================
+def _inyectar_audio(quien: str, fuente: str = "demo:tono") -> dict:
+    """Da al organismo algo que OÍR (le da MUNDO, no una decisión): arranca una vida con esa fuente.
+    Su HISTORIA (memoria/codebook) sobrevive — el despertar la restaura de disco."""
+    if not _vivo(quien):
+        return {"organismo": quien, "vivo": False}
+    tipo = "demo" if str(fuente).startswith("demo:") else "wav"
+    cfg = {"left_src": {"tipo": tipo, "spec": fuente}, "right_src": None,
+           "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+    return {"organismo": quien, "inyectado": fuente,
+            "respuesta": _post(quien, "/start", {"cfg": cfg, "toggles": {}, "sim_s": 6})}
+
+
+def _investigar_mute(quien: str, left: bool = False, right: bool = False) -> dict:
+    """INVESTIGACIÓN: corta el oído izquierdo/derecho (corte-del-mundo) para estudiar el desacople."""
+    if not _vivo(quien):
+        return {"organismo": quien, "vivo": False}
+    return {"organismo": quien, "mute": _post(quien, "/mute", {"left": bool(left), "right": bool(right)})}
+
+
+def _investigar_ablacion(quien: str, organelos_off=None, fuente: str = "demo:silencio") -> dict:
+    """INVESTIGACIÓN: reinicia la vida con ciertos organelos ablacionados (expresar=False) para medir
+    su aporte. Altera el experimento — por eso es una tool explícita y separada, no de la membrana."""
+    if not _vivo(quien):
+        return {"organismo": quien, "vivo": False}
+    toggles = {n: False for n in (organelos_off or [])}
+    cfg = {"left_src": {"tipo": "demo", "spec": fuente}, "right_src": None,
+           "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+    return {"organismo": quien, "ablacionados": list(toggles.keys()),
+            "respuesta": _post(quien, "/start", {"cfg": cfg, "toggles": toggles, "sim_s": 6})}
+
+
 # ============================== AGREGADOS DE DÍADA ==============================
 def _diada_estado() -> dict:
     return {"diada": {"A": _estado("A"), "B": _estado("B")},
@@ -250,6 +291,23 @@ def _build_mcp():
         """Observa N segundos de la vida en vivo de un organismo y resume su trayectoria (OI/H/RC/energía…)."""
         return _observar(quien, segundos)
 
+    # ---- Tool de ALIMENTACIÓN (le da MUNDO, no órdenes) ----
+    @mcp.tool()
+    def inyectar_audio(quien: str = "A", fuente: str = "demo:tono") -> dict:
+        """Da al organismo algo que oír: demo:tono/rosa/clicks/silencio, o el nombre de un .wav. Su historia sobrevive."""
+        return _inyectar_audio(quien, fuente)
+
+    # ---- Tools de INVESTIGACIÓN (separadas y explícitas: ALTERAN el experimento, no son membrana) ----
+    @mcp.tool()
+    def investigar_mute(quien: str = "A", left: bool = False, right: bool = False) -> dict:
+        """INVESTIGACIÓN: corta el oído izquierdo y/o derecho (corte-del-mundo) para estudiar el desacople."""
+        return _investigar_mute(quien, left, right)
+
+    @mcp.tool()
+    def investigar_ablacion(quien: str = "A", organelos_off: list = None, fuente: str = "demo:silencio") -> dict:
+        """INVESTIGACIÓN: reinicia la vida con ciertos organelos ablacionados (expresar=False) para medir su aporte."""
+        return _investigar_ablacion(quien, organelos_off, fuente)
+
     return mcp
 
 
@@ -273,8 +331,21 @@ def _selftest():
     print("\n== fin selftest ==")
 
 
+def _es_verdad(v):
+    return str(v).lower() in ("1", "true", "yes", "on")
+
+
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         _selftest()
+    elif "--http" in sys.argv or _es_verdad(os.environ.get("ANIMA_MCP_HTTP", "0")):
+        # Transporte HTTP (streamable-http): la membrana como SERVIDOR en red/Docker, alcanzable por
+        # cualquier cliente MCP. En Docker escucha 0.0.0.0; A/B se resuelven por ANIMA_A_URL/ANIMA_B_URL.
+        srv = _build_mcp()
+        srv.settings.host = os.environ.get("ANIMA_MCP_HOST", "0.0.0.0")
+        srv.settings.port = int(os.environ.get("ANIMA_MCP_HTTP_PORT", "9000"))
+        print(f"[anima-mcp] membrana HTTP en {srv.settings.host}:{srv.settings.port} · "
+              f"A={ORGANISMOS['A']} · B={ORGANISMOS['B']}", flush=True)
+        srv.run(transport="streamable-http")
     else:
-        _build_mcp().run()   # transporte stdio (cliente MCP local); HTTP/Docker llega en incremento 3
+        _build_mcp().run()   # transporte stdio (cliente MCP local en el mismo Mac)

@@ -204,7 +204,8 @@ def cargar_audio(spec: str, binaural: bool = False):
     dur_demo = 3.0; n = int(dur_demo * SR)
     demos = {"demo:tono": ("tono_440Hz", _tono),
              "demo:rosa": ("ruido_rosa", _pink_noise),
-             "demo:clicks": ("clicks_poisson", _clicks_poisson)}
+             "demo:clicks": ("clicks_poisson", _clicks_poisson),
+             "demo:silencio": ("silencio", lambda n: np.zeros(n, dtype=np.float64))}  # SOLEDAD: vive sin estímulo
     if spec in demos:
         nombre, gen = demos[spec]; sig = gen(n)
         return (nombre + " (mono duplicado)", (sig, sig.copy())) if binaural else (nombre, sig)
