@@ -50,3 +50,5 @@ env/
 audio_binaural/
 _backup_pruebas_previas_20260624.zip
 Célula_Madre/experimentos/resultados/
+Célula_Madre/estado_persistente/
+estado_persistente/

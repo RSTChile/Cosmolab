@@ -99,6 +99,34 @@ class OrganeloMemoria:
         self.confianza_otro = 0.0                    # capa 6
         self.t = 0.0; self.n_visitas = {}
 
+    # ----- PERSISTENCIA: la historia interna sobrevive al apagón (incremento 1) -----
+    def snapshot(self) -> dict:
+        """Estado VIVO a guardar (la historia, no las constantes del genoma): valencias aprendidas,
+        episodios, vínculo con el otro (confianza_otro), vida vivida (t). Todo JSON-serializable."""
+        return {"valencia": self.valencia, "episodios": self.episodios,
+                "confianza_otro": self.confianza_otro, "confianza_persist": self.confianza_persist,
+                "saciedad": self.saciedad, "necesidad_prev": self.necesidad_prev,
+                "t": self.t, "n_visitas": self.n_visitas, "buffer": list(self.buffer),
+                "_clave_presente": self._clave_presente, "_t_ausencia": self._t_ausencia,
+                "_A_prev": self._A_prev}
+
+    def restore(self, d: dict) -> None:
+        """Reconstituye la historia interna desde un snapshot (al despertar tras un reinicio)."""
+        if not d:
+            return
+        self.valencia = d.get("valencia", {}) or {}
+        self.episodios = d.get("episodios", []) or []
+        self.confianza_otro = float(d.get("confianza_otro", 0.0) or 0.0)
+        self.confianza_persist = float(d.get("confianza_persist", 0.0) or 0.0)
+        self.saciedad = float(d.get("saciedad", 0.0) or 0.0)
+        self.necesidad_prev = float(d.get("necesidad_prev", 0.0) or 0.0)
+        self.t = float(d.get("t", 0.0) or 0.0)
+        self.n_visitas = d.get("n_visitas", {}) or {}
+        self.buffer = deque([tuple(x) for x in (d.get("buffer", []) or [])], maxlen=self.buffer_n)
+        self._clave_presente = d.get("_clave_presente")
+        self._t_ausencia = float(d.get("_t_ausencia", 0.0) or 0.0)
+        self._A_prev = d.get("_A_prev")
+
     # --------------------------------------------------------------- utilidades
     @staticmethod
     def _clave(lat: float, A: float):

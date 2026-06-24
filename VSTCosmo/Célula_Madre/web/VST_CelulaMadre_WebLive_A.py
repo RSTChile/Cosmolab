@@ -112,6 +112,54 @@ MEMORIA = OrganeloMemoria()
 # Economía energética: come la experiencia (nutritiva/tóxica), paga el costo de vivir/actuar, se
 # degrada (basal) y se repone. Secreta met_nutricion → la memoria la usa para saciar la necesidad.
 METABOLISMO = OrganeloMetabolismo()
+
+# --- PERSISTENCIA (incremento 1): la HISTORIA del organismo sobrevive al apagón. El espacio en disco
+# (futuro VOLUMEN Docker, vía ANIMA_ESTADO_DIR) lo da vst_persistencia; aquí sólo coordinamos
+# DESPERTAR (restaurar al nacer la célula) y GUARDAR (autosave). Aditivo: si el módulo no está, el
+# organismo sigue vivo igual — sólo no recordaría entre reinicios. ---
+try:
+    from vst_persistencia import (guardar as _persist_guardar, cargar as _persist_cargar,
+                                  restaurar as _persist_restaurar)
+    PERSIST_OK = True; PERSIST_ERR = ""
+except Exception as _e:
+    PERSIST_OK = False; PERSIST_ERR = f"{type(_e).__name__}: {_e}"
+AUTOSAVE_S = float(os.environ.get("ANIMA_AUTOSAVE_S", "15"))   # cada cuánto el organismo graba su estado
+
+def _organelos_persistibles(soma):
+    """Los organelos cuya historia se guarda: memoria + metabolismo (globals) + el codebook del soma."""
+    orgs = {"memoria": MEMORIA, "metabolismo": METABOLISMO}
+    if soma is not None:
+        orgs["soma"] = soma
+    return orgs
+
+def _despertar(soma):
+    """Al nacer la célula: restaura de disco la historia previa de ESTE organismo (ORGANISMO_ID).
+    Devuelve los organelos restaurados ([] si nace por primera vez o no hay persistencia)."""
+    if not PERSIST_OK:
+        return []
+    try:
+        return _persist_restaurar(_organelos_persistibles(soma), _persist_cargar(ORGANISMO_ID))
+    except Exception:
+        return []
+
+def _guardar_estado(soma):
+    """Graba la historia actual a disco (atómico). Silencioso ante fallos: nunca debe matar la vida."""
+    if not PERSIST_OK or soma is None:
+        return None
+    try:
+        return _persist_guardar(ORGANISMO_ID, _organelos_persistibles(soma))
+    except Exception:
+        return None
+
+def _autosave_daemon():
+    """Hilo de fondo: graba el estado del organismo VIVO cada AUTOSAVE_S s (también tras Detener),
+    para que un apagón brusco del Mac pierda como mucho ese intervalo."""
+    while True:
+        time.sleep(AUTOSAVE_S)
+        r = RUN
+        if r is not None and getattr(r, "soma", None) is not None:
+            _guardar_estado(r.soma)
+
 COMUNICACION_VOICE_GAIN = float(os.environ.get("VST_VOICE_GAIN", "20.0"))
 ORGANISMO_LABEL = os.environ.get("VST_ORGANISMO_LABEL", "Organismo A")
 
@@ -1215,6 +1263,9 @@ class Run:
         _aplicar_mute_soma(soma, self.mute_L, self.mute_R)
         meta["organismo"] = ORGANISMO_LABEL; meta["organismo_id"] = ORGANISMO_ID
         meta["mute_L"] = self.mute_L; meta["mute_R"] = self.mute_R
+        _rest = _despertar(self.soma)                     # DESPERTAR: restaura la historia previa de disco
+        if _rest:
+            self._log_evento("despertar", f"historia restaurada de disco: {', '.join(_rest)}")
         self.meta = meta
         continuo = bool(self.cfg.get("continuo"))
         meta["continuo"] = continuo
@@ -1302,6 +1353,10 @@ class Run:
                 lector.cerrar()
             return
 
+        self.cel = cel; self.soma = soma                  # exponer al autosave (y a set_mute)
+        _rest = _despertar(soma)                          # DESPERTAR: restaura la historia previa de disco
+        if _rest:
+            self._log_evento("despertar", f"historia restaurada de disco: {', '.join(_rest)}")
         self.meta = meta
         continuo = bool(self.cfg.get("continuo"))
         meta["continuo"] = continuo
@@ -2582,6 +2637,11 @@ def main():
     print("  CÉLULA MADRE — LABORATORIO EN VIVO")
     print(f"  → abre:  http://localhost:{PUERTO}")
     print(f"  audio en vivo: {'DISPONIBLE' if SD_OK else 'no (sounddevice ausente)'}")
+    if PERSIST_OK:
+        threading.Thread(target=_autosave_daemon, daemon=True).start()
+        print(f"  persistencia: ON · autosave cada {AUTOSAVE_S:.0f}s · {os.environ.get('ANIMA_ESTADO_DIR','(disco por defecto)')}")
+    else:
+        print(f"  persistencia: OFF ({PERSIST_ERR})")
     print("  Ctrl+C para detener.")
     print("=" * 66)
     try:

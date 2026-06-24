@@ -306,6 +306,22 @@ class OrganeloSoma(Organelo):
         self.umbral_nuevo = 0.6        # match < umbral ∧ hay slot vacío → estructura NOVEDOSA = nuevo prototipo
         self.finito = True
 
+    # ----- PERSISTENCIA: el codebook es lo que el organismo APRENDIÓ a reconocer (incremento 1) -----
+    def snapshot(self) -> dict:
+        """Estado APRENDIDO del soma a guardar: el REPERTORIO (codebook) de estructuras reconocidas.
+        El campo Φ NO se guarda: se re-forma al despertar. Lo que persiste es la historia (lo aprendido),
+        no el estado instantáneo del campo — como despertar recordando, con el cuerpo volviendo a su ritmo."""
+        return {"codebook": self._codebook.tolist(), "_K": int(self._K), "_n_bands": int(self._n_bands)}
+
+    def restore(self, d: dict) -> None:
+        if not d:
+            return
+        cb = d.get("codebook")
+        if cb is not None:
+            arr = np.asarray(cb, dtype=np.float64)
+            if arr.shape == self._codebook.shape:      # mismo repertorio (K × bandas) → restaurar
+                self._codebook = arr
+
     def realimentar(self, audio, binaural=None) -> None:
         """CAPTURA CONTINUA: reemplaza el bloque de audio MANTENIENDO el estado del campo (Phi,
         Phi_vel) y la historia del organismo. Solo reinicia el tiempo LOCAL del bloque y la entrada

@@ -89,6 +89,22 @@ class OrganeloMetabolismo:
         self._IM_ema = 0.0      # IM SOSTENIDO (digestión: filtra transitorios del campo)
         self._ES_ema = 0.0      # energía semiótica sostenida (RC_total suavizado)
 
+    # ----- PERSISTENCIA: las reservas y lo aprendido sobreviven al apagón (incremento 1) -----
+    def snapshot(self) -> dict:
+        """Estado metabólico a guardar: reservas de energía (E), saciedades específicas (v069) y
+        preferencias aprendidas por alimento (v035). Las constantes (basal, k_*) vienen del genoma."""
+        return {"E": self.E, "saciedad": self.saciedad, "preferencia": self.preferencia,
+                "_IM_ema": self._IM_ema, "_ES_ema": self._ES_ema}
+
+    def restore(self, d: dict) -> None:
+        if not d:
+            return
+        self.E = float(d.get("E", self.E0))
+        self.saciedad = d.get("saciedad", {}) or {}
+        self.preferencia = d.get("preferencia", {}) or {}
+        self._IM_ema = float(d.get("_IM_ema", 0.0) or 0.0)
+        self._ES_ema = float(d.get("_ES_ema", 0.0) or 0.0)
+
     @staticmethod
     def _clave_alimento(lat: float, sabor: float):
         """Tipo de 'alimento' por su SABOR cosmosemiótico: dónde viene × dulce(ICR)/amargo(IRDE)."""
