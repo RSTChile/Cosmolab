@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VST_Organismo_Individual_v2 — CAMPO Φ ROBUSTECIDO ("célula madre")  [Fase B v2]
+VST_Celula_Madre_001 — CAMPO Φ ROBUSTECIDO ("célula madre")  [ex VST_Organismo_Individual_v2 / Fase B v2]
 ================================================================================
 v2 = v1 (cuerpo V180c + Ritual/Rᴿ) + CAMPO Φ robustecido: se portan al Φ
 per-hemisferio de 32 nodos cuatro piezas del linaje rico (perdidas en la
@@ -450,6 +450,12 @@ class ModoJuego:
 # CAMPO Φ ROBUSTECIDO — constantes PORTADAS (procedencia línea a línea)
 # Driver gradiente=ωA−ωB INTOCABLE; estas piezas enriquecen el MEDIO.
 # ============================================================
+# -- 0. ACOPLE AUDIO→CAMPO (S = I·E, C-N2): el campo OYE la ENVOLVENTE (energía) del audio, no el sample
+#       crudo. El forzamiento histórico [0]=+e,[-1]=−e es un DIPOLO de media cero, y el audio es oscilante
+#       de media cero → ambos se promedian a 0 en omega → el campo era SORDO al nivel del sonido (E≈0 ⇒ S≈0).
+#       La envolvente es POSITIVA y sostenida → mueve omega → A/ICR responden. Recupera la MEMBRANA SENSORIAL (V111).
+CAMPO_GAIN_AUDIO  = 6.0      # cuánto empuja la sonoridad (envolvente) al campo. Calibrar: E debe IMPORTAR sin tapar I.
+CAMPO_ENV_VENTANA = 1200     # muestras de la ventana de envolvente (RMS local) ≈ 25 ms
 # -- 1. W relacional (BASE) — VERBATIM de v72b_fase3_plasticidad_hebbiana.py --
 CAMPO_ETA_HEBB    = 0.02     # v72b:41  tasa de aprendizaje hebbiano
 CAMPO_TAU_W       = 0.005    # v72b:42  decaimiento de pesos
@@ -494,6 +500,7 @@ CAMPO_INHIBICION_RAPIDA = 0.1  # V122:32  umbral de |dOmega| para inhibición la
 # (campo_dualW / campo_inhib_lateral arrancan OFF: CONDICIONALES, entran si pasa smoke.)
 # campo_lambda es MEDIDA (no toca dinámica): se puede leer sin alterar el campo.
 DEFAULT_CAMPO_FLAGS = {
+    'campo_audio_real':    True,   # S=I·E: el campo OYE la envolvente del audio (monopolo) → omega/A responden
     'memoria_campo':       True,   # master: OFF => campo idéntico a v1/V180c
     'campo_W':             True,   # W relacional (base obligatoria)
     'campo_atractor':      True,   # Phi_int_historia reinyectado (carga estructural)
@@ -516,6 +523,8 @@ class Hemisferio:
         self.entrada = None
         self.sr = 48000
         self.factor_inanicion = 1.0
+        self.gain_vol = 1.0            # ganancia de VOLUMEN del oído (física): el oído que se acerca a la
+        #   fuente sube de volumen; el otro baja (como girar la cabeza para oír mejor). Lo fija el soma.
         # --- CAMPO ROBUSTECIDO (Fase B v2): flags + estado de memoria de campo ---
         self.cf = dict(DEFAULT_CAMPO_FLAGS)
         if campo_flags: self.cf.update(campo_flags)
@@ -559,7 +568,7 @@ class Hemisferio:
     def generar_entrada_para_t(self, t, duracion_total):
         if self.entrada is None: self.entrada = self.generar_entrada(duracion_total, self.sr)
         idx = int(t * self.sr)
-        return self.entrada[idx] * self.factor_inanicion if idx < len(self.entrada) else 0.0
+        return self.entrada[idx] * self.factor_inanicion * self.gain_vol if idx < len(self.entrada) else 0.0
 
     def actualizar(self, t, dt, duracion_total, otro_hemisferio=None):
         entrada = self.generar_entrada_para_t(t, duracion_total)
@@ -567,7 +576,15 @@ class Hemisferio:
         for i in range(1, 31): laplaciano[i] = self.Phi[i-1] - 2*self.Phi[i] + self.Phi[i+1]
         reaccion = self.Phi * (1 - self.Phi * self.Phi)
         forzamiento = np.zeros_like(self.Phi)
-        forzamiento[0], forzamiento[-1] = entrada, -entrada
+        forzamiento[0], forzamiento[-1] = entrada, -entrada      # dipolo (lateralidad/estructura; media cero)
+        # ACOPLE AUDIO→CAMPO (S = I·E): MONOPOLO desde la ENVOLVENTE (energía) del audio — el EXTERIOR
+        # entra al INTERIOR y lo desplaza. Sin esto E≈0 ⇒ S≈0 (campo sordo). La envolvente (RMS local) es
+        # positiva y sostenida; el gain_vol (orientación) la modula → enfrentar la fuente la oye más fuerte.
+        if self.cf.get('campo_audio_real') and self.entrada is not None:
+            i0 = int(t * self.sr)
+            w = self.entrada[max(0, i0 - CAMPO_ENV_VENTANA):i0 + CAMPO_ENV_VENTANA]
+            env = float(np.sqrt(np.mean(w * w))) if w.size else 0.0
+            forzamiento += CAMPO_GAIN_AUDIO * env * self.gain_vol   # sonoridad → empuja todo el campo
         acoplamiento = np.zeros_like(self.Phi)
         inhibido = False
         if otro_hemisferio is not None:
@@ -1790,7 +1807,7 @@ def verificar_campo_v2(seed=SEMILLA_BASE):
     # ---------- LOG ----------
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     os.makedirs('Organismo_logs', exist_ok=True)
-    log = {'artefacto': 'VST_Organismo_Individual_v2', 'timestamp': timestamp, 'seed': seed,
+    log = {'artefacto': 'VST_Celula_Madre_001', 'timestamp': timestamp, 'seed': seed,
            'invariante_OFF_eq_v1': bool(invariante),
            'smoke': {k: bool(v) for k, v in smoke.items()},
            'on_flags': {k: bool(v) for k, v in on_flags.items()},
