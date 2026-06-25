@@ -2844,11 +2844,13 @@ def _autoarranque_vida():
         if ANIMA_ESCUCHAR_PAR and COM_OK and COMUNICACION_PEER_URL:
             sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
             url = f"{COMUNICACION_PEER_URL}{sep}modo={ANIMA_VOZ_PAR_MODO}&gain={COMUNICACION_VOICE_GAIN}"
-            izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par"}
-            cfg = {"left_src": izq, "right_src": {"tipo": "demo", "spec": "demo:silencio"},
+            izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par (L)"}
+            der = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par (R)"}
+            # voz del par en AMBOS oídos → el medidor registra L y R (antes sólo L, con R en silencio)
+            cfg = {"left_src": izq, "right_src": der,
                    "binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
             _nacer(cfg, {}, 6)
-            print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par ({COMUNICACION_PEER_URL}) en el oído de relación (L)")
+            print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par ({COMUNICACION_PEER_URL}) en AMBOS oídos")
         else:
             cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
                    "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
