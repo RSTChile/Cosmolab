@@ -53,6 +53,7 @@ from VST_HomeostasisEmergente import (HomeostasisEmergente, soporte_A_sys_env,
                                       permeabilidad_activa, COLS_HOMEO_EMERGENTE)
 from VST_Memoria import OrganeloMemoria, COLS_MEM
 from VST_Metabolismo import OrganeloMetabolismo, COLS_MET
+from VST_Alteridad import OrganeloAlteridad, COLS_ALT
 
 # Reutiliza el motor validado y el catálogo de organelos de la interfaz anterior
 from VST_CelulaMadre_Web import cmf, ORG_UI
@@ -112,6 +113,9 @@ MEMORIA = OrganeloMemoria()
 # Economía energética: come la experiencia (nutritiva/tóxica), paga el costo de vivir/actuar, se
 # degrada (basal) y se repone. Secreta met_nutricion → la memoria la usa para saciar la necesidad.
 METABOLISMO = OrganeloMetabolismo()
+# Alteridad / intención comunicativa: aprende (emisión propia → respuesta del otro → efecto sobre mí)
+# por consecuencias. NO impone lenguaje; MIDE si el organismo descubre que afecta al otro. Simétrico.
+ALTERIDAD = OrganeloAlteridad(ORGANISMO_ID)
 
 # --- PERSISTENCIA (incremento 1): la HISTORIA del organismo sobrevive al apagón. El espacio en disco
 # (futuro VOLUMEN Docker, vía ANIMA_ESTADO_DIR) lo da vst_persistencia; aquí sólo coordinamos
@@ -257,7 +261,7 @@ COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_con
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
 # VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
 COLS_VOZ = ["voz_emitida", "voz_arousal", "voz_valence"]
-COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ
+COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT
 
 
 
@@ -2838,6 +2842,17 @@ def _com_observar(fila, meta=None):
         except Exception:
             pass
     fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
+    # ALTERIDAD: ¿la emisión propia modifica al otro? (aprende por consecuencias; usa el estado del par)
+    try:
+        fila.update(ALTERIDAD.observar(fila, _par_estado_throttled(), dt=DT))
+        if ALTERIDAD.eventos:
+            if RUN is not None:
+                for _t, _d, _x in ALTERIDAD.eventos:
+                    if _t in ("alteridad_refuerzo", "alteridad_contacto"):   # sólo HITOS (no inundar la bitácora)
+                        RUN._log_evento(_t, _d, _x)
+            ALTERIDAD.eventos.clear()
+    except Exception:
+        pass
     if _HIST is not None:                      # BIOGRAFÍA: registra la fisiología (no bloqueante)
         _HIST.registrar_fila(fila, MODO_VIDA)
 
