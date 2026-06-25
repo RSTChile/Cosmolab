@@ -163,6 +163,7 @@ class OrganoComunicacion:
         "FULL_STATE_NOTES",
         "FULL_STATE_OSC",
         "PHYSIO_VOICE",
+        "R2D2",            # pitidos/chirps cortos (estilo droide); tono y ritmo derivados del estado
         "NULL_STATE",
         "SHUFFLED_STATE",
         "NOISE_MATCHED",
@@ -241,6 +242,9 @@ class OrganoComunicacion:
         if modo == "FULL_STATE_NOTES":
             return self._audio_full_state_notes(n, pairs, seq=seq)
 
+        if modo == "R2D2":
+            return self._audio_r2d2(n, pairs, seq=seq)
+
         if modo == "FULL_STATE_OSC":
             y, phase = self._audio_full_state_osc(n, pairs, phase_osc, seq=seq)
             with self._lock:
@@ -296,6 +300,44 @@ class OrganoComunicacion:
             w.setframerate(self.sr)
             w.writeframes(pcm16.tobytes())
         return bio.getvalue()
+
+    def _audio_r2d2(self, n: int, pairs: list, seq: int) -> np.ndarray:
+        """Voz tipo R2-D2: secuencia de PITIDOS cortos y CHIRPS (glides) en vez de tonos sostenidos.
+        Mismo CONTENIDO que FULL_STATE_NOTES (las variables salientes del estado), distinto ESTILO:
+          · tono de cada blip ← valor de la variable de estado     · duración corta (40-150 ms)
+          · CHIRP (glide) cuando la variable es extrema (firma droide)   · warble (vibrato) si la var lo pide
+          · ritmo (densidad de blips) ← actividad global del estado
+        Determinista por seq → mismo estado, misma voz (anti-Shannon: el estado manda, no se impone código)."""
+        sr = self.sr
+        y = np.zeros(n, dtype=np.float64)
+        pairs = sorted(list(pairs) or [("silencio", 0.0)], key=lambda kv: abs(kv[1] - 0.5), reverse=True)
+        actividad = min(1.0, float(np.mean([abs(v - 0.5) for _, v in pairs])) * 2.0) if pairs else 0.0
+        rng = np.random.RandomState(_stable_seed(f"{self.organismo_id}:r2d2:{seq}"))
+        pos = 0; i = 0; min_m = int(0.012 * sr)
+        while pos < n - min_m:
+            key, val = pairs[i % len(pairs)]; i += 1
+            u = _stable_unit(key); val = min(1.0, max(0.0, float(val)))
+            f0 = 350.0 + 2000.0 * val + 250.0 * u                 # tono del blip ← estado (≈350-2600 Hz)
+            dur = 0.035 + 0.085 * (1.0 - abs(val - 0.5) * 2.0)   # 35-120 ms (blips cortos)
+            gap = 0.025 + 0.09 * rng.rand() + (0.12 if rng.rand() < 0.12 else 0.0)  # silencio claro entre blips + pausas ocasionales (ritmo droide)
+            m = int(dur * sr)
+            if pos + m > n:
+                m = n - pos
+            if m < min_m:
+                break
+            tt = np.arange(m) / sr
+            if abs(val - 0.5) > 0.3:                               # CHIRP (glide) = firma R2-D2
+                f1 = f0 * (1.7 if val > 0.5 else 0.55)
+                ph = 2 * np.pi * (f0 * tt + 0.5 * (f1 - f0) / max(dur, 1e-6) * tt ** 2)
+            elif u > 0.6:                                          # WARBLE (vibrato rápido)
+                ph = 2 * np.pi * f0 * tt * (1.0 + 0.05 * np.sin(2 * np.pi * 32.0 * tt))
+            else:
+                ph = 2 * np.pi * f0 * tt
+            env = np.sin(np.pi * np.clip(tt / max(dur, 1e-6), 0.0, 1.0)) ** 0.5   # blip (ataque/caída rápidos)
+            y[pos:pos + m] += np.sin(ph) * env
+            pos += m + int(gap * sr)
+        mx = float(np.max(np.abs(y))) or 1.0
+        return (y / mx * 0.9).astype(np.float64)
 
     def _audio_full_state_notes(self, n: int, pairs: list[tuple[str, float]], seq: int) -> np.ndarray:
         t = np.arange(n, dtype=np.float64) / float(self.sr)

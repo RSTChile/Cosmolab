@@ -2433,7 +2433,7 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
     if(!playing) return;
     const st=$('vozStat');
     try{
-      const ab0=await fetch('/voz?seg='+SEG+'&modo=FULL_STATE_NOTES').then(r=>r.arrayBuffer());
+      const ab0=await fetch('/voz?seg='+SEG+'&modo=R2D2').then(r=>r.arrayBuffer());
       const ab=await ac.decodeAudioData(ab0.slice(0));
       const s=ac.createBufferSource(); s.buffer=ab; s.connect(monGain);   // → GainNode de monitoreo → bocinas
       const t=Math.max(ac.currentTime+0.02, nextT); s.start(t); nextT=t+ab.duration; nblk++;
@@ -2533,7 +2533,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, json.dumps(ORGANO_COMUNICACION.estado() if ORGANO_COMUNICACION else {"ok": False, "error": COM_ERR}, ensure_ascii=False))
         elif path in ("/comunicacion/bloque.wav", "/voz"):
             seg = float((qs.get("seg") or ["0.5"])[0])
-            modo_voz = (qs.get("modo") or ["FULL_STATE_NOTES"])[0]
+            modo_voz = (qs.get("modo") or ["R2D2"])[0]
             if ORGANO_COMUNICACION is None:
                 self._send(503, json.dumps({"ok": False, "error": COM_ERR}))
             else:
@@ -2670,7 +2670,7 @@ def _fuentes_servidor(host=SERVIDOR_HOST, port=SERVIDOR_PORT):
 def _fuentes_comunicacion():
     if not COM_OK:
         return [], {"ok": False, "mensaje": COM_ERR}
-    modos = ["FULL_STATE_NOTES", "FULL_STATE_OSC", "PHYSIO_VOICE", "NULL_STATE", "SHUFFLED_STATE", "NOISE_MATCHED"]
+    modos = ["R2D2", "FULL_STATE_NOTES", "FULL_STATE_OSC", "PHYSIO_VOICE", "NULL_STATE", "SHUFFLED_STATE", "NOISE_MATCHED"]
     fuentes = []
     sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
     for modo in modos:
@@ -2795,7 +2795,7 @@ ANIMA_FUENTE_DEFECTO = os.environ.get("ANIMA_FUENTE_DEFECTO", "demo:silencio")
 # y el mundo en el otro (R). Así A↔B se oyen entre sí 24/7 → la voz puede subir SOLA con la
 # cooperación (señal costosa), y es el sustrato para que emerja comunicación.
 ANIMA_ESCUCHAR_PAR = os.environ.get("ANIMA_ESCUCHAR_PAR", "0").lower() in ("1", "true", "yes", "on")
-ANIMA_VOZ_PAR_MODO = os.environ.get("ANIMA_VOZ_PAR_MODO", "FULL_STATE_NOTES")
+ANIMA_VOZ_PAR_MODO = os.environ.get("ANIMA_VOZ_PAR_MODO", "R2D2")
 
 
 def _autoarranque_vida():
