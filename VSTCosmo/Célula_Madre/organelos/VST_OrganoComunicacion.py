@@ -186,6 +186,7 @@ class OrganoComunicacion:
         self._phase_osc = 0.0
         self._updated = 0.0
         self._historial: deque[list[tuple[str, float]]] = deque(maxlen=max(8, int(historial_max)))
+        self._voces = self._cargar_voces()   # banco de voces R2-D2 reales (samples), por afecto
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -243,7 +244,10 @@ class OrganoComunicacion:
             return self._audio_full_state_notes(n, pairs, seq=seq)
 
         if modo == "R2D2":
-            return self._audio_r2d2(n, pairs, seq=seq)
+            sample = self._audio_r2d2_samples(fila, seq)        # voz R2-D2 REAL elegida por afecto
+            if sample is not None:
+                return sample
+            return self._audio_r2d2(n, pairs, seq=seq)          # fallback: síntesis blippy si no hay banco
 
         if modo == "FULL_STATE_OSC":
             y, phase = self._audio_full_state_osc(n, pairs, phase_osc, seq=seq)
@@ -300,6 +304,62 @@ class OrganoComunicacion:
             w.setframerate(self.sr)
             w.writeframes(pcm16.tobytes())
         return bio.getvalue()
+
+    # Afecto (arousal, valence) de cada voz R2-D2 según su carácter (la etiqueta del sample).
+    # Guía el mapeo estado→voz: el organismo emite la voz cuyo afecto más se parece al suyo.
+    AFECTO_VOCES = {
+        "screaming": (0.95, -0.9), "shout": (0.85, -0.6), "worried": (0.50, -0.5),
+        "excited": (0.90, 0.7), "excited-2": (0.85, 0.6), "sing": (0.60, 0.9),
+        "acknowledged": (0.40, 0.5), "chat": (0.40, 0.1),
+        "6": (0.50, 0.2), "7": (0.45, -0.1), "13": (0.50, 0.0), "14": (0.60, 0.1),
+        "15": (0.45, 0.2), "18": (0.40, -0.2), "19": (0.40, 0.0), "22": (0.55, 0.3),
+    }
+
+    def _cargar_voces(self) -> list:
+        """Carga el banco de voces R2-D2 (wav) desde voces_r2d2/ (en el árbol Célula_Madre) o
+        ANIMA_VOCES_DIR. Cada voz lleva su afecto (arousal, valence). Sin carpeta → [] (usa síntesis)."""
+        base = os.environ.get("ANIMA_VOCES_DIR") or os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "voces_r2d2")
+        voces = []
+        if not os.path.isdir(base):
+            return voces
+        for nombre in sorted(os.listdir(base)):
+            if not nombre.lower().endswith(".wav"):
+                continue
+            etiqueta = os.path.splitext(nombre)[0]
+            try:
+                w = wave.open(os.path.join(base, nombre), "rb")
+                nch = w.getnchannels()
+                a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
+                if nch == 2:
+                    a = a.reshape(-1, 2).mean(axis=1)
+                aro, val = self.AFECTO_VOCES.get(etiqueta, (0.5, 0.0))
+                voces.append({"label": etiqueta, "audio": a, "aro": float(aro), "val": float(val)})
+            except Exception:
+                continue
+        return voces
+
+    def _afecto(self, fila: dict) -> tuple:
+        """Proyecta la fisiología a (arousal, valence): cuán ACTIVADO y cuán BIEN está el organismo.
+        El estado manda qué SIENTE; la voz sólo lo expresa (no se impone significado simbólico)."""
+        g = lambda k, d=0.0: float(fila.get(k, d) or d)
+        OI = g("OI"); nec = g("necesidad_efectiva", g("necesidad")); H = g("H_homeostasis")
+        RC = g("RC_total"); E = g("energia", g("E")); estr = g("estructura"); lat = abs(g("balance_LR"))
+        arousal = min(1.0, max(0.0, 0.45 * RC + 0.30 * E + 0.25 * lat))
+        valence = max(-1.0, min(1.0, (OI + 0.30 * H + 0.30 * estr) - nec))
+        return arousal, valence
+
+    def _audio_r2d2_samples(self, fila: dict, seq: int):
+        """Elige la voz R2-D2 REAL cuyo afecto está más cerca del estado del organismo (con variedad
+        determinista entre las más cercanas). Devuelve el sample (≤3s) o None si no hay banco cargado."""
+        if not self._voces:
+            return None
+        aro, val = self._afecto(fila)
+        cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
+        k = min(3, len(cand))
+        idx = _stable_seed(f"{self.organismo_id}:r2voz:{seq}") % k
+        a = cand[idx]["audio"]
+        return np.array(a[: int(3.0 * self.sr)], dtype=np.float64)   # cap 3s
 
     def _audio_r2d2(self, n: int, pairs: list, seq: int) -> np.ndarray:
         """Voz tipo R2-D2: secuencia de PITIDOS cortos y CHIRPS (glides) en vez de tonos sostenidos.

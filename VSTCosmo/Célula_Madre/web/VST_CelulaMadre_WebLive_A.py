@@ -2444,7 +2444,8 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
         if(st) st.textContent='⏺ grabando · '+segs.toFixed(1)+'s · señal voz '+rms.toFixed(3);}
       else if(st) st.textContent='🔊 reproduciendo · '+nblk+' bloques · señal voz rms '+rms.toFixed(3)+' · vol '+(monGain?monGain.gain.value:8)+'× · estado AudioContext: '+ac.state;
     }catch(e){ if(st) st.textContent='⚠ error de audio: '+((e&&e.message)||e); }
-    timer=setTimeout(tick, SEG*1000*0.9);
+    let ahead=0.8; try{ ahead=Math.max(0.08, nextT-ac.currentTime-0.12); }catch(_){}  // próx. fetch al terminar el sample (largo variable)
+    timer=setTimeout(tick, ahead*1000);
   }
   window._vozEscuchar=function(){
     if(playing){playing=false; clearTimeout(timer); $('bEscuchar').textContent='🔊 Escuchar voz';
