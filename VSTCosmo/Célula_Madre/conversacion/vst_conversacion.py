@@ -40,6 +40,57 @@ except Exception as _e:
     sys.stderr.write(f"[conversacion] historia díada OFF: {_e}\n")
 _CTX_PREV = {"A": {}, "B": {}}   # estado del receptor en el turno anterior (para delta)
 
+# Carpeta del registro PERMANENTE de la conversación (para el navegador histórico).
+_HIST_DIR = os.environ.get("VST_HISTORY_DIR", "/history")
+_HIST_COMM_DIR = os.path.join(_HIST_DIR, "diada", "comunicacion")
+
+
+def _dias_disponibles():
+    """Fechas con conversación registrada (de los archivos comunicacion_YYYY-MM-DD.jsonl)."""
+    out = []
+    try:
+        for n in sorted(os.listdir(_HIST_COMM_DIR)):
+            if n.startswith("comunicacion_") and n.endswith(".jsonl"):
+                out.append(n[len("comunicacion_"):-len(".jsonl")])
+    except Exception:
+        pass
+    return out
+
+
+def _leer_turnos(dia, voz=None, limite=500):
+    """Lee los turnos registrados de un día (o el más reciente), opcionalmente filtrados por pito."""
+    dias = _dias_disponibles()
+    if not dias:
+        return []
+    if not dia or dia not in dias:
+        dia = dias[-1]
+    path = os.path.join(_HIST_COMM_DIR, f"comunicacion_{dia}.jsonl")
+    turnos = []
+    try:
+        with open(path, encoding="utf-8") as f:
+            for ln in f:
+                try:
+                    t = json.loads(ln)
+                except Exception:
+                    continue
+                if voz and t.get("prototipo_codebook") != voz:
+                    continue
+                turnos.append(t)
+    except Exception:
+        pass
+    return turnos[-int(limite):]
+
+
+def _stats_historial():
+    """Estadística acumulada de TODA la conversación registrada (todos los días)."""
+    hist = {}; total = 0; dias = _dias_disponibles()
+    for dia in dias:
+        for t in _leer_turnos(dia, limite=10 ** 9):
+            em = t.get("emisor", "?"); voz = t.get("prototipo_codebook", "-")
+            hist.setdefault(em, {}); hist[em][voz] = hist[em].get(voz, 0) + 1
+            total += 1
+    return {"dias": dias, "total_turnos": total, "hist": hist}
+
 A_URL = os.environ.get("ANIMA_A_URL", "http://127.0.0.1:7788")
 B_URL = os.environ.get("ANIMA_B_URL", "http://127.0.0.1:7799")
 CONV_DIR = os.environ.get("ANIMA_CONV_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "registro"))
@@ -142,6 +193,25 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(200, json.dumps({"A": _EST["A"], "B": _EST["B"],
                                             "transcript": _TRANSCRIPT[-120:],
                                             "hist": _HIST, "log": LOG_PATH}, ensure_ascii=False))
+        elif self.path.startswith("/voz/"):
+            # PROXY de voz (mismo origen → sin CORS): el navegador pide /voz/A o /voz/B y suena.
+            lado = self.path.split("/voz/", 1)[1][:1].upper()
+            url = A_URL if lado == "A" else B_URL
+            try:
+                with urllib.request.urlopen(url + "/voz?seg=1.0&modo=R2D2", timeout=5) as r:
+                    self._send(200, r.read(), "audio/wav")
+            except Exception:
+                self._send(503, b"", "audio/wav")
+        elif self.path.startswith("/dias"):
+            self._send(200, json.dumps(_dias_disponibles(), ensure_ascii=False))
+        elif self.path.startswith("/turnos"):
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query)
+            dia = (q.get("dia") or [None])[0]; voz = (q.get("voz") or [None])[0]
+            lim = int((q.get("limite") or ["500"])[0])
+            self._send(200, json.dumps(_leer_turnos(dia, voz, lim), ensure_ascii=False))
+        elif self.path.startswith("/stats"):
+            self._send(200, json.dumps(_stats_historial(), ensure_ascii=False))
         elif self.path.startswith("/historial"):
             try:
                 with open(LOG_PATH, encoding="utf-8") as f:
@@ -178,8 +248,22 @@ h1{font-size:16px;margin:10px 14px}.mut{color:var(--mut)}
 .barra{display:flex;align-items:center;gap:6px;margin:2px 0;font-size:11px}
 .barra .b{flex:1;height:10px;background:#0c121b;border:1px solid var(--bord);border-radius:3px;overflow:hidden}
 .barra .b>div{height:100%}
+.tab{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer}
+.tab.on{background:var(--gold);color:#10171f;font-weight:bold}
+select{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radius:5px;padding:3px 6px;font-size:12px}
 </style></head><body>
 <h1>🛰️ Observatorio de la conversación · <span class=mut>díada ANIMA — captura permanente</span></h1>
+<div style="display:flex;align-items:center;gap:10px;padding:6px 14px;background:var(--panel);border-bottom:1px solid var(--bord);flex-wrap:wrap">
+  <button class=tab id=tabVivo onclick="vista('vivo')">🟢 En vivo</button>
+  <button class=tab id=tabHist onclick="vista('hist')">🕮 Historia</button>
+  <span style="flex:1"></span>
+  <button class=tab id=bAudio onclick="audioToggle()">🔊 Escuchar conversación</button>
+  <span class=mut style=font-size:11px>vol</span>
+  <input type=range id=vol min=0 max=8 step=0.5 value=4 style=width:90px oninput="setVol(this.value)">
+  <span id=volV class=mut style=font-size:11px>4×</span>
+  <span class=mut style="font-size:10.5px">A↗izquierda · B↗derecha</span>
+</div>
+<div id=vivo>
 <div class=escena>
   <div class=org>
     <div class=mut id=nomA>Organismo A</div>
@@ -203,6 +287,18 @@ h1{font-size:16px;margin:10px 14px}.mut{color:var(--mut)}
     <div class=mut style=margin-bottom:6px>Pitos usados (histograma)</div>
     <div id=histA></div><div style=height:8px></div><div id=histB></div>
     <div class=mut style="font-size:10px;margin-top:10px">Registro permanente: <span id=logp></span><br><a href=/historial style=color:var(--gold)>descargar historial completo</a></div>
+  </div>
+</div>
+</div><!-- /vivo -->
+<div id=historia style=display:none>
+  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;flex-wrap:wrap;border-bottom:1px solid var(--bord)">
+    <span class=mut>Día</span><select id=selDia onchange=cargarHist()></select>
+    <span class=mut>Pito</span><select id=selVoz onchange=cargarHist()><option value="">todos</option></select>
+    <span id=histInfo class=mut style=font-size:11px></span>
+  </div>
+  <div class=cols>
+    <div class=trans id=transH style=height:54vh></div>
+    <div class=hist><div class=mut style=margin-bottom:6px>Acumulado de TODA la biografía</div><div id=statH></div></div>
   </div>
 </div>
 <script>
@@ -243,6 +339,83 @@ async function tick(){
     }).join('');
     $('trans').scrollTop=$('trans').scrollHeight;
   }
+}
+// ---- pestañas En vivo / Historia ----
+function vista(v){
+  $('vivo').style.display=v==='vivo'?'':'none'; $('historia').style.display=v==='hist'?'':'none';
+  $('tabVivo').classList.toggle('on', v==='vivo'); $('tabHist').classList.toggle('on', v==='hist');
+  if(v==='hist') initHist();
+}
+vista('vivo');
+
+// ---- REPRODUCTOR EN VIVO: A por la IZQUIERDA, B por la DERECHA (como se ven) ----
+let ac=null, audioOn=false, gMaster=null, lados={};
+function audioToggle(){
+  if(audioOn){ audioOn=false; $('bAudio').textContent='🔊 Escuchar conversación'; $('bAudio').classList.remove('on'); return; }
+  ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
+  if(!gMaster){
+    gMaster=ac.createGain(); gMaster.gain.value=+($('vol').value||4); gMaster.connect(ac.destination);
+    for(const [lado,panv] of [['A',-0.85],['B',0.85]]){
+      const g=ac.createGain();
+      if(ac.createStereoPanner){ const p=ac.createStereoPanner(); p.pan.value=panv; g.connect(p); p.connect(gMaster); }
+      else g.connect(gMaster);
+      lados[lado]={g:g, next:0};
+    }
+  }
+  audioOn=true; $('bAudio').textContent='⏸ Detener audio'; $('bAudio').classList.add('on');
+  for(const l of ['A','B']){ lados[l].next=ac.currentTime; reproducir(l); }
+}
+function setVol(v){ $('volV').textContent=(+v).toFixed(1)+'×'; if(gMaster) gMaster.gain.value=+v; }
+async function reproducir(lado){
+  if(!audioOn) return;
+  let ahead=0.9;
+  try{
+    const ab=await ac.decodeAudioData((await fetch('/voz/'+lado).then(r=>r.arrayBuffer())).slice(0));
+    const s=ac.createBufferSource(); s.buffer=ab; s.connect(lados[lado].g);
+    const t=Math.max(ac.currentTime+0.02, lados[lado].next); s.start(t); lados[lado].next=t+ab.duration;
+    ahead=Math.max(0.1, lados[lado].next-ac.currentTime-0.12);
+  }catch(e){}
+  setTimeout(()=>reproducir(lado), ahead*1000);
+}
+
+// ---- NAVEGADOR HISTÓRICO (lee el registro permanente del Docker) ----
+let histInit=false;
+async function initHist(){
+  if(!histInit){ histInit=true;
+    try{
+      const dias=await fetch('/dias').then(r=>r.json());
+      $('selDia').innerHTML=(dias.length?dias:['(sin registro)']).map(d=>'<option>'+d+'</option>').join('');
+      if(dias.length) $('selDia').value=dias[dias.length-1];
+      const st=await fetch('/stats').then(r=>r.json());
+      const voces=new Set(); Object.values(st.hist||{}).forEach(h=>Object.keys(h).forEach(v=>voces.add(v)));
+      $('selVoz').innerHTML='<option value="">todos</option>'+[...voces].sort().map(v=>'<option>'+v+'</option>').join('');
+      renderStat(st);
+    }catch(e){}
+  }
+  cargarHist();
+}
+function renderStat(st){
+  const C={screaming:'#ff5b5b',shout:'#ff8c6b',worried:'#e8b86d',excited:'#5fd38a','excited-2':'#5fd38a',sing:'#8ef0c0',acknowledged:'#6db6ff',chat:'#9fb1c6'};
+  let h='<div class=mut style=font-size:10px>'+(st.total_turnos||0)+' turnos · '+((st.dias||[]).length)+' día(s)</div>';
+  for(const [org,hh] of Object.entries(st.hist||{})){
+    const tot=Object.values(hh).reduce((a,b)=>a+b,0)||1;
+    h+='<div class=mut style=margin-top:6px>'+org+'</div>'+Object.entries(hh).sort((a,b)=>b[1]-a[1]).map(([v,n])=>
+      '<div class=barra><span style=width:92px>'+emo(v)+' '+v+'</span><div class=b><div style="width:'+(100*n/tot)+'%;background:'+(C[v]||'#5fd38a')+'"></div></div><span style="width:34px;text-align:right" class=mut>'+n+'</span></div>').join('');
+  }
+  $('statH').innerHTML=h;
+}
+async function cargarHist(){
+  const dia=$('selDia').value, voz=$('selVoz').value;
+  try{
+    const ts=await fetch('/turnos?dia='+encodeURIComponent(dia)+'&voz='+encodeURIComponent(voz)+'&limite=600').then(r=>r.json());
+    $('histInfo').textContent=ts.length+' turnos'+(voz?(' de "'+voz+'"'):'');
+    $('transH').innerHTML=ts.map(t=>{
+      const hh=new Date((t.ts||0)*1000).toLocaleTimeString(), lado=(''+(t.emisor||'')).indexOf('B')>=0?'B':'A';
+      const dOI=((t.delta_receptor||{}).delta_OI);
+      return '<div class=linea><span class=mut>'+hh+'</span> <span class='+lado+'>'+(t.emisor||'?')+'→'+(t.receptor||'?')+'</span> '+emo(t.prototipo_codebook)+' <b>'+t.prototipo_codebook+'</b> <span class=mut>ΔOI_rec '+(dOI==null?'·':dOI)+'</span></div>';
+    }).join('');
+    $('transH').scrollTop=$('transH').scrollHeight;
+  }catch(e){}
 }
 setInterval(tick, 500); tick();
 </script></body></html>"""
