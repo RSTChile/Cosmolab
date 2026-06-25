@@ -21,7 +21,7 @@ services:
       VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
-      # - ../../audio_binaural:/app/audio_binaural:ro   # (opcional) para oír .wav dentro del contenedor
+      - ../../audio_binaural:/app/audio_binaural:ro   # los .wav (Big Bang/Blue Monday) dentro del contenedor
     ports: ["7788:7788"]                   # interfaz web del organismo A
     extra_hosts: ["host.docker.internal:host-gateway"]   # alcanzar el AudioServer nativo del Mac
     restart: unless-stopped
@@ -39,6 +39,7 @@ services:
       VST_SERVIDOR_PORT: "8766"
     volumes:
       - anima_b_data:/data
+      - ../../audio_binaural:/app/audio_binaural:ro
     ports: ["7799:7799"]                   # interfaz web del organismo B
     extra_hosts: ["host.docker.internal:host-gateway"]
     restart: unless-stopped

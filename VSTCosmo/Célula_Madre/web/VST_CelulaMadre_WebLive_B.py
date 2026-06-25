@@ -1919,6 +1919,16 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
     </div>
 
     <div class="panel">
+      <h2>🔊 Voz del organismo · escuchar / grabar</h2>
+      <div class="mut" style="font-size:10px;margin-bottom:6px">Reproduce la voz por las <b>bocinas del Mac</b> (vía navegador → funciona igual en nativo y en Docker). Grabar descarga un .wav de lo que dijo.</div>
+      <div class="row">
+        <button class="sm" id="bEscuchar" style="flex:1" onclick="_vozEscuchar()">🔊 Escuchar voz</button>
+        <button class="sm" id="bGrabar" onclick="_vozGrabar()">⏺ Grabar</button>
+      </div>
+      <div id="vozStat" class="mut" style="font-size:9.5px;margin-top:4px">en silencio</div>
+    </div>
+
+    <div class="panel">
       <h2>🤝 Altruismo / Cooperación (díada) · en vivo</h2>
       <div class="mut" style="font-size:10px;margin-bottom:4px">Gobernanza del locus O-N22 entre A↔B: atractor, β_crit, disposición, Ψ_alma, costo de desacople.</div>
       <div id="altru" class="mut">esperando datos…</div>
@@ -2405,6 +2415,56 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
   v.addEventListener('input',()=>{$('vozVolVal').textContent=(+v.value).toFixed(2);});
   v.addEventListener('change',()=>{fetch('/voz_config',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({target_rms:+v.value})}).then(r=>r.json()).then(()=>ev('🗣 volumen de voz → '+(+v.value).toFixed(2),'ok')).catch(()=>{});});
+})();
+
+// ---- ESCUCHAR / GRABAR la voz del organismo (Web Audio → bocinas del Mac; graba a .wav) ----
+(function(){
+  let ac=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000;
+  const SEG=1.0;
+  async function tick(){
+    if(!playing) return;
+    try{
+      const ab0=await fetch('/voz?seg='+SEG+'&modo=FULL_STATE_NOTES').then(r=>r.arrayBuffer());
+      const ab=await ac.decodeAudioData(ab0.slice(0));
+      const s=ac.createBufferSource(); s.buffer=ab; s.connect(ac.destination);
+      const t=Math.max(ac.currentTime+0.02, nextT); s.start(t); nextT=t+ab.duration;
+      if(rec){recSR=ab.sampleRate; recBufs.push(ab.getChannelData(0).slice());
+        const segs=recBufs.reduce((a,b)=>a+b.length,0)/recSR;
+        const st=$('vozStat'); if(st) st.textContent='⏺ grabando · '+segs.toFixed(1)+'s';}
+    }catch(e){}
+    timer=setTimeout(tick, SEG*1000*0.9);
+  }
+  window._vozEscuchar=function(){
+    if(playing){playing=false; clearTimeout(timer); $('bEscuchar').textContent='🔊 Escuchar voz';
+      if(!rec){const st=$('vozStat'); if(st) st.textContent='en silencio';} return;}
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
+    playing=true; nextT=ac.currentTime; $('bEscuchar').textContent='⏸ Detener';
+    const st=$('vozStat'); if(st&&!rec) st.textContent='🔊 sonando por las bocinas'; tick();
+  };
+  window._vozGrabar=function(){
+    if(rec){ rec=false; $('bGrabar').textContent='⏺ Grabar';
+      if(recBufs.length) descargarWav(recBufs, recSR);
+      recBufs=[]; const st=$('vozStat'); if(st) st.textContent=playing?'🔊 sonando por las bocinas':'en silencio';
+    }else{ if(!playing) window._vozEscuchar();
+      rec=true; recBufs=[]; $('bGrabar').textContent='⏹ Detener y descargar'; }
+  };
+  function descargarWav(bufs, sr){
+    let n=bufs.reduce((a,b)=>a+b.length,0); const pcm=new Float32Array(n); let o=0;
+    bufs.forEach(b=>{pcm.set(b,o); o+=b.length;});
+    const org=(document.title.indexOf('Organismo B')>=0)?'B':'A';
+    const blob=encodeWav(pcm,sr), url=URL.createObjectURL(blob), a=document.createElement('a');
+    a.href=url; a.download='voz_Organismo'+org+'_'+new Date().toISOString().slice(0,19).replace(/[:.]/g,'-')+'.wav';
+    a.click(); setTimeout(()=>URL.revokeObjectURL(url),2000); ev('🔊 voz grabada ('+(n/sr).toFixed(1)+'s) descargada','ok');
+  }
+  function encodeWav(s,sr){
+    const buf=new ArrayBuffer(44+s.length*2), v=new DataView(buf);
+    const w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i));};
+    w(0,'RIFF'); v.setUint32(4,36+s.length*2,true); w(8,'WAVE'); w(12,'fmt '); v.setUint32(16,16,true);
+    v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,sr,true); v.setUint32(28,sr*2,true);
+    v.setUint16(32,2,true); v.setUint16(34,16,true); w(36,'data'); v.setUint32(40,s.length*2,true);
+    let o=44; for(let i=0;i<s.length;i++){let x=Math.max(-1,Math.min(1,s[i])); v.setInt16(o,x<0?x*0x8000:x*0x7FFF,true); o+=2;}
+    return new Blob([buf],{type:'audio/wav'});
+  }
 })();
 ev('Laboratorio listo. Elige entrada y pulsa Iniciar.');
 </script></body></html>"""
