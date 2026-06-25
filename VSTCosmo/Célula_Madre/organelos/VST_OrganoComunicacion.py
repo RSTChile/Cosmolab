@@ -356,6 +356,16 @@ class OrganoComunicacion:
                 continue
         return voces
 
+    def voz_actual(self, fila: dict) -> dict:
+        """Qué voz R2-D2 emite el organismo para ESTE estado (la más cercana a su afecto) + el afecto.
+        Determinista → sirve para REGISTRAR en el CSV la 'conversación': qué sonido usa en cada contexto."""
+        aro, val = self._afecto(fila)
+        label = "-"
+        if self._voces:
+            v = min(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
+            label = v["label"]
+        return {"voz_emitida": label, "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
+
     def _afecto(self, fila: dict) -> tuple:
         """Proyecta la fisiología a (arousal, valence): cuán ACTIVADO y cuán BIEN está el organismo.
         El estado manda qué SIENTE; la voz sólo lo expresa (no se impone significado simbólico)."""

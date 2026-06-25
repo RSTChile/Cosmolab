@@ -209,7 +209,9 @@ COLS_OBS = ["LF_struct", "self_coherencia", "x_interna", "en_rango", "mutacion",
 COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_confianza", "act_fatiga", "act_zona_muerta", "act_temblor_rms", "act_lateralidad_dw", "act_atencion_L", "act_atencion_R", "act_comprension_L", "act_comprension_R", "act_riesgo_L", "act_riesgo_R", "act_consenso_RC", "act_conflicto_RC", "act_freno_RC", "act_rc_mix", "act_presencia_L", "act_presencia_R", "act_propuesta_atencional", "act_decision_RC", "act_bloqueo_IRDE", "act_permiso_decisional", "act_evidencia_L", "act_evidencia_R", "act_razon_L", "act_razon_R", "act_necesidad_cierre", "act_decision_organismica", "act_soporte_sentido", "act_vulnerabilidad_riesgo", "act_base_sentido", "act_base_riesgo", "act_peso_sentido", "act_peso_riesgo",
     "act_comp_gain_eff", "act_k_motor_eff", "act_persistencia_decision", "act_claridad_estimulo",
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
-COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM
+# VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
+COLS_VOZ = ["voz_emitida", "voz_arousal", "voz_valence"]
+COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ
 
 
 
@@ -2751,6 +2753,19 @@ def _com_observar(fila, meta=None):
             fila.setdefault("disposicion_cooperar", 0.0)
     if ORGANO_COMUNICACION is not None:
         ORGANO_COMUNICACION.observar(fila, meta)
+        try:
+            v = ORGANO_COMUNICACION.voz_actual(fila)          # qué voz R2-D2 emite ahora (afecto→sample)
+            fila.update(v)
+            global _ULTIMA_VOZ
+            if v.get("voz_emitida") != _ULTIMA_VOZ and RUN is not None:
+                _ULTIMA_VOZ = v.get("voz_emitida")
+                RUN._log_evento("voz", f"🔊 {_ULTIMA_VOZ}  (aro={v.get('voz_arousal')}, val={v.get('voz_valence')})")
+        except Exception:
+            pass
+    fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
+
+
+_ULTIMA_VOZ = None
 
 
 def _fuentes():
