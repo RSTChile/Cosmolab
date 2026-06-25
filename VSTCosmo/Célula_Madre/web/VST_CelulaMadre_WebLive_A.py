@@ -839,6 +839,22 @@ def _master_input_level() -> dict:
         return {"rms": 0.0, "pico": 0.0, "ok": False}
 
 
+_VOZ_PROPIA_CACHE = {"t": 0.0, "rms": 0.0}
+def _nivel_voz_propia() -> float:
+    """Nivel (RMS) de la voz que ESTE organismo EMITE ahora — para el medidor 'voz propia'. Refleja
+    el voice_volumen del slider (sube al subir el volumen). Throttled (no se recalcula en cada poll)."""
+    if ORGANO_COMUNICACION is None:
+        return 0.0
+    now = time.time()
+    if now - _VOZ_PROPIA_CACHE["t"] > 0.5:
+        try:
+            _VOZ_PROPIA_CACHE["rms"] = round(float(ORGANO_COMUNICACION.nivel_voz_propia(0.3)), 5)
+        except Exception:
+            _VOZ_PROPIA_CACHE["rms"] = 0.0
+        _VOZ_PROPIA_CACHE["t"] = now
+    return _VOZ_PROPIA_CACHE["rms"]
+
+
 def _snapshot_comunicacion_entrante() -> dict:
     updated = float(_COM_AUDIO_METER.get("updated") or 0.0)
     age = None if updated <= 0 else max(0.0, time.time() - updated)
@@ -1911,10 +1927,10 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
       <div style="margin-top:8px;border-top:1px solid #243246;padding-top:7px">
         <div style="display:flex;align-items:center;gap:8px;font-size:10.5px">
           <span style="width:104px;color:#9fb1c6">🗣 Volumen de voz</span>
-          <input type="range" id="vozVol" min="0.10" max="0.95" step="0.01" value="0.40" style="flex:1">
-          <span id="vozVolVal" style="width:40px;text-align:right;color:#8aa0b8">0.40</span>
+          <input type="range" id="vozVol" min="0" max="10" step="0.5" value="4" style="flex:1">
+          <span id="vozVolVal" style="width:40px;text-align:right;color:#8aa0b8">4×</span>
         </div>
-        <div class="mut" style="font-size:9px;margin-top:2px">RMS objetivo de la voz (equipara con Rode/wav, que suenan ~1.0). Aplica en vivo y afecta lo que el par oye.</div>
+        <div class="mut" style="font-size:9px;margin-top:2px">Ganancia de salida de la voz (sube el nivel REAL — mira subir el medidor 📢 voz propia). Afecta lo que el par oye.</div>
       </div>
     </div>
 
@@ -2398,12 +2414,18 @@ function renderMaster(d){
     +'<div style="position:absolute;top:0;bottom:0;left:'+wp+'%;width:2px;background:#ff6b6b"></div></div>'
     +'<span style="width:60px;text-align:right;color:#8aa0b8">'+r.toFixed(4)+'</span></div>';
 }
+function vozPropiaRow(d){
+  const r=(d&&+d.voz_propia)||0, on=r>0.002;   // voz que ESTE organismo emite (responde al slider)
+  return '<div style="display:flex;align-items:center;gap:6px;margin:1px 0 4px 0;border-bottom:1px solid #243246;padding-bottom:4px">'
+    +'<span style="width:86px;font-size:9.5px;color:'+(on?'#ffd479':'#6b7d92')+';font-weight:bold">'+(on?'📢':'○')+' voz propia</span>'
+    +ledStrip(r,r)+'</div>';
+}
 function renderLeds(d){
   const box=$('leds'); if(!box) return;
-  if(!d.ok){box.innerHTML='<span class=warn>📡 sin servidor</span> <span class=mut style=font-size:9.5px>— corre VST_AudioServer.py</span>'+organismoRows(d);return;}
+  if(!d.ok){box.innerHTML=vozPropiaRow(d)+'<span class=warn>📡 sin servidor</span> <span class=mut style=font-size:9.5px>— corre VST_AudioServer.py</span>'+organismoRows(d);return;}
   const cs=(d.canales||[]).filter(c=>!/^canal \d+$/.test((c.nombre||'').trim()));  // oculta canales SIN nombre (#19/#20 vacíos)
   const con=cs.filter(c=>c.rms>0.002).length;
-  let h='<div class=mut style="font-size:9.5px;margin-bottom:4px"><span class=ok>'+con+'</span>/'+cs.length+' con señal</div>';
+  let h=vozPropiaRow(d)+'<div class=mut style="font-size:9.5px;margin-bottom:4px"><span class=ok>'+con+'</span>/'+cs.length+' con señal</div>';
   cs.forEach(c=>{const on=c.rms>0.002;
     h+='<div style="display:flex;align-items:center;gap:6px;margin:1px 0">'
       +'<span style="width:86px;font-size:9.5px;color:'+(on?'#dfe7f0':'#6b7d92')+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'
@@ -2414,15 +2436,15 @@ function renderLeds(d){
 // Un solo sondeo alimenta el MASTER, el LED lateral (siempre) y la ventana VU detallada (si visible)
 setInterval(()=>{fetch('/niveles').then(r=>r.json()).then(d=>{renderMaster(d);renderLeds(d);if(tabActual==='niveles')renderNiveles(d);}).catch(()=>{});},350);
 
-// ---- Volumen de voz (voice_target_rms): lee el actual y lo aplica EN VIVO ----
+// ---- Volumen de voz (voice_volumen = ganancia de salida): lee el actual y lo aplica EN VIVO ----
 fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
-  const tr=(s&&(s.voice_target_rms))||null, v=$('vozVol');
-  if(tr!=null&&v){v.value=tr;$('vozVolVal').textContent=(+tr).toFixed(2);}
+  const vv=(s&&(s.voice_volumen)), v=$('vozVol');
+  if(vv!=null&&v){v.value=vv;$('vozVolVal').textContent=(+vv).toFixed(1)+'×';}
 }).catch(()=>{});
 (function(){const v=$('vozVol'); if(!v) return;
-  v.addEventListener('input',()=>{$('vozVolVal').textContent=(+v.value).toFixed(2);});
+  v.addEventListener('input',()=>{$('vozVolVal').textContent=(+v.value).toFixed(1)+'×';});
   v.addEventListener('change',()=>{fetch('/voz_config',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({target_rms:+v.value})}).then(r=>r.json()).then(()=>ev('🗣 volumen de voz → '+(+v.value).toFixed(2),'ok')).catch(()=>{});});
+    body:JSON.stringify({volumen:+v.value})}).then(r=>r.json()).then(()=>ev('🗣 volumen de voz → '+(+v.value).toFixed(1)+'×','ok')).catch(()=>{});});
 })();
 
 // ---- ESCUCHAR / GRABAR la voz del organismo (Web Audio → bocinas del Mac; graba a .wav) ----
@@ -2525,6 +2547,7 @@ class Handler(BaseHTTPRequestHandler):
             snap = _monitor().snapshot()
             snap["organismo"] = _snapshot_comunicacion_entrante()
             snap["master"] = _master_input_level()      # lo que el organismo OYE (cualquier fuente)
+            snap["voz_propia"] = _nivel_voz_propia()     # lo que el organismo EMITE (responde al slider)
             self._send(200, json.dumps(snap, ensure_ascii=False))
         elif path == "/csv":
             self._send(200, RUN.csv() if RUN else "", "text/csv")
@@ -2593,19 +2616,25 @@ class Handler(BaseHTTPRequestHandler):
     # ---- VOLUMEN DE LA VOZ en vivo (voice_target_rms): las voces suenan tan bajo porque se normalizan
     #      a un RMS objetivo pequeño; subirlo las equipara con el R#de/wav. Afecta lo que el par oye. ----
     def _voz_config(self, req):
-        tr = req.get("target_rms")
-        v = None
-        if tr is not None and ORGANO_COMUNICACION is not None:
-            v = max(0.05, min(0.98, float(tr)))
-            ORGANO_COMUNICACION.voice_target_rms = v          # cuando NO hay gobernanza (solo)
-            try:
-                if GOB_ALTRUISMO is not None:
-                    GOB_ALTRUISMO.base_voice_rms = v          # en díada: escala la voz costosa modulada
-            except Exception:
-                pass
-            if RUN is not None:
-                RUN._log_evento("voz_volumen", f"voice_target_rms → {v:.2f}")
-        self._send(200, json.dumps({"ok": True, "voice_target_rms": v}))
+        # "Volumen de voz" = GANANCIA DE SALIDA (voice_volumen): se aplica DESPUÉS de la normalización,
+        # así sube la voz de verdad (la gobernanza capa el target_rms, no este). Sube el nivel → LEDs.
+        vol = None
+        if ORGANO_COMUNICACION is not None:
+            if req.get("volumen") is not None:
+                vol = max(0.0, min(12.0, float(req.get("volumen"))))
+                ORGANO_COMUNICACION.voice_volumen = vol
+                if RUN is not None:
+                    RUN._log_evento("voz_volumen", f"voice_volumen → {vol:.1f}×")
+            if req.get("target_rms") is not None:    # compat: ajustar el nivel base normalizado
+                tr = max(0.05, min(0.98, float(req.get("target_rms"))))
+                ORGANO_COMUNICACION.voice_target_rms = tr
+                try:
+                    if GOB_ALTRUISMO is not None:
+                        GOB_ALTRUISMO.base_voice_rms = tr
+                except Exception:
+                    pass
+        self._send(200, json.dumps({"ok": True,
+            "voice_volumen": getattr(ORGANO_COMUNICACION, "voice_volumen", None) if ORGANO_COMUNICACION else None}))
 
     # ---- cambiar entradas L/R EN VIVO (solo fuente servidor; queda en la bitácora) ----
     def _entradas(self, req):

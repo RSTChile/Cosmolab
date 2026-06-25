@@ -178,6 +178,9 @@ class OrganoComunicacion:
         self.nota_base_hz = float(nota_base_hz)
         self.voice_gain = float(os.environ.get("VST_VOICE_GAIN", "20.0"))  # C3
         self.voice_target_rms = float(os.environ.get("VST_VOICE_TARGET_RMS", "0.15"))
+        # Ganancia de SALIDA del usuario (slider "Volumen de voz"): se aplica DESPUÉS de la
+        # normalización/gobernanza, así sube la voz de verdad (la gobernanza capa el target_rms).
+        self.voice_volumen = float(os.environ.get("VST_VOICE_VOLUMEN", "4.0"))
         self._lock = threading.Lock()
         self._fila: dict[str, Any] = {}
         self._meta: dict[str, Any] = {}
@@ -205,9 +208,10 @@ class OrganoComunicacion:
                 "organismo_id": self.organismo_id,
                 "seq": self._seq,
                 "age_s": edad,
-                "modo_principal": "FULL_STATE_NOTES",
+                "modo_principal": "R2D2",
                 "voice_gain": self.voice_gain,
                 "voice_target_rms": self.voice_target_rms,
+                "voice_volumen": self.voice_volumen,
                 "alias": {"FULL_STATE": "FULL_STATE_NOTES"},
                 "modos": list(self.MODOS),
                 "fila": dict(self._fila),
@@ -284,16 +288,18 @@ class OrganoComunicacion:
     def wav_bytes(self, seg: float = 0.5, modo: str = "FULL_STATE", gain: float | None = None) -> bytes:
         audio = self.audio(seg=seg, modo=modo)
         audio = _aplicar_ganancia_salida(audio, self.voice_gain if gain is None else gain, self.voice_target_rms)
-        mono = np.clip(audio, -1.0, 1.0)
-        # ESTÉREO: la voz lleva la LATERALIDAD del organismo (paneo por balance L/R de su estado).
-        # Nunca silencia un lado (pan suave): centro = ambos canales llenos, no "sólo L".
+        # GANANCIA DE SALIDA del usuario (slider): sube la voz DE VERDAD, por encima del tope que la
+        # gobernanza pone al target_rms. tanh = limitador suave (sin clip duro) para que llegue al rojo.
+        mono = np.tanh(np.asarray(audio, dtype=np.float64) * max(0.0, float(self.voice_volumen))) * 0.97
+        # ESTÉREO: la voz lleva la LATERALIDAD del organismo (paneo SUAVE por balance L/R de su estado).
+        # Siempre claramente en AMBOS canales (atenuación máx 25%): centro = ambos llenos, no "sólo L".
         try:
             pan = float(self._fila.get("balance_LR", self._fila.get("lateralidad", 0.0)) or 0.0)
         except Exception:
             pan = 0.0
         pan = max(-1.0, min(1.0, pan))
-        L = mono * (1.0 - 0.5 * max(0.0, pan))      # pan>0 (derecha) baja L; pan<0 (izquierda) baja R
-        R = mono * (1.0 - 0.5 * max(0.0, -pan))
+        L = mono * (1.0 - 0.25 * max(0.0, pan))     # pan>0 (derecha) baja L un poco; pan<0 baja R un poco
+        R = mono * (1.0 - 0.25 * max(0.0, -pan))
         inter = np.empty(mono.size * 2, dtype=np.float64)
         inter[0::2] = L; inter[1::2] = R
         pcm16 = (np.clip(inter, -1.0, 1.0) * 32767.0).astype("<i2")
@@ -304,6 +310,17 @@ class OrganoComunicacion:
             w.setframerate(self.sr)
             w.writeframes(pcm16.tobytes())
         return bio.getvalue()
+
+    def nivel_voz_propia(self, seg: float = 0.3) -> float:
+        """RMS de la voz que el organismo emite AHORA (para el medidor de 'voz propia'). Aplica el
+        mismo voice_volumen del slider → al subir el volumen, el usuario VE subir este nivel."""
+        try:
+            a = self.audio(seg=seg, modo="R2D2")
+            a = _aplicar_ganancia_salida(a, self.voice_gain, self.voice_target_rms)
+            a = np.tanh(np.asarray(a, dtype=np.float64) * max(0.0, float(self.voice_volumen))) * 0.97
+            return float(_rms(a))
+        except Exception:
+            return 0.0
 
     # Afecto (arousal, valence) de cada voz R2-D2 según su carácter (la etiqueta del sample).
     # Guía el mapeo estado→voz: el organismo emite la voz cuyo afecto más se parece al suyo.
