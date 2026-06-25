@@ -30,6 +30,16 @@ from __future__ import annotations
 import os, sys, json, time, threading, urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+# Historiador de la DÍADA (biografía de la conversación A↔B en disco externo). Infra, no cerebro.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "organelos"))
+try:
+    from vst_historia import Historiador
+    _HIST_DIADA = Historiador("diada")
+except Exception as _e:
+    _HIST_DIADA = None
+    sys.stderr.write(f"[conversacion] historia díada OFF: {_e}\n")
+_CTX_PREV = {"A": {}, "B": {}}   # estado del receptor en el turno anterior (para delta)
+
 A_URL = os.environ.get("ANIMA_A_URL", "http://127.0.0.1:7788")
 B_URL = os.environ.get("ANIMA_B_URL", "http://127.0.0.1:7799")
 CONV_DIR = os.environ.get("ANIMA_CONV_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "registro"))
@@ -68,6 +78,28 @@ def _registrar_turno(lado, est):
         if len(_TRANSCRIPT) > MAX_TRANSCRIPT:
             _TRANSCRIPT.pop(0)
         _HIST[lado][voz] = _HIST[lado].get(voz, 0) + 1
+    # BIOGRAFÍA de la díada: cada emisión como evento A↔B con contexto + delta del receptor.
+    if _HIST_DIADA is not None:
+        otro = "B" if lado == "A" else "A"
+        rec = _EST.get(otro, {}); rec_prev = _CTX_PREV.get(otro, {})
+        def _d(k):
+            try:
+                return round(float(rec.get(k, 0) or 0) - float(rec_prev.get(k, 0) or 0), 4)
+            except Exception:
+                return None
+        _HIST_DIADA.comunicacion({
+            "ts": turno["ts"], "emisor": est.get("organismo", lado), "receptor": rec.get("organismo", otro),
+            "prototipo_codebook": voz, "duracion": None, "energia": est.get("energia"),
+            "t_vida_emisor": est.get("t"), "t_vida_receptor": rec.get("t"),
+            "contexto_emisor": {"necesidad": est.get("necesidad"), "OI": est.get("OI"),
+                                "ICES": est.get("RC_total"), "arousal": est.get("voz_arousal"),
+                                "valence": est.get("voz_valence"), "orientacion": est.get("orientacion_deg")},
+            "contexto_receptor": {"necesidad": rec.get("necesidad"), "OI": rec.get("OI"),
+                                  "orientacion": rec.get("orientacion_deg"), "voz": rec.get("voz_emitida")},
+            "delta_receptor": {"delta_OI": _d("OI"), "delta_necesidad": _d("necesidad"),
+                               "delta_orientacion": _d("orientacion_deg")},
+        })
+        _CTX_PREV[otro] = dict(rec)
 
 
 def _poller():

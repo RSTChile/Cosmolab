@@ -160,6 +160,52 @@ def _autosave_daemon():
         if r is not None and getattr(r, "soma", None) is not None:
             _guardar_estado(r.soma)
 
+# --- HISTORIA longitudinal (infraestructura, NO cerebro): biografía permanente en disco externo.
+# Escritura no bloqueante (cola+hilo); si falla, no mata al organismo. ---
+try:
+    from vst_historia import Historiador
+    _HIST = Historiador(ORGANISMO_ID)
+    HIST_OK = True; HIST_ERR = ""
+except Exception as _e:
+    _HIST = None; HIST_OK = False; HIST_ERR = f"{type(_e).__name__}: {_e}"
+MODO_VIDA = os.environ.get("VST_LIFE_MODE", "continuous")   # basal | experimento | intervención | reposo | comunicación
+SNAPSHOT_S = float(os.environ.get("VST_SNAPSHOT_SECONDS", "600"))
+
+def _historia_daemon():
+    """Snapshot histórico completo cada SNAPSHOT_S + una muestra de VOZ cada VST_VOICE_SECONDS.
+    No bloqueante; primer registro a los ~15s para verificar pronto."""
+    if not HIST_OK:
+        return
+    voz_s = float(os.environ.get("VST_VOICE_SECONDS", "60"))
+    ult_snap = 0.0; ult_voz = 0.0
+    while True:
+        time.sleep(15.0)
+        r = RUN
+        soma = getattr(r, "soma", None) if r is not None else None
+        if time.time() - ult_snap >= SNAPSHOT_S:
+            ult_snap = time.time()
+            try:
+                est = {"ts": time.time(), "organismo_id": ORGANISMO_ID, "modo_vida": MODO_VIDA,
+                       "t_vida": (r.rows[-1].get("t") if (r and r.rows) else None),
+                       "edad_pasos": (len(r.rows) if r else 0)}
+                if PERSIST_OK and soma is not None:
+                    est["organelos"] = {n: o.snapshot() for n, o in _organelos_persistibles(soma).items()
+                                        if hasattr(o, "snapshot")}
+                _HIST.snapshot(est)
+            except Exception:
+                pass
+        # muestra de voz cada VST_VOICE_SECONDS (lo que el organismo dice ahora)
+        try:
+            if (time.time() - ult_voz >= voz_s) and ORGANO_COMUNICACION is not None and r is not None and not r.done:
+                ult_voz = time.time()
+                wav = ORGANO_COMUNICACION.wav_bytes(1.0, modo="R2D2")
+                est_v = ORGANO_COMUNICACION.estado(); fila = r.rows[-1] if r.rows else {}
+                _HIST.voz(wav, {"emisor": ORGANISMO_ID, "ts": time.time(), "modo_vida": MODO_VIDA,
+                                "voz_emitida": fila.get("voz_emitida"), "t_vida": fila.get("t"),
+                                "voice_volumen": est_v.get("voice_volumen")})
+        except Exception:
+            pass
+
 COMUNICACION_VOICE_GAIN = float(os.environ.get("VST_VOICE_GAIN", "20.0"))
 ORGANISMO_LABEL = os.environ.get("VST_ORGANISMO_LABEL", "Organismo A")
 
@@ -1276,6 +1322,8 @@ class Run:
         with self._ev_lock:
             self.eventos.append(ev)
         self.q.put({"__evento__": ev})
+        if _HIST is not None:                  # BIOGRAFÍA: el evento también va a la bitácora histórica diaria
+            _HIST.evento(tipo, detalle, extra, t_vida=ev["t_vida"])
 
     def _snapshot_niveles(self):
         """Niveles (RMS) de TODOS los canales del servidor en este instante (para la bitácora)."""
@@ -2619,7 +2667,10 @@ class Handler(BaseHTTPRequestHandler):
 
     # ---- iniciar una corrida ----
     def _start(self, req):
-        _nacer(req.get("cfg", {}), req.get("toggles", {}), req.get("sim_s", 6))
+        # /start manual = una INTERVENCIÓN/experimento dentro de la vida continua (modo_vida=experimento)
+        _nacer(req.get("cfg", {}), req.get("toggles", {}), req.get("sim_s", 6), modo=req.get("modo_vida", "experimento"))
+        if _HIST is not None:
+            _HIST.evento("experimento_inicio", "sesión iniciada manualmente (/start)", {"cfg": req.get("cfg", {})})
         self._send(200, json.dumps({"cols": COLS, "ok": True}))   # responde al instante
 
     # ---- pausa / reanuda / detiene ----
@@ -2787,6 +2838,8 @@ def _com_observar(fila, meta=None):
         except Exception:
             pass
     fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
+    if _HIST is not None:                      # BIOGRAFÍA: registra la fisiología (no bloqueante)
+        _HIST.registrar_fila(fila, MODO_VIDA)
 
 
 _ULTIMA_VOZ = None
@@ -2842,11 +2895,14 @@ def _dispositivos():
             "nota": "Para audio del SISTEMA elige un dispositivo de loopback (BlackHole/Loopback)."}
 
 
-def _nacer(cfg, toggles=None, sim_s=6):
+def _nacer(cfg, toggles=None, sim_s=6, modo=None):
     """Hace NACER/renacer una vida del organismo: crea el Run, reinicia los organelos (el _despertar
     del worker restaura de disco si hay historia previa) y lo arranca. Usado por POST /start y por el
-    AUTOARRANQUE al boot (incremento 2: el organismo vive aunque nadie pulse 'start')."""
-    global RUN
+    AUTOARRANQUE al boot (incremento 2: el organismo vive aunque nadie pulse 'start').
+    `modo` marca el modo_vida (basal/experimento/comunicación) para la biografía histórica."""
+    global RUN, MODO_VIDA
+    if modo:
+        MODO_VIDA = modo
     with RUN_LOCK:
         if RUN and not RUN.done:
             RUN.stop = True                       # detener vida previa
@@ -2893,12 +2949,12 @@ def _autoarranque_vida():
             else:
                 cfg = {"left_src": par, "right_src": mundo}
             cfg.update({"binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"})
-            _nacer(cfg, {}, 6)
+            _nacer(cfg, {}, 6, modo="comunicacion")        # vida basal acoplada = modo comunicación
             print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par por el oído {oido} (mira hacia el par)")
         else:
             cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
                    "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
-            _nacer(cfg, {}, 6)
+            _nacer(cfg, {}, 6, modo="basal")               # vida basal en soledad
             print(f"  AUTOARRANQUE: el organismo nace y vive en CONTINUO · en soledad percibe '{ANIMA_FUENTE_DEFECTO}'")
 
     threading.Thread(target=_arrancar, daemon=True).start()
@@ -2915,6 +2971,12 @@ def main():
         print(f"  persistencia: ON · autosave cada {AUTOSAVE_S:.0f}s · {os.environ.get('ANIMA_ESTADO_DIR','(disco por defecto)')}")
     else:
         print(f"  persistencia: OFF ({PERSIST_ERR})")
+    if HIST_OK:
+        threading.Thread(target=_historia_daemon, daemon=True).start()
+        _HIST.evento("docker_start", f"organismo {ORGANISMO_ID} arranca en Docker", {"modo_vida": MODO_VIDA})
+        print(f"  historia: ON · {_HIST.dir} · snapshot cada {SNAPSHOT_S:.0f}s · voz_wav={_HIST.rec_voz}")
+    else:
+        print(f"  historia: OFF ({HIST_ERR})")
     _autoarranque_vida()
     print("  Ctrl+C para detener.")
     print("=" * 66)

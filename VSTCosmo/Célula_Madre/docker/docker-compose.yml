@@ -21,8 +21,17 @@ services:
       VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
       ANIMA_ESCUCHAR_PAR: "1"                   # nace OYENDO la voz del par (díada acoplada A↔B)
       ANIMA_OIDO_PAR: "R"                       # A (izquierda) oye al par por la DERECHA → mira hacia B
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
+      VST_HISTORY_ROTATE_SECONDS: "3600"
+      VST_SNAPSHOT_SECONDS: "600"
+      VST_RECORD_VOICE_WAV: "true"
+      VST_RECORD_EXTERNAL_AUDIO: "false"
+      VST_LIFE_MODE: continuous
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
+      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
       - ../../audio_binaural:/app/audio_binaural:ro   # los .wav (Big Bang/Blue Monday) dentro del contenedor
     ports: ["7788:7788"]                   # interfaz web del organismo A
     extra_hosts: ["host.docker.internal:host-gateway"]   # alcanzar el AudioServer nativo del Mac
@@ -41,8 +50,17 @@ services:
       VST_SERVIDOR_PORT: "8766"
       ANIMA_ESCUCHAR_PAR: "1"
       ANIMA_OIDO_PAR: "L"
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
+      VST_HISTORY_ROTATE_SECONDS: "3600"
+      VST_SNAPSHOT_SECONDS: "600"
+      VST_RECORD_VOICE_WAV: "true"
+      VST_RECORD_EXTERNAL_AUDIO: "false"
+      VST_LIFE_MODE: continuous
     volumes:
       - anima_b_data:/data
+      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
       - ../../audio_binaural:/app/audio_binaural:ro
     ports: ["7799:7799"]                   # interfaz web del organismo B
     extra_hosts: ["host.docker.internal:host-gateway"]
@@ -69,8 +87,12 @@ services:
       ANIMA_B_URL: http://anima-b:7799
       ANIMA_CONV_DIR: /data_conv        # registro PERMANENTE de la conversación (volumen)
       ANIMA_CONV_PORT: "9100"
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
     volumes:
       - anima_conv_data:/data_conv
+      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
     ports: ["9100:9100"]                # tablero del observatorio
     depends_on: [anima-a, anima-b]
     restart: unless-stopped
