@@ -17,6 +17,8 @@ services:
       VST_PUERTO: "7788"
       VST_ORGANISMO_ID: ANIMA_A
       VST_COMUNICACION_PEER: http://anima-b:7799/comunicacion/bloque.wav
+      VST_SERVIDOR_HOST: host.docker.internal   # alcanza el AudioServer (Rødecaster) NATIVO del Mac
+      VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
       # - ../../audio_binaural:/app/audio_binaural:ro   # (opcional) para oír .wav dentro del contenedor
@@ -33,6 +35,8 @@ services:
       VST_PUERTO: "7799"
       VST_ORGANISMO_ID: ANIMA_B
       VST_COMUNICACION_PEER: http://anima-a:7788/comunicacion/bloque.wav
+      VST_SERVIDOR_HOST: host.docker.internal
+      VST_SERVIDOR_PORT: "8766"
     volumes:
       - anima_b_data:/data
     ports: ["7799:7799"]                   # interfaz web del organismo B

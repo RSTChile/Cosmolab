@@ -83,8 +83,8 @@ try:
 except Exception as e:
     AudioStreamClient = None; SERV_OK = False; SERV_ERR = f"{type(e).__name__}: {e}"
 
-SERVIDOR_HOST = "127.0.0.1"   # VST_AudioServer.py corre nativo en el Mac (mismo host que el navegador)
-SERVIDOR_PORT = 8765          # puerto por defecto del servidor de audio
+SERVIDOR_HOST = os.environ.get("VST_SERVIDOR_HOST", "127.0.0.1")   # en Docker = host.docker.internal (el AudioServer corre NATIVO en el Mac)
+SERVIDOR_PORT = int(os.environ.get("VST_SERVIDOR_PORT", "8765"))          # puerto por defecto del servidor de audio
 AUDIO_VIVO_DIRECTO_DESHABILITADO = os.environ.get("VST_DISABLE_DIRECT_AUDIO", "1") == "1"  # usar VST_AudioServer.py para A/B
 
 # --- Organo de comunicacion: la voz del organismo como fuente consumible por su par. ---
