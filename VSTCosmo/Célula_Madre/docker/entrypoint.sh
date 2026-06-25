@@ -8,5 +8,7 @@ case "${ANIMA_ROLE:-a}" in
        exec python /app/celula_madre/web/VST_CelulaMadre_WebLive_B.py ;;
   mcp) echo "[anima] rol=MCP (membrana de la díada, HTTP)"
        exec python /app/celula_madre/mcp/vst_mcp_diada.py --http ;;
-  *)   echo "ANIMA_ROLE desconocido: '${ANIMA_ROLE}' (usa a|b|mcp)"; exit 1 ;;
+  conversacion) echo "[anima] rol=CONVERSACION (observatorio permanente)"
+       exec python /app/celula_madre/conversacion/vst_conversacion.py ;;
+  *)   echo "ANIMA_ROLE desconocido: '${ANIMA_ROLE}' (usa a|b|mcp|conversacion)"; exit 1 ;;
 esac

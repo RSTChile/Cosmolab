@@ -857,6 +857,28 @@ def _nivel_voz_propia() -> float:
     return _VOZ_PROPIA_CACHE["rms"]
 
 
+def _estado_breve() -> dict:
+    """Snapshot LIGERO para el módulo de conversación: identidad + voz emitida + afecto + orientación.
+    Evita bajar el CSV entero en cada sondeo."""
+    r = RUN
+    fila = (r.rows[-1] if (r is not None and getattr(r, "rows", None)) else {})
+    def g(k, d=0.0):
+        try:
+            return round(float(fila.get(k, d)), 4)
+        except Exception:
+            return fila.get(k, d)
+    return {
+        "organismo_id": ORGANISMO_ID, "organismo": ORGANISMO_LABEL,
+        "vivo": bool(r is not None and not r.done and fila),
+        "t": g("t"),
+        "voz_emitida": fila.get("voz_emitida", "-"),
+        "voz_arousal": g("voz_arousal"), "voz_valence": g("voz_valence"),
+        "OI": g("OI"), "H": g("H_homeostasis"), "necesidad": g("necesidad"),
+        "RC_total": g("RC_total"), "energia": g("energia"),
+        "orientacion_deg": g("act_orientacion_deg"), "balance_LR": g("balance_LR"),
+    }
+
+
 def _snapshot_comunicacion_entrante() -> dict:
     updated = float(_COM_AUDIO_METER.get("updated") or 0.0)
     age = None if updated <= 0 else max(0.0, time.time() - updated)
@@ -2553,6 +2575,8 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, json.dumps(snap, ensure_ascii=False))
         elif path == "/csv":
             self._send(200, RUN.csv() if RUN else "", "text/csv")
+        elif path == "/estado":
+            self._send(200, json.dumps(_estado_breve(), ensure_ascii=False))
         elif path == "/sesion":
             self._send(200, json.dumps(RUN.eventos if RUN else [], ensure_ascii=False))
         elif path in ("/comunicacion/estado", "/voz_estado"):
@@ -2859,13 +2883,18 @@ def _autoarranque_vida():
         if ANIMA_ESCUCHAR_PAR and COM_OK and COMUNICACION_PEER_URL:
             sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
             url = f"{COMUNICACION_PEER_URL}{sep}modo={ANIMA_VOZ_PAR_MODO}&gain={COMUNICACION_VOICE_GAIN}"
-            izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par (L)"}
-            der = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par (R)"}
-            # voz del par en AMBOS oídos → el medidor registra L y R (antes sólo L, con R en silencio)
-            cfg = {"left_src": izq, "right_src": der,
-                   "binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+            par = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par"}
+            mundo = {"tipo": "demo", "spec": "demo:silencio"}   # el otro oído = MUNDO (silencio o el Rødecaster vía UI)
+            # ESPACIALIDAD: la voz del par entra por el oído del LADO donde está el par → la cabeza
+            # gira hacia él (se "miran"). ANIMA_OIDO_PAR=R (A, izquierda) / L (B, derecha).
+            oido = os.environ.get("ANIMA_OIDO_PAR", "L").upper()
+            if oido == "R":
+                cfg = {"left_src": mundo, "right_src": par}
+            else:
+                cfg = {"left_src": par, "right_src": mundo}
+            cfg.update({"binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"})
             _nacer(cfg, {}, 6)
-            print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par ({COMUNICACION_PEER_URL}) en AMBOS oídos")
+            print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par por el oído {oido} (mira hacia el par)")
         else:
             cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
                    "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}

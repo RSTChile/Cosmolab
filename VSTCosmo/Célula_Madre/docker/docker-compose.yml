@@ -20,6 +20,7 @@ services:
       VST_SERVIDOR_HOST: host.docker.internal   # alcanza el AudioServer (Rødecaster) NATIVO del Mac
       VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
       ANIMA_ESCUCHAR_PAR: "1"                   # nace OYENDO la voz del par (díada acoplada A↔B)
+      ANIMA_OIDO_PAR: "R"                       # A (izquierda) oye al par por la DERECHA → mira hacia B
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
       - ../../audio_binaural:/app/audio_binaural:ro   # los .wav (Big Bang/Blue Monday) dentro del contenedor
@@ -39,6 +40,7 @@ services:
       VST_SERVIDOR_HOST: host.docker.internal
       VST_SERVIDOR_PORT: "8766"
       ANIMA_ESCUCHAR_PAR: "1"
+      ANIMA_OIDO_PAR: "L"
     volumes:
       - anima_b_data:/data
       - ../../audio_binaural:/app/audio_binaural:ro
@@ -58,6 +60,22 @@ services:
     depends_on: [anima-a, anima-b]
     restart: unless-stopped
 
+  anima-conversacion:
+    image: anima-diada:latest
+    container_name: anima-conversacion
+    environment:
+      ANIMA_ROLE: conversacion
+      ANIMA_A_URL: http://anima-a:7788
+      ANIMA_B_URL: http://anima-b:7799
+      ANIMA_CONV_DIR: /data_conv        # registro PERMANENTE de la conversación (volumen)
+      ANIMA_CONV_PORT: "9100"
+    volumes:
+      - anima_conv_data:/data_conv
+    ports: ["9100:9100"]                # tablero del observatorio
+    depends_on: [anima-a, anima-b]
+    restart: unless-stopped
+
 volumes:
   anima_a_data:
   anima_b_data:
+  anima_conv_data:
