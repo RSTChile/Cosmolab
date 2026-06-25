@@ -2801,22 +2801,31 @@ ANIMA_VOZ_PAR_MODO = os.environ.get("ANIMA_VOZ_PAR_MODO", "FULL_STATE_NOTES")
 def _autoarranque_vida():
     """Si ANIMA_AUTOSTART, el organismo NACE y vive en continuo al arrancar el servidor (no espera
     a que nadie pulse 'start'). Es lo que lo vuelve un organismo-servidor 24/7, no una app.
-    Si ANIMA_ESCUCHAR_PAR, nace ACOPLADO: oye la voz del par en el oído de relación (L)."""
+    Si ANIMA_ESCUCHAR_PAR, nace ACOPLADO: oye la voz del par en el oído de relación (L).
+    Arranca en un HILO con un RETARDO (ANIMA_AUTOSTART_DELAY): así el servidor HTTP ya está sirviendo
+    y el par ya está vivo cuando intentan oírse — evita la carrera de arranque (A se quedaba mudo)."""
     if not ANIMA_AUTOSTART:
         return
-    if ANIMA_ESCUCHAR_PAR and COM_OK and COMUNICACION_PEER_URL:
-        sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
-        url = f"{COMUNICACION_PEER_URL}{sep}modo={ANIMA_VOZ_PAR_MODO}&gain={COMUNICACION_VOICE_GAIN}"
-        izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par"}
-        cfg = {"left_src": izq, "right_src": {"tipo": "demo", "spec": "demo:silencio"},
-               "binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
-        _nacer(cfg, {}, 6)
-        print(f"  AUTOARRANQUE ACOPLADO: nace OYENDO la voz del par ({COMUNICACION_PEER_URL}) en el oído de relación (L)")
-    else:
-        cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
-               "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
-        _nacer(cfg, {}, 6)
-        print(f"  AUTOARRANQUE: el organismo nace y vive en CONTINUO · en soledad percibe '{ANIMA_FUENTE_DEFECTO}'")
+    delay = float(os.environ.get("ANIMA_AUTOSTART_DELAY", "6" if ANIMA_ESCUCHAR_PAR else "0"))
+
+    def _arrancar():
+        if delay > 0:
+            time.sleep(delay)            # deja que el servidor (y el par) estén listos antes de oírse
+        if ANIMA_ESCUCHAR_PAR and COM_OK and COMUNICACION_PEER_URL:
+            sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
+            url = f"{COMUNICACION_PEER_URL}{sep}modo={ANIMA_VOZ_PAR_MODO}&gain={COMUNICACION_VOICE_GAIN}"
+            izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par"}
+            cfg = {"left_src": izq, "right_src": {"tipo": "demo", "spec": "demo:silencio"},
+                   "binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+            _nacer(cfg, {}, 6)
+            print(f"  AUTOARRANQUE ACOPLADO (tras {delay:.0f}s): oye la voz del par ({COMUNICACION_PEER_URL}) en el oído de relación (L)")
+        else:
+            cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
+                   "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+            _nacer(cfg, {}, 6)
+            print(f"  AUTOARRANQUE: el organismo nace y vive en CONTINUO · en soledad percibe '{ANIMA_FUENTE_DEFECTO}'")
+
+    threading.Thread(target=_arrancar, daemon=True).start()
 
 
 def main():

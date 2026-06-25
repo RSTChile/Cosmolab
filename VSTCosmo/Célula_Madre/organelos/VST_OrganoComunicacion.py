@@ -276,11 +276,22 @@ class OrganoComunicacion:
     def wav_bytes(self, seg: float = 0.5, modo: str = "FULL_STATE", gain: float | None = None) -> bytes:
         audio = self.audio(seg=seg, modo=modo)
         audio = _aplicar_ganancia_salida(audio, self.voice_gain if gain is None else gain, self.voice_target_rms)
-        pcm = np.clip(audio, -1.0, 1.0)
-        pcm16 = (pcm * 32767.0).astype("<i2")
+        mono = np.clip(audio, -1.0, 1.0)
+        # ESTÉREO: la voz lleva la LATERALIDAD del organismo (paneo por balance L/R de su estado).
+        # Nunca silencia un lado (pan suave): centro = ambos canales llenos, no "sólo L".
+        try:
+            pan = float(self._fila.get("balance_LR", self._fila.get("lateralidad", 0.0)) or 0.0)
+        except Exception:
+            pan = 0.0
+        pan = max(-1.0, min(1.0, pan))
+        L = mono * (1.0 - 0.5 * max(0.0, pan))      # pan>0 (derecha) baja L; pan<0 (izquierda) baja R
+        R = mono * (1.0 - 0.5 * max(0.0, -pan))
+        inter = np.empty(mono.size * 2, dtype=np.float64)
+        inter[0::2] = L; inter[1::2] = R
+        pcm16 = (np.clip(inter, -1.0, 1.0) * 32767.0).astype("<i2")
         bio = io.BytesIO()
         with wave.open(bio, "wb") as w:
-            w.setnchannels(1)
+            w.setnchannels(2)                       # ESTÉREO (antes mono → sólo se oía por L)
             w.setsampwidth(2)
             w.setframerate(self.sr)
             w.writeframes(pcm16.tobytes())
