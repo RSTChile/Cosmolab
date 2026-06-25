@@ -224,6 +224,8 @@ class Handler(BaseHTTPRequestHandler):
 
 HTML = """<!doctype html><html lang=es><head><meta charset=utf-8>
 <title>Observatorio de la conversación — Díada ANIMA</title>
+<link href="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-all.js"></script>
 <style>
 :root{--bg:#0a0f16;--panel:#111927;--bord:#243246;--mut:#8aa0b8;--ok:#5fd38a;--gold:#e8b86d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#dfe7f0;font:13px system-ui,sans-serif}
@@ -251,6 +253,21 @@ h1{font-size:16px;margin:10px 14px}.mut{color:var(--mut)}
 .tab{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer}
 .tab.on{background:var(--gold);color:#10171f;font-weight:bold}
 select{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radius:5px;padding:3px 6px;font-size:12px}
+.sm{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radius:6px;padding:4px 9px;font-size:11px;cursor:pointer}
+.panel{background:var(--panel);border:1px solid var(--bord);border-radius:9px;padding:9px;margin:8px 14px}
+.grid-stack{background:transparent}
+.obscaja{background:#0e1622;border:1px solid var(--bord);border-radius:10px;height:100%;overflow:auto;display:flex;flex-direction:column}
+.obscaja h3{margin:0;padding:7px 10px;font-size:12px;border-bottom:1px solid #1d2940;color:var(--gold);display:flex;align-items:center;gap:6px}
+.obscaja .obsbody{padding:8px 10px;font-size:11px;flex:1}
+.obscaja .obsdel{margin-left:auto;cursor:pointer;color:#ff8c8c;font-size:13px;display:none}
+#obsZona.editando .obscaja .obsdel{display:inline}
+#obsZona.editando .obscaja{border-color:#3a557a;box-shadow:0 0 0 1px #3a557a44}
+.obsrow{display:flex;justify-content:space-between;gap:8px;margin:3px 0}
+.obsk{color:#9fb1c6}.obsv{color:#e6eefb;font-variant-numeric:tabular-nums}
+.obsgauge{height:6px;border-radius:4px;background:#1b2740;overflow:hidden;margin:2px 0 5px}
+.obsgauge>i{display:block;height:100%;border-radius:4px}
+.obschip{font-size:10px;border:1px solid #2a3a55;border-radius:6px;padding:3px 7px;cursor:pointer;background:#101a28;color:#cfe0f5}
+.obschip:hover{border-color:#4a6da0}.obschip.puesta{opacity:.4;cursor:default}
 </style></head><body>
 <h1>🛰️ Observatorio de la conversación · <span class=mut>díada ANIMA — captura permanente</span></h1>
 <div style="display:flex;align-items:center;gap:10px;padding:6px 14px;background:var(--panel);border-bottom:1px solid var(--bord);flex-wrap:wrap">
@@ -289,6 +306,22 @@ select{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radi
     <div class=mut style="font-size:10px;margin-top:10px">Registro permanente: <span id=logp></span><br><a href=/historial style=color:var(--gold)>descargar historial completo</a></div>
   </div>
 </div>
+<!-- ===== OBSERVATORIO DE LA DÍADA (tablero editable, aditivo · misma lógica que las páginas de organismo) ===== -->
+<div id=obsZona style="margin:6px 0 24px">
+  <div class=panel style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <b style="color:var(--gold)">🧩 Observatorio de la díada</b>
+    <span class=mut style="font-size:10px;flex:1;min-width:160px">Agrega y mueve cajas para observar la díada. La caja ⭐ <b>Libertad creativa</b> muestra el balbuceo de ambos.</span>
+    <button class=sm id=obsAdd style=display:none>➕ Agregar caja</button>
+    <button class=sm id=obsReset style=display:none>↺ Restaurar (vaciar)</button>
+    <button class=sm id=obsEdit>✏️ Editar tablero</button>
+  </div>
+  <div id=obsPaleta class=panel style=display:none>
+    <div class=mut style="font-size:10px;margin-bottom:6px">Catálogo · click para agregar al tablero:</div>
+    <div id=obsCatalogo style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  </div>
+  <div class="grid-stack" id=obsGrid></div>
+  <div id=obsVacio class=mut style="font-size:11px;text-align:center;padding:14px;opacity:.7">Tablero vacío. Pulsa <b>✏️ Editar tablero</b> → <b>➕ Agregar caja</b> (prueba ⭐ Libertad creativa).</div>
+</div>
 </div><!-- /vivo -->
 <div id=historia style=display:none>
   <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;flex-wrap:wrap;border-bottom:1px solid var(--bord)">
@@ -326,6 +359,7 @@ let nT=0;
 async function tick(){
   let d; try{ d=await fetch('/datos').then(r=>r.json()); }catch(e){ return; }
   cabeza('A', d.A); cabeza('B', d.B);
+  window._ultD=d; if(window.renderCajas)renderCajas(d);   // OBSERVATORIO de la díada (cajas)
   // ¿se miran? (A mira a la derecha y B a la izquierda)
   const oa=(d.A&&d.A.orientacion_deg)||0, ob=(d.B&&d.B.orientacion_deg)||0;
   $('entre').textContent=(oa>5 && ob<-5)?'👁️‍🗨️':'↔';
@@ -418,6 +452,87 @@ async function cargarHist(){
   }catch(e){}
 }
 setInterval(tick, 500); tick();
+
+// ============================ OBSERVATORIO DE LA DÍADA (cajas editables) ============================
+// Misma lógica que las páginas de organismo: cajas declarativas que el observador agrega/mueve.
+// Disposición en localStorage (membrana, no cerebro). Datos = último /datos (d.A, d.B).
+(function(){
+  const cjN=(x,d=2)=>{x=Number(x);return isFinite(x)?x.toFixed(d):'—';};
+  const cjRow=(k,v)=>`<div class="obsrow"><span class="obsk">${k}</span><span class="obsv">${v}</span></div>`;
+  const cjGauge=(v,col='#5fd38a')=>{v=Math.max(0,Math.min(1,Number(v)||0));return `<div class="obsgauge"><i style="width:${(v*100).toFixed(0)}%;background:${col}"></i></div>`;};
+  const cjBip=(v,col='#6db6ff')=>{v=Math.max(-1,Math.min(1,Number(v)||0));const w=Math.abs(v)*50,left=v>=0?50:50-w;return `<div class="obsgauge"><i style="margin-left:${left}%;width:${w}%;background:${col}"></i></div>`;};
+  const G=(d,L)=>{const x=(d&&d[L])||{};return {f:+x.g_freq||0,i:+x.g_intensidad||0,p:+x.g_pausa||0,r:+x.g_repeticion||0,b:x.g_bucket||'—',int:+x.alt_intencion_comunicativa||0,eo:+x.alt_efecto_sobre_otro||0,oi:+x.OI||0,aro:+x.voz_arousal||0,val:+x.voz_valence||0,voz:x.voz_emitida||'—'};};
+
+  const CAJAS=[
+   {id:'libertad_creativa',tit:'🎨 Libertad creativa (balbuceo)',w:6,h:5,render:(b,d)=>{
+     const A=G(d,'A'),B=G(d,'B');
+     const dist=Math.sqrt((A.f-B.f)**2+(A.i-B.i)**2+(A.p-B.p)**2+(A.r-B.r)**2), conv=Math.max(0,1-dist/2.0);
+     const col=(lab,g)=>`<div style="flex:1;min-width:120px"><div class="obsk" style="margin-bottom:3px">${lab} · <b style="color:#cfe0f5">${g.b}</b></div>`
+       +`<span class="obsk">frecuencia</span>`+cjBip(g.f,'#e8b86d')+`<span class="obsk">intensidad</span>`+cjBip(g.i,'#6db6ff')
+       +`<span class="obsk">pausa</span>`+cjGauge(g.p,'#b58cff')+`<span class="obsk">repetición</span>`+cjGauge(g.r,'#ff8c6b')
+       +`<div class="obsk" style="margin-top:4px">intención ${g.int.toFixed(3)}</div>`+cjGauge(g.int,'#64f0c8')+`</div>`;
+     b.innerHTML=`<div style="display:flex;gap:12px;flex-wrap:wrap">${col('🔵 A',A)}${col('🟡 B',B)}</div>`
+       +`<div style="margin-top:8px;border-top:1px solid #1d2940;padding-top:7px">`
+       +cjRow('convergencia de gesto',(conv*100).toFixed(0)+'%')+cjGauge(conv,'#8ef0c0')
+       +`<div class="obsk" style="font-size:9.5px;margin-top:3px">${conv>0.72?'⚠ gestos MUY similares — ¿convención emergente? (confirmar con control NULL/SHUFFLED en vivo)':'exploran su espacio expresivo con libertad (sin convención fijada)'}</div></div>`;}},
+   {id:'intencion',tit:'🗣 Intención comunicativa (A/B)',w:3,h:3,render:(b,d)=>{const A=G(d,'A'),B=G(d,'B');b.innerHTML=
+     cjRow('A intención',cjN(A.int,3))+cjGauge(A.int,'#6db6ff')+cjRow('A efecto→otro',cjN(A.eo,3))+cjGauge(A.eo,'#6db6ff')
+    +cjRow('B intención',cjN(B.int,3))+cjGauge(B.int,'#ffd479')+cjRow('B efecto→otro',cjN(B.eo,3))+cjGauge(B.eo,'#ffd479');}},
+   {id:'afecto',tit:'🔊 Afecto / Voz (A/B)',w:3,h:3,render:(b,d)=>{const A=G(d,'A'),B=G(d,'B');b.innerHTML=
+     cjRow('A',A.voz)+`<span class="obsk">arousal</span>`+cjGauge(A.aro,'#ff8c6b')+`<span class="obsk">valencia</span>`+cjBip(A.val,'#6db6ff')
+    +cjRow('B',B.voz)+`<span class="obsk">arousal</span>`+cjGauge(B.aro,'#ff8c6b')+`<span class="obsk">valencia</span>`+cjBip(B.val,'#ffd479');}},
+   {id:'acople',tit:'❤️ Acople (OI A↔B)',w:3,h:2,render:(b,d)=>{const A=G(d,'A'),B=G(d,'B');b.innerHTML=
+     cjRow('OI · A',cjN(A.oi,3))+cjGauge(A.oi,'#6db6ff')+cjRow('OI · B',cjN(B.oi,3))+cjGauge(B.oi,'#ffd479')
+    +cjRow('|diferencia|',cjN(Math.abs(A.oi-B.oi),3));}},
+   {id:'agencia',tit:'🧭 Agencia del otro (A/B)',w:3,h:3,render:(b,d)=>{const q=(L,k)=>(+(((d&&d[L])||{})[k])||0);b.innerHTML=
+     cjRow('A contingencia',cjN(q('A','alt_contingencia_social'),3))+cjGauge(Math.min(1,q('A','alt_contingencia_social')*8),'#64f0c8')
+    +cjRow('A agencia',cjN(q('A','alt_agencia_otro'),3))+cjGauge(q('A','alt_agencia_otro'),'#6db6ff')
+    +cjRow('B contingencia',cjN(q('B','alt_contingencia_social'),3))+cjGauge(Math.min(1,q('B','alt_contingencia_social')*8),'#64f0c8')
+    +cjRow('B agencia',cjN(q('B','alt_agencia_otro'),3))+cjGauge(q('B','alt_agencia_otro'),'#ffd479')
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">¿la emisión mueve al otro sobre su basal? (≈0 hoy)</div>`;}},
+   {id:'vozeco',tit:'🌱 Valor ecológico de la voz (A/B)',w:3,h:3,render:(b,d)=>{const q=(L,k)=>(+(((d&&d[L])||{})[k])||0);b.innerHTML=
+     cjRow('A valor ecológico',cjN(q('A','voz_otro_valor_ecologico'),3))+cjGauge(Math.min(1,q('A','voz_otro_valor_ecologico')*8),'#8ef0c0')
+    +cjRow('A confianza',cjN(q('A','voz_otro_confianza_ecologica'),3))+cjGauge(q('A','voz_otro_confianza_ecologica'),'#e8b86d')
+    +cjRow('B valor ecológico',cjN(q('B','voz_otro_valor_ecologico'),3))+cjGauge(Math.min(1,q('B','voz_otro_valor_ecologico')*8),'#8ef0c0')
+    +cjRow('B confianza',cjN(q('B','voz_otro_confianza_ecologica'),3))+cjGauge(q('B','voz_otro_confianza_ecologica'),'#ffd479')
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">¿la voz del otro ayuda a persistir? cae bajo NULL/SHUFFLED</div>`;}},
+   {id:'expectativa',tit:'🔭 Expectativa (A/B)',w:3,h:3,render:(b,d)=>{const q=(L,k)=>(+(((d&&d[L])||{})[k])||0);b.innerHTML=
+     cjRow('A expectativa',cjN(q('A','expectativa'),3))+cjGauge(Math.min(1,q('A','expectativa')*8),'#b58cff')
+    +cjRow('A explora · confianza',cjN(q('A','expectativa_exploracion'),3)+' · '+cjN(q('A','expectativa_confianza'),2))
+    +cjRow('B expectativa',cjN(q('B','expectativa'),3))+cjGauge(Math.min(1,q('B','expectativa')*8),'#b58cff')
+    +cjRow('B explora · confianza',cjN(q('B','expectativa_exploracion'),3)+' · '+cjN(q('B','expectativa_confianza'),2))
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">¿vale la pena explorar tras la voz? (1er eslabón de la genealogía)</div>`;}},
+  ];
+
+  const LSKEY='obs_v1_diada';
+  let gs=null, activas=new Map(), editando=false, paletaAbierta=false, cargando=false;
+  function renderUna(c){const b=document.getElementById('obsbody_'+c.id);if(b&&window._ultD)c.render(b,window._ultD);}
+  window.renderCajas=function(d){activas.forEach(c=>{const b=document.getElementById('obsbody_'+c.id);if(b)c.render(b,d);});};
+  function guardar(){if(cargando)return;try{localStorage.setItem(LSKEY,JSON.stringify(gs.save(false)));}catch(e){}}
+  function chequearVacio(){const e=document.getElementById('obsVacio');if(e)e.style.display=activas.size?'none':'';}
+  function refrescarCatalogo(){const cat=document.getElementById('obsCatalogo');if(!cat)return;cat.innerHTML='';
+    CAJAS.forEach(c=>{const chip=document.createElement('span');chip.className='obschip'+(activas.has(c.id)?' puesta':'');chip.textContent=c.tit;
+      if(!activas.has(c.id))chip.onclick=()=>addCaja(c.id);cat.appendChild(chip);});}
+  function addCaja(cid,pos){if(activas.has(cid))return;const c=CAJAS.find(x=>x.id===cid);if(!c)return;
+    const content=`<div class="obscaja"><h3>${c.tit}<span class="obsdel" data-cid="${cid}" title="quitar">✕</span></h3><div class="obsbody" id="obsbody_${cid}">—</div></div>`;
+    gs.addWidget({id:cid,content,w:(pos&&pos.w)||c.w,h:(pos&&pos.h)||c.h,x:pos&&pos.x,y:pos&&pos.y});
+    activas.set(cid,c);renderUna(c);refrescarCatalogo();chequearVacio();guardar();}
+  function setEdit(on){editando=on;document.getElementById('obsZona').classList.toggle('editando',on);if(gs)gs.setStatic(!on);
+    document.getElementById('obsAdd').style.display=on?'':'none';document.getElementById('obsReset').style.display=on?'':'none';
+    document.getElementById('obsEdit').textContent=on?'✓ Listo':'✏️ Editar tablero';
+    if(!on){paletaAbierta=false;document.getElementById('obsPaleta').style.display='none';}}
+  function initObs(){if(!window.GridStack){console.warn('Gridstack no disponible');return;}
+    gs=GridStack.init({column:12,cellHeight:54,margin:6,float:true,staticGrid:true,handle:'.obscaja h3'},'#obsGrid');
+    gs.on('change',guardar);
+    document.getElementById('obsGrid').addEventListener('click',e=>{const x=e.target.closest('.obsdel');if(!x)return;
+      const cid=x.dataset.cid,item=x.closest('.grid-stack-item');if(item)gs.removeWidget(item);activas.delete(cid);refrescarCatalogo();chequearVacio();guardar();});
+    document.getElementById('obsEdit').onclick=()=>setEdit(!editando);
+    document.getElementById('obsAdd').onclick=()=>{paletaAbierta=!paletaAbierta;document.getElementById('obsPaleta').style.display=paletaAbierta?'':'none';};
+    document.getElementById('obsReset').onclick=()=>{if(!confirm('¿Vaciar el tablero y borrar lo guardado?'))return;gs.removeAll();activas.clear();try{localStorage.removeItem(LSKEY);}catch(e){}refrescarCatalogo();chequearVacio();};
+    refrescarCatalogo();cargando=true;let s=null;try{s=JSON.parse(localStorage.getItem(LSKEY)||'null');}catch(e){}
+    if(s&&s.length)s.forEach(n=>addCaja(n.id,n));cargando=false;chequearVacio();}
+  if(document.readyState!=='loading')initObs();else document.addEventListener('DOMContentLoaded',initObs);
+})();
 </script></body></html>"""
 
 

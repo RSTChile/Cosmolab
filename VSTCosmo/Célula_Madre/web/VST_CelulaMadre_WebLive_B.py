@@ -54,6 +54,8 @@ from VST_HomeostasisEmergente import (HomeostasisEmergente, soporte_A_sys_env,
 from VST_Memoria import OrganeloMemoria, COLS_MEM
 from VST_Metabolismo import OrganeloMetabolismo, COLS_MET
 from VST_Alteridad import OrganeloAlteridad, COLS_ALT
+from VST_ValorEcologicoVoz import OrganeloValorEcologicoVoz, COLS_VOZECO
+from VST_Expectativa import OrganeloExpectativa, COLS_EXP
 
 # Reutiliza el motor validado y el catálogo de organelos de la interfaz anterior
 from VST_CelulaMadre_Web import cmf, ORG_UI
@@ -116,6 +118,14 @@ METABOLISMO = OrganeloMetabolismo()
 # Alteridad / intención comunicativa: aprende (emisión propia → respuesta del otro → efecto sobre mí)
 # por consecuencias. NO impone lenguaje; MIDE si el organismo descubre que afecta al otro. Simétrico.
 ALTERIDAD = OrganeloAlteridad(ORGANISMO_ID)
+# Valor ecológico de la voz del otro: aprende, por consecuencias y falsable, si la voz del otro ANTECEDE
+# mejora real de la persistencia (A_sys-env/ICR/energía/necesidad/H). Modula LEVEMENTE la absorción; nunca
+# controla. Es la precondición de la alteridad: que lo que hace el otro EMPIECE A IMPORTAR para persistir.
+VALOR_ECO_VOZ = OrganeloValorEcologicoVoz(ORGANISMO_ID)
+_VOZ_ECO_MOD = {"factor": 1.0}   # modulación de absorción de la voz del par (leve, aprendida, ±25%)
+# Expectativa: aprende si EXPLORAR tras una firma del otro suele mejorar la situación. Salida única y leve:
+# "vale un poco más la pena seguir observando" → refuerza levemente la atención/absorción. Falsable.
+EXPECTATIVA = OrganeloExpectativa(ORGANISMO_ID)
 
 # --- PERSISTENCIA (incremento 1): la HISTORIA del organismo sobrevive al apagón. El espacio en disco
 # (futuro VOLUMEN Docker, vía ANIMA_ESTADO_DIR) lo da vst_persistencia; aquí sólo coordinamos
@@ -261,7 +271,7 @@ COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_con
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
 # VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
 COLS_VOZ = ["voz_emitida", "voz_arousal", "voz_valence"]
-COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT
+COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT + COLS_VOZECO + COLS_EXP
 
 
 
@@ -840,6 +850,32 @@ _COM_AUDIO_CACHE = {}
 _COM_AUDIO_METER = {"nombre": "organismo", "rms": 0.0, "pico": 0.0, "ok": False,
                     "reserva": False, "updated": 0.0, "canales": {}}
 
+# CONTROL ACÚSTICO FUERTE (falsación, Belbo): rompe el SONIDO que entra al soma, no sólo la percepción.
+#   real     = oye al par en tiempo real (con contingencia temporal).
+#   null     = NO oye al par (silencio): control de ausencia acústica.
+#   shuffled = oye al par, pero un bloque de audio REAL de un momento PASADO al azar → presencia sin
+#              contingencia temporal (la respuesta del par a mi emisión nunca llega alineada).
+import random as _random_ctl
+import collections as _collections_ctl
+_COM_AUDIO_RING = _collections_ctl.defaultdict(lambda: _collections_ctl.deque(maxlen=24))
+_CONTROL_RNG = _random_ctl.Random(20260625)
+
+def _control_acustico(audio, key, n):
+    modo = os.environ.get("ANIMA_CONTROL", "real").strip().lower()
+    if modo == "real":
+        return audio
+    ring = _COM_AUDIO_RING[key]
+    if audio is not None and getattr(audio, "size", 0):
+        ring.append(np.asarray(audio, dtype=np.float64).copy())   # el buffer guarda el sonido REAL del par
+    if modo == "null":
+        return np.zeros(n, dtype=np.float64)                       # null FUERTE: no se oye al par
+    if modo == "shuffled" and len(ring) >= 6:
+        blk = ring[_CONTROL_RNG.randrange(len(ring))]             # bloque REAL del par, de un momento al azar
+        if blk.size >= n:
+            return blk[:n].copy()
+        return np.pad(blk, (0, n - blk.size))
+    return audio
+
 
 def _rms_pico_audio(audio: np.ndarray) -> tuple[float, float]:
     x = np.asarray(audio, dtype=np.float64)
@@ -926,6 +962,24 @@ def _estado_breve() -> dict:
         "OI": g("OI"), "H": g("H_homeostasis"), "necesidad": g("necesidad"),
         "RC_total": g("RC_total"), "energia": g("energia"),
         "orientacion_deg": g("act_orientacion_deg"), "balance_LR": g("balance_LR"),
+        # LIBERTAD EXPRESIVA (balbuceo) + intención: para el observatorio de la díada (:9100).
+        "g_freq": g("g_freq"), "g_intensidad": g("g_intensidad"), "g_pausa": g("g_pausa"),
+        "g_repeticion": g("g_repeticion"), "g_bucket": fila.get("g_bucket", "-"),
+        "alt_intencion_comunicativa": g("alt_intencion_comunicativa"),
+        "alt_efecto_sobre_otro": g("alt_efecto_sobre_otro"), "alt_efecto_sobre_mi": g("alt_efecto_sobre_mi"),
+        "alt_otro_presente": g("alt_otro_presente"),
+        # AGENCIA (reconocimiento de sujeto): presencia ≠ causalidad. Debe COLAPSAR bajo shuffle.
+        "alt_efecto_basal": g("alt_efecto_basal"), "alt_contingencia_social": g("alt_contingencia_social"),
+        "alt_agencia_otro": g("alt_agencia_otro"),
+        # VALOR ECOLÓGICO de la voz del otro (¿la voz del par importa para mi persistencia?).
+        "voz_otro_valor_ecologico": g("voz_otro_valor_ecologico"),
+        "voz_otro_confianza_ecologica": g("voz_otro_confianza_ecologica"),
+        "voz_otro_modulacion_aplicada": g("voz_otro_modulacion_aplicada"),
+        "voz_otro_efecto_real": g("voz_otro_efecto_real"),
+        # EXPECTATIVA (¿vale la pena seguir explorando tras la voz del otro?).
+        "expectativa": g("expectativa"), "expectativa_confianza": g("expectativa_confianza"),
+        "expectativa_exploracion": g("expectativa_exploracion"),
+        "expectativa_confirmaciones": g("expectativa_confirmaciones"),
     }
 
 
@@ -986,6 +1040,11 @@ def _audio_comunicacion_resiliente(url: str, seg: float, nombre: str) -> np.ndar
             elif audio.size > n:
                 audio = audio[:n]
             _COM_AUDIO_CACHE[key] = audio.copy()
+            audio = _control_acustico(audio, key, n)   # CONTROL FUERTE: real | null | shuffled (acústico)
+            try:                                       # ABSORCIÓN modulada por el valor ecológico aprendido
+                audio = audio * float(_VOZ_ECO_MOD.get("factor", 1.0))   # leve (±25%): facilita oír al otro útil
+            except Exception:
+                pass
             _actualizar_medidor_comunicacion(audio, nombre, reserva=False)
             return audio
     except Exception as e:
@@ -1627,6 +1686,8 @@ HTML = r"""<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Célula Madre — Organismo B — Laboratorio en vivo</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-all.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -1973,7 +2034,7 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
         <div class="tog"><input type="checkbox" id="muteL"><label for="muteL">Cortar canal izquierdo / voz-relación</label></div>
         <div class="tog"><input type="checkbox" id="muteR"><label for="muteR">Cortar canal derecho / mundo externo</label></div>
       </div>
-      <div class="tog" style="margin-top:8px"><input type="checkbox" id="continuo"><label for="continuo">🔴 Captura CONTINUA (sin límite — hasta Detener)</label></div>
+      <div class="tog" style="margin-top:8px"><input type="checkbox" id="continuo"><label for="continuo">🔴 Captura Continua</label></div>
       <div class="grid2">
         <div><label class="fld" id="lblCap">Captura en vivo (s)</label><input type="number" id="capSeg" value="10" min="1" max="120"></div>
         <div><label class="fld">&nbsp;</label><button class="sm" id="bAuto" style="width:100%">Auto-par pos/neg (R)</button></div>
@@ -2000,36 +2061,6 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
       <div class="mut" style="font-size:10px;margin-bottom:4px"><b>MASTER</b> = lo que el organismo OYE (cualquier fuente: Rødecaster, wav, demo). Debajo, cada canal del servidor.</div>
       <div id="master" class="mut" style="margin-bottom:6px">—</div>
       <div id="leds" class="mut">cargando…</div>
-      <div style="margin-top:8px;border-top:1px solid #243246;padding-top:7px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:10.5px">
-          <span style="width:104px;color:#9fb1c6">🗣 Volumen de voz</span>
-          <input type="range" id="vozVol" min="0" max="10" step="0.5" value="4" style="flex:1">
-          <span id="vozVolVal" style="width:40px;text-align:right;color:#8aa0b8">4×</span>
-        </div>
-        <div class="mut" style="font-size:9px;margin-top:2px">Ganancia de salida de la voz (sube el nivel REAL — mira subir el medidor 📢 voz propia). Afecta lo que el par oye.</div>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>🔊 Voz del organismo · escuchar / grabar</h2>
-      <div class="mut" style="font-size:10px;margin-bottom:6px">Reproduce la voz por las <b>bocinas del Mac</b> (vía navegador → funciona igual en nativo y en Docker). Grabar descarga un .wav de lo que dijo.</div>
-      <div class="row">
-        <button class="sm" id="bEscuchar" style="flex:1" onclick="_vozEscuchar()">🔊 Escuchar voz</button>
-        <button class="sm" id="bGrabar" onclick="_vozGrabar()">⏺ Grabar</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:10.5px;margin-top:6px">
-        <span style="width:104px;color:#9fb1c6">🔊 Volumen escucha</span>
-        <input type="range" id="vozMon" min="0" max="25" step="0.5" value="8" style="flex:1">
-        <span id="vozMonVal" style="width:40px;text-align:right;color:#8aa0b8">8×</span>
-      </div>
-      <div class="mut" style="font-size:9px;margin-top:2px">Sólo amplifica TU escucha (no cambia la voz real ni lo que el par oye). La voz es señal costosa: en soledad suena bajo.</div>
-      <div id="vozStat" class="mut" style="font-size:9.5px;margin-top:4px">en silencio</div>
-    </div>
-
-    <div class="panel">
-      <h2>🤝 Altruismo / Cooperación (díada) · en vivo</h2>
-      <div class="mut" style="font-size:10px;margin-bottom:4px">Gobernanza del locus O-N22 entre A↔B: atractor, β_crit, disposición, Ψ_alma, costo de desacople.</div>
-      <div id="altru" class="mut">esperando datos…</div>
     </div>
 
     <div class="panel">
@@ -2051,8 +2082,43 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
       <div class="tabs" id="winTabs"></div>
       <div id="wins"></div>
     </div>
+    <!-- ===== OBSERVATORIO DE ORGANELOS (tablero editable, EN EL PANEL CENTRAL, bajo el contenido) ===== -->
+    <!-- Cajas que el OBSERVADOR agrega/mueve/redimensiona aquí mismo, bajo la caja de Altruismo. Membrana,
+         no cerebro: la disposición se guarda en ESTE navegador (por organismo), nunca en el genoma. -->
+    <div id="obsZona" style="margin-top:12px">
+      <div class="panel" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <h2 style="margin:0">🧩 Observatorio de organelos</h2>
+        <span class="mut" style="font-size:10px;flex:1;min-width:160px">Agrega y mueve cajas para observar cada organelo cuando quieras. Tu disposición se guarda en este navegador.</span>
+        <button class="sm" id="obsAdd" style="display:none">➕ Agregar caja</button>
+        <button class="sm" id="obsReset" style="display:none">↺ Restaurar (vaciar)</button>
+        <button class="sm" id="obsEdit">✏️ Editar tablero</button>
+      </div>
+      <div id="obsPaleta" class="panel" style="display:none">
+        <div class="mut" style="font-size:10px;margin-bottom:6px">Catálogo de cajas disponibles · click para agregar al tablero:</div>
+        <div id="obsCatalogo" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+      </div>
+      <div class="grid-stack" id="obsGrid"></div>
+      <div id="obsVacio" class="mut" style="font-size:11px;text-align:center;padding:14px;opacity:.7">El tablero está vacío. Pulsa <b>✏️ Editar tablero</b> y luego <b>➕ Agregar caja</b> para traer organelos.</div>
+    </div>
   </div>
 </div>
+
+<style>
+  .grid-stack{background:transparent}
+  .obscaja{background:var(--panel,#0e1622);border:1px solid #243246;border-radius:10px;height:100%;overflow:auto;display:flex;flex-direction:column}
+  .obscaja h3{margin:0;padding:7px 10px;font-size:12px;border-bottom:1px solid #1d2940;color:var(--gold,#e8b86d);display:flex;align-items:center;gap:6px}
+  .obscaja .obsbody{padding:8px 10px;font-size:11px;flex:1}
+  .obscaja .obsdel{margin-left:auto;cursor:pointer;color:#ff8c8c;font-size:13px;display:none}
+  #obsZona.editando .obscaja .obsdel{display:inline}
+  #obsZona.editando .obscaja{border-color:#3a557a;box-shadow:0 0 0 1px #3a557a44}
+  .obsrow{display:flex;justify-content:space-between;gap:8px;margin:3px 0}
+  .obsk{color:#9fb1c6}.obsv{color:#e6eefb;font-variant-numeric:tabular-nums}
+  .obsgauge{height:6px;border-radius:4px;background:#1b2740;overflow:hidden;margin:2px 0 5px}
+  .obsgauge>i{display:block;height:100%;border-radius:4px}
+  .obschip{font-size:10px;border:1px solid #2a3a55;border-radius:6px;padding:3px 7px;cursor:pointer;background:#101a28;color:#cfe0f5}
+  .obschip:hover{border-color:#4a6da0}.obschip.puesta{opacity:.4;cursor:default}
+</style>
+
 <script>
 const $=id=>document.getElementById(id);
 const SR_DT=0.1;
@@ -2158,11 +2224,6 @@ function updateActuador(r){
   if($('barsL'))$('barsL').innerHTML=bars(r.energia_L,'#58d7f3');
   if($('barsR'))$('barsR').innerHTML=bars(r.energia_R,'#ff6b6b');
   const set=(id,val,suf='')=>{const e=$(id);if(e)e.textContent=val+suf;};
-  set('actConf',fmt(conf,2));
-  set('actObj',(obj>=0?'+':'')+obj.toFixed(1),'°');
-  set('actFat',fmt(r.act_fatiga,2));
-  set('actZone',fmt(r.act_zona_muerta,1),'°');
-  set('actTrem',fmt(r.act_temblor_rms,2),'°');
   set('actDW',(Number(r.act_lateralidad_dw||0)>=0?'+':'')+fmt(r.act_lateralidad_dw,4));
 }
 
@@ -2215,26 +2276,40 @@ function buildWins(){
             <div class="axisline"></div><div class="actarrow" id="actArrow"></div>
             <div class="orbit"></div><div class="headBoxLive" id="head3dLive"></div>
           </div>
-          <div class="actcards">
-            <div class="actcard"><div class="k">Confianza</div><div class="v" id="actConf">0.00</div></div>
-            <div class="actcard"><div class="k">Objetivo</div><div class="v" id="actObj">0.0°</div></div>
-            <div class="actcard"><div class="k">Fatiga motor</div><div class="v" id="actFat">0.00</div></div>
-            <div class="actcard"><div class="k">Zona muerta</div><div class="v" id="actZone">2.0°</div></div>
-            <div class="actcard"><div class="k">Temblor RMS</div><div class="v" id="actTrem">0.00°</div></div>
-          </div>
         </div>
         <div>
-          <div class="formula"><h3>1) Dirección: lateralidad interna</h3><code>pL/pR = presencia suave del canal
-salL = |ωL − ωA|·pL
-salR = |ωR − ωA|·pR
-Δω = salR − salL
-θobj = clamp(k_lat × Δω, −90°, +90°)</code><div class="actnote">La energía L/R sólo actúa como compuerta de presencia: si cortas un oído, ese oído no puede seguir capturando atención.</div></div>
-          <div class="formula"><h3>2) Confianza organismal</h3><code>Conf = clamp(w1·R2 + w2·LFop + w3·H
-             + w4·Aenv + w5·XE, 0, 1)</code><div class="actnote">R₂ habilita confianza, LF permite reorientar, H evita giro patológico y XE aporta reorganización.</div></div>
-          <div class="formula"><h3>3) Dinámica motora</h3><code>err = wrap(θobj − θ)
-Δθ = I × F × Conf × err</code><div class="actnote">Inercia, freno exponencial, zona muerta, fatiga y temblor vienen del aprendizaje V122–V150.</div></div>
-          <div class="formula"><h3>Δω actual</h3><div style="font-size:28px;color:#69e35f;text-align:center" id="actDW">+0.0000</div></div>
+          <div class="formula"><h3>Δω Impulso de Reorientación Actual</h3><div style="font-size:28px;color:#69e35f;text-align:center" id="actDW">+0.0000</div></div>
         </div>
+      </div>
+      <!-- VOZ: controles de audio movidos aquí (zona central, bajo las cabezas) -->
+      <div class="panel" style="margin-top:12px">
+        <h2>🔊 Voz del organismo · escuchar / grabar</h2>
+        <div class="mut" style="font-size:10px;margin-bottom:6px">Reproduce la voz por las <b>bocinas del Mac</b> (vía navegador → funciona igual en nativo y en Docker). Grabar descarga un .wav de lo que dijo.</div>
+        <div class="row">
+          <button class="sm" id="bEscuchar" style="flex:1" onclick="_vozEscuchar()">🔊 Escuchar voz</button>
+          <button class="sm" id="bGrabar" onclick="_vozGrabar()">⏺ Grabar</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:10.5px;margin-top:6px">
+          <span style="width:104px;color:#9fb1c6">🔊 Volumen escucha</span>
+          <input type="range" id="vozMon" min="0" max="25" step="0.5" value="8" style="flex:1">
+          <span id="vozMonVal" style="width:40px;text-align:right;color:#8aa0b8">8×</span>
+        </div>
+        <div class="mut" style="font-size:9px;margin-top:2px">Sólo amplifica TU escucha (no cambia la voz real ni lo que el par oye). La voz es señal costosa: en soledad suena bajo.</div>
+        <div id="vozStat" class="mut" style="font-size:9.5px;margin-top:4px">en silencio</div>
+        <div style="margin-top:10px;border-top:1px solid #243246;padding-top:8px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:10.5px">
+            <span style="width:104px;color:#9fb1c6">🗣 Volumen de voz</span>
+            <input type="range" id="vozVol" min="0" max="10" step="0.5" value="4" style="flex:1">
+            <span id="vozVolVal" style="width:40px;text-align:right;color:#8aa0b8">4×</span>
+          </div>
+          <div class="mut" style="font-size:9px;margin-top:2px">Ganancia de salida de la voz (sube el nivel REAL — mira subir el medidor 📢 voz propia). Afecta lo que el par oye.</div>
+        </div>
+      </div>
+      <!-- ALTRUISMO: gráfico dinámico de la díada movido aquí (zona central, bajo los controles de voz) -->
+      <div class="panel" style="margin-top:12px">
+        <h2>🤝 Altruismo / Cooperación (díada) · en vivo</h2>
+        <div class="mut" style="font-size:10px;margin-bottom:4px">Gobernanza del locus O-N22 entre A↔B: atractor, β_crit, disposición, Ψ_alma, costo de desacople.</div>
+        <div id="altru" class="mut">esperando datos…</div>
       </div>
       <div class="actnote" style="margin-top:10px;color:#8aa0b8">Monitor liviano E010: cabeza 3D real con Three.js; los históricos del actuador se siguen guardando completos en el CSV, pero no se grafican aquí para evitar congelamientos del navegador.</div>`;}
     else if(v.niveles){d.innerHTML=`<h2>${v.tit}</h2><div id="vu" class="mut">cargando niveles…</div>`;}
@@ -2361,6 +2436,7 @@ $('bSesion').onclick=()=>{fetch('/sesion').then(r=>r.text()).then(txt=>{if(!txt|
 function recibir(row){
   nrec++; buf.t.push(row.t); cols.forEach(c=>{(buf[c]=buf[c]||[]).push(row[c]);});
   detectarEventos(row); updateActuador(row); updateActCharts(); renderAltruismo(row);
+  window._ultimaFila=row; if(window.renderCajas)renderCajas(row);   // OBSERVATORIO de organelos (cajas)
   // actualizar solo la ventana visible (rendimiento)
   const v=VENTANAS.find(x=>x.id===tabActual);
   if(v&&!v.eventos&&charts[v.id]){const ch=charts[v.id];ch.data.labels=buf.t;
@@ -2581,6 +2657,120 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
   }
 })();
 ev('Laboratorio listo. Elige entrada y pulsa Iniciar.');
+
+// ============================ OBSERVATORIO DE ORGANELOS (cajas) ============================
+// Membrana de observación: cajas declarativas por organelo que el usuario agrega/mueve/redimensiona.
+// La disposición se guarda en localStorage POR ORGANISMO (no en el genoma ni la biografía). Aditivo:
+// si no hay cajas guardadas, el tablero queda vacío y la página se ve igual que siempre.
+(function(){
+  const cjN=(x,d=2)=>{x=Number(x);return isFinite(x)?x.toFixed(d):'—';};
+  const cjRow=(k,v)=>`<div class="obsrow"><span class="obsk">${k}</span><span class="obsv">${v}</span></div>`;
+  const cjGauge=(v,col='#5fd38a')=>{v=Math.max(0,Math.min(1,Number(v)||0));return `<div class="obsgauge"><i style="width:${(v*100).toFixed(0)}%;background:${col}"></i></div>`;};
+  const cjBip=(v,col='#6db6ff')=>{v=Math.max(-1,Math.min(1,Number(v)||0));const w=Math.abs(v)*50,left=v>=0?50:50-w;return `<div class="obsgauge"><i style="margin-left:${left}%;width:${w}%;background:${col}"></i></div>`;};
+  const cjSpark=(arr,col='#6db6ff')=>{arr=(arr||[]).map(Number).filter(isFinite).slice(-60);if(arr.length<2)return '';const mn=Math.min(...arr),mx=Math.max(...arr),rg=(mx-mn)||1;const pts=arr.map((y,i)=>`${(i/(arr.length-1)*100).toFixed(1)},${(17-(y-mn)/rg*15).toFixed(1)}`).join(' ');return `<svg viewBox="0 0 100 18" preserveAspectRatio="none" style="width:100%;height:22px;margin:1px 0 3px"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.3"/></svg>`;};
+  const si=(x)=>Number(x)>=0.5?'sí':'no';
+
+  // --- REGISTRO de cajas: agregar un organelo nuevo = una entrada aquí ---
+  const CAJAS=[
+   {id:'metabolismo',tit:'⚡ Metabolismo',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('energía',cjN(r.met_energia))+cjGauge(r.met_energia,'#e8b86d')+cjSpark(bf.met_energia,'#e8b86d')
+    +cjRow('hambre',cjN(r.met_hambre))+cjGauge(r.met_hambre,'#ff8c6b')
+    +cjRow('saciedad',cjN(r.met_saciedad))+cjGauge(r.met_saciedad,'#5fd38a')
+    +cjRow('nutrición',cjN(r.met_nutricion))+cjRow('balance',cjN(r.met_balance,3))+cjRow('clase',r.met_clase??'—');}},
+   {id:'memoria',tit:'🧠 Memoria',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('familiaridad',cjN(r.mem_familiaridad))+cjGauge(r.mem_familiaridad,'#6db6ff')
+    +cjRow('novedad',cjN(r.mem_novedad))+cjGauge(r.mem_novedad,'#b58cff')
+    +cjRow('recall',cjN(r.mem_recall))+cjGauge(r.mem_recall,'#5fd38a')+cjRow('tipo recall',r.mem_recall_tipo??'—')
+    +cjRow('episodios',cjN(r.mem_episodios_n,0))+cjRow('confianza rel.',cjN(r.mem_relacional_confianza))+cjGauge(r.mem_relacional_confianza,'#e8b86d');}},
+   {id:'alteridad',tit:'🗣 Alteridad / Intención',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('intención com.',cjN(r.alt_intencion_comunicativa,3))+cjGauge(r.alt_intencion_comunicativa,'#64f0c8')+cjSpark(bf.alt_intencion_comunicativa,'#64f0c8')
+    +cjRow('efecto → otro',cjN(r.alt_efecto_sobre_otro,3))+cjGauge(r.alt_efecto_sobre_otro,'#6db6ff')
+    +cjRow('efecto → mí',cjN(r.alt_efecto_sobre_mi,3))+cjGauge(Math.max(0,Number(r.alt_efecto_sobre_mi)),'#5fd38a')
+    +cjRow('otro presente',si(r.alt_otro_presente))+cjRow('patrón',r.alt_patron_emitido??'—');}},
+   {id:'balbuceo',tit:'🎙 Libertad expresiva (balbuceo)',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('frecuencia',cjN(r.g_freq))+cjBip(r.g_freq,'#e8b86d')
+    +cjRow('intensidad',cjN(r.g_intensidad))+cjBip(r.g_intensidad,'#6db6ff')
+    +cjRow('pausa',cjN(r.g_pausa))+cjGauge(r.g_pausa,'#b58cff')
+    +cjRow('repetición',cjN(r.g_repeticion))+cjGauge(r.g_repeticion,'#ff8c6b')
+    +cjRow('gesto',r.g_bucket??'—')+cjSpark(bf.g_freq,'#e8b86d');}},
+   {id:'salud',tit:'❤️ Salud del cierre',w:4,h:3,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('OI',cjN(r.OI,3))+cjGauge(r.OI,'#5fd38a')+cjSpark(bf.OI,'#5fd38a')
+    +cjRow('Λ_Cos',cjN(r.Lambda_Cos,3))+cjRow('κ invariantes',si(r.invariantes_ok))+cjRow('A_env',cjN(r.A_sys_env,3));}},
+   {id:'campo',tit:'🌀 Campo Φ / Soma',w:4,h:3,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('Ω',cjN(r.Omega,3))+cjSpark(bf.Omega,'#e8b86d')
+    +cjRow('gradiente (sorpresa)',cjN(r.gradiente,3))+cjSpark(bf.gradiente,'#5fd38a')
+    +cjRow('ω_A_L',cjN(r.omega_A_L,3))+cjRow('ω_A_R',cjN(r.omega_A_R,3));}},
+   {id:'homeostasis',tit:'⚖️ Homeostasis',w:4,h:3,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('H',cjN(r.H_homeostasis,3))+cjGauge(r.H_homeostasis,'#5fd38a')+cjSpark(bf.H_homeostasis,'#5fd38a')
+    +cjRow('x interna',cjN(r.x_interna,3))+cjRow('en rango',si(r.en_rango));}},
+   {id:'voz',tit:'🔊 Voz / Comunicación',w:4,h:3,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('emite',r.voz_emitida??'—')+cjRow('arousal',cjN(r.voz_arousal))+cjGauge(r.voz_arousal,'#ff8c6b')
+    +cjRow('valencia',cjN(r.voz_valence))+cjBip(r.voz_valence,'#6db6ff')+cjRow('disp. cooperar',cjN(r.disposicion_cooperar));}},
+   {id:'agencia',tit:'🧭 Alteridad / Agencia',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('otro presente',(Number(r.alt_otro_presente)>=0.5?'sí':'no'))
+    +cjRow('intención (presencia)',cjN(r.alt_intencion_comunicativa,3))+cjGauge(r.alt_intencion_comunicativa,'#6db6ff')+cjSpark(bf.alt_intencion_comunicativa,'#6db6ff')
+    +cjRow('efecto → otro',cjN(r.alt_efecto_sobre_otro,3))
+    +cjRow('contingencia social',cjN(r.alt_contingencia_social,3))+cjGauge(Math.min(1,(+r.alt_contingencia_social||0)*8),'#64f0c8')+cjSpark(bf.alt_contingencia_social,'#64f0c8')
+    +cjRow('AGENCIA del otro',cjN(r.alt_agencia_otro,3))+cjGauge(r.alt_agencia_otro,'#5fd38a')
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">presencia sobrevive a shuffle · agencia debe COLAPSAR (≈0 hoy)</div>`;}},
+   {id:'vozeco',tit:'🌱 Valor ecológico de la voz',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('valor ecológico',cjN(r.voz_otro_valor_ecologico,3))+cjGauge(Math.min(1,(+r.voz_otro_valor_ecologico||0)*8),'#8ef0c0')+cjSpark(bf.voz_otro_valor_ecologico,'#8ef0c0')
+    +cjRow('confianza ecológica',cjN(r.voz_otro_confianza_ecologica,3))+cjGauge(r.voz_otro_confianza_ecologica,'#e8b86d')
+    +cjRow('efecto real (persist.)',cjN(r.voz_otro_efecto_real,3))+cjBip(Math.max(-1,Math.min(1,(+r.voz_otro_efecto_real||0)*4)),'#6db6ff')
+    +cjRow('modulación absorción',cjN(r.voz_otro_modulacion_aplicada,3))
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">¿la voz del otro IMPORTA para persistir? cae bajo NULL/SHUFFLED</div>`;}},
+   {id:'expectativa',tit:'🔭 Expectativa',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('expectativa',cjN(r.expectativa,3))+cjGauge(Math.min(1,(+r.expectativa||0)*8),'#b58cff')+cjSpark(bf.expectativa,'#b58cff')
+    +cjRow('confianza',cjN(r.expectativa_confianza,3))+cjGauge(r.expectativa_confianza,'#6db6ff')
+    +cjRow('exploración (salida)',cjN(r.expectativa_exploracion,3))+cjGauge(Math.min(1,(+r.expectativa_exploracion||0)*5),'#5fd38a')
+    +cjRow('confirmaciones',cjN(r.expectativa_confirmaciones,0))+cjRow('falsaciones',cjN(r.expectativa_falsaciones,0))
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">¿vale la pena seguir explorando tras la voz? voz→expectativa→exploración</div>`;}},
+  ];
+
+  const ORG_ID=(document.querySelector('h1')?.textContent||'').includes('Organismo B')?'ANIMA_B':'ANIMA_A';
+  const LSKEY='obs_v1_'+ORG_ID;
+  let gs=null, activas=new Map(), editando=false, paletaAbierta=false, cargando=false;
+
+  function renderUna(c){const b=document.getElementById('obsbody_'+c.id);if(b&&window._ultimaFila)c.render(b,window._ultimaFila,buf);}
+  window.renderCajas=function(row){activas.forEach(c=>{const b=document.getElementById('obsbody_'+c.id);if(b)c.render(b,row,buf);});};
+
+  function guardar(){if(cargando)return;try{localStorage.setItem(LSKEY,JSON.stringify(gs.save(false)));}catch(e){}}
+  function chequearVacio(){const e=document.getElementById('obsVacio');if(e)e.style.display=activas.size?'none':'';}
+  function refrescarCatalogo(){const cat=document.getElementById('obsCatalogo');if(!cat)return;cat.innerHTML='';
+    CAJAS.forEach(c=>{const chip=document.createElement('span');chip.className='obschip'+(activas.has(c.id)?' puesta':'');chip.textContent=c.tit;
+      if(!activas.has(c.id))chip.onclick=()=>addCaja(c.id);cat.appendChild(chip);});}
+
+  function addCaja(cid,pos){
+    if(activas.has(cid))return;
+    const c=CAJAS.find(x=>x.id===cid);if(!c)return;
+    const content=`<div class="obscaja"><h3>${c.tit}<span class="obsdel" data-cid="${cid}" title="quitar">✕</span></h3><div class="obsbody" id="obsbody_${cid}">—</div></div>`;
+    gs.addWidget({id:cid,content,w:(pos&&pos.w)||c.w,h:(pos&&pos.h)||c.h,x:pos&&pos.x,y:pos&&pos.y});
+    activas.set(cid,c);renderUna(c);refrescarCatalogo();chequearVacio();guardar();
+  }
+
+  function setEdit(on){editando=on;document.getElementById('obsZona').classList.toggle('editando',on);
+    if(gs)gs.setStatic(!on);
+    document.getElementById('obsAdd').style.display=on?'':'none';
+    document.getElementById('obsReset').style.display=on?'':'none';
+    document.getElementById('obsEdit').textContent=on?'✓ Listo':'✏️ Editar tablero';
+    if(!on){paletaAbierta=false;document.getElementById('obsPaleta').style.display='none';}}
+
+  function initObs(){
+    if(!window.GridStack){console.warn('Gridstack no disponible (¿sin internet?)');return;}
+    gs=GridStack.init({column:12,cellHeight:60,margin:6,float:true,staticGrid:true,handle:'.obscaja h3'},'#obsGrid');
+    gs.on('change',guardar);
+    document.getElementById('obsGrid').addEventListener('click',e=>{const d=e.target.closest('.obsdel');if(!d)return;
+      const cid=d.dataset.cid,item=d.closest('.grid-stack-item');if(item)gs.removeWidget(item);activas.delete(cid);refrescarCatalogo();chequearVacio();guardar();});
+    document.getElementById('obsEdit').onclick=()=>setEdit(!editando);
+    document.getElementById('obsAdd').onclick=()=>{paletaAbierta=!paletaAbierta;document.getElementById('obsPaleta').style.display=paletaAbierta?'':'none';};
+    document.getElementById('obsReset').onclick=()=>{if(!confirm('¿Vaciar el tablero y borrar la disposición guardada de este organismo?'))return;gs.removeAll();activas.clear();try{localStorage.removeItem(LSKEY);}catch(e){}refrescarCatalogo();chequearVacio();};
+    refrescarCatalogo();
+    cargando=true;let saved=null;try{saved=JSON.parse(localStorage.getItem(LSKEY)||'null');}catch(e){}
+    if(saved&&saved.length)saved.forEach(n=>addCaja(n.id,n));
+    cargando=false;chequearVacio();
+  }
+  if(document.readyState!=='loading')initObs();else document.addEventListener('DOMContentLoaded',initObs);
+})();
 </script></body></html>"""
 
 
@@ -2820,15 +3010,13 @@ import collections as _collections
 _PAR_BUFFER = _collections.deque(maxlen=64)   # historia de estados del par para el control SHUFFLED
 
 def _par_estado_control():
+    # PERCEPCIÓN del par. El control SHUFFLED ahora es ACÚSTICO (rompe el sonido que entra al soma, ver
+    # _control_acustico), así que aquí 'shuffled' percibe el estado REAL del otro: la agencia sólo cae si
+    # era el SONIDO el que la portaba. 'null' = no hay otro (ni sonido ni percepción).
     modo = os.environ.get("ANIMA_CONTROL", "real").strip().lower()
-    par = _par_estado_throttled()
     if modo == "null":
         return None
-    if par is not None:
-        _PAR_BUFFER.append(par)
-    if modo == "shuffled" and len(_PAR_BUFFER) >= 16:
-        return _PAR_BUFFER[0]   # estado de ~varios segundos atrás: rompe la causalidad emisión→respuesta
-    return par
+    return _par_estado_throttled()
 
 
 def _com_observar(fila, meta=None):
@@ -2882,6 +3070,31 @@ def _com_observar(fila, meta=None):
                     if _t in ("alteridad_refuerzo", "alteridad_contacto"):   # sólo HITOS (no inundar la bitácora)
                         RUN._log_evento(_t, _d, _x)
             ALTERIDAD.eventos.clear()
+    except Exception:
+        pass
+    # VALOR ECOLÓGICO DE LA VOZ DEL OTRO: ¿la voz del par (energía REALMENTE oída, post-control acústico)
+    # antecede mejora de mi persistencia? Aprende falsable y modula LEVEMENTE la absorción de la voz del par.
+    try:
+        _energia_voz_par = float(_COM_AUDIO_METER.get("rms", 0.0) or 0.0)
+        fila.update(VALOR_ECO_VOZ.observar(fila, energia_voz_otro=_energia_voz_par, dt=DT))
+        if VALOR_ECO_VOZ.eventos:
+            if RUN is not None:
+                for _t, _d, _x in VALOR_ECO_VOZ.eventos:
+                    if _t == "vozeco_util":     # sólo el hito: la voz del otro PRECEDIÓ mejora real
+                        RUN._log_evento(_t, _d, _x)
+            VALOR_ECO_VOZ.eventos.clear()
+        # EXPECTATIVA: ¿vale la pena seguir explorando tras esta firma del otro? Su salida (leve) refuerza la
+        # atención/absorción de la voz del par — "facilitar una segunda observación". Nunca orienta ni decide.
+        fila.update(EXPECTATIVA.observar(fila, energia_voz_otro=_energia_voz_par, dt=DT))
+        if EXPECTATIVA.eventos:
+            if RUN is not None:
+                for _t, _d, _x in EXPECTATIVA.eventos:
+                    if _t == "expectativa_confirma":
+                        RUN._log_evento(_t, _d, _x)
+            EXPECTATIVA.eventos.clear()
+        # absorción de la voz del par = valor ecológico × (1 + disposición a seguir observando). Ambos leves.
+        _mod_eco = float(fila.get("voz_otro_modulacion_aplicada", 1.0) or 1.0)
+        _VOZ_ECO_MOD["factor"] = _mod_eco * (1.0 + float(fila.get("expectativa_exploracion", 0.0) or 0.0))
     except Exception:
         pass
     if _HIST is not None:                      # BIOGRAFÍA: registra la fisiología (no bloqueante)

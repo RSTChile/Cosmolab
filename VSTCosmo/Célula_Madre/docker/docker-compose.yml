@@ -21,6 +21,7 @@ services:
       VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
       ANIMA_ESCUCHAR_PAR: "1"                   # nace OYENDO la voz del par (díada acoplada A↔B)
       ANIMA_OIDO_PAR: "R"                       # A (izquierda) oye al par por la DERECHA → mira hacia B
+      ANIMA_CONTROL: ${ANIMA_CONTROL:-real}     # control de falsación EN VIVO: real | null | shuffled
       VST_HISTORY_DIR: /history
       VST_HISTORY_ENABLE: "true"
       VST_HISTORY_FORMAT: csv
@@ -50,6 +51,7 @@ services:
       VST_SERVIDOR_PORT: "8766"
       ANIMA_ESCUCHAR_PAR: "1"
       ANIMA_OIDO_PAR: "L"
+      ANIMA_CONTROL: ${ANIMA_CONTROL:-real}     # control de falsación EN VIVO: real | null | shuffled
       VST_HISTORY_DIR: /history
       VST_HISTORY_ENABLE: "true"
       VST_HISTORY_FORMAT: csv

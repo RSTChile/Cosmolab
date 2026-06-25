@@ -32,6 +32,8 @@ COLS_ALT = [
     "alt_efecto_sobre_otro", "alt_efecto_sobre_mi", "alt_valor_emision", "alt_intencion_comunicativa",
     "alt_patron_emitido", "alt_patron_repetido", "alt_confianza_relacional",
     "alt_contacto_presencia", "alt_contacto_recuperado", "alt_turno_detectado",
+    # AGENCIA del otro (reconocimiento de SUJETO, O-N3.4): separa presencia de causalidad.
+    "alt_efecto_basal", "alt_contingencia_social", "alt_agencia_otro",
     # LIBERTAD EXPRESIVA (balbuceo): gesto vocal explorado (parámetros ACÚSTICOS, no etiquetas)
     "g_freq", "g_intensidad", "g_pausa", "g_repeticion", "g_bucket",
 ]
@@ -66,6 +68,15 @@ class OrganeloAlteridad:
         self.efecto_otro_ema = 0.0
         self.efecto_mi_ema = 0.0
         self.error_pred_ema = 0.0
+        # LÍNEA-BASE DE CONTINGENCIA (reconocimiento del otro como SUJETO, no sólo presencia):
+        # baseline = cuánto cambia el otro POR SU CUENTA, en ventanas SIN emisión mía. La contingencia
+        # social = cuánto MÁS cambia el otro tras mi emisión que ese basal. La agencia = qué fracción del
+        # cambio del otro depende de MI acto (no de compartir ambiente). Anti-confound: presencia ≠ agencia.
+        self.otro_hist = deque(maxlen=512)   # (t, resumen_otro) para medir el cambio espontáneo del otro
+        self.ult_emis_t = -1e9               # t de la última emisión (para excluir ventanas con emisión del basal)
+        self.baseline_ema = 0.0              # cambio del otro JUSTO ANTES de emitir (línea-base pre-emisión)
+        self.contingencia = 0.0              # exceso de cambio atribuible a mi acto (mediaPost − mediaPre)
+        self.agencia = 0.0                   # fracción del cambio del otro que depende de mí (0..1)
         self._P_prev = None
         self._presente_prev = 1.0
         self._llamando = None             # (t, P) de una emisión hecha con el otro AUSENTE (un "¿sigues ahí?")
@@ -108,6 +119,12 @@ class OrganeloAlteridad:
     def _mio(fila):
         return {"OI": _num(fila.get("OI")), "nec": _num(fila.get("necesidad")),
                 "A": _num(fila.get("A_sys_env")), "ener": _num(fila.get("energia"))}
+
+    @staticmethod
+    def _cambio_otro(o0, o1):
+        """Magnitud del cambio del otro entre dos instantes (misma métrica que efecto_sobre_otro)."""
+        return min(1.0, abs(o1["OI"] - o0["OI"]) + abs(o1["nec"] - o0["nec"])
+                   + abs(o1["orient"] - o0["orient"]) / 90.0 + 0.25 * (1.0 if o1["voz"] != o0["voz"] else 0.0))
 
     # --------------------------------------------------------- LIBERTAD EXPRESIVA (balbuceo)
     @staticmethod
@@ -166,13 +183,20 @@ class OrganeloAlteridad:
         # ¿está el otro AHÍ? (vivo + da señal: OI o voz)
         presente = 1.0 if (otro_r["vivo"] and (otro_r["OI"] > 1e-4 or (otro_r["voz"] not in (None, "-", "")))) else 0.0
         conf = _num(fila.get("mem_relacional_confianza"))
+        self.otro_hist.append((t, otro_r))    # historia del otro (para la línea-base de contingencia)
 
         # un TURNO/acto emisor = cuando CAMBIA el patrón emitido (no cada paso)
         emis = (P != self._P_prev) and P not in (None, "-", "")
         contacto_presencia = 0.0
         if emis:
             mio0 = self._mio(fila)
-            self.pendientes.append({"t": t, "P": P, "ctx": ctx, "otro0": otro_r, "mio0": mio0, "pres0": presente})
+            # LÍNEA-BASE DE CONTINGENCIA (pre/post): cuánto cambió el otro en la ventana JUSTO ANTES de
+            # emitir. Si tras emitir cambia MÁS que antes → es agencia mía; si igual → ambiente compartido.
+            o_pre = next((oo for (tt, oo) in self.otro_hist if t - tt <= self.ventana), otro_r)
+            efecto_pre = self._cambio_otro(o_pre, otro_r)
+            self.pendientes.append({"t": t, "P": P, "ctx": ctx, "otro0": otro_r, "mio0": mio0,
+                                    "pres0": presente, "efecto_pre": efecto_pre})
+            self.ult_emis_t = t
             self.n_emis[(P, ctx)] = self.n_emis.get((P, ctx), 0) + 1
             self.eventos.append(("alteridad_emision", f"emite {P}", {"ctx": ctx, "presente": presente}))
             # ¿es una LLAMADA? (emite cuando el otro está ausente o la confianza cae) = "¿sigues ahí?"
@@ -208,14 +232,22 @@ class OrganeloAlteridad:
             m0 = ev["mio0"]
             efecto_mi = (mio_now["OI"] - m0["OI"]) + (mio_now["A"] - m0["A"]) - (mio_now["nec"] - m0["nec"])
 
+            # CONTINGENCIA (medida NUEVA, diagnóstica — NO altera la conducta): cuánto cambió el otro tras
+            # emitir POR ENCIMA de lo que ya cambiaba JUSTO ANTES (línea-base pre-emisión). Separa AGENCIA
+            # (me responde a MÍ) de PRESENCIA (cambiaba igual). intención/valor SIGUEN siendo nivel-presencia
+            # (sobreviven a shuffle = correcto); la AGENCIA es la señal que debe COLAPSAR bajo shuffle.
+            efecto_pre = ev.get("efecto_pre", 0.0)
+            # PROMEDIAR pre y post por separado y rectificar el PROMEDIO (no cada emisión): si se rectifica
+            # por emisión, el ruido decorrelacionado suma siempre positivo y la agencia no colapsa nunca.
+            self.baseline_ema = (1 - self.ema) * self.baseline_ema + self.ema * efecto_pre
             P_e = ev["P"]; k = (P_e, ev["ctx"])
             pred = self.modelo_otro.get(P_e, 0.0)
             self.error_pred_ema = (1 - self.ema) * self.error_pred_ema + self.ema * abs(efecto_otro - pred)
             self.modelo_otro[P_e] = (1 - self.lr) * pred + self.lr * efecto_otro     # modelo del otro: efecto esperado de P
-            # VALOR de emisión: sólo cuenta el beneficio SI el otro respondió (anti-Shannon: por consecuencia)
+            # VALOR de emisión: cuenta el beneficio SI el otro respondió (anti-Shannon: por consecuencia)
             valor_obs = efecto_mi if efecto_otro > 0.05 else 0.0
             self.valor[k] = (1 - self.lr) * self.valor.get(k, 0.0) + self.lr * valor_obs
-            # INTENCIÓN: el otro respondió Y me benefició (no basta expresar)
+            # INTENCIÓN (nivel-presencia): el otro respondió Y me benefició
             contrib = (min(1.0, efecto_otro) if efecto_otro > 0.05 else 0.0) * (1.0 if efecto_mi > 0 else 0.0)
             self.intencion = (1 - self.ema) * self.intencion + self.ema * contrib
             self.efecto_otro_ema = (1 - self.ema) * self.efecto_otro_ema + self.ema * efecto_otro
@@ -227,8 +259,16 @@ class OrganeloAlteridad:
             else:
                 self.eventos.append(("alteridad_respuesta", f"{P_e}: movió al otro", {"efecto": round(efecto_otro, 3)}))
 
+        # AGENCIA del otro: exceso del cambio POST sobre el PRE (promedios), no compartir ambiente.
+        # max(0, mediaPost − mediaPre): bajo decorrelación pre≈post → contingencia→0 (colapsa, como debe).
+        self.contingencia = max(0.0, self.efecto_otro_ema - self.baseline_ema)
+        self.agencia = max(0.0, min(1.0, self.contingencia / (self.efecto_otro_ema + 1e-6)))
+
         return {
             "alt_otro_presente": round(presente, 3),
+            "alt_efecto_basal": round(self.baseline_ema, 4),
+            "alt_contingencia_social": round(self.contingencia, 4),
+            "alt_agencia_otro": round(self.agencia, 4),
             "alt_modelo_otro": round(self.modelo_otro.get(P, 0.0), 4),
             "alt_prediccion_respuesta": round(self.modelo_otro.get(P, 0.0), 4),
             "alt_error_prediccion": round(self.error_pred_ema, 4),
