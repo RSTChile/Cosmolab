@@ -2787,17 +2787,32 @@ def _nacer(cfg, toggles=None, sim_s=6):
 # 'demo:silencio' = sigue vivo (metabolismo, memoria, dinámica endógena del campo) sin estímulo externo.
 ANIMA_AUTOSTART = os.environ.get("ANIMA_AUTOSTART", "0").lower() in ("1", "true", "yes", "on")
 ANIMA_FUENTE_DEFECTO = os.environ.get("ANIMA_FUENTE_DEFECTO", "demo:silencio")
+# ACOPLE DE LA DÍADA: que el organismo nazca ESCUCHANDO la voz del par (oído de relación = L),
+# y el mundo en el otro (R). Así A↔B se oyen entre sí 24/7 → la voz puede subir SOLA con la
+# cooperación (señal costosa), y es el sustrato para que emerja comunicación.
+ANIMA_ESCUCHAR_PAR = os.environ.get("ANIMA_ESCUCHAR_PAR", "0").lower() in ("1", "true", "yes", "on")
+ANIMA_VOZ_PAR_MODO = os.environ.get("ANIMA_VOZ_PAR_MODO", "FULL_STATE_NOTES")
 
 
 def _autoarranque_vida():
     """Si ANIMA_AUTOSTART, el organismo NACE y vive en continuo al arrancar el servidor (no espera
-    a que nadie pulse 'start'). Es lo que lo vuelve un organismo-servidor 24/7, no una app."""
+    a que nadie pulse 'start'). Es lo que lo vuelve un organismo-servidor 24/7, no una app.
+    Si ANIMA_ESCUCHAR_PAR, nace ACOPLADO: oye la voz del par en el oído de relación (L)."""
     if not ANIMA_AUTOSTART:
         return
-    cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
-           "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
-    _nacer(cfg, {}, 6)
-    print(f"  AUTOARRANQUE: el organismo nace y vive en CONTINUO · en soledad percibe '{ANIMA_FUENTE_DEFECTO}'")
+    if ANIMA_ESCUCHAR_PAR and COM_OK and COMUNICACION_PEER_URL:
+        sep = "&" if "?" in COMUNICACION_PEER_URL else "?"
+        url = f"{COMUNICACION_PEER_URL}{sep}modo={ANIMA_VOZ_PAR_MODO}&gain={COMUNICACION_VOICE_GAIN}"
+        izq = {"tipo": "comunicacion", "url": url, "modo": ANIMA_VOZ_PAR_MODO, "nombre": "voz del par"}
+        cfg = {"left_src": izq, "right_src": {"tipo": "demo", "spec": "demo:silencio"},
+               "binaural": True, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+        _nacer(cfg, {}, 6)
+        print(f"  AUTOARRANQUE ACOPLADO: nace OYENDO la voz del par ({COMUNICACION_PEER_URL}) en el oído de relación (L)")
+    else:
+        cfg = {"left_src": {"tipo": "demo", "spec": ANIMA_FUENTE_DEFECTO}, "right_src": None,
+               "binaural": False, "segundos": 2, "continuo": True, "criterio_duracion": "min"}
+        _nacer(cfg, {}, 6)
+        print(f"  AUTOARRANQUE: el organismo nace y vive en CONTINUO · en soledad percibe '{ANIMA_FUENTE_DEFECTO}'")
 
 
 def main():

@@ -19,6 +19,7 @@ services:
       VST_COMUNICACION_PEER: http://anima-b:7799/comunicacion/bloque.wav
       VST_SERVIDOR_HOST: host.docker.internal   # alcanza el AudioServer (Rødecaster) NATIVO del Mac
       VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
+      ANIMA_ESCUCHAR_PAR: "1"                   # nace OYENDO la voz del par (díada acoplada A↔B)
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
       - ../../audio_binaural:/app/audio_binaural:ro   # los .wav (Big Bang/Blue Monday) dentro del contenedor
@@ -37,6 +38,7 @@ services:
       VST_COMUNICACION_PEER: http://anima-a:7788/comunicacion/bloque.wav
       VST_SERVIDOR_HOST: host.docker.internal
       VST_SERVIDOR_PORT: "8766"
+      ANIMA_ESCUCHAR_PAR: "1"
     volumes:
       - anima_b_data:/data
       - ../../audio_binaural:/app/audio_binaural:ro
