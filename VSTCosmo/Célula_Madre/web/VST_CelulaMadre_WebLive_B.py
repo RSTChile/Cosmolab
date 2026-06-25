@@ -2427,19 +2427,23 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
 
 // ---- ESCUCHAR / GRABAR la voz del organismo (Web Audio → bocinas del Mac; graba a .wav) ----
 (function(){
-  let ac=null, monGain=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000;
+  let ac=null, monGain=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000, nblk=0;
   const SEG=1.0;
   async function tick(){
     if(!playing) return;
+    const st=$('vozStat');
     try{
       const ab0=await fetch('/voz?seg='+SEG+'&modo=FULL_STATE_NOTES').then(r=>r.arrayBuffer());
       const ab=await ac.decodeAudioData(ab0.slice(0));
       const s=ac.createBufferSource(); s.buffer=ab; s.connect(monGain);   // → GainNode de monitoreo → bocinas
-      const t=Math.max(ac.currentTime+0.02, nextT); s.start(t); nextT=t+ab.duration;
-      if(rec){recSR=ab.sampleRate; recBufs.push(ab.getChannelData(0).slice());
+      const t=Math.max(ac.currentTime+0.02, nextT); s.start(t); nextT=t+ab.duration; nblk++;
+      const d0=ab.getChannelData(0); let sm=0,nn=0; for(let i=0;i<d0.length;i+=64){sm+=d0[i]*d0[i];nn++;}
+      const rms=Math.sqrt(sm/Math.max(1,nn));
+      if(rec){recSR=ab.sampleRate; recBufs.push(d0.slice());
         const segs=recBufs.reduce((a,b)=>a+b.length,0)/recSR;
-        const st=$('vozStat'); if(st) st.textContent='⏺ grabando · '+segs.toFixed(1)+'s';}
-    }catch(e){}
+        if(st) st.textContent='⏺ grabando · '+segs.toFixed(1)+'s · señal voz '+rms.toFixed(3);}
+      else if(st) st.textContent='🔊 reproduciendo · '+nblk+' bloques · señal voz rms '+rms.toFixed(3)+' · vol '+(monGain?monGain.gain.value:8)+'× · estado AudioContext: '+ac.state;
+    }catch(e){ if(st) st.textContent='⚠ error de audio: '+((e&&e.message)||e); }
     timer=setTimeout(tick, SEG*1000*0.9);
   }
   window._vozEscuchar=function(){
@@ -2447,8 +2451,8 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
       if(!rec){const st=$('vozStat'); if(st) st.textContent='en silencio';} return;}
     ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
     if(!monGain){monGain=ac.createGain(); monGain.gain.value=+(($('vozMon')||{}).value||8); monGain.connect(ac.destination);}
-    playing=true; nextT=ac.currentTime; $('bEscuchar').textContent='⏸ Detener';
-    const st=$('vozStat'); if(st&&!rec) st.textContent='🔊 sonando por las bocinas'; tick();
+    playing=true; nblk=0; nextT=ac.currentTime; $('bEscuchar').textContent='⏸ Detener';
+    const st=$('vozStat'); if(st&&!rec) st.textContent='conectando…'; tick();
   };
   // volumen de escucha (sólo monitoreo, no toca la voz real)
   {const v=$('vozMon'); if(v) v.addEventListener('input',()=>{$('vozMonVal').textContent=(+v.value).toFixed(0)+'×'; if(monGain) monGain.gain.value=+v.value;});}
