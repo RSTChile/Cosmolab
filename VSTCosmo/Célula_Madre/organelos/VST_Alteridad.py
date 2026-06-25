@@ -23,15 +23,22 @@ QUIÉN SOY
 ================================================================================
 """
 from __future__ import annotations
-import math
+import os, math, hashlib
 from collections import deque
+import numpy as np
 
 COLS_ALT = [
     "alt_otro_presente", "alt_modelo_otro", "alt_prediccion_respuesta", "alt_error_prediccion",
     "alt_efecto_sobre_otro", "alt_efecto_sobre_mi", "alt_valor_emision", "alt_intencion_comunicativa",
     "alt_patron_emitido", "alt_patron_repetido", "alt_confianza_relacional",
     "alt_contacto_presencia", "alt_contacto_recuperado", "alt_turno_detectado",
+    # LIBERTAD EXPRESIVA (balbuceo): gesto vocal explorado (parámetros ACÚSTICOS, no etiquetas)
+    "g_freq", "g_intensidad", "g_pausa", "g_repeticion", "g_bucket",
 ]
+
+
+def _seed(s):
+    return int(hashlib.md5(str(s).encode()).hexdigest()[:8], 16)
 
 
 def _num(v, d=0.0):
@@ -65,6 +72,19 @@ class OrganeloAlteridad:
         self.contacto_recuperado = 0.0    # pulso cuando el otro vuelve tras una llamada
         self.eventos = []                 # bitácora a drenar por WebLive
 
+        # --- LIBERTAD EXPRESIVA (balbuceo) -------------------------------------------------
+        # La voz deja de ser estado→patrón FIJO y pasa a estado+exploración→patrón. El organismo
+        # explora pequeñas variaciones ACÚSTICAS espontáneas (NO elige etiquetas, NO hay diccionario).
+        # Espacio explorado = [frecuencia, intensidad, pausa, repetición], pequeño/continuo/reversible.
+        # El 'patrón' que el órgano aprende por consecuencias pasa a ser el GESTO (bucket acústico),
+        # no la etiqueta de afecto. Anti-Shannon: el significado, si emerge, será sólo de la historia.
+        self.libertad = os.environ.get("ANIMA_LIBERTAD_EXPRESIVA", "1") not in ("0", "false", "no", "off")
+        self.explora = _num(os.environ.get("ANIMA_BABBLING_EXPLORA", "0.10"), 0.10)   # magnitud del paso espontáneo
+        self.atraccion = _num(os.environ.get("ANIMA_BABBLING_ATRACCION", "0.05"), 0.05)  # leve tirón a gestos útiles
+        self._rng = np.random.RandomState(_seed(organismo_id))   # exploración espontánea, distinta por organismo (arbitrariedad)
+        self._gesto = np.zeros(4, dtype=float)   # gesto vocal actual (neutro = voz fisiológica pura)
+        self._P_gesto = "fisio"                  # firma del gesto actual (lo que el órgano aprende)
+
     # --------------------------------------------------------- helpers
     @staticmethod
     def _ctx(fila):
@@ -89,10 +109,58 @@ class OrganeloAlteridad:
         return {"OI": _num(fila.get("OI")), "nec": _num(fila.get("necesidad")),
                 "A": _num(fila.get("A_sys_env")), "ener": _num(fila.get("energia"))}
 
+    # --------------------------------------------------------- LIBERTAD EXPRESIVA (balbuceo)
+    @staticmethod
+    def _bucket(g):
+        """Firma GRUESA del gesto (buckets de 0.5) — el 'patrón' que se aprende por consecuencias."""
+        return "g%+d%+d%+d%+d" % tuple(int(round(float(x) * 2)) for x in g[:4])
+
+    @staticmethod
+    def _desbucket(b):
+        """Centro (vector) de un bucket de gesto: 'g+1-0+2-1' -> [0.5,0,1.0,-0.5]."""
+        try:
+            import re
+            nums = [int(x) for x in re.findall(r"[+-]\d+", str(b))]
+            return (np.array(nums[:4], dtype=float) / 2.0) if len(nums) >= 4 else np.zeros(4)
+        except Exception:
+            return np.zeros(4)
+
+    def _centro_mejor_gesto(self, ctx):
+        """Centro del gesto con MAYOR valor aprendido en este contexto (para el leve tirón). Neutro si no hay."""
+        mejores = [(k, v) for k, v in self.valor.items() if k[1] == ctx and v > 1e-4]
+        if not mejores:
+            return np.zeros(4)
+        bucket = max(mejores, key=lambda kv: kv[1])[0][0]
+        return self._desbucket(bucket)
+
+    def gesto_actual(self, fila: dict) -> dict:
+        """Explora una pequeña variación ACÚSTICA espontánea (balbuceo): random walk pequeño y reversible
+        + leve atracción al mejor gesto histórico de este contexto. NO elige etiquetas. Fija el patrón
+        (bucket acústico) que 'observar' aprenderá por consecuencias. La exploración domina; el tirón es
+        leve (no se acelera el aprendizaje ni se fija convención). Devuelve los parámetros físicos del gesto."""
+        if not self.libertad:
+            self._gesto = np.zeros(4); self._P_gesto = "fisio"
+            return {"g_freq": 0.0, "g_intensidad": 0.0, "g_pausa": 0.0, "g_repeticion": 0.0, "g_bucket": "fisio"}
+        ctx = self._ctx(fila)
+        nec = _num(fila.get("necesidad"))
+        bias = self._centro_mejor_gesto(ctx)
+        paso = self.explora * (1.0 + 0.5 * nec)            # explora un poco más con necesidad (como SEEKING)
+        self._gesto = self._gesto + paso * self._rng.randn(4) + self.atraccion * (bias - self._gesto)
+        self._gesto = np.clip(self._gesto, -1.0, 1.0)
+        self._gesto[2] = abs(self._gesto[2]); self._gesto[3] = abs(self._gesto[3])   # pausa, repetición ≥ 0
+        self._P_gesto = self._bucket(self._gesto)
+        return {"g_freq": round(float(self._gesto[0]), 3), "g_intensidad": round(float(self._gesto[1]), 3),
+                "g_pausa": round(float(self._gesto[2]), 3), "g_repeticion": round(float(self._gesto[3]), 3),
+                "g_bucket": self._P_gesto}
+
     # --------------------------------------------------------- ciclo
     def observar(self, fila: dict, otro: dict | None, dt: float = 0.1) -> dict:
         t = _num(fila.get("t"))
-        P = fila.get("voz_emitida", "-")
+        # el 'patrón' aprendido es el GESTO acústico (libertad expresiva) si está activo; si no, la etiqueta.
+        # Sólo cuenta como emisión cuando el organismo DE VERDAD vocaliza (no en silencio).
+        _voz = fila.get("voz_emitida", "-")
+        _vocaliza = _voz not in (None, "-", "")
+        P = (fila.get("g_bucket") or _voz) if _vocaliza else "-"
         ctx = self._ctx(fila)
         otro_r = self._resumen_otro(otro)
         # ¿está el otro AHÍ? (vivo + da señal: OI o voz)

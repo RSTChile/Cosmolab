@@ -190,6 +190,9 @@ class OrganoComunicacion:
         self._updated = 0.0
         self._historial: deque[list[tuple[str, float]]] = deque(maxlen=max(8, int(historial_max)))
         self._voces = self._cargar_voces()   # banco de voces R2-D2 reales (samples), por afecto
+        # LIBERTAD EXPRESIVA: gesto vocal explorado por el OrganeloAlteridad (parámetros ACÚSTICOS).
+        # Si es None → voz fisiológica pura (sin balbuceo). Lo fija WebLive cada paso desde ALTERIDAD.
+        self.gesto: dict | None = None
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -285,12 +288,43 @@ class OrganoComunicacion:
 
         raise AssertionError("modo no alcanzable")
 
+    def _aplicar_gesto(self, mono: np.ndarray) -> np.ndarray:
+        """LIBERTAD EXPRESIVA (balbuceo): aplica el gesto vocal explorado — variaciones ACÚSTICAS pequeñas
+        y reversibles, NO un significado: frecuencia/velocidad (resample), intensidad (ganancia), pausa
+        (silencio inicial) y repetición (pequeñas secuencias). El espacio explorado es físico, no léxico."""
+        g = self.gesto
+        if not g:
+            return mono
+        try:
+            mono = np.asarray(mono, dtype=np.float64)
+            # frecuencia/velocidad: resample suave (±~28%), tipo "tono más agudo/grave y rápido/lento"
+            fr = math.exp(0.25 * float(g.get("g_freq", 0.0)))
+            if abs(fr - 1.0) > 0.01 and mono.size > 4:
+                m = max(2, int(round(mono.size / fr)))
+                idx = np.clip((np.arange(m) * fr).astype(int), 0, mono.size - 1)
+                mono = mono[idx]
+            # intensidad: ganancia pequeña (el clip final acota)
+            mono = mono * (1.0 + 0.35 * float(g.get("g_intensidad", 0.0)))
+            # pausa: silencio inicial (hasta ~0.35 s) → cambia el ritmo de la vocalización
+            pa = int(self.sr * 0.35 * max(0.0, min(1.0, float(g.get("g_pausa", 0.0)))))
+            if pa:
+                mono = np.concatenate([np.zeros(pa, dtype=np.float64), mono])
+            # repetición: 0..2 repeticiones con pequeños silencios (pequeñas SECUENCIAS, no palabras)
+            rep = int(round(2.0 * max(0.0, min(1.0, float(g.get("g_repeticion", 0.0))))))
+            if rep > 0:
+                gap = np.zeros(int(self.sr * 0.08), dtype=np.float64)
+                mono = np.concatenate([mono] + [np.concatenate([gap, mono]) for _ in range(rep)])
+        except Exception:
+            return np.asarray(mono, dtype=np.float64)
+        return mono
+
     def wav_bytes(self, seg: float = 0.5, modo: str = "FULL_STATE", gain: float | None = None) -> bytes:
         audio = self.audio(seg=seg, modo=modo)
         audio = _aplicar_ganancia_salida(audio, self.voice_gain if gain is None else gain, self.voice_target_rms)
         # GANANCIA DE SALIDA del usuario (slider): sube la voz DE VERDAD, por encima del tope que la
         # gobernanza pone al target_rms. tanh = limitador suave (sin clip duro) para que llegue al rojo.
         mono = np.tanh(np.asarray(audio, dtype=np.float64) * max(0.0, float(self.voice_volumen))) * 0.97
+        mono = self._aplicar_gesto(mono)   # LIBERTAD EXPRESIVA: imprime el gesto explorado sobre la voz
         # ESTÉREO: la voz lleva la LATERALIDAD del organismo (paneo SUAVE por balance L/R de su estado).
         # Siempre claramente en AMBOS canales (atenuación máx 25%): centro = ambos llenos, no "sólo L".
         try:

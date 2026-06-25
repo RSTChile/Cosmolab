@@ -2811,6 +2811,26 @@ def _par_estado_throttled(intervalo=0.5):
     return _PAR_ESTADO["data"]
 
 
+# --- CONTROLES EXPERIMENTALES (siempre disponibles, para FALSAR el confound del ambiente compartido) ---
+#   real     : el organismo percibe al par tal cual (acoplamiento genuino).
+#   null     : el organismo NO percibe al par (otro=None) → si la intención cae, era acople real.
+#   shuffled : percibe un estado PASADO del par (des-correlacionado de su emisión actual) → rompe la
+#              relación temporal emisión→respuesta sin cortar el "ruido" del ambiente; control más estricto.
+import collections as _collections
+_PAR_BUFFER = _collections.deque(maxlen=64)   # historia de estados del par para el control SHUFFLED
+
+def _par_estado_control():
+    modo = os.environ.get("ANIMA_CONTROL", "real").strip().lower()
+    par = _par_estado_throttled()
+    if modo == "null":
+        return None
+    if par is not None:
+        _PAR_BUFFER.append(par)
+    if modo == "shuffled" and len(_PAR_BUFFER) >= 16:
+        return _PAR_BUFFER[0]   # estado de ~varios segundos atrás: rompe la causalidad emisión→respuesta
+    return par
+
+
 def _com_observar(fila, meta=None):
     # GOBERNANZA DE ALTRUISMO de la díada (VST_DiadaAltruismo): conduce el locus del genoma con la
     # fila propia + el estado del par; MEZCLA la disposición en la fila (para que el par la lea y
@@ -2842,9 +2862,20 @@ def _com_observar(fila, meta=None):
         except Exception:
             pass
     fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
-    # ALTERIDAD: ¿la emisión propia modifica al otro? (aprende por consecuencias; usa el estado del par)
+    # LIBERTAD EXPRESIVA (balbuceo): explora una pequeña variación ACÚSTICA espontánea de la voz y la
+    # imprime sobre la vocalización fisiológica. NO elige etiquetas: explora frecuencia/intensidad/pausa/
+    # repetición. Así el organismo PUEDE descubrir qué forma de vocalizar mueve al otro (precondición).
     try:
-        fila.update(ALTERIDAD.observar(fila, _par_estado_throttled(), dt=DT))
+        g = ALTERIDAD.gesto_actual(fila)
+        fila.update(g)
+        if ORGANO_COMUNICACION is not None:
+            ORGANO_COMUNICACION.gesto = {k: g.get(k) for k in ("g_freq", "g_intensidad", "g_pausa", "g_repeticion")}
+    except Exception:
+        pass
+    # ALTERIDAD: ¿la emisión propia modifica al otro? (aprende por consecuencias; usa el estado del par).
+    # CONTROL EXPERIMENTAL siempre disponible (ANIMA_CONTROL = real|null|shuffled): para falsar el confound.
+    try:
+        fila.update(ALTERIDAD.observar(fila, _par_estado_control(), dt=DT))
         if ALTERIDAD.eventos:
             if RUN is not None:
                 for _t, _d, _x in ALTERIDAD.eventos:
