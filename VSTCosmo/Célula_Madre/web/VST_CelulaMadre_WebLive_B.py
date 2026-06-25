@@ -1927,7 +1927,7 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
       </div>
       <div style="display:flex;align-items:center;gap:8px;font-size:10.5px;margin-top:6px">
         <span style="width:104px;color:#9fb1c6">🔊 Volumen escucha</span>
-        <input type="range" id="vozMon" min="1" max="25" step="0.5" value="8" style="flex:1">
+        <input type="range" id="vozMon" min="0" max="25" step="0.5" value="8" style="flex:1">
         <span id="vozMonVal" style="width:40px;text-align:right;color:#8aa0b8">8×</span>
       </div>
       <div class="mut" style="font-size:9px;margin-top:2px">Sólo amplifica TU escucha (no cambia la voz real ni lo que el par oye). La voz es señal costosa: en soledad suena bajo.</div>
@@ -2450,7 +2450,7 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
     if(playing){playing=false; clearTimeout(timer); $('bEscuchar').textContent='🔊 Escuchar voz';
       if(!rec){const st=$('vozStat'); if(st) st.textContent='en silencio';} return;}
     ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
-    if(!monGain){monGain=ac.createGain(); monGain.gain.value=+(($('vozMon')||{}).value||8); monGain.connect(ac.destination);}
+    if(!monGain){monGain=ac.createGain(); const _mv=$('vozMon'); monGain.gain.value=_mv?(+_mv.value):8; monGain.connect(ac.destination);}  // respeta 0× (silencio)
     playing=true; nblk=0; nextT=ac.currentTime; $('bEscuchar').textContent='⏸ Detener';
     const st=$('vozStat'); if(st&&!rec) st.textContent='conectando…'; tick();
   };
