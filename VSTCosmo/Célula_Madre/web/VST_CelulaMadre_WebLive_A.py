@@ -1925,6 +1925,12 @@ button.csv{border-color:var(--gold);color:var(--gold)}button.sm{padding:5px 8px;
         <button class="sm" id="bEscuchar" style="flex:1" onclick="_vozEscuchar()">🔊 Escuchar voz</button>
         <button class="sm" id="bGrabar" onclick="_vozGrabar()">⏺ Grabar</button>
       </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:10.5px;margin-top:6px">
+        <span style="width:104px;color:#9fb1c6">🔊 Volumen escucha</span>
+        <input type="range" id="vozMon" min="1" max="25" step="0.5" value="8" style="flex:1">
+        <span id="vozMonVal" style="width:40px;text-align:right;color:#8aa0b8">8×</span>
+      </div>
+      <div class="mut" style="font-size:9px;margin-top:2px">Sólo amplifica TU escucha (no cambia la voz real ni lo que el par oye). La voz es señal costosa: en soledad suena bajo.</div>
       <div id="vozStat" class="mut" style="font-size:9.5px;margin-top:4px">en silencio</div>
     </div>
 
@@ -2318,10 +2324,11 @@ function renderNiveles(d){
   const box=$('vu'); if(!box) return;
   if(!d.ok){box.innerHTML='<span class=warn>📡 '+(d.mensaje||'sin servidor')+'</span>'
     +'<div class=mut style="margin-top:4px">Para ver niveles, corre VST_AudioServer.py.</div>';return;}
-  const con=d.canales.filter(c=>c.rms>0.002).length;
-  let h='<div class=mut style="margin-bottom:6px">'+d.device+' · '+d.nch+' canales · '
+  const cs=(d.canales||[]).filter(c=>!/^canal \d+$/.test((c.nombre||'').trim()));  // oculta canales SIN nombre (#19/#20 vacíos)
+  const con=cs.filter(c=>c.rms>0.002).length;
+  let h='<div class=mut style="margin-bottom:6px">'+d.device+' · '+cs.length+' canales · '
        +'<span class=ok>'+con+' con señal</span> · en vivo</div>';
-  d.canales.forEach(c=>{
+  cs.forEach(c=>{
     const r=c.rms, on=r>0.002, w=Math.min(100,r*400), wp=Math.min(100,c.pico*400);
     const col=on?(r>0.05?'#5fd38a':'#e8b86d'):'#33414f';
     h+='<div style="display:flex;align-items:center;gap:8px;margin:2px 0;font-size:11px">'
@@ -2394,9 +2401,10 @@ function renderMaster(d){
 function renderLeds(d){
   const box=$('leds'); if(!box) return;
   if(!d.ok){box.innerHTML='<span class=warn>📡 sin servidor</span> <span class=mut style=font-size:9.5px>— corre VST_AudioServer.py</span>'+organismoRows(d);return;}
-  const con=d.canales.filter(c=>c.rms>0.002).length;
-  let h='<div class=mut style="font-size:9.5px;margin-bottom:4px"><span class=ok>'+con+'</span>/'+d.nch+' con señal</div>';
-  d.canales.forEach(c=>{const on=c.rms>0.002;
+  const cs=(d.canales||[]).filter(c=>!/^canal \d+$/.test((c.nombre||'').trim()));  // oculta canales SIN nombre (#19/#20 vacíos)
+  const con=cs.filter(c=>c.rms>0.002).length;
+  let h='<div class=mut style="font-size:9.5px;margin-bottom:4px"><span class=ok>'+con+'</span>/'+cs.length+' con señal</div>';
+  cs.forEach(c=>{const on=c.rms>0.002;
     h+='<div style="display:flex;align-items:center;gap:6px;margin:1px 0">'
       +'<span style="width:86px;font-size:9.5px;color:'+(on?'#dfe7f0':'#6b7d92')+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'
       +(on?'●':'○')+' '+c.nombre.replace('canal ','#')+'</span>'+ledStrip(c.rms,c.pico)+'</div>';});
@@ -2419,14 +2427,14 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
 
 // ---- ESCUCHAR / GRABAR la voz del organismo (Web Audio → bocinas del Mac; graba a .wav) ----
 (function(){
-  let ac=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000;
+  let ac=null, monGain=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000;
   const SEG=1.0;
   async function tick(){
     if(!playing) return;
     try{
       const ab0=await fetch('/voz?seg='+SEG+'&modo=FULL_STATE_NOTES').then(r=>r.arrayBuffer());
       const ab=await ac.decodeAudioData(ab0.slice(0));
-      const s=ac.createBufferSource(); s.buffer=ab; s.connect(ac.destination);
+      const s=ac.createBufferSource(); s.buffer=ab; s.connect(monGain);   // → GainNode de monitoreo → bocinas
       const t=Math.max(ac.currentTime+0.02, nextT); s.start(t); nextT=t+ab.duration;
       if(rec){recSR=ab.sampleRate; recBufs.push(ab.getChannelData(0).slice());
         const segs=recBufs.reduce((a,b)=>a+b.length,0)/recSR;
@@ -2438,9 +2446,12 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
     if(playing){playing=false; clearTimeout(timer); $('bEscuchar').textContent='🔊 Escuchar voz';
       if(!rec){const st=$('vozStat'); if(st) st.textContent='en silencio';} return;}
     ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
+    if(!monGain){monGain=ac.createGain(); monGain.gain.value=+(($('vozMon')||{}).value||8); monGain.connect(ac.destination);}
     playing=true; nextT=ac.currentTime; $('bEscuchar').textContent='⏸ Detener';
     const st=$('vozStat'); if(st&&!rec) st.textContent='🔊 sonando por las bocinas'; tick();
   };
+  // volumen de escucha (sólo monitoreo, no toca la voz real)
+  {const v=$('vozMon'); if(v) v.addEventListener('input',()=>{$('vozMonVal').textContent=(+v.value).toFixed(0)+'×'; if(monGain) monGain.gain.value=+v.value;});}
   window._vozGrabar=function(){
     if(rec){ rec=false; $('bGrabar').textContent='⏺ Grabar';
       if(recBufs.length) descargarWav(recBufs, recSR);
