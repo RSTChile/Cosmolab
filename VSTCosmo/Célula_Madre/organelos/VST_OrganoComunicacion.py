@@ -424,9 +424,22 @@ class OrganoComunicacion:
         "frustracion": "frustración", "negacion": "negación", "precaucion": "precaución",
         "satisfaccion": "satisfacción",
     }
+    # TÍTULOS FIELES AL AFECTO MEDIDO (override prioritario). Varios nombres de archivo sugerían un
+    # significado MUY específico (dolor, fatiga, hambre, negación…) que NO coincide con su afecto real:
+    # estas voces caen en el rincón de BAJA ACTIVACIÓN / valencia casi neutra. Como el rótulo es sólo una
+    # etiqueta para el humano (el organismo elige por afecto, no por el nombre), aquí se renombran a una
+    # familia de REPOSO/CALMA fiel a lo medido: las levemente "pesadas" (val<0) → sopor/letargo/modorra…,
+    # las levemente plácidas (val>0) → serenidad/placidez/sosiego…, las neutras → reposo/descanso/quietud.
+    TITULOS_FIELES = {
+        "dolor": "reposo", "confusion": "descanso", "fatiga": "sopor", "insistencia": "letargo",
+        "hambre": "quietud", "respuesta": "languidez", "compania": "serenidad", "comprension": "placidez",
+        "precaucion": "sosiego", "atencion": "calma", "negacion": "modorra", "llamada": "remanso",
+    }
 
     def _titulo(self, label: str) -> str:
         """Título legible en castellano para una voz (provisional, sólo para que el humano la identifique)."""
+        if label in self.TITULOS_FIELES:        # override fiel al afecto (corrige nombres engañosos)
+            return self.TITULOS_FIELES[label]
         if label in self.NOMBRE_ES:
             return self.NOMBRE_ES[label]
         if label in self.TITULOS_ES:
