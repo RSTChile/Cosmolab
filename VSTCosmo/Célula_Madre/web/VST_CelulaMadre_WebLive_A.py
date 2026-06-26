@@ -38,6 +38,7 @@ import os, sys, json, base64, tempfile, glob, threading, queue, time
 import numpy as np
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
+import urllib.request
 
 # --- arranque de rutas: la Célula Madre vive en subcarpetas (genoma/campo/organelos/diada/web/audio).
 # Pone cada órgano en sys.path ANTES de importar el núcleo. Aditivo y guardado por isdir: inocuo si
@@ -278,7 +279,8 @@ COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_con
     "act_comp_gain_eff", "act_k_motor_eff", "act_persistencia_decision", "act_claridad_estimulo",
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
 # VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
-COLS_VOZ = ["voz_emitida", "voz_titulo", "voz_origen", "voz_creadas", "voz_arousal", "voz_valence"]
+COLS_VOZ = ["voz_emitida", "voz_titulo", "voz_origen", "voz_creadas", "voz_propias", "voz_estables",
+            "voz_aprendidas", "voz_arousal", "voz_valence"]
 COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT + COLS_VOZECO + COLS_EXP + COLS_EXPR + COLS_OAO
 
 
@@ -991,8 +993,11 @@ def _estado_breve() -> dict:
         "t": g("t"),
         "voz_emitida": fila.get("voz_emitida", "-"),
         "voz_titulo": fila.get("voz_titulo", fila.get("voz_emitida", "-")),   # título en castellano
-        "voz_origen": fila.get("voz_origen", "banco"),                        # banco | creado (palabra propia)
-        "voz_creadas": int(fila.get("voz_creadas", 0) or 0),                  # nº de palabras propias acuñadas
+        "voz_origen": fila.get("voz_origen", "banco"),                        # banco | creado | aprendida
+        "voz_creadas": int(fila.get("voz_creadas", 0) or 0),                  # nº de palabras propias acuñadas (histórico)
+        "voz_propias": int(fila.get("voz_propias", 0) or 0),                  # vocabulario propio activo (creado+aprendido)
+        "voz_estables": int(fila.get("voz_estables", 0) or 0),               # las que CUAJARON (patrimonio)
+        "voz_aprendidas": int(fila.get("voz_aprendidas", 0) or 0),           # emuladas del otro (léxico compartido)
         "voz_arousal": g("voz_arousal"), "voz_valence": g("voz_valence"),
         "OI": g("OI"), "H": g("H_homeostasis"), "necesidad": g("necesidad"),
         "RC_total": g("RC_total"), "energia": g("energia"),
@@ -3147,6 +3152,27 @@ def _rc_observar(fila):
     ORGANO_RC.observar(fila)
 
 
+_PEER_VOZ = {"t": 0.0, "data": None}
+_EMU_SEQ = 0
+
+def _peer_voz_estado(intervalo=0.6):
+    """Lee el /estado BREVE del par (que SÍ trae voz_origen/voz_arousal/voz_valence, a diferencia del
+    /comunicacion/estado), cacheado. Es la señal para la IMITACIÓN: detectar cuándo el otro vocaliza una
+    palabra que INVENTÓ, y poder emularla → léxico compartido. Best-effort; None si falla."""
+    if not COMUNICACION_PEER_URL:
+        return None
+    ahora = time.time()
+    if ahora - _PEER_VOZ["t"] >= intervalo:
+        _PEER_VOZ["t"] = ahora
+        try:
+            u = urlparse(COMUNICACION_PEER_URL)
+            with urllib.request.urlopen(f"{u.scheme}://{u.netloc}/estado", timeout=1.0) as r:
+                _PEER_VOZ["data"] = json.loads(r.read().decode("utf-8"))
+        except Exception:
+            pass
+    return _PEER_VOZ["data"]
+
+
 def _par_estado_throttled(intervalo=0.5):
     """Estado del par (su fila) cacheado; se refresca como mucho cada `intervalo` s (no en cada paso)."""
     if not DIADA_OK or COMUNICACION_PEER_ESTADO_URL is None:
@@ -3227,6 +3253,22 @@ def _com_observar(fila, meta=None):
         _bias_imit = OAO.bias_imitacion()
     except Exception:
         _bias_imit = None
+    # IMITACIÓN del LÉXICO: si el otro vocaliza una palabra que INVENTÓ y mi banco no la cubre, puedo
+    # EMULARLA con mi propio aparato (no copio: re-sintetizo) → el vocabulario inventado CONVERGE entre A y B
+    # (lenguaje compartido) en vez de divergir en dos linajes. Rara y costosa; nace provisional (debe cuajar).
+    try:
+        if ORGANO_COMUNICACION is not None and os.environ.get("ANIMA_CONTROL", "real").strip().lower() == "real":
+            global _EMU_SEQ
+            _EMU_SEQ += 1
+            _emu = ORGANO_COMUNICACION.quizas_emular(_peer_voz_estado(), fila, _EMU_SEQ)
+            if _emu is not None:
+                if RUN is not None:
+                    RUN._log_evento("palabra_aprendida", f"🗣️↔ emuló del otro: {_emu['titulo']} (hacia léxico compartido)")
+                if _HIST is not None:
+                    try: _HIST.evento("palabra_aprendida", "emuló una palabra del otro", {"label": _emu["label"], "titulo": _emu["titulo"]})
+                    except Exception: pass
+    except Exception:
+        pass
     try:
         g = EXPRESION.proximo_gesto(fila, bias_imit=_bias_imit)   # CONDUCTA VOCAL emergente (organismo+mundo+lo oído)
         fila.update(g)

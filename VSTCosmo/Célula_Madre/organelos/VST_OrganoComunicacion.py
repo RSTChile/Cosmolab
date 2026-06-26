@@ -212,7 +212,10 @@ class OrganoComunicacion:
         self._creadas_dir = os.environ.get("ANIMA_VOCES_CREADAS_DIR") or os.path.join(
             os.environ.get("ANIMA_ESTADO_DIR") or os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
             "voces_creadas")
-        self._creadas = self._cargar_creadas()         # palabras propias de vidas anteriores (se suman al banco)
+        self._creadas = 0          # mayor índice de palabra propia ACUÑADA emitido (monotónico, para etiquetar)
+        self._aprendidas = 0       # mayor índice de palabra APRENDIDA (emulada del otro) emitido
+        self._emision_seq = 0      # reloj de emisiones (para vida media / abandono de provisionales)
+        self._cargar_creadas()     # recupera el vocabulario PROPIO consolidado de vidas anteriores
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -384,6 +387,16 @@ class OrganoComunicacion:
     P_CREAR = 0.6           # libertad funcional: aun con hueco recurrente y energía, a veces NO crea
     RECURRENCIA_CREAR = 3   # el hueco debe REAPARECER ≥3 veces (no acuñar por un estado fugaz)
     MAX_CREADAS = 64        # tope del vocabulario propio (el umbral de gap ya limita; esto es un cinturón)
+    # SELECCIÓN, no acumulación: acuñar ≠ incorporar. Una palabra nace PROVISIONAL (hipótesis del organismo
+    # sobre cómo expresarse); sólo si la REUTILIZA se CONSOLIDA (pasa a patrimonio y se persiste); si no la
+    # reusa, se ABANDONA (la historia, no la creación, decide qué queda). El vocabulario evoluciona por uso.
+    USOS_CONSOLIDA = 4      # reusos para que una palabra provisional pase a ESTABLE (y se guarde a disco)
+    VIDA_PROVISIONAL = 600  # emisiones sin reuso tras las que una palabra provisional se ABANDONA (no cuajó)
+    # IMITACIÓN entre organismos: si el otro vocaliza algo que MI banco no cubre, puedo EMULARLO con mi propio
+    # aparato (no copiar: re-sintetizo mi versión) → el vocabulario inventado puede CONVERGER (lenguaje
+    # compartido) en vez de divergir en dos linajes. Emular es también una conducta libre y costosa.
+    P_EMULAR = 0.5          # libertad funcional de emular la palabra del otro
+    GAP_EMULAR = 0.18       # si la voz del otro cae en una región que MI banco ya cubre, no hace falta emular
 
     # Afecto (arousal, valence) de cada voz R2-D2 según su carácter (la etiqueta del sample).
     # Guía el mapeo estado→voz: el organismo emite la voz cuyo afecto más se parece al suyo.
@@ -537,10 +550,11 @@ class OrganoComunicacion:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(self.sr); w.writeframes(pcm.tobytes())
 
     def _cargar_creadas(self) -> int:
-        """Recupera del disco las palabras que el organismo YA inventó (vidas anteriores) y las suma al banco
-        con su afecto exacto (sin re-medir ni esparcir: cada palabra cubre la región para la que se acuñó).
-        Lee un manifiesto JSON en _creadas_dir. Devuelve cuántas hay → el contador continúa desde ahí."""
-        import json
+        """Recupera del disco el vocabulario PROPIO CONSOLIDADO de vidas anteriores (sólo se persiste lo que
+        cuajó: patrimonio) y lo suma al banco con su afecto EXACTO (sin re-medir ni esparcir: cada palabra
+        cubre la región para la que se acuñó). Las recuperadas entran ya como ESTABLES. Continúa la numeración
+        por tipo (creado/aprendida). Devuelve cuántas recuperó."""
+        import json, re as _re
         man = os.path.join(self._creadas_dir, "manifiesto.json")
         if not os.path.isfile(man):
             return 0
@@ -560,16 +574,28 @@ class OrganoComunicacion:
             try:
                 w = wave.open(ruta, "rb")
                 a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
+                origen = e.get("afecto_origen", "creado")     # "creado" (propia) | "aprendida" (emulada del otro)
                 self._voces.append({"label": label, "audio": a, "aro": float(e["aro"]), "val": float(e["val"]),
-                                    "afecto_origen": "creado", "titulo": e.get("titulo", label)})
+                                    "afecto_origen": origen, "titulo": e.get("titulo", label),
+                                    "estado": "estable", "usos": int(e.get("usos", self.USOS_CONSOLIDA)),
+                                    "nacida": 0, "ultimo_uso": 0})
                 existentes.add(label); n += 1
+                m = _re.search(r"(\d+)$", label)              # continúa la numeración por tipo
+                if m:
+                    idx = int(m.group(1))
+                    if origen == "aprendida":
+                        self._aprendidas = max(self._aprendidas, idx)
+                    else:
+                        self._creadas = max(self._creadas, idx)
             except Exception:
                 continue
         return n
 
     def _persistir_creada(self, voz: dict) -> None:
-        """Escribe a disco una palabra recién acuñada (WAV + entrada en el manifiesto) para que SOBREVIVA
-        reinicios y se ACUMULE. Best-effort: si falla la escritura, la palabra sigue viva en RAM esta sesión."""
+        """Escribe a disco una palabra CONSOLIDADA (patrimonio) — WAV + entrada en el manifiesto — para que
+        SOBREVIVA reinicios y se ACUMULE. Sólo se llama al consolidar (no al acuñar): la persistencia es la
+        marca de que la palabra CUAJÓ. Upsert por label (mantiene actualizado el contador de usos).
+        Best-effort: si falla la escritura, la palabra sigue viva en RAM esta sesión."""
         import json
         try:
             os.makedirs(self._creadas_dir, exist_ok=True)
@@ -582,8 +608,10 @@ class OrganoComunicacion:
                     entradas = json.load(open(man, encoding="utf-8"))
                 except Exception:
                     entradas = []
+            entradas = [e for e in entradas if e.get("label") != voz["label"]]   # upsert
             entradas.append({"label": voz["label"], "file": fn, "aro": voz["aro"], "val": voz["val"],
-                             "titulo": voz["titulo"]})
+                             "titulo": voz["titulo"], "afecto_origen": voz.get("afecto_origen", "creado"),
+                             "usos": int(voz.get("usos", 0))})
             json.dump(entradas, open(man, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
         except Exception:
             pass
@@ -599,8 +627,12 @@ class OrganoComunicacion:
             self._voz_seq = (getattr(self, "_voz_seq", 0) + 1)
             v = cand[_stable_seed(f"{self.organismo_id}:r2voz:lbl:{self._voz_seq}") % k]
             label = v["label"]; titulo = v.get("titulo", label)
-            origen = "creado" if v.get("afecto_origen") == "creado" else "banco"
+            origen = {"creado": "creado", "aprendida": "aprendida"}.get(v.get("afecto_origen"), "banco")
+        propias = [x for x in self._voces if x.get("afecto_origen") in ("creado", "aprendida")]
+        estables = sum(1 for x in propias if x.get("estado") == "estable")
+        aprendidas = sum(1 for x in propias if x.get("afecto_origen") == "aprendida")
         return {"voz_emitida": label, "voz_titulo": titulo, "voz_origen": origen,
+                "voz_propias": len(propias), "voz_estables": estables, "voz_aprendidas": aprendidas,
                 "voz_creadas": int(self._creadas), "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
 
     def _pool_k(self, n_cand: int) -> int:
@@ -653,7 +685,8 @@ class OrganoComunicacion:
         el coste (mayor que reutilizar), y su libertad funcional lo decide. La palabra acuñada se SUMA al
         banco: cubre esa región y luego puede REUSARSE barata. Así el vocabulario crece desde la vida del
         organismo (sus necesidades expresivas no cubiertas), no desde nuestro diseño. Devuelve la voz o None."""
-        if self._fonador is None or not self._voces or self._creadas >= self.MAX_CREADAS:
+        activas = sum(1 for v in self._voces if v.get("afecto_origen") in ("creado", "aprendida"))
+        if self._fonador is None or not self._voces or activas >= self.MAX_CREADAS:
             return None
         gap = min((v["aro"] - aro) ** 2 + (v["val"] - val) ** 2 for v in self._voces) ** 0.5
         if gap <= self.GAP_CREAR:
@@ -678,15 +711,103 @@ class OrganoComunicacion:
             return None
         self._creadas += 1
         suf = self.organismo_id[-1] if self.organismo_id else "X"
+        # NACE PROVISIONAL: es una HIPÓTESIS del organismo sobre cómo expresarse, no patrimonio todavía.
+        # No se persiste aún: sólo si la REUTILIZA (→ _registrar_uso → consolida) pasará a disco. Si no la
+        # reusa, _podar_provisionales la abandona. La historia, no la creación, decide qué queda.
         voz = {"label": f"palabra_{suf}{self._creadas:03d}",
                "audio": audio[: int(3.0 * self.sr)], "aro": float(aro), "val": float(val),
-               "afecto_origen": "creado", "titulo": f"palabra propia {self._creadas}"}
-        self._voces.append(voz)                          # SE SUMA al banco (vive con el organismo)
-        self._persistir_creada(voz)                      # …y al DISCO: sobrevive reinicios y se ACUMULA
-        self._gap_reciente.clear()                       # esa región queda cubierta
+               "afecto_origen": "creado", "titulo": f"palabra propia {self._creadas}",
+               "estado": "provisional", "usos": 0, "nacida": int(self._emision_seq), "ultimo_uso": int(self._emision_seq)}
+        self._voces.append(voz)                          # se suma al banco como hipótesis provisional
+        self._gap_reciente.clear()                       # esa región queda (tentativamente) cubierta
         self.ultima_voz_origen = "creado"; self.ultimo_costo_voz = self.COSTO_CREAR
         self._costo_pendiente += self.COSTO_CREAR         # gasto que el metabolismo cobrará una vez
         return voz
+
+    def _registrar_uso(self, voz: dict) -> None:
+        """REUSO de una palabra propia/aprendida (selección emergente). La reutilización es lo que CONSOLIDA:
+        al alcanzar USOS_CONSOLIDA, la palabra deja de ser hipótesis provisional y pasa a ESTABLE (patrimonio
+        → se guarda a disco). Así el vocabulario crece por SELECCIÓN (uso), no por simple acumulación."""
+        if voz.get("afecto_origen") not in ("creado", "aprendida"):
+            return
+        voz["usos"] = int(voz.get("usos", 0)) + 1
+        voz["ultimo_uso"] = int(self._emision_seq)
+        if voz.get("estado") != "estable" and voz["usos"] >= self.USOS_CONSOLIDA:
+            voz["estado"] = "estable"                    # CUAJÓ: la experiencia la incorporó
+            self._persistir_creada(voz)                  # ahora sí es patrimonio → persiste y se acumula
+        elif voz.get("estado") == "estable":
+            self._persistir_creada(voz)                  # mantiene actualizado el contador de usos en disco
+
+    def _podar_provisionales(self) -> int:
+        """ABANDONA las palabras provisionales que NO se reusaron en VIDA_PROVISIONAL emisiones: la hipótesis
+        no cuajó y la historia la deja caer (olvido por desuso). Las ESTABLES (patrimonio) no se podan.
+        Devuelve cuántas se abandonaron. Esto hace que el vocabulario EVOLUCIONE por selección, no que crezca."""
+        if not self._voces:
+            return 0
+        vivos = []; podadas = 0
+        for v in self._voces:
+            if (v.get("estado") == "provisional" and
+                    self._emision_seq - int(v.get("ultimo_uso", 0)) > self.VIDA_PROVISIONAL):
+                podadas += 1                              # no cuajó → se abandona (sólo estaba en RAM)
+                continue
+            vivos.append(v)
+        if podadas:
+            self._voces = vivos
+        return podadas
+
+    def quizas_emular(self, peer: dict, fila: dict, seq: int):
+        """IMITACIÓN entre organismos (lenguaje compartido). Si el OTRO vocaliza una palabra DISTINTIVA que él
+        inventó/aprendió y que MI banco no cubre, puedo EMULARLA: re-sintetizo MI versión con mi propio aparato
+        a ese mismo afecto (NO copio su audio — la semejanza emerge de la historia, no por copia). Así la
+        invención del otro puede entrar en MI vocabulario y el léxico propio CONVERGE entre A y B, en vez de
+        divergir en dos linajes. Conducta libre (P_EMULAR) y costosa (como crear). Nace PROVISIONAL: deberá
+        reusarse para cuajar, igual que una palabra propia. Devuelve la voz aprendida o None."""
+        if self._fonador is None or not peer or not self._voces or not peer.get("vivo"):
+            return None
+        if peer.get("voz_origen", "banco") not in ("creado", "aprendida"):   # sólo emulo lo que el otro INVENTÓ
+            return None
+        try:
+            aro = float(peer.get("voz_arousal", 0.0) or 0.0); val = float(peer.get("voz_valence", 0.0) or 0.0)
+        except Exception:
+            return None
+        activas = sum(1 for v in self._voces if v.get("afecto_origen") in ("creado", "aprendida"))
+        if activas >= self.MAX_CREADAS:
+            return None
+        gap = min((v["aro"] - aro) ** 2 + (v["val"] - val) ** 2 for v in self._voces) ** 0.5
+        if gap <= self.GAP_EMULAR:                        # ya cubro esa región: no necesito emular
+            return None
+        energia = float(fila.get("energia", fila.get("met_energia", 0.0)) or 0.0)
+        if energia < self.ENERGIA_MIN_CREAR:
+            return None
+        if (_stable_seed(f"{self.organismo_id}:emular:{seq}") % 1000) / 1000.0 > self.P_EMULAR:
+            return None
+        try:
+            audio = np.asarray(self._fonador.vocalizar(**self._afecto_a_params(aro, val)), dtype=np.float64)
+        except Exception:
+            return None
+        self._aprendidas += 1
+        suf = self.organismo_id[-1] if self.organismo_id else "X"
+        voz = {"label": f"apr_{suf}{self._aprendidas:03d}", "audio": audio[: int(3.0 * self.sr)],
+               "aro": aro, "val": val, "afecto_origen": "aprendida",
+               "titulo": f"eco de {peer.get('voz_titulo', 'el otro')}",
+               "estado": "provisional", "usos": 0, "nacida": int(self._emision_seq),
+               "ultimo_uso": int(self._emision_seq)}
+        self._voces.append(voz)                           # entra en MI vocabulario como hipótesis aprendida
+        self.ultima_voz_origen = "aprendida"; self.ultimo_costo_voz = self.COSTO_CREAR
+        self._costo_pendiente += self.COSTO_CREAR
+        return voz
+
+    def vocabulario_propio(self) -> list:
+        """Devuelve el vocabulario PROPIO (acuñado/aprendido) con sus métricas — para el estudio longitudinal:
+        radio de uso, vida, reutilización, estable vs provisional, propio vs aprendido del otro."""
+        out = []
+        for v in self._voces:
+            if v.get("afecto_origen") in ("creado", "aprendida"):
+                out.append({"label": v["label"], "titulo": v.get("titulo"), "origen": v["afecto_origen"],
+                            "estado": v.get("estado", "estable"), "usos": int(v.get("usos", 0)),
+                            "aro": round(v["aro"], 3), "val": round(v["val"], 3),
+                            "nacida": int(v.get("nacida", 0)), "ultimo_uso": int(v.get("ultimo_uso", 0))})
+        return out
 
     def consumir_costo(self) -> float:
         """Devuelve (y resetea) el coste energético acumulado de las emisiones desde la última lectura.
@@ -702,6 +823,8 @@ class OrganoComunicacion:
         Devuelve el sample (≤3s) o None si no hay banco cargado."""
         if not self._voces:
             return None
+        self._emision_seq += 1                            # reloj de emisiones (vida media / abandono)
+        self._podar_provisionales()                       # deja caer las hipótesis que no cuajaron
         aro, val = self._afecto(fila)
         nueva = self._quizas_crear(fila, aro, val, seq)
         if nueva is not None:
@@ -712,9 +835,11 @@ class OrganoComunicacion:
         # organismo (act_perm / exploración del gesto); más abierto → considera voces más lejanas del
         # óptimo afectivo → usa más repertorio. Determinista por seq (mismo estado+seq → misma voz).
         k = self._pool_k(len(cand))
-        idx = _stable_seed(f"{self.organismo_id}:r2voz:{seq}") % k
-        a = cand[idx]["audio"]
-        return np.array(a[: int(3.0 * self.sr)], dtype=np.float64)   # cap 3s
+        elegida = cand[_stable_seed(f"{self.organismo_id}:r2voz:{seq}") % k]
+        self._registrar_uso(elegida)                      # REUSO: lo que consolida una palabra propia/aprendida
+        if elegida.get("afecto_origen") in ("creado", "aprendida"):
+            self.ultima_voz_origen = "creado" if elegida["afecto_origen"] == "creado" else "aprendida"
+        return np.array(elegida["audio"][: int(3.0 * self.sr)], dtype=np.float64)   # cap 3s
 
     def _audio_r2d2(self, n: int, pairs: list, seq: int) -> np.ndarray:
         """Voz tipo R2-D2: secuencia de PITIDOS cortos y CHIRPS (glides) en vez de tonos sostenidos.
