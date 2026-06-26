@@ -151,7 +151,11 @@ class OrganeloMetabolismo:
 
         # ── COSTO + DEGRADACIÓN: vivir y actuar gastan; DISIPAR energía semiótica (IDES) daña ──
         toxicidad = self.k_toxico * max(0.0, -IM) * es_norm  # disipación de la energía presente (silencio no intoxica)
-        gasto = self.basal + self.k_trabajo * act_perm + toxicidad
+        # COSTE DE ACUÑAR: si el organismo creó una palabra propia con el aparato fonador, paga aquí su gasto
+        # energético (más caro que reutilizar el banco). Lo inyecta el bucle vía met_costo_extra (una vez por
+        # creación). Así "crear cuesta de verdad": sólo se acuña cuando hay energía y la necesidad lo amerita.
+        costo_voz = max(0.0, _num(fila.get("met_costo_extra")))
+        gasto = self.basal + self.k_trabajo * act_perm + toxicidad + costo_voz
         balance = ingesta - gasto
         self.E = max(0.0, min(1.0, self.E + balance))
         hambre = 1.0 - self.E

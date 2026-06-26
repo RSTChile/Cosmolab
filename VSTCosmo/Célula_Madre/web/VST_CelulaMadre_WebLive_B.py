@@ -278,7 +278,7 @@ COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_con
     "act_comp_gain_eff", "act_k_motor_eff", "act_persistencia_decision", "act_claridad_estimulo",
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
 # VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
-COLS_VOZ = ["voz_emitida", "voz_arousal", "voz_valence"]
+COLS_VOZ = ["voz_emitida", "voz_titulo", "voz_origen", "voz_creadas", "voz_arousal", "voz_valence"]
 COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT + COLS_VOZECO + COLS_EXP + COLS_EXPR + COLS_OAO
 
 
@@ -683,6 +683,8 @@ def _fila(cel, actuador=None) -> dict:
     if _soma_p is not None: _soma_p.perm_ext = float(d.get("act_perm", 0.0))   # paso (apertura de membrana, lag 1)
     # ── METABOLISMO (economía energética): come la experiencia, paga el costo, se degrada y repone.
     # Corre ANTES de la memoria para que su met_nutricion pueda SACIAR la necesidad (cierre del lazo). ──
+    if ORGANO_COMUNICACION is not None:    # coste de ACUÑAR palabra propia (aparato fonador) → gasto real
+        d["met_costo_extra"] = ORGANO_COMUNICACION.consumir_costo()
     d.update(METABOLISMO.actualizar(d, dt=DT))
     # ── MEMORIA (historia interna): 6 capas + necesidad (Cb→act_perm). Lee soma (capa 5 implícita),
     # milieu (presion/fatiga/vida) y la fila (RC/act_perm/H_real). NO cierra el lazo conductual. ──
@@ -989,6 +991,8 @@ def _estado_breve() -> dict:
         "t": g("t"),
         "voz_emitida": fila.get("voz_emitida", "-"),
         "voz_titulo": fila.get("voz_titulo", fila.get("voz_emitida", "-")),   # título en castellano
+        "voz_origen": fila.get("voz_origen", "banco"),                        # banco | creado (palabra propia)
+        "voz_creadas": int(fila.get("voz_creadas", 0) or 0),                  # nº de palabras propias acuñadas
         "voz_arousal": g("voz_arousal"), "voz_valence": g("voz_valence"),
         "OI": g("OI"), "H": g("H_homeostasis"), "necesidad": g("necesidad"),
         "RC_total": g("RC_total"), "energia": g("energia"),
@@ -3198,10 +3202,19 @@ def _com_observar(fila, meta=None):
         try:
             v = ORGANO_COMUNICACION.voz_actual(fila)          # qué voz R2-D2 emite ahora (afecto→sample)
             fila.update(v)
-            global _ULTIMA_VOZ
+            global _ULTIMA_VOZ, _ULTIMA_CREADAS
             if v.get("voz_emitida") != _ULTIMA_VOZ and RUN is not None:
                 _ULTIMA_VOZ = v.get("voz_emitida")
                 RUN._log_evento("voz", f"🔊 {v.get('voz_titulo', _ULTIMA_VOZ)}  (aro={v.get('voz_arousal')}, val={v.get('voz_valence')})")
+            # SEGUNDA VÍA: ¿el organismo ACUÑÓ una palabra nueva? (su repertorio no cubría la necesidad)
+            _nc = int(getattr(ORGANO_COMUNICACION, "_creadas", 0))
+            if _nc != _ULTIMA_CREADAS:
+                _ULTIMA_CREADAS = _nc
+                if RUN is not None:
+                    RUN._log_evento("palabra_propia", f"🗣️✨ acuñó palabra propia #{_nc} (banco no cubría su estado)")
+                if _HIST is not None:
+                    try: _HIST.evento("palabra_propia", f"el organismo creó su palabra #{_nc}", {"total_creadas": _nc})
+                    except Exception: pass
         except Exception:
             pass
     fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
@@ -3270,6 +3283,7 @@ def _com_observar(fila, meta=None):
 
 
 _ULTIMA_VOZ = None
+_ULTIMA_CREADAS = 0
 
 
 def _fuentes():

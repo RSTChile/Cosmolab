@@ -8,9 +8,10 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Sólo lo imprescindible: numpy (campo Φ/organelos) + mcp (membrana). NO sounddevice/portaudio:
+# Lo imprescindible: numpy (campo Φ/organelos), scipy (aparato fonador ARP 2600: filtro resonante VCF),
+# soundfile (carga de WAV subidos en cualquier formato) + mcp (membrana). NO sounddevice/portaudio:
 # el audio del mundo entra por red, no por CoreAudio (inaccesible en contenedor).
-RUN pip install --no-cache-dir numpy mcp
+RUN pip install --no-cache-dir numpy scipy soundfile mcp
 
 # El organismo entero (núcleo en subcarpetas + membrana). audio_binaural (2.4 GB) NO se copia
 # (ver .dockerignore): el organismo vive en soledad con 'demo:silencio'; para oír wav, móntalo como volumen.

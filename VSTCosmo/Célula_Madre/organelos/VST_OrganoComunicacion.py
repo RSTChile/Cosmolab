@@ -193,6 +193,20 @@ class OrganoComunicacion:
         # LIBERTAD EXPRESIVA: gesto vocal explorado por el OrganeloAlteridad (parámetros ACÚSTICOS).
         # Si es None → voz fisiológica pura (sin balbuceo). Lo fija WebLive cada paso desde ALTERIDAD.
         self.gesto: dict | None = None
+        # SEGUNDA VÍA DE EMISIÓN — APARATO FONADOR (crear palabra propia, no reemplazar el banco).
+        # Aparato ARP 2600 paramétrico: dado un afecto, SINTETIZA una vocalización R2-D2 nueva. Opcional:
+        # si falta scipy, queda None y el organismo sigue con el banco (degradación elegante).
+        self._fonador = None
+        try:
+            from VST_OrganoFonador import OrganoFonador
+            self._fonador = OrganoFonador(self.sr)
+        except Exception:
+            self._fonador = None
+        self._creadas = 0                              # cuántas palabras ha ACUÑADO el organismo en su vida
+        self._gap_reciente: deque = deque(maxlen=24)   # huecos recientes (target NO cubierto) → exige recurrencia
+        self.ultima_voz_origen = "banco"               # banco | creado (de la última emisión real)
+        self.ultimo_costo_voz = 0.0                    # coste de la última emisión (para mostrar)
+        self._costo_pendiente = 0.0                    # coste acumulado desde la última lectura del metabolismo
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -356,6 +370,15 @@ class OrganoComunicacion:
         except Exception:
             return 0.0
 
+    # SEGUNDA VÍA — parámetros de la decisión "usar banco vs. ACUÑAR palabra propia".
+    GAP_CREAR = 0.22        # distancia afectiva mínima a la voz más cercana para considerar que el banco NO cubre
+    COSTO_USAR = 0.0        # tirar del banco no añade coste extra: la voz YA es señal costosa (lo cobra el metabolismo)
+    COSTO_CREAR = 0.04      # ACUÑAR añade un gasto energético REAL (más caro que reutilizar, como pidió el diseño)
+    ENERGIA_MIN_CREAR = 0.25  # sin esta energía no se puede crear: el coste es REAL (si no, expresa con el banco)
+    P_CREAR = 0.6           # libertad funcional: aun con hueco recurrente y energía, a veces NO crea
+    RECURRENCIA_CREAR = 3   # el hueco debe REAPARECER ≥3 veces (no acuñar por un estado fugaz)
+    MAX_CREADAS = 64        # tope del vocabulario propio (el umbral de gap ya limita; esto es un cinturón)
+
     # Afecto (arousal, valence) de cada voz R2-D2 según su carácter (la etiqueta del sample).
     # Guía el mapeo estado→voz: el organismo emite la voz cuyo afecto más se parece al suyo.
     AFECTO_VOCES = {
@@ -501,15 +524,16 @@ class OrganoComunicacion:
         """Qué voz R2-D2 emite el organismo para ESTE estado (la más cercana a su afecto) + el afecto.
         Determinista → sirve para REGISTRAR en el CSV la 'conversación': qué sonido usa en cada contexto."""
         aro, val = self._afecto(fila)
-        label = "-"; titulo = "-"
+        label = "-"; titulo = "-"; origen = "banco"
         if self._voces:
             cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
             k = self._pool_k(len(cand))                 # MISMO pool exploratorio que la emisión real
             self._voz_seq = (getattr(self, "_voz_seq", 0) + 1)
             v = cand[_stable_seed(f"{self.organismo_id}:r2voz:lbl:{self._voz_seq}") % k]
             label = v["label"]; titulo = v.get("titulo", label)
-        return {"voz_emitida": label, "voz_titulo": titulo,
-                "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
+            origen = "creado" if v.get("afecto_origen") == "creado" else "banco"
+        return {"voz_emitida": label, "voz_titulo": titulo, "voz_origen": origen,
+                "voz_creadas": int(self._creadas), "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
 
     def _pool_k(self, n_cand: int) -> int:
         """Tamaño del pool de voces entre las que el organismo EXPLORA: crece con su 'apertura' (act_perm /
@@ -532,12 +556,88 @@ class OrganoComunicacion:
         valence = max(-1.0, min(1.0, (OI + 0.30 * H + 0.30 * estr) - nec))
         return arousal, valence
 
+    def _afecto_a_params(self, aro: float, val: float) -> dict:
+        """Traduce el estado afectivo (+ la exploración del GESTO/balbuceo) a parámetros del aparato fonador.
+        R2-D2 por construcción (todo pasa por el motor ARP 2600). NO es un código palabra↔significado: el
+        mismo afecto produce una forma PARECIDA, pero el gesto introduce variación → la palabra acuñada es
+        propia y novedosa, no una entrada de diccionario. Ejes: tono←arousal, contorno (sube/baja)←valencia,
+        timbre metálico (FM)←arousal, tensión/ruido←valencia negativa, vibrato←repetición/arousal."""
+        g = self.gesto or {}
+        jf = float(g.get("g_freq", 0.0) or 0.0); ji = float(g.get("g_intensidad", 0.0) or 0.0)
+        jp = float(g.get("g_pausa", 0.0) or 0.0); jr = float(g.get("g_repeticion", 0.0) or 0.0)
+        a = max(0.0, min(1.0, aro))
+        f0 = 300.0 + 1200.0 * a + 200.0 * jf            # tono base ← arousal (+ exploración)
+        subir = val >= 0                                 # contorno ← valencia (sube=positivo, baja=negativo)
+        f_ini = f0 * (0.85 if subir else 1.2)
+        f_fin = f0 * (1.5 if subir else 0.6)
+        fm_index = 0.5 + 6.0 * a + 2.0 * abs(ji)         # timbre metálico ← arousal
+        tension = max(0.0, -val) * 0.8                   # tensión/ruido glotal ← malestar (valencia negativa)
+        vibrato = (4.0 + 18.0 * abs(jr), 6.0 + 24.0 * a)  # LFO ← repetición / arousal
+        dur = 0.30 + 0.30 * abs(jp)
+        return dict(duracion=dur, f_ini=f_ini, f_fin=f_fin, fm_ratio=2.0, fm_index=(0.5, fm_index),
+                    vibrato=vibrato, tension=tension, resonancia=0.3 * abs(val), res_centro=1200 + 800 * a,
+                    ataque=0.01 + 0.1 * abs(jp), caida=0.1, sostiene=0.5)
+
+    def _quizas_crear(self, fila: dict, aro: float, val: float, seq: int):
+        """SEGUNDA VÍA: ¿el organismo ACUÑA una palabra nueva en vez de tirar una del banco?
+        La crea cuando su repertorio NO cubre lo que necesita expresar —la voz más cercana queda LEJOS de su
+        estado afectivo (un HUECO)— y ese hueco RECURRE (no por un estado fugaz), y tiene ENERGÍA para pagar
+        el coste (mayor que reutilizar), y su libertad funcional lo decide. La palabra acuñada se SUMA al
+        banco: cubre esa región y luego puede REUSARSE barata. Así el vocabulario crece desde la vida del
+        organismo (sus necesidades expresivas no cubiertas), no desde nuestro diseño. Devuelve la voz o None."""
+        if self._fonador is None or not self._voces or self._creadas >= self.MAX_CREADAS:
+            return None
+        gap = min((v["aro"] - aro) ** 2 + (v["val"] - val) ** 2 for v in self._voces) ** 0.5
+        if gap <= self.GAP_CREAR:
+            self._gap_reciente.append(None)              # el banco cubre este estado
+            return None
+        self._gap_reciente.append((round(aro, 2), round(val, 2)))   # hueco: región no cubierta
+        # RECURRENCIA: ¿la MISMA región no cubierta ha vuelto a aparecer? (no acuñar por algo pasajero)
+        cerca = sum(1 for h in self._gap_reciente if h and abs(h[0] - aro) < 0.12 and abs(h[1] - val) < 0.12)
+        if cerca < self.RECURRENCIA_CREAR:
+            return None
+        # ENERGÍA: el coste es real; sin energía no se puede crear (expresa imperfecto con el banco)
+        energia = float(fila.get("energia", fila.get("met_energia", 0.0)) or 0.0)
+        if energia < self.ENERGIA_MIN_CREAR:
+            return None
+        # LIBERTAD FUNCIONAL: aun con hueco recurrente y energía, a veces NO crea
+        if (_stable_seed(f"{self.organismo_id}:crear:{seq}") % 1000) / 1000.0 > self.P_CREAR:
+            return None
+        # ACUÑA: afecto + exploración del gesto → parámetros del aparato → síntesis R2-D2 propia
+        try:
+            audio = np.asarray(self._fonador.vocalizar(**self._afecto_a_params(aro, val)), dtype=np.float64)
+        except Exception:
+            return None
+        self._creadas += 1
+        suf = self.organismo_id[-1] if self.organismo_id else "X"
+        voz = {"label": f"palabra_{suf}{self._creadas:03d}",
+               "audio": audio[: int(3.0 * self.sr)], "aro": float(aro), "val": float(val),
+               "afecto_origen": "creado", "titulo": f"palabra propia {self._creadas}"}
+        self._voces.append(voz)                          # SE SUMA al banco (vive con el organismo, en RAM)
+        self._gap_reciente.clear()                       # esa región queda cubierta
+        self.ultima_voz_origen = "creado"; self.ultimo_costo_voz = self.COSTO_CREAR
+        self._costo_pendiente += self.COSTO_CREAR         # gasto que el metabolismo cobrará una vez
+        return voz
+
+    def consumir_costo(self) -> float:
+        """Devuelve (y resetea) el coste energético acumulado de las emisiones desde la última lectura.
+        El bucle se lo pasa al metabolismo como gasto extra → ACUÑAR una palabra cuesta energía DE VERDAD
+        (más que reutilizar el banco). Se cobra UNA vez por creación, no por paso."""
+        c = self._costo_pendiente
+        self._costo_pendiente = 0.0
+        return c
+
     def _audio_r2d2_samples(self, fila: dict, seq: int):
-        """Elige la voz R2-D2 REAL cuyo afecto está más cerca del estado del organismo (con variedad
-        determinista entre las más cercanas). Devuelve el sample (≤3s) o None si no hay banco cargado."""
+        """Elige la voz que EMITE el organismo. Primero la SEGUNDA VÍA: ¿acuñar una palabra propia porque el
+        banco no cubre su necesidad? Si no, tira del banco la voz más cercana a su afecto (con exploración).
+        Devuelve el sample (≤3s) o None si no hay banco cargado."""
         if not self._voces:
             return None
         aro, val = self._afecto(fila)
+        nueva = self._quizas_crear(fila, aro, val, seq)
+        if nueva is not None:
+            return np.array(nueva["audio"][: int(3.0 * self.sr)], dtype=np.float64)
+        self.ultima_voz_origen = "banco"; self.ultimo_costo_voz = self.COSTO_USAR
         cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
         # EXPLORACIÓN del repertorio: no siempre el más cercano. El pool crece con la 'apertura' del
         # organismo (act_perm / exploración del gesto); más abierto → considera voces más lejanas del
