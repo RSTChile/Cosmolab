@@ -202,11 +202,17 @@ class OrganoComunicacion:
             self._fonador = OrganoFonador(self.sr)
         except Exception:
             self._fonador = None
-        self._creadas = 0                              # cuántas palabras ha ACUÑADO el organismo en su vida
         self._gap_reciente: deque = deque(maxlen=24)   # huecos recientes (target NO cubierto) → exige recurrencia
         self.ultima_voz_origen = "banco"               # banco | creado (de la última emisión real)
         self.ultimo_costo_voz = 0.0                    # coste de la última emisión (para mostrar)
         self._costo_pendiente = 0.0                    # coste acumulado desde la última lectura del metabolismo
+        # PERSISTENCIA del vocabulario PROPIO: las palabras que el organismo acuña se guardan a disco y se
+        # ACUMULAN entre vidas (volumen /data, sobrevive reinicios). El vocabulario base (voces_r2d2) NO se
+        # toca. Al nacer, el organismo recupera las palabras que ya inventó.
+        self._creadas_dir = os.environ.get("ANIMA_VOCES_CREADAS_DIR") or os.path.join(
+            os.environ.get("ANIMA_ESTADO_DIR") or os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "voces_creadas")
+        self._creadas = self._cargar_creadas()         # palabras propias de vidas anteriores (se suman al banco)
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -516,9 +522,71 @@ class OrganoComunicacion:
 
     def recargar_voces(self) -> int:
         """Re-explora la carpeta de voces y reconstruye el banco (para incorporar sonidos recién subidos
-        sin reiniciar el organismo). Devuelve cuántas voces hay tras recargar. Idempotente y barato."""
+        sin reiniciar el organismo). Devuelve cuántas voces hay tras recargar. Idempotente y barato.
+        Conserva el vocabulario PROPIO ya acuñado (lo vuelve a sumar tras recargar el banco base)."""
         self._voces = self._cargar_voces()
+        self._creadas = self._cargar_creadas()
         return len(self._voces)
+
+    def _guardar_wav_mono(self, audio, ruta: str) -> None:
+        """Guarda audio float (~[-1,1]) como WAV mono PCM16 (mismo formato que el banco)."""
+        a = np.asarray(audio, dtype=np.float64)
+        pk = float(np.max(np.abs(a))) or 1.0
+        pcm = (np.clip(a / pk * 0.9, -1.0, 1.0) * 32767.0).astype("<i2")
+        with wave.open(ruta, "wb") as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(self.sr); w.writeframes(pcm.tobytes())
+
+    def _cargar_creadas(self) -> int:
+        """Recupera del disco las palabras que el organismo YA inventó (vidas anteriores) y las suma al banco
+        con su afecto exacto (sin re-medir ni esparcir: cada palabra cubre la región para la que se acuñó).
+        Lee un manifiesto JSON en _creadas_dir. Devuelve cuántas hay → el contador continúa desde ahí."""
+        import json
+        man = os.path.join(self._creadas_dir, "manifiesto.json")
+        if not os.path.isfile(man):
+            return 0
+        try:
+            entradas = json.load(open(man, encoding="utf-8"))
+        except Exception:
+            return 0
+        existentes = {v["label"] for v in self._voces}
+        n = 0
+        for e in entradas:
+            label = e.get("label")
+            if not label or label in existentes:
+                continue
+            ruta = os.path.join(self._creadas_dir, e.get("file", label + ".wav"))
+            if not os.path.isfile(ruta):
+                continue
+            try:
+                w = wave.open(ruta, "rb")
+                a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
+                self._voces.append({"label": label, "audio": a, "aro": float(e["aro"]), "val": float(e["val"]),
+                                    "afecto_origen": "creado", "titulo": e.get("titulo", label)})
+                existentes.add(label); n += 1
+            except Exception:
+                continue
+        return n
+
+    def _persistir_creada(self, voz: dict) -> None:
+        """Escribe a disco una palabra recién acuñada (WAV + entrada en el manifiesto) para que SOBREVIVA
+        reinicios y se ACUMULE. Best-effort: si falla la escritura, la palabra sigue viva en RAM esta sesión."""
+        import json
+        try:
+            os.makedirs(self._creadas_dir, exist_ok=True)
+            fn = voz["label"] + ".wav"
+            self._guardar_wav_mono(voz["audio"], os.path.join(self._creadas_dir, fn))
+            man = os.path.join(self._creadas_dir, "manifiesto.json")
+            entradas = []
+            if os.path.isfile(man):
+                try:
+                    entradas = json.load(open(man, encoding="utf-8"))
+                except Exception:
+                    entradas = []
+            entradas.append({"label": voz["label"], "file": fn, "aro": voz["aro"], "val": voz["val"],
+                             "titulo": voz["titulo"]})
+            json.dump(entradas, open(man, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+        except Exception:
+            pass
 
     def voz_actual(self, fila: dict) -> dict:
         """Qué voz R2-D2 emite el organismo para ESTE estado (la más cercana a su afecto) + el afecto.
@@ -613,7 +681,8 @@ class OrganoComunicacion:
         voz = {"label": f"palabra_{suf}{self._creadas:03d}",
                "audio": audio[: int(3.0 * self.sr)], "aro": float(aro), "val": float(val),
                "afecto_origen": "creado", "titulo": f"palabra propia {self._creadas}"}
-        self._voces.append(voz)                          # SE SUMA al banco (vive con el organismo, en RAM)
+        self._voces.append(voz)                          # SE SUMA al banco (vive con el organismo)
+        self._persistir_creada(voz)                      # …y al DISCO: sobrevive reinicios y se ACUMULA
         self._gap_reciente.clear()                       # esa región queda cubierta
         self.ultima_voz_origen = "creado"; self.ultimo_costo_voz = self.COSTO_CREAR
         self._costo_pendiente += self.COSTO_CREAR         # gasto que el metabolismo cobrará una vez
