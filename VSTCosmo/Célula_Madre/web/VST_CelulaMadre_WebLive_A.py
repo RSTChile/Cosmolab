@@ -2679,7 +2679,7 @@ function _vozSubir(){
     fetch('/voces_upload',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nombre:file.name, titulo:tit, wav_base64:b64})}).then(r=>r.json()).then(d=>{
       if(d&&d.ok){ const a=d.afecto;
-        if(st)st.textContent='✓ "'+(d.titulo||d.label)+'" incorporado · repertorio='+d.total+(a?(' · afecto '+a.origen+' a'+a.aro.toFixed(2)+'/v'+(a.val>=0?'+':'')+a.val.toFixed(2)):''));
+        if(st)st.textContent='✓ "'+(d.titulo||d.label)+'" incorporado · repertorio='+d.total+(a?(' · afecto '+a.origen+' a'+a.aro.toFixed(2)+'/v'+(a.val>=0?'+':'')+a.val.toFixed(2)):'');
         ev('🎵 repertorio +1: "'+(d.titulo||d.label)+'" ('+d.total+' sonidos)','ok'); if($('vozTit'))$('vozTit').value=''; _vozRepPinta();
       } else { if(st)st.textContent='✗ '+((d&&d.error)||'error'); }
     }).catch(e=>{if(st)st.textContent='✗ '+e;});
