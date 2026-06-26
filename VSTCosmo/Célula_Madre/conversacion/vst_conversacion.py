@@ -117,7 +117,8 @@ def _registrar_turno(lado, est):
     """Escribe un turno (cambio de pito) al log permanente y al transcript en memoria."""
     voz = est.get("voz_emitida", "-")
     turno = {"ts": round(time.time(), 2), "lado": lado, "organismo": est.get("organismo", lado),
-             "voz": voz, "arousal": est.get("voz_arousal"), "valence": est.get("voz_valence"),
+             "voz": voz, "titulo": est.get("voz_titulo", voz),   # título en castellano (etiqueta, no significado)
+             "arousal": est.get("voz_arousal"), "valence": est.get("voz_valence"),
              "OI": est.get("OI"), "necesidad": est.get("necesidad"), "t_vida": est.get("t")}
     try:
         with open(LOG_PATH, "a", encoding="utf-8") as f:    # PERMANENTE: sobrevive reinicios (volumen)
@@ -337,13 +338,17 @@ select{background:#16202e;color:#dfe7f0;border:1px solid var(--bord);border-radi
 <script>
 const $=id=>document.getElementById(id);
 const COL={screaming:'#ff5b5b',shout:'#ff8c6b',worried:'#e8b86d',excited:'#5fd38a','excited-2':'#5fd38a',sing:'#8ef0c0',acknowledged:'#6db6ff',chat:'#9fb1c6'};
-const emo=v=>({screaming:'😱',shout:'😨',worried:'😟',excited:'🤩','excited-2':'😃',sing:'🎶',acknowledged:'👍',chat:'💬'}[v]||'🤖');
+const emo=v=>({screaming:'😱',shout:'😨',worried:'😟',excited:'🤩','excited-2':'😃',sing:'🎶',acknowledged:'👍',chat:'💬',
+  alegria:'😊',miedo:'😨',calma:'😌',curiosidad:'🤔',asombro:'😮',dolor:'😣',tristeza:'😢',ternura:'🥰',
+  alerta:'⚠️',peligro:'🚨',urgencia:'⏰',atencion:'👁️',hambre:'🍽️',fatiga:'🥱',saludo:'👋',despedida:'🫡',
+  pregunta:'❓',respuesta:'💡',duda:'🤨',confusion:'😵',acuerdo:'🤝',desacuerdo:'🙅',negacion:'🚫',afirmacion:'✅',
+  llamada:'📣',compania:'🫂',exploracion:'🧭',hallazgo:'✨',novedad:'🆕',despertar:'🌅',satisfaccion:'😋',frustracion:'😤'}[v]||'🤖');
 function cabeza(pre, est){
   const o=(est&&est.orientacion_deg)||0;
   $('nar'+pre).style.transform='translateY(-50%) rotate('+(-o)+'deg)';  // gira la 'nariz' hacia donde mira
   $('cab'+pre).style.transform='rotate('+(o*0.15)+'deg)';
-  const v=(est&&est.voz_emitida)||'—', vivo=est&&est.vivo;
-  $('pito'+pre).textContent=vivo?(emo(v)+' '+v):'· dormido ·';
+  const v=(est&&est.voz_emitida)||'—', tit=(est&&est.voz_titulo)||v, vivo=est&&est.vivo;
+  $('pito'+pre).textContent=vivo?(emo(v)+' '+tit):'· dormido ·';   // título en castellano
   $('pito'+pre).style.color=COL[v]||'#dfe7f0';
   $('af'+pre).textContent=vivo?('aro '+(+est.voz_arousal||0).toFixed(2)+' · val '+(+est.voz_valence||0).toFixed(2)+' · OI '+(+est.OI||0).toFixed(2)):'';
   $('oi'+pre).style.width=Math.min(100,((+((est||{}).OI))||0)*100)+'%';
@@ -369,7 +374,7 @@ async function tick(){
     nT=d.transcript.length;
     $('trans').innerHTML=d.transcript.slice(-120).map(t=>{
       const hh=new Date(t.ts*1000).toLocaleTimeString();
-      return '<div class=linea><span class=mut>'+hh+'</span> <span class='+t.lado+'>'+t.lado+'</span> '+emo(t.voz)+' <b>'+t.voz+'</b> <span class=mut>(aro '+(+t.arousal||0).toFixed(2)+', val '+(+t.valence||0).toFixed(2)+')</span></div>';
+      return '<div class=linea><span class=mut>'+hh+'</span> <span class='+t.lado+'>'+t.lado+'</span> '+emo(t.voz)+' <b>'+(t.titulo||t.voz)+'</b> <span class=mut>(aro '+(+t.arousal||0).toFixed(2)+', val '+(+t.valence||0).toFixed(2)+')</span></div>';
     }).join('');
     $('trans').scrollTop=$('trans').scrollHeight;
   }
@@ -502,6 +507,21 @@ setInterval(tick, 500); tick();
     +cjRow('B expectativa',cjN(q('B','expectativa'),3))+cjGauge(Math.min(1,q('B','expectativa')*8),'#b58cff')
     +cjRow('B explora · confianza',cjN(q('B','expectativa_exploracion'),3)+' · '+cjN(q('B','expectativa_confianza'),2))
     +`<div class="obsk" style="font-size:9px;margin-top:3px">¿vale la pena explorar tras la voz? (1er eslabón de la genealogía)</div>`;}},
+   {id:'expresion',tit:'🎙 Habla / No Habla (A/B)',w:3,h:3,render:(b,d)=>{const q=(L,k)=>(+(((d&&d[L])||{})[k])||0);
+     const est=(L)=>(q(L,'expr_vocalizando')>=.5?'🗣 habla':(q(L,'expr_silencio')>=.5?'🤫 calla':'·'));
+     window._exprT=window._exprT||{A:{h:0,n:0},B:{h:0,n:0}};
+     for(const L of ['A','B']){if(q(L,'expr_vocalizando')>=.5)window._exprT[L].h++;else if(q(L,'expr_silencio')>=.5)window._exprT[L].n++;}
+     const med=(L)=>{const t=window._exprT[L],tot=(t.h+t.n)||1,fh=t.h/tot;
+       return cjRow(L+' · '+est(L), '🗣 '+(fh*100).toFixed(0)+'% · '+((1-fh)*100).toFixed(0)+'% 🤫')
+         +`<div class="obsgauge" style="display:flex"><i style="width:${(fh*100).toFixed(1)}%;background:#5fd38a"></i><i style="width:${((1-fh)*100).toFixed(1)}%;background:#8aa0b8"></i></div>`;};
+     b.innerHTML = med('A') + med('B')
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">el 1er acto es decidir SI hablar; el silencio es una conducta (acumulado de la sesión)</div>`;}},
+   {id:'imitacion',tit:'🧠 Aprendizaje / Imitación (A/B)',w:3,h:3,render:(b,d)=>{const q=(L,k)=>(+(((d&&d[L])||{})[k])||0);b.innerHTML=
+     cjRow('A oye · ecoica',cjN(q('A','oao_oido'),3)+' · '+cjN(q('A','oao_echoica_n'),0))
+    +cjRow('A imitación',cjN(q('A','oao_imitacion_mag'),3))+cjGauge(Math.min(1,q('A','oao_imitacion_mag')*2),'#8ef0c0')
+    +cjRow('B oye · ecoica',cjN(q('B','oao_oido'),3)+' · '+cjN(q('B','oao_echoica_n'),0))
+    +cjRow('B imitación',cjN(q('B','oao_imitacion_mag'),3))+cjGauge(Math.min(1,q('B','oao_imitacion_mag')*2),'#8ef0c0')
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">lo oído sesga la voz futura por historia (imitación, no copia)</div>`;}},
   ];
 
   const LSKEY='obs_v1_diada';

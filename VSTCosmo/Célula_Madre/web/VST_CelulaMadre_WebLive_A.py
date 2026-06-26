@@ -56,6 +56,8 @@ from VST_Metabolismo import OrganeloMetabolismo, COLS_MET
 from VST_Alteridad import OrganeloAlteridad, COLS_ALT
 from VST_ValorEcologicoVoz import OrganeloValorEcologicoVoz, COLS_VOZECO
 from VST_Expectativa import OrganeloExpectativa, COLS_EXP
+from VST_Expresion import OrganoExpresion, COLS_EXPR
+from VST_Aprendizaje import OrganeloAprendizajeOrganismico, COLS_OAO
 
 # Reutiliza el motor validado y el catálogo de organelos de la interfaz anterior
 from VST_CelulaMadre_Web import cmf, ORG_UI
@@ -126,6 +128,12 @@ _VOZ_ECO_MOD = {"factor": 1.0}   # modulación de absorción de la voz del par (
 # Expectativa: aprende si EXPLORAR tras una firma del otro suele mejorar la situación. Salida única y leve:
 # "vale un poco más la pena seguir observando" → refuerza levemente la atención/absorción. Falsable.
 EXPECTATIVA = OrganeloExpectativa(ORGANISMO_ID)
+# Expresión organísmica (rediseño del balbuceo): la voz como CONDUCTA emergente del organismo COMPLETO +
+# mundo + historia. Genera el gesto (g_*) y decide cuándo/cuánto vocalizar. Reemplaza al balbuceo aislado.
+EXPRESION = OrganoExpresion(ORGANISMO_ID)
+# Aprendizaje organísmico (OAO): conecta percepción↔memoria↔expresión. Memoria ecoica de lo OÍDO → sesgo
+# de IMITACIÓN (atractor) sobre el paisaje vocal; la semejanza emerge de la historia, nunca por copia.
+OAO = OrganeloAprendizajeOrganismico(ORGANISMO_ID)
 
 # --- PERSISTENCIA (incremento 1): la HISTORIA del organismo sobrevive al apagón. El espacio en disco
 # (futuro VOLUMEN Docker, vía ANIMA_ESTADO_DIR) lo da vst_persistencia; aquí sólo coordinamos
@@ -271,7 +279,7 @@ COLS_ACT = ["act_orientacion_deg", "act_objetivo_deg", "act_delta_deg", "act_con
     "act_error_motor", "act_mejora_motor", "act_adaptacion_motor", "act_adaptacion_comprension"]
 # VOZ emitida (la "conversación"): qué sonido R2-D2 usa cada organismo en cada paso + su afecto.
 COLS_VOZ = ["voz_emitida", "voz_arousal", "voz_valence"]
-COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT + COLS_VOZECO + COLS_EXP
+COLS = COLS_BASE + COLS_BIN + COLS_OBS + COLS_ACT + COLS_RC + COLS_HOMEO_EMERGENTE + COLS_MET + COLS_MEM + COLS_VOZ + COLS_ALT + COLS_VOZECO + COLS_EXP + COLS_EXPR + COLS_OAO
 
 
 
@@ -702,6 +710,28 @@ def _mono_de_spec(spec: str):
     path = spec if os.path.isabs(spec) else os.path.join(AUDIO_DIR, spec)
     return os.path.splitext(os.path.basename(path))[0], cmf._load_wav(path, binaural=False)
 
+# STREAMING de archivo con CURSOR de posición: en modo continuo, cada bloque devuelve el SIGUIENTE
+# tramo del wav (avanza y envuelve al final) en vez de repetir el inicio. Así un archivo largo
+# (BigBang/Blue Monday) se reproduce COMPLETO mientras la voz del par sigue viva. _nacer reinicia el
+# cursor en cada /start (cada fase empieza el archivo desde 0). Sin streaming → archivo completo (no toca).
+_WAV_FULL = {}    # nombre -> vector mono completo (cache de la fase actual)
+_WAV_POS = {}     # nombre -> cursor de muestras
+
+def _archivo_stream(nombre, seg):
+    full = _WAV_FULL.get(nombre)
+    if full is None:
+        _, full = _mono_de_spec(nombre)
+        full = np.asarray(full, dtype=np.float64)
+        _WAV_FULL[nombre] = full; _WAV_POS[nombre] = 0
+    n = max(1, int(round(float(seg) * SR)))
+    if full.size <= n:
+        return (nombre, full)                 # archivo más corto que el bloque → completo de una vez
+    pos = _WAV_POS.get(nombre, 0) % full.size
+    end = pos + n
+    out = full[pos:end] if end <= full.size else np.concatenate([full[pos:], full[:end - full.size]])
+    _WAV_POS[nombre] = end % full.size
+    return (nombre, out)
+
 def _mono_de_upload(b64: str, etiqueta: str):
     raw = b64.split(",", 1)[1] if "," in b64 else b64
     tmp = tempfile.NamedTemporaryFile(suffix=".wav", delete=False); tmp.write(base64.b64decode(raw)); tmp.close()
@@ -958,6 +988,7 @@ def _estado_breve() -> dict:
         "vivo": bool(r is not None and not r.done and fila),
         "t": g("t"),
         "voz_emitida": fila.get("voz_emitida", "-"),
+        "voz_titulo": fila.get("voz_titulo", fila.get("voz_emitida", "-")),   # título en castellano
         "voz_arousal": g("voz_arousal"), "voz_valence": g("voz_valence"),
         "OI": g("OI"), "H": g("H_homeostasis"), "necesidad": g("necesidad"),
         "RC_total": g("RC_total"), "energia": g("energia"),
@@ -980,6 +1011,12 @@ def _estado_breve() -> dict:
         "expectativa": g("expectativa"), "expectativa_confianza": g("expectativa_confianza"),
         "expectativa_exploracion": g("expectativa_exploracion"),
         "expectativa_confirmaciones": g("expectativa_confirmaciones"),
+        # EXPRESIÓN VOCAL (conducta) + APRENDIZAJE (OAO: memoria ecoica + imitación) — para el observatorio.
+        "expr_vocalizando": g("expr_vocalizando"), "expr_silencio": g("expr_silencio"),
+        "expr_p_voz": g("expr_p_voz"), "expr_long_conducta": g("expr_long_conducta"),
+        "expr_long_silencio": g("expr_long_silencio"),
+        "oao_oido": g("oao_oido"), "oao_imitacion_mag": g("oao_imitacion_mag"),
+        "oao_echoica_n": g("oao_echoica_n"), "oao_aprendio": g("oao_aprendio"),
     }
 
 
@@ -1064,7 +1101,7 @@ def _audio_comunicacion_resiliente(url: str, seg: float, nombre: str) -> np.ndar
     return y
 
 
-def _resolver_fuente(src: dict, seg: float = 10.0):
+def _resolver_fuente(src: dict, seg: float = 10.0, streaming: bool = False):
     if (src or {}).get("tipo") == "comunicacion":
         if not COM_OK:
             raise RuntimeError(f"organo de comunicacion no disponible: {COM_ERR}")
@@ -1073,10 +1110,10 @@ def _resolver_fuente(src: dict, seg: float = 10.0):
         return (nombre, _audio_comunicacion_resiliente(url, seg, nombre))
     """Resuelve UN descriptor de fuente → (nombre, vector mono 48kHz).
     src.tipo ∈ {archivo, demo, upload, dispositivo}. Para 'dispositivo' graba ese device
-    y extrae SOLO src.channel_index (no mezcla canales)."""
+    y extrae SOLO src.channel_index (no mezcla canales). streaming=True → archivo con cursor (continuo)."""
     t = (src or {}).get("tipo")
     if t == "archivo":
-        return _mono_de_spec(src["nombre"])
+        return _archivo_stream(src["nombre"], seg) if streaming else _mono_de_spec(src["nombre"])
     if t == "demo":
         return cmf.cargar_audio(src.get("spec", "demo:tono"), binaural=False)
     if t == "upload":
@@ -1102,6 +1139,7 @@ def _build_audio_por_oido(cfg: dict):
     Caso especial: si ambos son canales del MISMO dispositivo, se graba UN solo stream
     sincronizado y se extraen las dos columnas (no dos grabaciones desfasadas)."""
     seg = float(cfg.get("segundos", 10)); crit = cfg.get("criterio_duracion", "min")
+    stream = bool(cfg.get("continuo"))   # en modo continuo, los archivos avanzan con cursor (no repiten inicio)
     ls, rs = cfg.get("left_src"), cfg.get("right_src")
     meta = {"fuente": "por_oido", "criterio_duracion": "-", "simulacion_biaural": False}
 
@@ -1134,7 +1172,7 @@ def _build_audio_por_oido(cfg: dict):
         return (_extraer_canal(rec, cL), _extraer_canal(rec, cR)), True, meta
 
     if ls and rs:                                    # dos fuentes independientes
-        nL, L = _resolver_fuente(ls, seg); nR, R = _resolver_fuente(rs, seg)
+        nL, L = _resolver_fuente(ls, seg, stream); nR, R = _resolver_fuente(rs, seg, stream)
         L, R, c = _alinear(L, R, crit)
         canales_com = []
         if (ls or {}).get("tipo") == "comunicacion":
@@ -1146,7 +1184,7 @@ def _build_audio_por_oido(cfg: dict):
         meta.update(izquierdo=nL, derecho=nR, criterio_duracion=c); return (L, R), True, meta
 
     src = ls or rs                                   # una sola fuente
-    nom, mono = _resolver_fuente(src, seg)
+    nom, mono = _resolver_fuente(src, seg, stream)
     if (src or {}).get("tipo") == "comunicacion":
         _actualizar_medidor_comunicacion_canales([("L", nom, mono), ("R", nom, mono)] if cfg.get("binaural") else [("?", nom, mono)])
     if cfg.get("binaural"):                          # duplicar a L/R (sin lateralidad real)
@@ -2304,6 +2342,21 @@ function buildWins(){
           </div>
           <div class="mut" style="font-size:9px;margin-top:2px">Ganancia de salida de la voz (sube el nivel REAL — mira subir el medidor 📢 voz propia). Afecta lo que el par oye.</div>
         </div>
+        <!-- AMPLIAR REPERTORIO: subir un sonido nuevo; el organismo lo explora como una voz más -->
+        <div style="margin-top:10px;border-top:1px solid #243246;padding-top:8px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:10.5px">
+            <span style="color:#9fb1c6">🎵 Ampliar repertorio</span>
+            <input type="file" id="vozFile" accept=".wav,audio/wav" style="flex:1;font-size:9.5px">
+            <button class="sm" id="bVozUp" onclick="_vozSubir()">⬆ Incorporar</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:10.5px;margin-top:4px">
+            <span style="color:#9fb1c6">🏷 Título (opcional)</span>
+            <input type="text" id="vozTit" placeholder="nombre provisional en castellano (no es un significado)" style="flex:1;font-size:9.5px">
+          </div>
+          <div class="mut" style="font-size:9px;margin-top:2px">Sube un WAV: entra al banco vocal (sin límite de sonidos), recibe afecto MEDIDO de su acústica y queda disponible como una voz más que el organismo puede emitir. El título es sólo una etiqueta para identificarlo; NO se le asigna significado (el sentido, si surge, emerge del uso).</div>
+          <div id="vozUpStat" class="mut" style="font-size:9.5px;margin-top:4px"></div>
+          <div id="vozRepertorio" class="mut" style="font-size:9px;margin-top:4px">cargando repertorio…</div>
+        </div>
       </div>
       <!-- ALTRUISMO: gráfico dinámico de la díada movido aquí (zona central, bajo los controles de voz) -->
       <div class="panel" style="margin-top:12px">
@@ -2599,6 +2652,33 @@ fetch('/comunicacion/estado').then(r=>r.json()).then(s=>{
     body:JSON.stringify({volumen:+v.value})}).then(r=>r.json()).then(()=>ev('🗣 volumen de voz → '+(+v.value).toFixed(1)+'×','ok')).catch(()=>{});});
 })();
 
+// ---- AMPLIAR REPERTORIO: subir un WAV nuevo; el organismo lo incorpora y explora ----
+function _vozRepPinta(){
+  fetch('/voces').then(r=>r.json()).then(d=>{
+    const el=$('vozRepertorio'); if(!el||!d||!d.voces) return;
+    const med=d.voces.filter(v=>v.origen==='medido');
+    el.innerHTML='repertorio: <b>'+d.total+'</b> sonidos ('+med.length+' medidos, afecto esparcido) · '+
+      d.voces.slice(-7).map(v=>(v.titulo||v.label)+' <span style="color:#6b7d92">('+(v.origen==='medido'?'≈':'')+'a'+v.aro.toFixed(2)+'/v'+(v.val>=0?'+':'')+v.val.toFixed(2)+')</span>').join(' · ');
+  }).catch(()=>{});
+}
+function _vozSubir(){
+  const f=$('vozFile'), st=$('vozUpStat'); if(!f||!f.files||!f.files[0]){if(st)st.textContent='elige un archivo .wav primero';return;}
+  const file=f.files[0], tit=($('vozTit')&&$('vozTit').value||'').trim();
+  if(st)st.textContent='leyendo '+file.name+'…';
+  const rd=new FileReader();
+  rd.onload=()=>{ const b64=(''+rd.result).split(',',2)[1]||'';
+    fetch('/voces_upload',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nombre:file.name, titulo:tit, wav_base64:b64})}).then(r=>r.json()).then(d=>{
+      if(d&&d.ok){ const a=d.afecto;
+        if(st)st.textContent='✓ "'+(d.titulo||d.label)+'" incorporado · repertorio='+d.total+(a?(' · afecto '+a.origen+' a'+a.aro.toFixed(2)+'/v'+(a.val>=0?'+':'')+a.val.toFixed(2)):''));
+        ev('🎵 repertorio +1: "'+(d.titulo||d.label)+'" ('+d.total+' sonidos)','ok'); if($('vozTit'))$('vozTit').value=''; _vozRepPinta();
+      } else { if(st)st.textContent='✗ '+((d&&d.error)||'error'); }
+    }).catch(e=>{if(st)st.textContent='✗ '+e;});
+  };
+  rd.readAsDataURL(file);
+}
+_vozRepPinta();
+
 // ---- ESCUCHAR / GRABAR la voz del organismo (Web Audio → bocinas del Mac; graba a .wav) ----
 (function(){
   let ac=null, monGain=null, playing=false, nextT=0, timer=null, rec=false, recBufs=[], recSR=48000, nblk=0;
@@ -2725,6 +2805,24 @@ ev('Laboratorio listo. Elige entrada y pulsa Iniciar.');
     +cjRow('exploración (salida)',cjN(r.expectativa_exploracion,3))+cjGauge(Math.min(1,(+r.expectativa_exploracion||0)*5),'#5fd38a')
     +cjRow('confirmaciones',cjN(r.expectativa_confirmaciones,0))+cjRow('falsaciones',cjN(r.expectativa_falsaciones,0))
     +`<div class="obsk" style="font-size:9px;margin-top:3px">¿vale la pena seguir explorando tras la voz? voz→expectativa→exploración</div>`;}},
+   {id:'expresion',tit:'🎙 Expresión vocal (conducta)',w:4,h:4,render:(b,r,bf)=>{const voc=(+r.expr_vocalizando||0)>=.5,sil=(+r.expr_silencio||0)>=.5;
+     const vb=(bf.expr_vocalizando||[]).slice(-150).map(Number).filter(x=>x===x);
+     const fh=vb.length?vb.filter(x=>x>=.5).length/vb.length:0;
+     const medidor=`<div class="obsrow"><span class="obsk">🗣 Habla</span><span class="obsv">${(fh*100).toFixed(0)}% · No Habla ${((1-fh)*100).toFixed(0)}% 🤫</span></div>`
+       +`<div class="obsgauge" style="display:flex"><i style="width:${(fh*100).toFixed(1)}%;background:#5fd38a"></i><i style="width:${((1-fh)*100).toFixed(1)}%;background:#8aa0b8"></i></div>`;
+     b.innerHTML=
+     cjRow('conducta actual', voc?'🗣 VOCALIZA':(sil?'🤫 SILENCIO':'·'))+medidor
+    +cjRow('p(vocalizar)',cjN(r.expr_p_voz,3))+cjGauge(r.expr_p_voz,'#e8b86d')+cjSpark(bf.expr_p_voz,'#e8b86d')
+    +cjRow('long. conducta vocal',cjN(r.expr_long_conducta,0))+cjRow('long. silencio',cjN(r.expr_long_silencio,0))
+    +cjRow('recurso (energía)',cjN(r.expr_recurso,3))+cjGauge(Math.max(0,Math.min(1,+r.expr_recurso||0)),'#5fd38a')
+    +cjRow('peso del silencio',cjN(r.expr_peso_silencio,2))+cjRow('familiaridad región',cjN(r.expr_familiaridad,1))
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">el 1er acto es decidir SI hablar; silencio y voz compiten por historia</div>`;}},
+   {id:'aprendizaje',tit:'🧠 Aprendizaje (OAO: ecoica + imitación)',w:4,h:4,render:(b,r,bf)=>{b.innerHTML=
+     cjRow('¿oye al otro?',cjN(r.oao_oido,3))+cjGauge(Math.min(1,(+r.oao_oido||0)*3),'#6db6ff')
+    +cjRow('memoria ecoica (n)',cjN(r.oao_echoica_n,0))+cjGauge(Math.min(1,(+r.oao_echoica_n||0)/100),'#b58cff')
+    +cjRow('imitación (magnitud)',cjN(r.oao_imitacion_mag,3))+cjGauge(Math.min(1,(+r.oao_imitacion_mag||0)*2),'#8ef0c0')+cjSpark(bf.oao_imitacion_mag,'#8ef0c0')
+    +cjRow('incorpora lo oído',(+r.oao_aprendio||0)>=.5?'sí':'no')+cjRow('eco freq·int',cjN(r.oao_eco_freq,2)+' · '+cjN(r.oao_eco_intensidad,2))
+    +`<div class="obsk" style="font-size:9px;margin-top:3px">lo oído sesga la voz futura (imitación por historia, NO copia); aprender es libre</div>`;}},
   ];
 
   const ORG_ID=(document.querySelector('h1')?.textContent||'').includes('Organismo B')?'ANIMA_B':'ANIMA_A';
@@ -2805,6 +2903,13 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/organelos":
             self._send(200, json.dumps([{"name": n, "grupo": g, "label": l, "req": rq}
                                         for n, g, l, rq in ORG_UI], ensure_ascii=False))
+        elif path == "/voces":
+            # repertorio vocal actual (para la UI): etiqueta, afecto y si fue medido o curado
+            vs = (getattr(ORGANO_COMUNICACION, "_voces", None) or []) if ORGANO_COMUNICACION else []
+            self._send(200, json.dumps({"ok": True, "total": len(vs), "voces": [
+                {"label": v["label"], "titulo": v.get("titulo", v["label"]),
+                 "aro": round(v["aro"], 3), "val": round(v["val"], 3),
+                 "origen": v.get("afecto_origen", "curado")} for v in vs]}, ensure_ascii=False))
         elif path == "/dispositivos":
             self._send(200, json.dumps(_dispositivos(), ensure_ascii=False))
         elif path == "/fuentes":
@@ -2853,6 +2958,8 @@ class Handler(BaseHTTPRequestHandler):
                 self._mute(self._body())
             elif path == "/voz_config":
                 self._voz_config(self._body())
+            elif path == "/voces_upload":
+                self._voces_upload(self._body())
             else:
                 self._send(404, json.dumps({"error": "no encontrado"}))
         except Exception as e:
@@ -2906,6 +3013,54 @@ class Handler(BaseHTTPRequestHandler):
                     pass
         self._send(200, json.dumps({"ok": True,
             "voice_volumen": getattr(ORGANO_COMUNICACION, "voice_volumen", None) if ORGANO_COMUNICACION else None}))
+
+    # ---- AMPLIAR EL REPERTORIO VOCAL EN VIVO: subir un sonido nuevo y que el organismo lo explore ----
+    #      El repertorio R2-D2 no tiene límite fijo: cualquier WAV subido entra al banco, recibe afecto
+    #      MEDIDO de su acústica (no etiquetado a mano) y queda disponible como una voz más que el
+    #      organismo puede emitir cuando su estado se le acerque. No se impone significado; se incorpora sonido.
+    def _voces_upload(self, req):
+        if ORGANO_COMUNICACION is None:
+            self._send(200, json.dumps({"ok": False, "error": "sin órgano de comunicación"})); return
+        import base64, re as _re
+        nombre = (req.get("nombre") or "sonido").strip()
+        nombre = _re.sub(r"[^A-Za-z0-9 ._-]", "_", nombre)[:80]
+        if not nombre.lower().endswith(".wav"):
+            nombre += ".wav"
+        b64 = req.get("wav_base64") or ""
+        if "," in b64 and b64.lstrip().startswith("data:"):     # data:audio/wav;base64,XXXX
+            b64 = b64.split(",", 1)[1]
+        try:
+            datos = base64.b64decode(b64)
+        except Exception as e:
+            self._send(200, json.dumps({"ok": False, "error": f"base64 inválido: {e}"})); return
+        if len(datos) < 64 or datos[:4] != b"RIFF":
+            self._send(200, json.dumps({"ok": False, "error": "no parece un WAV (falta cabecera RIFF)"})); return
+        base = getattr(ORGANO_COMUNICACION, "_voces_dir", None) or os.environ.get("ANIMA_VOCES_DIR") or \
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "voces_r2d2")
+        try:
+            os.makedirs(base, exist_ok=True)
+            destino = os.path.join(base, nombre)
+            with open(destino, "wb") as fh:
+                fh.write(datos)
+        except Exception as e:
+            self._send(200, json.dumps({"ok": False, "error": f"no se pudo guardar: {e}"})); return
+        n = ORGANO_COMUNICACION.recargar_voces()                # re-explora la carpeta SIN reiniciar
+        # afecto MEDIDO del sonido recién incorporado (para mostrarlo)
+        etiqueta = os.path.splitext(nombre)[0]
+        voz = next((v for v in (ORGANO_COMUNICACION._voces or []) if v["label"] == etiqueta), None)
+        # TÍTULO PROVISIONAL sugerido (opcional): sólo una etiqueta legible para el humano, no un significado
+        titulo = (req.get("titulo") or "").strip()
+        if voz is not None and titulo:
+            voz["titulo"] = titulo[:60]
+        titulo = voz["titulo"] if voz else (titulo or etiqueta)
+        if RUN is not None:
+            RUN._log_evento("voz_nueva", f"repertorio +1 '{titulo}' (afecto {voz['afecto_origen'] if voz else '?'})")
+        if _HIST is not None:
+            try: _HIST.evento("voz_nueva", f"sonido '{titulo}' incorporado al repertorio", {"total": n, "label": etiqueta})
+            except Exception: pass
+        self._send(200, json.dumps({"ok": True, "total": n, "label": etiqueta, "titulo": titulo,
+            "afecto": ({"aro": voz["aro"], "val": voz["val"], "origen": voz["afecto_origen"]} if voz else None)},
+            ensure_ascii=False))
 
     # ---- cambiar entradas L/R EN VIVO (solo fuente servidor; queda en la bitácora) ----
     def _entradas(self, req):
@@ -3046,7 +3201,7 @@ def _com_observar(fila, meta=None):
             global _ULTIMA_VOZ
             if v.get("voz_emitida") != _ULTIMA_VOZ and RUN is not None:
                 _ULTIMA_VOZ = v.get("voz_emitida")
-                RUN._log_evento("voz", f"🔊 {_ULTIMA_VOZ}  (aro={v.get('voz_arousal')}, val={v.get('voz_valence')})")
+                RUN._log_evento("voz", f"🔊 {v.get('voz_titulo', _ULTIMA_VOZ)}  (aro={v.get('voz_arousal')}, val={v.get('voz_valence')})")
         except Exception:
             pass
     fila.setdefault("voz_emitida", "-"); fila.setdefault("voz_arousal", 0.0); fila.setdefault("voz_valence", 0.0)
@@ -3054,10 +3209,23 @@ def _com_observar(fila, meta=None):
     # imprime sobre la vocalización fisiológica. NO elige etiquetas: explora frecuencia/intensidad/pausa/
     # repetición. Así el organismo PUEDE descubrir qué forma de vocalizar mueve al otro (precondición).
     try:
-        g = ALTERIDAD.gesto_actual(fila)
+        # APRENDIZAJE: memoria ecoica de lo OÍDO (estructura de la voz del par) → sesgo de imitación
+        fila.update(OAO.observar(fila, _par_estado_control()))
+        _bias_imit = OAO.bias_imitacion()
+    except Exception:
+        _bias_imit = None
+    try:
+        g = EXPRESION.proximo_gesto(fila, bias_imit=_bias_imit)   # CONDUCTA VOCAL emergente (organismo+mundo+lo oído)
         fila.update(g)
+        if g.get("expr_vocalizando", 1.0) < 0.5:   # el organismo decide NO vocalizar este paso → silencio
+            fila["voz_emitida"] = "-"; fila["voz_titulo"] = "-"
         if ORGANO_COMUNICACION is not None:
             ORGANO_COMUNICACION.gesto = {k: g.get(k) for k in ("g_freq", "g_intensidad", "g_pausa", "g_repeticion")}
+        if EXPRESION.eventos:
+            if RUN is not None:
+                for _t, _d, _x in EXPRESION.eventos:   # hito: una conducta vocal se consolidó por su consecuencia
+                    RUN._log_evento(_t, _d, _x)
+            EXPRESION.eventos.clear()
     except Exception:
         pass
     # ALTERIDAD: ¿la emisión propia modifica al otro? (aprende por consecuencias; usa el estado del par).
@@ -3165,6 +3333,7 @@ def _nacer(cfg, toggles=None, sim_s=6, modo=None):
     with RUN_LOCK:
         if RUN and not RUN.done:
             RUN.stop = True                       # detener vida previa
+        _WAV_POS.clear(); _WAV_FULL.clear()       # cada /start (fase) reinicia los archivos desde 0 (y libera RAM)
         RUN = Run(cfg or {}, toggles or {}, sim_s)
         HOMEO_EMERGENTE.reset(); MEMORIA.reset(); METABOLISMO.reset()   # el _despertar restaura tras esto
         RUN.start()

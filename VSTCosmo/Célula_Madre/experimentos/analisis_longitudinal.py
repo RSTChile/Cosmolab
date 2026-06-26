@@ -20,7 +20,14 @@ SOSTEN = int(os.environ.get("SOSTEN", "20"))       # muestras consecutivas sobre
 
 # Variables ABSOLUTAS (no el ratio agencia_otro, inestable): la genealogía a vigilar.
 VARS = ["expectativa", "alt_contingencia_social", "alt_intencion_comunicativa",
-        "voz_otro_valor_ecologico", "voz_otro_confianza_ecologica", "expectativa_confianza"]
+        "voz_otro_valor_ecologico", "voz_otro_confianza_ecologica", "expectativa_confianza",
+        "alt_otro_presente"]
+# Tabla longitudinal (sugerencia GPT): una fila por checkpoint para reconstruir CUÁNDO ocurre una
+# transición. Mapeo columna→variable (las 5 de la genealogía, todas absolutas, sin cocientes/derivadas).
+TABLA = os.path.join(HIST, "TABLA_LONGITUDINAL.csv")
+TABLA_VARS = [("expectativa", "expectativa"), ("agencia", "alt_contingencia_social"),
+              ("valor_ecologico", "voz_otro_valor_ecologico"), ("intencion", "alt_intencion_comunicativa"),
+              ("alteridad", "alt_otro_presente")]
 
 def leer(org):
     """Lee (downsampleado) t y las VARS de todos los CSV de fisiología de un organismo, en orden temporal."""
@@ -76,11 +83,13 @@ def main():
     print("ANÁLISIS LONGITUDINAL — orden de emergencia de las variables instrumentales")
     print("=" * 80)
     salidas = []
+    series = {}; duraciones = {}
     for org in ("ANIMA_A", "ANIMA_B"):
         ts, serie = leer(org)
         if not ts:
             print(f"  {org}: sin biografía aún."); continue
         dur_h = (max(ts) - min(ts)) / 3600.0 if ts else 0
+        series[org] = serie; duraciones[org] = dur_h
         print(f"\n  {org} · {len(ts)} muestras (downsample {DOWN}) · ~{dur_h:.1f} h de vida")
         for v in VARS:
             r = basal_y_salida(serie.get(v, []))
@@ -101,6 +110,38 @@ def main():
         print("    NINGUNA variable salió del basal en el periodo observado.")
         print("    → la voz del otro sigue sin volverse expectativa/agencia/intención. Resultado VÁLIDO:")
         print("      la ausencia persistente es evidencia tan fuerte como la aparición.")
+
+    # ---- TABLA LONGITUDINAL: una fila por checkpoint (sugerencia GPT) ----
+    if series:
+        from datetime import datetime
+        def mediana_reciente(var):
+            vs = []
+            for org in series:
+                col = [x for x in series[org].get(var, []) if x == x]
+                if col:
+                    vs += col[-max(5, len(col) // 10):]      # último ~10% (ventana reciente)
+            return (sum(vs) / len(vs)) if vs else float("nan")
+        hora_vida = max(duraciones.values()) if duraciones else 0.0
+        fila = {nom: mediana_reciente(var) for nom, var in TABLA_VARS}
+        # observación automática: ¿salió alguna PRIMARIA (no derivadas)? si no, "todas en basal"
+        prim = [v for v in (x[1] for x in TABLA_VARS)]
+        salio_prim = [k for (t_h, k, _p) in salidas if k.split(":")[1] in prim]
+        deriv = [k for (t_h, k, _p) in salidas if k.split(":")[1] not in prim]
+        if salio_prim:
+            obs = "SALIÓ: " + ", ".join(sorted(set(k.split(":")[1] for k in salio_prim)))
+        elif deriv:
+            obs = "todas en basal (solo fluctúa derivada: " + ", ".join(sorted(set(k.split(":")[1] for k in deriv))) + ")"
+        else:
+            obs = "todas en basal"
+        nueva = not os.path.exists(TABLA)
+        with open(TABLA, "a", encoding="utf-8") as fh:
+            if nueva:
+                fh.write("ts_real,hora_vida_h," + ",".join(n for n, _ in TABLA_VARS) + ",observacion\n")
+            fh.write(datetime.now().strftime("%Y-%m-%d %H:%M") + f",{hora_vida:.2f}," +
+                     ",".join(f"{fila[n]:.4f}" if fila[n] == fila[n] else "" for n, _ in TABLA_VARS) +
+                     f",{obs}\n")
+        print(f"\n  ↳ fila añadida a la tabla longitudinal: {TABLA}")
+        print(f"    {hora_vida:.2f}h · " + " · ".join(f"{n}={fila[n]:.3f}" for n, _ in TABLA_VARS) + f" · {obs}")
 
 if __name__ == "__main__":
     main()

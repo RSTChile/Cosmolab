@@ -366,11 +366,80 @@ class OrganoComunicacion:
         "15": (0.45, 0.2), "18": (0.40, -0.2), "19": (0.40, 0.0), "22": (0.55, 0.3),
     }
 
+    # Nombre legible EN CASTELLANO de cada voz: una ETIQUETA para humanos (identificar y rastrear patrones
+    # si surgen), NO un significado. El organismo elige la voz por AFECTO, jamás por el nombre. Los samples
+    # R2-D2 originales venían en inglés; aquí su título provisional en español.
+    NOMBRE_ES = {
+        "screaming": "alarido", "shout": "grito", "worried": "inquietud",
+        "excited": "euforia", "excited-2": "euforia 2", "sing": "canturreo",
+        "acknowledged": "asentir", "chat": "parloteo",
+    }
+    # Acentos/títulos sugeridos para sonidos cuyo nombre de archivo va sin tilde (provisional, no semántico).
+    TITULOS_ES = {
+        "afirmacion": "afirmación", "alegria": "alegría", "atencion": "atención",
+        "bateria_baja": "batería baja", "compania": "compañía", "comprension": "comprensión",
+        "confusion": "confusión", "energia_plena": "energía plena", "exploracion": "exploración",
+        "frustracion": "frustración", "negacion": "negación", "precaucion": "precaución",
+        "satisfaccion": "satisfacción",
+    }
+
+    def _titulo(self, label: str) -> str:
+        """Título legible en castellano para una voz (provisional, sólo para que el humano la identifique)."""
+        if label in self.NOMBRE_ES:
+            return self.NOMBRE_ES[label]
+        if label in self.TITULOS_ES:
+            return self.TITULOS_ES[label]
+        if str(label).isdigit():
+            return f"tono {label}"
+        return str(label).replace("_", " ").replace("-", " ").strip().capitalize() or label
+
+    @staticmethod
+    def _afecto_acustico(a: np.ndarray, sr: int) -> tuple:
+        """Deriva (arousal, valence) de los RASGOS ACÚSTICOS del sonido mismo — no de una etiqueta.
+        Así, un sonido NUEVO que se sube al repertorio adquiere afecto por lo que ES (cómo suena),
+        no por un diccionario que lo nombre; el repertorio puede crecer sin límite y el organismo lo
+        explora igual que a los demás. Anti-Shannon: el significado afectivo no se impone, se mide.
+          · arousal ← energía (RMS) + brillo (centroide espectral) + 'agitación' (tasa de cruces por cero).
+          · valence ← tonalidad (lo tonal/armónico tiende a +, lo ruidoso a −) + contorno de brillo
+                       (sonido que se ABRE/sube → +, que se apaga/baja → −).
+        Heurística honesta, no semántica: es un punto de partida que la HISTORIA puede recontextualizar."""
+        if a is None or len(a) < 64:
+            return 0.5, 0.0
+        x = a.astype(np.float64)
+        x = x - x.mean()
+        pk = np.max(np.abs(x)) or 1.0
+        x = x / pk
+        rms = float(np.sqrt(np.mean(x * x)))                       # energía
+        zcr = float(np.mean(np.abs(np.diff(np.sign(x))) > 0))      # cruces por cero (agitación/ruido)
+        # espectro (una sola FFT global, suficiente para una etiqueta de afecto)
+        win = np.hanning(len(x))
+        S = np.abs(np.fft.rfft(x * win)) + 1e-9
+        f = np.fft.rfftfreq(len(x), 1.0 / max(1, sr))
+        centroide = float((f * S).sum() / S.sum())                 # brillo
+        cen_n = min(1.0, centroide / (sr * 0.25))                  # normalizado a ~Nyquist/2
+        # planitud espectral (Wiener): ~1 ruido, ~0 tonal
+        gm = float(np.exp(np.mean(np.log(S))))
+        am = float(np.mean(S))
+        planitud = gm / am
+        # contorno de brillo: ¿el sonido se abre (centroide sube) o se apaga (baja)?
+        mid = len(x) // 2
+        c1 = np.abs(np.fft.rfft(x[:mid] * np.hanning(mid))) + 1e-9 if mid > 32 else S
+        c2 = np.abs(np.fft.rfft(x[mid:] * np.hanning(len(x) - mid))) + 1e-9 if mid > 32 else S
+        f1 = np.fft.rfftfreq(mid, 1.0 / max(1, sr)); f2 = np.fft.rfftfreq(len(x) - mid, 1.0 / max(1, sr))
+        cen1 = float((f1 * c1).sum() / c1.sum()); cen2 = float((f2 * c2).sum() / c2.sum())
+        contorno = float(np.tanh((cen2 - cen1) / (sr * 0.1)))      # +sube / −baja
+        arousal = min(1.0, max(0.0, 0.45 * rms + 0.35 * cen_n + 0.20 * zcr))
+        valence = max(-1.0, min(1.0, 0.7 * (1.0 - 2.0 * planitud) + 0.3 * contorno))
+        return round(arousal, 3), round(valence, 3)
+
     def _cargar_voces(self) -> list:
         """Carga el banco de voces R2-D2 (wav) desde voces_r2d2/ (en el árbol Célula_Madre) o
-        ANIMA_VOCES_DIR. Cada voz lleva su afecto (arousal, valence). Sin carpeta → [] (usa síntesis)."""
+        ANIMA_VOCES_DIR. Cada voz lleva su afecto (arousal, valence). Sin carpeta → [] (usa síntesis).
+        El afecto sale de AFECTO_VOCES si la etiqueta es conocida; si NO (sonido subido nuevo), se MIDE
+        de la acústica (_afecto_acustico) → el repertorio crece sin límite y todo sonido es explorable."""
         base = os.environ.get("ANIMA_VOCES_DIR") or os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "voces_r2d2")
+        self._voces_dir = base
         voces = []
         if not os.path.isdir(base):
             return voces
@@ -378,27 +447,80 @@ class OrganoComunicacion:
             if not nombre.lower().endswith(".wav"):
                 continue
             etiqueta = os.path.splitext(nombre)[0]
+            ruta = os.path.join(base, nombre)
             try:
-                w = wave.open(os.path.join(base, nombre), "rb")
-                nch = w.getnchannels()
-                a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
-                if nch == 2:
-                    a = a.reshape(-1, 2).mean(axis=1)
-                aro, val = self.AFECTO_VOCES.get(etiqueta, (0.5, 0.0))
-                voces.append({"label": etiqueta, "audio": a, "aro": float(aro), "val": float(val)})
+                try:
+                    w = wave.open(ruta, "rb")
+                    nch = w.getnchannels(); sr = w.getframerate() or 44100
+                    a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
+                    if nch == 2:
+                        a = a.reshape(-1, 2).mean(axis=1)
+                except Exception:
+                    import soundfile as _sf                        # fallback: WAV float32/24-bit (sonidos subidos)
+                    a, sr = _sf.read(ruta, dtype="float64")
+                    if getattr(a, "ndim", 1) > 1:
+                        a = a.mean(axis=1)
+                if etiqueta in self.AFECTO_VOCES:
+                    aro, val = self.AFECTO_VOCES[etiqueta]          # voz R2-D2 conocida: afecto curado
+                    origen = "curado"
+                else:
+                    aro, val = self._afecto_acustico(a, sr)         # sonido nuevo: afecto MEDIDO de su acústica
+                    origen = "medido"
+                voces.append({"label": etiqueta, "audio": a, "aro": float(aro), "val": float(val),
+                              "afecto_origen": origen, "titulo": self._titulo(etiqueta)})
             except Exception:
                 continue
+        self._esparcir_afecto(voces)
         return voces
+
+    def _esparcir_afecto(self, voces: list) -> None:
+        """ESPARCE el afecto de los sonidos MEDIDOS por la región operativa del organismo, conservando su
+        ORDEN acústico (más energía→más arousal; más brillo→más valencia) pero llenando el plano por RANGO.
+        Por qué: las heurísticas acústicas tienden a AMONTONAR (p.ej. casi todo tonal cae en valencia alta),
+        y entonces los sonidos nuevos quedan lejos de donde el organismo realmente está → no se emitirían nunca.
+        Al esparcirlos por la zona alcanzable, cada estado puede mapear a un sonido DISTINTO y el repertorio
+        se usa de verdad. NO afirmamos que estas coordenadas signifiquen alegría/miedo: son una colocación
+        PROVISIONAL por huella acústica; el sentido, si surge, emerge del USO y la historia, no de aquí.
+        Los sonidos CURADOS (R2-D2 originales) conservan su afecto a mano."""
+        med = [v for v in voces if v.get("afecto_origen") == "medido"]
+        n = len(med)
+        if n < 3:
+            return
+        for r, v in enumerate(sorted(med, key=lambda v: v["aro"])):
+            v["aro"] = round(0.12 + 0.56 * (r / (n - 1)), 3)        # 0.12 .. 0.68 (cubre la región del organismo)
+        for r, v in enumerate(sorted(med, key=lambda v: v["val"])):
+            v["val"] = round(-0.35 + 0.95 * (r / (n - 1)), 3)       # -0.35 .. 0.60
+
+    def recargar_voces(self) -> int:
+        """Re-explora la carpeta de voces y reconstruye el banco (para incorporar sonidos recién subidos
+        sin reiniciar el organismo). Devuelve cuántas voces hay tras recargar. Idempotente y barato."""
+        self._voces = self._cargar_voces()
+        return len(self._voces)
 
     def voz_actual(self, fila: dict) -> dict:
         """Qué voz R2-D2 emite el organismo para ESTE estado (la más cercana a su afecto) + el afecto.
         Determinista → sirve para REGISTRAR en el CSV la 'conversación': qué sonido usa en cada contexto."""
         aro, val = self._afecto(fila)
-        label = "-"
+        label = "-"; titulo = "-"
         if self._voces:
-            v = min(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
-            label = v["label"]
-        return {"voz_emitida": label, "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
+            cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
+            k = self._pool_k(len(cand))                 # MISMO pool exploratorio que la emisión real
+            self._voz_seq = (getattr(self, "_voz_seq", 0) + 1)
+            v = cand[_stable_seed(f"{self.organismo_id}:r2voz:lbl:{self._voz_seq}") % k]
+            label = v["label"]; titulo = v.get("titulo", label)
+        return {"voz_emitida": label, "voz_titulo": titulo,
+                "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
+
+    def _pool_k(self, n_cand: int) -> int:
+        """Tamaño del pool de voces entre las que el organismo EXPLORA: crece con su 'apertura' (act_perm /
+        exploración del gesto). Más abierto → considera voces más lejanas del óptimo afectivo → usa más
+        repertorio. En reposo (apertura≈0) se queda cerca (pool 3). 3..12 candidatos."""
+        try:
+            apertura = float(self._fila.get("act_perm", 0.0) or 0.0)
+            apertura = max(apertura, abs(float(self.gesto.get("g_freq", 0.0))) * 0.5 if self.gesto else 0.0)
+        except Exception:
+            apertura = 0.0
+        return min(max(3, int(round(3 + 9 * min(1.0, apertura)))), max(1, n_cand))
 
     def _afecto(self, fila: dict) -> tuple:
         """Proyecta la fisiología a (arousal, valence): cuán ACTIVADO y cuán BIEN está el organismo.
@@ -417,7 +539,10 @@ class OrganoComunicacion:
             return None
         aro, val = self._afecto(fila)
         cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
-        k = min(3, len(cand))
+        # EXPLORACIÓN del repertorio: no siempre el más cercano. El pool crece con la 'apertura' del
+        # organismo (act_perm / exploración del gesto); más abierto → considera voces más lejanas del
+        # óptimo afectivo → usa más repertorio. Determinista por seq (mismo estado+seq → misma voz).
+        k = self._pool_k(len(cand))
         idx = _stable_seed(f"{self.organismo_id}:r2voz:{seq}") % k
         a = cand[idx]["audio"]
         return np.array(a[: int(3.0 * self.sr)], dtype=np.float64)   # cap 3s
