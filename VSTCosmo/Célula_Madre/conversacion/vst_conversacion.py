@@ -129,7 +129,11 @@ def _registrar_turno(lado, est):
         _TRANSCRIPT.append(turno)
         if len(_TRANSCRIPT) > MAX_TRANSCRIPT:
             _TRANSCRIPT.pop(0)
-        _HIST[lado][voz] = _HIST[lado].get(voz, 0) + 1
+        # histograma agrupado por TÍTULO (reposo/descanso/…), no por la etiqueta interna (dolor/…);
+        # guarda la etiqueta para que el frontend siga sabiendo el emoji/color de cada voz.
+        _tit = turno.get("titulo") or voz
+        _h = _HIST[lado].setdefault(_tit, {"n": 0, "label": voz})
+        _h["n"] += 1; _h["label"] = voz
     # BIOGRAFÍA de la díada: cada emisión como evento A↔B con contexto + delta del receptor.
     if _HIST_DIADA is not None:
         otro = "B" if lado == "A" else "A"
@@ -355,10 +359,11 @@ function cabeza(pre, est){
   if(est&&est.organismo)$('nom'+pre).textContent=est.organismo;
 }
 function hist(pre, h){
-  const tot=Object.values(h||{}).reduce((a,b)=>a+b,0)||1;
-  const ent=Object.entries(h||{}).sort((a,b)=>b[1]-a[1]);
-  $('hist'+pre).innerHTML='<div class=mut style=font-size:10px>'+pre+'</div>'+ent.map(([v,n])=>
-    '<div class=barra><span style=width:88px>'+emo(v)+' '+v+'</span><div class=b><div style="width:'+(100*n/tot)+'%;background:'+(COL[v]||'#5fd38a')+'"></div></div><span style="width:34px;text-align:right" class=mut>'+n+'</span></div>').join('');
+  // h: { titulo: {n, label} }  → muestra el TÍTULO (reposo/…), emoji/color por la etiqueta interna
+  const ent=Object.entries(h||{}).map(([t,o])=>[t,(o&&o.n)||0,(o&&o.label)||t]).sort((a,b)=>b[1]-a[1]);
+  const tot=ent.reduce((a,b)=>a+b[1],0)||1;
+  $('hist'+pre).innerHTML='<div class=mut style=font-size:10px>'+pre+'</div>'+ent.map(([t,n,lab])=>
+    '<div class=barra><span style=width:88px>'+emo(lab)+' '+t+'</span><div class=b><div style="width:'+(100*n/tot)+'%;background:'+(COL[lab]||'#5fd38a')+'"></div></div><span style="width:34px;text-align:right" class=mut>'+n+'</span></div>').join('');
 }
 let nT=0;
 async function tick(){
