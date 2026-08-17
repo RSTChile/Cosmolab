@@ -1,0 +1,61 @@
+{
+  "eps": 0.5,
+  "N_particulas": 69,
+  "sin_distancia": {
+    "conteo": {
+      "bariones": 3,
+      "antibariones": 0,
+      "protones": 2,
+      "hidrogeno": 2,
+      "quarks_sueltos": 1
+    },
+    "bariones_indices": [
+      [
+        "21",
+        "22",
+        "23"
+      ],
+      [
+        "24",
+        "25",
+        "26"
+      ],
+      [
+        "27",
+        "28",
+        "29"
+      ]
+    ]
+  },
+  "con_distancia": {
+    "conteo": {
+      "bariones": 3,
+      "antibariones": 0,
+      "protones": 2,
+      "hidrogeno": 2,
+      "quarks_sueltos": 1
+    },
+    "bariones_indices": [
+      [
+        "21",
+        "22",
+        "23"
+      ],
+      [
+        "24",
+        "25",
+        "26"
+      ],
+      [
+        "27",
+        "28",
+        "29"
+      ]
+    ]
+  },
+  "cambio": {
+    "bariones_igual": true,
+    "hidrogeno_igual": true,
+    "mismos_indices_bariones": true
+  }
+}

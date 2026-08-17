@@ -1,0 +1,61 @@
+NODOS NUEVOS EN FORMATO CANÓNICO — listos para integrar (entre C-N2.7.6 y BLOQUE 2.8)
+CS, 17-jul-2026. Formato canónico puro: Número — fórmula / descripción / Ejemplo. Sin notas de evidencia
+(esas viven en el registro de adjudicación, no en la Teoría). La trazabilidad al experimento queda en
+ADJUDICACION_nodos_Cosmogenesis y PROPUESTA_nodos_canonica_emergencia_espacio.
+
+═══════════════════════════════════════════════════════════════════════════════════
+Se insertan tras C-N2.7.6 y antes del BLOQUE 2.8, bajo el sub-bloque:
+
+BLOQUE 2.7 (cont.) — EMERGENCIA DEL ESPACIO Y SU LÍMITE
+
+C-N2.7.7 — d(A,B) ≡ Σ Δ_struct
+La distancia no preexiste: emerge de encadenar distinciones. Cuán lejos está algo es cuántas diferencias hay
+que atravesar entre aquí y allá; la métrica es diferencia acumulada.
+Ejemplo: Dos puntos están lejos cuando hay muchas distinciones que cruzar entre uno y otro.
+
+C-N2.7.8 — S > 0 ⊳ d ⊳ dim ⊳ dir
+La geometría se levanta en cuatro peldaños que se habilitan en orden: la distinción habilita la distancia, la
+distancia habilita la dimensión, la dimensión habilita la dirección. Cada peldaño presupone el anterior, pero
+ninguno garantiza por sí solo el siguiente.
+Ejemplo: Se puede saber que A está lejos de B sin poder decir todavía "B está al norte de A".
+
+C-N2.7.9 — d > 0 ⇏ dir
+Que exista "lejos" no implica que exista "hacia dónde". La diferencia genera distancia con naturalidad, pero
+ordenar esas distancias en ejes consistentes requiere algo que la relación no aporta por sí sola.
+Ejemplo: Un ovillo donde todo está lejos de todo tiene distancia pero ningún norte.
+
+C-N2.7.10 — sustrato mundo-pequeño ⇒ dir = ∅
+Mientras el sustrato mantenga que todo esté cerca de todo, la dirección no se enciende: ni la relación clásica
+completa ni la coherencia cuántica en superposición fabrican ejes espaciales estables. El "hacia dónde" no
+emerge de la relación por sí sola en esta familia de sustratos. Esto acota, no clausura: sitúa lo que falta
+fuera de la relación pura, sin negar que exista.
+Ejemplo: Reunir todos los ingredientes juntos, y luego una superposición de todos los grafos posibles, no
+produce un norte común.
+
+C-N2.7.11 — ¬geometría ⇒ π indefinido ; geometría ⇒ π = const(red)
+La razón entre el perímetro de un círculo y su diámetro no es una ley previa que el universo obedece. Antes de
+que la geometría cuaje —hay distancia pero no dimensión ni dirección— π no está definido: sin círculos ni plano,
+puede ser cualquier valor. Cuando la geometría cuaja, π se congela, pero el valor depende de qué geometría
+emergió. π es huella de la geometría realizada, no su causa.
+Ejemplo: En el estado pre-geométrico π estalla sin fijarse; en una geometría ya cuajada es constante, pero
+distinto según la red que cuajó.
+
+C-N2.7.12 — geometría ≡ fase condensada de lo relacional ⇒ κ ⊥ sustrato
+Dimensión, dirección y geometría métrica no son el escenario previo a la obra: son un estado condensado que
+emerge —o no— de lo relacional. Y si ni siquiera la geometría es un sustrato dado, los invariantes del cierre no
+pueden apoyarse en el espacio: tienen que ser relacionales e independientes del sustrato. Esta es la condición
+de posibilidad de la universalidad estructural que impone el BLOQUE 2.8 (C-N2.8.14).
+Ejemplo: El espacio-tiempo suave es a lo relacional lo que el cristal es al líquido: una fase, no una ley — y
+por eso las condiciones de todo sistema viable no dependen de qué forma tomó el cristal.
+
+═══════════════════════════════════════════════════════════════════════════════════
+MODIFICACIÓN a C-N2.6.4 (partir en dos — reemplaza el nodo actual):
+
+C-N2.6.4a — acumulación de constricción ⇒ organización local
+La acumulación de constricción genera orden a escala de vecindad: tejido con "cerca" y "lejos" locales.
+Ejemplo: Reglas locales repetidas producen la trama ordenada de un vecindario.
+
+C-N2.6.4b — organización local ⇏ organización direccional global
+El orden local acumulado no basta para producir dimensión ni ejes a gran escala; la organización direccional
+global requiere algo ausente en la sola constricción local.
+Ejemplo: Muchos vecindarios bien tramados no producen por sí solos un norte común a todos.

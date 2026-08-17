@@ -1,0 +1,36 @@
+Leyendo ic_real/cosmog_00500 ...
+  ic_real: n_gas=1774, n_sinks=8, BC=0.803, n_picos_hist=2, profundidad_valle=0.509, pendiente_loglog_rho=-0.26502755223877933
+Leyendo ic_null1/cosmog_00500 ...
+  ic_null1: n_gas=1922, n_sinks=8, BC=0.508, n_picos_hist=2, profundidad_valle=0.461, pendiente_loglog_rho=-0.516195694666668
+Leyendo ic_null2/cosmog_00500 ...
+  ic_null2: n_gas=1927, n_sinks=8, BC=0.526, n_picos_hist=2, profundidad_valle=0.561, pendiente_loglog_rho=-0.04631689840920588
+Leyendo ic_null3/cosmog_00500 ...
+  ic_null3: n_gas=1923, n_sinks=8, BC=0.512, n_picos_hist=2, profundidad_valle=0.516, pendiente_loglog_rho=-0.530809615839827
+Leyendo ic_null4/cosmog_00500 ...
+  ic_null4: n_gas=1928, n_sinks=7, BC=0.518, n_picos_hist=2, profundidad_valle=0.460, pendiente_loglog_rho=-1.1004683877177885
+Leyendo ic_null5/cosmog_00500 ...
+  ic_null5: n_gas=1923, n_sinks=8, BC=0.482, n_picos_hist=2, profundidad_valle=0.497, pendiente_loglog_rho=0.03145392326687518
+Leyendo ic_null6/cosmog_00500 ...
+  ic_null6: n_gas=1923, n_sinks=8, BC=0.480, n_picos_hist=2, profundidad_valle=0.425, pendiente_loglog_rho=-0.2658487926019404
+Leyendo ic_null7/cosmog_00500 ...
+  ic_null7: n_gas=1918, n_sinks=8, BC=0.505, n_picos_hist=2, profundidad_valle=0.464, pendiente_loglog_rho=-0.1882880302633112
+Leyendo ic_null8/cosmog_00500 ...
+  ic_null8: n_gas=1923, n_sinks=8, BC=0.533, n_picos_hist=2, profundidad_valle=0.567, pendiente_loglog_rho=-0.3897543048544728
+
+=== RESUMEN CS079 (C-N4: delimitación FoF como hipótesis propia) ===
+corrida     n_gas      BC   valle  dist_modos  pend_loglog     r2
+ic_real      1774   0.803   0.509     12.4164       -0.265  0.481
+ic_null1     1922   0.508   0.461      5.7466       -0.516  0.529
+ic_null2     1927   0.526   0.561      5.2483       -0.046  0.035
+ic_null3     1923   0.512   0.516      5.1449       -0.531  0.553
+ic_null4     1928   0.518   0.460      5.5984       -1.100  0.913
+ic_null5     1923   0.482   0.497      4.3870        0.031  0.009
+ic_null6     1923   0.480   0.425      5.2718       -0.266  0.324
+ic_null7     1918   0.505   0.464      5.4197       -0.188  0.168
+ic_null8     1923   0.533   0.567      5.9282       -0.390  0.464
+
+JSON escrito: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs079_resultados/resultados_cs079.json
+PNGs escritos en: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs079_resultados
+
+CS079 terminado. Este script NO declara cierre/verdicto — el veredicto sobre
+si C-N4 amenaza la validez del FoF de CS073 es de Alexis López Tapia.

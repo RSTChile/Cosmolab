@@ -1,0 +1,18 @@
+{
+  "clave": "r23_I",
+  "rule_id": "A2-B0-C2-batch4-r23",
+  "clase": "I",
+  "seed": 574060,
+  "N": 8000,
+  "n_sweeps": 14,
+  "t_grafo_s": 13.5,
+  "K": 5,
+  "J": 0.684,
+  "noise": 0.202,
+  "meandeg": 5.0,
+  "kcap": 5,
+  "n_aristas_grafo_final": 13569,
+  "grado_medio_grafo_final": 3.39225,
+  "diam_grafo_final_OFICIAL": 16,
+  "holon_grafo_final": 0.5040530010249994
+}

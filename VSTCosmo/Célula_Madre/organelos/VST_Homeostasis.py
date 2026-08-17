@@ -57,6 +57,7 @@ from typing import Any
 from VST_Genoma import (
     Organelo, Estado, Organismo, Milieu, KAPPA, MedidorComplejidad,
 )
+from escala import Escala
 
 
 # ==============================================================================
@@ -84,10 +85,25 @@ class OrganeloHomeostasis(Organelo):
     """
 
     def __init__(self, variable: str = "x_interna", x_min: float = 0.0, x_max: float = 1.0,
-                 perturb: str = "e_R", perturb_escala: float = 0.01, salida: str = "H_homeostasis",
+                 # SALIDA RENOMBRADA 6-ago-2026. Se llamaba `H_homeostasis` y no medía homeostasis:
+                 # `H = tension · viable · tendencia · estab_A`, y tres de esos cuatro factores son
+                 # funciones de `A_sys_env`, el ACOPLAMIENTO CON EL ENTORNO. El comentario de más
+                 # abajo lo dice literal: «¿la competencia ICR↔IRDE está SOSTENIENDO el acoplamiento
+                 # del organismo con su entorno?». Eso es ADAPTACIÓN —seguir agarrado al nicho
+                 # mientras el mundo cambia—, pregunta legítima pero distinta: la homeostasis es
+                 # mantener las variables INTERNAS en rango A PESAR del entorno. El nombre pasa al
+                 # índice que sí mide eso (VST_IndiceHomeostasis) y esta señal se llama como lo que
+                 # hace. `_daisy` porque es la versión Daisyworld, anterior a la de
+                 # HomeostasisEmergente (`acople_sostenido`, canónica): son dos generaciones del
+                 # MISMO instrumento, y tenerlas peleando un solo nombre era la raíz del enredo —
+                 # ésta corría primero cada paso y le pisaba el valor a la otra antes de que nadie
+                 # pudiera leerlo.
+                 perturb: str = "e_R", perturb_escala: float = 0.01,
+                 salida: str = "acople_sostenido_daisy",
                  alpha: float = 2.0, mu: float = 0.3, kappa: float = 0.6,
-                 escala_dA: float = 0.002, A_min: float = 0.1, ema_A: float = 0.05, banda: float = 0.15,
-                 x0=None, kp=None) -> None:    # x0/kp: COMPAT, IGNORADOS (Daisyworld no tiene setpoint ni ganancia)
+                 escala_dA: float = 0.002, ema_A: float = 0.05, banda: float = 0.15,
+                 x0=None, kp=None,             # x0/kp: COMPAT, IGNORADOS (Daisyworld no tiene setpoint ni ganancia)
+                 A_min=None) -> None:          # A_min: COMPAT, IGNORADO desde 8-ago-2026 (ver `A_piso` en metabolizar)
         super().__init__(
             nombre=f"homeostasis::{variable}", organelo_analogo="Daisyworld (regulación emergente)",
             procedencia="Lovelock Daisyworld / C-N5.1 / O-N6.1 (componente H del OI)",
@@ -97,18 +113,23 @@ class OrganeloHomeostasis(Organelo):
             lee=[perturb, "A_sys_env"],
             secreta=[salida, variable, f"{variable}_en_rango", f"{variable}_orden", f"{variable}_entropia",
                      f"{variable}_acopl_tendencia", f"{variable}_autoencierro", f"{variable}_anestesia",
-                     f"{variable}_A_estabilidad"],
+                     f"{variable}_A_estabilidad", f"{variable}_estres", f"{variable}_perturb_habitual",
+                     f"{variable}_perturb_exceso", f"{variable}_esfuerzo", f"{variable}_costo_activo"],
             depende_de=[],
             costo_base=1.0,
             plast={"x_min": x_min, "x_max": x_max, "perturb_escala": perturb_escala,
                    "alpha": alpha, "mu": mu, "kappa": kappa,
-                   "escala_dA": escala_dA, "A_min": A_min, "ema_A": ema_A, "banda": banda},
+                   # `A_piso` NO es un número propio: ES `banda`. Se guarda con nombre aparte para
+                   # que se pueda leer (y replayar) el piso sin tocar la tolerancia, pero nace de ella.
+                   "escala_dA": escala_dA, "A_piso": banda, "ema_A": ema_A, "banda": banda},
             criterio="H alto sostenido (las dos margaritas vivas y balanceándose: regulación activa)",
             estado=Estado.PRESENTE,
         )
         self.variable = variable
         self.perturb = perturb
         self.salida = salida
+        self.esc_perturb = Escala()        # lo habitual de la perturbación PARA ESTE organismo (ver percibir)
+        self._eR_habitual = 0.0; self._exceso = 0.0
         self.x = (x_min + x_max) / 2.0     # condición INICIAL (no es setpoint: nada la arrastra aquí)
         self.b = 0.5                       # margarita ORDEN (ICR-like)
         self.w = 0.5                       # margarita ENTROPÍA (IRDE-like)
@@ -123,7 +144,65 @@ class OrganeloHomeostasis(Organelo):
         # A_sys-env (O-N2.1) = la variable UNIFICADORA del modelo (acoplamiento con el nicho).
         self._eR = abs(milieu.leer(self.perturb, 0.0))
         self._A = max(0.0, min(1.0, milieu.leer("A_sys_env", 1.0)))
-        self._estres = self.plast["perturb_escala"] * self._eR + 0.02 * (1.0 - self._A)
+        # ── EL ESTRÉS ES EL ERROR QUE NO SE ESTÁ CERRANDO (6-ago-2026) ──────────────────
+        # ANTES: `estrés = perturb_escala · e_R`, el error CRUDO. Y `e_R` es un ángulo en
+        # grados —`|setpoint − orientación|` sobre un rango de ±90°— o sea que rastrear una
+        # fuente que se mueve produce, siempre, unos grados de error. Diez grados de desvío
+        # es lo que hace cualquier cosa que sigue algo; un búho localizando presa no lo hace
+        # mejor. Con la forma cruda eso se leía como estrés permanente de 0,1.
+        #
+        # MEDIDO, y es lo que obliga a cambiarlo: en Abraxas el estrés nunca bajó de 0,0960
+        # en 2.461 pasos, y el único día tranquilo de la semana fue el único día en que el
+        # organismo NO OYÓ NADA (4-ago: las dos energías en 0,000 y `e_R` clavado en su piso
+        # de 0,500 el 52,5 % del tiempo, contra ~9,5 los días con mundo). Bajo la definición
+        # vieja, la única forma de no estar estresado era estar sordo: tener mundo ERA el
+        # estrés. Y encima se cobraba — el costo homeostático corría en cada paso.
+        #
+        # AHORA sólo cuenta el error que EXCEDE lo que este organismo consigue sostener
+        # habitualmente. El halcón que corrige su rumbo no está estresado; el que no logra
+        # cerrar la brecha, sí. Un organismo que rastrea bien vuelve a tener cero, y el
+        # estrés sube de verdad cuando la fuente se le escapa, que es cuando debe costar.
+        #
+        # NINGÚN NÚMERO NUEVO, Y NINGUNO MENOS: `perturb_escala` sigue siendo el mismo y
+        # sigue aplicándose a grados —de hecho 0,01 ≈ 1/90, la fracción del propio rango de
+        # movimiento, que es una lectura estructural legítima—. Lo único que se mueve es
+        # DÓNDE ESTÁ EL CERO. La referencia sale de `escala.py` (una sola implementación
+        # para todo el organismo, con su tasa declarada) y no de una constante local.
+        #
+        # POR QUÉ RELATIVIZAR AQUÍ NO ES EL TRINQUETE DE LA ADVERTENCIA 3: la referencia
+        # tiene que ser AJENA a lo que el criterio decide. Verificado — `x_interna` no
+        # realimenta el lazo de orientación: sólo la leen el índice de homeostasis, el costo
+        # metabólico y la UI. El estrés no puede bajarse a sí mismo el listón moviendo el
+        # `e_R` contra el que se compara.
+        #
+        # Y POR QUÉ NO ES LA ADVERTENCIA 2: esto es una PERCEPCIÓN, no una condición de
+        # viabilidad. El ojo se adapta a la oscuridad; lo que no se relativiza es el mínimo
+        # de fotones bajo el cual no ve. Aquí las condiciones absolutas siguen absolutas y
+        # en otra parte: la reserva en `H_var_reserva`, el acoplamiento en `A_min`.
+        #
+        # LÍMITE CONOCIDO: este organelo no está en la lista de persistibles, así que la
+        # escala se reinicia en cada arranque y el organismo pasa sus primeros pasos sin
+        # saber qué error es «el suyo». Mientras no haya historia se ABSTIENE (exceso 0, ver
+        # abajo) en vez de inventar estrés, que es lo que manda `escala.py`; pero lo correcto
+        # es que la escala sobreviva al apagón, como ya sobreviven las de memoria.
+        # SEMBRAR LA ESCALA EN EL PRIMER ERROR QUE VE, y hubo que aprenderlo mirándolo nacer:
+        # `Escala` arranca su media en 0,0 y la mueve un 5 % por observación, así que sin
+        # sembrarla el organismo pasa su primer minuto de vida creyendo que su error habitual
+        # es CERO — todo su error le parece exceso. MEDIDO en el arranque de las 23:38:
+        # `perturb_habitual` cayó a 0,9875 con `e_R` en 21,15 y el exceso marcó 20,16, o sea
+        # un estrés de 0,216 contra los 0,110 de la fórmula vieja. Nacer no puede ser el
+        # momento más angustioso de la vida por un artefacto del promedio.
+        if not self.esc_perturb.n:
+            self.esc_perturb.restore({"n": 1, "media": self._eR, "dispersion": 0.0})
+        else:
+            self.esc_perturb.observar(self._eR)      # se observa DESPUÉS: el paso no se compara consigo mismo
+        # Y MIENTRAS NO HAYA HISTORIA, ABSTENERSE: es el contrato del propio módulo («quien
+        # clasifique debe abstenerse en vez de inventar»). Un recién nacido todavía no sabe
+        # cuál es su error normal; no puede estar estresado por no saberlo.
+        habitual = self.esc_perturb.media if self.esc_perturb.madura else self._eR
+        self._eR_habitual = habitual
+        self._exceso = max(0.0, self._eR - habitual)
+        self._estres = self.plast["perturb_escala"] * self._exceso + 0.02 * (1.0 - self._A)
 
     def metabolizar(self, dt: float, tempo: float) -> None:
         p = self.plast
@@ -151,7 +230,35 @@ class OrganeloHomeostasis(Organelo):
         #   viable: A>0 (no colapsado por desacople).  tendencia: A se MANTIENE/mejora (sin setpoint, sólo dA/dt).
         #   "¿la competencia ICR↔IRDE está SOSTENIENDO el acoplamiento del organismo con su entorno?"
         tension = 1.0 - abs(self.b - self.w) / (self.b + self.w + 1e-6)
-        viable = max(0.0, min(1.0, A / max(1e-6, p["A_min"])))
+        # ── EL PISO DE VIABILIDAD DEL ACOPLE DEJA DE SER UN NÚMERO SUELTO (8-ago-2026) ──
+        # ERA `A_min = 0.1`, y MEDIDO no decidía nada: sobre 157.421 pasos (108 CSV, 3–8 ago)
+        # `A_sys_env` nunca bajó de 0,1638 —en los tres últimos días, de 0,1885—, así que
+        # A/A_min ≥ 1,638 SIEMPRE y `viable` valió exactamente 1,0 en el 100,00 % de los pasos.
+        # Un factor que vale 1 en 157.421 de 157.421 pasos no es un factor: es una constante
+        # escondida dentro de un producto de cuatro.
+        #
+        # NO SE RELATIVIZA CONTRA LA PROPIA HISTORIA, y eso no es negociable: `viable` es una
+        # CONDICIÓN DE VIDA, no una percepción (advertencia 2 de escala.py; VST_IndiceHomeostasis
+        # cita este mismo piso como el ejemplo de lo que «debe seguir siendo absoluto aunque el
+        # organismo se acostumbre a estar mal»). Dividir A por su media móvil haría que un
+        # organismo crónicamente desacoplado leyera «acople normal» justo mientras pierde el nicho.
+        #
+        # LA SALIDA ES ESTRUCTURAL, NO OTRA CIFRA A OJO: el piso pasa a ser `banda`, que este mismo
+        # organelo YA declara y usa en las MISMAS UNIDADES que A (estab_A = 1 − sd(A)/banda, o sea
+        # `banda` es la anchura de fluctuación de A que se considera tolerable). Lo que se afirma es
+        # una RELACIÓN, no un número: un acoplamiento más pequeño que la tolerancia que el propio
+        # organelo concede a sus fluctuaciones ya no es un agarre. Si mañana se mide `banda`, el
+        # piso se mueve con ella: donde había dos números que calibrar por separado —y que podían
+        # contradecirse sin que nadie lo notara— queda uno.
+        #
+        # QUÉ SE MUEVE: el piso 0,10 → 0,15 y `viable` SIGUE valiendo 1 en el 100 % del corpus —que
+        # es lo que debe pasar con un piso de muerte en un organismo que sigue vivo: se mide en que
+        # no se cruza—. Lo que cambia es el margen al colapso sobre el peor acople jamás registrado:
+        # de 63,8 % a 9,2 %. Un número menos y una relación más. REPLAYADO fila por fila sobre el
+        # corpus entero (DT=0,1 · tempo de Kleiber 2,1226): esta H no se mueve ni un dígito —0,00 %
+        # de pasos distintos, |ΔH| máximo 0,000000—. Cambia la calibración, no la conducta.
+        # (`analisis/deg_constantes_degeneradas.py`).
+        viable = max(0.0, min(1.0, A / max(1e-6, p["A_piso"])))
         tendencia = max(0.0, min(1.0, 1.0 + self._dA_ema / p["escala_dA"]))
         # BANDA VIABLE EMERGENTE (montañista, O-N9.14 "A_sys-env EN RANGO ESTABLE"): el centro y la
         # dispersión de A salen de SU PROPIA historia — nadie los fija. estab_A alta = A se SOSTIENE
@@ -181,6 +288,68 @@ class OrganeloHomeostasis(Organelo):
         milieu.secretar(f"{self.variable}_autoencierro", self.autoencierro) # orden sube ∧ A cae
         milieu.secretar(f"{self.variable}_anestesia", self.anestesia)       # entropía cae sin perturbación
         milieu.secretar(f"{self.variable}_A_estabilidad", self.estab_A)     # A estable en su banda emergente (montañista)
+        # LO QUE EMPUJA, VISIBLE. El estrés es la entrada que mueve toda esta regulación y no
+        # se publicaba: se veía a las margaritas reaccionar y no A QUÉ. Sin estas tres columnas
+        # la pregunta «¿por qué está trabajando?» sólo se podía contestar reconstruyendo el
+        # cálculo a mano desde e_R y A_sys_env, que es como se descubrió el problema del cero.
+        milieu.secretar(f"{self.variable}_estres", self._estres)              # lo que empuja el desorden
+        milieu.secretar(f"{self.variable}_perturb_habitual", self._eR_habitual)  # el error que este organismo sostiene
+        milieu.secretar(f"{self.variable}_perturb_exceso", self._exceso)      # lo que NO está logrando cerrar
+        # ── EL TRABAJO DE REGULAR (6-ago-2026) ──────────────────────────────────────────
+        # Sostener el equilibrio CUESTA, y no puede costar lo mismo estar en calma que
+        # defenderse de una perturbación: con frío se queman más calorías para sostener la
+        # temperatura. Hasta hoy este organelo cobraba `costo_base` fijo, proporcional a la
+        # masa (Kleiber) y ciego al esfuerzo — flotar en calma y pelear costaban igual.
+        #
+        # EL ESFUERZO ES EL CONTRA-EMPUJE APLICADO. En este Daisyworld `x` se mueve por
+        # `(estrés − κ·b + κ·w)`: el estrés empuja, la margarita ORDEN empuja en contra y la
+        # de ENTROPÍA a favor. En calma las dos se equilibran y el contra-empuje neto es
+        # ~0; bajo perturbación una desplaza a la otra y el neto crece. Por eso el trabajo
+        # es |b − w|: cero cuando nada hay que corregir, máximo cuando una rama tiene que
+        # sostener sola el equilibrio.
+        #
+        # VERIFICADO, y hacía falta verificarlo (`analisis/probar_esfuerzo.py`). En calma
+        # REAL —e_R=0, A=1— las dos margaritas no se apagan: se estacionan en b = w =
+        # 0,35000 exactas, y el neto queda en 0,00000 indefinidamente. Y el esfuerzo crece
+        # monótono con lo que empuja el entorno: 0,000 → 0,083 → 0,186 → 0,357 → 0,693 para
+        # e_R = 0, 5, 10, 20, 40. Es lo que pide la norma: el costo escala con la
+        # perturbación que se está corrigiendo.
+        #
+        # SE PROBÓ LA ALTERNATIVA `b + w` («las dos ramas efectoras trabajando, aunque se
+        # cancelen: tiritar y sudar a la vez quema más, no cero») Y ESTÁ MAL EN ESTE MODELO:
+        # da 0,700 en calma absoluta y BAJA al subir la perturbación (0,700 → 0,634 → 0,501
+        # → 0,358), porque aquí la coexistencia equilibrada ES el estado de reposo, no un
+        # ciclo fútil. Habría cobrado más por descansar que por defenderse.
+        #
+        # OJO CON LEER EL PISO COMO DEFECTO. Medido en Abraxas el 6-ago, el esfuerzo nunca
+        # baja de 0,1235 (p05) y `x_interna_entropia` redondea a 0,0000 el 66,72 % de los
+        # pasos. No es que la fórmula no sepa llegar a cero: es que este organismo NO TIENE
+        # UN SOLO PASO DE CALMA — su estrés reconstruido nunca baja de 0,0960, porque `e_R`
+        # vive en ~10. Y la margarita ENTROPÍA está casi extinta porque los picos la
+        # aplastan (a e_R=20 el estacionario es w = 0,00082) y su crecimiento es
+        # multiplicativo, o sea que volver de ahí toma muchísimo más de lo que tarda en
+        # caer. El organelo está informando bien un organismo crónicamente estresado.
+        #
+        # SIN NINGUNA CONSTANTE NUEVA, y por una cancelación real: el contra-empuje vale
+        # κ·|b − w| y el máximo posible es κ·1, así que el factor es |b − w| y κ se va. El
+        # costo activo queda en [0, costo_base]: en calma no se paga nada EXTRA (el basal se
+        # sigue cobrando aparte, como debe ser: el metabolismo basal existe en reposo), y en
+        # defensa máxima se paga una vez el costo del órgano.
+        #
+        # ABSOLUTO, NO RELATIVO A LA PROPIA HISTORIA. Se probó escalarlo con `rel_contra`
+        # contra el esfuerzo habitual y está mal: tiritar quema calorías se tirite seguido o
+        # no. Un organismo que se defiende siempre leería «esfuerzo normal» y dejaría de
+        # pagarlo — la advertencia 2 de escala.py aplicada al gasto.
+        #
+        # AQUÍ SÓLO SE PUBLICA; EL COBRO ESTÁ EN `VST_Metabolismo` y se puso DESPUÉS de
+        # medir la escala, que era la única forma de no inventar otro número: `costo_base`
+        # crudo daba 0,2714 contra un `met_gasto` de 0,0105 —veintiséis veces el metabolismo
+        # entero—, así que la referencia pasó a ser `basal`, lo que cuesta meramente existir.
+        # Ya cobrando, medido sobre 2.461 pasos: el costo homeostático es el 7,5 % del gasto
+        # (mediana), p95 22,8 %, máximo 46,4 %. Poner precio antes de medir la escala es
+        # exactamente cómo se llegó a los 168 números sin origen.
+        milieu.secretar(f"{self.variable}_esfuerzo", abs(self.b - self.w))
+        milieu.secretar(f"{self.variable}_costo_activo", self.costo_base * abs(self.b - self.w))
 
 
 # ==============================================================================

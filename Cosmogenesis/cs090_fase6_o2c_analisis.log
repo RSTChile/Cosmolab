@@ -1,0 +1,140 @@
+filas cargadas: P1=180  P2=120  P3=270
+
+============================================================================================================
+PRUEBA 1 — kcap ABSOLUTO fijo, N variando (¿la geometría depende del kcap absoluto o del relativo?)
+============================================================================================================
+
+  Pendiente continua corregida — media ± error estándar (n reglas por celda)
+  kcap                  N=500              N=1000              N=2000              N=4000   deriva b(pend~logN)   r
+  4             1.112±0.048(15)       1.049±0.046(15)       1.059±0.034(15)       1.080±0.027(15)   -0.012   r=-0.06
+  5             0.703±0.027(15)       0.738±0.026(15)       0.776±0.027(15)       0.754±0.016(15)   +0.028   r=+0.22
+  6             0.549±0.020(15)       0.544±0.015(15)       0.580±0.015(15)       0.608±0.014(15)   +0.031   r=+0.36
+
+  Grado medio FINAL alcanzado (b=1) — cuánto del cupo se llena de verdad
+  kcap            N=500        N=1000        N=2000        N=4000
+  4                2.34          2.39          2.38          2.39
+  5                3.15          3.22          3.23          3.26
+  6                3.91          4.01          4.02          4.05
+
+  Contraste ENTRE kcap, pareado por (regla, N) — ¿importa el número absoluto?
+    kcap=4 vs kcap=5:  n=60  media_dif=+0.332 mediana_dif=+0.304  gana_4=60  gana_5=0   Wilcoxon p=1.6e-11
+    kcap=4 vs kcap=6:  n=60  media_dif=+0.505 mediana_dif=+0.510  gana_4=60  gana_6=0   Wilcoxon p=1.6e-11
+    kcap=5 vs kcap=6:  n=60  media_dif=+0.172 mediana_dif=+0.148  gana_5=59  gana_6=1   Wilcoxon p=1.8e-11
+
+  Contraste ENTRE N, pareado por (regla, kcap) — ¿deriva con el tamaño a cupo fijo?
+    N=4000 menos N=500:  n=45  media_dif=+0.026 mediana_dif=+0.038 sube=27 baja=18 Wilcoxon p=0.1
+    N=4000 menos N=1000:  n=45  media_dif=+0.037 mediana_dif=+0.040 sube=29 baja=16 Wilcoxon p=0.01
+    N=4000 menos N=2000:  n=45  media_dif=+0.009 mediana_dif=+0.018 sube=30 baja=15 Wilcoxon p=0.28
+
+  Modelo descriptivo conjunto  pendiente ~ a + b1*log(kcap) + b2*log(N)
+    a=+2.684   b1(log kcap)=-1.254   b2(log N)=+0.016   R²=0.775  n=180
+    lectura: si |b1| >> |b2|, manda el NÚMERO ABSOLUTO de cupo; si son comparables y de signo
+             opuesto, lo que manda es la RAZÓN capacidad/tamaño.
+    razón b1/b2 = -80.79  (=-1 exacto sería 'sólo importa kcap/N^1'; 0 sería 'no importa N')
+
+============================================================================================================
+CURVA UNIFICADA (P1 + P2 juntas) — pendiente en función del cupo ABSOLUTO, por tamaño
+============================================================================================================
+                     N=500          N=1000          N=2000          N=4000       TODOS los N
+  kcap=4       1.112(30)     1.049(15)     1.059(15)     1.080(15)       1.082( 75)
+  kcap=5       0.703(30)     0.738(45)     0.776(15)     0.754(15)       0.736(105)
+  kcap=6       0.549(15)     0.544(15)     0.580(45)     0.608(15)       0.574( 90)
+  kcap=7                 —               —               —     0.518(15)       0.518( 15)
+  kcap=8                 —               —               —     0.456(15)       0.456( 15)
+
+  Ajuste global  pendiente = +2.457 -1.036·log(kcap)   r=-0.854  R²=0.729  n=300
+  ¿Escalón en algún kcap? diferencias entre cupos consecutivos (medias sobre todos los N):
+    kcap 4→5:  Δpendiente = -0.347
+    kcap 5→6:  Δpendiente = -0.162
+    kcap 6→7:  Δpendiente = -0.055
+    kcap 7→8:  Δpendiente = -0.062
+
+============================================================================================================
+PRUEBA 2 — capacidad NORMALIZADA al tamaño (¿alguna normalización conserva la familia de geometrías?)
+============================================================================================================
+
+  Pendiente continua — media ± ee, y el kcap que cada normalización impone a cada N
+  normalización                 N=500              N=1000              N=2000              N=4000   deriva b(pend~logN)   r
+  ABS(kcap=6)       0.549±0.020[k=6]   0.544±0.015[k=6]   0.580±0.015[k=6]   0.608±0.014[k=6]   +0.031   r=+0.36
+  NORM-log          0.703±0.027[k=5]   0.738±0.026[k=5]   0.580±0.015[k=6]   0.518±0.021[k=7]   -0.103   r=-0.64
+  NORM-pot          1.112±0.048[k=4]   0.738±0.026[k=5]   0.580±0.015[k=6]   0.456±0.017[k=8]   -0.306   r=-0.88
+
+  Dispersión de la pendiente ENTRE tamaños (desviación de las 4 medias por N): cuanto MENOR,
+  más se conserva la familia de geometrías a través de escalas.
+    ABS(kcap=6)    medias por N = ['0.549', '0.544', '0.580', '0.608']   sd_entre_N=0.030  rango=0.064
+    NORM-log       medias por N = ['0.703', '0.738', '0.580', '0.518']   sd_entre_N=0.103  rango=0.219
+    NORM-pot       medias por N = ['1.112', '0.738', '0.580', '0.456']   sd_entre_N=0.284  rango=0.655
+
+============================================================================================================
+CRUCE con datos YA ARCHIVADOS (F5-C2-C3 'C2-hard' re-medido en O1-B) — ¿la rampa ya estaba ahí?
+============================================================================================================
+    kcap=4  n=3   pendiente media (N=2000, archivo) = 1.038
+    kcap=5  n=7   pendiente media (N=2000, archivo) = 0.817
+    kcap=6  n=5   pendiente media (N=2000, archivo) = 0.585
+    kcap=7  n=5   pendiente media (N=2000, archivo) = 0.487
+    Spearman kcap vs pendiente = -0.907 (p=3.5e-08), n=20 reglas archivadas
+
+============================================================================================================
+PRUEBA 3 — capacidad HETEROGÉNEA entre nodos, misma media (¿hace falta homogeneidad?)
+============================================================================================================
+
+  Pendiente continua — media ± ee por condición y tamaño; CV = dispersión del cupo entre nodos
+  condición          CV  kcap_med  kcap_max              N=1000            N=2000            N=4000             TODOS
+  UNIF             0.00      6.00       6.0        0.544±0.015      0.580±0.015      0.608±0.014      0.578±0.009
+  HET-rango        0.33      5.99       9.0        0.610±0.017      0.638±0.011      0.667±0.017      0.638±0.009
+  HET-grado        0.41      5.97      15.9        0.483±0.031      0.513±0.025      0.532±0.020      0.509±0.015
+  HET-bimodal      0.67      6.00      10.0        1.169±0.023      1.161±0.031      1.158±0.016      1.162±0.014
+  HET-lognor       0.94      6.00      73.7        0.979±0.037      1.044±0.029      1.044±0.022      1.023±0.018
+  HET-potencia     2.94      6.00     604.0        1.151±0.039      1.198±0.033      1.281±0.042      1.210±0.023
+
+  Grado medio FINAL (b=1) por condición — control de que la 'masa de aristas' es comparable
+    UNIF           grado_medio=4.03  aristas_b1=4709  diam_b1=11.6  giant_b1=0.983
+    HET-rango      grado_medio=3.63  aristas_b1=4255  diam_b1=12.3  giant_b1=0.975
+    HET-grado      grado_medio=4.93  aristas_b1=5766  diam_b1=9.8  giant_b1=0.982
+    HET-bimodal    grado_medio=2.61  aristas_b1=3055  diam_b1=18.2  giant_b1=0.883
+    HET-lognor     grado_medio=2.60  aristas_b1=3033  diam_b1=16.5  giant_b1=0.892
+    HET-potencia   grado_medio=2.18  aristas_b1=2527  diam_b1=22.2  giant_b1=0.836
+
+  Contraste PAREADO contra el caso homogéneo UNIF (misma regla, mismo N)
+    HET-rango      vs UNIF:  n=45  media_dif=+0.061 mediana_dif=+0.064  sube=34  baja=11  Wilcoxon p=5.3e-06
+    HET-grado      vs UNIF:  n=45  media_dif=-0.068 mediana_dif=-0.082  sube=10  baja=35  Wilcoxon p=1.8e-05
+    HET-bimodal    vs UNIF:  n=45  media_dif=+0.585 mediana_dif=+0.589  sube=45  baja=0   Wilcoxon p=5.7e-14
+    HET-lognor     vs UNIF:  n=45  media_dif=+0.445 mediana_dif=+0.469  sube=45  baja=0   Wilcoxon p=5.7e-14
+    HET-potencia   vs UNIF:  n=45  media_dif=+0.632 mediana_dif=+0.611  sube=45  baja=0   Wilcoxon p=5.7e-14
+
+  ¿Dosis-respuesta? correlación pendiente vs dispersión del cupo (CV), sobre TODAS las corridas
+    Spearman rho=+0.745 (p=5.8e-49)   Pearson r=+0.642 (p=9e-33)   n=270
+
+============================================================================================================
+CONTROL DECISIVO — ¿la heterogeneidad importa por su FORMA, o sólo por bajar la saturación efectiva?
+============================================================================================================
+  Curva de referencia, ajustada SÓLO con cupo homogéneo (P1+P2, n=300):
+     pendiente = +1.812 -0.888·log(grado medio alcanzado)     r=-0.912  R²=0.833
+
+  Residuo de cada condición de la Prueba 3 contra esa curva (0 = cae exactamente encima):
+  condición       CV cupo  grado real  pend. obs  pend. predicha   residuo
+  UNIF               0.00        4.03      0.578           0.576    +0.001  (ee=0.010, Wilcoxon vs 0 p=0.79)
+  HET-rango          0.33        3.63      0.638           0.669    -0.030  (ee=0.010, Wilcoxon vs 0 p=0.0061)
+  HET-grado          0.41        4.93      0.509           0.400    +0.109  (ee=0.010, Wilcoxon vs 0 p=6.3e-12)
+  HET-bimodal        0.67        2.61      1.162           0.963    +0.200  (ee=0.016, Wilcoxon vs 0 p=1.7e-13)
+  HET-lognor         0.94        2.60      1.023           0.966    +0.056  (ee=0.018, Wilcoxon vs 0 p=0.0039)
+  HET-potencia       2.94        2.18      1.210           1.122    +0.088  (ee=0.016, Wilcoxon vs 0 p=3.8e-06)
+
+============================================================================================================
+DATO SECUNDARIO (no es el endpoint) — reparto de clases I-IV por condición
+============================================================================================================
+  P1 kcap=4         n=60   %III+IV=100.0%   {'III': 60}
+  P1 kcap=5         n=60   %III+IV= 66.7%   {'III': 38, 'I': 20, 'IV': 2}
+  P1 kcap=6         n=60   %III+IV=  0.0%   {'I': 58, 'II': 2}
+  P2 NORM-log       n=60   %III+IV= 30.0%   {'III': 18, 'I': 40, 'II': 2}
+  P2 NORM-pot       n=60   %III+IV= 38.3%   {'III': 23, 'I': 30, 'II': 7}
+  P3 HET-bimodal    n=45   %III+IV=100.0%   {'III': 43, 'IV': 2}
+  P3 HET-grado      n=45   %III+IV=  0.0%   {'I': 35, 'II': 10}
+  P3 HET-lognor     n=45   %III+IV=100.0%   {'III': 43, 'IV': 2}
+  P3 HET-potencia   n=45   %III+IV=100.0%   {'III': 40, 'IV': 5}
+  P3 HET-rango      n=45   %III+IV= 17.8%   {'I': 37, 'III': 8}
+  P3 UNIF           n=45   %III+IV=  0.0%   {'I': 44, 'II': 1}
+
+PNG: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2c_capacidad_finita.png
+
+Sin cierre ni veredicto: números para la lectura de Alexis.

@@ -1,0 +1,41 @@
+CS054-v2 — GRAVEDAD CON ALCANCE (cuadrado inverso SIN espacio, por saltos de grafo)
+============================================================================================================
+G_RATE=0.1 H_RATE=0.1 T=6 D_MAX=2 saltos · α∈[1, 2, 3] (robustez, NO perilla)
+Hipótesis de Alexis: 'gravedad igual en todas partes = sin universo'. El decaimiento es la pieza.
+
+── G-ALCANCE · gravedad-sola CON atenuación (α=2, sin despliegue): ¿cúmulos o blob único? ──
+         geom  %gig  #comp  diam  (blob único = %gig~1 & diam chico)
+    cadena_d1  100      1   365
+   cuadr_d2pl  100      1    22
+     tri_d2pl  100      1    19
+   hip37_d2cv  100      1    10
+   hip38_d2cv  100      1     8
+    cubo_d3pl  100      1     9
+   hcubo_d4pl  100      1     7
+     arbol_cv  100      1    12
+
+── con_gravedad (con alcance) — supervivientes por α (robustez del patrón) ──
+         geom  dim0  turn0  sinGrav   cgα=1   cgα=2   cgα=3
+  ---------------------------------------------------------
+     arbol_cv  2.27   1.99 0/3      0/3     0/3     0/3    
+    cadena_d1  0.93    nan 0/3      0/3     0/3     0/3    
+   cuadr_d2pl  1.60   1.15 3/3      3/3     2/3     2/3    
+    cubo_d3pl  1.96   1.47 3/3      0/3     0/3     0/3    
+   hcubo_d4pl  2.15   1.81 3/3      0/3     0/3     0/3    
+   hip37_d2cv  2.13   1.65 3/3      1/3     1/3     3/3    
+   hip38_d2cv  2.40   1.93 3/3      0/3     0/3     3/3    
+     tri_d2pl  1.57   1.15 3/3      3/3     3/3     3/3    
+
+============================================================================================================
+VEREDICTO (¿la gravedad CON alcance selecciona 3D-plano, robusto en α?):
+  α=1: sobreviven 7 (d≈3-plano=6, otros=1); tipos vivos: ['cuadr_d2pl', 'tri_d2pl', 'hip37_d2cv']
+  α=2: sobreviven 6 (d≈3-plano=5, otros=1); tipos vivos: ['cuadr_d2pl', 'tri_d2pl', 'hip37_d2cv']
+  α=3: sobreviven 11 (d≈3-plano=5, otros=6); tipos vivos: ['cuadr_d2pl', 'tri_d2pl', 'hip37_d2cv', 'hip38_d2cv']
+
+  LECTURA:
+  · Si con alcance sobrevive SOLO 3D-plano y es igual para α=1,2,3 → CONFIRMACIÓN robusta: el
+    decaimiento era la pieza (avance real sobre CS054). · Si deja CÚMULOS extendidos variados sin
+    privilegiar d=3 → el alcance evita el colapso (avance) pero no fija la dimensión. · Si solo
+    sale a un α → horneado, se descarta. NO tunear α ni tasas buscando 3D.
+  · G-ALCANCE: si gravedad-sola dejó cúmulos (no blob único), el alcance funciona (vs CS054 que
+    colapsaba todo). G-NO-PRESUPONER-ESPACIO: d_ij por BFS (saltos), jamás coordenada.

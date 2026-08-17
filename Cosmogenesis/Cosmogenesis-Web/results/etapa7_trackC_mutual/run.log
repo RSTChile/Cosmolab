@@ -1,0 +1,150 @@
+[05:05:14] === BASELINE (10 semillas, params v6 default) ===
+[05:05:28]   seed=    7 min_gated R=0.000 S=0.000 RS=nan  (14.4s)
+[05:05:42]   seed=   42 min_gated R=74.903 S=47.871 RS=1.565  (13.4s)
+[05:05:55]   seed=   99 min_gated R=74.996 S=0.000 RS=inf  (13.5s)
+[05:06:10]   seed=  777 min_gated R=0.000 S=75.623 RS=0.000  (15.0s)
+[05:06:24]   seed= 2025 min_gated R=0.000 S=47.247 RS=0.000  (13.3s)
+[05:06:39]   seed= 3141 min_gated R=0.000 S=50.428 RS=0.000  (15.3s)
+[05:06:52]   seed= 8191 min_gated R=69.031 S=56.482 RS=1.222  (13.5s)
+[05:07:06]   seed=99991 min_gated R=54.402 S=20.672 RS=2.632  (13.9s)
+[05:07:19]   seed=12345 min_gated R=0.000 S=97.680 RS=0.000  (12.7s)
+[05:07:33]   seed=54321 min_gated R=52.739 S=43.430 RS=1.214  (14.0s)
+[05:07:33] baseline summary: {'n': 10, 'mean_RS_finite': 0.8291052270322783, 'n_finite': 8, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 5}
+[05:07:33] === H4: variantes de estadístico (derivado de baseline, sin sims nuevas) ===
+[05:07:33]   variant=min_gated              mean_RS_finite=0.8291052270322783 rate_gt1=0.50 -> PARCIAL
+[05:07:33]   variant=mean_gated             mean_RS_finite=1.550801969871707 rate_gt1=0.30 -> PARCIAL
+[05:07:33]   variant=min_instant            mean_RS_finite=1.0629470227934803 rate_gt1=0.60 -> PARCIAL
+[05:07:33]   variant=mean_instant           mean_RS_finite=1.2179001376417258 rate_gt1=0.60 -> RESUELVE
+[05:07:33]   variant=per_pair_mean_gated    mean_RS_finite=0.5488737084048684 rate_gt1=0.40 -> NO_RESUELVE
+[05:07:33]   variant=per_pair_mean_instant  mean_RS_finite=1.0366037982271856 rate_gt1=0.60 -> PARCIAL
+[05:07:33] === H3: posiciones aleatorizadas al entrar a E4 (10 semillas directo) ===
+[05:07:47]   seed=    7 R=0.000 S=0.000 RS=nan (14.0s)
+[05:08:02]   seed=   42 R=0.000 S=0.000 RS=nan (15.3s)
+[05:08:16]   seed=   99 R=0.000 S=0.000 RS=nan (14.3s)
+[05:08:31]   seed=  777 R=0.000 S=0.000 RS=nan (14.6s)
+[05:08:47]   seed= 2025 R=0.000 S=0.000 RS=nan (15.7s)
+[05:09:02]   seed= 3141 R=0.000 S=0.000 RS=nan (15.2s)
+[05:09:18]   seed= 8191 R=0.000 S=0.000 RS=nan (15.6s)
+[05:09:33]   seed=99991 R=0.000 S=0.000 RS=nan (15.1s)
+[05:09:47]   seed=12345 R=0.000 S=0.000 RS=nan (14.7s)
+[05:10:04]   seed=54321 R=0.000 S=0.000 RS=nan (16.8s)
+[05:10:04] H3 summary: {'n': 10, 'mean_RS_finite': None, 'n_finite': 0, 'rate_RS_gt_1': 0.0, 'n_RS_gt_1': 0} -> NO_RESUELVE (sin datos finitos)
+[05:10:04] === H1: ventana de gravedad (smoke primero) ===
+[05:10:04] -- smoke config {'GRAV_START_FRAC': 0.35, 'pasos': 400} --
+[05:10:20]    seed=    7 R=45.259 S=33.657 RS=1.345 (15.5s)
+[05:10:35]    seed=   42 R=74.903 S=34.615 RS=2.164 (15.1s)
+[05:10:50]    seed=   99 R=74.996 S=48.828 RS=1.536 (15.4s)
+[05:11:06]    seed=  777 R=46.475 S=67.305 RS=0.691 (15.7s)
+[05:11:06]    smoke summary {'GRAV_START_FRAC': 0.35, 'pasos': 400}: {'n': 4, 'mean_RS_finite': 1.43376122806084, 'n_finite': 4, 'rate_RS_gt_1': 0.75, 'n_RS_gt_1': 3}
+[05:11:06]    -> señal en smoke, ESCALANDO a 10 semillas: {'GRAV_START_FRAC': 0.35, 'pasos': 400}
+[05:11:23]    [full] seed= 2025 R=15.505 S=29.738 RS=0.521 (17.3s)
+[05:11:39]    [full] seed= 3141 R=52.102 S=66.579 RS=0.783 (15.7s)
+[05:11:54]    [full] seed= 8191 R=69.029 S=61.497 RS=1.122 (14.7s)
+[05:12:09]    [full] seed=99991 R=54.402 S=50.257 RS=1.082 (15.8s)
+[05:12:23]    [full] seed=12345 R=46.154 S=76.334 RS=0.605 (13.9s)
+[05:12:38]    [full] seed=54321 R=52.739 S=47.180 RS=1.118 (14.8s)
+[05:12:38]    full(10) summary {'GRAV_START_FRAC': 0.35, 'pasos': 400}: {'n': 10, 'mean_RS_finite': 1.0966400552662203, 'n_finite': 10, 'rate_RS_gt_1': 0.6, 'n_RS_gt_1': 6} -> PARCIAL
+[05:12:38] -- smoke config {'GRAV_START_FRAC': 0.5, 'pasos': 400} --
+[05:12:52]    seed=    7 R=0.000 S=50.049 RS=0.000 (13.8s)
+[05:13:06]    seed=   42 R=74.903 S=71.698 RS=1.045 (13.7s)
+[05:13:20]    seed=   99 R=74.996 S=48.759 RS=1.538 (14.1s)
+[05:13:33]    seed=  777 R=46.475 S=26.738 RS=1.738 (13.1s)
+[05:13:33]    smoke summary {'GRAV_START_FRAC': 0.5, 'pasos': 400}: {'n': 4, 'mean_RS_finite': 1.0802303243177391, 'n_finite': 4, 'rate_RS_gt_1': 0.75, 'n_RS_gt_1': 3}
+[05:13:33]    -> señal en smoke, ESCALANDO a 10 semillas: {'GRAV_START_FRAC': 0.5, 'pasos': 400}
+[05:13:47]    [full] seed= 2025 R=0.000 S=27.248 RS=0.000 (14.2s)
+[05:14:00]    [full] seed= 3141 R=0.000 S=0.000 RS=nan (13.2s)
+[05:14:14]    [full] seed= 8191 R=69.029 S=42.720 RS=1.616 (13.9s)
+[05:14:27]    [full] seed=99991 R=54.402 S=46.236 RS=1.177 (12.5s)
+[05:14:41]    [full] seed=12345 R=0.000 S=70.599 RS=0.000 (14.4s)
+[05:14:55]    [full] seed=54321 R=76.492 S=83.818 RS=0.913 (14.2s)
+[05:14:55]    full(10) summary {'GRAV_START_FRAC': 0.5, 'pasos': 400}: {'n': 10, 'mean_RS_finite': 0.8917761209386926, 'n_finite': 9, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 5} -> PARCIAL
+[05:14:55] -- smoke config {'GRAV_START_FRAC': 0.8, 'pasos': 400} --
+[05:15:09]    seed=    7 R=0.000 S=0.000 RS=nan (13.7s)
+[05:15:23]    seed=   42 R=0.000 S=57.131 RS=0.000 (13.8s)
+[05:15:36]    seed=   99 R=71.168 S=0.000 RS=inf (13.3s)
+[05:15:51]    seed=  777 R=0.000 S=0.000 RS=nan (14.5s)
+[05:15:51]    smoke summary {'GRAV_START_FRAC': 0.8, 'pasos': 400}: {'n': 4, 'mean_RS_finite': 0.0, 'n_finite': 1, 'rate_RS_gt_1': 0.25, 'n_RS_gt_1': 1}
+[05:15:51] -- smoke config {'GRAV_START_FRAC': 0.65, 'pasos': 800} --
+[05:16:29]    seed=    7 R=29.668 S=41.503 RS=0.715 (38.1s)
+[05:17:08]    seed=   42 R=41.706 S=46.751 RS=0.892 (39.6s)
+[05:17:47]    seed=   99 R=48.847 S=54.609 RS=0.894 (38.3s)
+[05:18:24]    seed=  777 R=20.770 S=30.231 RS=0.687 (37.8s)
+[05:18:24]    smoke summary {'GRAV_START_FRAC': 0.65, 'pasos': 800}: {'n': 4, 'mean_RS_finite': 0.7971046523995131, 'n_finite': 4, 'rate_RS_gt_1': 0.0, 'n_RS_gt_1': 0}
+[05:18:24] -- smoke config {'GRAV_START_FRAC': 0.35, 'pasos': 800} --
+[05:18:59]    seed=    7 R=29.668 S=45.590 RS=0.651 (34.6s)
+[05:19:37]    seed=   42 R=82.540 S=29.405 RS=2.807 (37.6s)
+[05:20:13]    seed=   99 R=48.045 S=28.872 RS=1.664 (35.9s)
+[05:20:49]    seed=  777 R=20.770 S=55.527 RS=0.374 (36.2s)
+[05:20:49]    smoke summary {'GRAV_START_FRAC': 0.35, 'pasos': 800}: {'n': 4, 'mean_RS_finite': 1.3739714079578078, 'n_finite': 4, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 2}
+[05:20:49]    -> señal en smoke, ESCALANDO a 10 semillas: {'GRAV_START_FRAC': 0.35, 'pasos': 800}
+[05:21:23]    [full] seed= 2025 R=25.234 S=31.923 RS=0.790 (34.6s)
+[05:21:58]    [full] seed= 3141 R=0.000 S=19.428 RS=0.000 (34.8s)
+[05:22:33]    [full] seed= 8191 R=11.490 S=62.947 RS=0.183 (34.7s)
+[05:23:08]    [full] seed=99991 R=79.187 S=34.897 RS=2.269 (35.5s)
+[05:23:44]    [full] seed=12345 R=67.054 S=32.144 RS=2.086 (35.7s)
+[05:24:18]    [full] seed=54321 R=0.000 S=60.517 RS=0.000 (34.1s)
+[05:24:18]    full(10) summary {'GRAV_START_FRAC': 0.35, 'pasos': 800}: {'n': 10, 'mean_RS_finite': 1.0824060842208294, 'n_finite': 10, 'rate_RS_gt_1': 0.4, 'n_RS_gt_1': 4} -> PARCIAL
+[05:24:18] === H2: cutoff/softening (smoke primero) ===
+[05:24:18] -- smoke config {'force_cutoff': 3.0, 'softening': 1.2} --
+[05:24:30]    seed=    7 R=53.557 S=55.513 RS=0.965 (11.7s)
+[05:24:42]    seed=   42 R=47.852 S=64.096 RS=0.747 (12.1s)
+[05:24:53]    seed=   99 R=39.105 S=32.099 RS=1.218 (11.1s)
+[05:25:05]    seed=  777 R=75.493 S=22.217 RS=3.398 (12.3s)
+[05:25:05]    smoke summary {'force_cutoff': 3.0, 'softening': 1.2}: {'n': 4, 'mean_RS_finite': 1.5818976607593764, 'n_finite': 4, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 2}
+[05:25:05]    -> señal en smoke, ESCALANDO a 10 semillas: {'force_cutoff': 3.0, 'softening': 1.2}
+[05:25:16]    [full] seed= 2025 R=37.173 S=44.554 RS=0.834 (11.1s)
+[05:25:28]    [full] seed= 3141 R=20.860 S=13.630 RS=1.530 (11.9s)
+[05:25:39]    [full] seed= 8191 R=47.809 S=32.354 RS=1.478 (10.4s)
+[05:25:51]    [full] seed=99991 R=24.202 S=24.459 RS=0.989 (12.0s)
+[05:26:02]    [full] seed=12345 R=0.000 S=55.623 RS=0.000 (11.4s)
+[05:26:14]    [full] seed=54321 R=48.109 S=46.779 RS=1.028 (11.8s)
+[05:26:14]    full(10) summary {'force_cutoff': 3.0, 'softening': 1.2}: {'n': 10, 'mean_RS_finite': 1.2187998608679265, 'n_finite': 10, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 5} -> PARCIAL
+[05:26:14] -- smoke config {'force_cutoff': 5.0, 'softening': 1.2} --
+[05:26:26]    seed=    7 R=0.000 S=0.000 RS=nan (12.2s)
+[05:26:43]    seed=   42 R=60.577 S=54.925 RS=1.103 (17.2s)
+[05:26:53]    seed=   99 R=73.435 S=53.317 RS=1.377 (10.0s)
+[05:27:05]    seed=  777 R=0.000 S=0.000 RS=nan (11.6s)
+[05:27:05]    smoke summary {'force_cutoff': 5.0, 'softening': 1.2}: {'n': 4, 'mean_RS_finite': 1.2401167511021436, 'n_finite': 2, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 2}
+[05:27:05]    -> señal en smoke, ESCALANDO a 10 semillas: {'force_cutoff': 5.0, 'softening': 1.2}
+[05:27:15]    [full] seed= 2025 R=0.000 S=0.000 RS=nan (10.5s)
+[05:27:27]    [full] seed= 3141 R=65.842 S=67.651 RS=0.973 (11.4s)
+[05:27:38]    [full] seed= 8191 R=0.000 S=67.819 RS=0.000 (11.6s)
+[05:27:50]    [full] seed=99991 R=62.872 S=44.659 RS=1.408 (11.7s)
+[05:28:02]    [full] seed=12345 R=70.355 S=90.088 RS=0.781 (12.2s)
+[05:28:14]    [full] seed=54321 R=81.835 S=65.189 RS=1.255 (12.0s)
+[05:28:14]    full(10) summary {'force_cutoff': 5.0, 'softening': 1.2}: {'n': 10, 'mean_RS_finite': 0.9853756722401171, 'n_finite': 7, 'rate_RS_gt_1': 0.4, 'n_RS_gt_1': 4} -> NO_RESUELVE
+[05:28:14] -- smoke config {'force_cutoff': 12.0, 'softening': 1.2} --
+[05:28:27]    seed=    7 R=0.000 S=0.000 RS=nan (12.3s)
+[05:28:38]    seed=   42 R=85.043 S=77.407 RS=1.099 (11.7s)
+[05:28:50]    seed=   99 R=80.001 S=0.000 RS=inf (12.0s)
+[05:29:01]    seed=  777 R=0.000 S=0.000 RS=nan (11.1s)
+[05:29:01]    smoke summary {'force_cutoff': 12.0, 'softening': 1.2}: {'n': 4, 'mean_RS_finite': 1.0986486190616205, 'n_finite': 1, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 2}
+[05:29:01]    -> señal en smoke, ESCALANDO a 10 semillas: {'force_cutoff': 12.0, 'softening': 1.2}
+[05:29:13]    [full] seed= 2025 R=56.400 S=0.000 RS=inf (11.1s)
+[05:29:23]    [full] seed= 3141 R=0.000 S=43.258 RS=0.000 (10.3s)
+[05:29:34]    [full] seed= 8191 R=0.000 S=67.798 RS=0.000 (11.3s)
+[05:29:45]    [full] seed=99991 R=61.951 S=21.047 RS=2.943 (10.5s)
+[05:29:56]    [full] seed=12345 R=0.000 S=59.602 RS=0.000 (10.9s)
+[05:30:07]    [full] seed=54321 R=46.838 S=33.135 RS=1.414 (11.4s)
+[05:30:07]    full(10) summary {'force_cutoff': 12.0, 'softening': 1.2}: {'n': 10, 'mean_RS_finite': 0.9092752764043954, 'n_finite': 6, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 5} -> PARCIAL
+[05:30:07] -- smoke config {'force_cutoff': 8.0, 'softening': 0.4} --
+[05:30:17]    seed=    7 R=0.000 S=8.515 RS=0.000 (10.3s)
+[05:30:28]    seed=   42 R=0.000 S=0.000 RS=nan (11.0s)
+[05:30:38]    seed=   99 R=0.000 S=8.093 RS=0.000 (9.9s)
+[05:30:50]    seed=  777 R=0.000 S=0.000 RS=nan (11.4s)
+[05:30:50]    smoke summary {'force_cutoff': 8.0, 'softening': 0.4}: {'n': 4, 'mean_RS_finite': 0.0, 'n_finite': 2, 'rate_RS_gt_1': 0.0, 'n_RS_gt_1': 0}
+[05:30:50] -- smoke config {'force_cutoff': 8.0, 'softening': 3.0} --
+[05:31:00]    seed=    7 R=51.471 S=49.744 RS=1.035 (10.7s)
+[05:31:12]    seed=   42 R=75.745 S=54.889 RS=1.380 (11.5s)
+[05:31:22]    seed=   99 R=37.081 S=40.404 RS=0.918 (10.6s)
+[05:31:34]    seed=  777 R=60.727 S=67.448 RS=0.900 (11.3s)
+[05:31:34]    smoke summary {'force_cutoff': 8.0, 'softening': 3.0}: {'n': 4, 'mean_RS_finite': 1.0581939539295118, 'n_finite': 4, 'rate_RS_gt_1': 0.5, 'n_RS_gt_1': 2}
+[05:31:34]    -> señal en smoke, ESCALANDO a 10 semillas: {'force_cutoff': 8.0, 'softening': 3.0}
+[05:31:45]    [full] seed= 2025 R=43.941 S=65.346 RS=0.672 (11.2s)
+[05:31:55]    [full] seed= 3141 R=45.070 S=45.424 RS=0.992 (10.2s)
+[05:32:07]    [full] seed= 8191 R=46.632 S=44.270 RS=1.053 (11.4s)
+[05:32:17]    [full] seed=99991 R=42.273 S=48.296 RS=0.875 (10.6s)
+[05:32:29]    [full] seed=12345 R=0.000 S=52.479 RS=0.000 (11.4s)
+[05:32:40]    [full] seed=54321 R=44.998 S=61.278 RS=0.734 (10.9s)
+[05:32:40]    full(10) summary {'force_cutoff': 8.0, 'softening': 3.0}: {'n': 10, 'mean_RS_finite': 0.8560394276413044, 'n_finite': 10, 'rate_RS_gt_1': 0.3, 'n_RS_gt_1': 3} -> NO_RESUELVE
+[05:32:40] === TOTAL elapsed 1645.5s ===

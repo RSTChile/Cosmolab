@@ -1,0 +1,18 @@
+=== motor_v76 vs shim (runSweep real v7.6.1), zona lenta (0.93) + zona rápida (1.4) ===
+  corriendo shim seed=7 modo=parada...
+  shim listo en 80.3s
+  fila 0 (x=0.93): asent_pasos shim=2900 motor=2900 | asent_ok shim=1 motor=1 | rec_mediana shim=948 motor=948 | rec_topes shim=0 motor=0
+  fila 1 (x=1.4): asent_pasos shim=750 motor=750 | asent_ok shim=1 motor=1 | rec_mediana shim=201 motor=201 | rec_topes shim=0 motor=0
+  seed=7 modo=parada: IDÉNTICO
+  corriendo shim seed=7 modo=inicio...
+  shim listo en 79.9s
+  fila 0 (x=0.93): asent_pasos shim=2750 motor=2750 | asent_ok shim=1 motor=1 | rec_mediana shim=944 motor=944 | rec_topes shim=0 motor=0
+  fila 1 (x=1.4): asent_pasos shim=550 motor=550 | asent_ok shim=1 motor=1 | rec_mediana shim=203 motor=203 | rec_topes shim=0 motor=0
+  seed=7 modo=inicio: IDÉNTICO
+  corriendo shim seed=17 modo=parada...
+  shim listo en 80.9s
+  fila 0 (x=0.93): asent_pasos shim=2900 motor=2900 | asent_ok shim=1 motor=1 | rec_mediana shim=948 motor=948 | rec_topes shim=0 motor=0
+  fila 1 (x=1.4): asent_pasos shim=750 motor=750 | asent_ok shim=1 motor=1 | rec_mediana shim=201 motor=201 | rec_topes shim=0 motor=0
+  seed=17 modo=parada: IDÉNTICO
+
+PASÓ: MotorV76/correrBarridoV76 reproduce runSweep() real en los 3 casos.

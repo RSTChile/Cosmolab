@@ -1,0 +1,62 @@
+{
+  "entrada": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmoclima/Web/prueba_de_concepto/motor/regimen_nivel3_por_anio.csv",
+  "generado_en": "2026-08-10T18:34:20.068Z",
+  "metodo_lectura_lluvia": "node:sqlite",
+  "metricas": {
+    "diferenciacion": {
+      "anios_totales": 62,
+      "valores_distintos_totales": 14,
+      "valores_en_clusters_3mas": 6,
+      "anios_en_clusters_3mas": 53,
+      "tuplas_completas_distintas": 24,
+      "tuplas_en_clusters_3mas": 8,
+      "anios_en_clusters_tupla_3mas": 42
+    },
+    "floracion": {
+      "anios_floracion_n": 13,
+      "anios_control_n": 10,
+      "media_JARDIN_FERTIL_floracion": 14.142307692307694,
+      "media_JARDIN_FERTIL_control": 15.151000000000002,
+      "fraccion_floracion_sobre_media_control": 0.3076923076923077,
+      "anios_floracion": [
+        1983,
+        1991,
+        1997,
+        2000,
+        2002,
+        2005,
+        2011,
+        2012,
+        2015,
+        2017,
+        2021,
+        2022,
+        2024
+      ],
+      "anios_control": [
+        1989,
+        1990,
+        1996,
+        2003,
+        2008,
+        2013,
+        2016,
+        2018,
+        2019,
+        2020
+      ]
+    },
+    "megasequia": {
+      "anios_megasequia_n": 7,
+      "media_JARDIN_FERTIL_megasequia": 24.53857142857143,
+      "media_JARDIN_FERTIL_global": 14.998548387096767,
+      "media_COLAPSO_megasequia": 44.892857142857146,
+      "media_COLAPSO_global": 37.84258064516128
+    },
+    "spearman": {
+      "n_anios_con_dato_de_lluvia": 61,
+      "rho_spearman_JARDIN_FERTIL_vs_lluvia": -0.359990749510082
+    }
+  },
+  "contexto_oni_disponible_anios": 61
+}

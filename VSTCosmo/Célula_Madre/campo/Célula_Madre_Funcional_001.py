@@ -54,6 +54,32 @@ _FMT_ULTIMO = ""                        # formato/ruta de la última carga (para
 
 # --- Maquinaria probada (campo Φ que procesa audio) ---
 from VST_Celula_Madre_001 import Hemisferio, SESGO_L, SESGO_R
+
+# APERTURA DE LA MEMBRANA BAJO CONTROL DEL ORGANISMO (2-ago-2026).
+# Apagado por defecto: apertura = 1,0 y el acople audio→campo es el histórico exacto.
+# APERTURA DE MEMBRANA: ACTIVA POR DEFECTO desde 1.2.6 (antes era un experimento apagado).
+# Medido el 3-ago-2026: Abraxas y Predator, misma version instalada limpia la misma hora, recibian
+# niveles de entrada que diferian por un factor 4.000. Abraxas quedaba con campo_F mediana 0,9236
+# contra un umbral de bifurcacion de 0,3849 (superado el 78% de los pasos): sin pozo negativo el
+# campo no tiene dos estados entre los que moverse, omega_A se clava (94% del tiempo en 1,0), el
+# gradiente satura, LF_op cae a cero y la conversion se derrumba a 0,06 AUNQUE el oido siga
+# encontrando estructura 0,42. No pasaba hambre por falta de comida: estaba ensordecido.
+#
+# Un organismo sin control de su propia membrana queda a merced del volumen de la sala donde le
+# toco nacer. Con la apertura viva el lazo se regula solo y en la direccion correcta: apertura baja
+# -> el campo recupera su pozo -> sube ICR -> act_perm sube -> se abre mas -> hasta que F roza el
+# umbral, la conversion cae y vuelve a cerrarse. Encuentra el borde por si mismo, sin limitador
+# externo ni nivel objetivo.
+#
+# No hay riesgo de encierro: la apertura modula SOLO el forzamiento sobre el campo. La membrana
+# sigue recibiendo la onda completa, asi que el organismo nunca deja de oir — deja de recibir el
+# golpe. Se puede volver al comportamiento anterior con ANIMA_MEMBRANA_APERTURA=0.
+_MEMBRANA_APERTURA = (os.environ.get("ANIMA_MEMBRANA_APERTURA", "") or "").strip().lower() not in ("0", "false", "no", "off")
+try:
+    from VST_OrganoMembrana import OrganoMembrana          # el TÍMPANO: percepción FÍSICA (reemplaza RMS + FFT Shannon)
+    _MEMBRANA_OK = True
+except Exception:
+    OrganoMembrana = None; _MEMBRANA_OK = False
 # --- Motor del genoma + organelos de cada bloque ---
 from VST_Genoma import Organelo, Estado, Organismo, Milieu, locus_altruismo_boorman
 from VST_Genoma import OrganeloPresionDesacople, OrganeloFatiga
@@ -300,6 +326,22 @@ class OrganeloSoma(Organelo):
         self.Omega = 0.5; self.eR = 0.0; self.A = 1.0
         self.estructura = 0.0          # SENTIDO experiencial (mezcla): orden RECONOCIDO de la historia
         self.estructura_L = 0.0; self.estructura_R = 0.0   # por OÍDO → para forrajear hacia el sentido reconocido
+        # TÍMPANO (membrana física): la nueva percepción. Recibe el WAVEFORM y vibra; de su estado nacen
+        # energía, Δ_struct y estructura — SIN RMS ni FFT (ambos eran reducciones tipo Shannon de la percepción).
+        self.membrana = OrganoMembrana(sr=SR) if _MEMBRANA_OK else None
+        self.mem_estado: dict = {}
+        self.tim: dict = {}                   # observables del tímpano publicados al milieu (ver secretar)
+        # MEMORIA PERCEPTUAL (reemplaza el codebook espectral Shannon): el organismo RECUERDA los percepts
+        # de membrana ya vividos. De la SORPRESA (distancia al recuerdo más cercano) nacen el error de
+        # predicción e_R y el acople A → lo NOVEDOSO desacopla, lo FAMILIAR acopla. Con la repetición el
+        # percept se aprende y la sorpresa baja: el mismo sonido migra de hostil a fértil. Esto da HISTORIA.
+        self._percept_mem: list = []      # percepts vividos (expectativa)
+        self._percept_max = 16
+        self._surprise = 0.0
+        self._valor = 0.0                 # gusto aprendido del percepto actual (0=no gusta .. 1=gusta)
+        self.placer_sensorial = 0.0       # placer físico inmediato (armonía de la membrana) → sube el bienestar W
+        self._consolida_cd = 0            # cooldown de consolidación (no aprende en cada paso)
+        self._milieu = None               # ref al milieu → leer el BIENESTAR propioceptivo (suma de estados)
         self._n_bands = 32
         self._K = 8                    # tamaño del REPERTORIO (codebook): voces, canciones, diálogos…
         self._codebook = np.zeros((self._K, self._n_bands))   # prototipos espectrales APRENDIDOS
@@ -368,6 +410,15 @@ class OrganeloSoma(Organelo):
         f = max(-1.0, min(1.0, self.orient_ext / 90.0))           # facing: <0 izquierda, >0 derecha
         self.L.gain_vol = max(0.0, 1.0 - self.k_vol * f)          # facing izq (f<0) → L sube
         self.R.gain_vol = max(0.0, 1.0 + self.k_vol * f)          # facing der (f>0) → R sube
+        # APERTURA DE LA MEMBRANA (ANIMA_MEMBRANA_APERTURA=1). La orientación es un balancín:
+        # redistribuye entre oídos pero conserva el total, así que no sirve para escapar de la
+        # saturación del campo. La apertura sí: regula CUÁNTO del exterior entra. La fija el
+        # propio organismo con su act_perm (perm_ext, lag 1) — cerrarse cuando el mundo lo
+        # desborda es un acto suyo, no una constante nuestra. Apagado ⇒ apertura 1,0 y el
+        # comportamiento es idéntico al histórico.
+        self.apertura = (max(0.0, min(1.0, float(self.perm_ext)))
+                         if _MEMBRANA_APERTURA else 1.0)
+        self.L.apertura = self.R.apertura = self.apertura
         for _ in range(n_sub):
             self.L.actualizar(self.t, SUBPASO, self.dur, self.R)
             self.R.actualizar(self.t, SUBPASO, self.dur, self.L)
@@ -397,36 +448,100 @@ class OrganeloSoma(Organelo):
         prev = self.orient
         self.orient = float(np.clip(self.orient + self.grad * 10.0 * dt, -90.0, 90.0))
         self._dorient = abs(self.orient - prev)
-        idx = int(self.t * SR); w = self._audio[max(0, idx - 2400):idx + 2400]
-        energia = float(np.sqrt(np.mean(w ** 2))) if w.size else 0.0
-        self.demanda = 1.0 + energia * 3.0                         # energía del audio = demanda del entorno
-        # MEMBRANA SENSORIAL — ESTRUCTURA RECONOCIDA (el SENTIDO nace del ORDEN y de la HISTORIA): el organismo
-        # APRENDE un REPERTORIO de estructuras (codebook: voces, canciones, diálogos) y RECONOCE lo ya oído.
-        # estructura = tonalidad·(0.4 + 0.6·reconocimiento). Se computa en la MEZCLA (para aprender el repertorio)
-        # y por OÍDO (para forrajear hacia el sentido reconocido). Sin Shannon: aprende de lo que vive.
-        ton_m, bins_m, rec_m, bi_m = self._estr_rec(w)
-        if bins_m is not None and ton_m > 0.3:                     # aprende SÓLO de lo ordenado (no del ruido)
-            normas = np.linalg.norm(self._codebook, axis=1)
-            if rec_m < self.umbral_nuevo and float(normas.min()) < 1e-6:
-                self._codebook[int(np.argmin(normas))] = bins_m    # estructura NOVEDOSA → nuevo prototipo (recuerda varias)
-            else:
-                self._codebook[bi_m] += self.beta_spec * (bins_m - self._codebook[bi_m])   # refuerza lo conocido
-        self.estructura = max(0.0, min(1.0, ton_m * (0.4 + 0.6 * rec_m)))
-        tL, _, rL, _ = self._estr_rec(self._L[max(0, idx - 2400):idx + 2400])
-        tR, _, rR, _ = self._estr_rec(self._R[max(0, idx - 2400):idx + 2400])
-        self.estructura_L = max(0.0, min(1.0, tL * (0.4 + 0.6 * rL)))   # estructura reconocida por oído → brújula del forrajeo
-        self.estructura_R = max(0.0, min(1.0, tR * (0.4 + 0.6 * rR)))
-        # binaural v2 (Req1): energías por canal y balance L/R. REAL, adicional.
+        idx = int(self.t * SR)
         wL = self._L[max(0, idx - 2400):idx + 2400]; wR = self._R[max(0, idx - 2400):idx + 2400]
-        self.energia_L = float(np.sqrt(np.mean(wL ** 2))) if wL.size else 0.0
-        self.energia_R = float(np.sqrt(np.mean(wR ** 2))) if wR.size else 0.0
+        # PERCEPCIÓN FÍSICA — la MEMBRANA (tímpano = piel exapta): el WAVEFORM de presión hace VIBRAR la piel.
+        # Reemplaza el RMS (sólo loudness, percepción pobre) y la estructura espectral por FFT (Shannon
+        # encubierto). La energía, el Δ_struct y la estructura nacen de CÓMO/DÓNDE vibra la membrana — pura
+        # física. El "espectro" está implícito en sus modos, NUNCA leído como información (anti-Shannon).
+        if self.membrana is not None:
+            mem = self.membrana.procesar(wL, wR); self.mem_estado = self.membrana.estado()
+            self.energia_L = float(mem["mem_energia_L"]); self.energia_R = float(mem["mem_energia_R"])
+            self.dstruct = float(0.5 * (mem["mem_ds_L"] + mem["mem_ds_R"]))       # Δ_struct FÍSICO = diferenciación de la vibración
+            # ORDEN (3-ago-2026): antes era min(1, Δ_struct) — un RECORTE, no una medida. Δ_struct
+            # tiene mediana 2,06 y máximo 8,22, así que el min() dejaba 'estructura' clavada en
+            # 1,0000 el 75% de los pasos (medido en Abraxas, 225 filas). Consecuencia: la toxicidad
+            # `k·(1−estructura)` era idénticamente cero tres de cada cuatro pasos — el organismo no
+            # podía indigestarse con nada, y comer dejaba de ser una discriminación.
+            #
+            # Ahora usa la medida de la membrana: 1 − PR, con PR el índice de participación inversa
+            # sobre la energía por nodo. Mide LOCALIZACIÓN: la vibración de un sonido con forma se
+            # concentra en pocos modos (PR→0, estructura→1); el ruido reparte energía por todos los
+            # nodos (PR→1, estructura→0). No es permutación-invariante, así que distingue una
+            # emisión de su propia versión barajada A IGUAL ENERGÍA — que es justo lo que la
+            # planitud espectral no hacía (falsación del 5-jul: SHUFFLED daba MÁS que REAL).
+            # Verificada aparte con REAL/SHUFFLED/NULL, 4 de 4. Vive en 0,08–0,96, mediana 0,49:
+            # sin techo ni suelo. Correlación con la medida vieja: r = +0,012 — no son lo mismo.
+            #
+            # Δ_struct NO se toca: sigue siendo la diferenciación física y alimenta el umbral
+            # beta_crit del Genoma. Son dos señales distintas y se mantienen separadas.
+            self.estructura_L = float(min(1.0, max(0.0, mem["mem_estructura_L"])))
+            self.estructura_R = float(min(1.0, max(0.0, mem["mem_estructura_R"])))
+            self.estructura = float(0.5 * (self.estructura_L + self.estructura_R))
+            # OBSERVACIÓN, no conducta: publicar lo que el tímpano mide de verdad, para poder mirarlo antes
+            # de decidir si alguna de estas señales debe reemplazar a otra. Prefijo tim_ porque mem_* ya lo
+            # ocupa VST_Memoria (familiaridad/novedad): son órganos distintos y colisionaban en el CSV.
+            self.tim = {("tim_" + k[4:]): float(v) for k, v in mem.items()
+                        if k.startswith("mem_") and isinstance(v, (int, float))}
+            # MEMORIA PERCEPTUAL → SORPRESA → e_R / A (la HISTORIA entra al cierre)
+            # La FAMILIARIDAD se gana con la REPETICIÓN (fuerza acumulada), no en la primera escucha: un
+            # percepto nuevo nace novedoso (sorpresa alta → desacople) y sólo tras varias exposiciones se
+            # vuelve familiar (sorpresa baja → acople). Por eso el mismo sonido MIGRA de hostil a fértil.
+            energia_tot = mem["mem_energia_L"] + mem["mem_energia_R"]
+            if energia_tot < 1e-4:                                                # SILENCIO = reposo, NO sorpresa (no hay estímulo que predecir)
+                self._surprise = 0.0; familiaridad = 1.0
+                self.eR = 0.5; self.A = 0.9; self.placer_sensorial = 0.0
+                pv = None
+            else:
+                pv = np.array([mem["mem_ds_L"], mem["mem_ds_R"], 3.0 * mem["mem_centro_L"], 3.0 * mem["mem_centro_R"],
+                               np.log10(mem["mem_energia_L"] + 1e-6), np.log10(mem["mem_energia_R"] + 1e-6)])
+            if pv is not None:                                                   # ESTÍMULO presente → RECONOCIMIENTO + VALOR
+                D_NEAR = 2.5; N_FAM = 100.0                                       # umbral "mismo percepto" · exposición para familiaridad plena
+                # VALOR (gusto) PROPIOCEPTIVO: el sonido gusta si, al oírlo, el organismo SE SIENTE bien —
+                # bienestar W = suma de sus estados (energía, acople, libertad, homeostasis… menos malestar).
+                # NO es una función impuesta: es cómo el sonido afecta su condición sentida (lag 1 vía milieu).
+                fertil = float(self._milieu.leer("prop_bienestar", 0.5)) if self._milieu is not None else 0.5
+                if self._percept_mem:
+                    dists = [float(np.linalg.norm(pv - q[0])) for q in self._percept_mem]
+                    jmin = int(np.argmin(dists)); dmin = dists[jmin]
+                else:
+                    jmin, dmin = -1, 99.0
+                if jmin >= 0 and dmin < D_NEAR:
+                    q = self._percept_mem[jmin]
+                    q[0] = q[0] + 0.05 * (pv - q[0]); q[1] += 1.0                 # RECONOCE y refuerza (familiaridad ↑ con la repetición)
+                    q[2] = q[2] + 0.04 * (fertil - q[2])                          # APRENDE el VALOR (gusto) por CONSECUENCIA en el tiempo
+                    familiaridad = min(1.0, q[1] / N_FAM); valor = float(q[2])
+                else:
+                    if len(self._percept_mem) < self._percept_max:
+                        self._percept_mem.append([pv.copy(), 1.0, fertil])       # percepto NUEVO: [vector, fuerza, valor]
+                    familiaridad = 0.0; valor = fertil
+                self._surprise = float(1.0 - familiaridad)
+                self._valor = valor
+                disgusto = 1.0 - valor                                            # cuánto NO le gusta (aprendido por consecuencia)
+                # e_R (desacople) sube con la NOVEDAD y con el DISGUSTO: un sonido CONOCIDO pero MALO sigue
+                # desacoplando (familiar ≠ gustado). A (acople) = familiaridad·valor: conocido Y gustado.
+                self.eR = float(np.clip(0.5 + (0.55 * self._surprise + 0.65 * disgusto) * 22.0, 0.5, 30.0))
+                self.A = float(np.clip(0.15 + 0.80 * valor * (0.4 + 0.6 * familiaridad), 0.05, 1.0))
+                # PLACER SENSORIAL (canal físico no-circular del gusto): la coherencia/transmisión de la
+                # membrana (armonía Von Békésy) menos el reflejo (abrumar) → el organismo DISFRUTA lo armónico.
+                # Se secreta para que la propiocepción lo sume al bienestar W (así lo bello sube W → gusta).
+                self.placer_sensorial = float(np.clip(
+                    float(mem.get("mem_coherencia", 0.0)) * min(1.0, 4.0 * float(mem.get("mem_transmitido_L", 0.0)))
+                    - float(mem.get("mem_reflejo", 0.0)), -1.0, 1.0))
+        else:
+            self.energia_L = float(np.sqrt(np.mean(wL ** 2))) if wL.size else 0.0   # fallback sin membrana: RMS
+            self.energia_R = float(np.sqrt(np.mean(wR ** 2))) if wR.size else 0.0
+            self.estructura = self.estructura_L = self.estructura_R = 0.0
+        self.demanda = 1.0 + (self.energia_L + self.energia_R) * 1.5               # demanda del entorno = energía FÍSICA percibida
         _tot = self.energia_L + self.energia_R
         self.balance_LR = float((self.energia_L - self.energia_R) / (_tot + 1e-9))
         self.INR = float(np.clip(abs(self.grad) * 2.0, 0.0, 1.0))
         self.finito = bool(np.all(np.isfinite(self.L.Phi)) and np.isfinite(oA) and np.isfinite(oB))
 
     def secretar(self, milieu: "Milieu") -> None:
+        self._milieu = milieu                 # ref para leer prop_bienestar (suma de estados) el próximo paso
         m = milieu.secretar
+        m("placer_sensorial", float(getattr(self, "placer_sensorial", 0.0)))   # armonía física → la propiocepción lo suma a W
         m("omega_A", self.omega_A); m("omega_B", self.omega_B); m("gradiente", self.grad)
         m("Omega", self.Omega, guardar_historial=True)
         m("e_R", self.eR); m("A_sys_env", self.A); m("orientacion", self.orient)
@@ -438,6 +553,8 @@ class OrganeloSoma(Organelo):
         m("omega_L", self.omega_L); m("omega_R", self.omega_R)
         m("estructura", self.estructura)                           # orden RECONOCIDO → convertibilidad en sentido
         m("estructura_L", self.estructura_L); m("estructura_R", self.estructura_R)   # por oído → forrajeo
+        for _k, _v in getattr(self, "tim", {}).items():             # observables del tímpano (sólo mirar)
+            m(_k, _v)
         m("gradiente_lateral", self.grad_lateral)
         m("lateralidad_real", 1.0 if self.lateralidad_real else 0.0)
         # binaural v2 (Req1) — REAL, adicionales
@@ -445,6 +562,17 @@ class OrganeloSoma(Organelo):
         m("energia_L", self.energia_L); m("energia_R", self.energia_R)
         m("balance_LR", self.balance_LR); m("lateralidad", self.lateralidad)
         m("coherencia_biaural", self.coherencia_biaural)
+        # ACOPLE AUDIO→CAMPO, ahora observable (2-ago-2026). `campo_F` es el forzamiento que
+        # el audio ejerce sobre Φ. Por encima de 0,385 —umbral de bifurcación del término de
+        # reacción Φ(1−Φ²)— el campo pierde el pozo negativo: sube al tope y ya no puede
+        # volver, ω_A se clava en 1,0 y el gradiente deja de medir desajuste percibido/esperado
+        # para medir sólo (1 − ω_B). Sin esta columna, la calibración pedida en
+        # CAMPO_GAIN_AUDIO ("E debe IMPORTAR sin tapar I") no se puede hacer.
+        m("campo_env", float(max(getattr(self.L, "env_audio", 0.0),
+                                 getattr(self.R, "env_audio", 0.0))))
+        m("campo_F", float(max(getattr(self.L, "F_audio", 0.0),
+                               getattr(self.R, "F_audio", 0.0))))
+        m("campo_apertura", float(getattr(self, "apertura", 1.0)))
 
 
 # ==============================================================================

@@ -1,0 +1,18 @@
+{
+  "clave": "r10_III",
+  "rule_id": "A2-B0-C2-batch4-r10",
+  "clase": "III",
+  "seed": 572799,
+  "N": 8000,
+  "n_sweeps": 14,
+  "t_grafo_s": 13.8,
+  "K": 5,
+  "J": 0.339,
+  "noise": 0.263,
+  "meandeg": 7.64,
+  "kcap": 5,
+  "n_aristas_grafo_final": 12084,
+  "grado_medio_grafo_final": 3.021,
+  "diam_grafo_final_OFICIAL": 17,
+  "holon_grafo_final": 0.743175913554531
+}

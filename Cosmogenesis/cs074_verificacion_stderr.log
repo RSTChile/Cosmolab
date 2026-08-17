@@ -1,0 +1,10 @@
+[2026-07-25 20:02:30] === PASO 1: smoke test, gravedad pura (sin expansión, sin enfriamiento) ===
+[2026-07-25 20:02:32] ok=True n_bariones=50 max_residual_rel=0.016849814529023587 fallo_conservacion_control=False frac_masa_ligada=0.8408395949906547 elapsed=2.3s
+[2026-07-25 20:02:32] === PASO 2: Regla 4 aislada -- reserva chica vs grande (mismo escenario) ===
+[2026-07-25 20:02:37] reserva chica: frac_masa_ligada=0.02388597252703638 n_acreditadas=9
+[2026-07-25 20:02:37] reserva grande: frac_masa_ligada=0.5951614543899271 n_acreditadas=47
+[2026-07-25 20:02:37] Regla 4 direccionalmente correcta (chica <= grande, por masa): True
+[2026-07-25 20:02:37] === PASO 3: barrido reducido + admisibilidad ===
+[2026-07-25 20:03:10] barrido reducido: 12 corridas, 12 ok
+[2026-07-25 20:03:10] admisibilidad: difieren=True finita.frac_masa_ligada=0.02388597252703638 infinita.frac_masa_ligada=0.5951614543899271
+[2026-07-25 20:03:10] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/resultados_cs074_energia_holistica/cs074_verificacion_result.json

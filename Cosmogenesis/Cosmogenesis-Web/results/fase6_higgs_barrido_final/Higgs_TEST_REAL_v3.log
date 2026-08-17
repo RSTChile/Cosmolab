@@ -1,0 +1,20 @@
+=== Higgs_TEST_REAL_v3 (tejido condicionado por medio) ===
+Pregunta: VEV + formula unica + tejido(Φ) => masa != geometria?
+sello ALPHA_CUT=2.5 MIX0=0.35 G_RHO=0.8 freeze_T=0.4 Y0=0.3 seed=2025
+step   0 a=  1.00 frz=0 <|Phi|>=0.4533 wall=0.128 v1=0.4497 v3=0.4589 Rm=0.3415 NULL=0.3393 k1=32 k3=7
+step  50 a=  2.12 frz=0 <|Phi|>=0.2322 wall=0.427 v1=0.1791 v3=0.1590 Rm=0.4059 NULL=0.3581 k1=15 k3=1
+step 100 a=  4.48 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1913 v3=0.2343 Rm=0.2729 NULL=0.3342 k1=67 k3=8
+step 150 a=  9.49 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1743 v3=0.2455 Rm=0.2382 NULL=0.3350 k1=142 k3=17
+step 200 a= 20.09 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1694 v3=0.2758 Rm=0.2052 NULL=0.3346 k1=194 k3=21
+step 250 a= 42.52 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1692 v3=0.2855 Rm=0.1972 NULL=0.3336 k1=224 k3=28
+step 300 a= 90.02 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1736 v3=0.3172 Rm=0.1821 NULL=0.3331 k1=255 k3=24
+step 350 a=190.57 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1770 v3=0.3165 Rm=0.1859 NULL=0.3329 k1=264 k3=25
+step 399 a=397.42 frz=1 <|Phi|>=0.2774 wall=0.397 v1=0.1770 v3=0.3172 Rm=0.1855 NULL=0.3330 k1=264 k3=24
+
+=== VEREDICTO ===
+TEST_PARTIAL_medium_coupling
+VEV + separación Rm vs NULL: germen de mecanismo tipo medio; jerarquía no fuerte. Éxito parcial v3 (sin exigir 1/1836).
+<|Phi|>=0.2774 wall=0.397 v1=0.1760 v3=0.2846 contrast_v=0.472
+flags={'vev_ok': True, 'structure_ok': True, 'inherit_ok': True, 'null_ok': True, 'signal_ok': True, 'hierarchy_Rm_lt_0.1': False}
+Rm_SSB=0.20956456258180173  NULL_SSB=0.3337682388475441  |Rm-NULL|=0.12420367626574236
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/fase6_higgs_barrido_final/Higgs_TEST_REAL_v3_result.json

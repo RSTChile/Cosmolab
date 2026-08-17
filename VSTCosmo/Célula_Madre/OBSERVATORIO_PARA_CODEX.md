@@ -18,16 +18,16 @@ escriben una **biografía longitudinal** a disco. Exponen su estado por **HTTP/J
 ---
 
 ## 1. Rutas en el Mac (todo bajo el repo)
-Raíz del repo: **`/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/`**
+Raíz del repo: **`/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/`**
 
 | Qué | Ruta absoluta |
 |---|---|
-| Núcleo vivo (16 órganos) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/Célula_Madre/` |
-| Biografía longitudinal (registros) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/Docker_Historia/` |
-| Base de datos SQLite (catálogo de experimentos) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/vstcosmo.db` |
-| WAVs de mundo (Big Bang / Blue Monday) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural/` |
-| Voces R2‑D2 (samples) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/Célula_Madre/voces_r2d2/` |
-| Experimentos históricos (NO tocar) | `/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/` (scripts `v*.py`) |
+| Núcleo vivo (16 órganos) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/Célula_Madre/` |
+| Biografía longitudinal (registros) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/Docker_Historia/` |
+| Base de datos SQLite (catálogo de experimentos) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/vstcosmo.db` |
+| WAVs de mundo (Big Bang / Blue Monday) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural/` |
+| Voces R2‑D2 (samples) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/Célula_Madre/voces_r2d2/` |
+| Experimentos históricos (NO tocar) | `/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/` (scripts `v*.py`) |
 
 > Nota de build: la ruta contiene un acento ("Célula"), que rompe BuildKit. Construir siempre con
 > `DOCKER_BUILDKIT=0 docker build -f docker/Dockerfile -t anima-diada:latest .` desde `Célula_Madre/`.

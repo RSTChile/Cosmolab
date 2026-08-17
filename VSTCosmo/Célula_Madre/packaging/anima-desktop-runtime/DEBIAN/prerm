@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ANIMA_USER="${ANIMA_USER:-${SUDO_USER:-ubuntu}}"
+USER_UID="$(id -u "$ANIMA_USER" 2>/dev/null || true)"
+RUNTIME_DIR="/run/user/${USER_UID:-}"
+
+if [ -n "${USER_UID:-}" ] && [ -d "$RUNTIME_DIR" ]; then
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user stop anima-watchdog.service anima-organismo.service || true
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user disable anima-watchdog.service anima-organismo.service || true
+fi

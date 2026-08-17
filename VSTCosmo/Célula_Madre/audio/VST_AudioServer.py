@@ -82,6 +82,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import socket
 import struct
 import sys
@@ -295,8 +296,16 @@ class CapturaAudio:
     intercalados c0,c1,...,c{n-1}, c0,c1,... por sample.
     """
 
+    # Mapa verificado RØDECaster Pro II (pares L/R 1-based) → ENTRADA física.
+    INPUT_PAIRS = [
+        ("MainMix", (1, 2)), ("Combo1", (3, 4)), ("Combo2", (5, 6)), ("Combo3", (7, 8)),
+        ("Bluetooth", (9, 10)), ("USB2", (11, 12)), ("USBMain", (13, 14)),
+        ("SMARTPads", (15, 16)), ("USBChat", (17, 18)),
+    ]
+
     def __init__(self, servidor: ServidorFrames, device_idx: int,
-                 n_canales: int, sample_rate: int, block_size: int) -> None:
+                 n_canales: int, sample_rate: int, block_size: int,
+                 log_canales_path: "str | None" = None) -> None:
         self.servidor = servidor
         self.device_idx = device_idx
         self.n_canales = n_canales
@@ -304,6 +313,20 @@ class CapturaAudio:
         self.block_size = block_size
         self.bloques = 0
         self._stream: "sd.InputStream | None" = None
+        # --- LOG por ENTRADA (Nivel 1): RMS de cada entrada del Rode cada ~0.25 s ---
+        self.log_canales_path = log_canales_path
+        self._logging = bool(log_canales_path)
+        if self._logging:
+            self.log_intervalo = 0.25
+            self._pairs = [(nm, (a - 1, b - 1)) for nm, (a, b) in self.INPUT_PAIRS if a <= n_canales]
+            self._ss = np.zeros(n_canales, dtype=np.float64)   # suma de cuadrados por canal
+            self._nss = 0
+            self._loglock = threading.Lock()
+            self._logstop = False
+            os.makedirs(os.path.dirname(log_canales_path), exist_ok=True)
+            self._logf = open(log_canales_path, "w", buffering=1)
+            self._logf.write("ts_real,hora," + ",".join(nm for nm, _ in self._pairs) + "\n")
+            self._logthread = threading.Thread(target=self._logger_loop, daemon=True)
 
     def _callback(self, indata: np.ndarray, frames: int, t, status) -> None:
         # indata: (block_size, n_canales) float32. NO bloquear aquí.
@@ -313,6 +336,28 @@ class CapturaAudio:
             pass  # underflow/overflow ocasional: no abortamos
         self.servidor.difundir(np.ascontiguousarray(indata, dtype="<f4").tobytes())
         self.bloques += 1
+        if self._logging:                       # acumula energía por canal (barato y vectorizado)
+            x = indata.astype(np.float64)
+            with self._loglock:
+                self._ss += np.sum(x * x, axis=0)
+                self._nss += frames
+
+    def _logger_loop(self) -> None:
+        # Cada ~0.25 s vuelca el RMS por ENTRADA del Rode (promedio de su par L/R) a un CSV.
+        # Solo se guardan números (volumen por entrada) + timestamp: NO se guarda audio.
+        while not self._logstop:
+            time.sleep(self.log_intervalo)
+            with self._loglock:
+                n = self._nss; ss = self._ss.copy()
+                self._ss[:] = 0.0; self._nss = 0
+            if n <= 0:
+                continue
+            rms = np.sqrt(ss / n)
+            vals = []
+            for _nm, (a, b) in self._pairs:
+                ch = [c for c in (a, b) if c < len(rms)]
+                vals.append(f"{float(np.mean(rms[ch])) if ch else 0.0:.6f}")
+            self._logf.write(f"{time.time():.3f},{time.strftime('%H:%M:%S')}," + ",".join(vals) + "\n")
 
     def iniciar(self) -> None:
         if sd is None:
@@ -329,6 +374,9 @@ class CapturaAudio:
                 callback=self._callback,
             )
             self._stream.start()
+            if self._logging:
+                self._logthread.start()
+                print(f"  ► LOG por entrada activo → {self.log_canales_path}")
         except Exception as e:  # noqa: BLE001 — mensaje claro, no traceback
             print(f"\nERROR al abrir la entrada de '{info['name']}' "
                   f"(sr={self.sample_rate}, canales={self.n_canales}): {e}\n"
@@ -461,6 +509,11 @@ def main() -> None:
     p.add_argument("--host", default="0.0.0.0",
                    help="interfaz donde escuchar (def: 0.0.0.0 = todas; el contenedor llega por host.docker.internal)")
     p.add_argument("--port", type=int, default=8765, help="puerto TCP (def: 8765)")
+    p.add_argument("--log-canales", nargs="?", const="AUTO", default=None,
+                   help="Nivel 1: registrar el RMS (volumen) de cada ENTRADA del Rode a un CSV "
+                        "para cruzar con la fisiología. Opcional: ruta; sin ruta usa "
+                        "~/Library/Logs/vstcosmo-audioserver/canales_rms_<fecha>.csv. "
+                        "También con env VST_LOG_CANALES=1. No guarda audio, solo números.")
     args = p.parse_args()
 
     if args.list:
@@ -495,8 +548,18 @@ def main() -> None:
     print("VST_AudioServer — captura nativa → puente TCP al Docker")
     print("=" * 78)
 
+    # Resolver destino del log por entrada (flag o env). 'AUTO' → ruta por defecto con fecha.
+    log_path = args.log_canales
+    if log_path is None and os.environ.get("VST_LOG_CANALES", "").strip():
+        v = os.environ["VST_LOG_CANALES"].strip()
+        log_path = "AUTO" if v.lower() in ("1", "true", "yes", "si", "sí") else v
+    if log_path == "AUTO":
+        _d = os.path.expanduser("~/Library/Logs/vstcosmo-audioserver")
+        log_path = os.path.join(_d, "canales_rms_" + time.strftime("%Y%m%d_%H%M%S") + ".csv")
+
     servidor = ServidorFrames(args.host, args.port, handshake)
-    captura = CapturaAudio(servidor, device_idx, n_canales, args.rate, args.block)
+    captura = CapturaAudio(servidor, device_idx, n_canales, args.rate, args.block,
+                           log_canales_path=log_path)
 
     servidor.iniciar()
     captura.iniciar()

@@ -1,0 +1,6 @@
+[A2-B0-C2-r12v1fix] control_redondeo     t= 191.53s rms=1.996e-01 fof020=0.2340 (orig 0.2460)
+[A2-B0-C2-r12v1fix] bh_theta0.3          t= 139.44s rms=8.039e-01 fof020=0.2435 (orig 0.2460)
+[A2-B0-C2-r12v1fix] bh_theta0.5          t=  76.97s rms=1.144e+00 fof020=0.2125 (orig 0.2460)
+[A2-B0-C2-r12v1fix] bh_theta0.7          t=  34.97s rms=1.157e+00 fof020=0.2490 (orig 0.2460)
+[A2-B0-C2-r12v1fix] bh_theta1.0          t=  18.67s rms=1.417e+00 fof020=0.2410 (orig 0.2460)
+[OK] A2-B0-C2-r12v1fix -> /Users/alexis/phantom_cs073/infra_layout_bh/valid_A2-B0-C2-r12v1fix_I.json

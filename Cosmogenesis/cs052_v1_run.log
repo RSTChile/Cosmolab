@@ -1,0 +1,31 @@
+CS052-v1 — CO-EMERGENCIA: ni entidad sola (A) ni vínculo libre (B); solo vínculo ATADO (C)
+============================================================================================================
+PATRÓN a probar: A≡0 (todo), B→0 (todo), C discrimina (0 en {3,6} plano, ≠0 en {3,7}/{3,8} curvo)
+
+── PARTE 1 · grafos {3,q} conocidos (q6 PLANO, q7/q8 CURVO) — la estructura ES la prueba ──
+   q    geom |  A (nodo) | B (link libre) | C (link atado)=Burgers
+  ------------------------------------------------------------------------------
+   6   PLANO |     0.000 |          0.000 |                  0.000
+   7   curvo |     0.000 |          0.000 |                  1.549
+   8   curvo |     0.000 |          0.000 |                  1.155
+
+  ============================================================================
+  A (entidad sola): max|holon|=0.000 → ≡0 en todo q (gauge puro, telescópico)
+  B (vínculo libre): max|holon|=0.000 → →0 en todo q (el gauge libre se desenrosca)
+  G-NO-GAUGE-LIBRE (C discrimina): C(q6)=0.00(≈0?) C(q7)=1.55(>0?) C(q8)=1.15(>0?) → PASA (la atadura ATÓ)
+
+  VEREDICTO DE LA TESIS (patrón A/B/C, los tres a la vez):
+    ★★★ A=0 Y B=0 Y C DISCRIMINA → TESIS CONFIRMADA: ni la entidad sola (A) ni el vínculo
+        libre (B) generan espacio; SOLO el vínculo ATADO a sus extremos (C). La co-emergencia
+        es real, con la forma exacta que Alexis predijo. El 'entre' hace el espacio — atado.
+
+── PARTE 2 · el medio EMERGENTE del confinamiento (CS047): ¿C lo mide plano o curvo? ──
+  sd  %gig  tri/nod  |déficit| medio (C)  %interior
+  ----------------------------------------------------
+   1   10     7.56                1.870        67%
+   2    7     7.24                1.783        65%
+   3    6     7.15                1.832        62%
+
+  (Consistente con el arco: el medio del confinamiento NO sale plano — C mide déficit ≠ 0
+   o el mesh está fragmentado. La generación de plano sigue aguas arriba. La TESIS de co-
+   emergencia —dónde VIVE el espacio (en el vínculo atado)— es lo que Parte 1 prueba.)

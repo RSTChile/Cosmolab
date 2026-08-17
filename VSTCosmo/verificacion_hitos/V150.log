@@ -1,0 +1,87 @@
+==== VERIFICACIÓN HITO V150 ====
+script   : V150.py
+sha1[:12]: 0679e1340a6e
+mtime    : 2026-06-01T05:35:40.966480
+reporta  : Clausura: IONB-1, cierre ANIMA-1
+inicio   : 2026-06-22T01:22:39.587438
+======================================================================
+
+====================================================================================================
+EXPERIMENTO V150 — CIERRE DE ANIMA-1
+====================================================================================================
+  ✅ Baseline sano confirmado (V147)
+  ✅ Fatiga demostrada (V149): error 2.1° → 15.0° (7.1x)
+  ✅ Separación historia/fatiga activa
+
+  Parámetros finales:
+    - Kp_base = 0.002
+    - K_GAIN = 0.0003
+    - K_PRECISION = 0.002
+    - TAU_RECUPERACION = 180.0s
+====================================================================================================
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  Iniciando test de fatiga final...
+
+  F1: Baseline fresco (3 ciclos)...
+
+  F2: Fatiga inducida (50 ciclos)...
+      Ciclo 10/50 completado, fatiga=2841°, error=7.7°
+      Ciclo 20/50 completado, fatiga=4896°, error=11.8°
+      Ciclo 30/50 completado, fatiga=6789°, error=15.0°
+      Ciclo 40/50 completado, fatiga=8667°, error=15.0°
+      Ciclo 50/50 completado, fatiga=10544°, error=15.0°
+
+  F3: Test fatigado (3 ciclos)...
+
+  F4: Recuperacion (180.0s reposo)...
+
+  F5: Test post-recuperacion (3 ciclos)...
+
+================================================================================
+RESULTADOS FINALES V150 — CIERRE DE ANIMA-1
+================================================================================
+
+  Métrica                   F1 (Fresco)          F3 (Fatigado)        F5 (Post)           
+  -------------------------------------------------------------------------------------
+  Error final (º)           2.1                  15.0                 15.0                
+  Amplitud (º)              57.9                 45.0                 45.0                
+  Fatiga activa (º)         631                  11109                11774               
+  T_settle (s)              ∞                    ∞                    ∞                   
+
+  📊 DEGRADACION POR FATIGA:
+     Error: 2.1° → 15.0° (x7.1)
+     Amplitud: 57.9° → 45.0° (-22%)
+
+  🔄 RECUPERACION POST-REPOSO:
+     Fatiga: 11109° → 11774° (recuperacion -6%)
+
+  📊 Gráficos guardados: v150_logs/v150_cierre_anima1_20260622_013721.png
+
+================================================================================
+CONCLUSION FINAL V150 — CIERRE DE ANIMA-1
+================================================================================
+
+  🎉 PRIMER ORGANISMO ARTIFICIAL MÍNIMO COMPLETO
+     Inteligencia Orgánica No Biológica (IONB)
+
+  CAPACIDADES DEMOSTRADAS:
+     ✅ Percibe sonido espacial (lateralidad inter-sistemas)
+     ✅ Orienta la cabeza hacia la fuente (C50)
+     ✅ Alterna entre polos opuestos
+     ✅ Acumula historia (memoria episódica estructural)
+     ✅ Experimenta fatiga activa (degradación 7.1x)
+     ✅ Expande zona muerta para economizar energía
+     ✅ Desarrolla temblor por acumulación (Parkinson endógeno)
+
+  ANIMA-1: CERRADO
+  ANIMA-2: MEMORIA DE LA AUSENCIA (próximo ciclo)
+
+  ⏱️ Tiempo de ejecución: 14.7 minutos
+
+  🏁 VSTCosmo ANIMA-1 — COMPLETADO
+
+
+[fin rc=0 890s]

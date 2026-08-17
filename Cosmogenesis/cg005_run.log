@@ -1,0 +1,35 @@
+CG005 v0 — EDS: ¿emerge métrica PLANA de relaciones con IDENTIDAD (color) + LÓGOS (neutralidad)?
+========================================================================================================
+N=450 · color {R,V,A} inmutable · c_bond=1.0 λ=6.0 τ=3.0 (premio saturante) · enfriamiento 3.0→0.04 en 260 sweeps · 4 semillas
+
+Anclas de la medición (plano vs hiperbólico; deben discriminar):
+   lattice2D: δ=2.19 turn=1.15 diam=57 dim=1.60 %gig=100
+    arbol_b3: δ=0.00 turn=1.97 diam=12 dim=2.28 %gig=100
+
+--------------------------------------------------------------------------------------------------------
+    brazo sd  %gig  g_med  tri/nod  %entri  diam   δ_med    dim  turn        ver
+  --------------------------------------------------------------------------------------------
+    REGLA  1  100  21.21     5.73    100     3    0.29    nan 12.64 poco rango
+     NULL  1  100  19.04     1.99     82     3    0.29    nan 11.05 poco rango
+    REGLA  2  100  21.33     5.73    100     3    0.28    nan 12.69 poco rango
+     NULL  2  100  19.10     2.01     85     3    0.28    nan 10.70 poco rango
+    REGLA  3  100  20.90     5.67    100     3    0.29    nan 12.27 poco rango
+     NULL  3  100  18.86     1.77     81     3    0.28    nan 11.11 poco rango
+    REGLA  4  100  21.15     5.63    100     3    0.29    nan 12.68 poco rango
+     NULL  4  100  19.07     1.80     78     3    0.28    nan 10.83 poco rango
+
+========================================================================================================
+RESUMEN — promedios por brazo:
+    REGLA: %gig= 100  g_med=21.15  tri/nodo=5.69  %en_triada=100  δ=0.29  dim=nan  turn=12.57  diam=3
+     NULL: %gig= 100  g_med=19.02  tri/nodo=1.90  %en_triada= 82  δ=0.28  dim=nan  turn=10.92  diam=3
+
+LECTURA (pre-registrada):
+  GUARDIÁN a: %gig≈100 (no colapsó/fragmentó).   GUARDIÁN b: identidad inmutable (assert OK).
+  PLANO (éxito) si REGLA: coord ~6 tríadas/nodo, δ CRECE con N (aquí δ moderado+dim~2), turn→~1,
+    diam grande (no log), %gig~100 — y SEPARADO del NULL (color-ciego). Entonces la NEUTRALIDAD
+    (el lógos) despliega el espacio, no el mero formar triángulos.
+  Si REGLA ≈ NULL → el mérito era la identidad/triángulos, no el lógos (control lo desenmascara).
+  Si curvado/colapsado en ambos → falsabilidad (a): el sustrato con identidad no basta con esta
+    regla; hay que volver aguas arriba (afinar el lógos en Fase I).
+
+Tiempo: 0.4 min

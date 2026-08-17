@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.vstcosmo.nrf24bridge</string>
+
+    <!-- Puente NATIVO de la radio digital de A: lee el Arduino Uno (nRF24) y lo
+         expone por HTTP :8772 para que el organismo A (en Docker) lo consuma.
+         Al iniciar sesion arranca solo; KeepAlive lo reinicia si se cae (p.ej.
+         si el Uno se desconecta y vuelve). Usa el python3 del SISTEMA (trae
+         pyserial; el venv-mac no). El serie no requiere permiso TCC. -->
+    <!-- Corre una copia DESPLEGADA en ~/bin (el Desktop esta protegido por TCP/TCC y
+         launchd no puede leerlo). El maestro vive en la celula: audio/VST_NRF24Bridge.py.
+         Re-desplegar con: audio/instalar_nrf24bridge.sh -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/alexis/bin/vstcosmo_nrf24bridge.py</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+        <key>ANIMA_UNO_PORT</key>
+        <string>/dev/cu.usbmodem14101</string>
+        <key>ANIMA_NRF24_BRIDGE_PORT</key>
+        <string>8772</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/alexis/Library/Logs/vstcosmo-nrf24bridge/bridge.out</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/alexis/Library/Logs/vstcosmo-nrf24bridge/bridge.err</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>

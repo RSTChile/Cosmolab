@@ -1,0 +1,124 @@
+leído cs090_fase6_o2b_genealogias_reglas_shard0.csv
+leído cs090_fase6_o2b_genealogias_reglas_shard1.csv
+leído cs090_fase6_o2b_genealogias_reglas_shard2.csv
+leído cs090_fase6_o2b_genealogias_reglas_shard3.csv
+leído cs090_fase6_o2b_genealogias_reglas_shard4.csv
+CSV: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2b_genealogias_reglas_TODAS.csv  (800 filas)
+
+800 filas · genealogías = 20 · brazos = ['C2-hard', 'C2-hibrido']
+
+======================================================================================================================
+BRAZO C2-hard — %Clase III POR GENEALOGÍA (tabla completa)
+======================================================================================================================
+genealogía       seed_base   n   I  II  III  IV  otro    %III  %III+IV  SEbinom  pend_med  pend_mdn  diam_med   grado
+H00_113477          113477  20  10   1    9   0     0   45.0%    45.0%    11.12     0.719     0.640     13.55    3.54
+H01_218903          218903  20   9   0   10   1     0   50.0%    55.0%    11.18     0.765     0.707     13.90    3.42
+H02_344251          344251  20  12   0    8   0     0   40.0%    40.0%    10.95     0.652     0.631     12.75    3.73
+H03_662819          662819  20   7   1   12   0     0   60.0%    60.0%    10.95     0.756     0.735     14.35    3.40
+H04_741037          741037  20  13   2    5   0     0   25.0%    25.0%     9.68     0.648     0.601     13.10    3.77
+H05_905683          905683  20   6   1   13   0     0   65.0%    65.0%    10.67     0.775     0.769     15.10    3.34
+H06_1128409        1128409  20   7   1   12   0     0   60.0%    60.0%    10.95     0.765     0.771     14.40    3.49
+H07_1357061        1357061  20   6   1   13   0     0   65.0%    65.0%    10.67     0.790     0.768     14.75    3.36
+H08_1604923        1604923  20   9   2    9   0     0   45.0%    45.0%    11.12     0.704     0.620     13.50    3.58
+H09_1889347        1889347  20  11   1    8   0     0   40.0%    40.0%    10.95     0.690     0.671     13.75    3.67
+H10_2043761        2043761  20  10   1    8   1     0   40.0%    45.0%    10.95     0.703     0.691     13.70    3.62
+H11_2296589        2296589  20  13   1    4   2     0   20.0%    30.0%     8.94     0.635     0.617     12.70    3.69
+H12_2571043        2571043  20  10   1    9   0     0   45.0%    45.0%    11.12     0.743     0.662     14.00    3.48
+H13_2814697        2814697  20   9   2    9   0     0   45.0%    45.0%    11.12     0.751     0.695     15.00    3.40
+H14_3102859        3102859  20   9   2    9   0     0   45.0%    45.0%    11.12     0.702     0.656     13.80    3.61
+H15_3389417        3389417  20   5   1   13   1     0   65.0%    70.0%    10.67     0.767     0.724     14.20    3.26
+H16_3670213        3670213  20  12   2    6   0     0   30.0%    30.0%    10.25     0.646     0.626     12.35    3.89
+H17_3948071        3948071  20  13   1    6   0     0   30.0%    30.0%    10.25     0.655     0.630     12.70    3.73
+H18_4213589        4213589  20  14   1    4   1     0   20.0%    25.0%     8.94     0.659     0.658     13.05    3.63
+H19_4507921        4507921  20   9   1    9   1     0   45.0%    50.0%    11.12     0.755     0.719     14.80    3.41
+----------------------------------------------------------------------------------------------------------------------
+ENTRE GENEALOGÍAS (n=20): media %III = 44.00%   std = 14.20 pp   CV = 32.3%   min = 20.0%   max = 65.0%   rango = 45.0 pp
+RUIDO DE MUESTREO esperado DENTRO de una sola genealogía con n=20: SE binomial promedio (cada una con su p) = 10.64 pp   |   con el p global (44.0%) = 11.10 pp
+  -> razón std_observado / SE_binomial = 1.335  (1.0 = la dispersión entre familias es EXACTAMENTE la esperada por puro muestreo)
+
+----------------------------------------------------------------------------------------------------------------------
+ANOVA de una vía — variación ENTRE genealogías vs DENTRO de cada genealogía [C2-hard]
+----------------------------------------------------------------------------------------------------------------------
+  indicador 0/1 de Clase III:
+    MSB (entre, gl=19) = 0.40316   MSW (dentro, gl=380) = 0.23921   F = 1.685   p≈0.0362
+    componente de varianza ENTRE = 0.00820   DENTRO = 0.23921   ICC = 0.0331 (bruta +0.0331)
+    efecto de diseño deff = 1+(m-1)·ICC = 1.630   ->   N_total = 400  ->  **N EFECTIVO = 245.5**  (equivalente a 12.3 genealogías completas)
+  pendiente (continua):
+    MSB (entre, gl=19) = 0.05233   MSW (dentro, gl=380) = 0.04299   F = 1.217   p≈0.2396
+    componente de varianza ENTRE = 0.00047   DENTRO = 0.04299   ICC = 0.0107 (bruta +0.0107)
+    efecto de diseño deff = 1+(m-1)·ICC = 1.204   ->   N_total = 400  ->  **N EFECTIVO = 332.2**  (equivalente a 16.6 genealogías completas)
+
+----------------------------------------------------------------------------------------------------------------------
+TEST DE PERMUTACIÓN (20.000 barajadas) — ¿la dispersión entre familias excede el azar? [C2-hard]
+----------------------------------------------------------------------------------------------------------------------
+  indicador 0/1 de Clase III: std observado de las medias por genealogía = 0.1384   std esperado barajando = 0.1069 (p95=0.1356)   p = 0.0401   percentil del observado = 96.0
+  pendiente (continua): std observado de las medias por genealogía = 0.0499   std esperado barajando = 0.0449 (p95=0.0568)   p = 0.2409   percentil del observado = 75.9
+
+----------------------------------------------------------------------------------------------------------------------
+¿EFECTO REPARTIDO O SOSTENIDO POR POCAS FAMILIAS? [C2-hard]
+----------------------------------------------------------------------------------------------------------------------
+  genealogías con 0% Clase III (familias 'estériles'): 0/20
+  genealogías con >=30% Clase III: 17/20   con >=45% (el piso de las 4 anteriores): 12/20
+  las 3 genealogías más fértiles aportan 39/176 de todas las Clase III = 22.2%  (reparto perfectamente uniforme daría 15.0%)
+  mediana de %III = 45.0%   cuartiles = 37.5% / 52.5%
+CSV: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2b_genealogias_por_genealogia_C2-hard.csv  (20 filas)
+
+======================================================================================================================
+BRAZO C2-hibrido — %Clase III POR GENEALOGÍA (tabla completa)
+======================================================================================================================
+genealogía       seed_base   n   I  II  III  IV  otro    %III  %III+IV  SEbinom  pend_med  pend_mdn  diam_med   grado
+H00_113477          113477  20  12   3    5   0     0   25.0%    25.0%     9.68     0.639     0.599     10.75    4.32
+H01_218903          218903  20  10   2    8   0     0   40.0%    40.0%    10.95     0.736     0.625     11.75    3.93
+H02_344251          344251  20  14   3    3   0     0   15.0%    15.0%     7.98     0.565     0.533     10.60    4.62
+H03_662819          662819  20   8   2   10   0     0   50.0%    50.0%    11.18     0.737     0.677     12.05    4.07
+H04_741037          741037  20  11   5    4   0     0   20.0%    20.0%     8.94     0.590     0.581     10.60    4.55
+H05_905683          905683  20   8   3    9   0     0   45.0%    45.0%    11.12     0.713     0.612     11.60    4.04
+H06_1128409        1128409  20   9   5    6   0     0   30.0%    30.0%    10.25     0.642     0.529     10.75    4.31
+H07_1357061        1357061  20   6   3   11   0     0   55.0%    55.0%    11.12     0.775     0.808     11.80    3.87
+H08_1604923        1604923  20   9   5    6   0     0   30.0%    30.0%    10.25     0.668     0.624     11.25    4.40
+H09_1889347        1889347  20  10   4    6   0     0   30.0%    30.0%    10.25     0.583     0.614     10.45    4.49
+H10_2043761        2043761  20  13   1    5   1     0   25.0%    30.0%     9.68     0.677     0.596     11.40    4.34
+H11_2296589        2296589  20  12   4    2   2     0   10.0%    20.0%     6.71     0.582     0.551     10.20    4.62
+H12_2571043        2571043  20  11   2    7   0     0   35.0%    35.0%    10.67     0.687     0.571     11.30    4.23
+H13_2814697        2814697  20  10   4    5   1     0   25.0%    30.0%     9.68     0.688     0.565     11.30    4.21
+H14_3102859        3102859  20   9   4    7   0     0   35.0%    35.0%    10.67     0.605     0.534     10.60    4.48
+H15_3389417        3389417  20  12   1    7   0     0   35.0%    35.0%    10.67     0.731     0.651     11.70    3.96
+H16_3670213        3670213  20  12   3    5   0     0   25.0%    25.0%     9.68     0.629     0.584     10.85    4.59
+H17_3948071        3948071  20  10   5    5   0     0   25.0%    25.0%     9.68     0.598     0.554     10.45    4.64
+H18_4213589        4213589  20  11   5    4   0     0   20.0%    20.0%     8.94     0.604     0.535     10.70    4.47
+H19_4507921        4507921  20  12   2    6   0     0   30.0%    30.0%    10.25     0.680     0.583     11.40    4.12
+----------------------------------------------------------------------------------------------------------------------
+ENTRE GENEALOGÍAS (n=20): media %III = 30.25%   std = 11.18 pp   CV = 37.0%   min = 10.0%   max = 55.0%   rango = 45.0 pp
+RUIDO DE MUESTREO esperado DENTRO de una sola genealogía con n=20: SE binomial promedio (cada una con su p) = 9.92 pp   |   con el p global (30.2%) = 10.27 pp
+  -> razón std_observado / SE_binomial = 1.127  (1.0 = la dispersión entre familias es EXACTAMENTE la esperada por puro muestreo)
+
+----------------------------------------------------------------------------------------------------------------------
+ANOVA de una vía — variación ENTRE genealogías vs DENTRO de cada genealogía [C2-hibrido]
+----------------------------------------------------------------------------------------------------------------------
+  indicador 0/1 de Clase III:
+    MSB (entre, gl=19) = 0.24987   MSW (dentro, gl=380) = 0.20961   F = 1.192   p≈0.2607
+    componente de varianza ENTRE = 0.00201   DENTRO = 0.20961   ICC = 0.0095 (bruta +0.0095)
+    efecto de diseño deff = 1+(m-1)·ICC = 1.181   ->   N_total = 400  ->  **N EFECTIVO = 338.8**  (equivalente a 16.9 genealogías completas)
+  pendiente (continua):
+    MSB (entre, gl=19) = 0.07638   MSW (dentro, gl=380) = 0.06833   F = 1.118   p≈0.3300
+    componente de varianza ENTRE = 0.00040   DENTRO = 0.06833   ICC = 0.0059 (bruta +0.0059)
+    efecto de diseño deff = 1+(m-1)·ICC = 1.111   ->   N_total = 400  ->  **N EFECTIVO = 360.0**  (equivalente a 18.0 genealogías completas)
+
+----------------------------------------------------------------------------------------------------------------------
+TEST DE PERMUTACIÓN (20.000 barajadas) — ¿la dispersión entre familias excede el azar? [C2-hibrido]
+----------------------------------------------------------------------------------------------------------------------
+  indicador 0/1 de Clase III: std observado de las medias por genealogía = 0.1089   std esperado barajando = 0.0991 (p95=0.1260)   p = 0.2709   percentil del observado = 72.9
+  pendiente (continua): std observado de las medias por genealogía = 0.0602   std esperado barajando = 0.0565 (p95=0.0716)   p = 0.3358   percentil del observado = 66.4
+
+----------------------------------------------------------------------------------------------------------------------
+¿EFECTO REPARTIDO O SOSTENIDO POR POCAS FAMILIAS? [C2-hibrido]
+----------------------------------------------------------------------------------------------------------------------
+  genealogías con 0% Clase III (familias 'estériles'): 0/20
+  genealogías con >=30% Clase III: 11/20   con >=45% (el piso de las 4 anteriores): 3/20
+  las 3 genealogías más fértiles aportan 30/121 de todas las Clase III = 24.8%  (reparto perfectamente uniforme daría 15.0%)
+  mediana de %III = 30.0%   cuartiles = 25.0% / 35.0%
+CSV: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2b_genealogias_por_genealogia_C2-hibrido.csv  (20 filas)
+PNG: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2b_genealogias_distribucion.png
+PNG: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o2b_genealogias_kcap.png
+
+Fin del análisis. No se declara cierre ni veredicto — los números están arriba; la lectura final es de Alexis.

@@ -1,0 +1,136 @@
+============================================================================================================
+CS069 TANDA BLINDADA
+brazos=['completo', 'null_fase_topo', 'null_fase_azar', 'null_clasico']  N=[900, 1500, 2500]  semillas/brazo=8
+============================================================================================================
+  [completo        N=  900 s=0] diamq=25.16 pi_cv=1.015 n_ejes=0 pico_medio=0.704 certificado=False (t=0.1min)
+  [completo        N=  900 s=1] diamq=23.13 pi_cv=1.023 n_ejes=0 pico_medio=0.729 certificado=False (t=0.1min)
+  [completo        N=  900 s=2] diamq=19.77 pi_cv=1.326 n_ejes=0 pico_medio=0.710 certificado=False (t=0.2min)
+  [completo        N=  900 s=3] diamq=25.02 pi_cv=0.967 n_ejes=0 pico_medio=0.691 certificado=False (t=0.3min)
+  [completo        N=  900 s=4] diamq=31.66 pi_cv=0.641 n_ejes=0 pico_medio=0.707 certificado=False (t=0.3min)
+  [completo        N=  900 s=5] diamq=23.66 pi_cv=0.753 n_ejes=0 pico_medio=0.697 certificado=False (t=0.4min)
+  [completo        N=  900 s=6] diamq=20.03 pi_cv=1.437 n_ejes=0 pico_medio=0.713 certificado=False (t=0.5min)
+  [completo        N=  900 s=7] diamq=22.01 pi_cv=1.128 n_ejes=0 pico_medio=0.701 certificado=False (t=0.6min)
+  [completo        N= 1500 s=0] diamq=20.62 pi_cv=1.335 n_ejes=0 pico_medio=0.708 certificado=False (t=0.8min)
+  [completo        N= 1500 s=1] diamq=22.61 pi_cv=1.286 n_ejes=0 pico_medio=0.724 certificado=False (t=1.0min)
+  [completo        N= 1500 s=2] diamq=21.62 pi_cv=1.439 n_ejes=0 pico_medio=0.721 certificado=False (t=1.2min)
+  [completo        N= 1500 s=3] diamq=26.33 pi_cv=0.800 n_ejes=0 pico_medio=0.730 certificado=False (t=1.4min)
+  [completo        N= 1500 s=4] diamq=24.50 pi_cv=1.001 n_ejes=0 pico_medio=0.744 certificado=False (t=1.6min)
+  [completo        N= 1500 s=5] diamq=21.93 pi_cv=1.100 n_ejes=0 pico_medio=0.720 certificado=False (t=1.8min)
+  [completo        N= 1500 s=6] diamq=25.24 pi_cv=1.001 n_ejes=0 pico_medio=0.692 certificado=False (t=2.0min)
+  [completo        N= 1500 s=7] diamq=27.97 pi_cv=0.906 n_ejes=0 pico_medio=0.742 certificado=False (t=2.2min)
+  [completo        N= 2500 s=0] diamq=27.22 pi_cv=1.242 n_ejes=0 pico_medio=0.718 certificado=False (t=2.8min)
+  [completo        N= 2500 s=1] diamq=29.53 pi_cv=0.910 n_ejes=0 pico_medio=0.714 certificado=False (t=3.3min)
+  [completo        N= 2500 s=2] diamq=37.01 pi_cv=0.703 n_ejes=0 pico_medio=0.706 certificado=False (t=3.8min)
+  [completo        N= 2500 s=3] diamq=27.16 pi_cv=1.145 n_ejes=0 pico_medio=0.727 certificado=False (t=4.4min)
+  [completo        N= 2500 s=4] diamq=28.89 pi_cv=1.025 n_ejes=0 pico_medio=0.692 certificado=False (t=5.0min)
+  [completo        N= 2500 s=5] diamq=21.59 pi_cv=1.330 n_ejes=0 pico_medio=0.730 certificado=False (t=5.7min)
+  [completo        N= 2500 s=6] diamq=21.70 pi_cv=1.384 n_ejes=0 pico_medio=0.721 certificado=False (t=6.4min)
+  [completo        N= 2500 s=7] diamq=24.88 pi_cv=1.102 n_ejes=0 pico_medio=0.741 certificado=False (t=7.1min)
+  [null_fase_topo  N=  900 s=0] diamq=22.30 pi_cv=1.259 n_ejes=0 pico_medio=0.758 certificado=False (t=7.3min)
+  [null_fase_topo  N=  900 s=1] diamq=21.27 pi_cv=1.050 n_ejes=0 pico_medio=0.687 certificado=False (t=7.3min)
+  [null_fase_topo  N=  900 s=2] diamq=21.89 pi_cv=1.288 n_ejes=0 pico_medio=0.767 certificado=False (t=7.5min)
+  [null_fase_topo  N=  900 s=3] diamq=22.70 pi_cv=1.057 n_ejes=0 pico_medio=0.809 certificado=False (t=7.6min)
+  [null_fase_topo  N=  900 s=4] diamq=21.78 pi_cv=1.101 n_ejes=0 pico_medio=0.744 certificado=False (t=7.6min)
+  [null_fase_topo  N=  900 s=5] diamq=22.80 pi_cv=0.986 n_ejes=0 pico_medio=0.712 certificado=False (t=7.7min)
+  [null_fase_topo  N=  900 s=6] diamq=24.92 pi_cv=1.273 n_ejes=0 pico_medio=0.711 certificado=False (t=7.8min)
+  [null_fase_topo  N=  900 s=7] diamq=23.10 pi_cv=1.068 n_ejes=0 pico_medio=0.730 certificado=False (t=7.8min)
+  [null_fase_topo  N= 1500 s=0] diamq=22.45 pi_cv=1.008 n_ejes=0 pico_medio=0.764 certificado=False (t=8.1min)
+  [null_fase_topo  N= 1500 s=1] diamq=20.28 pi_cv=0.876 n_ejes=0 pico_medio=0.707 certificado=False (t=8.3min)
+  [null_fase_topo  N= 1500 s=2] diamq=21.47 pi_cv=1.016 n_ejes=0 pico_medio=0.753 certificado=False (t=8.6min)
+  [null_fase_topo  N= 1500 s=3] diamq=27.87 pi_cv=1.177 n_ejes=0 pico_medio=0.709 certificado=False (t=9.0min)
+  [null_fase_topo  N= 1500 s=4] diamq=22.64 pi_cv=1.037 n_ejes=0 pico_medio=0.776 certificado=False (t=9.4min)
+  [null_fase_topo  N= 1500 s=5] diamq=22.43 pi_cv=1.065 n_ejes=0 pico_medio=0.740 certificado=False (t=9.6min)
+  [null_fase_topo  N= 1500 s=6] diamq=24.32 pi_cv=1.028 n_ejes=0 pico_medio=0.707 certificado=False (t=9.8min)
+  [null_fase_topo  N= 1500 s=7] diamq=30.62 pi_cv=1.242 n_ejes=0 pico_medio=0.701 certificado=False (t=10.0min)
+  [null_fase_topo  N= 2500 s=0] diamq=25.80 pi_cv=1.134 n_ejes=0 pico_medio=0.716 certificado=False (t=10.6min)
+  [null_fase_topo  N= 2500 s=1] diamq=27.09 pi_cv=1.203 n_ejes=0 pico_medio=0.777 certificado=False (t=11.3min)
+  [null_fase_topo  N= 2500 s=2] diamq=32.79 pi_cv=1.302 n_ejes=0 pico_medio=0.728 certificado=False (t=12.0min)
+  [null_fase_topo  N= 2500 s=3] diamq=27.47 pi_cv=1.300 n_ejes=0 pico_medio=0.724 certificado=False (t=12.8min)
+  [null_fase_topo  N= 2500 s=4] diamq=29.85 pi_cv=1.047 n_ejes=0 pico_medio=0.748 certificado=False (t=13.5min)
+  [null_fase_topo  N= 2500 s=5] diamq=24.86 pi_cv=1.053 n_ejes=0 pico_medio=0.686 certificado=False (t=14.3min)
+  [null_fase_topo  N= 2500 s=6] diamq=21.50 pi_cv=0.995 n_ejes=0 pico_medio=0.678 certificado=False (t=15.0min)
+  [null_fase_topo  N= 2500 s=7] diamq=26.07 pi_cv=0.998 n_ejes=0 pico_medio=0.702 certificado=False (t=15.6min)
+  [null_fase_azar  N=  900 s=0] diamq=21.51 pi_cv=0.999 n_ejes=0 pico_medio=0.699 certificado=False (t=15.7min)
+  [null_fase_azar  N=  900 s=1] diamq=20.75 pi_cv=1.325 n_ejes=0 pico_medio=0.738 certificado=False (t=15.8min)
+  [null_fase_azar  N=  900 s=2] diamq=32.87 pi_cv=0.683 n_ejes=0 pico_medio=0.716 certificado=False (t=15.9min)
+  [null_fase_azar  N=  900 s=3] diamq=18.30 pi_cv=0.881 n_ejes=0 pico_medio=0.707 certificado=False (t=16.0min)
+  [null_fase_azar  N=  900 s=4] diamq=32.05 pi_cv=0.762 n_ejes=0 pico_medio=0.702 certificado=False (t=16.1min)
+  [null_fase_azar  N=  900 s=5] diamq=21.57 pi_cv=1.459 n_ejes=0 pico_medio=0.711 certificado=False (t=16.2min)
+  [null_fase_azar  N=  900 s=6] diamq=25.20 pi_cv=0.836 n_ejes=0 pico_medio=0.722 certificado=False (t=16.3min)
+  [null_fase_azar  N=  900 s=7] diamq=23.26 pi_cv=0.928 n_ejes=0 pico_medio=0.727 certificado=False (t=16.4min)
+  [null_fase_azar  N= 1500 s=0] diamq=26.03 pi_cv=1.217 n_ejes=0 pico_medio=0.707 certificado=False (t=16.7min)
+  [null_fase_azar  N= 1500 s=1] diamq=23.61 pi_cv=1.104 n_ejes=0 pico_medio=0.728 certificado=False (t=16.9min)
+  [null_fase_azar  N= 1500 s=2] diamq=22.84 pi_cv=1.097 n_ejes=0 pico_medio=0.741 certificado=False (t=17.2min)
+  [null_fase_azar  N= 1500 s=3] diamq=26.82 pi_cv=1.209 n_ejes=0 pico_medio=0.718 certificado=False (t=17.5min)
+  [null_fase_azar  N= 1500 s=4] diamq=24.46 pi_cv=1.036 n_ejes=0 pico_medio=0.704 certificado=False (t=17.7min)
+  [null_fase_azar  N= 1500 s=5] diamq=23.49 pi_cv=1.270 n_ejes=0 pico_medio=0.730 certificado=False (t=18.0min)
+  [null_fase_azar  N= 1500 s=6] diamq=37.10 pi_cv=0.674 n_ejes=0 pico_medio=0.704 certificado=False (t=18.2min)
+  [null_fase_azar  N= 1500 s=7] diamq=28.99 pi_cv=1.033 n_ejes=0 pico_medio=0.705 certificado=False (t=18.5min)
+  [null_fase_azar  N= 2500 s=0] diamq=28.20 pi_cv=1.033 n_ejes=0 pico_medio=0.736 certificado=False (t=19.3min)
+  [null_fase_azar  N= 2500 s=1] diamq=38.24 pi_cv=0.833 n_ejes=0 pico_medio=0.702 certificado=False (t=20.0min)
+  [null_fase_azar  N= 2500 s=2] diamq=26.45 pi_cv=0.990 n_ejes=0 pico_medio=0.753 certificado=False (t=20.9min)
+  [null_fase_azar  N= 2500 s=3] diamq=37.90 pi_cv=0.624 n_ejes=0 pico_medio=0.676 certificado=False (t=21.7min)
+  [null_fase_azar  N= 2500 s=4] diamq=23.99 pi_cv=1.388 n_ejes=0 pico_medio=0.701 certificado=False (t=22.7min)
+  [null_fase_azar  N= 2500 s=5] diamq=29.45 pi_cv=0.939 n_ejes=0 pico_medio=0.736 certificado=False (t=23.5min)
+  [null_fase_azar  N= 2500 s=6] diamq=23.29 pi_cv=1.315 n_ejes=0 pico_medio=0.705 certificado=False (t=24.5min)
+  [null_fase_azar  N= 2500 s=7] diamq=23.85 pi_cv=1.318 n_ejes=0 pico_medio=0.730 certificado=False (t=25.7min)
+  [null_clasico    N=  900 s=0] diamq=24.66 pi_cv=1.027 n_ejes=0 pico_medio=0.740 certificado=False (t=25.8min)
+  [null_clasico    N=  900 s=1] diamq=23.75 pi_cv=1.115 n_ejes=0 pico_medio=0.723 certificado=False (t=26.0min)
+  [null_clasico    N=  900 s=2] diamq=20.49 pi_cv=1.016 n_ejes=0 pico_medio=0.723 certificado=False (t=26.1min)
+  [null_clasico    N=  900 s=3] diamq=19.91 pi_cv=1.215 n_ejes=0 pico_medio=0.698 certificado=False (t=26.2min)
+  [null_clasico    N=  900 s=4] diamq=20.24 pi_cv=1.551 n_ejes=0 pico_medio=0.709 certificado=False (t=26.4min)
+  [null_clasico    N=  900 s=5] diamq=24.97 pi_cv=0.824 n_ejes=0 pico_medio=0.711 certificado=False (t=26.5min)
+  [null_clasico    N=  900 s=6] diamq=18.71 pi_cv=1.090 n_ejes=0 pico_medio=0.703 certificado=False (t=26.7min)
+  [null_clasico    N=  900 s=7] diamq=22.90 pi_cv=0.873 n_ejes=0 pico_medio=0.709 certificado=False (t=26.8min)
+  [null_clasico    N= 1500 s=0] diamq=20.47 pi_cv=1.527 n_ejes=0 pico_medio=0.743 certificado=False (t=27.2min)
+  [null_clasico    N= 1500 s=1] diamq=23.18 pi_cv=1.086 n_ejes=0 pico_medio=0.727 certificado=False (t=27.5min)
+  [null_clasico    N= 1500 s=2] diamq=35.18 pi_cv=0.729 n_ejes=0 pico_medio=0.708 certificado=False (t=27.7min)
+  [null_clasico    N= 1500 s=3] diamq=25.99 pi_cv=0.857 n_ejes=0 pico_medio=0.701 certificado=False (t=28.0min)
+  [null_clasico    N= 1500 s=4] diamq=22.71 pi_cv=0.890 n_ejes=0 pico_medio=0.713 certificado=False (t=28.2min)
+  [null_clasico    N= 1500 s=5] diamq=24.84 pi_cv=0.867 n_ejes=0 pico_medio=0.732 certificado=False (t=28.5min)
+  [null_clasico    N= 1500 s=6] diamq=25.00 pi_cv=1.067 n_ejes=0 pico_medio=0.712 certificado=False (t=28.8min)
+  [null_clasico    N= 1500 s=7] diamq=30.87 pi_cv=0.762 n_ejes=0 pico_medio=0.687 certificado=False (t=29.0min)
+  [null_clasico    N= 2500 s=0] diamq=26.77 pi_cv=0.909 n_ejes=0 pico_medio=0.725 certificado=False (t=29.8min)
+  [null_clasico    N= 2500 s=1] diamq=25.51 pi_cv=1.233 n_ejes=0 pico_medio=0.710 certificado=False (t=30.7min)
+  [null_clasico    N= 2500 s=2] diamq=28.28 pi_cv=1.062 n_ejes=0 pico_medio=0.715 certificado=False (t=31.7min)
+  [null_clasico    N= 2500 s=3] diamq=23.06 pi_cv=0.986 n_ejes=0 pico_medio=0.716 certificado=False (t=32.6min)
+  [null_clasico    N= 2500 s=4] diamq=26.20 pi_cv=1.308 n_ejes=0 pico_medio=0.751 certificado=False (t=33.6min)
+  [null_clasico    N= 2500 s=5] diamq=25.15 pi_cv=0.901 n_ejes=0 pico_medio=0.740 certificado=False (t=34.5min)
+  [null_clasico    N= 2500 s=6] diamq=37.72 pi_cv=0.731 n_ejes=0 pico_medio=0.692 certificado=False (t=35.3min)
+  [null_clasico    N= 2500 s=7] diamq=28.40 pi_cv=1.090 n_ejes=0 pico_medio=0.726 certificado=False (t=36.2min)
+
+tiempo total: 36.23 min -- resultados en cs069_tanda_resultados.json
+
+============================================================================================================
+AGREGADO por brazo (media+IC95% sobre las 3 escalas de N, blindaje de semillas)
+============================================================================================================
+
+  completo:
+    Juez B -- pendiente log-log diam_q(N) = 0.132
+    Juez A -- pi_cv media=1.083 IC95%=[0.991,1.176]  (bajo=converge/'se congela', alto=estalla)
+    Juez C -- n_ejes media=0.00  pico_medio media=0.716 IC95%=[0.710,0.722]  frac_certificado(>0.85)=0.00
+
+  null_fase_topo:
+    Juez B -- pendiente log-log diam_q(N) = 0.172
+    Juez A -- pi_cv media=1.107 IC95%=[1.059,1.155]  (bajo=converge/'se congela', alto=estalla)
+    Juez C -- n_ejes media=0.00  pico_medio media=0.731 IC95%=[0.717,0.744]  frac_certificado(>0.85)=0.00
+
+  null_fase_azar:
+    Juez B -- pendiente log-log diam_q(N) = 0.165
+    Juez A -- pi_cv media=1.040 IC95%=[0.945,1.135]  (bajo=converge/'se congela', alto=estalla)
+    Juez C -- n_ejes media=0.00  pico_medio media=0.717 IC95%=[0.710,0.724]  frac_certificado(>0.85)=0.00
+
+  null_clasico:
+    Juez B -- pendiente log-log diam_q(N) = 0.225
+    Juez A -- pi_cv media=1.030 IC95%=[0.942,1.118]  (bajo=converge/'se congela', alto=estalla)
+    Juez C -- n_ejes media=0.00  pico_medio media=0.717 IC95%=[0.711,0.724]  frac_certificado(>0.85)=0.00
+
+============================================================================================================
+VEREDICTO -- cuerda decisiva: COMPLETO vs NULL_FASE_TOPO en los 3 jueces
+============================================================================================================
+  Juez A (pi converge): completo CV IC95% sup=1.176 >= topo CV IC95% inf=1.059  -> no gana
+  Juez B (pendiente diam_q): completo=0.132 (>0.3) vs topo=0.172 (<=0.3)  -> no gana
+  Juez C (certificado picado>0.85): completo=0.00 vs topo=0.00  -> no gana
+
+(B) COMPLETO ≈ NULL_FASE_TOPO -> Mundo B se extiende al régimen cuántico. El muro es más
+profundo que lo clásico. Resultado fuerte, honesto, pre-registrado.

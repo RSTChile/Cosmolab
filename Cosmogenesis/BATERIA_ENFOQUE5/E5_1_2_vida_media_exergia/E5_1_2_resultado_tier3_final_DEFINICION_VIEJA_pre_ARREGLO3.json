@@ -1,0 +1,21 @@
+[
+  {
+    "N": 4000,
+    "D": 2.107279155479871e-06,
+    "eps": 0.001,
+    "semillas": 4,
+    "max_steps": 951000,
+    "check_every": 50,
+    "tau_media": 317250.0,
+    "tau_std": 0.0,
+    "taus_todas": [
+      317250,
+      317250,
+      317250,
+      317250
+    ],
+    "n_censurados": 0,
+    "wall_s": 815.5638720989227,
+    "nota": "TIER3 recortado por costo; N=4500 y N=6000 originalmente disenados NO se corrieron"
+  }
+]

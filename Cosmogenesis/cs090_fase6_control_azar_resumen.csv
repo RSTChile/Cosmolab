@@ -1,0 +1,3 @@
+metrica,n_pos_real,n_neg_real,p_signos_real,W_real,p_wilcoxon_real,media_n_pos_azar,std_n_pos_azar,percentil_real_en_azar,frac_perm_tan_extrema_en_wins,frac_perm_p_signos_tan_bajo,frac_perm_p_wilcoxon_tan_bajo,n_perm,semilla
+fraccion_masa_en_sumideros,31,9,0.0006795482549932785,81.5,1.0042137265796748e-05,19.7679,3.190555994612142,100.0,0.0005,0.0003,0.0,10000,2026
+kappa_v_agregado,28,12,0.01658900337497471,195.0,0.0032013230738812126,19.9734,3.191568744536942,99.67,0.0183,0.0179,0.0033,10000,2026

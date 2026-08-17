@@ -1,0 +1,30 @@
+{
+  "schema": "anima.audio_library.v1",
+  "profile": "minimal",
+  "description": "Audios pequeños para instalación limpia. La biblioteca completa queda fuera del paquete base.",
+  "categories": [
+    {"id": "notas", "label": "Notas (tonos cortos)"},
+    {"id": "binaural", "label": "Binaural (demos cortos)"},
+    {"id": "voces", "label": "Voces / estudio"}
+  ],
+  "items": [
+    {"id": "do", "file": "Do.wav", "category": "notas", "package": "minimal", "label": "Do"},
+    {"id": "fa", "file": "Fa.wav", "category": "notas", "package": "minimal", "label": "Fa"},
+    {"id": "la", "file": "La.wav", "category": "notas", "package": "minimal", "label": "La"},
+    {"id": "mi", "file": "Mi.wav", "category": "notas", "package": "minimal", "label": "Mi"},
+    {"id": "do_alto", "file": "Do_alto.wav", "category": "notas", "package": "minimal", "label": "Do alto"},
+    {"id": "brand_pos", "file": "Brandemburgo_pos60deg.wav", "category": "binaural", "package": "minimal", "label": "Brandemburgo +60°"},
+    {"id": "brand_neg", "file": "Brandemburgo_neg60deg.wav", "category": "binaural", "package": "minimal", "label": "Brandemburgo −60°"},
+    {"id": "lr_mixto", "file": "Binaural LR mixto.wav", "category": "binaural", "package": "minimal", "label": "Binaural L/R mixto"},
+    {"id": "do_pos", "file": "Do_pos60deg.wav", "category": "binaural", "package": "minimal", "label": "Do +60°"},
+    {"id": "do_neg", "file": "Do_neg60deg.wav", "category": "binaural", "package": "minimal", "label": "Do −60°"}
+  ],
+  "exclude_patterns": [
+    "BigBang",
+    "Blue_Monday",
+    "Brandemburgo.wav",
+    "_largo",
+    ".pkf"
+  ],
+  "max_size_bytes": 10485760
+}

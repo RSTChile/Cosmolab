@@ -1,0 +1,38 @@
+0.0% · 0s
+22.1% · 121s
+44.2% · 255s
+66.3% · 396s
+88.4% · 550s
+
+Correlación de Spearman contra la lluvia real anual (n=61 años):
+
+  A_pub            rho = -0.0555
+  actual           rho = -0.0684
+  soloEnv          rho = -0.1956
+  sinReg           rho = -0.5304
+  soloTarget       rho = -0.1630
+  err_pub          rho =  0.2957
+  floracion        rho =  0.6897
+  Tf               rho = -0.4434
+  envTemp          rho = -0.3142
+  targetTf         rho = -0.6905
+  gapActual        rho =  0.0684
+
+Media por grupo (floración documentada vs control):
+
+  variable          floración    control   dirección
+  A_pub                0.7351     0.7369   floración menor
+  actual               0.7351     0.7371   floración menor
+  soloEnv              0.5550     0.5591   floración menor
+  sinReg               0.6983     0.7090   floración menor
+  soloTarget           0.2806     0.2825   floración menor
+  err_pub              0.0152     0.0150   floración MAYOR
+  floracion            0.1480     0.1218   floración MAYOR
+  Tf                  17.6554    17.9123   floración menor
+  envTemp             16.3784    16.6902   floración menor
+  targetTf            20.9766    21.1425   floración menor
+  gapActual            2.1194     2.1031   floración MAYOR
+
+Escrito investigacion_asysenv.json
+(node:57174) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

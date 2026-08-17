@@ -1,0 +1,79 @@
+[f802] 12 condiciones iniciales base de F5B_40pares, pico original 6.03 a 18.35; 5 niveles cada una -> 60 corridas
+[1/12] A2-B0-C2-batch4-r47 s576388 clase=III pico_csv=6.028 frac_masa_hist=0.0930
+    L0 a=-0.35  pico  6.028 ->    5.770 (x 0.96)  cv 4.22->3.77  fof030 0.6775->0.6765  movidas=747 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  6.028 ->    6.028 (x 1.00)  cv 4.22->4.22  fof030 0.6775->0.6775  movidas=747 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  6.028 ->    8.332 (x 1.38)  cv 4.22->4.38  fof030 0.6775->0.6780  movidas=747 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  6.028 ->   11.096 (x 1.84)  cv 4.22->4.47  fof030 0.6775->0.6780  movidas=747 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  6.028 ->   18.172 (x 3.01)  cv 4.22->4.55  fof030 0.6775->0.6760  movidas=747 despmax=1.11  masa=18800.0  md5_igual=False
+[2/12] A2-B0-C2-batch3-r120 s483469 clase=I pico_csv=7.253 frac_masa_hist=0.0925
+    L0 a=-0.35  pico  7.253 ->    5.972 (x 0.82)  cv 4.40->3.99  fof030 0.6630->0.6620  movidas=748 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  7.253 ->    7.253 (x 1.00)  cv 4.40->4.40  fof030 0.6630->0.6630  movidas=748 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  7.253 ->   10.522 (x 1.45)  cv 4.40->4.54  fof030 0.6630->0.6630  movidas=748 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  7.253 ->   14.162 (x 1.95)  cv 4.40->4.62  fof030 0.6630->0.6600  movidas=748 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  7.253 ->   22.173 (x 3.06)  cv 4.40->4.70  fof030 0.6630->0.6600  movidas=748 despmax=1.11  masa=18800.0  md5_igual=False
+[3/12] A2-B0-C2-r2 s372023 clase=I pico_csv=7.527 frac_masa_hist=0.0760
+    L0 a=-0.35  pico  7.527 ->    7.825 (x 1.04)  cv 4.58->4.24  fof030 0.5345->0.5350  movidas=625 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  7.527 ->    7.527 (x 1.00)  cv 4.58->4.58  fof030 0.5345->0.5345  movidas=625 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  7.527 ->    8.823 (x 1.17)  cv 4.58->4.70  fof030 0.5345->0.5325  movidas=625 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  7.527 ->   11.937 (x 1.59)  cv 4.58->4.76  fof030 0.5345->0.5300  movidas=625 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  7.527 ->   17.316 (x 2.30)  cv 4.58->4.82  fof030 0.5345->0.5280  movidas=625 despmax=1.11  masa=18800.0  md5_igual=False
+[4/12] A2-B0-C2-r14 s273187 clase=III pico_csv=7.871 frac_masa_hist=0.0990
+    L0 a=-0.35  pico  7.871 ->    6.707 (x 0.85)  cv 4.32->3.91  fof030 0.6655->0.6655  movidas=739 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  7.871 ->    7.871 (x 1.00)  cv 4.32->4.32  fof030 0.6655->0.6655  movidas=739 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  7.871 ->   10.483 (x 1.33)  cv 4.32->4.48  fof030 0.6655->0.6660  movidas=739 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  7.871 ->   15.116 (x 1.92)  cv 4.32->4.57  fof030 0.6655->0.6660  movidas=739 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  7.871 ->   24.557 (x 3.12)  cv 4.32->4.65  fof030 0.6655->0.6655  movidas=739 despmax=1.11  masa=18800.0  md5_igual=False
+[5/12] A2-B0-C2-batch4-r31 s574836 clase=I pico_csv=8.162 frac_masa_hist=0.0985
+    L0 a=-0.35  pico  8.162 ->    6.731 (x 0.82)  cv 4.21->3.78  fof030 0.6670->0.6685  movidas=750 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  8.162 ->    8.162 (x 1.00)  cv 4.21->4.21  fof030 0.6670->0.6670  movidas=750 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  8.162 ->   11.749 (x 1.44)  cv 4.21->4.37  fof030 0.6670->0.6665  movidas=750 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  8.162 ->   14.825 (x 1.82)  cv 4.21->4.46  fof030 0.6670->0.6665  movidas=750 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  8.162 ->   22.766 (x 2.79)  cv 4.21->4.54  fof030 0.6670->0.6670  movidas=750 despmax=1.11  masa=18800.0  md5_igual=False
+[6/12] A2-B0-C2-r39 s375612 clase=III pico_csv=8.341 frac_masa_hist=0.0785
+    L0 a=-0.35  pico  8.341 ->    8.532 (x 1.02)  cv 4.58->4.24  fof030 0.5305->0.5315  movidas=627 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  8.341 ->    8.341 (x 1.00)  cv 4.58->4.58  fof030 0.5305->0.5305  movidas=627 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  8.341 ->    9.985 (x 1.20)  cv 4.58->4.70  fof030 0.5305->0.5315  movidas=627 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  8.341 ->   12.379 (x 1.48)  cv 4.58->4.77  fof030 0.5305->0.5325  movidas=627 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  8.341 ->   18.420 (x 2.21)  cv 4.58->4.85  fof030 0.5305->0.5320  movidas=627 despmax=1.11  masa=18800.0  md5_igual=False
+[7/12] A2-B0-C2-batch4-r12 s572993 clase=III pico_csv=8.791 frac_masa_hist=0.1005
+    L0 a=-0.35  pico  8.791 ->    7.497 (x 0.85)  cv 4.25->3.83  fof030 0.6650->0.6660  movidas=734 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico  8.791 ->    8.791 (x 1.00)  cv 4.25->4.25  fof030 0.6650->0.6650  movidas=734 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico  8.791 ->   12.216 (x 1.39)  cv 4.25->4.40  fof030 0.6650->0.6630  movidas=734 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico  8.791 ->   17.274 (x 1.96)  cv 4.25->4.49  fof030 0.6650->0.6640  movidas=734 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico  8.791 ->   24.225 (x 2.76)  cv 4.25->4.57  fof030 0.6650->0.6620  movidas=734 despmax=1.11  masa=18800.0  md5_igual=False
+[8/12] A2-B0-C2-batch3-r143 s485700 clase=I pico_csv=10.077 frac_masa_hist=0.1000
+    L0 a=-0.35  pico 10.077 ->    8.786 (x 0.87)  cv 4.17->3.74  fof030 0.6530->0.6530  movidas=734 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico 10.077 ->   10.077 (x 1.00)  cv 4.17->4.17  fof030 0.6530->0.6530  movidas=734 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico 10.077 ->   14.489 (x 1.44)  cv 4.17->4.32  fof030 0.6530->0.6520  movidas=734 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico 10.077 ->   19.398 (x 1.93)  cv 4.17->4.41  fof030 0.6530->0.6535  movidas=734 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico 10.077 ->   28.151 (x 2.79)  cv 4.17->4.49  fof030 0.6530->0.6535  movidas=734 despmax=1.11  masa=18800.0  md5_igual=False
+[9/12] A2-B0-C2-batch4-r1 s571926 clase=III pico_csv=11.435 frac_masa_hist=0.1075
+    L0 a=-0.35  pico 11.435 ->    8.506 (x 0.74)  cv 4.20->3.77  fof030 0.6810->0.6805  movidas=764 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico 11.435 ->   11.435 (x 1.00)  cv 4.20->4.20  fof030 0.6810->0.6810  movidas=764 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico 11.435 ->   17.049 (x 1.49)  cv 4.20->4.36  fof030 0.6810->0.6820  movidas=764 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico 11.435 ->   22.726 (x 1.99)  cv 4.20->4.46  fof030 0.6810->0.6815  movidas=764 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico 11.435 ->   34.564 (x 3.02)  cv 4.20->4.55  fof030 0.6810->0.6815  movidas=764 despmax=1.11  masa=18800.0  md5_igual=False
+[10/12] A2-B0-C2-r1 s271926 clase=I pico_csv=12.258 frac_masa_hist=0.0870
+    L0 a=-0.35  pico 12.258 ->   10.998 (x 0.90)  cv 4.68->4.43  fof030 0.5260->0.5255  movidas=638 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico 12.258 ->   12.258 (x 1.00)  cv 4.68->4.68  fof030 0.5260->0.5260  movidas=638 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico 12.258 ->   15.462 (x 1.26)  cv 4.68->4.78  fof030 0.5260->0.5225  movidas=638 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico 12.258 ->   20.716 (x 1.69)  cv 4.68->4.83  fof030 0.5260->0.5235  movidas=638 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico 12.258 ->   27.535 (x 2.25)  cv 4.68->4.90  fof030 0.5260->0.5230  movidas=638 despmax=1.11  masa=18800.0  md5_igual=False
+[11/12] A2-B0-C2-batch3-r111 s482596 clase=III pico_csv=14.904 frac_masa_hist=0.1220
+    L0 a=-0.35  pico 14.904 ->   10.076 (x 0.68)  cv 4.16->3.72  fof030 0.6955->0.6970  movidas=797 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico 14.904 ->   14.904 (x 1.00)  cv 4.16->4.16  fof030 0.6955->0.6955  movidas=797 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico 14.904 ->   22.467 (x 1.51)  cv 4.16->4.31  fof030 0.6955->0.6960  movidas=797 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico 14.904 ->   30.865 (x 2.07)  cv 4.16->4.41  fof030 0.6955->0.6965  movidas=797 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico 14.904 ->   45.802 (x 3.07)  cv 4.16->4.52  fof030 0.6955->0.6965  movidas=797 despmax=1.11  masa=18800.0  md5_igual=False
+[12/12] A2-B0-C2-r17 s273478 clase=III pico_csv=18.348 frac_masa_hist=0.1210
+    L0 a=-0.35  pico 18.348 ->   12.793 (x 0.70)  cv 4.19->3.77  fof030 0.6615->0.6630  movidas=785 despmax=0.78  masa=18800.0  md5_igual=False
+    L1 a=+0.00  pico 18.348 ->   18.348 (x 1.00)  cv 4.19->4.19  fof030 0.6615->0.6615  movidas=785 despmax=0.00  masa=18800.0  md5_igual=True
+    L2 a=+0.20  pico 18.348 ->   28.924 (x 1.58)  cv 4.19->4.34  fof030 0.6615->0.6620  movidas=785 despmax=0.44  masa=18800.0  md5_igual=False
+    L3 a=+0.35  pico 18.348 ->   40.794 (x 2.22)  cv 4.19->4.44  fof030 0.6615->0.6605  movidas=785 despmax=0.78  masa=18800.0  md5_igual=False
+    L4 a=+0.50  pico 18.348 ->   62.004 (x 3.38)  cv 4.19->4.54  fof030 0.6615->0.6585  movidas=785 despmax=1.11  masa=18800.0  md5_igual=False
+
+[f802] 60 filas escritas (32s)
+  masa total: 1 valor(es) distinto(s) -> [np.float64(18800.0)]
+  N: [np.int64(2000)]   ida y vuelta OK: True
+  nivel identidad (L1) idéntico al original byte a byte: True
+  pico logrado: x0.68 a x3.38   FoF global (eje-1): x0.9878 a x1.0038

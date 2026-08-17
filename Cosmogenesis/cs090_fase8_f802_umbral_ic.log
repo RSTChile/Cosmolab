@@ -1,0 +1,10 @@
+densidad media = 0.02023; umbral de Phantom = 1000.0 = 49,442× la media
+       rho_max_mediana  rho_max_max  n_sobre_mediana  n_sobre_max  ic_con_alguna
+nivel                                                                           
+L0              3285.3       4729.7              0.0            0              0
+L1              8034.9      11582.5              0.0            0              0
+L2             15603.4      22520.5              0.0            0              0
+L3             28898.7      41769.2              0.0            0              0
+L4             62824.6      91010.6              4.5           13             11
+
+ESCRITO: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f802_umbral_ic.csv

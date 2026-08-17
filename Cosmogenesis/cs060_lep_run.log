@@ -1,0 +1,29 @@
+CS060-A — LOS TRES LEPTONES: ¿la MASA (inercia+persistencia del marco) cambia la selección de dim?
+========================================================================================================
+PREDICCIÓN CIEGA: si la masa toca la geometría (G1), la dim con marcos más consistentes cambiará
+  entre electron/muon/tauon, CONTROLADO por long. de ciclo, y colapsará bajo NULL. Si no (G2), la
+  masa no toca la geometría: los tres seleccionan igual (o nada, controlando el confound de CS059).
+dims=['d2', 'd3', 'd4', 'curv'] K=[3, 4] brazos=['marco', 'electron', 'muon', 'tauon', 'alineado', 'nulo'] seeds=10 · corridas=480 · workers=14
+CONTROL de long. de ciclo en bins [3, 4, 5, 6, 8] (la lección de CS059). Salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs060_leptones.csv
+  25/480 · 0.1min · ETA 1.5min
+  50/480 · 0.1min · ETA 1.0min
+  75/480 · 0.2min · ETA 0.8min
+  100/480 · 0.2min · ETA 0.8min
+  125/480 · 0.2min · ETA 0.7min
+  150/480 · 0.3min · ETA 0.6min
+  175/480 · 0.3min · ETA 0.5min
+  200/480 · 0.4min · ETA 0.5min
+  225/480 · 0.4min · ETA 0.5min
+  250/480 · 0.4min · ETA 0.4min
+  275/480 · 0.5min · ETA 0.4min
+  300/480 · 0.5min · ETA 0.3min
+  325/480 · 0.6min · ETA 0.3min
+  350/480 · 0.6min · ETA 0.2min
+  375/480 · 0.6min · ETA 0.2min
+  400/480 · 0.7min · ETA 0.1min
+  425/480 · 0.7min · ETA 0.1min
+  450/480 · 0.7min · ETA 0.0min
+  475/480 · 0.8min · ETA 0.0min
+  480/480 · 0.8min · ETA 0.0min
+
+COMPLETO: 480 corridas en 0.8 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs060_leptones.csv

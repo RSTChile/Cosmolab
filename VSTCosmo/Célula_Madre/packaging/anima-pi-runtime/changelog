@@ -1,0 +1,84 @@
+anima-pi-runtime (0.2.8-dev) unstable; urgency=low
+
+  * Radio digital distingue backend Arduino y capacidad TX manual.
+  * /nrf/tx deja de reportar exito si el sketch no anuncio TXMANUAL.
+  * Caja nRF24 muestra nodo/backend y TX manual.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 20:05:00 -0400
+
+anima-pi-runtime (0.2.7-dev) unstable; urgency=low
+
+  * El metabolismo considera confiable el reloj si hay PPS, aunque no haya fix
+    posicional; /estado expone met_gasto y met_hambre.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 19:45:00 -0400
+
+anima-pi-runtime (0.2.6-dev) unstable; urgency=low
+
+  * El metabolismo consume el reloj externo GPS/PPS via loc_pps_deriva y agrega
+    met_tempo_estres como costo suave de desincronia temporal.
+  * /estado expone loc_reloj_fase, loc_pps_deriva y campos met_reloj_*.
+  * LectorATmega acepta GPS_TIME/GPS_DATE opcionales para futuro UTC real del GPS.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 19:35:00 -0400
+
+anima-pi-runtime (0.2.5-dev) unstable; urgency=low
+
+  * /estado expone campos sensoriales fisicos: atmega, GPS, PPS, nRF24,
+    SDR vivo y localizacion derivada para pruebas y cajas web.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 19:15:00 -0400
+
+anima-pi-runtime (0.2.4-dev) unstable; urgency=low
+
+  * LectorATmega acepta el dialecto Arduino GPS+radio de ANIMA:
+    RF24_CONFIG, RF24_STATUS con GPS_LAT/GPS_LNG/GPS_SAT, RADIO_RX y PPS.
+  * Declara gps_pps_ms para exponer el pulso PPS junto a gps_pps_count.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 19:05:00 -0400
+
+anima-pi-runtime (0.2.3-dev) unstable; urgency=low
+
+  * Perfil limpio fija ANIMA_SDR_ENABLE=0 para mantener SDR latente hasta
+    activacion explicita y evitar logs repetidos si no hay SoapySDR/hardware.
+  * organelos.yml y hardware.yml se sincronizan desde plantillas durante
+    instalacion y upgrade, dejando respaldo timestamp si habia una version local.
+  * Se retira DEBIAN/conffiles obsoleto: /etc/anima se gestiona por plantillas.
+  * Descripciones systemd de la cabeza pasan de "ANIMA E" a "ANIMA" generico.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 18:45:00 -0400
+
+anima-pi-runtime (0.2.2-dev) unstable; urgency=low
+
+  * Corrige entorno UTF-8 al arrancar nativamente en Pi.
+  * Agrega alias ASCII para Celula_Madre_Funcional_001.py y fallback de import.
+  * Verificado en ANIMA 192.168.86.22 con /estado vivo.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 13:45:00 -0400
+
+anima-pi-runtime (0.1.2-dev) unstable; urgency=low
+
+  * La configuracion de /etc/anima se genera desde plantillas y deja de ser
+    un conffile poseido por dpkg, para preservar nombres propios sin prompts
+    molestos en upgrades.
+  * Defaults de Pi nueva: nace en soledad/silencio, sin arrastrar sociedad A/B/C/D.
+  * El postinst arranca los servicios si hay systemd --user disponible.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Mon, 06 Jul 2026 18:05:00 -0400
+
+anima-pi-runtime (0.1.1-dev) unstable; urgency=low
+
+  * El instalador configura nombre propio del animalito en /etc/anima/organismo.env.
+  * /etc/anima pasa a ser la fuente canónica de identidad al arrancar el organismo.
+  * Los upgrades no vuelven a preguntar el nombre si /etc/anima/identity.configured existe.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Mon, 06 Jul 2026 13:40:00 -0400
+
+anima-pi-runtime (0.1.0-dev) unstable; urgency=low
+
+  * Primer paquete Debian arm64 para ANIMA en Raspberry Pi / Ubuntu.
+  * Runtime nativo en /opt/anima/celula_madre.
+  * Servicios systemd --user para organismo, watchdog, cabeza SPI/fb1 y VNC de cabeza.
+  * Todos los organelos quedan incluidos como potencialidades latentes.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Mon, 06 Jul 2026 13:33:00 -0400

@@ -42,7 +42,11 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 # cae a AQUI si la estructura aún es plana.
 _cmf_path = os.path.join(os.path.dirname(AQUI), "campo", "Célula_Madre_Funcional_001.py")
 if not os.path.isfile(_cmf_path):
+    _cmf_path = os.path.join(os.path.dirname(AQUI), "campo", "Celula_Madre_Funcional_001.py")
+if not os.path.isfile(_cmf_path):
     _cmf_path = os.path.join(AQUI, "Célula_Madre_Funcional_001.py")
+if not os.path.isfile(_cmf_path):
+    _cmf_path = os.path.join(AQUI, "Celula_Madre_Funcional_001.py")
 _spec = importlib.util.spec_from_file_location("cmf", _cmf_path)
 cmf = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cmf)

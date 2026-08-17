@@ -53,7 +53,23 @@ régimen) y deriva de ella A_sys-env y e_R. Es andamiaje de prueba, no parte del
 
 from __future__ import annotations
 import random
+import os as _os
+import sys as _sys
 from typing import Any
+
+# ESCALA COMPARTIDA (auditoría del 4-ago-2026, regla 1 del plan de constantes): «un módulo
+# compartido, no 168 parches». Lo que aquí se relativiza usa rel/rel_contra de escala.py.
+_RAIZ = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _RAIZ not in _sys.path:
+    _sys.path.insert(0, _RAIZ)
+# `escala` vive en celula_madre/; esto permite importar el organelo suelto (pruebas y smokes)
+# además de dentro del organismo. Unificado el 5-ago-2026: la revisión encontró CUATRO
+# variantes del mismo arranque, que es el problema contra el que existe el módulo compartido.
+import os as _os, sys as _sys
+_RAIZ_CM = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _RAIZ_CM not in _sys.path:
+    _sys.path.insert(0, _RAIZ_CM)
+from escala import Escala, rel, rel_contra, NEUTRO
 
 from VST_Genoma import (
     Organelo, Estado, Organismo, Milieu, KAPPA,
@@ -87,19 +103,43 @@ class OrganeloMutacion(Organelo):
             secreta=["mutacion", "mutacion_activa"],
             depende_de=[],
             costo_base=0.5,
-            plast={"th_osc": 5.0, "tasa": 0.3, "escala": 0.05},
-            criterio="emite ΔR solo sobre e_R no filtrado (|e_R|>th_osc)",
+            # tasa=0.3 y escala=0.05 se DEJAN: son constantes de un proceso estocástico —el
+            # análogo de la tasa de error de una polimerasa—, no umbrales que juzguen un estado.
+            # Y hoy NO SON MEDIBLES: `mutacion` no la consume nadie (mapa_organismo.py --var
+            # mutacion → "la consumen: nadie"), así que su efecto no se observa en ninguna parte.
+            plast={"tasa": 0.3, "escala": 0.05},
+            criterio="emite ΔR solo sobre el e_R que excede el error que este organismo suele corregir",
             estado=Estado.PRESENTE,
         )
         self._rng = random.Random(seed)
         self.mutacion = 0.0
         self.activa = False
+        # Lo habitual del error para ESTE organismo (sustituye a th_osc=5,0).
+        self.esc_eR = Escala()
 
     def percibir(self, milieu: "Milieu") -> None:
         self._eR = abs(milieu.leer("e_R", 0.0))
 
     def metabolizar(self, dt: float, tempo: float) -> None:
-        no_filtrado = max(0.0, self._eR - self.plast["th_osc"])   # lo que escapa a la corrección
+        # CORRECCIÓN 5-ago-2026. QUÉ ESTABA MAL: `th_osc = 5.0`. El "umbral de corrección" —lo
+        # que el sistema logra filtrar— fijado en 5 unidades de un error cuya escala depende
+        # del cuerpo (micrófono, sala, Pi) y que nadie midió.
+        # CIFRA MEDIDA (100.058 pasos, 44 sesiones, ~/.anima/history/*/fisiologia/*.csv): e_R
+        # es BIMODAL — 45.359 pasos valen exactamente 0,5 y prácticamente todo el resto ≥5.
+        # El umbral 5,0 dispara en el 54,74% de los pasos... y el umbral 2,0 dispara en el
+        # 54,74% TAMBIÉN (es el `umbral_valencia` del Bloque 7, sobre la misma magnitud). Es
+        # decir: cualquier número entre 0,5 y ~5,4 hace exactamente lo mismo. El 5,0 no elegía
+        # nada de lo que decía elegir; elegía el hueco de la distribución.
+        # POR QUÉ LA CORRECCIÓN ES AUTORREGULADA: O-N8.1b dice "el error que ESCAPA al umbral
+        # de corrección". Lo que un sistema logra corregir no es un número universal: es lo que
+        # ESTE organismo suele manejar. Así que el umbral pasa a ser su propio error habitual,
+        # aprendido (escala.py, sin parámetro libre). Es una PERCEPCIÓN (comparar el error de
+        # ahora con el que suelo tener), no una condición de viabilidad. Y mientras no haya
+        # historia el organelo se abstiene —no muta— en vez de mutar contra una escala vacía.
+        # EFECTO MEDIDO sobre los mismos datos: 54,74% → 12,13% de los pasos con e_R no filtrado.
+        habitual = self.esc_eR.media if self.esc_eR.madura else None
+        no_filtrado = max(0.0, self._eR - habitual) if habitual is not None else 0.0
+        self.esc_eR.observar(self._eR)                # aprende después de decidir
         if no_filtrado > 0.0 and self._rng.random() < self.plast["tasa"]:
             self.mutacion = self._rng.gauss(0.0, no_filtrado * self.plast["escala"])
             self.activa = True
@@ -110,6 +150,15 @@ class OrganeloMutacion(Organelo):
     def secretar(self, milieu: "Milieu") -> None:
         milieu.secretar("mutacion", self.mutacion)
         milieu.secretar("mutacion_activa", self.activa)
+
+    # Sin persistir la escala, el organismo reaprende en cada arranque qué error le es
+    # habitual y muta a ciegas durante sus primeros pasos (escala.py, nota de `restore`).
+    def snapshot(self) -> dict:
+        return {"esc_eR": self.esc_eR.snapshot()}
+
+    def restore(self, d: dict) -> None:
+        if isinstance(d, dict):
+            self.esc_eR.restore(d.get("esc_eR"))
 
 
 # ==============================================================================
@@ -139,6 +188,18 @@ class OrganeloAdaptacion(Organelo):
             secreta=["adaptacion_viable", "adaptacion_activa", "delta_LF_adapt"],
             depende_de=[],   # lee Omega_op del ciclo previo (persiste en el milieu)
             costo_base=1.0,
+            # margen=0.05 se DEJA, y por dos razones, ambas comprobadas:
+            # 1) MEDIDO, es casi inerte: sobre 100.058 pasos, `demanda ≤ Ωop` se cumple en el
+            #    48,84% y `demanda ≤ Ωop·1,05` en el 48,99%. El margen decide 0,15 puntos
+            #    porcentuales; no está gobernando nada a ciegas.
+            # 2) Y NO debe relativizarse (advertencia 2 de la auditoría): `adaptacion_viable`
+            #    es una CONDICIÓN DE VIDA —¿todavía me arreglo dentro de mi dominio?—, no una
+            #    percepción. Se probó qué pasaría al ponerlo contra la dispersión de la propia
+            #    demanda: MEDIDO, la demanda tiene mediana 4,15 pero p95 = 534 y máximo 1.920
+            #    frente a un Ωop de 3,0, así que una banda "a la medida de lo habitual" haría
+            #    viable casi cualquier demanda y BORRARÍA el límite adaptativo (O-N8.5) — es
+            #    decir, mataría la exaptación. Un organismo que lleva toda su vida desbordado
+            #    tiene que seguir leyendo que está desbordado.
             plast={"margen": 0.05},
             criterio="adaptacion_viable mientras demanda ≤ Ωop·(1+margen)",
             estado=Estado.PRESENTE,
@@ -192,11 +253,19 @@ class OrganeloExaptacion(Organelo):
             secreta=["Omega_op", "reserva", "XE", "exaptacion_activa", "extincion_riesgo", "delta_LF_exapt"],
             depende_de=["adaptacion"],   # decide a partir de si la adaptación fue viable
             costo_base=2.0,              # exaptar es caro (reorganización estructural)
+            # k=0.05 (fracción de la brecha que se cierra por paso) es una constante de tasa,
+            # como cualquier τ del proyecto. costo_reserva=1.0 NO es un número libre: es la
+            # identidad de conservación "una unidad de dominio nuevo cuesta una unidad de
+            # reserva". Ambas se dejan.
             plast={"k": 0.05, "costo_reserva": 1.0},
             criterio="exapta solo en límite adaptativo CON reserva>0 (PRE); ΔΩop>0, ΔLF>0",
             estado=Estado.PRESENTE,
         )
         self.Omega_op = omega0      # dominio operativo actual
+        # Ω₀ — el dominio con el que el organismo NACE. Es la unidad de la magnitud: igual que
+        # nadie discute vivir a 1 atmósfera, el dominio natal define la escala contra la que se
+        # mide todo dominio posterior. Se guarda porque `XE` se publica comparada contra él.
+        self.Omega_0 = float(omega0)
         self.reserva = reserva0     # reserva estructural disponible (PRE)
         self.XE = 0.0               # exaptación acumulada
         self.activa = False
@@ -227,7 +296,36 @@ class OrganeloExaptacion(Organelo):
     def secretar(self, milieu: "Milieu") -> None:
         milieu.secretar("Omega_op", self.Omega_op)
         milieu.secretar("reserva", self.reserva)
-        milieu.secretar("XE", min(1.0, self.XE))         # normalizada para el OI
+        # CORRECCIÓN 5-ago-2026 — LA GRANDE DE ESTE BLOQUE.
+        # QUÉ ESTABA MAL: `min(1.0, self.XE)`. `self.XE` es un acumulador SIN TECHO del dominio
+        # abierto por exaptación, y se publicaba recortado en 1,0. El 1,0 no es ninguna medida
+        # del organismo: es sólo "el número más grande que cabe en el hueco del OI".
+        # CIFRA MEDIDA (100.075 filas con XE en ~/.anima/history/*/fisiologia/*.csv): XE vale
+        # exactamente 1,0 en 100.072 de ellas — el 99,997% —, con SÓLO CUATRO valores distintos
+        # en 44 sesiones. Es una constante disfrazada de variable, y no una constante cualquiera:
+        # entra como 1 de los 4 componentes del Índice de Organismicidad (VST_Genoma.salud(),
+        # componentes_oi) y la leen además Homeostasis, RC_A, RC_B, OrganoComunicacion y las 5
+        # vistas web. El organismo lleva 44 sesiones declarando "exaptación máxima alcanzada".
+        # POR QUÉ PASA: la reserva estructural natal (reserva0=2,0) permite un crecimiento total
+        # de dominio de 2,0 > 1,0, así que XE cruza el recorte en los primeros segundos de vida
+        # y ya no se mueve. MEDIDO: Ωop vale 3,0 en 100.062 de 100.075 filas (nació en 1,0) y
+        # `exaptacion_activa` fue True en 21 pasos de 100.058 (0,021%) — todos al principio.
+        # POR QUÉ LA CORRECCIÓN ES AUTORREGULADA (regla 1 de la auditoría: si existe otra
+        # magnitud del organismo con las mismas unidades, compárate con ELLA y no con un
+        # número): XE y Ω₀ son ambas anchura de dominio. `rel_contra(XE, Ω₀)` = cuánto dominio
+        # nuevo he abierto medido contra el dominio con el que nací. Vale 0 al nacer, 0,5 cuando
+        # he DUPLICADO mi dominio, y sube hacia 1 sin llegar nunca: no hay recorte que pueda
+        # clavarla. Con los datos reales (XE acumulada = Ωop−Ω₀ = 3,0−1,0 = 2,0 y Ω₀ = 1,0)
+        # pasaría de 1,0 a 0,667.
+        # LO QUE ESTO **NO** ARREGLA, Y HAY QUE DECIRLO: la XE seguiría siendo casi constante,
+        # porque la causa de fondo es OTRA — `reserva` no se regenera nunca. El organismo gastó
+        # su reserva natal en los primeros segundos y lleva 44 sesiones en `extincion_riesgo`
+        # (variable que, además, no la lee nadie) mientras la demanda mediana es 4,15 y la p95
+        # es 534 contra un dominio de 3,0. NO lo arreglo aquí a propósito: hacer que la reserva
+        # se rehaga con la holgura dispararía Ωop hacia esa demanda —dos órdenes de magnitud— y
+        # Ωop lo consumen adaptacion, activacion_latente y las 5 vistas web. Eso es un cambio de
+        # conducta, no una corrección de constante, y necesita su propia medición.
+        milieu.secretar("XE", rel_contra(self.XE, self.Omega_0))
         milieu.secretar("exaptacion_activa", self.activa)
         milieu.secretar("extincion_riesgo", self.extincion_riesgo)
         milieu.secretar("delta_LF_exapt", self._delta_LF)
@@ -259,14 +357,27 @@ class OrganeloConscienciaMetacognitiva(Organelo):
             secreta=["C_m", "C_m_activa"],
             depende_de=[],
             costo_base=1.5,
-            plast={"th_fallo": 5.0, "tau": 10.0, "umbral_cm": 0.3},
-            criterio="C_m>umbral cuando |e_R| sostenido alto ∧ LF≥κ_LF",
+            # tau=10 s es una constante de tiempo declarada (como cualquier τ del proyecto).
+            # umbral_cm=0.3 se DEJA: C_m es un integrador con fuga acotado en [0,1] por
+            # construcción, así que 0,3 es una fracción de una escala acotada, no de una escala
+            # inventada. Aun así queda ANOTADO como sospechoso: MEDIDO, C_m está saturada
+            # (mediana 0,84 · p75 = 1,0 · media 0,523 sobre 100.058 pasos), de modo que hoy el
+            # umbral casi no discrimina. Al corregir th_fallo (ver metabolizar) C_m debería
+            # dejar de vivir clavada arriba; entonces este umbral vuelve a ser medible y hay
+            # que volver a auditarlo.
+            plast={"tau": 10.0, "umbral_cm": 0.3},
+            criterio="C_m>umbral cuando |e_R| sostenido PEOR QUE EL PROPIO HABITUAL ∧ LF≥κ_LF",
             estado=Estado.PRESENTE,
         )
         self.ventana = ventana
         self._buf: list[float] = []
         self.C_m = 0.0
         self.activa = False
+        # El error habitual de este organismo a largo plazo (sustituye a th_fallo=5,0). La
+        # tasa NO es un número nuevo: es 1/ventana, o sea "la escala aprende `ventana` veces
+        # más despacio que la media móvil con la que se la compara". Así una es lo RECIENTE y
+        # la otra lo SOSTENIDO, que es justo la distinción que pide O-N8.4.
+        self.esc_eR = Escala(tasa=1.0 / max(1, ventana))
 
     def percibir(self, milieu: "Milieu") -> None:
         self._eR = abs(milieu.leer("e_R", 0.0))
@@ -276,7 +387,28 @@ class OrganeloConscienciaMetacognitiva(Organelo):
         self._buf.append(self._eR)
         if len(self._buf) > self.ventana:
             self._buf.pop(0)
-        fallo_sostenido = (sum(self._buf) / len(self._buf)) > self.plast["th_fallo"]
+        # CORRECCIÓN 5-ago-2026. QUÉ ESTABA MAL: `th_fallo = 5.0`. "C_b falla SISTEMÁTICAMENTE"
+        # (O-N8.4) se decidía comparando la media móvil de |e_R| contra el número 5 — el MISMO
+        # número inventado que el th_osc de la mutación, sobre la misma magnitud y en el mismo
+        # archivo, sin que ninguno de los dos tuviera origen escrito.
+        # CIFRAS MEDIDAS (100.058 pasos, 44 sesiones): el |e_R| medio de este organismo es 6,59,
+        # o sea que su error NORMAL ya está por encima del umbral de "fallo". Resultado: el
+        # fallo se declara en el 55,59% de los pasos y C_m vive saturada — mediana 0,84, p75 =
+        # 1,0. El organismo lleva 44 sesiones en crisis metacognitiva permanente, que es tanto
+        # como no estar en crisis nunca.
+        # POR QUÉ LA CORRECCIÓN ES AUTORREGULADA: "fallar sistemáticamente" no puede significar
+        # "tener un error mayor que 5"; significa que el error RECIENTE es peor que el error que
+        # este organismo tiene de costumbre. Eso es exactamente `rel_contra` (regla 1 de la
+        # auditoría): dos magnitudes del propio organismo con las mismas unidades —la media
+        # móvil de la ventana contra la escala larga— y ningún parámetro que elegir. Es una
+        # PERCEPCIÓN comparativa, no una condición de viabilidad: la condición de viabilidad de
+        # este organelo es la otra, `LF ≥ κ_LF`, que sigue siendo absoluta y canónica.
+        # Mientras la escala larga no esté madura, se abstiene (no declara fallo).
+        # EFECTO MEDIDO sobre los mismos datos: 55,59% → 17,75% de los pasos con fallo sostenido.
+        media_ventana = sum(self._buf) / len(self._buf)
+        fallo_sostenido = (self.esc_eR.madura and
+                           rel_contra(media_ventana, self.esc_eR.media) > NEUTRO)
+        self.esc_eR.observar(self._eR)                    # aprende después de decidir
         hay_reorg = self._LF >= KAPPA["kLF"]              # capacidad de reorganización
         objetivo = 1.0 if (fallo_sostenido and hay_reorg) else 0.0
         # integrador con fuga (τ escalada por Kleiber)
@@ -288,6 +420,15 @@ class OrganeloConscienciaMetacognitiva(Organelo):
     def secretar(self, milieu: "Milieu") -> None:
         milieu.secretar("C_m", self.C_m)
         milieu.secretar("C_m_activa", self.activa)
+
+    # La escala larga tarda `ventana` observaciones en madurar; sin persistirla, cada arranque
+    # empezaría sin saber cuál es su error de costumbre (escala.py, nota de `restore`).
+    def snapshot(self) -> dict:
+        return {"esc_eR": self.esc_eR.snapshot()}
+
+    def restore(self, d: dict) -> None:
+        if isinstance(d, dict):
+            self.esc_eR.restore(d.get("esc_eR"))
 
 
 # ==============================================================================
@@ -315,14 +456,26 @@ class OrganeloActivacionLatente(Organelo):
             descripcion=("Detecta déficit de capacidad (demanda>Ωop) y señala activar capacidad "
                          "latente. Nexo operativo de la pluripotencia (la expresión la hace el host)."),
             lee=["demanda_entorno", "Omega_op"],
-            secreta=["demanda_activacion", "deficit_capacidad"],
+            secreta=["demanda_activacion", "deficit_capacidad", "deficit_relativo"],
             depende_de=["exaptacion"],   # lee el Ωop ya actualizado por la exaptación
             costo_base=0.5,
-            plast={"umbral": 0.1},
-            criterio="señala activación cuando deficit (demanda−Ωop) > umbral",
+            # CORRECCIÓN 5-ago-2026: `umbral = 0.1` eliminado. QUÉ ESTABA MAL: 0,1 unidades de
+            # dominio — un número en las unidades de Ωop que nadie fijó ni midió.
+            # CIFRA MEDIDA (100.058 pasos): `deficit > 0,1` se cumple en el 51,14% de los pasos
+            # y `deficit > 0` en el 51,23%. El umbral decidía 0,09 puntos porcentuales: nueve
+            # centésimas de punto. No estaba separando nada; sólo escondía un número.
+            # POR QUÉ LA CORRECCIÓN ES AUTORREGULADA: no hace falta ningún umbral. "Hay déficit
+            # de capacidad" ES, por definición (O-N8.12), "la demanda excede mi dominio" —una
+            # comparación entre dos magnitudes del propio organismo con las mismas unidades—, y
+            # eso se escribe demanda > Ωop y ya está. Además se publica `deficit_relativo`
+            # (rel_contra contra el propio Ωop) para que quien lea el déficit tenga su TAMAÑO a
+            # la escala del organismo y no en unidades sueltas.
+            plast={},
+            criterio="señala activación cuando la demanda excede el dominio operativo (deficit>0)",
             estado=Estado.PRESENTE,
         )
         self.deficit = 0.0
+        self.deficit_relativo = 0.0
         self.demanda_activacion = False
 
     def percibir(self, milieu: "Milieu") -> None:
@@ -331,11 +484,14 @@ class OrganeloActivacionLatente(Organelo):
 
     def metabolizar(self, dt: float, tempo: float) -> None:
         self.deficit = max(0.0, self._demanda - self._Omega)
-        self.demanda_activacion = self.deficit > self.plast["umbral"]
+        self.demanda_activacion = self.deficit > 0.0    # ver la nota del constructor
+        # tamaño del déficit a la escala del propio dominio: 0,5 = "me falta tanto como tengo"
+        self.deficit_relativo = rel_contra(self.deficit, self._Omega)
 
     def secretar(self, milieu: "Milieu") -> None:
         milieu.secretar("demanda_activacion", self.demanda_activacion)
         milieu.secretar("deficit_capacidad", self.deficit)
+        milieu.secretar("deficit_relativo", self.deficit_relativo)
 
 
 # ==============================================================================

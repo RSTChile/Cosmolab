@@ -1,0 +1,15 @@
+F0 FINAL UNICO - Smoke + Triada
+T0=1e15K a=exp(6*tg) 1->403x H_topo=0.01 L=30 pasos=500
+step   0 a=   1.0 T=1.00e+15 H_fis=0.0100 K=0.368 | k1=  0 k3=  0 perim8= 0 | mk1/mk3=0.0000 | err=0.0e+00
+step  50 a=   1.8 T=5.49e+14 H_fis=0.0074 K=0.578 | k1= 11 k3=  4 perim8= 4 | mk1/mk3=0.3333 | err=0.0e+00
+step 100 a=   3.3 T=3.01e+14 H_fis=0.0055 K=0.740 | k1= 72 k3= 12 perim8=12 | mk1/mk3=0.3333 | err=2.2e-16
+step 150 a=   6.0 T=1.65e+14 H_fis=0.0041 K=0.848 | k1=153 k3= 16 perim8=16 | mk1/mk3=0.3333 | err=1.1e-16
+step 200 a=  11.0 T=9.07e+13 H_fis=0.0030 K=0.913 | k1=215 k3= 26 perim8=26 | mk1/mk3=0.3333 | err=2.2e-16
+step 250 a=  20.1 T=4.98e+13 H_fis=0.0022 K=0.951 | k1=253 k3= 31 perim8=31 | mk1/mk3=0.3333 | err=0.0e+00
+step 300 a=  36.6 T=2.73e+13 H_fis=0.0017 K=0.973 | k1=292 k3= 30 perim8=30 | mk1/mk3=0.3333 | err=0.0e+00
+step 350 a=  66.7 T=1.50e+13 H_fis=0.0012 K=0.985 | k1=333 k3= 36 perim8=36 | mk1/mk3=0.3333 | err=0.0e+00
+step 400 a= 121.5 T=8.23e+12 H_fis=0.0009 K=0.992 | k1=333 k3= 36 perim8=36 | mk1/mk3=0.3333 | err=0.0e+00
+step 450 a= 221.4 T=4.52e+12 H_fis=0.0007 K=0.995 | k1=333 k3= 36 perim8=36 | mk1/mk3=0.3333 | err=1.1e-16
+
+SMOKE FINAL: max|T*a/T0-1|=2.22e-16 PASS
+Unico archivo listo para ambos

@@ -1,0 +1,13 @@
+MF-4 alpha_EM corrida
+step   0 a=   1.0 T=1.00e+15 K=0.368 alpha=2.685e-03 alpha^-1=372.5 objetivo ~137
+step  50 a=   1.8 T=5.49e+14 K=0.578 alpha=3.316e-03 alpha^-1=301.6 objetivo ~137
+step 100 a=   3.3 T=3.01e+14 K=0.740 alpha=3.341e-03 alpha^-1=299.3 objetivo ~137
+step 150 a=   6.0 T=1.65e+14 K=0.848 alpha=3.011e-03 alpha^-1=332.1 objetivo ~137
+step 200 a=  11.0 T=9.07e+13 K=0.913 alpha=2.552e-03 alpha^-1=391.9 objetivo ~137
+step 250 a=  20.1 T=4.98e+13 K=0.951 alpha=2.091e-03 alpha^-1=478.2 objetivo ~137
+step 300 a=  36.6 T=2.73e+13 K=0.973 alpha=1.682e-03 alpha^-1=594.4 objetivo ~137
+step 350 a=  66.7 T=1.50e+13 K=0.985 alpha=1.340e-03 alpha^-1=746.4 objetivo ~137
+step 400 a= 121.5 T=8.23e+12 K=0.992 alpha=1.061e-03 alpha^-1=942.4 objetivo ~137
+step 450 a= 221.4 T=4.52e+12 K=0.995 alpha=8.378e-04 alpha^-1=1193.6 objetivo ~137
+FIN MF-4: alpha^-1 corre 137*? K domina 0.368->1, sqrt(T/T0)=a^-0.5 decrece
+EXIT:0

@@ -1,0 +1,24 @@
+====================================================================================================
+CS072 v6 EXPLORATORIA -- (a) invarianza a ε, (b) β sobre 3 N (TODO/NULL/control)
+====================================================================================================
+
+--- (a) invarianza a ε (N=400, 1 foco) ---
+  delta=1e-02: CV[-1]=2.611  diam=4.00  d_s=3.40  delta_gromov=0.00  frac_gigante=0.998
+  delta=1e-04: CV[-1]=2.802  diam=4.00  d_s=3.42  delta_gromov=0.00  frac_gigante=0.998
+  delta=1e-06: CV[-1]=2.047  diam=4.00  d_s=3.45  delta_gromov=0.00  frac_gigante=0.998
+
+--- (b) β sobre 3 N: TODO vs NULL_BARAJADO vs CONTROL_POSITIVO (ε: 1 foco, delta=1e-4) ---
+  [TODO] N=400: CV[-1]=2.345 diam=4.00 d_s=3.44 delta_g=0.00 frac_gig=0.998 (t=0.5min)
+  [TODO] N=900: CV[-1]=2.196 diam=4.00 d_s=3.68 delta_g=0.00 frac_gig=0.999 (t=0.9min)
+  [TODO] N=1600: CV[-1]=2.309 diam=4.00 d_s=3.75 delta_g=0.50 frac_gig=0.996 (t=2.0min)
+  [TODO] β (pendiente log-log diam vs N) = 0.000
+  [NULL_BARAJADO] N=400: CV[-1]=2.798 diam=4.00 d_s=3.43 delta_g=0.00 frac_gig=1.000 (t=2.2min)
+  [NULL_BARAJADO] N=900: CV[-1]=1.932 diam=4.00 d_s=3.71 delta_g=0.00 frac_gig=0.999 (t=2.6min)
+  [NULL_BARAJADO] N=1600: CV[-1]=2.286 diam=4.00 d_s=3.75 delta_g=0.00 frac_gig=0.996 (t=3.6min)
+  [NULL_BARAJADO] β (pendiente log-log diam vs N) = 0.000
+  [CONTROL_POSITIVO] N=400: CV[-1]=1.732 diam=4.00 d_s=2.94 delta_g=0.50 frac_gig=1.000 (t=3.7min)
+  [CONTROL_POSITIVO] N=900: CV[-1]=0.066 diam=5.00 d_s=3.47 delta_g=0.50 frac_gig=0.999 (t=3.9min)
+  [CONTROL_POSITIVO] N=1600: CV[-1]=0.027 diam=5.00 d_s=3.60 delta_g=0.00 frac_gig=0.999 (t=4.3min)
+  [CONTROL_POSITIVO] β (pendiente log-log diam vs N) = 0.168
+
+tiempo total: 4.32 min

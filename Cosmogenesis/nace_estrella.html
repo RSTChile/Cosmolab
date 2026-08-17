@@ -1,0 +1,236 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nacimiento de una estrella — Población III</title>
+<style>
+  html,body{margin:0;height:100%;background:#04050a;color:#cbd5e8;font:13px/1.5 system-ui,Segoe UI,Roboto,sans-serif;overflow:hidden}
+  #c{position:fixed;inset:0;display:block}
+  #hud{position:fixed;left:16px;top:14px;z-index:5;max-width:340px;pointer-events:none;text-shadow:0 1px 3px #000}
+  #hud h1{font-size:15px;margin:0 0 4px;color:#eaf1ff}
+  #fase{font-size:14px;font-weight:600;margin:6px 0 2px}
+  #sub{color:#8fa4c8;font-size:11.5px}
+  #dat{color:#7f8ba6;font-size:11px;margin-top:6px}
+  #ctl{position:fixed;right:16px;top:14px;z-index:5;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  #ctl .row{display:flex;gap:6px}
+  button{background:rgba(14,20,34,.9);color:#cfe0ff;border:1px solid #26324e;border-radius:8px;padding:7px 13px;cursor:pointer;font-size:12px}
+  button:hover{background:#1f2c4d}
+  label.sld{background:rgba(9,13,22,.85);border:1px solid #1a2438;border-radius:8px;padding:7px 10px;font-size:11px;color:#9fb0d0;display:flex;flex-direction:column;gap:3px;width:180px}
+  input[type=range]{width:100%}
+  .val{color:#eaf1ff;font-weight:600}
+  #tl{position:fixed;left:16px;bottom:14px;right:16px;height:52px;z-index:5;background:rgba(7,10,18,.82);border:1px solid #1a2438;border-radius:9px}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="hud">
+  <h1>Nacimiento de una estrella · Población III</h1>
+  <div id="sub">gas prístino (H · He), sin metales — el molde reutilizable</div>
+  <div id="fase">—</div>
+  <div id="dat"></div>
+</div>
+<div id="ctl">
+  <div class="row"><button id="play">⏸ pausa</button><button id="reset">↺ reset</button><button id="rec">⏺ video</button></div>
+  <label class="sld">velocidad <span class="val" id="vSp">3</span><input id="sp" type="range" min="1" max="10" step="1" value="3"></label>
+  <label class="sld">masa de la nube (M☉) <span class="val" id="vM">200</span><input id="mass" type="range" min="30" max="1000" step="10" value="200"></label>
+</div>
+<canvas id="tl"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const cv=document.getElementById('c');
+let renderer,scene,camera,controls,geom,mat,points;
+let N=4000,px,py,pz,vx,vy,vz,bright,temp,alive;
+let t=0,playing=true,speed=3,massSol=200,frame=0;
+let rec=null,chunks=[];
+const $=id=>document.getElementById(id);
+
+// ── fases (fracción de t sobre T_END) ──
+const T_END=1900;
+const FASES=[
+  {t:0.00,lab:'Nube prístina',      sub:'H · He fríos, enfriamiento por H₂',        col:'#c85a4a'},
+  {t:0.30,lab:'Colapso gravitacional',sub:'la nube cae lentamente hacia la sobredensidad', col:'#d98a3a'},
+  {t:0.58,lab:'Calentamiento',       sub:'compresión → miles de K, vira a azul',     col:'#8fb0e0'},
+  {t:0.78,lab:'Ignición',            sub:'nace el núcleo — azul-blanco, radia',       col:'#dfeeff'},
+  {t:0.88,lab:'Estrella viva · disco',sub:'radiación pulsante · disco protoplanetario → planetas', col:'#a9c8ff'}
+];
+function faseIdx(fr){let k=0;for(let i=0;i<FASES.length;i++)if(fr>=FASES[i].t)k=i;return k;}
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let x=Math.imul(a^a>>>15,1|a);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296;};}
+
+// ══ EL MOLDE: nace_estrella — reutilizable para cada sector de puntos ══
+// Inicializa una nube prístina de N puntos alrededor de un centro. En cada paso, según la
+// fase, cae, se calienta y se enciende. Mismo procedimiento para toda agrupación de átomos.
+let phase0,planetOf,PLANETS;
+function initEstrella(){
+  const R=mulberry32(1234567);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  bright=new Float64Array(N);temp=new Float64Array(N);alive=new Uint8Array(N).fill(1);
+  phase0=new Float64Array(N);          // fase individual para pulsación/granulación
+  planetOf=new Int16Array(N).fill(-1);  // a qué planeta pertenece un punto del disco
+  const g=()=>{let u=0;for(let q=0;q<3;q++)u+=R();return (u-1.5)/1.5;};
+  const Rc=14*Math.cbrt(massSol/200);   // radio de la nube ∝ masa^(1/3)
+  for(let i=0;i<N;i++){
+    const clump=1+0.5*(R()-0.5);
+    px[i]=g()*Rc*clump;py[i]=g()*Rc*clump;pz[i]=g()*Rc*clump;
+    bright[i]=0.18+0.10*R();
+    temp[i]=0.0;
+    phase0[i]=R()*6.2832;
+    // rotación inicial mínima de la nube (momento angular primordial) sobre el eje z
+    const rho0=Math.sqrt(px[i]*px[i]+py[i]*py[i])+0.5;
+    vx[i]=-py[i]/rho0*0.05;vy[i]=px[i]/rho0*0.05;
+  }
+  // planetas: unos pocos NÚCLEOS de acreción en el disco (semillas fijas entre el gas del halo)
+  PLANETS=Math.max(3,Math.min(6,Math.round(massSol/180)));
+  t=0;buildPoints(N);
+}
+// radio del cuerpo estelar final ∝ masa^(1/3) (compacto)
+function starRadius(){return 4.5*Math.cbrt(massSol/200);}
+const SPIN=6.0;  // momento angular específico (L = ρ²·ω); ω se acelera al contraerse
+function stepEstrella(){
+  t++;const fr=Math.min(1,t/T_END);const fi=faseIdx(fr);
+  const Rstar=starRadius();
+  for(let i=0;i<N;i++){
+    let dx=-px[i],dy=-py[i],dz=-pz[i];
+    const r=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-3,inv=1/r;
+    // asigna una vez si el punto pertenece al CUERPO (mayoría) o al HALO de gas expulsado (~12%)
+    if(temp[i]===0&&bright[i]<0.30&&i%100<12){alive[i]=2;} // 2 = halo
+    const esHalo=(alive[i]===2);
+    // FASE 0: nube quieta, sólo agitación de gas frío
+    // ══ ROTACIÓN GLOBAL desde el inicio (todo el sistema gira sobre el eje z) ══
+    // Conservación del momento angular: al contraerse el radio, la velocidad angular AUMENTA
+    // (patinadora que recoge los brazos) → espiral centrípeta. L = ρ²·ω ≈ const.
+    if(fi>=1){
+      const rho=Math.sqrt(px[i]*px[i]+py[i]*py[i])+0.5;   // distancia al eje z
+      const omega=SPIN/(rho*rho);                          // ω crece al caer rho (L const)
+      const tx=-py[i]/rho,ty=px[i]/rho;                    // tangente en el plano xy
+      const vt=omega*rho;                                  // velocidad tangencial
+      vx[i]+=tx*vt*0.18;vy[i]+=ty*vt*0.18;                 // empuje de rotación (menor que la gravedad)
+    }
+    // FASE 1-2: COLAPSO — atracción CRECIENTE hacia el centro (gana a la rotación → espiral centrípeta)
+    if(fi>=1&&fi<3&&!esHalo){const pull=(0.020+0.05*(fr-0.3))*inv;vx[i]+=dx*pull;vy[i]+=dy*pull;vz[i]+=dz*pull;}
+    // FASE 3+: los puntos del CUERPO se ASIENTAN sobre la esfera estelar (deja de ser polvo suelto)
+    // (el colapso se apaga; manda el resorte que fija el radio → esfera con volumen, no una mota)
+    if(fi>=3&&!esHalo){
+      const target=Rstar*(0.15+0.85*Math.pow((i%997)/997,0.5)); // relleno esférico (no cáscara hueca)
+      const ox=-dx*inv,oy=-dy*inv,oz=-dz*inv;                   // vector unitario RADIAL hacia afuera
+      const k=(target-r)*0.30;                                  // >0 empuja afuera (r<target), <0 adentro
+      vx[i]+=ox*k;vy[i]+=oy*k;vz[i]+=oz*k;
+    }
+    // agitación térmica: alta en gas frío, CASI NULA al calentarse (deja de dispersar)
+    const jit=esHalo?0.015:(fi<2?0.025:0.10*Math.max(0,1-temp[i]));
+    vx[i]+=(Math.random()-0.5)*jit;vy[i]+=(Math.random()-0.5)*jit;vz[i]+=(Math.random()-0.5)*jit;
+    // amortiguación fuerte cuando está caliente → el cuerpo se estabiliza como esfera
+    const damp=esHalo?0.96:(fi>=3?0.72:0.88);
+    vx[i]*=damp;vy[i]*=damp;vz[i]*=damp;
+    px[i]+=vx[i];py[i]+=vy[i];pz[i]+=vz[i];
+    // calentamiento por compresión (fase 2+): más cerca → más caliente
+    if(fi>=2&&!esHalo){const heat=Math.max(0,1-r/(Rstar*2.2));temp[i]=Math.min(1,temp[i]+heat*0.03);}
+    // ══ ESTRELLA VIVA (fase 3+): granulación + pulsación de brillo, NO blanco plano ══
+    if(fi>=3&&!esHalo){
+      temp[i]=Math.min(1,temp[i]+0.02);
+      // granulación: cada punto pulsa con su fase propia + latido global lento
+      const puls=0.85+0.35*Math.sin(t*0.05+phase0[i])+0.15*Math.sin(t*0.013);
+      bright[i]=Math.min(3.6,1.4+1.8*Math.max(0.2,puls));
+      // corona: destellos radiales en la superficie (empujoncito hacia afuera y vuelve)
+      if(r>Rstar*0.9){const fl=0.02*Math.max(0,Math.sin(t*0.08+phase0[i]*3));vx[i]-=dx*inv*fl;vy[i]-=dy*inv*fl;vz[i]-=dz*inv*fl;}
+    }
+    // ══ HALO → DISCO PROTOPLANETARIO que ACRETA en planetas (fase 4+) ══
+    if(fi>=4&&esHalo){
+      // 1) aplanar a un disco: comprimir la componente vertical (z) → plano ecuatorial
+      pz[i]*=0.94;vz[i]*=0.90;
+      // 2) rotación kepleriana alrededor de la estrella (velocidad tangencial ∝ 1/√r)
+      const rho=Math.sqrt(px[i]*px[i]+py[i]*py[i])+1e-3,vk=1.2/Math.sqrt(rho);
+      const tx=-py[i]/rho,ty=px[i]/rho;      // tangente en el plano xy
+      vx[i]=vx[i]*0.5+tx*vk*0.5;vy[i]=vy[i]*0.5+ty*vk*0.5;
+      // 3) leve caída radial (el disco se contrae, no se expande) + acreción a un planeta
+      const pull=0.003*inv;vx[i]+=dx*pull;vy[i]+=dy*pull;
+      // asignar a un planeta por sector angular y aglutinar hacia su centro de masa aproximado
+      if(planetOf[i]<0){planetOf[i]=Math.floor(((Math.atan2(py[i],px[i])+Math.PI)/6.2832)*PLANETS)%PLANETS;}
+      bright[i]=0.30;temp[i]=0.15;           // planetas: puntos tenues cálidos
+    }
+  }
+  // acreción: junta los puntos de cada planeta hacia su centroide (grumos, no anillo continuo)
+  if(fi>=4){
+    const cx=new Float64Array(PLANETS),cy=new Float64Array(PLANETS),cz=new Float64Array(PLANETS),cn=new Float64Array(PLANETS);
+    for(let i=0;i<N;i++){if(alive[i]===2&&planetOf[i]>=0){const p=planetOf[i];cx[p]+=px[i];cy[p]+=py[i];cz[p]+=pz[i];cn[p]++;}}
+    for(let p=0;p<PLANETS;p++){if(cn[p]>0){cx[p]/=cn[p];cy[p]/=cn[p];cz[p]/=cn[p];}}
+    for(let i=0;i<N;i++){if(alive[i]===2&&planetOf[i]>=0){const p=planetOf[i];px[i]+=(cx[p]-px[i])*0.03;py[i]+=(cy[p]-py[i])*0.03;pz[i]+=(cz[p]-pz[i])*0.03;}}
+  }
+}
+
+function buildPoints(n){
+  if(points){scene.remove(points);geom.dispose();mat.dispose();}
+  geom=new THREE.BufferGeometry();
+  geom.setAttribute('position',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('color',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('psize',new THREE.BufferAttribute(new Float32Array(n),1));
+  mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    vertexShader:`attribute float psize;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=psize*(420.0/-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`varying vec3 vC;void main(){vec2 d=gl_PointCoord-vec2(0.5);float r=length(d);if(r>0.5)discard;float g=smoothstep(0.5,0.0,r);gl_FragColor=vec4(vC*g*1.7,1.0);}`});
+  points=new THREE.Points(geom,mat);scene.add(points);
+}
+// color por temperatura: frío rojo (H₂) → caliente azul-blanco (Pop III)
+function colorTemp(T,out){
+  // T 0..1: rojo(0.78,0.32,0.24) → naranja → blanco → azul-blanco(0.66,0.80,1.0)
+  if(T<0.5){const u=T/0.5;out[0]=0.78+0.20*u;out[1]=0.32+0.55*u;out[2]=0.24+0.55*u;}
+  else{const u=(T-0.5)/0.5;out[0]=0.98-0.32*u;out[1]=0.87-0.07*u;out[2]=0.79+0.21*u;}
+}
+const _rgb=[0,0,0];
+function updatePoints(){
+  const p=geom.attributes.position.array,col=geom.attributes.color.array,ps=geom.attributes.psize.array;
+  for(let i=0;i<N;i++){p[i*3]=px[i];p[i*3+1]=py[i];p[i*3+2]=pz[i];
+    colorTemp(temp[i],_rgb);const b=bright[i];
+    col[i*3]=_rgb[0]*b;col[i*3+1]=_rgb[1]*b;col[i*3+2]=_rgb[2]*b;
+    ps[i]=1.6+3.2*Math.min(1,b);}
+  geom.attributes.position.needsUpdate=geom.attributes.color.needsUpdate=geom.attributes.psize.needsUpdate=true;
+}
+
+function hud(){
+  const fr=Math.min(1,t/T_END),f=FASES[faseIdx(fr)];
+  $('fase').textContent=f.lab;$('fase').style.color=f.col;$('sub').textContent=f.sub;
+  // temperatura media y brillo del núcleo como lectura
+  let tm=0,bm=0;for(let i=0;i<N;i++){tm+=temp[i];bm=Math.max(bm,bright[i]);}
+  const Tk=Math.round(50+tm/N*(1e5-50));
+  $('dat').innerHTML=`masa nube: <b>${massSol} M☉</b> · T media ≈ <b>${Tk.toLocaleString('es')} K</b> · brillo pico: <b>${bm.toFixed(2)}</b>`;
+}
+function timeline(){
+  const c2=$('tl');const w=c2.clientWidth,h=c2.clientHeight,dpr=Math.min(devicePixelRatio||1,2);
+  if(c2.width!==Math.round(w*dpr)){c2.width=Math.round(w*dpr);c2.height=Math.round(h*dpr);}
+  const x=c2.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+  const x0=16,x1=w-16,y=h-18,fr=Math.min(1,t/T_END);
+  x.strokeStyle='#2a3a60';x.lineWidth=2;x.beginPath();x.moveTo(x0,y);x.lineTo(x1,y);x.stroke();
+  // segmentos coloreados por fase
+  for(let i=0;i<FASES.length;i++){const a=FASES[i].t,b=(i+1<FASES.length)?FASES[i+1].t:1;
+    x.strokeStyle=FASES[i].col;x.lineWidth=(fr>=a)?4:2;x.globalAlpha=(fr>=a)?1:.35;
+    x.beginPath();x.moveTo(x0+(x1-x0)*a,y);x.lineTo(x0+(x1-x0)*b,y);x.stroke();x.globalAlpha=1;}
+  const xp=x0+(x1-x0)*fr;x.fillStyle='#eaf1ff';x.beginPath();x.arc(xp,y,4,0,7);x.fill();
+  x.textAlign='center';
+  for(let i=0;i<FASES.length;i++){const mx=x0+(x1-x0)*FASES[i].t,on=fr>=FASES[i].t;
+    x.fillStyle=on?FASES[i].col:'#556';x.font='10px system-ui';x.fillText(FASES[i].lab,mx+((x1-x0)*((i+1<FASES.length?FASES[i+1].t:1)-FASES[i].t))/2,16);}
+}
+
+function dl(name,blob){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+function toggleRec(e){if(rec&&rec.state==='recording'){rec.stop();e.target.textContent='⏺ video';return;}
+  const st=cv.captureStream(30);try{rec=new MediaRecorder(st,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:1.2e7});}catch(_){rec=new MediaRecorder(st);}
+  chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data);};
+  rec.onstop=()=>dl('nace_estrella.webm',new Blob(chunks,{type:'video/webm'}));rec.start();e.target.textContent='⏹ guardar';}
+
+function initGL(){
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(innerWidth,innerHeight);
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x04050a,0.012);
+  camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,5000);camera.position.set(0,0,70);
+  controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=0.08;
+  addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
+}
+function loop(){requestAnimationFrame(loop);
+  if(playing){const steps=speed;for(let s=0;s<steps;s++)if(t<T_END)stepEstrella();}
+  updatePoints();controls.update();renderer.render(scene,camera);
+  if(frame%5===0){hud();timeline();}frame++;}
+
+$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'⏸ pausa':'▶ play';};
+$('reset').onclick=()=>{initEstrella();playing=true;$('play').textContent='⏸ pausa';};
+$('rec').onclick=(e)=>toggleRec(e);
+$('sp').oninput=e=>{speed=+e.target.value;$('vSp').textContent=speed;};
+$('mass').oninput=e=>{massSol=+e.target.value;$('vM').textContent=massSol;initEstrella();};
+
+initGL();initEstrella();loop();
+</script></body></html>

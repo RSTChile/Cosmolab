@@ -1,0 +1,49 @@
+{
+  "protocolo": "PROTOCOLO_EMPALME_CG002_ANIMA.md",
+  "version": "0.1",
+  "fecha_snapshot": "2026-06-30",
+  "estado_arco": "CERRADO",
+  "referencias": [
+    "CIERRE_ARCO_CG002_AUTORITATIVO.md",
+    "INFORME_CG002_VEREDICTOS_TABLA.md",
+    "NOMENCLATURA_NODOS_CG002.md"
+  ],
+  "modelo": {
+    "script_principal": "cg002_experimentos_arco.py",
+    "ETA": 0.05,
+    "MU": 0.01,
+    "KAPPA_S": 1e-6,
+    "S0": 1.0,
+    "S_BAND": 8.0,
+    "K": 8,
+    "THETA_CP": 0.0,
+    "ALPHA": 1.0,
+    "PASOS": 240,
+    "D_FIRMA": 3
+  },
+  "regimen_cerrado_kappa_delta": {
+    "theta_CP": 0,
+    "K_set": [6, 8, 12],
+    "S_BAND_multipliers": [0.5, 0.7, 1.0, 1.4, 2.0, 3.0],
+    "N_range": [250, 500, 1000, 2000, 4000],
+    "veredicto_m_eff_over_K": "DERIVACION",
+    "cambio_banda_6x": 0.0
+  },
+  "observables_referencia": {
+    "f_persiste_1000": { "mean": 0.5063, "cv_pct": 1.96 },
+    "orden_a1_1000": { "mean": 0.5154, "cv_pct": 1.86 },
+    "exceso_orden_d3": 0.015,
+    "excess_L2_N2000": 0.354,
+    "ratio_L2_dyn_over_null_N2000": 12.0,
+    "m_eff_over_K": 0.5,
+    "grano_grueso": "1/sqrt(K)",
+    "kappa_delta_identificacion": "2*pi/K"
+  },
+  "scripts_empalme_fase_1_2": [
+    "cg002_dynamic_l2_sweep.py",
+    "cg002_exceso_barrido.py",
+    "cierre_kappaDelta_regla.py"
+  ],
+  "pair_id_cg002_fase1": "CG002-F1-REF",
+  "notas": "Punto fijo Fase 1: N=2000, K=8, d=3, semilla=1, theta_CP=0, S_BAND=8.0"
+}

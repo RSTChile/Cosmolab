@@ -1,0 +1,7 @@
+15 Higgs D potencial efectivo m = y0 * d2E/dx2
+step   0 a=  1.0 T_norm=1.00e+00 k1=33 k3=6 ratio=0.50344
+step 100 a=  4.5 T_norm=2.23e-01 k1=0 k3=0 ratio=0.00000
+step 200 a= 20.1 T_norm=4.98e-02 k1=0 k3=0 ratio=0.00000
+step 300 a= 90.0 T_norm=1.11e-02 k1=0 k3=0 ratio=0.00000
+FIN D
+EXIT:0

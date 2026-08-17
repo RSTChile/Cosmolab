@@ -1,0 +1,478 @@
+{
+  "protocolo": "PROTOCOLO_CG002_ACOPLAMIENTO_ORIGINARIO.md (29-jun-2026)",
+  "diseno": {
+    "N": [
+      4,
+      6,
+      8
+    ],
+    "semillas": 30,
+    "brazos": [
+      "REAL",
+      "BARAJADO",
+      "ALFA_0"
+    ],
+    "thetas": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "k_max": 1500,
+    "tau_cap": 500,
+    "k_igualado": 500
+  },
+  "guarda_no_isomorfia": {
+    "por_paso": [
+      {
+        "seed": 1,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 5,
+        "vivos_baraj": 3,
+        "arist_real": 8,
+        "arist_baraj": 3,
+        "rho_real": 0.9999999999999999,
+        "rho_baraj": 0.25019757687050365,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 2,
+        "tau_real": 500,
+        "tau_baraj": 395,
+        "vivos_real": 4,
+        "vivos_baraj": 0,
+        "arist_real": 6,
+        "arist_baraj": 0,
+        "rho_real": 1.0,
+        "rho_baraj": 0.09007012914834965,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 3,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 4,
+        "vivos_baraj": 2,
+        "arist_real": 6,
+        "arist_baraj": 1,
+        "rho_real": 1.0,
+        "rho_baraj": 0.22362511455692274,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 4,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 6,
+        "vivos_baraj": 8,
+        "arist_real": 15,
+        "arist_baraj": 28,
+        "rho_real": 1.0,
+        "rho_baraj": 1.0,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 5,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 5,
+        "vivos_baraj": 3,
+        "arist_real": 10,
+        "arist_baraj": 3,
+        "rho_real": 1.0,
+        "rho_baraj": 0.31567642590140715,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 6,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 6,
+        "vivos_baraj": 6,
+        "arist_real": 15,
+        "arist_baraj": 15,
+        "rho_real": 1.0,
+        "rho_baraj": 0.996690885117399,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 7,
+        "tau_real": 500,
+        "tau_baraj": 500,
+        "vivos_real": 7,
+        "vivos_baraj": 7,
+        "arist_real": 19,
+        "arist_baraj": 21,
+        "rho_real": 0.9999992543027921,
+        "rho_baraj": 0.9999999505333086,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 8,
+        "tau_real": 500,
+        "tau_baraj": 297,
+        "vivos_real": 4,
+        "vivos_baraj": 0,
+        "arist_real": 6,
+        "arist_baraj": 0,
+        "rho_real": 1.0,
+        "rho_baraj": 0.08925279081402332,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 9,
+        "tau_real": 500,
+        "tau_baraj": 306,
+        "vivos_real": 5,
+        "vivos_baraj": 0,
+        "arist_real": 7,
+        "arist_baraj": 0,
+        "rho_real": 0.9999990745308079,
+        "rho_baraj": 0.058330405643250594,
+        "S_ordenado_identico": false
+      },
+      {
+        "seed": 10,
+        "tau_real": 500,
+        "tau_baraj": 378,
+        "vivos_real": 4,
+        "vivos_baraj": 0,
+        "arist_real": 6,
+        "arist_baraj": 0,
+        "rho_real": 1.0,
+        "rho_baraj": 0.023323774636779815,
+        "S_ordenado_identico": false
+      }
+    ],
+    "frac_semillas_identicas": 0.0
+  },
+  "veredictos": {
+    "V1": {
+      "N4": {
+        "a_final_corrida": {
+          "REAL": 0.7666666666666667,
+          "BARAJADO": 0.36666666666666664,
+          "ALFA_0": 0.0
+        },
+        "en_tau_cap": {
+          "REAL": 0.7666666666666667,
+          "BARAJADO": 0.36666666666666664,
+          "ALFA_0": 0.0
+        },
+        "k_igualado_500": {
+          "REAL": 0.8666666666666667,
+          "BARAJADO": 0.4,
+          "ALFA_0": 1.0
+        },
+        "fisher_vs_BARAJADO": 0.001878168810196917,
+        "fisher_vs_ALFA_0": 8.705456751101358e-11,
+        "positivo_vs_ALFA_0": true,
+        "positivo_vs_BARAJADO": true
+      },
+      "N6": {
+        "a_final_corrida": {
+          "REAL": 0.9333333333333333,
+          "BARAJADO": 0.5666666666666667,
+          "ALFA_0": 0.0
+        },
+        "en_tau_cap": {
+          "REAL": 0.9333333333333333,
+          "BARAJADO": 0.5666666666666667,
+          "ALFA_0": 0.0
+        },
+        "k_igualado_500": {
+          "REAL": 0.9333333333333333,
+          "BARAJADO": 0.5666666666666667,
+          "ALFA_0": 1.0
+        },
+        "fisher_vs_BARAJADO": 0.0010642786328174964,
+        "fisher_vs_ALFA_0": 4.1939860052518944e-15,
+        "positivo_vs_ALFA_0": true,
+        "positivo_vs_BARAJADO": true
+      },
+      "N8": {
+        "a_final_corrida": {
+          "REAL": 1.0,
+          "BARAJADO": 0.5333333333333333,
+          "ALFA_0": 0.0
+        },
+        "en_tau_cap": {
+          "REAL": 1.0,
+          "BARAJADO": 0.5333333333333333,
+          "ALFA_0": 0.0
+        },
+        "k_igualado_500": {
+          "REAL": 1.0,
+          "BARAJADO": 0.7333333333333333,
+          "ALFA_0": 1.0
+        },
+        "fisher_vs_BARAJADO": 8.383692187759714e-06,
+        "fisher_vs_ALFA_0": 8.455616946072368e-18,
+        "positivo_vs_ALFA_0": true,
+        "positivo_vs_BARAJADO": true
+      }
+    },
+    "V2": {
+      "REAL": {
+        "frac_tau_pos_global": 1.0,
+        "por_N": {
+          "N4": 1.0,
+          "N6": 1.0,
+          "N8": 1.0
+        },
+        "tau_mediana": 500.0
+      },
+      "BARAJADO": {
+        "frac_tau_pos_global": 1.0,
+        "por_N": {
+          "N4": 1.0,
+          "N6": 1.0,
+          "N8": 1.0
+        },
+        "tau_mediana": 478.0
+      },
+      "ALFA_0": {
+        "frac_tau_pos_global": 0.0,
+        "por_N": {
+          "N4": 0.0,
+          "N6": 0.0,
+          "N8": 0.0
+        },
+        "tau_mediana": 0.0
+      },
+      "criterio": "α=1: frac(τ>0) ≥ 0.83 ; α=0: τ ≈ 0",
+      "positivo_REAL": true,
+      "positivo_control_G": true,
+      "positivo_BARAJADO": true
+    },
+    "V3": {
+      "N4_theta0.1_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 5.862619951515376e+21,
+        "media_asimetria": 0.14465614146170144,
+        "signo_estable_tracking": 1.0,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.8666666666666667,
+        "media_rho": 0.8927540632287092
+      },
+      "N4_theta0.1_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 3.923776159382673e+20,
+        "media_asimetria": 0.07467996398775373,
+        "signo_estable_tracking": 0.6538461538461539,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.7,
+        "media_rho": 0.31049280534488743
+      },
+      "N4_theta0.3_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 6.931606568048983e+20,
+        "media_asimetria": 0.5063011300400494,
+        "signo_estable_tracking": 1.0,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.8,
+        "media_rho": 0.8449720852300417
+      },
+      "N4_theta0.3_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 1.238135873130813e+20,
+        "media_asimetria": 0.22568734456708867,
+        "signo_estable_tracking": 0.6538461538461539,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.7,
+        "media_rho": 0.3107886303286919
+      },
+      "N4_theta0.5_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 1.674179640309125e+18,
+        "media_asimetria": 0.8630953470125816,
+        "signo_estable_tracking": 1.0,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.7,
+        "media_rho": 0.7928600510094558
+      },
+      "N4_theta0.5_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 0.8666666666666667,
+        "media_T_hat": 2.512626984520093e+18,
+        "media_asimetria": 0.3807822722764694,
+        "signo_estable_tracking": 0.6538461538461539,
+        "frac_degenerada": 0.13333333333333333,
+        "signo_estable_rho_menos_0.5": 0.7,
+        "media_rho": 0.31259415774185195
+      },
+      "N8_theta0.1_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 4.173743104102235e+39,
+        "media_asimetria": 0.14362692765321194,
+        "signo_estable_tracking": 1.0,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 1.0,
+        "media_rho": 0.9849861317031847
+      },
+      "N8_theta0.1_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 6.510887875355263e+17,
+        "media_asimetria": 0.1645529781138282,
+        "signo_estable_tracking": 0.5,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 0.7666666666666667,
+        "media_rho": 0.33736772252429886
+      },
+      "N8_theta0.3_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 9.600204178047187e+36,
+        "media_asimetria": 0.3930613010000508,
+        "signo_estable_tracking": 0.9666666666666667,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 1.0,
+        "media_rho": 0.9793471097606297
+      },
+      "N8_theta0.3_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 4.518324291685741e+17,
+        "media_asimetria": 0.4836323981476879,
+        "signo_estable_tracking": 0.5333333333333333,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 0.7666666666666667,
+        "media_rho": 0.34120594734539866
+      },
+      "N8_theta0.5_REAL": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 1.612708000456475e+31,
+        "media_asimetria": 0.7880520685121931,
+        "signo_estable_tracking": 0.6333333333333333,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 1.0,
+        "media_rho": 0.951739317133026
+      },
+      "N8_theta0.5_BARAJADO": {
+        "n": 30,
+        "literal_frac_signo_T_hat": 1.0,
+        "literal_frac_signo_rho": 1.0,
+        "frac_T_hat_no_nulo": 1.0,
+        "media_T_hat": 2.2526849421333988e+16,
+        "media_asimetria": 0.770345710061159,
+        "signo_estable_tracking": 0.5333333333333333,
+        "frac_degenerada": 0.0,
+        "signo_estable_rho_menos_0.5": 0.7666666666666667,
+        "media_rho": 0.3503727496680296
+      },
+      "rho_es_input": {
+        "spearman_rho_vs_frac_c_positiva_input": [
+          0.3810541604548074,
+          0.00021115050839455137
+        ],
+        "spearman_rho_vs_media_c_input": [
+          0.6012608586767524,
+          3.697392166746212e-10
+        ]
+      }
+    },
+    "V6": {
+      "REAL": {
+        "frac_cn4": 0.0,
+        "ds_max_mediana": 1.0883036880224506,
+        "ds_max_p90": 1.6666643245881567,
+        "ds_max_maximo": 1.8260780353675046,
+        "por_N": {
+          "N4": 0.0,
+          "N6": 0.0,
+          "N8": 0.0
+        },
+        "frac_m_ge3": 0.7888888888888889
+      },
+      "BARAJADO": {
+        "frac_cn4": 0.0,
+        "ds_max_mediana": 0.0,
+        "ds_max_p90": 1.131942492268801,
+        "ds_max_maximo": 1.3705449790265483,
+        "por_N": {
+          "N4": 0.0,
+          "N6": 0.0,
+          "N8": 0.0
+        },
+        "frac_m_ge3": 0.3888888888888889
+      },
+      "ALFA_0": {
+        "frac_cn4": 0.0,
+        "ds_max_mediana": 0.0,
+        "ds_max_p90": 0.0,
+        "ds_max_maximo": 0.0,
+        "por_N": {
+          "N4": 0.0,
+          "N6": 0.0,
+          "N8": 0.0
+        },
+        "frac_m_ge3": 0.0
+      },
+      "criterio": "frac(∂̂S_max > 2.0) ≥ 0.50",
+      "positivo_REAL": false,
+      "positivo_BARAJADO": false,
+      "cota_estructural": "∂̂S_i = B_i/mean(B|B>0) ⇒ ∂̂S_max ≤ m (m = nodos con borde). Con m=1 vale exactamente 1; con m=2, <2. Superar 2.0 exige m≥3."
+    },
+    "identidades": {
+      "spearman_ds_max_vs_n_aristas": [
+        0.753020237223027,
+        1.1266063903594755e-17
+      ],
+      "spearman_ds_max_vs_n_vivos_fin": [
+        0.8104392251195924,
+        3.8078917799747324e-22
+      ],
+      "spearman_ds_max_vs_S_final_max": [
+        0.5665969714028323,
+        5.8462690826213535e-09
+      ],
+      "spearman_delta_struct_vs_tau_final": [
+        0.5200812803992102,
+        1.4918818718735804e-07
+      ],
+      "spearman_rho_vs_n_vivos_fin": [
+        0.46224460341947526,
+        4.507586737978214e-06
+      ],
+      "spearman_tau_final_vs_n_vivos_fin": [
+        0.5320069722972078,
+        6.80883946018704e-08
+      ]
+    },
+    "piso_de_ruido": {
+      "n_por_brazo_por_N": 30,
+      "fisher_2x2_30vs30_separacion_total_p": 8.455616946072368e-18,
+      "nota": "Con 30 semillas por brazo y por N, el p más chico alcanzable en una tabla 2x2 con separación total es el de arriba; ninguna fracción puede dar un p menor. Las fracciones se reportan crudas, sin binarizar por umbrales nuevos."
+    }
+  }
+}

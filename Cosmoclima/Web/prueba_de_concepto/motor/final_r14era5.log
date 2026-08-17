@@ -1,0 +1,7 @@
+config: PTC=B LF_SIN_V=true KAPPA_CANONICOS=true kLFinf=0.35 kDinf=0.5102
+0.0% · 2s
+22.1% · 149s
+44.2% · 293s
+66.3% · 444s
+88.4% · 594s
+Listo en 11.3 min. Escrito regimen_r14era5_final_por_anio.csv

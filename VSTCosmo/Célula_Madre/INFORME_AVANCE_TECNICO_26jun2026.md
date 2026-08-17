@@ -36,7 +36,7 @@ Es un **subsistema real** (opción b), con tres capas que conviene no fundir:
    Persiste la **memoria propia del organismo** (memoria episódica del OrganeloMemoria, codebook,
    metabolismo) **entre reinicios**. Los gestiona Docker (no en ruta navegable de la LaCie).
 2. **Biografía longitudinal** → `Docker_Historia/` montado por bind-mount en la **LaCie**
-   (`/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/Docker_Historia`, ~3.1 GB). La escribe `vst_historia.py`:
+   (`/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/Docker_Historia`, ~3.1 GB). La escribe `vst_historia.py`:
    fisiología CSV (214 col/paso, rotación horaria), eventos JSONL, comunicación A↔B, snapshots, voz WAV.
    **Es la "memoria en disco externo" en sentido fuerte.**
 3. **SQLite `vstcosmo.db`** (168 KB, raíz del repo): **catálogo** de los 292 experimentos + corridas de

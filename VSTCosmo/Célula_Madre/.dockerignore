@@ -1,7 +1,28 @@
-# NO meter en la imagen: pesos de audio, estado en disco, cachés, salidas regenerables.
-estado_persistente/
-**/__pycache__/
-**/*.pyc
-experimentos/resultados/
+# El Dockerfile dice "audio_binaural NO se copia (ver .dockerignore)" pero este archivo
+# NO EXISTIA: el contexto de build eran 260 GB y `docker compose build` se quedaba
+# enviandolo para siempre. Creado el 12-ago-2026. Sin el, el lab no se puede reconstruir.
+hardware/
+build/
+dist/
+.venv-mac/
+.venv/
+experimentos/
+docs/
+audio_binaural/
+voces_r2d2_candidatas/
+voces_r2d2_BACKUP*/
+_backup_pre_*/
+Docker_Historia/
+history/
+history_pi/
+*.exe
+*.dmg
+*.pkg
+*.zip
+*.wav
+*.pdf
 *.log
+__pycache__/
+*.pyc
+.git/
 .DS_Store

@@ -1,0 +1,104 @@
+
+### presupuesto_emergente: 80 (regla × brazo)
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase5_clasificador.py:60: RuntimeWarning: Mean of empty slice
+  holon_ratio = float(np.nanmean(holon_ratio_por_N))
+   ...25/80  (38s)
+   ...50/80  (77s)
+   ...75/80  (114s)
+   clase histórica reproducida desde el CSV: 80/80
+
+### presupuesto_soporte: 100 (regla × brazo)
+   ...25/100  (157s)
+   ...50/100  (196s)
+   ...75/100  (237s)
+   ...100/100  (275s)
+   clase histórica reproducida desde el CSV: 100/100
+
+### mecanismo_aislado: 100 (regla × brazo)
+   ...25/100  (308s)
+   ...50/100  (344s)
+   ...75/100  (374s)
+   ...100/100  (400s)
+   clase histórica reproducida desde el CSV: 100/100
+
+### presupuesto_variable: 100 (regla × brazo)
+   ...25/100  (429s)
+   ...50/100  (456s)
+   ...75/100  (483s)
+   ...100/100  (513s)
+   clase histórica reproducida desde el CSV: 100/100
+
+### control_azar_elastico: 100 (regla × brazo)
+   ...25/100  (547s)
+   ...50/100  (577s)
+   ...75/100  (609s)
+   ...100/100  (637s)
+   clase histórica reproducida desde el CSV: 100/100
+
+### genealogias: 160 (regla × brazo)
+   ...25/160  (662s)
+   ...50/160  (688s)
+   ...75/160  (715s)
+   ...100/160  (744s)
+   ...125/160  (774s)
+   ...150/160  (801s)
+   clase histórica reproducida desde el CSV: 160/160
+
+[csv] cs090_fase6_remedicion_mecanismo.csv (640 filas, 811s)
+
+====================================================================================================
+%CLASE III POR BRAZO — ENDPOINT PRINCIPAL DE LA LÍNEA DEL MECANISMO
+====================================================================================================
+
+--- presupuesto_emergente ---
+   C0                                            n=20   %III viejo=  0.0  %III corregido=  0.0   (cambian de clase: 0)
+   C2-budget                                     n=20   %III viejo= 15.0  %III corregido= 15.0   (cambian de clase: 0)
+   C2-hard                                       n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 0)
+   C2-random                                     n=20   %III viejo= 15.0  %III corregido= 20.0   (cambian de clase: 1)
+
+--- presupuesto_soporte ---
+   C0                                            n=20   %III viejo=  0.0  %III corregido=  0.0   (cambian de clase: 0)
+   C2-budget-original                            n=20   %III viejo= 15.0  %III corregido= 15.0   (cambian de clase: 0)
+   C2-budget-soporte                             n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 0)
+   C2-hard                                       n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 0)
+   C2-random                                     n=20   %III viejo= 20.0  %III corregido= 20.0   (cambian de clase: 1)
+
+--- mecanismo_aislado ---
+   C0                                            n=20   %III viejo=  0.0  %III corregido=  0.0   (cambian de clase: 0)
+   C2-budget-soporte                             n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 0)
+   C2-hard                                       n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 0)
+   C2-hibrido                                    n=20   %III viejo= 35.0  %III corregido= 40.0   (cambian de clase: 1)
+   C2-random                                     n=20   %III viejo=  5.0  %III corregido=  5.0   (cambian de clase: 0)
+
+--- presupuesto_variable ---
+   C0                                            n=20   %III viejo=  0.0  %III corregido=  0.0   (cambian de clase: 0)
+   C2-budget-soporte                             n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 0)
+   C2-hard                                       n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 0)
+   C2-hibrido                                    n=20   %III viejo= 35.0  %III corregido= 40.0   (cambian de clase: 1)
+   C2-presupuesto-variable                       n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 0)
+
+--- control_azar_elastico ---
+   C0                                            n=20   %III viejo=  0.0  %III corregido=  0.0   (cambian de clase: 0)
+   C2-hard                                       n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 0)
+   C2-hibrido                                    n=20   %III viejo= 35.0  %III corregido= 40.0   (cambian de clase: 1)
+   C2-presupuesto-variable                       n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 0)
+   C2-presupuesto-variable-azar                  n=20   %III viejo= 10.0  %III corregido= 10.0   (cambian de clase: 1)
+
+--- genealogias ---
+   ('G0_original_90210', 'C2-hard')              n=20   %III viejo= 50.0  %III corregido= 55.0   (cambian de clase: 1)
+   ('G0_original_90210', 'C2-hibrido')           n=20   %III viejo= 40.0  %III corregido= 40.0   (cambian de clase: 0)
+   ('G1_471829', 'C2-hard')                      n=20   %III viejo= 45.0  %III corregido= 45.0   (cambian de clase: 2)
+   ('G1_471829', 'C2-hibrido')                   n=20   %III viejo= 25.0  %III corregido= 40.0   (cambian de clase: 4)
+   ('G2_823001', 'C2-hard')                      n=20   %III viejo= 65.0  %III corregido= 70.0   (cambian de clase: 1)
+   ('G2_823001', 'C2-hibrido')                   n=20   %III viejo= 25.0  %III corregido= 35.0   (cambian de clase: 3)
+   ('G3_156644', 'C2-hard')                      n=20   %III viejo= 75.0  %III corregido= 75.0   (cambian de clase: 0)
+   ('G3_156644', 'C2-hibrido')                   n=20   %III viejo= 50.0  %III corregido= 55.0   (cambian de clase: 1)
+
+[TOTAL] cambian de clase: 18/640
+   intermedio (sin clase clara) -> III : 6
+   I -> III : 5
+   II -> I : 3
+   IV -> III : 1
+   intermedio (sin clase clara) -> IV : 1
+   intermedio (sin clase clara) -> I : 1
+   I -> II : 1

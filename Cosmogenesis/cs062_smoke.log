@@ -1,0 +1,17 @@
+CS062 — PAISAJE con GRAVEDAD ∝ PESO-INTRÍNSECO (Newton m·m/d²) vs GRADO (=CS057) vs NULL-PESO
+====================================================================================================
+PREDICCIÓN CIEGA: si el proxy de grado sesgaba contra el 3D (CS060-B), el brazo PESO dará 3D/4D más
+  viable que GRADO en TODO el mapa; y NULL-PESO dirá si es la masa o solo la independencia-del-grado.
+puntos=9 · seeds=2 · acoples=['peso', 'grado', 'null_peso'] · corridas≈54 · workers=14
+salida cs062_smoke.csv
+  1/9 · 301.5s
+  2/9 · 321.3s
+  3/9 · 696.6s
+  4/9 · 771.2s
+  5/9 · 869.4s
+  6/9 · 1086.7s
+  7/9 · 1138.7s
+  8/9 · 1391.1s
+  9/9 · 1400.1s
+
+COMPLETO: 9 puntos en 23.3 min → cs062_smoke.csv

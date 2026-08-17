@@ -1,0 +1,66 @@
+[O3-E] 15 reglas base elegidas (estratificadas por pendiente corregida) — seeds=[588998, 584342, 582111, 485506, 375224, 575709, 576679, 475321, 573963, 484633, 477455, 577261, 478716, 273381, 586573]
+  IC A2-B0-C2-o3e-s588998-mem: aristas=4971 pend_corr=0.314 (t_grafo=5.44s t_ic=281.46s)
+  IC A2-B0-C2-o3e-s588998-nomem: aristas=5025 pend_corr=0.349 (t_grafo=5.4s t_ic=275.77s)
+  IC A2-B0-C2-o3e-s584342-mem: aristas=4892 pend_corr=0.461 (t_grafo=11.36s t_ic=518.97s)
+  IC A2-B0-C2-o3e-s584342-nomem: aristas=5018 pend_corr=0.463 (t_grafo=11.46s t_ic=518.98s)
+  IC A2-B0-C2-o3e-s582111-mem: aristas=4254 pend_corr=0.508 (t_grafo=10.59s t_ic=516.29s)
+  IC A2-B0-C2-o3e-s582111-nomem: aristas=4281 pend_corr=0.508 (t_grafo=10.48s t_ic=513.68s)
+  IC A2-B0-C2-o3e-s485506-mem: aristas=4794 pend_corr=0.542 (t_grafo=11.25s t_ic=517.12s)
+  IC A2-B0-C2-o3e-s485506-nomem: aristas=4943 pend_corr=0.512 (t_grafo=11.44s t_ic=512.86s)
+  IC A2-B0-C2-o3e-s375224-mem: aristas=3965 pend_corr=0.571 (t_grafo=16.14s t_ic=504.35s)
+  IC A2-B0-C2-o3e-s375224-nomem: aristas=4092 pend_corr=0.503 (t_grafo=16.55s t_ic=506.06s)
+  IC A2-B0-C2-o3e-s575709-mem: aristas=3731 pend_corr=0.601 (t_grafo=15.1s t_ic=502.41s)
+  IC A2-B0-C2-o3e-s575709-nomem: aristas=3833 pend_corr=0.606 (t_grafo=14.86s t_ic=506.03s)
+  IC A2-B0-C2-o3e-s576679-mem: aristas=3366 pend_corr=0.633 (t_grafo=15.08s t_ic=504.91s)
+  IC A2-B0-C2-o3e-s576679-nomem: aristas=3427 pend_corr=0.664 (t_grafo=14.2s t_ic=504.53s)
+  IC A2-B0-C2-o3e-s475321-mem: aristas=3581 pend_corr=0.666 (t_grafo=11.46s t_ic=331.99s)
+  IC A2-B0-C2-o3e-s475321-nomem: aristas=3706 pend_corr=0.668 (t_grafo=10.87s t_ic=329.68s)
+  IC A2-B0-C2-o3e-s573963-mem: aristas=3361 pend_corr=0.699 (t_grafo=10.05s t_ic=329.86s)
+  IC A2-B0-C2-o3e-s573963-nomem: aristas=3443 pend_corr=0.624 (t_grafo=10.58s t_ic=328.38s)
+  IC A2-B0-C2-o3e-s484633-mem: aristas=3273 pend_corr=0.750 (t_grafo=10.65s t_ic=327.12s)
+  IC A2-B0-C2-o3e-s484633-nomem: aristas=3325 pend_corr=0.713 (t_grafo=10.78s t_ic=327.25s)
+  IC A2-B0-C2-o3e-s477455-mem: aristas=3150 pend_corr=0.776 (t_grafo=7.48s t_ic=237.69s)
+  IC A2-B0-C2-o3e-s477455-nomem: aristas=3230 pend_corr=0.805 (t_grafo=7.87s t_ic=236.65s)
+  IC A2-B0-C2-o3e-s577261-mem: aristas=3249 pend_corr=0.841 (t_grafo=8.1s t_ic=236.51s)
+  IC A2-B0-C2-o3e-s577261-nomem: aristas=3296 pend_corr=0.836 (t_grafo=8.12s t_ic=235.78s)
+  IC A2-B0-C2-o3e-s478716-mem: aristas=3012 pend_corr=0.898 (t_grafo=8.41s t_ic=236.38s)
+  IC A2-B0-C2-o3e-s478716-nomem: aristas=3096 pend_corr=0.870 (t_grafo=8.16s t_ic=236.18s)
+  IC A2-B0-C2-o3e-s273381-mem: aristas=2228 pend_corr=1.079 (t_grafo=2.94s t_ic=153.12s)
+  IC A2-B0-C2-o3e-s273381-nomem: aristas=2289 pend_corr=1.149 (t_grafo=2.93s t_ic=154.01s)
+  IC A2-B0-C2-o3e-s586573-mem: aristas=2046 pend_corr=1.505 (t_grafo=4.2s t_ic=270.25s)
+  IC A2-B0-C2-o3e-s586573-nomem: aristas=2085 pend_corr=1.355 (t_grafo=4.21s t_ic=275.36s)
+[TOTAL IC] 30 condiciones iniciales en 1821s
+[verificación cruzada] 15 pares: los dos brazos declaran la MISMA regla (seed/K/J/noise/meandeg/kcap/seed_layout/N idénticos) — OK
+  [1/30] A2-B0-C2-o3e-s588998-mem: ya corrida, se salta
+  [2/30] A2-B0-C2-o3e-s588998-nomem: ya corrida, se salta
+  [3/30] A2-B0-C2-o3e-s584342-mem: ya corrida, se salta
+  [4/30] A2-B0-C2-o3e-s584342-nomem: ya corrida, se salta
+  [5/30] A2-B0-C2-o3e-s582111-mem: ya corrida, se salta
+  [6/30] A2-B0-C2-o3e-s582111-nomem: ya corrida, se salta
+  [7/30] A2-B0-C2-o3e-s485506-mem: ya corrida, se salta
+  [8/30] A2-B0-C2-o3e-s485506-nomem: ya corrida, se salta
+  [9/30] A2-B0-C2-o3e-s375224-mem: ya corrida, se salta
+  [10/30] A2-B0-C2-o3e-s375224-nomem: ya corrida, se salta
+  [11/30] A2-B0-C2-o3e-s575709-mem: ya corrida, se salta
+  [12/30] A2-B0-C2-o3e-s575709-nomem: ya corrida, se salta
+  [13/30] A2-B0-C2-o3e-s576679-mem: ya corrida, se salta
+  [14/30] A2-B0-C2-o3e-s576679-nomem: ya corrida, se salta
+  [15/30] A2-B0-C2-o3e-s475321-mem: ya corrida, se salta
+  [16/30] A2-B0-C2-o3e-s475321-nomem: ya corrida, se salta
+  [17/30] A2-B0-C2-o3e-s573963-mem: ya corrida, se salta
+  [18/30] A2-B0-C2-o3e-s573963-nomem: ya corrida, se salta
+  [19/30] A2-B0-C2-o3e-s484633-mem: ya corrida, se salta
+  [20/30] A2-B0-C2-o3e-s484633-nomem: ya corrida, se salta
+  [21/30] A2-B0-C2-o3e-s477455-mem: exit_run=0 t_run=17.11s
+  [22/30] A2-B0-C2-o3e-s477455-nomem: exit_run=0 t_run=15.88s
+  [23/30] A2-B0-C2-o3e-s577261-mem: exit_run=0 t_run=16.2s
+  [24/30] A2-B0-C2-o3e-s577261-nomem: exit_run=0 t_run=15.97s
+  [25/30] A2-B0-C2-o3e-s478716-mem: exit_run=0 t_run=16.75s
+  [26/30] A2-B0-C2-o3e-s478716-nomem: exit_run=0 t_run=14.79s
+  [27/30] A2-B0-C2-o3e-s273381-mem: exit_run=0 t_run=26.11s
+  [28/30] A2-B0-C2-o3e-s273381-nomem: exit_run=0 t_run=23.19s
+  [29/30] A2-B0-C2-o3e-s586573-mem: ya corrida, se salta
+  [30/30] A2-B0-C2-o3e-s586573-nomem: ya corrida, se salta
+[TOTAL PHANTOM] 159s
+
+[TOTAL] 15 pares (30 corridas) -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3e_memoria_crudo.csv — tiempo total 2003s

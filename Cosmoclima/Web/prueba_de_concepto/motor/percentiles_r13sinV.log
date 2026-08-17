@@ -1,0 +1,9 @@
+config: PTC=B LF_SIN_V=true KAPPA_CANONICOS=false
+0.0% · 0 ticks/s · faltan ~47342 min
+14.7% · 1529 ticks/s · faltan ~13 min
+29.5% · 1447 ticks/s · faltan ~11 min
+44.2% · 1326 ticks/s · faltan ~10 min
+58.9% · 1289 ticks/s · faltan ~7 min
+73.6% · 1281 ticks/s · faltan ~5 min
+88.4% · 1291 ticks/s · faltan ~2 min
+Listo en 17.4 min. Escrito regimen_r13sinV_por_anio.csv y regimen_r13sinV_percentiles.json

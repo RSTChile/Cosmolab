@@ -1,0 +1,112 @@
+{
+  "pool_size": 4180,
+  "columna_numeros_fisicos": {
+    "fraccion_materia_4_9pct": {
+      "valor_real": 0.049,
+      "n_pool": 4180,
+      "d_real": 0.0003978984800227861,
+      "valor_mas_cercano": 0.048602101519977216,
+      "procedencia_mas_cercano": "cs074",
+      "pool_media": 0.4268148273989471,
+      "pool_std": 0.3018661278475441,
+      "pool_min": 0.0015853085288254284,
+      "pool_max": 0.9200536153374634,
+      "n_dentro_tolerancia": 167,
+      "frac_dentro_tolerancia": 0.03995215311004785,
+      "densidad_esperada_por_volumen_uniforme": 0.021775383920968523,
+      "z_bootstrap_dmin_submuestra": 1.3728248875404627,
+      "interpretacion": "z alto (>2) Y frac_dentro_tolerancia muy por encima de la densidad uniforme esperada -> señal real de acercamiento. Si no, es volumen/ruido del propio barrido (mismo patrón ya visto en E5.3-1 y en cs074/cs074-A: puntos aislados 'cerca' que no resisten este chequeo)."
+    },
+    "fraccion_materia_31_5pct": {
+      "valor_real": 0.315,
+      "n_pool": 4180,
+      "d_real": 0.0018866024943074988,
+      "valor_mas_cercano": 0.3168866024943075,
+      "procedencia_mas_cercano": "cs074",
+      "pool_media": 0.4268148273989471,
+      "pool_std": 0.3018661278475441,
+      "pool_min": 0.0015853085288254284,
+      "pool_max": 0.9200536153374634,
+      "n_dentro_tolerancia": 2,
+      "frac_dentro_tolerancia": 0.0004784688995215311,
+      "densidad_esperada_por_volumen_uniforme": 0.021775383920968523,
+      "z_bootstrap_dmin_submuestra": 1.3762019431045112,
+      "interpretacion": "z alto (>2) Y frac_dentro_tolerancia muy por encima de la densidad uniforme esperada -> señal real de acercamiento. Si no, es volumen/ruido del propio barrido (mismo patrón ya visto en E5.3-1 y en cs074/cs074-A: puntos aislados 'cerca' que no resisten este chequeo)."
+    },
+    "ratio_pn": {
+      "valor_emergente": 7.095185416498023,
+      "valor_real": 7.1,
+      "T_freeze": 0.737,
+      "evaluable_por_metodo_C": false,
+      "razon": "constante estructural -- depende solo de tasa_expansion (fija=0.02 en todo cs074/A/B, nunca barrida); no hay distribución de la que resamplear"
+    },
+    "ratio_masa_proton_electron": {
+      "valor_emergente": 18.431372549019606,
+      "valor_real": 1836.15,
+      "evaluable_por_metodo_C": false,
+      "razon": "constante estructural (masas fijas del catálogo) Y de naturaleza distinta al valor real: masa_trio es suma de masas DESNUDAS de quarks, sin la energía de ligadura de la fuerza fuerte que domina la masa real del protón (~99%) -- el motor basal no se la asigna"
+    }
+  },
+  "columna_relaciones_procesos": [
+    {
+      "relacion": "Contabilidad de energía cierra exacto bajo gravedad pura",
+      "fuente": "cs074",
+      "control": "gravedad pura, sin expansión/enfriamiento",
+      "resultado": "1.7% de fuga, límite declarado 5%",
+      "sostiene": true
+    },
+    {
+      "relacion": "El costo de ligadura tiene efecto causal real (no decorativo)",
+      "fuente": "cs074",
+      "control": "presupuesto finito vs infinito, 280 puntos",
+      "resultado": "29.3% de celdas difieren, exactamente en la zona de reserva escasa",
+      "sostiene": true
+    },
+    {
+      "relacion": "Muerte térmica != Nada (retiene el presupuesto de energía)",
+      "fuente": "Enfoque 5, E5.5-4",
+      "control": "NULL/comparación con E=0 por construcción",
+      "resultado": "240/360 celdas: E se queda en ~1.0 exacto al morir térmicamente",
+      "sostiene": true
+    },
+    {
+      "relacion": "La expansión rescata/retiene más estructura que sin ella",
+      "fuente": "cs074",
+      "control": "expansion_on=False vs True",
+      "resultado": "88.4% sin expansión vs 60.7% con expansión (compite contra el colapso)",
+      "sostiene": true
+    },
+    {
+      "relacion": "El techo no-monótono en épsilon es real, no artefacto de presupuesto",
+      "fuente": "cs074-A",
+      "control": "energía finita vs infinita, barrido 4x más fino",
+      "resultado": "corr(log eps, frac_ligada) casi idéntica con/sin energía (-0.73 / -0.74)",
+      "sostiene": true
+    },
+    {
+      "relacion": "Gravedad es indispensable para la ligadura (chequeo de admisibilidad)",
+      "fuente": "cs074",
+      "control": "gravedad_on=False",
+      "resultado": "frac_masa_ligada cae de 60.7% a 2.0%",
+      "sostiene": true
+    },
+    {
+      "relacion": "El enfriamiento H2 fragmenta la estructura",
+      "fuente": "cs074-B",
+      "control": "barajado, barrido 10x de intensidad",
+      "resultado": "0/11 niveles con separación del control (z entre -0.11 y -0.14)",
+      "sostiene": false
+    }
+  ],
+  "log": [
+    "[C] cargando pool de frac_masa_ligada de todo el barrido disponible...",
+    "[C] pool: 4180 valores (cs074+cs074A+cs074B)",
+    "[C] analizando fraccion de materia vs 4.9% y 31.5%...",
+    "[C] 4.9%: d_real=0.0004 z_bootstrap=1.3728248875404627",
+    "[C] 31.5%: d_real=0.0019 z_bootstrap=1.3762019431045112",
+    "[C] numeros estructuralmente constantes (no evaluables por el metodo C)...",
+    "[C] ratio_pn emergente = 7.095 (real 7.1)",
+    "[C] ratio masa p/e emergente = 18.431 (real 1836.15)",
+    "[C] relaciones que sostienen con control: 6/7"
+  ]
+}

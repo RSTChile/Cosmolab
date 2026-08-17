@@ -1,0 +1,55 @@
+{
+  "t_s": {
+    "min": 1e-20,
+    "max": 0.0001,
+    "nota": "envuelve era quarks 1e-12 a 1e-6 por 8 y 2 ordenes"
+  },
+  "T_K": {
+    "min": 10000000000.0,
+    "max": 1e+20,
+    "formula_fisica": "T=1e10 * t^-0.5",
+    "banda_estandar": [
+      1000000000000.0,
+      1000000000000000.0
+    ],
+    "nota": "envuelve banda estandar por 5 ordenes arriba y 2 abajo"
+  },
+  "eps": {
+    "min": 1e-12,
+    "max": 1.0,
+    "critico": "cualquier eps>0 persiste igual, control eps=0 da P=0",
+    "nota": "1e-9 ya da z>11, no necesitas amplitud grande"
+  },
+  "H": {
+    "min_critico": 0.0009671532846715328,
+    "min_recomendado": 0.001,
+    "max": 0.9,
+    "rc_critico": 18.24817518248175,
+    "nota": "Debajo de Hc=0.0010 difusion gana y borra a 5000 pasos, encima expansion congela"
+  },
+  "r": {
+    "rc": 18.24817518248175,
+    "nota": "r=H/D, D~5e-5 a 1e-4 segun N"
+  },
+  "pasos": {
+    "corto": 120,
+    "largo_borrado": 5000,
+    "recomendado_proximo": 2000,
+    "nota": "120 no alcanza a borrar H=0, 5000 si borra"
+  },
+  "N": {
+    "primaria": 800,
+    "v6": 800,
+    "v6_largo": 400,
+    "recomendado_2D": "100x100=10000 puntos, 4 vecinos"
+  },
+  "cuantos_k": {
+    "observado_1D": "k=1 dominante, k=2 subdominante 120->12 copias en banda 1e13-1e10K, k>=3 ausente en 1D",
+    "esperado_2D": "k=3,4,5,6 pueden estabilizar por paridad"
+  },
+  "ventana_estabilizacion_medida": {
+    "t": "1e-20 a 1e-4 s (antes, dentro y despues de 1e-12 a 1e-6)",
+    "T": "1e20 a 1e10 K (antes, dentro y despues de 1e15 a 1e12)",
+    "interpretacion": "Otro universo posible donde pre-materia se congela a 1e20K"
+  }
+}

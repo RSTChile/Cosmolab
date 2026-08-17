@@ -1,0 +1,42 @@
+[sobrantes v3] 6 pares verificados contra /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase5b_candidatas_v3.csv -- clase/K/kcap OK, sin solape con los 12 ya corridos en v3
+Generando 220 reglas candidatas NUEVAS (A2-B0-C2, seed_base=571828, prefijo rule_id='A2-B0-C2-batch4-r')...
+  admitidas=220 descartadas(filtro P1-P5)=0
+  ...25/220 clasificadas (81s)
+  ...50/220 clasificadas (158s)
+  ...75/220 clasificadas (243s)
+  ...100/220 clasificadas (320s)
+  ...125/220 clasificadas (385s)
+  ...150/220 clasificadas (465s)
+  ...175/220 clasificadas (548s)
+  ...200/220 clasificadas (616s)
+[candidatas v4] 220 clasificadas en 695s -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase5b_candidatas_v4.csv
+  distribucion de clases entre candidatas v4: {'III': 73, 'I': 125, 'II': 13, 'IV': 3, 'intermedio (sin clase clara)': 6}
+
+Pares exactos entre candidatas v4: 25
+  A2-B0-C2-batch4-r11 (I) vs A2-B0-C2-batch4-r0 (III) -- K=6 kcap=6
+  A2-B0-C2-batch4-r13 (I) vs A2-B0-C2-batch4-r94 (III) -- K=6 kcap=6
+  A2-B0-C2-batch4-r31 (I) vs A2-B0-C2-batch4-r1 (III) -- K=6 kcap=5
+  A2-B0-C2-batch4-r41 (I) vs A2-B0-C2-batch4-r12 (III) -- K=6 kcap=5
+  A2-B0-C2-batch4-r44 (I) vs A2-B0-C2-batch4-r28 (III) -- K=6 kcap=5
+  A2-B0-C2-batch4-r140 (I) vs A2-B0-C2-batch4-r29 (III) -- K=6 kcap=5
+  A2-B0-C2-batch4-r198 (I) vs A2-B0-C2-batch4-r33 (III) -- K=6 kcap=5
+  A2-B0-C2-batch4-r3 (I) vs A2-B0-C2-batch4-r9 (III) -- K=5 kcap=6
+  A2-B0-C2-batch4-r18 (I) vs A2-B0-C2-batch4-r19 (III) -- K=5 kcap=6
+  A2-B0-C2-batch4-r25 (I) vs A2-B0-C2-batch4-r136 (III) -- K=5 kcap=6
+  A2-B0-C2-batch4-r23 (I) vs A2-B0-C2-batch4-r10 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r39 (I) vs A2-B0-C2-batch4-r26 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r50 (I) vs A2-B0-C2-batch4-r60 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r67 (I) vs A2-B0-C2-batch4-r66 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r153 (I) vs A2-B0-C2-batch4-r76 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r172 (I) vs A2-B0-C2-batch4-r85 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r182 (I) vs A2-B0-C2-batch4-r96 (III) -- K=5 kcap=5
+  A2-B0-C2-batch4-r15 (I) vs A2-B0-C2-batch4-r62 (III) -- K=8 kcap=5
+  A2-B0-C2-batch4-r51 (I) vs A2-B0-C2-batch4-r36 (III) -- K=8 kcap=4
+  A2-B0-C2-batch4-r38 (I) vs A2-B0-C2-batch4-r72 (III) -- K=4 kcap=5
+  A2-B0-C2-batch4-r57 (I) vs A2-B0-C2-batch4-r43 (III) -- K=7 kcap=5
+  A2-B0-C2-batch4-r70 (I) vs A2-B0-C2-batch4-r47 (III) -- K=7 kcap=5
+  A2-B0-C2-batch4-r87 (I) vs A2-B0-C2-batch4-r120 (III) -- K=7 kcap=5
+  A2-B0-C2-batch4-r115 (I) vs A2-B0-C2-batch4-r125 (III) -- K=7 kcap=5
+  A2-B0-C2-batch4-r166 (I) vs A2-B0-C2-batch4-r147 (III) -- K=7 kcap=5
+
+buckets distintos: 8 -> [(4, 5), (5, 5), (5, 6), (6, 5), (6, 6), (7, 5), (8, 4), (8, 5)]

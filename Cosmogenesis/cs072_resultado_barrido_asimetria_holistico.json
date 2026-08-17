@@ -1,0 +1,180 @@
+{
+  "filas": [
+    {
+      "exceso": 0,
+      "nq": 21,
+      "naq": 21,
+      "ne": 7,
+      "npos": 7,
+      "n_total": 56,
+      "holistico": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      },
+      "secuencial": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      },
+      "coincide_con_secuencial": true
+    },
+    {
+      "exceso": 3,
+      "nq": 24,
+      "naq": 21,
+      "ne": 8,
+      "npos": 7,
+      "n_total": 60,
+      "holistico": {
+        "bariones": 1,
+        "antibariones": 0,
+        "protones": 1,
+        "hidrogeno": 1,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 6,
+      "nq": 27,
+      "naq": 21,
+      "ne": 9,
+      "npos": 7,
+      "n_total": 64,
+      "holistico": {
+        "bariones": 2,
+        "antibariones": 0,
+        "protones": 1,
+        "hidrogeno": 1,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 9,
+      "nq": 30,
+      "naq": 21,
+      "ne": 10,
+      "npos": 7,
+      "n_total": 68,
+      "holistico": {
+        "bariones": 3,
+        "antibariones": 0,
+        "protones": 2,
+        "hidrogeno": 2,
+        "quarks_sueltos": 0
+      },
+      "secuencial": {
+        "bariones": 3,
+        "antibariones": 0,
+        "protones": 2,
+        "hidrogeno": 2,
+        "quarks_sueltos": 0
+      },
+      "coincide_con_secuencial": true
+    },
+    {
+      "exceso": 12,
+      "nq": 33,
+      "naq": 21,
+      "ne": 11,
+      "npos": 7,
+      "n_total": 72,
+      "holistico": {
+        "bariones": 4,
+        "antibariones": 0,
+        "protones": 2,
+        "hidrogeno": 2,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 15,
+      "nq": 36,
+      "naq": 21,
+      "ne": 12,
+      "npos": 7,
+      "n_total": 76,
+      "holistico": {
+        "bariones": 5,
+        "antibariones": 0,
+        "protones": 3,
+        "hidrogeno": 3,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 18,
+      "nq": 39,
+      "naq": 21,
+      "ne": 13,
+      "npos": 7,
+      "n_total": 80,
+      "holistico": {
+        "bariones": 6,
+        "antibariones": 0,
+        "protones": 3,
+        "hidrogeno": 3,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 21,
+      "nq": 42,
+      "naq": 21,
+      "ne": 14,
+      "npos": 7,
+      "n_total": 84,
+      "holistico": {
+        "bariones": 7,
+        "antibariones": 0,
+        "protones": 4,
+        "hidrogeno": 4,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 24,
+      "nq": 45,
+      "naq": 21,
+      "ne": 15,
+      "npos": 7,
+      "n_total": 88,
+      "holistico": {
+        "bariones": 8,
+        "antibariones": 0,
+        "protones": 4,
+        "hidrogeno": 4,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "exceso": 27,
+      "nq": 48,
+      "naq": 21,
+      "ne": 16,
+      "npos": 7,
+      "n_total": 92,
+      "holistico": {
+        "bariones": 7,
+        "antibariones": 0,
+        "protones": 7,
+        "hidrogeno": 0,
+        "quarks_sueltos": 6
+      },
+      "secuencial": {
+        "bariones": 7,
+        "antibariones": 0,
+        "protones": 7,
+        "hidrogeno": 0,
+        "quarks_sueltos": 6
+      },
+      "coincide_con_secuencial": true
+    }
+  ],
+  "elapsed_s": 3.114492893218994,
+  "control_ok": true
+}

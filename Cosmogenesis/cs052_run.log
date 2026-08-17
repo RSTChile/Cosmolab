@@ -1,0 +1,50 @@
+CS052 — EL MARCO (espín): ¿alinear orientaciones al ligarse GENERA planitud?
+============================================================================================================
+N=450 · λ=6.0 (confinamiento) · μ=3.0 (marco, FIJO por física) · W=8 · Fase A (sin Higgs) · 4 sem
+
+Anclas (éxito = ACERCARSE a lattice2D):
+   lattice2D: δ=2.18 turn=1.15 diam=57 dim=1.60 %gig=100
+    arbol_b3: δ=0.00 turn=1.97 diam=12 dim=2.28 %gig=100
+
+------------------------------------------------------------------------------------------------------------
+       brazo sd  %gig  g_med  tri/nod  %marco_ok  defic  diam   δ_med    dim   turn
+  ----------------------------------------------------------------------------------------------------
+     REGLA_M  1   18   7.84    12.33       100   7.86    10     nan    nan   1.90
+      NULL_M  1    2   3.45     3.19         5   1.71     5     nan    nan   2.08
+  NULL_θrand  1    2   3.59     3.41         6   1.67     7     nan    nan   2.00
+        base  1    2   3.19     2.88         6   1.80     4     nan    nan   2.01
+     REGLA_M  2    6   7.81    12.47       100   8.07     6     nan    nan   1.47
+      NULL_M  2    3   3.72     3.55         6   1.63     5     nan    nan   1.88
+  NULL_θrand  2    3   3.53     3.29         6   1.69     7     nan    nan   1.72
+        base  2    5   3.44     3.25         5   1.57     7     nan    nan   1.48
+     REGLA_M  3   31   7.65    11.77       100   7.76    19    0.09    nan   1.54
+      NULL_M  3    4   3.33     2.88         5   1.89     4     nan    nan   1.75
+  NULL_θrand  3    4   3.32     2.99         4   1.66     7     nan    nan   1.54
+        base  3    4   3.29     3.08         5   1.60     3     nan    nan   2.03
+     REGLA_M  4   13   8.07    13.11       100   8.32     8     nan    nan   1.49
+      NULL_M  4    3   3.57     3.22         6   1.84    11     nan    nan   1.78
+  NULL_θrand  4    2   3.52     3.29         7   1.66     8     nan    nan   1.69
+        base  4    4   3.39     3.13         5   1.65     6     nan    nan   2.50
+
+============================================================================================================
+RESUMEN (¿REGLA_M se acerca al plano y los controles no?):
+  ancla plana: δ=2.18 turn=1.15 diam=57 dim=1.60 %gig=100
+     REGLA_M: %gig= 17  δ=0.09  turn=1.60  dim=nan  tri/nodo=12.42  %marco_ok=100  defic=8.00
+      NULL_M: %gig=  3  δ=nan  turn=1.87  dim=nan  tri/nodo=3.21  %marco_ok=6  defic=1.77
+  NULL_θrand: %gig=  3  δ=nan  turn=1.74  dim=nan  tri/nodo=3.24  %marco_ok=6  defic=1.67
+        base: %gig=  4  δ=nan  turn=2.01  dim=nan  tri/nodo=3.09  %marco_ok=5  defic=1.66
+
+VEREDICTO (5 guardianes):
+  G-COORD: θ init aleatorio, updates solo relacionales → OK (por diseño)
+  G-CONFINA: tri/nodo REGLA_M=12.42 (≥2.3?) → OK (hadrones intactos)
+  %marco consistente REGLA_M=100% (¿los marcos SÍ se alinearon?)
+  Conexión REGLA_M: %gig=17 → gas/fragmentado
+  G-PLANO: δ_R=0.09 turn_R=1.60 diam_R=11 → blob/no-plano o gas
+  G-ANTIRELABEL: REGLA_M SE SEPARA de NULL_θrand
+  vs NULL_M: REGLA_M NO se separa
+
+  DESENLACE:
+    REGLA_M NO genera plano (gas o =base). Confirmación TRIPLE: ni adyacencia ni marco local
+        generan planitud → aguas arriba. Negativo convergente, no fracaso. NO tunear μ.
+
+Tiempo: 1.0 min

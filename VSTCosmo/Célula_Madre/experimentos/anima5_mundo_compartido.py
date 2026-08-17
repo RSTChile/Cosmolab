@@ -15,8 +15,8 @@ import os, sys, json, time, glob, urllib.request
 
 A_URL = os.environ.get("ANIMA_A_URL", "http://localhost:7788")
 B_URL = os.environ.get("ANIMA_B_URL", "http://localhost:7799")
-AUDIO_DIR = os.environ.get("AUDIO_DIR", "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural")
-HIST = os.environ.get("VST_HISTORY_HOST", "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/Docker_Historia")
+AUDIO_DIR = os.environ.get("AUDIO_DIR", "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural")
+HIST = os.environ.get("VST_HISTORY_HOST", "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/Docker_Historia")
 GAP_S = float(os.environ.get("GAP_S", "25"))
 MIN_CONV_S = float(os.environ.get("MIN_CONV_S", "35"))
 MAX_MIN = float(os.environ.get("MAX_MINUTES", "60"))     # presupuesto total: se detiene tras superar esto

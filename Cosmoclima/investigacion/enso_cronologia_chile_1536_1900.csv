@@ -1,0 +1,50 @@
+anio,siglo,clasificacion,correlacion_peru_chile,fuente,nota
+1536,XVI,dudoso,sin_dato,Taulis 1934,clasificado lluvioso por Taulis pero datos insuficientes segun sintesis de Ortlieb
+1544,XVI,muy_lluvioso,sin_dato,BVM 1877 + Taulis 1934,confirmado por cronica de Pedro de Valdivia; BVM lo compara con 1783 y 1827
+1574,XVI,muy_lluvioso,coincide,U&L 1993 + Taulis 1934,inundacion rios Mapocho y Maipo; uno de los pocos anios con coincidencia Peru-Chile en los 3 primeros siglos
+1581,XVI,dudoso,sin_dato,U&L 1993,desborde rio Mapocho; datos insuficientes
+1597,XVI,dudoso_muy_lluvioso,sin_dato,U&L 1993,invierno extraordinariamente lluvioso segun cronica pero sin confirmacion cruzada
+1607,XVII,lluvioso,sin_dato,Taulis 1934,desbordes rio Mapocho
+1609,XVII,muy_lluvioso,solo_chile,BVM 1877 + Taulis 1934,comparado con el diluvio de 1544; evento no reconocido en Peru (Quinn et al. 1987: no F)
+1618,XVII,lluvioso,sin_dato,U&L 1993,crecida rio Mapocho
+1647,XVII,muy_lluvioso,solo_chile,BVM 1877,tercera inundacion historica; colapso el puente del Maipo; no reconocido en Peru
+1650,XVII,lluvioso,sin_dato,Taulis 1934,desbordes Mapocho y Maipo
+1687,XVII,lluvioso,coincide,Taulis 1934,parte del bienio 1687-88; uno de los pocos anios coincidentes Peru-Chile
+1688,XVII,lluvioso,coincide,Taulis 1934,continuacion de 1687
+1697,XVII,muy_lluvioso,solo_chile,BVM 1877,inundacion general del pais; no reconocido como evento El Nino en Peru
+1723,XVIII,lluvioso,sin_dato,Taulis 1934,aluvion de invierno; desborde del Mapocho
+1744,XVIII,lluvioso,sin_dato,U&L 1993,posible deshielo de primavera mas que exceso de lluvia invernal
+1746,XVIII,muy_lluvioso,sin_dato,U&L 1993,lluvias hasta octubre sin terminar las siembras
+1748,XVIII,muy_lluvioso,coincide,BVM 1877,terrible aluvion; segundo en importancia del siglo XVIII; coincide con evento en Peru
+1751,XVIII,lluvioso,sin_dato,Taulis 1934,exceso de lluvias; posible interferencia de sismo de mayo 1751
+1764,XVIII,lluvioso,sin_dato,BVM 1877,aluvion llamado de Gonzaga; menor que el de 1779
+1768,XVIII,lluvioso,sin_dato,Taulis 1934,aluvion
+1783,XVIII,muy_lluvioso_excepcional,solo_chile,BVM 1877,la avenida grande; la mayor crecida documentada desde la fundacion de Santiago; 209 horas de lluvia incesante entre el 3 y 16 de junio; no reconocido como evento El Nino global en esta sintesis
+1817,XIX,muy_lluvioso,coincide,BVM 1877 + U&L 1993,inicio del periodo de datos confiables; intensidad moderada segun Quinn 1993
+1819,XIX,lluvioso,coincide,BVM 1877,moderado segun Quinn 1993; parte del trienio 1819-21
+1820,XIX,lluvioso,sin_dato,Taulis 1934,parte del trienio 1819-21
+1821,XIX,lluvioso,coincide,BVM 1877,moderado segun Quinn 1993; cierre del trienio 1819-21
+1827,XIX,muy_lluvioso,coincide,BVM 1877,fuerte segun Quinn 1993; parte del evento 1827-28(-29)
+1828,XIX,lluvioso,coincide,BVM 1877,parte del evento fuerte 1827-28-29
+1829,XIX,muy_lluvioso,coincide,Taulis 1934,cierre del evento fuerte 1827-29
+1832,XIX,muy_lluvioso,coincide,U&L 1993,parte de 1832-33; moderado segun Quinn 1993
+1833,XIX,muy_lluvioso,coincide,BVM 1877,desbordes rios Turbio y Coquimbo; moderado segun Quinn 1993
+1837,XIX,lluvioso,coincide,U&L 1993,moderado segun Quinn 1993
+1841,XIX,lluvioso,sin_dato,BVM 1877,lluvias importantes a fines de febrero
+1843,XIX,muy_lluvioso,coincide,Taulis 1934,parte de 1843-44-45; moderado segun Quinn 1993
+1845,XIX,muy_lluvioso_excepcional,coincide,BVM 1877,copioso en aguaceros y superior al de 1783 segun BVM; cierre del evento moderado 1843-45
+1855,XIX,lluvioso,sin_dato,U&L 1993,desastroso invierno en Valparaiso; 25 vidas perdidas
+1856,XIX,lluvioso,sin_dato,BVM 1877,verdadero huracan de las Antillas el 11 de marzo
+1858,XIX,lluvioso,sin_dato,Taulis 1934,sin detalle adicional en la sintesis
+1860,XIX,lluvioso,sin_dato,BVM 1877,sumamente lluvioso; bajaron los rios por ultima vez antes de 1877
+1864,XIX,muy_lluvioso,coincide,BVM 1877,moderado segun Quinn 1993
+1868,XIX,muy_lluvioso,coincide,U&L 1993,moderado segun Quinn 1993
+1873,XIX,dudoso,sin_dato,BVM 1877,datos contradictorios entre fuentes
+1877,XIX,muy_lluvioso_excepcional,coincide,BVM 1877 + U&L 1993,el anio verdaderamente fenomenal; la noche triste de Chile el 14 de julio; fuerte segun Quinn 1993 (evento 1877-78); catastrofes en Chanaral, Copiapo, Coquimbo, La Serena, Valparaiso, Santiago y mas de 15 ciudades
+1878,XIX,lluvioso,coincide,U&L 1993,cierre del evento fuerte 1877-78
+1880,XIX,muy_lluvioso,coincide,U&L 1993,crecidas devastadoras rios Huasco, Coquimbo, Limari y Choapa; moderado segun Quinn 1993
+1887,XIX,dudoso,sin_dato,U&L 1993,sin mayor detalle en la sintesis
+1888,XIX,muy_lluvioso,coincide,Taulis 1934,moderado segun Quinn 1993; comparable con 1783/1845/1877
+1891,XIX,muy_lluvioso_excepcional,coincide,BVM 1877 + U&L 1993,fuerte segun Quinn 1993
+1899,XIX,muy_lluvioso_excepcional,coincide,U&L 1993,parte de 1899-1900; fuerte segun Quinn 1993; temporales desde Iquique hasta Osorno
+1900,XIX,muy_lluvioso,coincide,Taulis 1934,cierre del evento fuerte 1899-1900

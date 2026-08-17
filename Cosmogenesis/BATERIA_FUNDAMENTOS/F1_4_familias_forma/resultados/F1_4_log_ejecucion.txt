@@ -1,0 +1,63 @@
+[2026-07-24 05:35:23] === F1-4 motor arrancando modo=smoke ===
+[2026-07-24 05:35:23] N=100 semillas=4 eps_list=[0.0, np.float64(0.001), np.float64(0.01), np.float64(0.1), np.float64(1.0)] r_targets=[0.0, 1.0, 10.0, 100.0] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul']
+[2026-07-24 05:35:23] [familia=multi_modo] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:35:24] [familia=multi_modo] pasos_fijo=1553 lavo_todas=True mediana=1350
+[2026-07-24 05:35:31]   [familia=multi_modo] eps=0.000e+00 D=0.00000 pasos=1553 -> 4 puntos r listos
+[2026-07-24 05:35:42]   [familia=multi_modo] eps=1.000e-03 D=0.00335 pasos=1553 -> 4 puntos r listos
+[2026-07-24 05:35:51]   [familia=multi_modo] eps=1.000e-02 D=0.00335 pasos=1553 -> 4 puntos r listos
+[2026-07-24 05:35:58]   [familia=multi_modo] eps=1.000e-01 D=0.00335 pasos=1553 -> 4 puntos r listos
+[2026-07-24 05:36:05]   [familia=multi_modo] eps=1.000e+00 D=0.00335 pasos=1553 -> 4 puntos r listos
+[2026-07-24 05:36:05] [familia=multi_modo] listo en 41.7s control_r0_lava=True control_eps0_ok=True
+[2026-07-24 05:36:05] [familia=modo_unico] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:36:05] [familia=modo_unico] pasos_fijo=87 lavo_todas=True mediana=75
+[2026-07-24 05:36:05]   [familia=modo_unico] eps=0.000e+00 D=0.00000 pasos=87 -> 4 puntos r listos
+[2026-07-24 05:36:05]   [familia=modo_unico] eps=1.000e-03 D=0.03962 pasos=87 -> 4 puntos r listos
+[2026-07-24 05:36:06]   [familia=modo_unico] eps=1.000e-02 D=0.03962 pasos=87 -> 4 puntos r listos
+[2026-07-24 05:36:06]   [familia=modo_unico] eps=1.000e-01 D=0.03962 pasos=87 -> 4 puntos r listos
+[2026-07-24 05:36:07]   [familia=modo_unico] eps=1.000e+00 D=0.03962 pasos=87 -> 4 puntos r listos
+[2026-07-24 05:36:07] [familia=modo_unico] listo en 2.1s control_r0_lava=False control_eps0_ok=True
+[2026-07-24 05:36:07] [familia=bulto_gaussiano] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:36:07] [familia=bulto_gaussiano] pasos_fijo=1265 lavo_todas=True mediana=1100
+[2026-07-24 05:36:12]   [familia=bulto_gaussiano] eps=0.000e+00 D=0.00000 pasos=1265 -> 4 puntos r listos
+[2026-07-24 05:36:18]   [familia=bulto_gaussiano] eps=1.000e-03 D=0.00886 pasos=1265 -> 4 puntos r listos
+[2026-07-24 05:36:26]   [familia=bulto_gaussiano] eps=1.000e-02 D=0.00886 pasos=1265 -> 4 puntos r listos
+[2026-07-24 05:36:34]   [familia=bulto_gaussiano] eps=1.000e-01 D=0.00886 pasos=1265 -> 4 puntos r listos
+[2026-07-24 05:36:40]   [familia=bulto_gaussiano] eps=1.000e+00 D=0.00886 pasos=1265 -> 4 puntos r listos
+[2026-07-24 05:36:40] [familia=bulto_gaussiano] listo en 33.7s control_r0_lava=True control_eps0_ok=True
+[2026-07-24 05:36:40] [familia=ruido_blanco] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:36:40] [familia=ruido_blanco] pasos_fijo=58 lavo_todas=True mediana=50
+[2026-07-24 05:36:41]   [familia=ruido_blanco] eps=0.000e+00 D=0.00000 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:36:41]   [familia=ruido_blanco] eps=1.000e-03 D=0.39071 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:36:41]   [familia=ruido_blanco] eps=1.000e-02 D=0.39071 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:36:42]   [familia=ruido_blanco] eps=1.000e-01 D=0.39071 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:36:42]   [familia=ruido_blanco] eps=1.000e+00 D=0.39071 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:36:42] [familia=ruido_blanco] listo en 1.5s control_r0_lava=True control_eps0_ok=True
+[2026-07-24 05:36:42] [familia=ruido_rojo] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:36:43] [familia=ruido_rojo] pasos_fijo=1495 lavo_todas=True mediana=1300
+[2026-07-24 05:36:49]   [familia=ruido_rojo] eps=0.000e+00 D=0.00000 pasos=1495 -> 4 puntos r listos
+[2026-07-24 05:36:55]   [familia=ruido_rojo] eps=1.000e-03 D=0.01843 pasos=1495 -> 4 puntos r listos
+[2026-07-24 05:37:01]   [familia=ruido_rojo] eps=1.000e-02 D=0.01843 pasos=1495 -> 4 puntos r listos
+[2026-07-24 05:37:06]   [familia=ruido_rojo] eps=1.000e-01 D=0.01843 pasos=1495 -> 4 puntos r listos
+[2026-07-24 05:37:10]   [familia=ruido_rojo] eps=1.000e+00 D=0.01843 pasos=1495 -> 4 puntos r listos
+[2026-07-24 05:37:10] [familia=ruido_rojo] listo en 28.4s control_r0_lava=True control_eps0_ok=True
+[2026-07-24 05:37:10] [familia=ruido_azul] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 05:37:10] [familia=ruido_azul] pasos_fijo=58 lavo_todas=True mediana=50
+[2026-07-24 05:37:10]   [familia=ruido_azul] eps=0.000e+00 D=0.00000 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:37:11]   [familia=ruido_azul] eps=1.000e-03 D=0.69686 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:37:11]   [familia=ruido_azul] eps=1.000e-02 D=0.69686 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:37:11]   [familia=ruido_azul] eps=1.000e-01 D=0.69686 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:37:11]   [familia=ruido_azul] eps=1.000e+00 D=0.69686 pasos=58 -> 4 puntos r listos
+[2026-07-24 05:37:11] [familia=ruido_azul] listo en 1.3s control_r0_lava=True control_eps0_ok=True
+[2026-07-24 05:37:11] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_4_familias_forma/resultados/F1_4_smoke_resultado.json
+[2026-07-24 05:37:11] [elapsed] 108.6s
+[2026-07-24 05:37:11] === F1-4 motor terminado ===
+[2026-07-24 14:55:47] === F1-4 motor arrancando modo=produccion ===
+[2026-07-24 14:55:47] N=200 semillas=12 eps_list=[0.0, np.float64(0.0001), np.float64(0.0003727594), np.float64(0.0013894955), np.float64(0.0051794747), np.float64(0.0193069773), np.float64(0.0719685673), np.float64(0.2682695795), np.float64(1.0)] r_targets=[0.0, 0.1, 0.3, 0.5, 1.0, 2.0, 5.0, 10.0, 30.0, 100.0] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul']
+[2026-07-24 14:55:47] [familia=multi_modo] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 14:55:53] [familia=multi_modo] pasos_fijo=6095 lavo_todas=True mediana=5300
+[2026-07-24 15:04:40]   [familia=multi_modo] eps=0.000e+00 D=0.00000 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:18:50]   [familia=multi_modo] eps=1.000e-04 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:33:30]   [familia=multi_modo] eps=3.728e-04 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:48:31]   [familia=multi_modo] eps=1.389e-03 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 16:00:34]   [familia=multi_modo] eps=5.179e-03 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 16:12:09]   [familia=multi_modo] eps=1.931e-02 D=0.00084 pasos=6095 -> 10 puntos r listos

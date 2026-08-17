@@ -1,0 +1,17 @@
+CG004-f ETAPA 2 — BARRIDO κ: DOS REMACHES + cierre afín del 2º puente (vector de Burgers)
+====================================================================================================
+q∈[6, 7, 8] (6=plano,≥7=hiperb) · N≈3000 · estadístico = BURGERS de la franja entre remaches
+adjudicación CS: objeto = holonomía TRASLACIONAL (Burgers), no rotacional; 2 remaches matan el
+modo cero de giro; en κ=0 el lazo cierra (burgers≈0), en κ≠0 la franja encierra déficit (burgers>0)
+
+   q      N  defic  lazo   BURGERS  rot_holon  esperado
+  ------------------------------------------------------------
+   6   3025   0.00   110    46.765      2.094      0.00
+   7   3000   1.05    30     3.606      2.094      1.05
+   8   3002   2.09    24     1.732      0.000      2.09
+
+====================================================================================================
+GUARDIÁN (plano q=6): burgers=46.765  ->  ¡NO cierra! aún hay modo cero suelto — no leer frontera
+  El plano no da burgers≈0: la construcción de los remaches/orillas sigue mal. Abortado.
+
+Tiempo: 0.0 min

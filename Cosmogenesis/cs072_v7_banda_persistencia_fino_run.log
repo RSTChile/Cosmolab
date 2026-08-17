@@ -1,0 +1,105 @@
+====================================================================================================
+CS072 v7 -- resolución FINA en la ventana crítica [0.04,0.12] (N=400)
+====================================================================================================
+
+--- n_focos=1 ---
+  poda=0.040  grado_max=  16  frac_conectada=0.993  delta_gromov=0.50  d_s=2.84  diam=5.00  CV=1.795  (t=0.1min)
+  poda=0.045  grado_max=  17  frac_conectada=0.993  delta_gromov=0.50  d_s=2.75  diam=5.00  CV=1.615  (t=0.1min)
+  poda=0.050  grado_max=  17  frac_conectada=0.980  delta_gromov=0.50  d_s=2.88  diam=5.00  CV=1.786  (t=0.2min)
+  poda=0.055  grado_max=  13  frac_conectada=0.978  delta_gromov=0.50  d_s=2.85  diam=5.00  CV=1.822  (t=0.2min)
+  poda=0.060  grado_max=  16  frac_conectada=0.975  delta_gromov=0.50  d_s=2.73  diam=6.00  CV=1.817  (t=0.3min)
+  poda=0.065  grado_max=  11  frac_conectada=0.945  delta_gromov=0.50  d_s=2.58  diam=6.00  CV=1.735  (t=0.3min)
+  poda=0.070  grado_max=  12  frac_conectada=0.895  delta_gromov=0.50  d_s=2.33  diam=7.00  CV=1.722  (t=0.3min)
+  poda=0.075  grado_max=  10  frac_conectada=0.885  delta_gromov=0.50  d_s=2.22  diam=7.00  CV=1.729  (t=0.3min)
+  poda=0.080  grado_max=   9  frac_conectada=0.797  delta_gromov=0.50  d_s=2.13  diam=11.00  CV=1.622  (t=0.4min)
+  poda=0.085  grado_max=   3  frac_conectada=0.010  delta_gromov=nan  d_s=0.17  diam=nan  CV=1.425  (t=0.4min)
+  poda=0.090  grado_max=   2  frac_conectada=0.007  delta_gromov=nan  d_s=0.01  diam=nan  CV=1.335  (t=0.4min)
+  poda=0.095  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.835  (t=0.4min)
+  poda=0.100  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.529  (t=0.4min)
+  poda=0.105  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.452  (t=0.4min)
+  poda=0.110  grado_max=   0  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.095  (t=0.4min)
+  poda=0.115  grado_max=   0  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.074  (t=0.5min)
+  poda=0.120  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.179  (t=0.5min)
+
+--- n_focos=5 ---
+  poda=0.040  grado_max=  15  frac_conectada=0.993  delta_gromov=0.50  d_s=2.73  diam=5.00  CV=1.880  (t=0.5min)
+  poda=0.045  grado_max=  15  frac_conectada=0.993  delta_gromov=0.50  d_s=2.95  diam=5.00  CV=1.971  (t=0.6min)
+  poda=0.050  grado_max=  13  frac_conectada=0.993  delta_gromov=0.50  d_s=2.92  diam=5.00  CV=1.869  (t=0.6min)
+  poda=0.055  grado_max=  16  frac_conectada=0.975  delta_gromov=0.50  d_s=2.82  diam=6.00  CV=1.789  (t=0.7min)
+  poda=0.060  grado_max=  14  frac_conectada=0.975  delta_gromov=0.50  d_s=2.65  diam=6.00  CV=1.788  (t=0.7min)
+  poda=0.065  grado_max=  12  frac_conectada=0.943  delta_gromov=0.50  d_s=2.43  diam=7.00  CV=1.769  (t=0.8min)
+  poda=0.070  grado_max=  12  frac_conectada=0.902  delta_gromov=0.50  d_s=2.34  diam=6.00  CV=1.623  (t=0.8min)
+  poda=0.075  grado_max=  10  frac_conectada=0.838  delta_gromov=0.50  d_s=2.17  diam=8.00  CV=1.598  (t=0.8min)
+  poda=0.080  grado_max=   8  frac_conectada=0.682  delta_gromov=0.50  d_s=1.79  diam=13.50  CV=1.617  (t=0.9min)
+  poda=0.085  grado_max=   6  frac_conectada=0.117  delta_gromov=nan  d_s=0.56  diam=nan  CV=1.470  (t=0.9min)
+  poda=0.090  grado_max=   3  frac_conectada=0.005  delta_gromov=nan  d_s=0.00  diam=nan  CV=1.293  (t=0.9min)
+  poda=0.095  grado_max=   2  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=1.111  (t=0.9min)
+  poda=0.100  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.888  (t=1.0min)
+  poda=0.105  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.529  (t=1.0min)
+  poda=0.110  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.414  (t=1.0min)
+  poda=0.115  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.289  (t=1.0min)
+  poda=0.120  grado_max=   0  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.197  (t=1.0min)
+
+--- n_focos=20 ---
+  poda=0.040  grado_max=  14  frac_conectada=0.993  delta_gromov=0.50  d_s=2.73  diam=5.00  CV=1.932  (t=1.1min)
+  poda=0.045  grado_max=  15  frac_conectada=0.993  delta_gromov=0.50  d_s=3.00  diam=5.00  CV=1.890  (t=1.1min)
+  poda=0.050  grado_max=  14  frac_conectada=0.985  delta_gromov=0.50  d_s=2.94  diam=5.00  CV=1.942  (t=1.2min)
+  poda=0.055  grado_max=  15  frac_conectada=0.960  delta_gromov=0.50  d_s=2.76  diam=5.50  CV=1.766  (t=1.2min)
+  poda=0.060  grado_max=  12  frac_conectada=0.968  delta_gromov=0.50  d_s=2.70  diam=6.00  CV=1.746  (t=1.2min)
+  poda=0.065  grado_max=  13  frac_conectada=0.935  delta_gromov=0.50  d_s=2.46  diam=7.00  CV=1.822  (t=1.3min)
+  poda=0.070  grado_max=  11  frac_conectada=0.897  delta_gromov=0.50  d_s=2.25  diam=8.00  CV=1.673  (t=1.3min)
+  poda=0.075  grado_max=  11  frac_conectada=0.840  delta_gromov=0.50  d_s=2.07  diam=8.00  CV=1.605  (t=1.3min)
+  poda=0.080  grado_max=   9  frac_conectada=0.682  delta_gromov=0.50  d_s=1.83  diam=14.00  CV=1.618  (t=1.4min)
+  poda=0.085  grado_max=   5  frac_conectada=0.062  delta_gromov=nan  d_s=0.51  diam=nan  CV=1.444  (t=1.4min)
+  poda=0.090  grado_max=   3  frac_conectada=0.005  delta_gromov=nan  d_s=0.06  diam=nan  CV=1.427  (t=1.4min)
+  poda=0.095  grado_max=   1  frac_conectada=0.005  delta_gromov=nan  d_s=0.00  diam=nan  CV=1.109  (t=1.4min)
+  poda=0.100  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.745  (t=1.4min)
+  poda=0.105  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.524  (t=1.5min)
+  poda=0.110  grado_max=   0  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.407  (t=1.5min)
+  poda=0.115  grado_max=   1  frac_conectada=0.000  delta_gromov=nan  d_s=0.00  diam=nan  CV=0.315  (t=1.5min)
+  poda=0.120  grado_max=   0  frac_conectada=0.000  delta_gromov=nan  d_s=nan  diam=nan  CV=0.207  (t=1.5min)
+
+====================================================================================================
+SUB-VENTANA candidata a BANDA (frac_conectada>=0.9 Y grado_max<20), por n_focos
+====================================================================================================
+n_focos=1: sub-ventana(frac>=0.9,grado<20)=[0.04, 0.045, 0.05, 0.055, 0.06, 0.065]  ultimo_vivo(frac>0.3)~0.08  primer_colapso_total(frac<=0.05)~0.085
+n_focos=5: sub-ventana(frac>=0.9,grado<20)=[0.04, 0.045, 0.05, 0.055, 0.06, 0.065, 0.07]  ultimo_vivo(frac>0.3)~0.08  primer_colapso_total(frac<=0.05)~0.09
+n_focos=20: sub-ventana(frac>=0.9,grado<20)=[0.04, 0.045, 0.05, 0.055, 0.06, 0.065]  ultimo_vivo(frac>0.3)~0.08  primer_colapso_total(frac<=0.05)~0.09
+
+====================================================================================================
+beta en candidatos de la ventana fina, n_focos=5: [0.04, 0.045, 0.05, 0.055, 0.06, 0.065, 0.07, 0.08]
+====================================================================================================
+  poda=0.040 N=400: diam=5.00 grado_max=15 frac_gigante=0.998 delta_g=0.50 (t=1.6min)
+  poda=0.040 N=900: diam=5.00 grado_max=16 frac_gigante=0.993 delta_g=0.50 (t=1.7min)
+  poda=0.040 N=1600: diam=6.00 grado_max=17 frac_gigante=0.993 delta_g=0.50 (t=2.1min)
+  >>> poda=0.040: beta=0.123  grado_max(N=1600)=17  frac_gigante(N=1600)=0.993125  delta_g(N=1600)=0.5
+  poda=0.045 N=400: diam=5.00 grado_max=13 frac_gigante=0.990 delta_g=0.50 (t=2.1min)
+  poda=0.045 N=900: diam=5.00 grado_max=17 frac_gigante=0.989 delta_g=0.50 (t=2.3min)
+  poda=0.045 N=1600: diam=7.00 grado_max=19 frac_gigante=0.988 delta_g=0.50 (t=2.6min)
+  >>> poda=0.045: beta=0.227  grado_max(N=1600)=19  frac_gigante(N=1600)=0.9875  delta_g(N=1600)=0.5
+  poda=0.050 N=400: diam=5.00 grado_max=14 frac_gigante=0.985 delta_g=0.50 (t=2.6min)
+  poda=0.050 N=900: diam=6.00 grado_max=16 frac_gigante=0.986 delta_g=0.50 (t=2.8min)
+  poda=0.050 N=1600: diam=6.00 grado_max=15 frac_gigante=0.983 delta_g=0.50 (t=3.0min)
+  >>> poda=0.050: beta=0.138  grado_max(N=1600)=15  frac_gigante(N=1600)=0.983125  delta_g(N=1600)=0.5
+  poda=0.055 N=400: diam=5.50 grado_max=14 frac_gigante=0.973 delta_g=0.50 (t=3.1min)
+  poda=0.055 N=900: diam=6.00 grado_max=18 frac_gigante=0.969 delta_g=0.50 (t=3.2min)
+  poda=0.055 N=1600: diam=7.50 grado_max=15 frac_gigante=0.966 delta_g=0.50 (t=3.4min)
+  >>> poda=0.055: beta=0.216  grado_max(N=1600)=15  frac_gigante(N=1600)=0.965625  delta_g(N=1600)=0.5
+  poda=0.060 N=400: diam=7.00 grado_max=13 frac_gigante=0.960 delta_g=0.50 (t=3.5min)
+  poda=0.060 N=900: diam=7.00 grado_max=13 frac_gigante=0.979 delta_g=0.50 (t=3.6min)
+  poda=0.060 N=1600: diam=7.50 grado_max=14 frac_gigante=0.952 delta_g=0.50 (t=3.8min)
+  >>> poda=0.060: beta=0.047  grado_max(N=1600)=14  frac_gigante(N=1600)=0.951875  delta_g(N=1600)=0.5
+  poda=0.065 N=400: diam=6.50 grado_max=11 frac_gigante=0.950 delta_g=0.50 (t=3.8min)
+  poda=0.065 N=900: diam=7.50 grado_max=12 frac_gigante=0.941 delta_g=0.50 (t=3.9min)
+  poda=0.065 N=1600: diam=8.00 grado_max=14 frac_gigante=0.939 delta_g=0.50 (t=4.1min)
+  >>> poda=0.065: beta=0.152  grado_max(N=1600)=14  frac_gigante(N=1600)=0.93875  delta_g(N=1600)=0.5
+  poda=0.070 N=400: diam=7.00 grado_max=12 frac_gigante=0.927 delta_g=0.50 (t=4.1min)
+  poda=0.070 N=900: diam=8.00 grado_max=13 frac_gigante=0.882 delta_g=0.50 (t=4.2min)
+  poda=0.070 N=1600: diam=9.00 grado_max=12 frac_gigante=0.884 delta_g=0.50 (t=4.3min)
+  >>> poda=0.070: beta=0.180  grado_max(N=1600)=12  frac_gigante(N=1600)=0.88375  delta_g(N=1600)=0.5
+  poda=0.080 N=400: diam=11.00 grado_max=9 frac_gigante=0.738 delta_g=0.50 (t=4.4min)
+  poda=0.080 N=900: diam=10.50 grado_max=10 frac_gigante=0.742 delta_g=0.50 (t=4.4min)
+  poda=0.080 N=1600: diam=15.00 grado_max=10 frac_gigante=0.718 delta_g=0.50 (t=4.6min)
+  >>> poda=0.080: beta=0.205  grado_max(N=1600)=10  frac_gigante(N=1600)=0.7175  delta_g(N=1600)=0.5
+
+tiempo total: 4.55 min

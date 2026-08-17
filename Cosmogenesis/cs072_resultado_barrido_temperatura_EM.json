@@ -1,0 +1,56 @@
+[
+  {
+    "T_umbral": 0.6,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.5,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.4,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.3,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.2,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.15,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.1,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.08,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  },
+  {
+    "T_umbral": 0.07,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1
+  }
+]

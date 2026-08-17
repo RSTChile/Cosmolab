@@ -1,0 +1,33 @@
+¿Existe algún régimen donde e_R o Δ_struct se violen?
+Mismos umbrales en los tres casos; solo cambia el régimen del sistema.
+
+SEQUÍA TOTAL — el desierto nunca florece  (umbral de germinación 500 mm)
+  floración máxima alcanzada: 0.000
+  e_R        máx 0.1590  vs κ_O 0.2   -> lo cruza el 0.00% del tiempo
+  Δ_struct   mín 0.5187  vs κ_Δ 0.5102   -> baja de él el 0.00% del tiempo
+  A_sys_env  mín 0.3385  vs κ_V 0.7   -> baja de él el 36.44% del tiempo
+  LF         rango 0.0000 – 0.0000  vs κ_LF 0.35
+  estacionario: e_R máx 0.1395 / 0.1590   Δ_struct mín 0.5304 / 0.5187   (1ª mitad / 2ª mitad de la ventana)
+
+RÉGIMEN REAL — control (valor de la literatura)  (umbral de germinación 15 mm)
+  floración máxima alcanzada: 0.404
+  e_R        máx 0.1547  vs κ_O 0.2   -> lo cruza el 0.00% del tiempo
+  Δ_struct   mín 0.5200  vs κ_Δ 0.5102   -> baja de él el 0.00% del tiempo
+  A_sys_env  mín 0.3651  vs κ_V 0.7   -> baja de él el 36.90% del tiempo
+  LF         rango 0.0000 – 0.9614  vs κ_LF 0.35
+  estacionario: e_R máx 0.1395 / 0.1547   Δ_struct mín 0.5340 / 0.5200   (1ª mitad / 2ª mitad de la ventana)
+
+LLUVIA SIEMPRE — floración permanente  (umbral de germinación 0 mm)
+  floración máxima alcanzada: 0.467
+  e_R        máx 0.1502  vs κ_O 0.2   -> lo cruza el 0.00% del tiempo
+  Δ_struct   mín 0.5199  vs κ_Δ 0.5102   -> baja de él el 0.00% del tiempo
+  A_sys_env  mín 0.3841  vs κ_V 0.7   -> baja de él el 39.18% del tiempo
+  LF         rango 0.3537 – 0.9954  vs κ_LF 0.35
+  estacionario: e_R máx 0.1502 / 0.1428   Δ_struct mín 0.5318 / 0.5199   (1ª mitad / 2ª mitad de la ventana)
+
+==================================================================
+e_R      NO se viola en NINGUNO de los tres regímenes
+Δ_struct NO se viola en NINGUNO de los tres regímenes
+
+Lectura: si no se violan ni en los extremos, para ESTE modelo son
+condiciones satisfechas siempre — y el Plano Cierre opera con dos ejes.

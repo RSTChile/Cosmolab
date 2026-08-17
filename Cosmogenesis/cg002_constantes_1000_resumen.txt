@@ -1,0 +1,54 @@
+CG002 constantes emergentes — barrido N=1000 cosmos
+Modelo: N_dif=2000, d_firma=3, pasos=240, theta_CP=0.0
+CSV: cg002_constantes_1000.csv
+Generado: 2026-06-30 02:22:05
+
+--- Cantidades agregables (ley vs historia) ---
+cantidad                    media        std      CV%  veredicto
+f_persiste                0.50633    0.00993    1.96%  CONSTANTE
+orden_a1                  0.51542    0.00959    1.86%  CONSTANTE
+S_mean_vivos           9726.94535  335.54804    3.45%  CONSTANTE
+S_max_vivos            18892.58850  396.80668    2.10%  CONSTANTE
+S_total_vivos          9851073.07318 413543.66028    4.20%  CONSTANTE
+entropia_orient           4.92910    0.14445    2.93%  CONSTANTE
+dim_participation        11.93607    0.01981    0.17%  CONSTANTE
+rango_C                1012.67000   19.85198    1.96%  CONSTANTE
+ratio_orden_inicial      32.15480   20.87199   64.91%  contingente
+frac_coop_inicial         0.49998    0.00035    0.07%  CONSTANTE
+
+--- Dirección (historia contingente) ---
+ángulo medio entre cosmos (vivos): 89.9°  (azar teórico ≈ 90°)
+componentes media: x=-0.0300 y=0.0140 z=-0.0287
+
+--- Razones (candidatas a invariantes) ---
+f * orden_a1: media=0.26094 CV=2.08%
+orden_a1 / f:  media=1.01850 CV=3.22%
+
+--- Correlaciones (|r|>0.5) ---
+  f_persiste ↔ S_max_vivos: r=0.580
+  f_persiste ↔ S_total_vivos: r=0.579
+  f_persiste ↔ rango_C: r=1.000
+  f_persiste ↔ ratio_orden_inicial: r=-0.500
+  f_persiste ↔ frac_coop_inicial: r=0.545
+  orden_a1 ↔ S_mean_vivos: r=0.850
+  orden_a1 ↔ S_max_vivos: r=0.505
+  orden_a1 ↔ S_total_vivos: r=0.506
+  orden_a1 ↔ dim_participation: r=-0.751
+  S_mean_vivos ↔ S_max_vivos: r=0.883
+  S_mean_vivos ↔ S_total_vivos: r=0.885
+  S_mean_vivos ↔ dim_participation: r=-0.586
+  S_max_vivos ↔ S_total_vivos: r=0.999
+  S_max_vivos ↔ rango_C: r=0.580
+  S_max_vivos ↔ ratio_orden_inicial: r=-0.599
+  S_max_vivos ↔ frac_coop_inicial: r=0.666
+  S_total_vivos ↔ rango_C: r=0.579
+  S_total_vivos ↔ ratio_orden_inicial: r=-0.595
+  S_total_vivos ↔ frac_coop_inicial: r=0.670
+  rango_C ↔ ratio_orden_inicial: r=-0.500
+  rango_C ↔ frac_coop_inicial: r=0.545
+  ratio_orden_inicial ↔ frac_coop_inicial: r=-0.512
+
+--- Criterio ---
+CV < 5%  → candidata a CONSTANTE (ley entre universos)
+CV ≥ 15% o dirección ~90° entre semillas → HISTORIA (contingente)
+Nada post-hoc: cantidades definidas antes del barrido.

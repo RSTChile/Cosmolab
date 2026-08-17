@@ -1,0 +1,16 @@
+=== CS072 v6 -- validacion final (correcciones ADJUDICACION + fix de aniquilacion compuesta) ===
+
+--- 4 BRAZOS DE CONTROL (30q/21aq/10e/7p, pasos=300 para dar tiempo al confinamiento) ---
+  brazo A (homogeneo=True, expansion=False): n_firmas=7, diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  brazo B (homogeneo=True, expansion=True): n_firmas=7, diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  brazo C (homogeneo=False, expansion=False): n_firmas=68, diametro=0, componentes=68, tam_mayor=1, bariones=0, hidrogeno=0
+  brazo D (homogeneo=False, expansion=True): n_firmas=68, diametro=3, componentes=28, tam_mayor=41, bariones=0, hidrogeno=0
+  D vs A: D>A | D vs B: D>B | D vs C: D>C
+  *** CERO HIDRÓGENO EN LOS 4 BRAZOS -- el diámetro mide quarks/electrones SUELTOS, NO puede llamarse 'espacio' todavía ***
+  *** SÓLO D ENCIENDE, MÁS QUE A, B Y C (esperado) ***
+
+--- INVARIANCIA DURA (brazo D, pasos=300) ---
+  INVARIANCIA DURA (brazo D, N=68): max_dif=1.388e-17 -- *** INVARIANTE (atol 1e-9) ***
+
+--- diagnostico: color de los quarks materia vivos tras 300 pasos (deberia haber 3 colores distintos) ---
+  distribucion de color entre quarks materia: {1: 30}

@@ -1,0 +1,9 @@
+[progreso] eps=0.0 listo (96/576)
+[progreso] eps=1e-06 listo (192/576)
+[progreso] eps=0.0001 listo (288/576)
+[progreso] eps=0.01 listo (384/576)
+[progreso] eps=0.1 listo (480/576)
+[progreso] eps=1.0 listo (576/576)
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_3_estabilidad_temporal/E5_3_3_resultado.json
+[elapsed] 10935.7s
+[T6] combinaciones con violacion de conservacion: 0/48

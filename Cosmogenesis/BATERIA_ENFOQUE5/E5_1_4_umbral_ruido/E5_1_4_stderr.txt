@@ -1,0 +1,33 @@
+[2026-07-24 20:45:26] E5.1-4 motor — inicio. N=200 eps_real=0.001 semillas=16
+[2026-07-24 20:45:26] amplitudes_ruido (17 pts): [np.float64(1e-08), np.float64(3.162277660168379e-08), np.float64(1e-07), np.float64(3.162277660168379e-07), np.float64(1e-06), np.float64(3.162277660168379e-06), np.float64(1e-05), np.float64(3.1622776601683795e-05), np.float64(0.0001), np.float64(0.00031622776601683794), np.float64(0.001), np.float64(0.0031622776601683794), np.float64(0.01), np.float64(0.03162277660168379), np.float64(0.1), np.float64(0.31622776601683794), np.float64(1.0)]
+[2026-07-24 20:45:26] r_grid (8 pts): [0.0, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+[2026-07-24 20:45:40] calibracion pasos_lavado: mediana=5300 pasos=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+[2026-07-24 20:45:40] D medido (eps_real=0.001, promedio 8 semillas) = 0.00084137
+[2026-07-24 20:45:40] H(r) derivado: {0.0: 0.0, 0.1: 8.413667864338949e-05, 0.3: 0.00025241003593016846, 1.0: 0.0008413667864338949, 3.0: 0.0025241003593016844, 10.0: 0.008413667864338949, 30.0: 0.025241003593016845, 100.0: 0.08413667864338949}
+[2026-07-24 20:45:40] total corridas planificadas: 4352
+[2026-07-24 20:47:24] progreso: 32/4352 (0.7%) elapsed=119s eta=16004s | r=0.0 amplitud=1.000e-08 X_final_real=0.0337 X_final_null=0.0000
+[2026-07-24 20:49:05] progreso: 64/4352 (1.5%) elapsed=220s eta=14714s | r=0.0 amplitud=3.162e-08 X_final_real=0.0338 X_final_null=0.0000
+[2026-07-24 20:51:07] progreso: 96/4352 (2.2%) elapsed=341s eta=15134s | r=0.0 amplitud=1.000e-07 X_final_real=0.0338 X_final_null=0.0000
+[2026-07-24 20:53:18] progreso: 128/4352 (2.9%) elapsed=473s eta=15594s | r=0.0 amplitud=3.162e-07 X_final_real=0.0339 X_final_null=0.0000
+[2026-07-24 20:55:37] progreso: 160/4352 (3.7%) elapsed=612s eta=16025s | r=0.0 amplitud=1.000e-06 X_final_real=0.0343 X_final_null=0.0000
+[2026-07-24 20:57:58] progreso: 192/4352 (4.4%) elapsed=753s eta=16306s | r=0.0 amplitud=3.162e-06 X_final_real=0.0358 X_final_null=0.0000
+[2026-07-24 21:00:25] progreso: 224/4352 (5.1%) elapsed=899s eta=16571s | r=0.0 amplitud=1.000e-05 X_final_real=0.0421 X_final_null=0.0000
+[2026-07-24 21:03:10] progreso: 256/4352 (5.9%) elapsed=1064s eta=17025s | r=0.0 amplitud=3.162e-05 X_final_real=0.0789 X_final_null=0.0000
+[2026-07-24 21:05:20] progreso: 288/4352 (6.6%) elapsed=1194s eta=16849s | r=0.0 amplitud=1.000e-04 X_final_real=0.3626 X_final_null=0.0000
+[2026-07-24 21:07:17] progreso: 320/4352 (7.4%) elapsed=1312s eta=16527s | r=0.0 amplitud=3.162e-04 X_final_real=2.9350 X_final_null=0.0000
+[2026-07-24 21:09:20] progreso: 352/4352 (8.1%) elapsed=1434s eta=16296s | r=0.0 amplitud=1.000e-03 X_final_real=27.8212 X_final_null=0.0000
+[2026-07-24 21:11:13] progreso: 384/4352 (8.8%) elapsed=1547s eta=15985s | r=0.0 amplitud=3.162e-03 X_final_real=274.0332 X_final_null=0.0000
+[2026-07-24 21:13:11] progreso: 416/4352 (9.6%) elapsed=1665s eta=15752s | r=0.0 amplitud=1.000e-02 X_final_real=2727.7744 X_final_null=0.0000
+[2026-07-24 21:15:04] progreso: 448/4352 (10.3%) elapsed=1779s eta=15500s | r=0.0 amplitud=3.162e-02 X_final_real=27238.6907 X_final_null=0.0000
+[2026-07-24 21:16:51] progreso: 480/4352 (11.0%) elapsed=1885s eta=15209s | r=0.0 amplitud=1.000e-01 X_final_real=272264.0667 X_final_null=0.0000
+[2026-07-24 21:18:34] progreso: 512/4352 (11.8%) elapsed=1988s eta=14911s | r=0.0 amplitud=3.162e-01 X_final_real=2722252.8702 X_final_null=0.0000
+[2026-07-24 21:20:17] progreso: 544/4352 (12.5%) elapsed=2091s eta=14637s | r=0.0 amplitud=1.000e+00 X_final_real=27221303.0370 X_final_null=0.0000
+[2026-07-24 21:22:20] progreso: 576/4352 (13.2%) elapsed=2214s eta=14516s | r=0.1 amplitud=1.000e-08 X_final_real=0.6289 X_final_null=0.0000
+[2026-07-24 21:24:24] progreso: 608/4352 (14.0%) elapsed=2338s eta=14399s | r=0.1 amplitud=3.162e-08 X_final_real=0.6288 X_final_null=0.0000
+[2026-07-24 21:26:31] progreso: 640/4352 (14.7%) elapsed=2465s eta=14300s | r=0.1 amplitud=1.000e-07 X_final_real=0.6287 X_final_null=0.0000
+[2026-07-24 21:28:47] progreso: 672/4352 (15.4%) elapsed=2601s eta=14244s | r=0.1 amplitud=3.162e-07 X_final_real=0.6283 X_final_null=0.0000
+[2026-07-24 21:31:05] progreso: 704/4352 (16.2%) elapsed=2740s eta=14196s | r=0.1 amplitud=1.000e-06 X_final_real=0.6275 X_final_null=0.0000
+[2026-07-24 21:33:44] progreso: 736/4352 (16.9%) elapsed=2898s eta=14240s | r=0.1 amplitud=3.162e-06 X_final_real=0.6293 X_final_null=0.0000
+[2026-07-24 21:37:27] progreso: 768/4352 (17.6%) elapsed=3121s eta=14565s | r=0.1 amplitud=1.000e-05 X_final_real=0.6780 X_final_null=0.0000
+[2026-07-24 21:40:31] progreso: 800/4352 (18.4%) elapsed=3306s eta=14678s | r=0.1 amplitud=3.162e-05 X_final_real=1.2619 X_final_null=0.0000
+[2026-07-24 21:44:56] progreso: 832/4352 (19.1%) elapsed=3570s eta=15106s | r=0.1 amplitud=1.000e-04 X_final_real=7.4090 X_final_null=0.0000

@@ -1,0 +1,327 @@
+{
+  "filas": [
+    {
+      "eps": 1e-06,
+      "r": 0.01,
+      "D": 0.0008413667834482932,
+      "H": 8.413667834482933e-06,
+      "pasos": 3000,
+      "noise_amp": 0.0002900632316320518,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 4995200.641387601,
+      "eficiencia_real_std": 2482698.473727035,
+      "eficiencia_real_por_semilla": [
+        1584341.0462237261,
+        7421889.881700597,
+        5979370.996238481
+      ],
+      "eficiencia_null_media": 4995200.641387601,
+      "eficiencia_null_std": 2482698.473727035,
+      "eficiencia_null_por_semilla": [
+        1584341.0462237261,
+        7421889.881700597,
+        5979370.996238481
+      ],
+      "z": 0.0,
+      "n_dominios_aislados_medio": 7.0,
+      "frac_exp_medio": 0.03500000000000003,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 1e-06,
+      "r": 1.0,
+      "D": 0.0008413667834482932,
+      "H": 0.0008413667834482932,
+      "pasos": 3000,
+      "noise_amp": 0.0002900632316320518,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 160091833.25874966,
+      "eficiencia_real_std": 21775894.797920294,
+      "eficiencia_real_por_semilla": [
+        190500089.46018314,
+        149105270.50620767,
+        140670139.80985814
+      ],
+      "eficiencia_null_media": 160091833.25874963,
+      "eficiencia_null_std": 21775894.79792031,
+      "eficiencia_null_por_semilla": [
+        190500089.46018314,
+        149105270.50620764,
+        140670139.8098581
+      ],
+      "z": 1.3685923202816709e-15,
+      "n_dominios_aislados_medio": 184.0,
+      "frac_exp_medio": 0.9199999999999999,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 1e-06,
+      "r": 100.0,
+      "D": 0.0008413667834482932,
+      "H": 0.08413667834482932,
+      "pasos": 100,
+      "noise_amp": 0.0002900632316320518,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 7032244.219471209,
+      "eficiencia_real_std": 503081.4993456582,
+      "eficiencia_real_por_semilla": [
+        6348881.785976903,
+        7202466.021655126,
+        7545384.850781599
+      ],
+      "eficiencia_null_media": 7032244.21947121,
+      "eficiencia_null_std": 503081.4993456587,
+      "eficiencia_null_por_semilla": [
+        6348881.785976903,
+        7202466.021655127,
+        7545384.8507816
+      ],
+      "z": -1.851235984282505e-15,
+      "n_dominios_aislados_medio": 199.66666666666666,
+      "frac_exp_medio": 0.9983333333333334,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 0.001,
+      "r": 0.01,
+      "D": 0.0008413667864305607,
+      "H": 8.413667864305608e-06,
+      "pasos": 3000,
+      "noise_amp": 0.00029006323214612374,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 4.960300695430592,
+      "eficiencia_real_std": 2.560312783072691,
+      "eficiencia_real_por_semilla": [
+        1.968704355587528,
+        8.22261119911216,
+        4.68958653159209
+      ],
+      "eficiencia_null_media": 4.960300695430592,
+      "eficiencia_null_std": 2.5603127830726913,
+      "eficiencia_null_por_semilla": [
+        1.9687043555875283,
+        8.22261119911216,
+        4.689586531592088
+      ],
+      "z": 0.0,
+      "n_dominios_aislados_medio": 7.0,
+      "frac_exp_medio": 0.03500000000000003,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 0.001,
+      "r": 1.0,
+      "D": 0.0008413667864305607,
+      "H": 0.0008413667864305607,
+      "pasos": 3000,
+      "noise_amp": 0.00029006323214612374,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 161.21131742638624,
+      "eficiencia_real_std": 22.74466627756317,
+      "eficiencia_real_por_semilla": [
+        192.91073106277574,
+        150.08814712538796,
+        140.63507409099503
+      ],
+      "eficiencia_null_media": 161.21131742638624,
+      "eficiencia_null_std": 22.74466627756317,
+      "eficiencia_null_por_semilla": [
+        192.91073106277574,
+        150.08814712538796,
+        140.63507409099503
+      ],
+      "z": 0.0,
+      "n_dominios_aislados_medio": 184.0,
+      "frac_exp_medio": 0.9199999999999999,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 0.001,
+      "r": 100.0,
+      "D": 0.0008413667864305607,
+      "H": 0.08413667864305607,
+      "pasos": 100,
+      "noise_amp": 0.00029006323214612374,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 7.866509197748172,
+      "eficiencia_real_std": 0.36200560453158065,
+      "eficiencia_real_por_semilla": [
+        7.408041477477253,
+        7.898442275648484,
+        8.293043840118782
+      ],
+      "eficiencia_null_media": 7.866509197748175,
+      "eficiencia_null_std": 0.36200560453158137,
+      "eficiencia_null_por_semilla": [
+        7.408041477477253,
+        7.8984422756484856,
+        8.293043840118784
+      ],
+      "z": -7.360480682469447e-15,
+      "n_dominios_aislados_medio": 199.66666666666666,
+      "frac_exp_medio": 0.9983333333333334,
+      "conservacion_ok_todas": false
+    },
+    {
+      "eps": 1.0,
+      "r": 0.01,
+      "D": 0.000841366786435066,
+      "H": 8.41366786435066e-06,
+      "pasos": 3000,
+      "noise_amp": 0.00029006323214690035,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 0.3718853038172976,
+      "eficiencia_real_std": 0.08889842374508153,
+      "eficiencia_real_por_semilla": [
+        0.2638575425649081,
+        0.4815938584764523,
+        0.37020451041053254
+      ],
+      "eficiencia_null_media": 0.3718853038172976,
+      "eficiencia_null_std": 0.08889842374508153,
+      "eficiencia_null_por_semilla": [
+        0.2638575425649081,
+        0.4815938584764523,
+        0.3702045104105325
+      ],
+      "z": 0.0,
+      "n_dominios_aislados_medio": 7.0,
+      "frac_exp_medio": 0.03500000000000003,
+      "conservacion_ok_todas": true
+    },
+    {
+      "eps": 1.0,
+      "r": 1.0,
+      "D": 0.000841366786435066,
+      "H": 0.000841366786435066,
+      "pasos": 3000,
+      "noise_amp": 0.00029006323214690035,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 0.871976172722885,
+      "eficiencia_real_std": 0.035459103671590934,
+      "eficiencia_real_por_semilla": [
+        0.8869643670361745,
+        0.9059252604487904,
+        0.8230388906836896
+      ],
+      "eficiencia_null_media": 0.8719761727228846,
+      "eficiencia_null_std": 0.0354591036715909,
+      "eficiencia_null_por_semilla": [
+        0.8869643670361743,
+        0.9059252604487904,
+        0.8230388906836896
+      ],
+      "z": 9.992007221626409e-16,
+      "n_dominios_aislados_medio": 184.0,
+      "frac_exp_medio": 0.9199999999999999,
+      "conservacion_ok_todas": true
+    },
+    {
+      "eps": 1.0,
+      "r": 100.0,
+      "D": 0.000841366786435066,
+      "H": 0.0841366786435066,
+      "pasos": 100,
+      "noise_amp": 0.00029006323214690035,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": false,
+      "eficiencia_real_media": 0.991258291252454,
+      "eficiencia_real_std": 0.0018616148841064518,
+      "eficiencia_real_por_semilla": [
+        0.9935472277062358,
+        0.9889873273984071,
+        0.9912403186527193
+      ],
+      "eficiencia_null_media": 0.9912582912524542,
+      "eficiencia_null_std": 0.0018616148841064518,
+      "eficiencia_null_por_semilla": [
+        0.9935472277062359,
+        0.9889873273984072,
+        0.9912403186527194
+      ],
+      "z": -6.661338147750939e-16,
+      "n_dominios_aislados_medio": 199.66666666666666,
+      "frac_exp_medio": 0.9983333333333334,
+      "conservacion_ok_todas": true
+    }
+  ],
+  "control_eps0": [
+    {
+      "eps": 0.0,
+      "r": 0.01,
+      "D": 0.0,
+      "H": 0.0,
+      "pasos": 3000,
+      "noise_amp": 0.0,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": true,
+      "n_dominios_aislados_medio": 0.0,
+      "frac_exp_medio": 0.0,
+      "conservacion_ok_todas": true
+    },
+    {
+      "eps": 0.0,
+      "r": 1.0,
+      "D": 0.0,
+      "H": 0.0,
+      "pasos": 3000,
+      "noise_amp": 0.0,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": true,
+      "n_dominios_aislados_medio": 0.0,
+      "frac_exp_medio": 0.0,
+      "conservacion_ok_todas": true
+    },
+    {
+      "eps": 0.0,
+      "r": 100.0,
+      "D": 0.0,
+      "H": 0.0,
+      "pasos": 3000,
+      "noise_amp": 0.0,
+      "N": 200,
+      "semillas": 3,
+      "indefinida": true,
+      "n_dominios_aislados_medio": 0.0,
+      "frac_exp_medio": 0.0,
+      "conservacion_ok_todas": true
+    }
+  ],
+  "elapsed_s": 63.68079590797424,
+  "N": 200,
+  "semillas": 3,
+  "eps_list": [
+    1e-06,
+    0.001,
+    1.0
+  ],
+  "r_list": [
+    0.01,
+    1.0,
+    100.0
+  ],
+  "H_floor": 1e-06,
+  "pasos_min": 100,
+  "pasos_max": 3000,
+  "noise_coef": 0.01,
+  "definicion": "eficiencia = E_ligada/E_total; E_ligada = suma de (phi_final-1)^2 en dominios AISLADOS (componentes conexas de tamano<N via aristas activas remanentes); E_total = suma de (phi0-1)^2 al inicio de esa corrida. Definicion CANONICA transcrita de PROTOCOLO_E5.3-1_PREREGISTRO.md (motor E5.3-1 no estaba en disco; reconstruccion fiel desde el texto congelado, ejecutada por el agente E5.3-5)."
+}

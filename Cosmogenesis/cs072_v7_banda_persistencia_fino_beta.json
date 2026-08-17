@@ -1,0 +1,58 @@
+[
+  {
+    "poda_tasa": 0.04,
+    "beta": 0.12288510042389876,
+    "grado_max_N1600": 17,
+    "frac_gigante_N1600": 0.993125,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.045,
+    "beta": 0.2267829724259052,
+    "grado_max_N1600": 19,
+    "frac_gigante_N1600": 0.9875,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.05,
+    "beta": 0.13764177710378275,
+    "grado_max_N1600": 15,
+    "frac_gigante_N1600": 0.983125,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.055,
+    "beta": 0.21608754862605567,
+    "grado_max_N1600": 15,
+    "frac_gigante_N1600": 0.965625,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.06,
+    "beta": 0.04650133582826182,
+    "grado_max_N1600": 14,
+    "frac_gigante_N1600": 0.951875,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.065,
+    "beta": 0.1515315992292426,
+    "grado_max_N1600": 14,
+    "frac_gigante_N1600": 0.93875,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.07,
+    "beta": 0.18019415214832088,
+    "grado_max_N1600": 12,
+    "frac_gigante_N1600": 0.88375,
+    "delta_gromov_N1600": 0.5
+  },
+  {
+    "poda_tasa": 0.08,
+    "beta": 0.2052798327298957,
+    "grado_max_N1600": 10,
+    "frac_gigante_N1600": 0.7175,
+    "delta_gromov_N1600": 0.5
+  }
+]

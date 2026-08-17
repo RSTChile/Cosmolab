@@ -1,0 +1,18 @@
+tiempo total: 53.0 s
+{
+  "ok": true,
+  "n_bariones": 250,
+  "n_cdm": 250,
+  "n_pasos": 120,
+  "n_clusters_ligados": 0,
+  "n_estructuras_jeans": 0,
+  "a_final": 10.954451150103322,
+  "linking_length": 2.1908902300206647,
+  "obs_basal": {
+    "hidrogeno": 250,
+    "helio": 125
+  },
+  "emerge_estrella": false
+}
+detalle:
+EXIT:0

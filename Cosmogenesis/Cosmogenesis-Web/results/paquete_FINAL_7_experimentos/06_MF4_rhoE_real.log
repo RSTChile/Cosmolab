@@ -1,0 +1,8 @@
+06 MF4 rho_E real = rho0/a^3 * phi^2 * (1+|grad|^2)
+step   0 a=  1.0 rho_E_avg=1.93e+30 k1=0 k3=0 ratio=0.00000
+step 100 a=  3.3 rho_E_avg=3.17e+28 k1=84 k3=12 ratio=0.24471
+step 200 a= 11.0 rho_E_avg=8.59e+26 k1=235 k3=15 ratio=0.27748
+step 300 a= 36.6 rho_E_avg=2.35e+25 k1=309 k3=16 ratio=0.29657
+step 400 a=121.5 rho_E_avg=6.41e+23 k1=345 k3=24 ratio=0.43000
+FIN 06
+EXIT:0

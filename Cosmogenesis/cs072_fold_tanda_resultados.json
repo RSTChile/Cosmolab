@@ -1,0 +1,344 @@
+{
+  "real": {
+    "beta": 3.896997370469017e-17,
+    "detalle": [
+      {
+        "N": 100,
+        "frac_pares": 0.7161616161616161,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 200,
+        "frac_pares": 0.6962814070351758,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 400,
+        "frac_pares": 0.7018170426065163,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 800,
+        "frac_pares": 0.693607634543179,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      }
+    ]
+  },
+  "null_catalogo": {
+    "beta": -0.1754887502163468,
+    "detalle": [
+      {
+        "N": 100,
+        "frac_pares": 0.49636363636363634,
+        "diam": 3.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 200,
+        "frac_pares": 0.4150753768844221,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 400,
+        "frac_pares": 0.4394235588972431,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      },
+      {
+        "N": 800,
+        "frac_pares": 0.40356070087609514,
+        "diam": 2.0,
+        "d_s": NaN,
+        "frac_gigante": 0.9
+      }
+    ]
+  },
+  "curvas": {
+    "real": {
+      "n_niveles": 52549,
+      "jueces": {
+        "log_dispersion": 8.957193348404115,
+        "max_h": 0.008147158609822,
+        "k_eff_medio": 124.64845914155612,
+        "k_eff_max": 195.7504908127544,
+        "rango_efectivo_laplaciano": 393,
+        "n_autovalores": 400
+      },
+      "sello": {
+        "delta_gromov_log": 0.06510737228786567,
+        "delta_gromov_inv": 0.29392733647408154
+      },
+      "curva_checkpoints": [
+        {
+          "nivel": 0,
+          "valor": 1.08018004235167,
+          "frac_pares": 1.2531328320802006e-05,
+          "frac_gigante": 0.005,
+          "diam": NaN,
+          "d_s": NaN
+        },
+        {
+          "nivel": 5318,
+          "valor": 0.15077137534329624,
+          "frac_pares": 0.06666666666666667,
+          "frac_gigante": 0.725,
+          "diam": 5.0,
+          "d_s": 1.9768557885443723
+        },
+        {
+          "nivel": 10638,
+          "valor": 0.11372735104309045,
+          "frac_pares": 0.13333333333333333,
+          "frac_gigante": 0.7375,
+          "diam": 3.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 15958,
+          "valor": 0.07161490895684822,
+          "frac_pares": 0.2,
+          "frac_gigante": 0.7425,
+          "diam": 3.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 21278,
+          "valor": 0.04419638025823812,
+          "frac_pares": 0.26666666666666666,
+          "frac_gigante": 0.7475,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 26594,
+          "valor": 0.0362270141628022,
+          "frac_pares": 0.3333333333333333,
+          "frac_gigante": 0.75,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 31911,
+          "valor": 0.005167855779386886,
+          "frac_pares": 0.4,
+          "frac_gigante": 0.7675,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 37220,
+          "valor": 0.001239577041506961,
+          "frac_pares": 0.4666666666666667,
+          "frac_gigante": 0.805,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 42504,
+          "valor": 0.00031360582846864916,
+          "frac_pares": 0.5333333333333333,
+          "frac_gigante": 0.8075,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 47677,
+          "valor": 4.3775717544122095e-05,
+          "frac_pares": 0.6,
+          "frac_gigante": 0.8075,
+          "diam": 1.5,
+          "d_s": NaN
+        },
+        {
+          "nivel": 52023,
+          "valor": 7.439397881957608e-07,
+          "frac_pares": 0.6666666666666666,
+          "frac_gigante": 0.85,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 52534,
+          "valor": 1.5988486585562774e-08,
+          "frac_pares": 0.733796992481203,
+          "frac_gigante": 0.9225,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 52547,
+          "valor": 1.880633109265965e-09,
+          "frac_pares": 0.8257268170426065,
+          "frac_gigante": 0.99,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 52548,
+          "valor": 8.003644079106318e-10,
+          "frac_pares": 1.0,
+          "frac_gigante": 1.0,
+          "diam": 1.0,
+          "d_s": NaN
+        }
+      ]
+    },
+    "null_catalogo": {
+      "n_niveles": 57909,
+      "jueces": {
+        "log_dispersion": 8.015254433229757,
+        "max_h": 0.007807554287257183,
+        "k_eff_medio": 120.67118361907629,
+        "k_eff_max": 202.01424439365576,
+        "rango_efectivo_laplaciano": 398,
+        "n_autovalores": 400
+      },
+      "sello": {
+        "delta_gromov_log": 0.12418137563546505,
+        "delta_gromov_inv": 0.6921858604094915
+      },
+      "curva_checkpoints": [
+        {
+          "nivel": 0,
+          "valor": 0.895229262508599,
+          "frac_pares": 1.2531328320802006e-05,
+          "frac_gigante": 0.005,
+          "diam": NaN,
+          "d_s": NaN
+        },
+        {
+          "nivel": 5314,
+          "valor": 0.14402419150904536,
+          "frac_pares": 0.06666666666666667,
+          "frac_gigante": 0.7475,
+          "diam": 6.0,
+          "d_s": 1.8663465171911442
+        },
+        {
+          "nivel": 10610,
+          "valor": 0.10020614637023195,
+          "frac_pares": 0.13333333333333333,
+          "frac_gigante": 0.77,
+          "diam": 3.0,
+          "d_s": 1.8159274099488267
+        },
+        {
+          "nivel": 15919,
+          "valor": 0.0570716090984788,
+          "frac_pares": 0.2,
+          "frac_gigante": 0.7875,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 21210,
+          "valor": 0.03538024456257846,
+          "frac_pares": 0.26666666666666666,
+          "frac_gigante": 0.8,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 26515,
+          "valor": 0.014869093377355706,
+          "frac_pares": 0.3333333333333333,
+          "frac_gigante": 0.835,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 31831,
+          "valor": 0.004472014799733478,
+          "frac_pares": 0.4,
+          "frac_gigante": 0.87,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 37135,
+          "valor": 0.0016412836512554297,
+          "frac_pares": 0.4666666666666667,
+          "frac_gigante": 0.9225,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 42430,
+          "valor": 0.0007169772371080496,
+          "frac_pares": 0.5333333333333333,
+          "frac_gigante": 0.9325,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 47695,
+          "valor": 0.00023573901089142085,
+          "frac_pares": 0.6,
+          "frac_gigante": 0.9325,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 52867,
+          "valor": 4.4573517584817496e-05,
+          "frac_pares": 0.6666791979949874,
+          "frac_gigante": 0.9325,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 57388,
+          "valor": 5.759479678250371e-07,
+          "frac_pares": 0.7333333333333333,
+          "frac_gigante": 0.9425,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 57894,
+          "valor": 1.2643529272696536e-08,
+          "frac_pares": 0.8010776942355889,
+          "frac_gigante": 0.98,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 57906,
+          "valor": 1.871517878150654e-09,
+          "frac_pares": 0.8745238095238095,
+          "frac_gigante": 0.9975,
+          "diam": 2.0,
+          "d_s": NaN
+        },
+        {
+          "nivel": 57907,
+          "valor": 9.76258498286381e-10,
+          "frac_pares": 0.9343358395989975,
+          "frac_gigante": 1.0,
+          "diam": 1.5,
+          "d_s": NaN
+        },
+        {
+          "nivel": 57908,
+          "valor": 8.102337341104768e-11,
+          "frac_pares": 1.0,
+          "frac_gigante": 1.0,
+          "diam": 1.0,
+          "d_s": NaN
+        }
+      ]
+    }
+  }
+}

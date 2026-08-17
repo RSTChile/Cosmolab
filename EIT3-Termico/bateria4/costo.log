@@ -1,0 +1,7 @@
+baseline (tOpt=25,ptcSharp=16,beta=0.94,pB=0.47) semilla=1: 55.7s, 60 puntos, 0 sin converger recuperación, 0 sin asentar
+baseline semilla=2: 53.8s, 60 puntos, 0 sin converger recuperación, 0 sin asentar
+esquina grilla (beta=0.80,tOpt=28,ptcSharp=16,pB=0.30) semilla=1: 51.8s, 60 puntos, 0 sin converger recuperación, 0 sin asentar
+esquina2 (beta=0.98,tOpt=22,ptcSharp=8,pB=0.65) semilla=1: 51.0s, 60 puntos, 0 sin converger recuperación, 0 sin asentar
+
+promedio baseline: 54.7 s/barrido
+esquinas: 51.8 s y 51.0 s

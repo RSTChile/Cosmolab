@@ -1,0 +1,135 @@
+{
+ "sine_98Hz": {
+  "tipo": "tono",
+  "freq": 98,
+  "regimen": "COLAPSO",
+  "W": 0.4927,
+  "gusto": 0.5613078424385372
+ },
+ "sine_131Hz": {
+  "tipo": "tono",
+  "freq": 131,
+  "regimen": "COLAPSO",
+  "W": 0.483,
+  "gusto": 0.5397007049245172
+ },
+ "sine_165Hz": {
+  "tipo": "tono",
+  "freq": 165,
+  "regimen": "COLAPSO",
+  "W": 0.4698,
+  "gusto": 0.5301616526494042
+ },
+ "sine_208Hz": {
+  "tipo": "tono",
+  "freq": 208,
+  "regimen": "COLAPSO",
+  "W": 0.4534,
+  "gusto": 0.5185828511820949
+ },
+ "sine_262Hz": {
+  "tipo": "tono",
+  "freq": 262,
+  "regimen": "COLAPSO",
+  "W": 0.4325,
+  "gusto": 0.5036997347973251
+ },
+ "sine_330Hz": {
+  "tipo": "tono",
+  "freq": 330,
+  "regimen": "COLAPSO",
+  "W": 0.4082,
+  "gusto": 0.48646219556649284
+ },
+ "sine_415Hz": {
+  "tipo": "tono",
+  "freq": 415,
+  "regimen": "COLAPSO",
+  "W": 0.381,
+  "gusto": 0.46735570167473034
+ },
+ "sine_523Hz": {
+  "tipo": "tono",
+  "freq": 523,
+  "regimen": "COLAPSO",
+  "W": 0.356,
+  "gusto": 0.4495465600266971
+ },
+ "sine_659Hz": {
+  "tipo": "tono",
+  "freq": 659,
+  "regimen": "COLAPSO",
+  "W": 0.3518,
+  "gusto": 0.4428762712280452
+ },
+ "sine_831Hz": {
+  "tipo": "tono",
+  "freq": 831,
+  "regimen": "COLAPSO",
+  "W": 0.3535,
+  "gusto": 0.44408797234343517
+ },
+ "sine_1047Hz": {
+  "tipo": "tono",
+  "freq": 1047,
+  "regimen": "COLAPSO",
+  "W": 0.3567,
+  "gusto": 0.4465104083667567
+ },
+ "sine_1319Hz": {
+  "tipo": "tono",
+  "freq": 1319,
+  "regimen": "COLAPSO",
+  "W": 0.3591,
+  "gusto": 0.4484835936928813
+ },
+ "sine_1661Hz": {
+  "tipo": "tono",
+  "freq": 1661,
+  "regimen": "COLAPSO",
+  "W": 0.3604,
+  "gusto": 0.4495910641430768
+ },
+ "sine_2093Hz": {
+  "tipo": "tono",
+  "freq": 2093,
+  "regimen": "COLAPSO",
+  "W": 0.361,
+  "gusto": 0.4501822369262743
+ },
+ "sine_2637Hz": {
+  "tipo": "tono",
+  "freq": 2637,
+  "regimen": "COLAPSO",
+  "W": 0.3612,
+  "gusto": 0.45055074139747286
+ },
+ "Do": {
+  "tipo": "nota",
+  "freq": null,
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.444,
+  "gusto": 0.4744855587006736
+ },
+ "Do_alto": {
+  "tipo": "nota",
+  "freq": null,
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.4338,
+  "gusto": 0.4699685272169983
+ },
+ "Fa": {
+  "tipo": "nota",
+  "freq": null,
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.4405,
+  "gusto": 0.47521862894818795
+ },
+ "La": {
+  "tipo": "nota",
+  "freq": null,
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.4366,
+  "gusto": 0.47213111123292756
+ }
+}

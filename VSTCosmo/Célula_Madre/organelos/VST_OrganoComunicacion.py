@@ -40,6 +40,25 @@ from typing import Any
 
 import numpy as np
 
+# ESCALA COMPARTIDA (auditoría 4-ago-2026, regla 1 del plan): «un módulo compartido, no 168
+# parches». Todo lo que aquí se relativiza usa rel/rel_contra de escala.py — no se reimplementa.
+import sys as _sys
+_RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _RAIZ not in _sys.path:
+    _sys.path.insert(0, _RAIZ)
+# `escala` vive en celula_madre/; esto permite importar el organelo suelto (pruebas y smokes)
+# además de dentro del organismo. Unificado el 5-ago-2026: la revisión encontró CUATRO
+# variantes del mismo arranque, que es el problema contra el que existe el módulo compartido.
+import os as _os, sys as _sys
+_RAIZ_CM = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _RAIZ_CM not in _sys.path:
+    _sys.path.insert(0, _RAIZ_CM)
+from escala import Escala, rel, rel_contra, NEUTRO
+# LO QUE CUESTA EXISTIR, para poder ponerle precio a hablar en las mismas unidades (ver COSTO_USAR).
+# Sin ciclo: VST_Metabolismo sólo importa math, os y escala. Se toma de ahí y no se copia el número,
+# que es justamente el defecto que este anclaje corrige.
+from VST_Metabolismo import BASAL as _BASAL
+
 
 def _clip01(x: Any, default: float = 0.0) -> float:
     try:
@@ -100,6 +119,21 @@ def _flatten_numeric(obj: Any, prefix: str = "") -> list[tuple[str, float]]:
 
 
 def _robust_scale_pairs(pairs: list[tuple[str, float]]) -> list[tuple[str, float]]:
+    """OBSOLETO — conservado sólo para no romper a quien lo importe desde fuera.
+
+    QUÉ ESTABA MAL (medido sobre 99.646 pasos del organismo ANIMA_5Z934MWHNNRH, 3–4 ago 2026):
+    el `10.0` de `tanh(v/10)` declaraba, para 308 columnas de naturaleza distinta, que «10 unidades
+    es mucho». Nadie midió ninguna de las 308. Consecuencia medida: el 14,11 % de todos los valores
+    cantados salía exactamente 1,0000 y el 31,72 % exactamente 0,0000; 16 columnas quedaban clavadas
+    en 1,0000 en más del 90 % de los pasos y 30 columnas en 0,0000. Entre las clavadas en 1,0000
+    está `ts_real` (el reloj: ~1,78e9 → tanh satura → el organismo canta la hora como una constante
+    máxima), `XE`, `A_soporte_fatiga`, `act_perm_energia`, `mem_persistencia`, `ove_confianza`.
+    Es decir: casi la mitad de lo que el organismo canta no era estado, era el techo del tanh.
+
+    El canto es lo que oye el OTRO organismo, y de aquí cuelgan OidoDigital, ValorEcologicoVoz,
+    Expectativa y la métrica de convergencia léxica. Ver `OrganoComunicacion._escalar_pares`:
+    la versión viva compara cada columna contra SU PROPIA historia (escala.py), sin ningún 10.
+    """
     scaled: list[tuple[str, float]] = []
     for k, v in pairs:
         if 0.0 <= v <= 1.0:
@@ -109,6 +143,89 @@ def _robust_scale_pairs(pairs: list[tuple[str, float]]) -> list[tuple[str, float
         if math.isfinite(y):
             scaled.append((k, max(0.0, min(1.0, y))))
     return scaled
+
+
+_SUPER = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+
+
+def _a_superindice(n: int) -> str:
+    return "".join(_SUPER[int(d)] for d in str(int(n)))
+
+
+def _de_superindice(s: str) -> int:
+    return int("".join(str(_SUPER.index(c)) for c in s)) if s else 1
+
+
+# Manipulacion experimental, en el mismo idioma que ANIMA_NO_ACUNAR y ANIMA_IMITAR_FORMA: se lee
+# una sola vez al importar para que los dos brazos corran el MISMO binario y la unica diferencia
+# este declarada en el compose. Apagado = comportamiento historico.
+AFECTO_PROPIO_AL_APRENDER = os.environ.get(
+    "ANIMA_AFECTO_PROPIO_AL_APRENDER", "").strip().lower() in ("1", "true", "yes", "on")
+
+
+def _partir_eco(titulo: str) -> tuple:
+    """Separa un titulo en (profundidad, raiz). El bucle, y no un solo corte, para que un titulo
+    del formato viejo ("eco de eco de X") colapse entero y no un nivel."""
+    resto = titulo
+    n = 0
+    while resto.startswith("eco"):
+        r = resto[3:]
+        i = 0
+        while i < len(r) and r[i] in _SUPER:
+            i += 1
+        digitos, cola = r[:i], r[i:]
+        if not (cola.startswith(" de ") and cola[4:].strip()):
+            break
+        n += _de_superindice(digitos)
+        resto = cola[4:]
+    return n, resto
+
+
+def _componer_eco(n: int, raiz: str) -> str:
+    if n <= 0:
+        return raiz
+    return "eco%s de %s" % (_a_superindice(n) if n > 1 else "", raiz)
+
+
+def titulo_eco(titulo_ajeno: str) -> str:
+    """Titulo de una palabra aprendida: la RAIZ del linaje y CUANTAS manos la han tocado.
+
+    QUE ESTABA MAL (medido el 16-ago-2026). El titulo se construia concatenando
+    f"eco de {titulo del otro}", y los cuatro organismos del lab estan en ANILLO
+    (A->B->C->D->A), asi que una palabra da la vuelta y vuelve a entrar con un "eco de" mas
+    encima, sin tope. Medido en la bitacora: 18 niveles de anidamiento, y 35.180 de las 60.032
+    filas de habla aprendida eran la MISMA raiz -- "palabra propia 1" -- dando vueltas al anillo.
+    El titulo ocupaba la linea entera y aun asi no decia lo unico que importa: de que palabra
+    viene y por cuantas manos ha pasado. Habia que contar "eco de" a ojo.
+
+    Ahora cabe en dos caracteres y dice mas:
+        eco de palabra propia 1      (primera mano: identico a antes, no rompe la serie)
+        eco{2} de palabra propia 1   (segunda, con el numero en superindice)
+        eco{18} de palabra propia 1
+    La raiz queda a la vista y la profundidad es un numero, no una longitud.
+
+    NO cambia ninguna dinamica: `titulo` es metadato de presentacion y de bitacora. Lo que sigue
+    pendiente es que el afecto de la palabra aprendida se HEREDA del par (quizas_emular toma
+    peer["voz_arousal"]) en vez de ser el que ESA palabra le produce a quien la aprende. Mientras
+    eso siga asi, lo que circula por el anillo es un numero congelado. Ver el criterio S=I<->E.
+    """
+    n, raiz = _partir_eco((titulo_ajeno or "").strip() or "el otro")
+    return _componer_eco(n + 1, raiz)
+
+
+def normalizar_titulo(titulo: str) -> str:
+    """Colapsa un titulo del formato viejo SIN aumentar la profundidad.
+
+    Las palabras ESTABLES se guardan a disco con su titulo, asi que un vocabulario acuniado
+    antes del 16-ago-2026 vuelve con "eco de eco de eco de X" y se seguiria mostrando asi para
+    siempre aunque nadie lo vuelva a imitar. Al restaurarlas se normalizan: el linaje es el
+    mismo, sólo se escribe de otra forma. Un titulo que no sea un eco vuelve intacto.
+    """
+    base = (titulo or "").strip()
+    if not base:
+        return base
+    n, raiz = _partir_eco(base)
+    return _componer_eco(n, raiz) if n else base
 
 
 def _rms(x: np.ndarray) -> float:
@@ -212,10 +329,90 @@ class OrganoComunicacion:
         self._creadas_dir = os.environ.get("ANIMA_VOCES_CREADAS_DIR") or os.path.join(
             os.environ.get("ANIMA_ESTADO_DIR") or os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
             "voces_creadas")
+        # ESCALAS PROPIAS DEL CANTO: una por columna cantada. Sustituyen al `tanh(v/10)` (ver
+        # _robust_scale_pairs): cada magnitud se compara con lo habitual DE ESA MAGNITUD, no contra
+        # un 10 que nadie midió. Aprenden UNA sola vez por paso, en observar().
+        self._escala_canto: dict[str, dict] = {}
+        # ESCALAS DEL AFECTO: una por pata del arousal (ver _afecto). Mismo motivo.
+        self._escala_arousal: dict[str, Escala] = {}
+        self._paso_cache: tuple[int, float] = (-1, 0.0)   # (nº de voces, resolución del repertorio)
+        # DIAGNÓSTICO PUBLICABLE (lote E del plan): por qué NO se acuñó / NO se emuló en el último
+        # intento. Sin esto, «cinco guardas cortan la vía y no se sabe cuál» — que es exactamente lo
+        # que pasó durante 99.646 pasos con CERO emulaciones.
+        self._bloqueo_crear = "sin_evaluar"
+        self._bloqueo_emular = "sin_evaluar"
+        self._gap_banco = 0.0        # distancia de MI estado a la voz más cercana de mi repertorio
+        self._gap_peer = 0.0         # distancia de la palabra del OTRO a la voz más cercana mía
         self._creadas = 0          # mayor índice de palabra propia ACUÑADA emitido (monotónico, para etiquetar)
         self._aprendidas = 0       # mayor índice de palabra APRENDIDA (emulada del otro) emitido
         self._emision_seq = 0      # reloj de emisiones (para vida media / abandono de provisionales)
         self._cargar_creadas()     # recupera el vocabulario PROPIO consolidado de vidas anteriores
+
+    def _escalar_pares(self, pares: list[tuple[str, float]],
+                       aprender: bool = False) -> list[tuple[str, float]]:
+        """NORMALIZADOR DEL CANTO — cada columna contra SU PROPIA historia, sin ningún número libre.
+
+        QUÉ ESTABA MAL: `0.5 + 0.5*tanh(v/10)` (ver _robust_scale_pairs) fijaba una sola escala —el
+        10— para las 308 columnas que el organismo canta. MEDIDO sobre 99.646 pasos: 14,11 % de los
+        valores cantados salían exactamente 1,0000 y 31,72 % exactamente 0,0000; 16 columnas
+        clavadas en 1,0000 en >90 % de los pasos (entre ellas `ts_real`, el reloj).
+
+        POR QUÉ ESTO SÍ ES AUTORREGULADO: `rel(|v|, escala)` vale 0,5 cuando la magnitud está en su
+        valor de siempre PARA ESTE ORGANISMO, y no tiene parámetro que elegir: la escala la pone la
+        historia. El signo se conserva alrededor de 0,5, así que v=0 sigue cantando 0,5 (mismo
+        centro acústico que antes) y ya no hay techo alcanzable por el mero tamaño de las unidades.
+
+        DOS DECISIONES EXPLÍCITAS:
+        · Una columna que SIEMPRE ha vivido dentro de [0,1] se canta en crudo: su escala ya está
+          declarada (son fracciones, probabilidades, proporciones) y relativizarla borraría que el
+          organismo lleve mucho tiempo alto o bajo. Sólo se relativiza la columna que alguna vez
+          salió de [0,1], que es justo la que no tiene escala declarada — y la decisión es POR
+          COLUMNA, no por valor, para no reintroducir el escalón que el `tanh` tenía en v=1
+          (antes: v=1,0 cantaba 1,0000 y v=1,0001 cantaba 0,5500).
+        · Mientras la escala no tiene historia se canta 0,5 (política de arranque única de
+          escala.py): «todavía no sé si esto es mucho o poco» en vez de inventarlo.
+
+        El canto es una PERCEPCIÓN (cómo suena mi estado), no una condición de viabilidad: por eso
+        aquí el consigo-mismo es legítimo.
+        """
+        salida: list[tuple[str, float]] = []
+        for k, v in pares:
+            est = self._escala_canto.get(k)
+            if est is None:
+                est = {"esc": Escala(), "sin_escala": False}
+                self._escala_canto[k] = est
+            if v < 0.0 or v > 1.0:
+                est["sin_escala"] = True          # esta columna no tiene escala declarada
+            if not est["sin_escala"]:
+                y = v                              # ya viene en [0,1]: escala declarada, se respeta
+            else:
+                if aprender:
+                    est["esc"].observar(abs(v))
+                if not est["esc"].madura:
+                    y = NEUTRO                     # arranque: indeterminado, no inventado
+                else:
+                    y = 0.5 + 0.5 * math.copysign(rel(abs(v), est["esc"]), v)
+            if math.isfinite(y):
+                salida.append((k, max(0.0, min(1.0, y))))
+        return salida
+
+    def _aprender_escalas_afecto(self, fila: dict) -> None:
+        """Alimenta las escalas de las patas del arousal UNA vez por paso (ver _afecto).
+
+        Va aparte de _afecto porque _afecto se consulta varias veces por paso (voz_actual, la
+        emisión y el cobro del coste): si aprendiera ahí, la media móvil correría al triple de
+        velocidad que el organismo y dejaría de ser lo habitual de un paso.
+        """
+        g = lambda k, d=0.0: float(fila.get(k, d) or d)
+        patas = {"RC_total": g("RC_total"),
+                 "met_energia": g("met_energia", g("energia", g("E"))),
+                 "lateralidad": abs(g("balance_LR"))}
+        for nombre, x in patas.items():
+            esc = self._escala_arousal.get(nombre)
+            if esc is None:
+                esc = Escala()
+                self._escala_arousal[nombre] = esc
+            esc.observar(x)
 
     def observar(self, fila: dict, meta: dict | None = None) -> None:
         with self._lock:
@@ -224,11 +421,24 @@ class OrganoComunicacion:
                 self._meta = dict(meta)
             self._seq += 1
             self._updated = time.time()
-            self._historial.append(_robust_scale_pairs(_flatten_numeric(self._fila)))
+            self._aprender_escalas_afecto(self._fila)
+            # aprender=True SÓLO aquí: observar() se llama una vez por paso; audio() puede llamarse
+            # varias veces (el WAV, el medidor L/R, el nivel de voz propia) y no debe enseñarle nada.
+            self._historial.append(self._escalar_pares(_flatten_numeric(self._fila), aprender=True))
 
     def estado(self) -> dict:
         with self._lock:
             edad = None if not self._updated else round(time.time() - self._updated, 3)
+            # La fila publicada al PAR debe llevar el GESTO vocal actual (g_freq/g_intensidad/
+            # g_pausa/g_repeticion): es la "boca" que el otro lee para IMITAR. self._fila se
+            # captura en observar() ANTES de que el gesto se calcule en el paso, así que aquí
+            # lo fusionamos desde self.gesto (poblado tras proximo_gesto). Sin esto, el OAO del
+            # par lee g_*=None → memoria ecoica de ceros → imitación imposible.
+            fila_pub = dict(self._fila)
+            if isinstance(self.gesto, dict):
+                for _k, _v in self.gesto.items():
+                    if _v is not None:
+                        fila_pub[_k] = _v
             return {
                 "ok": True,
                 "organismo_id": self.organismo_id,
@@ -240,7 +450,7 @@ class OrganoComunicacion:
                 "voice_volumen": self.voice_volumen,
                 "alias": {"FULL_STATE": "FULL_STATE_NOTES"},
                 "modos": list(self.MODOS),
-                "fila": dict(self._fila),
+                "fila": fila_pub,
                 "meta": dict(self._meta),
                 "n_variables_full_state": len(_flatten_numeric(self._fila)),
             }
@@ -265,7 +475,7 @@ class OrganoComunicacion:
                 self._phase_voice = phase
             return y
 
-        pairs = _robust_scale_pairs(_flatten_numeric(fila))
+        pairs = self._escalar_pares(_flatten_numeric(fila))   # sin aprender: sólo observar() enseña
         if seq == 0 or not pairs:
             pairs = [("OI", 0.08), ("LF_op", 0.0), ("R2", 0.0), ("C_m", 0.0),
                      ("XE", 0.0), ("H_homeostasis", 0.4), ("Omega", 0.5)]
@@ -341,20 +551,23 @@ class OrganoComunicacion:
             return np.asarray(mono, dtype=np.float64)
         return mono
 
-    def wav_bytes(self, seg: float = 0.5, modo: str = "FULL_STATE", gain: float | None = None) -> bytes:
-        audio = self.audio(seg=seg, modo=modo)
-        audio = _aplicar_ganancia_salida(audio, self.voice_gain if gain is None else gain, self.voice_target_rms)
+    def _mono_a_wav_estereo(self, mono: np.ndarray, gain: float | None = None,
+                            aplicar_gesto: bool = True, pan: float | None = None) -> bytes:
+        """Pipeline común: ganancia → volumen → (gesto) → paneo L/R → WAV estéreo PCM16."""
+        audio = _aplicar_ganancia_salida(mono, self.voice_gain if gain is None else gain, self.voice_target_rms)
         # GANANCIA DE SALIDA del usuario (slider): sube la voz DE VERDAD, por encima del tope que la
         # gobernanza pone al target_rms. tanh = limitador suave (sin clip duro) para que llegue al rojo.
         mono = np.tanh(np.asarray(audio, dtype=np.float64) * max(0.0, float(self.voice_volumen))) * 0.97
-        mono = self._aplicar_gesto(mono)   # LIBERTAD EXPRESIVA: imprime el gesto explorado sobre la voz
+        if aplicar_gesto:
+            mono = self._aplicar_gesto(mono)   # LIBERTAD EXPRESIVA: imprime el gesto explorado sobre la voz
         # ESTÉREO: la voz lleva la LATERALIDAD del organismo (paneo SUAVE por balance L/R de su estado).
         # Siempre claramente en AMBOS canales (atenuación máx 25%): centro = ambos llenos, no "sólo L".
-        try:
-            pan = float(self._fila.get("balance_LR", self._fila.get("lateralidad", 0.0)) or 0.0)
-        except Exception:
-            pan = 0.0
-        pan = max(-1.0, min(1.0, pan))
+        if pan is None:
+            try:
+                pan = float(self._fila.get("balance_LR", self._fila.get("lateralidad", 0.0)) or 0.0)
+            except Exception:
+                pan = 0.0
+        pan = max(-1.0, min(1.0, float(pan)))
         L = mono * (1.0 - 0.25 * max(0.0, pan))     # pan>0 (derecha) baja L un poco; pan<0 baja R un poco
         R = mono * (1.0 - 0.25 * max(0.0, -pan))
         inter = np.empty(mono.size * 2, dtype=np.float64)
@@ -368,6 +581,38 @@ class OrganoComunicacion:
             w.writeframes(pcm16.tobytes())
         return bio.getvalue()
 
+    def wav_bytes(self, seg: float = 0.5, modo: str = "FULL_STATE", gain: float | None = None) -> bytes:
+        return self._mono_a_wav_estereo(self.audio(seg=seg, modo=modo), gain=gain, aplicar_gesto=True)
+
+    def buscar_voz(self, clave: str):
+        """Busca una voz del repertorio por label o título (exacto, case-insensitive).
+        Sirve al reproductor por-palabra de la UI (En vivo / Historia / repertorio)."""
+        if not clave:
+            return None
+        k = str(clave).strip().lower()
+        if not k or k in ("-", "—"):
+            return None
+        for v in (self._voces or []):
+            if str(v.get("label", "")).strip().lower() == k:
+                return v
+            if str(v.get("titulo", "")).strip().lower() == k:
+                return v
+        return None
+
+    def wav_bytes_por_label(self, clave: str, gain: float | None = None) -> bytes | None:
+        """WAV de UNA palabra concreta del repertorio (sin gesto en vivo, centrada).
+        Permite escuchar 'palabra propia 4' u otra etiqueta sin alterar la emisión actual."""
+        v = self.buscar_voz(clave)
+        if v is None:
+            return None
+        audio = v.get("audio")
+        if audio is None:
+            return None
+        mono = np.asarray(audio[: int(3.0 * self.sr)], dtype=np.float64)
+        if mono.size == 0:
+            return None
+        return self._mono_a_wav_estereo(mono, gain=gain, aplicar_gesto=False, pan=0.0)
+
     def nivel_voz_propia(self, seg: float = 0.3) -> float:
         """RMS de la voz que el organismo emite AHORA (para el medidor de 'voz propia'). Aplica el
         mismo voice_volumen del slider → al subir el volumen, el usuario VE subir este nivel."""
@@ -379,33 +624,138 @@ class OrganoComunicacion:
         except Exception:
             return 0.0
 
-    # SEGUNDA VÍA — parámetros de la decisión "usar banco vs. ACUÑAR palabra propia".
-    GAP_CREAR = 0.22        # distancia afectiva mínima a la voz más cercana para considerar que el banco NO cubre
-    COSTO_USAR = 0.0        # tirar del banco no añade coste extra: la voz YA es señal costosa (lo cobra el metabolismo)
-    COSTO_CREAR = 0.04      # ACUÑAR añade un gasto energético REAL (más caro que reutilizar, como pidió el diseño)
-    ENERGIA_MIN_CREAR = 0.25  # sin esta energía no se puede crear: el coste es REAL (si no, expresa con el banco)
-    P_CREAR = 0.6           # libertad funcional: aun con hueco recurrente y energía, a veces NO crea
-    RECURRENCIA_CREAR = 3   # el hueco debe REAPARECER ≥3 veces (no acuñar por un estado fugaz)
-    MAX_CREADAS = 64        # tope del vocabulario propio (el umbral de gap ya limita; esto es un cinturón)
+    def nivel_voz_propia_estereo(self, seg: float = 0.3) -> dict:
+        """L/R (rms, pico) de la voz ESTÉREO que el organismo emite AHORA. Reproduce el mismo
+        pipeline que wav_bytes (ganancia → volumen → gesto → paneo L/R): el medidor 'Organismo
+        L/R' enciende AMBOS canales porque la voz es estéreo, no mono. El paneo (lateralidad)
+        sólo cambia el BALANCE entre lados (atenuación máx 25%), nunca apaga un canal."""
+        vacio = {"L": {"rms": 0.0, "pico": 0.0}, "R": {"rms": 0.0, "pico": 0.0}}
+        try:
+            a = self.audio(seg=seg, modo="R2D2")
+            a = _aplicar_ganancia_salida(a, self.voice_gain, self.voice_target_rms)
+            mono = np.tanh(np.asarray(a, dtype=np.float64) * max(0.0, float(self.voice_volumen))) * 0.97
+            mono = self._aplicar_gesto(mono)
+            try:
+                pan = float(self._fila.get("balance_LR", self._fila.get("lateralidad", 0.0)) or 0.0)
+            except Exception:
+                pan = 0.0
+            pan = max(-1.0, min(1.0, pan))
+            L = mono * (1.0 - 0.25 * max(0.0, pan))   # mismo paneo que wav_bytes
+            R = mono * (1.0 - 0.25 * max(0.0, -pan))
+            def _rp(x):
+                return {"rms": float(_rms(x)),
+                        "pico": float(np.max(np.abs(x))) if x.size else 0.0}
+            return {"L": _rp(L), "R": _rp(R)}
+        except Exception:
+            return vacio
+
+    # SEGUNDA VÍA — decisión "usar banco vs. ACUÑAR palabra propia".
+    #
+    # GAP_CREAR = 0.22 y GAP_EMULAR = 0.05 ESTABAN MAL: eran distancias en el plano afectivo
+    # comparadas contra nada. MEDIDO sobre 99.646 pasos: la distancia real del estado del organismo
+    # a la voz más cercana de su repertorio tiene mediana 0,108 (p25 0,060 · p75 0,166 · p95 0,214 ·
+    # máximo 0,383). Con el corte en 0,22 la condición «hay hueco» se cumplía el 3,3 % de los pasos
+    # —por debajo del 5 % que el propio detector de degeneración del plan declara sospechoso— y el
+    # organismo acuñó 3 palabras por vida (26 eventos en 10 vidas). Con el corte en 0,05 se cumplía
+    # el 85,3 %, que es lo mismo por el otro lado: una guarda que casi nunca decide nada.
+    #
+    # LA CORRECCIÓN es comparar la distancia contra OTRA MAGNITUD DEL PROPIO ORGANISMO CON LAS
+    # MISMAS UNIDADES (advertencia 1 de la auditoría: rel_contra antes que r/(1+r)): la RESOLUCIÓN
+    # de su propio repertorio, o sea a qué distancia están típicamente dos voces vecinas suyas
+    # —ver _paso_repertorio(). Hay hueco cuando el estado cae más lejos de toda voz que lo que las
+    # voces distan entre sí: entonces ninguna voz lo distingue, y por eso hace falta una nueva.
+    # No es una analogía: es la definición operativa de «mi vocabulario no llega ahí».
+    # Es además autolimitante: cada palabra acuñada añade un punto al repertorio y aprieta la
+    # resolución, así que acuñar se vuelve más difícil a medida que el vocabulario cubre más.
+    # MEDIDO en el repertorio real de hoy (16 voces curadas + 6 provisionales): la resolución vale
+    # 0,114 — que es, con dos cifras, el 0,12 que estaba escrito a mano en la ventana de
+    # recurrencia tres líneas más abajo. Que el número puesto a ojo coincida con la magnitud
+    # derivada es la mejor evidencia de que la derivación es la correcta.
+    #
+    # SEÑAL COSTOSA (teoría CS / diseño basal 2026-07-08):
+    # Vocalizar gasta energía. Antes COSTO_USAR=0 y solo se cobraba ACUÑAR → hablar del banco era gratis
+    # y E podía quedarse en techo 1. Ahora emitir cobra (cinética), silencio no; acuñar sigue más caro.
+    # Escala endógena (arousal/gesto), no por etiqueta del sample → anti-Shannon.
+    # Env opcional: ANIMA_COSTO_VOZ_USAR (default = COSTO_USAR).
+    # HABLAR CUESTA LO QUE CUESTA EXISTIR (7-ago-2026) — la fase 4 que el comentario de arriba
+    # declaraba pendiente, resuelta.
+    #
+    # ANTES: `COSTO_USAR = 0.010`, un número puesto a mano en unidades que nadie reconcilió con el
+    # metabolismo. Su escala real: 0,010 / basal = **3,33 veces lo que cuesta existir un paso** — y
+    # el organismo vocaliza el 85 % de los pasos, así que se cobraba casi continuamente. MEDIDO
+    # sobre 6.606 pasos del régimen actual, la voz es el **64,3 % de todo el gasto** (el comentario
+    # viejo decía 41 %: había crecido). Una emisión cuesta 0,0074 contra una ingesta mediana de
+    # 0,0084 por paso: hablar una vez se come lo que da de comer un paso entero.
+    #
+    # Es el mismo defecto que `costo_base = 1.0` en la homeostasis, que valía 26 veces el
+    # metabolismo entero: un precio declarado en un organelo, en unidades que el metabolismo no
+    # reconoce.
+    #
+    # EL CASO EN LA NATURALEZA. El costo de vocalizar se mide como múltiplo de la tasa metabólica
+    # de reposo, y en un despliegue sostenido queda en el orden de una o dos veces esa tasa.
+    # Ninguna conducta que un animal ejecuta el 85 % de su vida puede costar, por unidad de tiempo,
+    # más que existir: si costara, no sería sostenible por definición — que es literalmente lo que
+    # se estaba observando. Se copia la ESTRUCTURA («un múltiplo modesto del reposo»), no un número.
+    #
+    # SIN CONSTANTE NUEVA: `BASAL` ya existe en el metabolismo y ya es la referencia canónica del
+    # proyecto para ponerle precio a algo. El 0,010 DESAPARECE; no se sustituye por otro número.
+    # `COSTO_CREAR = USOS_CONSOLIDA · COSTO_USAR` no se toca: su derivación se conserva y pasa sola
+    # de 0,040 a 0,012.
+    #
+    # EFECTO MEDIDO EN REPLAY del organelo real, mismo mundo grabado, sin tocar la ingesta:
+    #   05-ago: met_energia p50 0,0000 → 0,1210  ·  E==0 exacto del 59,2 % al 1,2 %
+    #   06-ago: 0,0000 → 0,1845                  ·  del 51,2 % al 5,6 %
+    #   07-ago: 0,0000 → 0,1166                  ·  del 56,6 % al 0,9 %
+    # Y la ingesta BAJA (0,0084 → 0,0070): es ahorro, no extracción. El organismo no saca más de lo
+    # mismo —eso sería mejorar la digestión por tener hambre, que es lo que la norma prohíbe—:
+    # deja de malgastar.
+    #
+    # FALSACIÓN, que es lo que impide que esto sea «bajar el precio hasta que cuadre»: en la
+    # ventana sorda del 4-ago (43.900 pasos con la entrada muda al 100 %) el organismo sigue con la
+    # reserva en cero el 98,8 % del tiempo — y con la voz GRATIS, el 98,6 %. El arreglo NO lo
+    # vuelve inmortal: cuando no hay nada que oír, sigue vacío. La viabilidad sigue siendo
+    # absoluta. Y el balance queda positivo en el 48-51 % de los pasos, no en el 100 %: la reserva
+    # no se dispara, encuentra su punto fijo.
+    COSTO_USAR = _BASAL     # emitir del banco / reutilizar (por paso de emisión; lo cobra el metabolismo)
     # SELECCIÓN, no acumulación: acuñar ≠ incorporar. Una palabra nace PROVISIONAL (hipótesis del organismo
     # sobre cómo expresarse); sólo si la REUTILIZA se CONSOLIDA (pasa a patrimonio y se persiste); si no la
     # reusa, se ABANDONA (la historia, no la creación, decide qué queda). El vocabulario evoluciona por uso.
     USOS_CONSOLIDA = 4      # reusos para que una palabra provisional pase a ESTABLE (y se guarde a disco)
+    # ORIGEN: derivación aritmética de dos constantes ya declaradas (fase 4 del plan, literal:
+    # «COSTO_CREAR = n · COSTO_USAR con n = USOS_CONSOLIDA»). Acuñar cuesta por adelantado lo que
+    # costará usar la palabra las veces que hacen falta para que cuaje: el organismo paga de entrada
+    # el precio de probar su hipótesis. Da 4 × 0,010 = 0,040, que es EXACTAMENTE el 0.04 que estaba
+    # escrito a mano — el número no cambia, deja de ser arbitrario y ahora se mueve solo si se
+    # mueven sus dos padres.
+    #
+    # AHORA ES EL PRECIO DE LA PRIMERA PALABRA, no el de todas (8-ago-2026): ver costo_crear().
+    COSTO_CREAR = USOS_CONSOLIDA * COSTO_USAR
+    # ENERGIA_MIN_CREAR = 0.25 ELIMINADA. Estaba mal: exigía una reserva 6,25 veces el precio de
+    # acuñar sin que nadie dijera por qué 6,25. MEDIDO: met_energia vale 0 exacto el 50,3 % de los
+    # pasos y sólo supera 0,25 el 24,0 %, así que la guarda cortaba 3 de cada 4 ocasiones por un
+    # número inventado. La sustituye la comparación real, en _quizas_crear/quizas_emular: la reserva
+    # contra EL PRECIO (rel_contra(energia, COSTO_CREAR)) — «¿me alcanza para pagarlo?». Es la
+    # advertencia 1 de la auditoría aplicada al caso que ella misma nombró, y es una CONDICIÓN DE
+    # VIABILIDAD, no una percepción: por eso se compara contra el precio absoluto y NO contra la
+    # propia historia de energía (un organismo crónicamente vacío leería «energía normal» y se
+    # arruinaría acuñando).
+    P_CREAR = 0.6           # libertad funcional: aun con hueco recurrente y energía, a veces NO crea
+    RECURRENCIA_CREAR = 3   # el hueco debe REAPARECER ≥3 veces (no acuñar por un estado fugaz)
+    MAX_CREADAS = 64        # tope del vocabulario propio (el umbral de gap ya limita; esto es un cinturón)
     VIDA_PROVISIONAL = 600  # emisiones sin reuso tras las que una palabra provisional se ABANDONA (no cuajó)
     # IMITACIÓN entre organismos: si el otro vocaliza algo que MI banco no cubre, puedo EMULARLO con mi propio
     # aparato (no copiar: re-sintetizo mi versión) → el vocabulario inventado puede CONVERGER (lenguaje
     # compartido) en vez de divergir en dos linajes. Emular es también una conducta libre y costosa.
     P_EMULAR = 0.5          # libertad funcional de emular la palabra del otro
-    GAP_EMULAR = 0.18       # si la voz del otro cae en una región que MI banco ya cubre, no hace falta emular
 
     # Afecto (arousal, valence) de cada voz R2-D2 según su carácter (la etiqueta del sample).
     # Guía el mapeo estado→voz: el organismo emite la voz cuyo afecto más se parece al suyo.
     AFECTO_VOCES = {
-        "screaming": (0.95, -0.9), "shout": (0.85, -0.6), "worried": (0.50, -0.5),
-        "excited": (0.90, 0.7), "excited-2": (0.85, 0.6), "sing": (0.60, 0.9),
-        "acknowledged": (0.40, 0.5), "chat": (0.40, 0.1),
-        "6": (0.50, 0.2), "7": (0.45, -0.1), "13": (0.50, 0.0), "14": (0.60, 0.1),
-        "15": (0.45, 0.2), "18": (0.40, -0.2), "19": (0.40, 0.0), "22": (0.55, 0.3),
+        "screaming": (0.95, -0.9), "shout": (0.786, -0.6), "worried": (0.214, -0.5),
+        "excited": (0.868, 0.7), "excited-2": (0.786, 0.6), "sing": (0.377, 0.9),
+        "acknowledged": (0.05, 0.5), "chat": (0.05, 0.1),
+        "6": (0.214, 0.2), "7": (0.132, -0.1), "13": (0.214, 0.0), "14": (0.377, 0.1),
+        "15": (0.132, 0.2), "18": (0.05, -0.2), "19": (0.05, 0.0), "22": (0.295, 0.3),
     }
 
     # Nombre legible EN CASTELLANO de cada voz: una ETIQUETA para humanos (identificar y rastrear patrones
@@ -449,49 +799,38 @@ class OrganoComunicacion:
         return str(label).replace("_", " ").replace("-", " ").strip().capitalize() or label
 
     @staticmethod
-    def _afecto_acustico(a: np.ndarray, sr: int) -> tuple:
-        """Deriva (arousal, valence) de los RASGOS ACÚSTICOS del sonido mismo — no de una etiqueta.
-        Así, un sonido NUEVO que se sube al repertorio adquiere afecto por lo que ES (cómo suena),
-        no por un diccionario que lo nombre; el repertorio puede crecer sin límite y el organismo lo
-        explora igual que a los demás. Anti-Shannon: el significado afectivo no se impone, se mide.
-          · arousal ← energía (RMS) + brillo (centroide espectral) + 'agitación' (tasa de cruces por cero).
-          · valence ← tonalidad (lo tonal/armónico tiende a +, lo ruidoso a −) + contorno de brillo
-                       (sonido que se ABRE/sube → +, que se apaga/baja → −).
-        Heurística honesta, no semántica: es un punto de partida que la HISTORIA puede recontextualizar."""
+    def _diagnostico_fisico(a: np.ndarray, sr: int) -> dict:
+        """DESACTIVADO COMO SEMÁNTICA (corrección anti-Shannon de Alexis, 29-jun-2026):
+        los rasgos acústicos son DIAGNÓSTICO FÍSICO, no significado. El estatuto de una palabra NO se
+        obtiene de su espectro sino por CALIBRACIÓN EXPERIENCIAL (lo que le hace al organismo al
+        escucharla → VST_CalibradorLexicoExperiencial). Esta función vivía como `_afecto_acustico` y
+        derivaba (arousal, valence) por FFT/centroide/planitud — eso era Shannon encubierto ("la palabra
+        significa por cómo suena") y queda PROHIBIDO. Se conserva SÓLO como descriptor físico para el
+        observador (duración, RMS, brillo, planitud, frecuencia dominante). Su salida NO PUEDE alimentar
+        arousal/valence, OVE, OAO, LF, selección de palabra ni significado vocal: por eso devuelve un dict
+        rotulado, no una tupla de afecto, y NO se llama en la carga del banco."""
         if a is None or len(a) < 64:
-            return 0.5, 0.0
-        x = a.astype(np.float64)
-        x = x - x.mean()
-        pk = np.max(np.abs(x)) or 1.0
-        x = x / pk
-        rms = float(np.sqrt(np.mean(x * x)))                       # energía
-        zcr = float(np.mean(np.abs(np.diff(np.sign(x))) > 0))      # cruces por cero (agitación/ruido)
-        # espectro (una sola FFT global, suficiente para una etiqueta de afecto)
+            return {"dur_s": 0.0, "rms": 0.0, "centroide_hz": 0.0, "planitud": 0.0, "frec_dominante_hz": 0.0,
+                    "NOTA": "diagnóstico físico, NO semántico"}
+        x = a.astype(np.float64); x = x - x.mean()
+        pk = np.max(np.abs(x)) or 1.0; x = x / pk
+        rms = float(np.sqrt(np.mean(x * x)))
         win = np.hanning(len(x))
         S = np.abs(np.fft.rfft(x * win)) + 1e-9
         f = np.fft.rfftfreq(len(x), 1.0 / max(1, sr))
-        centroide = float((f * S).sum() / S.sum())                 # brillo
-        cen_n = min(1.0, centroide / (sr * 0.25))                  # normalizado a ~Nyquist/2
-        # planitud espectral (Wiener): ~1 ruido, ~0 tonal
-        gm = float(np.exp(np.mean(np.log(S))))
-        am = float(np.mean(S))
-        planitud = gm / am
-        # contorno de brillo: ¿el sonido se abre (centroide sube) o se apaga (baja)?
-        mid = len(x) // 2
-        c1 = np.abs(np.fft.rfft(x[:mid] * np.hanning(mid))) + 1e-9 if mid > 32 else S
-        c2 = np.abs(np.fft.rfft(x[mid:] * np.hanning(len(x) - mid))) + 1e-9 if mid > 32 else S
-        f1 = np.fft.rfftfreq(mid, 1.0 / max(1, sr)); f2 = np.fft.rfftfreq(len(x) - mid, 1.0 / max(1, sr))
-        cen1 = float((f1 * c1).sum() / c1.sum()); cen2 = float((f2 * c2).sum() / c2.sum())
-        contorno = float(np.tanh((cen2 - cen1) / (sr * 0.1)))      # +sube / −baja
-        arousal = min(1.0, max(0.0, 0.45 * rms + 0.35 * cen_n + 0.20 * zcr))
-        valence = max(-1.0, min(1.0, 0.7 * (1.0 - 2.0 * planitud) + 0.3 * contorno))
-        return round(arousal, 3), round(valence, 3)
+        centroide = float((f * S).sum() / S.sum())
+        planitud = float(np.exp(np.mean(np.log(S))) / np.mean(S))   # Wiener: ~1 ruido, ~0 tonal
+        frec_dom = float(f[int(np.argmax(S))])
+        return {"dur_s": round(len(x) / max(1, sr), 4), "rms": round(rms, 5),
+                "centroide_hz": round(centroide, 1), "planitud": round(planitud, 4),
+                "frec_dominante_hz": round(frec_dom, 1), "NOTA": "diagnóstico físico, NO semántico"}
 
     def _cargar_voces(self) -> list:
         """Carga el banco de voces R2-D2 (wav) desde voces_r2d2/ (en el árbol Célula_Madre) o
-        ANIMA_VOCES_DIR. Cada voz lleva su afecto (arousal, valence). Sin carpeta → [] (usa síntesis).
-        El afecto sale de AFECTO_VOCES si la etiqueta es conocida; si NO (sonido subido nuevo), se MIDE
-        de la acústica (_afecto_acustico) → el repertorio crece sin límite y todo sonido es explorable."""
+        ANIMA_VOCES_DIR. Cada voz lleva una colocación (arousal, valence) para la SELECCIÓN. Las R2-D2
+        conocidas usan AFECTO_VOCES (curado a mano); un sonido subido NUEVO entra en colocación NEUTRA y
+        PROVISIONAL (anti-Shannon: su sentido NO se lee del espectro), a la espera de calibración
+        experiencial. Sin carpeta → [] (usa síntesis)."""
         base = os.environ.get("ANIMA_VOCES_DIR") or os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "voces_r2d2")
         self._voces_dir = base
@@ -501,7 +840,22 @@ class OrganoComunicacion:
         for nombre in sorted(os.listdir(base)):
             if not nombre.lower().endswith(".wav"):
                 continue
-            etiqueta = os.path.splitext(nombre)[0]
+            # IDENTIDAD = id original (último segmento tras '__'). El archivo puede llevar un PREFIJO
+            # humano con el cuadrante experiencial (REGIMEN__nombre__id.wav) tras la calibración; la
+            # etiqueta interna se queda con el id estable para que AFECTO_VOCES/persistencia resuelvan
+            # y el organismo no cambie de identidad sólo porque el observador renombró el archivo.
+            etiqueta = os.path.splitext(nombre)[0].split("__")[-1]
+            # TÍTULO mostrado: si el archivo trae el prefijo de la CALIBRACIÓN EXPERIENCIAL
+            # (REGIMEN__Nombre__id, p.ej. COLAPSO__Dolor__sing), el nombre legible refleja lo que la voz
+            # le HACE SENTIR al organismo (régimen + nombre experiencial), NO el viejo título curado a mano.
+            # La IDENTIDAD interna sigue siendo el id estable (etiqueta): el observador renombró el archivo,
+            # el organismo no cambia de identidad. Sin prefijo → título legible clásico (_titulo).
+            _segs = os.path.splitext(nombre)[0].split("__")
+            if len(_segs) == 3:
+                _regimen, _nombre_exp, _ = _segs
+                titulo_voz = f"{_nombre_exp} · {_regimen.replace('_', ' ').lower()}"
+            else:
+                titulo_voz = self._titulo(etiqueta)
             ruta = os.path.join(base, nombre)
             try:
                 try:
@@ -516,35 +870,29 @@ class OrganoComunicacion:
                     if getattr(a, "ndim", 1) > 1:
                         a = a.mean(axis=1)
                 if etiqueta in self.AFECTO_VOCES:
-                    aro, val = self.AFECTO_VOCES[etiqueta]          # voz R2-D2 conocida: afecto curado
+                    aro, val = self.AFECTO_VOCES[etiqueta]          # voz R2-D2 conocida: afecto curado (a mano)
                     origen = "curado"
                 else:
-                    aro, val = self._afecto_acustico(a, sr)         # sonido nuevo: afecto MEDIDO de su acústica
-                    origen = "medido"
+                    # SONIDO NUEVO (anti-Shannon): NO se lee afecto de su espectro. Queda en colocación
+                    # NEUTRA y PROVISIONAL (centro de la región operativa), SIN estatuto, hasta que la
+                    # CALIBRACIÓN EXPERIENCIAL (VST_CalibradorLexicoExperiencial) le dé un régimen por lo
+                    # que le HACE al organismo al escucharlo. La acústica no decide su sentido.
+                    aro, val = 0.40, 0.10
+                    origen = "provisional"
                 voces.append({"label": etiqueta, "audio": a, "aro": float(aro), "val": float(val),
-                              "afecto_origen": origen, "titulo": self._titulo(etiqueta)})
+                              "afecto_origen": origen, "titulo": titulo_voz})
             except Exception:
                 continue
         self._esparcir_afecto(voces)
         return voces
 
     def _esparcir_afecto(self, voces: list) -> None:
-        """ESPARCE el afecto de los sonidos MEDIDOS por la región operativa del organismo, conservando su
-        ORDEN acústico (más energía→más arousal; más brillo→más valencia) pero llenando el plano por RANGO.
-        Por qué: las heurísticas acústicas tienden a AMONTONAR (p.ej. casi todo tonal cae en valencia alta),
-        y entonces los sonidos nuevos quedan lejos de donde el organismo realmente está → no se emitirían nunca.
-        Al esparcirlos por la zona alcanzable, cada estado puede mapear a un sonido DISTINTO y el repertorio
-        se usa de verdad. NO afirmamos que estas coordenadas signifiquen alegría/miedo: son una colocación
-        PROVISIONAL por huella acústica; el sentido, si surge, emerge del USO y la historia, no de aquí.
-        Los sonidos CURADOS (R2-D2 originales) conservan su afecto a mano."""
-        med = [v for v in voces if v.get("afecto_origen") == "medido"]
-        n = len(med)
-        if n < 3:
-            return
-        for r, v in enumerate(sorted(med, key=lambda v: v["aro"])):
-            v["aro"] = round(0.12 + 0.56 * (r / (n - 1)), 3)        # 0.12 .. 0.68 (cubre la región del organismo)
-        for r, v in enumerate(sorted(med, key=lambda v: v["val"])):
-            v["val"] = round(-0.35 + 0.95 * (r / (n - 1)), 3)       # -0.35 .. 0.60
+        """DESACTIVADO (anti-Shannon, 29-jun-2026). Antes esparcía por el plano afectivo los sonidos cuyo
+        afecto se MEDÍA de la acústica (origen 'medido'), conservando su orden espectral. Eso era leer el
+        sentido de la señal (Shannon). Ya no existen sonidos 'medido': los nuevos entran 'provisional' en
+        colocación neutra y su estatuto lo da la CALIBRACIÓN EXPERIENCIAL, no el espectro. Se mantiene como
+        no-op para no romper la llamada en _cargar_voces; la colocación experiencial se hará explícita aparte."""
+        return
 
     def recargar_voces(self) -> int:
         """Re-explora la carpeta de voces y reconstruye el banco (para incorporar sonidos recién subidos
@@ -589,8 +937,12 @@ class OrganoComunicacion:
                 a = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
                 origen = e.get("afecto_origen", "creado")     # "creado" (propia) | "aprendida" (emulada del otro)
                 self._voces.append({"label": label, "audio": a, "aro": float(e["aro"]), "val": float(e["val"]),
-                                    "afecto_origen": origen, "titulo": e.get("titulo", label),
+                                    "afecto_origen": origen, "titulo": normalizar_titulo(e.get("titulo", label)),
                                     "estado": "estable", "usos": int(e.get("usos", self.USOS_CONSOLIDA)),
+                                    "afecto_regla": e.get("afecto_regla"),
+                                    "afecto_par_aro": e.get("afecto_par_aro"),
+                                    "afecto_par_val": e.get("afecto_par_val"),
+                                    "imitacion": e.get("imitacion"),
                                     "nacida": 0, "ultimo_uso": 0})
                 existentes.add(label); n += 1
                 m = _re.search(r"(\d+)$", label)              # continúa la numeración por tipo
@@ -622,9 +974,17 @@ class OrganoComunicacion:
                 except Exception:
                     entradas = []
             entradas = [e for e in entradas if e.get("label") != voz["label"]]   # upsert
-            entradas.append({"label": voz["label"], "file": fn, "aro": voz["aro"], "val": voz["val"],
-                             "titulo": voz["titulo"], "afecto_origen": voz.get("afecto_origen", "creado"),
-                             "usos": int(voz.get("usos", 0))})
+            entrada = {"label": voz["label"], "file": fn, "aro": voz["aro"], "val": voz["val"],
+                       "titulo": voz["titulo"], "afecto_origen": voz.get("afecto_origen", "creado"),
+                       "usos": int(voz.get("usos", 0))}
+            # Trazas del ENSAYO del afecto propio (16-ago-2026): sin esto, una palabra aprendida que
+            # sobrevive a un reinicio vuelve del disco sin decir bajo QUE REGLA se aprendio, y el
+            # ensayo dura mas que los reinicios. Se anaden solo si existen, asi que el manifiesto
+            # viejo se sigue leyendo igual y una palabra acunada no se etiqueta de nada.
+            for k in ("afecto_regla", "afecto_par_aro", "afecto_par_val", "imitacion"):
+                if voz.get(k) is not None:
+                    entrada[k] = voz[k]
+            entradas.append(entrada)
             json.dump(entradas, open(man, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
         except Exception:
             pass
@@ -633,7 +993,7 @@ class OrganoComunicacion:
         """Qué voz R2-D2 emite el organismo para ESTE estado (la más cercana a su afecto) + el afecto.
         Determinista → sirve para REGISTRAR en el CSV la 'conversación': qué sonido usa en cada contexto."""
         aro, val = self._afecto(fila)
-        label = "-"; titulo = "-"; origen = "banco"
+        label = "-"; titulo = "-"; origen = "banco"; emul_de = ""
         if self._voces:
             cand = sorted(self._voces, key=lambda v: (v["aro"] - aro) ** 2 + (v["val"] - val) ** 2)
             k = self._pool_k(len(cand))                 # MISMO pool exploratorio que la emisión real
@@ -641,12 +1001,36 @@ class OrganoComunicacion:
             v = cand[_stable_seed(f"{self.organismo_id}:r2voz:lbl:{self._voz_seq}") % k]
             label = v["label"]; titulo = v.get("titulo", label)
             origen = {"creado": "creado", "aprendida": "aprendida"}.get(v.get("afecto_origen"), "banco")
+            emul_de = v.get("emulada_de", "")           # de quién copió, si esta voz es una emulación (ruta léxica)
         propias = [x for x in self._voces if x.get("afecto_origen") in ("creado", "aprendida")]
         estables = sum(1 for x in propias if x.get("estado") == "estable")
         aprendidas = sum(1 for x in propias if x.get("afecto_origen") == "aprendida")
+        # voz_id = ID GLOBAL de la palabra (lleva la letra del organismo: palabra_A001 / apr_B002) → permite
+        # TRAZAR rutas léxicas entre organismos. voz_emulada_de = ID global de la palabra que se emuló (de quién).
+        # De las aprendidas, cuántas entraron COPIANDO LA FORMA del otro y no
+        # re-sintetizándola. Sin este contador el experimento de imitación corre a
+        # ciegas: la etiqueta se queda dentro del organismo y no se puede observar.
+        apr_forma = sum(1 for x in propias
+                        if x.get("afecto_origen") == "aprendida" and x.get("imitacion") == "forma")
+        # DIAGNÓSTICO DE LAS DOS VÍAS (lote E del plan: voz_gap_banco, voz_gap_peer,
+        # voz_emular_bloqueo, voz_bloqueo_motivo). Sin estas columnas no se podía saber cuál de las
+        # cinco guardas cortaba la emulación, y por eso el hecho —cero emulaciones en 99.646 pasos—
+        # sólo se descubrió al contar filas del CSV. Se publican el motivo del último intento y las
+        # dos distancias junto con la resolución del repertorio, que es la referencia contra la que
+        # se juzgan: con esas tres cifras la decisión queda auditable desde fuera.
+        # OJO al leerlas: voz_actual() se consulta ANTES que quizas_emular() en el paso del bucle,
+        # así que voz_emular_bloqueo va un paso por detrás. Es diagnóstico, no dinámica.
+        paso = self._paso_repertorio()
         return {"voz_emitida": label, "voz_titulo": titulo, "voz_origen": origen,
+                "voz_id": label, "voz_emulada_de": emul_de,
                 "voz_propias": len(propias), "voz_estables": estables, "voz_aprendidas": aprendidas,
-                "voz_creadas": int(self._creadas), "voz_arousal": round(aro, 4), "voz_valence": round(val, 4)}
+                "voz_aprendidas_forma": apr_forma,
+                "voz_creadas": int(self._creadas), "voz_arousal": round(aro, 4), "voz_valence": round(val, 4),
+                "voz_paso_repertorio": round(paso, 4),
+                "voz_gap_banco": round(float(self._gap_banco), 4),
+                "voz_gap_peer": round(float(self._gap_peer), 4),
+                "voz_bloqueo_motivo": self._bloqueo_crear,
+                "voz_emular_bloqueo": self._bloqueo_emular}
 
     def _pool_k(self, n_cand: int) -> int:
         """Tamaño del pool de voces entre las que el organismo EXPLORA: crece con su 'apertura' (act_perm /
@@ -661,13 +1045,91 @@ class OrganoComunicacion:
 
     def _afecto(self, fila: dict) -> tuple:
         """Proyecta la fisiología a (arousal, valence): cuán ACTIVADO y cuán BIEN está el organismo.
-        El estado manda qué SIENTE; la voz sólo lo expresa (no se impone significado simbólico)."""
+        El estado manda qué SIENTE; la voz sólo lo expresa (no se impone significado simbólico).
+
+        AROUSAL — DOS COSAS ESTABAN MAL, las dos medidas sobre 99.646 pasos:
+
+        1) La pata de la energía valía SIEMPRE CERO. Decía `E = g("energia", g("E"))`, y `energia`
+           no es una columna de la fisiología: es la clave fantasma que la bitácora graba en 0,0
+           (la reserva real se llama met_energia). Como `fila.get("energia", ...)` sólo cae al
+           respaldo si la clave FALTA, y el `or d` del lector convierte el 0,0 en 0,0, el 30 % del
+           peso del arousal no aportaba nada. PRUEBA: la correlación del voz_arousal registrado con
+           `0,45·RC_total + 0,25·|balance_LR|` —la fórmula SIN la pata de energía— es 1,0000, y el
+           error absoluto mediano 2,5e-5, o sea el redondeo a cuatro decimales del CSV. Añadiendo
+           met_energia la correlación BAJA a 0,8915: la energía nunca estuvo dentro.
+
+        2) Los pesos 0,45 / 0,30 / 0,25 suponían tres magnitudes comparables en [0,1], y no lo son.
+           RC_total tiene mediana 0,00207 (p95 0,138), así que su 0,45 aportaba 0,0009. RESULTADO
+           MEDIDO: el arousal vivió en [0 , 0,5815] y NUNCA pasó de 0,60 en 99.646 pasos. Como el
+           repertorio coloca `shout` en 0,786, `excited-2` en 0,786, `excited` en 0,868 y
+           `screaming` en 0,95, cuatro de las dieciséis voces curadas quedaron en una región del
+           plano a la que el organismo no puede llegar: fueron emitidas 98, 2, 0 y 1 veces
+           respectivamente sobre 99.646. El organismo tenía un grito que no podía dar.
+
+        CORRECCIÓN AUTORREGULADA: cada pata se compara con SU PROPIA historia (rel de escala.py,
+        0,5 = lo de siempre) y el arousal es el promedio de las patas que ya tienen historia —el
+        mismo patrón que el plan prescribe para el OI: «promediar sólo sobre las patas presentes,
+        normalizar cada pata contra su historia». Desaparecen los tres pesos y la unidad de cada
+        magnitud deja de decidir cuánto pesa. El arousal es una PERCEPCIÓN (cuán activado estoy
+        PARA MÍ) y no una condición de viabilidad: relativizarlo es legítimo.
+
+        MEDIDO DESPUÉS, reproduciendo el código nuevo contra los mismos pasos (replay offline):
+        mediana 0,212 (antes 0,019), máximo 0,830 (antes 0,582) y un 5,3 % de pasos por encima de
+        0,60 (antes CERO): el grito vuelve a estar al alcance. UNA SALVEDAD HONESTA: el 44,5 % de
+        los pasos da arousal casi 0, porque las tres patas valen 0 exacto a la vez —met_energia es
+        0 exacto el 50,3 % del tiempo—, y eso hace que la mediana caiga fuera de la banda
+        [0,35 , 0,65] que el detector de degeneración exige a un mapa r/(1+r). No es el mapa: es que
+        el organismo pasa de verdad la mitad de su vida inerte. Es el caso que el propio plan anota
+        («las variables que son 0 exacto la mitad del tiempo rompen la EMA: tratar el cero como
+        estado, no como valor pequeño») y queda escrito aquí para que nadie lo lea como una
+        degeneración nueva introducida por esta corrección.
+
+        VALENCE SE DEJA COMO ESTABA, a propósito. No es un consigo-mismo: ya es una COMPARACIÓN
+        entre magnitudes del propio organismo —lo que sostiene (OI, H, estructura) menos lo que le
+        falta (necesidad)—, que es la forma que la norma pide. MEDIDO: mediana 0,3356, recorrido
+        [-0,647 , 0,972], que cubre de sobra el eje de valencia del repertorio ([-0,9 , 0,9]); no
+        hay degeneración que corregir. Y es la pata que más se parece a una condición de vida
+        («¿me está yendo bien?»): relativizarla borraría el malestar sostenido, que es justo lo que
+        la advertencia 2 de la auditoría prohíbe. Sus 0,30 quedan pendientes de otra medición.
+        """
         g = lambda k, d=0.0: float(fila.get(k, d) or d)
         OI = g("OI"); nec = g("necesidad_efectiva", g("necesidad")); H = g("H_homeostasis")
-        RC = g("RC_total"); E = g("energia", g("E")); estr = g("estructura"); lat = abs(g("balance_LR"))
-        arousal = min(1.0, max(0.0, 0.45 * RC + 0.30 * E + 0.25 * lat))
+        estr = g("estructura")
+        patas = (("RC_total", g("RC_total")),
+                 ("met_energia", g("met_energia", g("energia", g("E")))),
+                 ("lateralidad", abs(g("balance_LR"))))
+        rels = [rel(x, esc) for nombre, x in patas
+                for esc in (self._escala_arousal.get(nombre),) if esc is not None and esc.madura]
+        # sin historia todavía → NEUTRO: el centro del repertorio, no un valor inventado
+        arousal = min(1.0, max(0.0, sum(rels) / len(rels) if rels else NEUTRO))
         valence = max(-1.0, min(1.0, (OI + 0.30 * H + 0.30 * estr) - nec))
         return arousal, valence
+
+    def _paso_repertorio(self) -> float:
+        """RESOLUCIÓN del repertorio: a qué distancia están, típicamente, dos voces vecinas MÍAS.
+
+        Es la magnitud del propio organismo, en las mismas unidades (distancia en el plano afecto),
+        contra la que se mide si un estado cae en un hueco — sustituye a GAP_CREAR=0,22 y
+        GAP_EMULAR=0,05, que no se comparaban contra nada. Mediana de la distancia de cada voz a su
+        vecina más próxima; se ignoran las coincidencias exactas porque dos voces en el MISMO punto
+        son un punto, no una resolución de cero (si no, seis sonidos provisionales colocados todos
+        en (0,40 · 0,10) dejarían la resolución en 0 y ninguna vía volvería a abrirse).
+        MEDIDO en el repertorio real de hoy: 0,114 con las provisionales, 0,129 sólo con las curadas.
+        Se recalcula sólo cuando cambia el número de voces (una palabra nueva cambia la resolución).
+        """
+        n = len(self._voces)
+        if n < 2:
+            return 0.0
+        if self._paso_cache[0] == n:
+            return self._paso_cache[1]
+        P = np.array([[float(v["aro"]), float(v["val"])] for v in self._voces], dtype=np.float64)
+        D = np.sqrt(((P[:, None, :] - P[None, :, :]) ** 2).sum(axis=-1))
+        np.fill_diagonal(D, np.inf)
+        vecinas = D.min(axis=1)
+        vecinas = vecinas[np.isfinite(vecinas) & (vecinas > 1e-9)]
+        paso = float(np.median(vecinas)) if vecinas.size else 0.0
+        self._paso_cache = (n, paso)
+        return paso
 
     def _afecto_a_params(self, aro: float, val: float) -> dict:
         """Traduce el estado afectivo (+ la exploración del GESTO/balbuceo) a parámetros del aparato fonador.
@@ -691,6 +1153,114 @@ class OrganoComunicacion:
                     vibrato=vibrato, tension=tension, resonancia=0.3 * abs(val), res_centro=1200 + 800 * a,
                     ataque=0.01 + 0.1 * abs(jp), caida=0.1, sostiene=0.5)
 
+    def _belleza_oida(self, audio) -> float:
+        """Cuánto le GUSTARÍA al organismo OÍR este sonido: lo pasa por su PROPIO tímpano (a intensidad viable,
+        para oírse sin lastimarse) y lo juzga con el mismo criterio físico que un sonido del mundo. BONITO =
+        coherente (cono rígido de Von Békésy que transmite al martillo) + bien transmitido + que NO dispara el
+        reflejo estapedial (no abruma). GARABATO = fragmentado/ruidoso/abrumador → baja belleza. Anti-Shannon:
+        la belleza no es una regla impuesta, es cómo SUENA en su propia oreja."""
+        try:
+            from VST_OrganoMembrana import OrganoMembrana
+        except Exception:
+            return 0.0
+        x = np.asarray(audio, dtype=np.float64); x = x - x.mean()
+        pk = float(np.max(np.abs(x))) or 1.0; x = x / pk * 0.05
+        m = OrganoMembrana(self.sr); s = None
+        for j in range(0, max(1, len(x) - 4800), 4800):
+            s = m.procesar(x[j:j + 4800], x[j:j + 4800])
+        if s is None:
+            return 0.0
+        coher = float(s.get("mem_coherencia", 0.0))
+        trans = min(1.0, float(s.get("mem_transmitido_L", 0.0)) * 5.0)
+        refl = float(s.get("mem_reflejo", 0.0))
+        return float(coher * (0.4 + 0.6 * trans) * (1.0 - refl))
+
+    def _palabras_propias(self) -> int:
+        """Cuántas palabras PROPIAS (acuñadas o emuladas) hay ahora mismo en el banco.
+
+        Es el mismo recuento que ya usaban _quizas_crear/quizas_emular para MAX_CREADAS; se saca
+        aquí porque ahora también pone el precio (ver costo_crear). Cuenta provisionales y estables:
+        una hipótesis que todavía no cuajó ya está compitiendo por las emisiones."""
+        return sum(1 for v in self._voces if v.get("afecto_origen") in ("creado", "aprendida"))
+
+    def costo_crear(self) -> float:
+        """PRECIO DE ACUÑAR AHORA. Crece con lo que ya hay en el banco. Sin constante nueva.
+
+        QUÉ ESTABA MAL. `COSTO_CREAR = USOS_CONSOLIDA · COSTO_USAR` es un precio FIJO: acuñar la
+        palabra 21 costaba exactamente lo mismo que acuñar la tercera. Su propia derivación dice
+        «acuñar cuesta por adelantado lo que costará usarla las veces que hacen falta para que
+        cuaje», y esa cuenta estaba a medias: suponía que la palabra nueva se emitiría en CADA
+        emisión, es decir que el organismo no tiene más vocabulario propio que ella.
+
+        NO LO TIENE: LO MIDO. Sobre 23.953 pasos del 7-ago (06:00→24:00, régimen actual), las
+        palabras propias se llevan en conjunto una tajada casi constante de las emisiones —36,9 %
+        con 10 palabras, 36,1 % con 14, 38,9 % con 11: no crece con el vocabulario— y por tanto la
+        tajada DE CADA UNA cae como 1/k: 3,69 % con k=10 contra 2,58 % con k=14 (razón medida 1,43;
+        razón de k, 1,40). Las palabras propias no se reparten el mundo: se lo quitan entre ellas,
+        porque todas nacen colocadas donde el organismo pasa su tiempo afectivo.
+
+        LA CORRECCIÓN es completar la derivación que ya estaba declarada, no inventar otra: si la
+        palabra nueva sólo saldrá 1 de cada k veces que el organismo tire de su vocabulario propio,
+        acumular USOS_CONSOLIDA usos le costará k veces más, y eso es lo que paga por adelantado.
+
+            precio = USOS_CONSOLIDA · COSTO_USAR · k        k = palabras propias + la nueva
+
+        k=1 devuelve 0,012 EXACTAMENTE, el precio de hoy: con vocabulario pobre no cambia nada, así
+        que el arreglo del hambre del 7-ago (COSTO_USAR anclado a BASAL, gasto 0,01143 → 0,00733)
+        queda intacto. Con vocabulario rico el precio sube solo: 0,012 la primera, 0,252 la 21ª.
+
+        A CUÁNTAS PALABRAS CONVERGE, Y POR QUÉ ÉSE ES EL NÚMERO. La guarda de energía es
+        `rel_contra(energia, precio) > 0,5`, o sea `reserva > precio`. Con este precio eso es
+
+            k* = reserva alcanzable / (USOS_CONSOLIDA · BASAL)
+
+        es decir: **el organismo sostiene tantas palabras propias como veces le alcanza la reserva
+        para pagar la prueba completa de una más.** No es un tope elegido —MAX_CREADAS=64 sigue
+        siendo un cinturón que no toca nada—: es su economía. Y respira: si una hipótesis no cuaja,
+        _podar_provisionales la deja caer, k baja y acuñar vuelve a abrirse. Homeostasis sin
+        setpoint. MEDIDO sobre esos mismos pasos, la reserva supera 0,012 el 9,0 % del tiempo,
+        0,024 el 6,1 %, 0,048 el 5,1 %, 0,10 el 4,0 % y 0,25 el 0,9 %: el precio deja de encontrar
+        reserva justo en el rango en que el vocabulario propio ronda la decena.
+
+        POR QUÉ NO SE USA `_paso_repertorio` DE REFERENCIA, que era el candidato natural. Dos
+        razones, ambas medidas. (1) NO APRIETA: el comentario de la segunda vía afirma que «cada
+        palabra acuñada añade un punto al repertorio y aprieta la resolución»; en el organismo real
+        pasa lo contrario, porque las palabras nacen EN LOS HUECOS y su vecina queda lejos —
+        `voz_paso_repertorio` sube de 0,1301 con 8 palabras propias a 0,1472 con 15 (+13 %). Frena
+        (con paso mayor cuesta más que un estado cuente como hueco), pero un 13 % en siete palabras
+        no es un precio. (2) Y sobre todo: la resolución la decide lo mismo que el precio tendría
+        que gobernar. Poner el precio contra ella es un criterio relativizado contra sí mismo —
+        trinquete sin suelo—, que es exactamente lo que la norma prohíbe.
+
+        AUDITABLE DESDE FUERA SIN COLUMNA NUEVA: el precio vigente en cualquier fila del CSV es
+        `COSTO_CREAR · (1 + voz_propias)`, y `voz_propias` ya se publica. No se añade columna a
+        propósito: cada clave que entra en `fila` entra también en lo que el organismo CANTA.
+
+        EFECTO MEDIDO EN REPLAY (analisis/voz_precio.py: este organelo y el metabolismo de verdad,
+        en lazo cerrado sobre el mismo mundo grabado, 157.587 pasos = la vida entera registrada del
+        3 al 7 de agosto; lo único distinto entre brazos es el precio):
+
+                        gasto p50   reserva en cero   acuñadas por cuarto   converge a
+          0,010 fijo      0,00937        75,5 %            2/9/2/1              11
+          0,012 fijo      0,00536        58,0 %            9/5/2/3              17
+          creciente       0,00536        58,0 %            4/10/3/2             14
+
+        En la ventana de 18 h del régimen actual (23.953 pasos, 7-ago 06:00→24:00): 11 → 9
+        palabras, con el gasto IDÉNTICO (0,00678 en los dos) y la reserva en cero 28,1 % contra
+        28,2 %. Eso último no es un fallo del cambio, es su alcance: acuñar cuesta el 0,19 % del
+        gasto total, así que **este precio decide el TAMAÑO del vocabulario, no el presupuesto**.
+        Quien busque la reserva tiene que mirar el gasto, no el precio de la palabra.
+
+        FALSACIÓN (la que impide que esto sea aflojar hasta que cuadre, al revés que la del 7-ago:
+        aquí el riesgo es que un precio más caro pase por bueno sin haber probado nada). En la
+        ventana SORDA del 4-ago —44.699 pasos con `energia_L` y `energia_R` en 0,000— la reserva
+        sigue vacía el 99,8 % del tiempo, exactamente igual que con el precio actual (99,8 %) y que
+        con el viejo (99,9 %), con ingesta mediana 0,00000. Sin nada que oír sigue muriéndose: la
+        viabilidad sigue siendo absoluta. Y el precio nunca BAJA del de hoy (k≥1 ⇒ ≥ 0,012), así
+        que este cambio no puede, por construcción, comprarle vida a nadie.
+        """
+        return self.COSTO_CREAR * (1 + self._palabras_propias())
+
     def _quizas_crear(self, fila: dict, aro: float, val: float, seq: int):
         """SEGUNDA VÍA: ¿el organismo ACUÑA una palabra nueva en vez de tirar una del banco?
         La crea cuando su repertorio NO cubre lo que necesita expresar —la voz más cercana queda LEJOS de su
@@ -698,30 +1268,59 @@ class OrganoComunicacion:
         el coste (mayor que reutilizar), y su libertad funcional lo decide. La palabra acuñada se SUMA al
         banco: cubre esa región y luego puede REUSARSE barata. Así el vocabulario crece desde la vida del
         organismo (sus necesidades expresivas no cubiertas), no desde nuestro diseño. Devuelve la voz o None."""
-        activas = sum(1 for v in self._voces if v.get("afecto_origen") in ("creado", "aprendida"))
+        if os.environ.get("ANIMA_NO_ACUNAR", "").strip().lower() in ("1", "true", "yes", "on"):
+            self._bloqueo_crear = "ablacion"
+            return None    # ABLACIÓN experimental (condición C3 tríada): TERCERO ESTÉRIL — no re-acuña, no
+            #                engendra ecosistema léxico (análogo del "mediador pasivo" de Cosmogénesis).
+        activas = self._palabras_propias()
         if self._fonador is None or not self._voces or activas >= self.MAX_CREADAS:
+            self._bloqueo_crear = ("sin_fonador" if self._fonador is None else
+                                   ("sin_banco" if not self._voces else "vocabulario_lleno"))
             return None
         gap = min((v["aro"] - aro) ** 2 + (v["val"] - val) ** 2 for v in self._voces) ** 0.5
-        if gap <= self.GAP_CREAR:
+        self._gap_banco = gap
+        paso = self._paso_repertorio()               # resolución de MI repertorio (misma unidad que gap)
+        # HUECO = el estado cae más lejos de toda voz mía que lo que distan entre sí mis propias voces.
+        # rel_contra(gap, paso) > 0,5 es exactamente gap > paso, escrito en el idioma de escala.py para
+        # que se publique el cociente y se pueda auditar. Antes: gap > 0,22, un número contra nada.
+        if paso <= 0.0 or rel_contra(gap, paso) <= NEUTRO:
             self._gap_reciente.append(None)              # el banco cubre este estado
+            self._bloqueo_crear = "sin_hueco" if paso > 0.0 else "sin_resolucion"
             return None
         self._gap_reciente.append((round(aro, 2), round(val, 2)))   # hueco: región no cubierta
         # RECURRENCIA: ¿la MISMA región no cubierta ha vuelto a aparecer? (no acuñar por algo pasajero)
-        cerca = sum(1 for h in self._gap_reciente if h and abs(h[0] - aro) < 0.12 and abs(h[1] - val) < 0.12)
+        # La ventana era 0,12 escrito a mano; es la MISMA unidad que la resolución del repertorio y
+        # medía casi lo mismo (0,114): «la misma región» = más cerca que dos voces vecinas mías.
+        cerca = sum(1 for h in self._gap_reciente if h and abs(h[0] - aro) < paso and abs(h[1] - val) < paso)
         if cerca < self.RECURRENCIA_CREAR:
+            self._bloqueo_crear = "hueco_fugaz"
             return None
-        # ENERGÍA: el coste es real; sin energía no se puede crear (expresa imperfecto con el banco)
+        # ENERGÍA: el coste es real; sin energía no se puede crear (expresa imperfecto con el banco).
+        # La reserva se compara CONTRA EL PRECIO, no contra 0,25 (ver la nota de ENERGIA_MIN_CREAR):
+        # rel_contra(energia, precio) > 0,5 es «me alcanza para pagarlo». Condición de viabilidad,
+        # comparada contra una magnitud real del organismo, nunca contra su propia historia.
+        # EL PRECIO YA NO ES FIJO (8-ago-2026): sube con las palabras propias que ya hay en el
+        # banco, porque la nueva tendrá que compartir con ellas las emisiones que la consolidan.
+        # Ver costo_crear(): k=1 devuelve el mismo 0,012 de antes, k=21 devuelve 0,252.
         energia = float(fila.get("energia", fila.get("met_energia", 0.0)) or 0.0)
-        if energia < self.ENERGIA_MIN_CREAR:
+        precio = self.costo_crear()
+        if rel_contra(energia, precio) <= NEUTRO:
+            self._bloqueo_crear = "sin_energia"
             return None
         # LIBERTAD FUNCIONAL: aun con hueco recurrente y energía, a veces NO crea
         if (_stable_seed(f"{self.organismo_id}:crear:{seq}") % 1000) / 1000.0 > self.P_CREAR:
+            self._bloqueo_crear = "libertad"
             return None
-        # ACUÑA: afecto + exploración del gesto → parámetros del aparato → síntesis R2-D2 propia
+        # ACUÑA expresando su ESTADO: _afecto_a_params ya hace BONITO cuando se siente bien (limpio) y
+        # GARABATO cuando está MOLESTO (valencia<0 → tensión/ruido glotal). La molestia se expresa con
+        # garabatos; NO se censura ninguna expresión. La belleza/fealdad la JUZGA al OÍR (propiocepción),
+        # no se le impone al CREAR — el organismo emite lo que su afecto pide, lindo o feo.
         try:
             audio = np.asarray(self._fonador.vocalizar(**self._afecto_a_params(aro, val)), dtype=np.float64)
         except Exception:
+            self._bloqueo_crear = "fonador_fallo"
             return None
+        self._bloqueo_crear = "acunada"
         self._creadas += 1
         suf = self.organismo_id[-1] if self.organismo_id else "X"
         # NACE PROVISIONAL: es una HIPÓTESIS del organismo sobre cómo expresarse, no patrimonio todavía.
@@ -733,8 +1332,8 @@ class OrganoComunicacion:
                "estado": "provisional", "usos": 0, "nacida": int(self._emision_seq), "ultimo_uso": int(self._emision_seq)}
         self._voces.append(voz)                          # se suma al banco como hipótesis provisional
         self._gap_reciente.clear()                       # esa región queda (tentativamente) cubierta
-        self.ultima_voz_origen = "creado"; self.ultimo_costo_voz = self.COSTO_CREAR
-        self._costo_pendiente += self.COSTO_CREAR         # gasto que el metabolismo cobrará una vez
+        self.ultima_voz_origen = "creado"; self.ultimo_costo_voz = precio
+        self._costo_pendiente += precio                  # gasto que el metabolismo cobrará una vez
         return voz
 
     def _registrar_uso(self, voz: dict) -> None:
@@ -768,6 +1367,41 @@ class OrganoComunicacion:
             self._voces = vivos
         return podadas
 
+    def _forma_oida_del_otro(self):
+        """Trae el bloque de voz que el otro está emitiendo AHORA, tal cual suena.
+
+        El organismo ya oye al par por ese mismo canal (`VST_COMUNICACION_PEER`);
+        aquí simplemente se conserva la onda en vez de descartarla. Devuelve mono
+        float a la tasa del organismo, o None si no se pudo (y entonces el llamador
+        re-sintetiza como siempre).
+        """
+        url = (os.environ.get("VST_COMUNICACION_PEER") or "").strip()
+        if not url:
+            return None
+        try:
+            import io as _io
+            import urllib.request as _url
+            import scipy.io.wavfile as _wav
+            pet = _url.Request(url, headers={"User-Agent": "ANIMA-Organismo/1.2"})
+            with _url.urlopen(pet, timeout=1.5) as r:      # acotado: corre dentro del tick
+                crudo = r.read(4_000_000)
+            sr, datos = _wav.read(_io.BytesIO(crudo))
+            x = np.asarray(datos, dtype=np.float64)
+            if x.ndim > 1:                                 # a mono
+                x = x.mean(axis=1)
+            pico = float(np.max(np.abs(x))) if x.size else 0.0
+            if pico <= 0 or x.size < int(0.05 * sr):        # silencio o demasiado corto
+                return None
+            x = x / pico * 0.9
+            if sr != self.sr:                               # remuestreo lineal, suficiente aquí
+                n = int(len(x) * self.sr / float(sr))
+                if n < 2:
+                    return None
+                x = np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x)
+            return x[: int(3.0 * self.sr)]
+        except Exception:
+            return None
+
     def quizas_emular(self, peer: dict, fila: dict, seq: int):
         """IMITACIÓN entre organismos (lenguaje compartido). Si el OTRO vocaliza una palabra DISTINTIVA que él
         inventó/aprendió y que MI banco no cubre, puedo EMULARLA: re-sintetizo MI versión con mi propio aparato
@@ -775,39 +1409,127 @@ class OrganoComunicacion:
         invención del otro puede entrar en MI vocabulario y el léxico propio CONVERGE entre A y B, en vez de
         divergir en dos linajes. Conducta libre (P_EMULAR) y costosa (como crear). Nace PROVISIONAL: deberá
         reusarse para cuajar, igual que una palabra propia. Devuelve la voz aprendida o None."""
+        # DIAGNÓSTICO (motivo por el que se abandona el intento). Esta vía llevaba 99.646 pasos sin
+        # ejecutarse NI UNA VEZ —voz_aprendidas = 0 en 99.646 de 99.646 filas, y 0 eventos
+        # 'palabra_aprendida' contra 26 'palabra_propia'— y no había forma de saber cuál de las
+        # guardas cortaba, porque ninguna dejaba rastro. Ahora cada salida escribe su motivo y
+        # voz_actual() lo publica.
+        if os.environ.get("ANIMA_NO_ACUNAR", "").strip().lower() in ("1", "true", "yes", "on"):
+            self._bloqueo_emular = "ablacion"
+            return None    # ABLACIÓN C3 (tercero ESTÉRIL): tampoco EMULA — no engendra ecosistema por imitación
         if self._fonador is None or not peer or not self._voces or not peer.get("vivo"):
+            # SOSPECHOSO PRINCIPAL, y no es una constante: `peer` llega de _peer_voz_estado(), que
+            # sondea VST_COMUNICACION_PEER — variable de entorno cuyo valor por defecto es "" y que
+            # no la fija ningún lanzador del repositorio. El organismo SÍ oye vecinos (medido:
+            # alt_otro_presente = 1 el 55,1 % de los pasos, presencia_vecinos_n mediana 6), pero los
+            # oye por el ROSTER de Presencia, que es otro canal. Si es eso, la vía no está cortada
+            # por ninguna guarda: está escuchando en una puerta por la que no entra nadie. Queda
+            # medible en la próxima corrida como bloqueo 'sin_par'.
+            self._bloqueo_emular = ("sin_fonador" if self._fonador is None else
+                                    ("sin_par" if not peer else
+                                     ("sin_banco" if not self._voces else "par_no_vivo")))
             return None
         if peer.get("voz_origen", "banco") not in ("creado", "aprendida"):   # sólo emulo lo que el otro INVENTÓ
+            self._bloqueo_emular = "par_del_banco"   # MEDIDO en la traza propia: pasa el 20,8 % de los pasos
             return None
         try:
             aro = float(peer.get("voz_arousal", 0.0) or 0.0); val = float(peer.get("voz_valence", 0.0) or 0.0)
         except Exception:
+            self._bloqueo_emular = "afecto_del_par_ilegible"
             return None
-        activas = sum(1 for v in self._voces if v.get("afecto_origen") in ("creado", "aprendida"))
+        # BRAZO EXPERIMENTAL (16-ago-2026, `ANIMA_AFECTO_PROPIO_AL_APRENDER`). Por defecto APAGADO:
+        # el comportamiento historico es que la palabra aprendida se guarda con el afecto DEL OTRO,
+        # y por eso lo que circula por el anillo es un numero congelado -- medido: 0,3082 / 0,2990 /
+        # 0,3000 en los tres primeros niveles de eco, y una sola raiz en 35.180 de 60.032 filas.
+        #
+        # Encendido, se separa lo que hasta ahora estaba fundido en una sola variable:
+        #   - el afecto DEL PAR (aro/val) sigue decidiendo si merece la pena imitar, porque es lo
+        #     que YO percibo como region no cubierta, y sigue dando FORMA al sonido resintetizado:
+        #     la palabra tiene que seguir sonando a la suya o no es imitacion, es invencion.
+        #   - el afecto PROPIO (aro_mio/val_mio) es el que se GUARDA con la palabra, porque es lo
+        #     que esa palabra me hace a MI al oirla. Ahi es donde la imitacion se anida como
+        #     experiencia interior y no antes (criterio S=I<->E de Alexis, 4-ago-2026).
+        # La forma viene de fuera; el sentido, de dentro. `afecto_regla` queda en la voz para poder
+        # separar los dos brazos en la bitacora sin adivinar.
+        if AFECTO_PROPIO_AL_APRENDER:
+            try:
+                aro_mio, val_mio = self._afecto(fila)
+                aro_mio, val_mio = float(aro_mio), float(val_mio)
+            except Exception:
+                self._bloqueo_emular = "afecto_propio_ilegible"
+                return None
+            regla_afecto = "propio"
+        else:
+            aro_mio, val_mio, regla_afecto = aro, val, "heredado"
+        activas = self._palabras_propias()
         if activas >= self.MAX_CREADAS:
+            self._bloqueo_emular = "vocabulario_lleno"
             return None
         gap = min((v["aro"] - aro) ** 2 + (v["val"] - val) ** 2 for v in self._voces) ** 0.5
-        if gap <= self.GAP_EMULAR:                        # ya cubro esa región: no necesito emular
+        self._gap_peer = gap
+        # Antes: gap <= 0,05, un número contra nada (MEDIDO: lo pasaba el 85,3 % de los pasos, o sea
+        # casi nunca decidía). Ahora se compara contra la RESOLUCIÓN de mi propio repertorio, igual
+        # que al acuñar: la palabra del otro merece emularse si cae más lejos de toda voz mía que lo
+        # que distan entre sí mis voces — es decir, si ninguna de las mías la distingue. Emular
+        # sigue siendo más fácil que acuñar porque no exige que el hueco REAPAREZCA.
+        paso = self._paso_repertorio()
+        if paso <= 0.0 or rel_contra(gap, paso) <= NEUTRO:   # ya cubro esa región: no necesito emular
+            self._bloqueo_emular = "ya_cubierto" if paso > 0.0 else "sin_resolucion"
             return None
+        # La reserva contra EL PRECIO, no contra 0,25 (ver la nota de ENERGIA_MIN_CREAR). MEDIDO:
+        # met_energia sólo superaba 0,25 el 24,0 % de los pasos, así que ese número por sí solo
+        # tiraba abajo tres de cada cuatro ocasiones sin que nadie hubiera medido el precio real.
+        # MISMO PRECIO CRECIENTE QUE AL ACUÑAR (8-ago-2026): una palabra emulada entra en el mismo
+        # banco y compite por las mismas emisiones, así que se paga por el mismo criterio. Sería
+        # incoherente que imitar al otro esquivara el precio de tener vocabulario.
         energia = float(fila.get("energia", fila.get("met_energia", 0.0)) or 0.0)
-        if energia < self.ENERGIA_MIN_CREAR:
+        precio = self.costo_crear()
+        if rel_contra(energia, precio) <= NEUTRO:
+            self._bloqueo_emular = "sin_energia"
             return None
         if (_stable_seed(f"{self.organismo_id}:emular:{seq}") % 1000) / 1000.0 > self.P_EMULAR:
+            self._bloqueo_emular = "libertad"
             return None
-        try:
-            audio = np.asarray(self._fonador.vocalizar(**self._afecto_a_params(aro, val)), dtype=np.float64)
-        except Exception:
-            return None
+        # ── IMITACIÓN DE FORMA (experimental, ANIMA_IMITAR_FORMA=1) ──────────────
+        # Por defecto el organismo RE-SINTETIZA su versión del afecto del otro: la
+        # semejanza emerge de compartir la función de síntesis, no de copiar.
+        # Con el interruptor encendido, en cambio, se queda con la FORMA que oyó.
+        #
+        # La diferencia no es cosmética. En el lenguaje humano la estructura viaja
+        # DENTRO de la forma copiada: un niño repite una secuencia que todavía no
+        # sabe analizar, y la estructura llega con ella. Re-derivar desde coordenadas
+        # afectivas no puede transportar nada que no esté ya en la función; copiar
+        # la forma sí, incluidos encadenamientos de más de un gesto.
+        #
+        # Es una manipulación experimental de una decisión de diseño deliberada.
+        # Falla hacia el comportamiento original: si no se puede oír al otro, se
+        # re-sintetiza como siempre.
+        audio = None
+        forma_copiada = False
+        if os.environ.get("ANIMA_IMITAR_FORMA", "").strip().lower() in ("1", "true", "yes", "on"):
+            audio = self._forma_oida_del_otro()
+            forma_copiada = audio is not None
+        if audio is None:
+            try:
+                audio = np.asarray(self._fonador.vocalizar(**self._afecto_a_params(aro, val)), dtype=np.float64)
+            except Exception:
+                self._bloqueo_emular = "fonador_fallo"
+                return None
+        self._bloqueo_emular = "emulada"
         self._aprendidas += 1
         suf = self.organismo_id[-1] if self.organismo_id else "X"
         voz = {"label": f"apr_{suf}{self._aprendidas:03d}", "audio": audio[: int(3.0 * self.sr)],
-               "aro": aro, "val": val, "afecto_origen": "aprendida",
-               "titulo": f"eco de {peer.get('voz_titulo', 'el otro')}",
+               "aro": aro_mio, "val": val_mio, "afecto_origen": "aprendida",
+               "afecto_regla": regla_afecto,
+               "afecto_par_aro": round(aro, 4), "afecto_par_val": round(val, 4),
+               "imitacion": "forma" if forma_copiada else "resintesis",
+               "titulo": titulo_eco(peer.get("voz_titulo", "")),
+               "emulada_de": peer.get("voz_emitida") or peer.get("voz_id") or "",   # RUTA: ID global de la palabra que se emuló (de quién)
                "estado": "provisional", "usos": 0, "nacida": int(self._emision_seq),
                "ultimo_uso": int(self._emision_seq)}
         self._voces.append(voz)                           # entra en MI vocabulario como hipótesis aprendida
-        self.ultima_voz_origen = "aprendida"; self.ultimo_costo_voz = self.COSTO_CREAR
-        self._costo_pendiente += self.COSTO_CREAR
+        self.ultima_voz_origen = "aprendida"; self.ultimo_costo_voz = precio
+        self._costo_pendiente += precio
         return voz
 
     def vocabulario_propio(self) -> list:
@@ -823,12 +1545,44 @@ class OrganoComunicacion:
         return out
 
     def consumir_costo(self) -> float:
-        """Devuelve (y resetea) el coste energético acumulado de las emisiones desde la última lectura.
-        El bucle se lo pasa al metabolismo como gasto extra → ACUÑAR una palabra cuesta energía DE VERDAD
-        (más que reutilizar el banco). Se cobra UNA vez por creación, no por paso."""
+        """Devuelve (y resetea) el coste energético acumulado desde la última lectura.
+        El bucle lo inyecta en metabolismo como met_costo_extra (gasto real del paso).
+        Incluye: emitir voz (COSTO_USAR·escala) y acuñar/emular (costo_crear(), una vez —
+        el precio del momento, que sube con las palabras propias que ya hay)."""
         c = self._costo_pendiente
         self._costo_pendiente = 0.0
         return c
+
+    def registrar_costo_emision(self, vocalizando: bool, fila: dict | None = None) -> float:
+        """Cobra el coste de EMITIR este paso (señal costosa). Silencio → 0.
+
+        Anti-Shannon: la escala depende de activación endógena (arousal del estado + intensidad
+        del gesto), no de la etiqueta del sample ni de un código simbólico impuesto.
+        Llamar DESPUÉS de decidir silencio (expr_vocalizando / voz_emitida='-').
+        El cobro se aplica en el SIGUIENTE paso vía consumir_costo → metabolismo.
+        """
+        if not vocalizando:
+            self.ultimo_costo_voz = 0.0
+            return 0.0
+        fila = fila if fila is not None else (getattr(self, "_fila", None) or {})
+        try:
+            aro, _val = self._afecto(fila)
+        except Exception:
+            aro = 0.5
+        try:
+            inten = abs(float((self.gesto or {}).get("g_intensidad", 0.0) or 0.0))
+        except Exception:
+            inten = 0.0
+        # 0.5 … 1.0: más activado/intenso → señal más costosa (fisiología de esfuerzo, no de significado)
+        escala = 0.5 + 0.5 * min(1.0, 0.65 * float(aro) + 0.35 * min(1.0, inten))
+        try:
+            base = float(os.environ.get("ANIMA_COSTO_VOZ_USAR", str(self.COSTO_USAR)))
+        except Exception:
+            base = float(self.COSTO_USAR)
+        costo = max(0.0, base) * escala
+        self._costo_pendiente += costo
+        self.ultimo_costo_voz = costo
+        return costo
 
     def _audio_r2d2_samples(self, fila: dict, seq: int):
         """Elige la voz que EMITE el organismo. Primero la SEGUNDA VÍA: ¿acuñar una palabra propia porque el

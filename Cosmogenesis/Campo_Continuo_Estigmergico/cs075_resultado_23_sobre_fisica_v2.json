@@ -1,0 +1,1433 @@
+{
+  "configs": {
+    "0.01": {
+      "amp_asimetria": 0.01,
+      "hitos_finales": {
+        "expansion_supraluminica": true,
+        "T_bajo_electrodebil": true,
+        "T_bajo_confinamiento": true,
+        "hay_sobredensidad": false,
+        "hay_nucleos": false,
+        "hay_atomos": false,
+        "hay_red": false,
+        "n_celdas_sobredensas": 0,
+        "n_celdas_nucleo": 0,
+        "n_celdas_atomo": 0,
+        "n_regiones_atomo": 0,
+        "T_media": 62.72777677906136
+      },
+      "estado_final": {
+        "paso": 5000,
+        "t": 5.000000000000004,
+        "dt": 0.001,
+        "a": 15.941900882637393,
+        "H": 0.09960159362549792,
+        "supraluminico": true,
+        "T": 62.72777677906136,
+        "rho": 0.00023449748075254326,
+        "X": 0.0006748250068661686,
+        "S": 14.56653417049282,
+        "grad": 1.613529519104903e-07,
+        "v_c": 1.5779860077445071,
+        "a_teorico": 15.842979517754866,
+        "T_max": 65.10086398435949,
+        "T_min": 60.61730324422447,
+        "rho_max": 0.00024411670632449185
+      },
+      "informes_agentes": [
+        {
+          "numero": 23,
+          "nombre": "23_campo",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 22,
+          "nombre": "22_qcd",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 9,
+          "nombre": "9_expansion",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 10,
+          "nombre": "10_enfriamiento",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 101,
+          "nombre": "M1_semilla",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 103,
+          "nombre": "M3_fase_cuantica",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 5,
+          "nombre": "5_debil",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 7,
+          "nombre": "7_masa",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 6,
+          "nombre": "6_catalogo",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 16,
+          "nombre": "16_ssb",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 3,
+          "nombre": "3_fuerte",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 8,
+          "nombre": "8_aniquilacion",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 1,
+          "nombre": "1_espin",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 11,
+          "nombre": "11_tres_cuerpos",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 13,
+          "nombre": "13_pauli",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 2,
+          "nombre": "2_gravedad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 12,
+          "nombre": "12_localidad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 4,
+          "nombre": "4_em",
+          "requiere": [
+            "hay_nucleos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 14,
+          "nombre": "14_correlacion",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 102,
+          "nombre": "M2_memoria",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 17,
+          "nombre": "17_oscuro",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 18,
+          "nombre": "18_poda",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 15,
+          "nombre": "15_causal",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        }
+      ],
+      "n_despiertos": 15,
+      "n_dormidos": 8,
+      "orden_despertar": [
+        {
+          "nombre": "23_campo",
+          "paso": 0
+        },
+        {
+          "nombre": "22_qcd",
+          "paso": 0
+        },
+        {
+          "nombre": "9_expansion",
+          "paso": 0
+        },
+        {
+          "nombre": "10_enfriamiento",
+          "paso": 0
+        },
+        {
+          "nombre": "M1_semilla",
+          "paso": 0
+        },
+        {
+          "nombre": "M3_fase_cuantica",
+          "paso": 0
+        },
+        {
+          "nombre": "5_debil",
+          "paso": 5
+        },
+        {
+          "nombre": "7_masa",
+          "paso": 5
+        },
+        {
+          "nombre": "6_catalogo",
+          "paso": 5
+        },
+        {
+          "nombre": "16_ssb",
+          "paso": 5
+        },
+        {
+          "nombre": "3_fuerte",
+          "paso": 36
+        },
+        {
+          "nombre": "8_aniquilacion",
+          "paso": 36
+        },
+        {
+          "nombre": "1_espin",
+          "paso": 36
+        },
+        {
+          "nombre": "11_tres_cuerpos",
+          "paso": 36
+        },
+        {
+          "nombre": "13_pauli",
+          "paso": 36
+        }
+      ],
+      "cronologia": [],
+      "paso_confinamiento": 36,
+      "ms_por_paso": 1.3133113861083985,
+      "tiempo_config_s": 6.566556930541992
+    },
+    "0.1": {
+      "amp_asimetria": 0.1,
+      "hitos_finales": {
+        "expansion_supraluminica": true,
+        "T_bajo_electrodebil": true,
+        "T_bajo_confinamiento": true,
+        "hay_sobredensidad": false,
+        "hay_nucleos": false,
+        "hay_atomos": false,
+        "hay_red": false,
+        "n_celdas_sobredensas": 0,
+        "n_celdas_nucleo": 0,
+        "n_celdas_atomo": 0,
+        "n_regiones_atomo": 0,
+        "T_media": 62.72777677906135
+      },
+      "estado_final": {
+        "paso": 5000,
+        "t": 5.000000000000004,
+        "dt": 0.001,
+        "a": 15.941900882637393,
+        "H": 0.09960159362549792,
+        "supraluminico": true,
+        "T": 62.72777677906135,
+        "rho": 0.00023460320606516765,
+        "X": 0.0007304194293036104,
+        "S": 14.558563581487137,
+        "grad": 1.6723449548832863e-07,
+        "v_c": 1.5779860077445071,
+        "a_teorico": 15.842979517754866,
+        "T_max": 90.51940802323924,
+        "T_min": 44.34455453195213,
+        "rho_max": 0.00024486610761371346
+      },
+      "informes_agentes": [
+        {
+          "numero": 23,
+          "nombre": "23_campo",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 22,
+          "nombre": "22_qcd",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 9,
+          "nombre": "9_expansion",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 10,
+          "nombre": "10_enfriamiento",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 101,
+          "nombre": "M1_semilla",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 103,
+          "nombre": "M3_fase_cuantica",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 5,
+          "nombre": "5_debil",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 7,
+          "nombre": "7_masa",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 6,
+          "nombre": "6_catalogo",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 16,
+          "nombre": "16_ssb",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 3,
+          "nombre": "3_fuerte",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 8,
+          "nombre": "8_aniquilacion",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 1,
+          "nombre": "1_espin",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 11,
+          "nombre": "11_tres_cuerpos",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 13,
+          "nombre": "13_pauli",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 2,
+          "nombre": "2_gravedad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 12,
+          "nombre": "12_localidad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 4,
+          "nombre": "4_em",
+          "requiere": [
+            "hay_nucleos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 14,
+          "nombre": "14_correlacion",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 102,
+          "nombre": "M2_memoria",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 17,
+          "nombre": "17_oscuro",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 18,
+          "nombre": "18_poda",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 15,
+          "nombre": "15_causal",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        }
+      ],
+      "n_despiertos": 15,
+      "n_dormidos": 8,
+      "orden_despertar": [
+        {
+          "nombre": "23_campo",
+          "paso": 0
+        },
+        {
+          "nombre": "22_qcd",
+          "paso": 0
+        },
+        {
+          "nombre": "9_expansion",
+          "paso": 0
+        },
+        {
+          "nombre": "10_enfriamiento",
+          "paso": 0
+        },
+        {
+          "nombre": "M1_semilla",
+          "paso": 0
+        },
+        {
+          "nombre": "M3_fase_cuantica",
+          "paso": 0
+        },
+        {
+          "nombre": "5_debil",
+          "paso": 5
+        },
+        {
+          "nombre": "7_masa",
+          "paso": 5
+        },
+        {
+          "nombre": "6_catalogo",
+          "paso": 5
+        },
+        {
+          "nombre": "16_ssb",
+          "paso": 5
+        },
+        {
+          "nombre": "3_fuerte",
+          "paso": 36
+        },
+        {
+          "nombre": "8_aniquilacion",
+          "paso": 36
+        },
+        {
+          "nombre": "1_espin",
+          "paso": 36
+        },
+        {
+          "nombre": "11_tres_cuerpos",
+          "paso": 36
+        },
+        {
+          "nombre": "13_pauli",
+          "paso": 36
+        }
+      ],
+      "cronologia": [],
+      "paso_confinamiento": 36,
+      "ms_por_paso": 1.7173610210418702,
+      "tiempo_config_s": 8.58680510520935
+    },
+    "0.5": {
+      "amp_asimetria": 0.5,
+      "hitos_finales": {
+        "expansion_supraluminica": true,
+        "T_bajo_electrodebil": true,
+        "T_bajo_confinamiento": true,
+        "hay_sobredensidad": false,
+        "hay_nucleos": false,
+        "hay_atomos": false,
+        "hay_red": false,
+        "n_celdas_sobredensas": 0,
+        "n_celdas_nucleo": 0,
+        "n_celdas_atomo": 0,
+        "n_regiones_atomo": 0,
+        "T_media": 62.727776779061344
+      },
+      "estado_final": {
+        "paso": 5000,
+        "t": 5.000000000000004,
+        "dt": 0.001,
+        "a": 15.941900882637393,
+        "H": 0.09960159362549792,
+        "supraluminico": true,
+        "T": 62.727776779061344,
+        "rho": 0.0002350736732409899,
+        "X": 0.001024428041276262,
+        "S": 14.373317342572083,
+        "grad": 1.9602862094048865e-07,
+        "v_c": 1.5779860077445071,
+        "a_teorico": 15.842979517754866,
+        "T_max": 354.488378269335,
+        "T_min": 10.002186742058178,
+        "rho_max": 0.0002490522745242744
+      },
+      "informes_agentes": [
+        {
+          "numero": 23,
+          "nombre": "23_campo",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 22,
+          "nombre": "22_qcd",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 9,
+          "nombre": "9_expansion",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 10,
+          "nombre": "10_enfriamiento",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 101,
+          "nombre": "M1_semilla",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 103,
+          "nombre": "M3_fase_cuantica",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 5,
+          "nombre": "5_debil",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 7,
+          "nombre": "7_masa",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 6,
+          "nombre": "6_catalogo",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 16,
+          "nombre": "16_ssb",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 3,
+          "nombre": "3_fuerte",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 8,
+          "nombre": "8_aniquilacion",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 1,
+          "nombre": "1_espin",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 11,
+          "nombre": "11_tres_cuerpos",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 13,
+          "nombre": "13_pauli",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 2,
+          "nombre": "2_gravedad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 4988,
+          "pasos_despierto": 12
+        },
+        {
+          "numero": 12,
+          "nombre": "12_localidad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 4988,
+          "pasos_despierto": 12
+        },
+        {
+          "numero": 4,
+          "nombre": "4_em",
+          "requiere": [
+            "hay_nucleos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 14,
+          "nombre": "14_correlacion",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 102,
+          "nombre": "M2_memoria",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 17,
+          "nombre": "17_oscuro",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 18,
+          "nombre": "18_poda",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        },
+        {
+          "numero": 15,
+          "nombre": "15_causal",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": null,
+          "pasos_dormido": 5000,
+          "pasos_despierto": 0
+        }
+      ],
+      "n_despiertos": 17,
+      "n_dormidos": 6,
+      "orden_despertar": [
+        {
+          "nombre": "23_campo",
+          "paso": 0
+        },
+        {
+          "nombre": "22_qcd",
+          "paso": 0
+        },
+        {
+          "nombre": "9_expansion",
+          "paso": 0
+        },
+        {
+          "nombre": "10_enfriamiento",
+          "paso": 0
+        },
+        {
+          "nombre": "M1_semilla",
+          "paso": 0
+        },
+        {
+          "nombre": "M3_fase_cuantica",
+          "paso": 0
+        },
+        {
+          "nombre": "2_gravedad",
+          "paso": 0
+        },
+        {
+          "nombre": "12_localidad",
+          "paso": 0
+        },
+        {
+          "nombre": "5_debil",
+          "paso": 5
+        },
+        {
+          "nombre": "7_masa",
+          "paso": 5
+        },
+        {
+          "nombre": "6_catalogo",
+          "paso": 5
+        },
+        {
+          "nombre": "16_ssb",
+          "paso": 5
+        },
+        {
+          "nombre": "3_fuerte",
+          "paso": 36
+        },
+        {
+          "nombre": "8_aniquilacion",
+          "paso": 36
+        },
+        {
+          "nombre": "1_espin",
+          "paso": 36
+        },
+        {
+          "nombre": "11_tres_cuerpos",
+          "paso": 36
+        },
+        {
+          "nombre": "13_pauli",
+          "paso": 36
+        }
+      ],
+      "cronologia": [],
+      "paso_confinamiento": 36,
+      "ms_por_paso": 2.0681779861450194,
+      "tiempo_config_s": 10.340889930725098
+    },
+    "2.0": {
+      "amp_asimetria": 2.0,
+      "hitos_finales": {
+        "expansion_supraluminica": true,
+        "T_bajo_electrodebil": true,
+        "T_bajo_confinamiento": true,
+        "hay_sobredensidad": true,
+        "hay_nucleos": true,
+        "hay_atomos": true,
+        "hay_red": true,
+        "n_celdas_sobredensas": 186,
+        "n_celdas_nucleo": 184,
+        "n_celdas_atomo": 183,
+        "n_regiones_atomo": 15,
+        "T_media": 62.727776779061344
+      },
+      "estado_final": {
+        "paso": 5000,
+        "t": 5.000000000000004,
+        "dt": 0.001,
+        "a": 15.941900882637393,
+        "H": 0.09960159362549792,
+        "supraluminico": true,
+        "T": 62.727776779061344,
+        "rho": 0.00023495668980997496,
+        "X": 0.06662938904195549,
+        "S": 11.522494871252665,
+        "grad": 1.408364322406967e-06,
+        "v_c": 1.5779860077445071,
+        "a_teorico": 15.842979517754866,
+        "T_max": 13725.50323246837,
+        "T_min": 0.008699616422213311,
+        "rho_max": 0.00036429140632265
+      },
+      "informes_agentes": [
+        {
+          "numero": 23,
+          "nombre": "23_campo",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 22,
+          "nombre": "22_qcd",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 9,
+          "nombre": "9_expansion",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 10,
+          "nombre": "10_enfriamiento",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 101,
+          "nombre": "M1_semilla",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 103,
+          "nombre": "M3_fase_cuantica",
+          "requiere": [],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 5,
+          "nombre": "5_debil",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 7,
+          "nombre": "7_masa",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 6,
+          "nombre": "6_catalogo",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 16,
+          "nombre": "16_ssb",
+          "requiere": [
+            "T_bajo_electrodebil"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 5,
+          "pasos_dormido": 5,
+          "pasos_despierto": 4995
+        },
+        {
+          "numero": 3,
+          "nombre": "3_fuerte",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 8,
+          "nombre": "8_aniquilacion",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 1,
+          "nombre": "1_espin",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 11,
+          "nombre": "11_tres_cuerpos",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 13,
+          "nombre": "13_pauli",
+          "requiere": [
+            "T_bajo_confinamiento"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 2,
+          "nombre": "2_gravedad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 12,
+          "nombre": "12_localidad",
+          "requiere": [
+            "hay_sobredensidad"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 0,
+          "pasos_dormido": 0,
+          "pasos_despierto": 5000
+        },
+        {
+          "numero": 4,
+          "nombre": "4_em",
+          "requiere": [
+            "hay_nucleos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 14,
+          "nombre": "14_correlacion",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 102,
+          "nombre": "M2_memoria",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 17,
+          "nombre": "17_oscuro",
+          "requiere": [
+            "hay_atomos"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 36,
+          "pasos_despierto": 4964
+        },
+        {
+          "numero": 18,
+          "nombre": "18_poda",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": false,
+          "paso_despertar": 36,
+          "pasos_dormido": 2764,
+          "pasos_despierto": 2236
+        },
+        {
+          "numero": 15,
+          "nombre": "15_causal",
+          "requiere": [
+            "hay_red"
+          ],
+          "es_casilla_falsacion": true,
+          "paso_despertar": 36,
+          "pasos_dormido": 2764,
+          "pasos_despierto": 2236
+        }
+      ],
+      "n_despiertos": 23,
+      "n_dormidos": 0,
+      "orden_despertar": [
+        {
+          "nombre": "23_campo",
+          "paso": 0
+        },
+        {
+          "nombre": "22_qcd",
+          "paso": 0
+        },
+        {
+          "nombre": "9_expansion",
+          "paso": 0
+        },
+        {
+          "nombre": "10_enfriamiento",
+          "paso": 0
+        },
+        {
+          "nombre": "M1_semilla",
+          "paso": 0
+        },
+        {
+          "nombre": "M3_fase_cuantica",
+          "paso": 0
+        },
+        {
+          "nombre": "2_gravedad",
+          "paso": 0
+        },
+        {
+          "nombre": "12_localidad",
+          "paso": 0
+        },
+        {
+          "nombre": "5_debil",
+          "paso": 5
+        },
+        {
+          "nombre": "7_masa",
+          "paso": 5
+        },
+        {
+          "nombre": "6_catalogo",
+          "paso": 5
+        },
+        {
+          "nombre": "16_ssb",
+          "paso": 5
+        },
+        {
+          "nombre": "3_fuerte",
+          "paso": 36
+        },
+        {
+          "nombre": "8_aniquilacion",
+          "paso": 36
+        },
+        {
+          "nombre": "1_espin",
+          "paso": 36
+        },
+        {
+          "nombre": "11_tres_cuerpos",
+          "paso": 36
+        },
+        {
+          "nombre": "13_pauli",
+          "paso": 36
+        },
+        {
+          "nombre": "4_em",
+          "paso": 36
+        },
+        {
+          "nombre": "14_correlacion",
+          "paso": 36
+        },
+        {
+          "nombre": "M2_memoria",
+          "paso": 36
+        },
+        {
+          "nombre": "17_oscuro",
+          "paso": 36
+        },
+        {
+          "nombre": "18_poda",
+          "paso": 36
+        },
+        {
+          "nombre": "15_causal",
+          "paso": 36
+        }
+      ],
+      "cronologia": [],
+      "paso_confinamiento": 36,
+      "ms_por_paso": 4.276593399047852,
+      "tiempo_config_s": 21.382966995239258
+    }
+  },
+  "T_total_usado": 5.0,
+  "N": 16,
+  "dt": 0.001,
+  "elapsed_s": 46.88463282585144,
+  "RATIO_EW_CONF": 1025.8064516129032
+}

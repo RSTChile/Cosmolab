@@ -1,0 +1,70 @@
+CS058 — ZOOM DENSO al candidato de ENERGÍA OSCURA (¿real o artefacto?)
+====================================================================================================
+PREDICCIONES CIEGAS (pre-registradas):
+  1. RESOLUCIÓN: si la aceleración es REAL, su fracción se ESTABILIZA/AFILA de ×1→×2→×4 pasos;
+     si es artefacto de submuestreo, DECAE hacia 0. (falsación directa)
+  2. NULL: la aceleración real COLAPSA al barajar la trayectoria (accnull << acc).
+  3. FRONTERA CURVA: la aceleración se concentra donde la geometría viable es CURVA, no en 3D-plano.
+
+centroide alta-acc del dato: {'w_grav': 0.25, 'w_strong': 0.34, 'w_em': 0.32, 'w_weak': 0.51, 'w_exp': 0.79, 'w_cool': 0.52, 'alc': 0.51}
+puntos=1404 · res=[1, 2, 4] · seeds=6 · niv=6 · workers=14
+corridas ≈ 25272 · salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs058_zoom.csv
+  25/1404 · 0.3min · ETA 0.29h
+  50/1404 · 0.6min · ETA 0.26h
+  75/1404 · 0.9min · ETA 0.25h
+  100/1404 · 1.2min · ETA 0.26h
+  125/1404 · 1.4min · ETA 0.25h
+  150/1404 · 1.9min · ETA 0.27h
+  175/1404 · 2.3min · ETA 0.27h
+  200/1404 · 2.7min · ETA 0.28h
+  225/1404 · 3.5min · ETA 0.30h
+  250/1404 · 4.2min · ETA 0.32h
+  275/1404 · 5.0min · ETA 0.34h
+  300/1404 · 5.7min · ETA 0.35h
+  325/1404 · 6.8min · ETA 0.37h
+  350/1404 · 7.8min · ETA 0.39h
+  375/1404 · 8.8min · ETA 0.40h
+  400/1404 · 9.8min · ETA 0.41h
+  425/1404 · 11.3min · ETA 0.43h
+  450/1404 · 12.5min · ETA 0.44h
+  475/1404 · 13.9min · ETA 0.45h
+  500/1404 · 15.2min · ETA 0.46h
+  525/1404 · 16.6min · ETA 0.46h
+  550/1404 · 18.5min · ETA 0.48h
+  575/1404 · 20.6min · ETA 0.50h
+  600/1404 · 23.2min · ETA 0.52h
+  625/1404 · 26.3min · ETA 0.55h
+  650/1404 · 30.0min · ETA 0.58h
+  675/1404 · 33.1min · ETA 0.60h
+  700/1404 · 35.3min · ETA 0.59h
+  725/1404 · 38.6min · ETA 0.60h
+  750/1404 · 43.7min · ETA 0.63h
+  775/1404 · 47.3min · ETA 0.64h
+  800/1404 · 54.9min · ETA 0.69h
+  825/1404 · 64.2min · ETA 0.75h
+  850/1404 · 69.3min · ETA 0.75h
+  875/1404 · 74.6min · ETA 0.75h
+  900/1404 · 80.3min · ETA 0.75h
+  925/1404 · 90.3min · ETA 0.78h
+  950/1404 · 100.1min · ETA 0.80h
+  975/1404 · 108.7min · ETA 0.80h
+  1000/1404 · 126.9min · ETA 0.85h
+  1025/1404 · 139.1min · ETA 0.86h
+  1050/1404 · 151.5min · ETA 0.85h
+  1075/1404 · 168.3min · ETA 0.86h
+  1100/1404 · 178.9min · ETA 0.82h
+  1125/1404 · 192.9min · ETA 0.80h
+  1150/1404 · 209.9min · ETA 0.77h
+  1175/1404 · 224.2min · ETA 0.73h
+  1200/1404 · 238.1min · ETA 0.67h
+  1225/1404 · 254.6min · ETA 0.62h
+  1250/1404 · 271.8min · ETA 0.56h
+  1275/1404 · 290.1min · ETA 0.49h
+  1300/1404 · 302.9min · ETA 0.40h
+  1325/1404 · 304.9min · ETA 0.30h
+  1350/1404 · 306.0min · ETA 0.20h
+  1375/1404 · 307.1min · ETA 0.11h
+  1400/1404 · 307.6min · ETA 0.01h
+  1404/1404 · 311.6min · ETA 0.00h
+
+COMPLETO: 1404 puntos en 311.6 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs058_zoom.csv

@@ -1,0 +1,598 @@
+{
+  "experimento": "E5.4-2 exponente de enfriamiento emergente (T\u221da^-n)",
+  "tag": "smoke",
+  "sello_heredado_CF2_F3_2": {
+    "H_EXP": 6.0,
+    "DTG": 0.002506265664160401
+  },
+  "parametros_propios_E5_4_2": {
+    "L0": 0.0005,
+    "V0": 1.0,
+    "N_SUB": 16,
+    "N_PART": 2000,
+    "MAX_COLLISION_ITERS": 2,
+    "modelo": "gas ideal de N_PART particulas libres en caja isotropa 3D; colision elastica con pared movil (REAL, Lh=0.5*L0*a(t)) o fija (NULL_SIN_EXPANSION, Lh=0.5*L0 siempre); T=mean(v^2) SIN dividir por ninguna potencia de a."
+  },
+  "barrido": {
+    "a_grid": [
+      1.0,
+      2.6826957952797255,
+      7.196856730011519,
+      19.306977288832496,
+      51.7947467923121,
+      138.94954943731375,
+      372.7593720314938,
+      1000.0
+    ],
+    "eps_grid": [
+      1e-12,
+      1.389495494373136e-07,
+      0.019306977288832457
+    ],
+    "seeds": [
+      7,
+      42
+    ],
+    "n_seeds": 2,
+    "n_eps": 3,
+    "n_total_combinaciones": 6
+  },
+  "criterio_preregistrado": {
+    "MONO_TOL": 1e-06,
+    "R2_MIN": 0.5,
+    "SLOPE_DIFF_MIN": 0.3,
+    "PASS_RATE_MIN": 0.55,
+    "descripcion": "punto_pass = mono_REAL AND (R2_REAL_global>=R2_MIN) AND (NOT mono_NULL OR abs(slope_NULL_global-slope_REAL_global)>=SLOPE_DIFF_MIN); veredicto principal basado en T_all; PASS si rate_T_all>=PASS_RATE_MIN Y rate_null_muerde>=PASS_RATE_MIN"
+  },
+  "resultados_por_semilla": {
+    "7": {
+      "eps_columns": {
+        "1.000000e-12": {
+          "T_all_REAL": [
+            0.9799415260774768,
+            0.13450220645487157,
+            0.018501258455657036,
+            0.00282562135984477,
+            0.0012853425656794372,
+            0.00128308903066774,
+            0.0012830890306681742,
+            0.001283089030668252
+          ],
+          "T_all_NULL": [
+            0.9799415260774768,
+            0.9799415260774563,
+            0.9799415260774462,
+            0.9799415260774365,
+            0.9799415260774281,
+            0.9799415260774167,
+            0.9799415260774265,
+            0.9799415260774261
+          ],
+          "T_x_REAL": [
+            0.9451943681262271,
+            0.12975287107515313,
+            0.017823524111030588,
+            0.0027544298930670826,
+            0.0012189690338316737,
+            0.0012189690338315047,
+            0.0012189690338323086,
+            0.0012189690338320128
+          ],
+          "T_x_NULL": [
+            0.9451943681262271,
+            0.9451943681262044,
+            0.9451943681261985,
+            0.9451943681261912,
+            0.9451943681262035,
+            0.9451943681261823,
+            0.945194368126199,
+            0.9451943681261737
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9472748660995501,
+            "R2_REAL_global": 0.7933997728474963,
+            "slope_NULL_global": -7.391590155660055e-15,
+            "R2_NULL_global": 0.7886524789275515,
+            "slope_diff_abs": 0.9472748660995427,
+            "slope_REAL_fase_temprana_diagnostico": -1.9790835701682865,
+            "R2_REAL_fase_temprana_diagnostico": 0.9998229798043038,
+            "slope_REAL_fase_tardia_diagnostico": -0.0005334684800047185,
+            "R2_REAL_fase_tardia_diagnostico": 0.5999999998181933,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          },
+          "evaluation_T_x": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9503156234862814,
+            "R2_REAL_global": 0.7949384618467954,
+            "slope_NULL_global": -5.576674869007393e-15,
+            "R2_NULL_global": 0.632075896441458,
+            "slope_diff_abs": 0.9503156234862759,
+            "slope_REAL_fase_temprana_diagnostico": -1.9760047078735865,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997794539045335,
+            "slope_REAL_fase_tardia_diagnostico": 1.5106259445178742e-13,
+            "R2_REAL_fase_tardia_diagnostico": 0.4311649155144054,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          }
+        },
+        "1.389495e-07": {
+          "T_all_REAL": [
+            0.9953243990358835,
+            0.13664456240685668,
+            0.018758546748365315,
+            0.002897483913673039,
+            0.0012982044306039545,
+            0.0012908004936602738,
+            0.00129080049085546,
+            0.0012908004788938247
+          ],
+          "T_all_NULL": [
+            0.9953243990358835,
+            0.995324401357235,
+            0.9953244014637144,
+            0.995324402128574,
+            0.9953244031678722,
+            0.9953244007985698,
+            0.9953243993131403,
+            0.995324399514564
+          ],
+          "T_x_REAL": [
+            0.9547316308991101,
+            0.13100355853092271,
+            0.017957260410159975,
+            0.0028079416218818373,
+            0.0012666132711927197,
+            0.0012602030182515239,
+            0.0012602029642155609,
+            0.0012602029064920015
+          ],
+          "T_x_NULL": [
+            0.9547316308991101,
+            0.9547316338067948,
+            0.9547316322639938,
+            0.9547316289082552,
+            0.9547316254893314,
+            0.9547316257800099,
+            0.9547316224659662,
+            0.9547316242961879
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9491417510210772,
+            "R2_REAL_global": 0.7947212908634363,
+            "slope_NULL_global": -9.485242838958616e-11,
+            "R2_NULL_global": 0.024173945305984934,
+            "slope_diff_abs": 0.9491417509262248,
+            "slope_REAL_fase_temprana_diagnostico": -1.976385603440741,
+            "R2_REAL_fase_temprana_diagnostico": 0.999780807946913,
+            "slope_REAL_fase_tardia_diagnostico": -0.0017387786119808877,
+            "R2_REAL_fase_tardia_diagnostico": 0.6000016000934191,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          },
+          "evaluation_T_x": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9457622654590276,
+            "R2_REAL_global": 0.7939637816787245,
+            "slope_NULL_global": -1.5895182389902614e-09,
+            "R2_NULL_global": 0.8071085483721245,
+            "slope_diff_abs": 0.9457622638695095,
+            "slope_REAL_fase_temprana_diagnostico": -1.9734219686326289,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997285424303423,
+            "slope_REAL_fase_tardia_diagnostico": -0.00154249438426926,
+            "R2_REAL_fase_tardia_diagnostico": 0.6000139828785154,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          }
+        },
+        "1.930698e-02": {
+          "T_all_REAL": [
+            1.0161991481351549,
+            0.1395355221171334,
+            0.019206126186119634,
+            0.0030186579609505783,
+            0.0013594829051236657,
+            0.0014114158820293472,
+            0.0014741742600986492,
+            0.0015544314271439526
+          ],
+          "T_all_NULL": [
+            1.0161991481351549,
+            1.0163453985128048,
+            1.016299191572412,
+            1.0162162386731468,
+            1.0162495558887894,
+            1.0166268313237468,
+            1.0166088873617112,
+            1.0165958309446468
+          ],
+          "T_x_REAL": [
+            1.0264433767262335,
+            0.1409244111328168,
+            0.01940384955705886,
+            0.003024769043348131,
+            0.0013950952446656695,
+            0.0014377627270020965,
+            0.001497526569875097,
+            0.0015599732209383714
+          ],
+          "T_x_NULL": [
+            1.0264433767262335,
+            1.0265750799613838,
+            1.0266751496088424,
+            1.0265860789296521,
+            1.0270154512525447,
+            1.027137001729157,
+            1.027012541329837,
+            1.0271144589506347
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": false,
+            "mono_NULL": false,
+            "slope_REAL_global": -0.9260090301983849,
+            "R2_REAL_global": 0.7797164776208163,
+            "slope_NULL_global": 6.065471376125762e-05,
+            "R2_NULL_global": 0.6400255588394486,
+            "slope_diff_abs": 0.9260696849121461,
+            "slope_REAL_fase_temprana_diagnostico": -1.9699726114855054,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997137465298989,
+            "slope_REAL_fase_tardia_diagnostico": 0.045147030972422966,
+            "R2_REAL_fase_tardia_diagnostico": 0.9939061004508394,
+            "cond_mono_real": false,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": false
+          },
+          "evaluation_T_x": {
+            "mono_REAL": false,
+            "mono_NULL": false,
+            "slope_REAL_global": -0.9256187175350082,
+            "R2_REAL_global": 0.7802875671252222,
+            "slope_NULL_global": 0.00010221252031926232,
+            "R2_NULL_global": 0.8342956409073713,
+            "slope_diff_abs": 0.9257209300553275,
+            "slope_REAL_fase_temprana_diagnostico": -1.9723728876130637,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997484097016949,
+            "slope_REAL_fase_tardia_diagnostico": 0.038086339741562864,
+            "R2_REAL_fase_tardia_diagnostico": 0.9951728869305747,
+            "cond_mono_real": false,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": false
+          }
+        }
+      },
+      "n_colisiones_final_REAL_por_eps": [
+        784544,
+        790303,
+        799738
+      ],
+      "n_colisiones_final_NULL_por_eps": [
+        10927334,
+        11008784,
+        11139875
+      ],
+      "ledger_rel_dev_max_REAL": 4.031640442143422e-15,
+      "ledger_rel_dev_max_NULL": 0.0
+    },
+    "42": {
+      "eps_columns": {
+        "1.000000e-12": {
+          "T_all_REAL": [
+            0.9947357944589351,
+            0.13653079493647555,
+            0.018792306294051226,
+            0.0029252983498549235,
+            0.001317463614239192,
+            0.0013153539127031193,
+            0.0013153539127034322,
+            0.0013153539127031886
+          ],
+          "T_all_NULL": [
+            0.9947357944589351,
+            0.9947357944589243,
+            0.9947357944589279,
+            0.994735794458921,
+            0.9947357944589186,
+            0.9947357944588952,
+            0.9947357944588827,
+            0.9947357944588829
+          ],
+          "T_x_REAL": [
+            1.0024416155096876,
+            0.13756865340480767,
+            0.018982299932627632,
+            0.002993302277691036,
+            0.0013396476795520561,
+            0.001335502757040336,
+            0.001335502757041203,
+            0.0013355027570416413
+          ],
+          "T_x_NULL": [
+            1.0024416155096876,
+            1.0024416155096596,
+            1.0024416155096598,
+            1.0024416155096576,
+            1.002441615509637,
+            1.0024416155095877,
+            1.0024416155095905,
+            1.0024416155095799
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9456344384334687,
+            "R2_REAL_global": 0.7938279634742236,
+            "slope_NULL_global": -8.17484436253897e-15,
+            "R2_NULL_global": 0.8892300659311297,
+            "slope_diff_abs": 0.9456344384334605,
+            "slope_REAL_fase_temprana_diagnostico": -1.973034764276059,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997529502326126,
+            "slope_REAL_fase_tardia_diagnostico": -0.0004872060790863839,
+            "R2_REAL_fase_tardia_diagnostico": 0.5999999999736938,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          },
+          "evaluation_T_x": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9444318245805265,
+            "R2_REAL_global": 0.7942986590366172,
+            "slope_NULL_global": -1.6081225077158706e-14,
+            "R2_NULL_global": 0.9081388127579736,
+            "slope_diff_abs": 0.9444318245805104,
+            "slope_REAL_fase_temprana_diagnostico": -1.96814244425925,
+            "R2_REAL_fase_temprana_diagnostico": 0.999700751689266,
+            "slope_REAL_fase_tardia_diagnostico": -0.0009420650689142517,
+            "R2_REAL_fase_tardia_diagnostico": 0.5999999997476243,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          }
+        },
+        "1.389495e-07": {
+          "T_all_REAL": [
+            1.0224822527836108,
+            0.1403426931627526,
+            0.01926450685216356,
+            0.0029382798935077736,
+            0.0013256132743254677,
+            0.0013209720092912907,
+            0.0013209718713337228,
+            0.0013209718768772058
+          ],
+          "T_all_NULL": [
+            1.0224822527836108,
+            1.0224822521154766,
+            1.0224822515247172,
+            1.0224822526845103,
+            1.022482251697254,
+            1.0224822512650538,
+            1.0224822494682808,
+            1.0224822512600993
+          ],
+          "T_x_REAL": [
+            1.0325505155279249,
+            0.14171432886024243,
+            0.01942703849376102,
+            0.0029524545355642203,
+            0.0013286230563009337,
+            0.0013238500491720543,
+            0.0013238499964394032,
+            0.0013238498998364963
+          ],
+          "T_x_NULL": [
+            1.0325505155279249,
+            1.0325505145077538,
+            1.032550512202352,
+            1.0325505143747409,
+            1.032550514455368,
+            1.0325505158430068,
+            1.0325505135333024,
+            1.0325505152183823
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9497246053537337,
+            "R2_REAL_global": 0.7941571321002914,
+            "slope_NULL_global": -3.028292828109355e-10,
+            "R2_NULL_global": 0.5139445465957817,
+            "slope_diff_abs": 0.9497246050509044,
+            "slope_REAL_fase_temprana_diagnostico": -1.980327943188829,
+            "R2_REAL_fase_temprana_diagnostico": 0.9998253799952667,
+            "slope_REAL_fase_tardia_diagnostico": -0.0010663014265996458,
+            "R2_REAL_fase_tardia_diagnostico": 0.6000228631841211,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          },
+          "evaluation_T_x": {
+            "mono_REAL": true,
+            "mono_NULL": true,
+            "slope_REAL_global": -0.9510796584414056,
+            "R2_REAL_global": 0.7943684920034709,
+            "slope_NULL_global": 4.630771210764655e-11,
+            "R2_NULL_global": 0.009747095525798555,
+            "slope_diff_abs": 0.9510796584877134,
+            "slope_REAL_fase_temprana_diagnostico": -1.9819780006013672,
+            "R2_REAL_fase_temprana_diagnostico": 0.9998357541117463,
+            "slope_REAL_fase_tardia_diagnostico": -0.001094130498788357,
+            "R2_REAL_fase_tardia_diagnostico": 0.6000250746155297,
+            "cond_mono_real": true,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": true
+          }
+        },
+        "1.930698e-02": {
+          "T_all_REAL": [
+            1.0064515140101722,
+            0.13811844325686842,
+            0.018973397366682004,
+            0.002947266420916294,
+            0.0013684716479984136,
+            0.0014286102613828167,
+            0.0014818917294873194,
+            0.001534301637192721
+          ],
+          "T_all_NULL": [
+            1.0064515140101722,
+            1.0066145818142196,
+            1.0064842203788278,
+            1.0066516830150107,
+            1.0067359904190476,
+            1.0067371004783245,
+            1.0066821998778335,
+            1.0069235940635008
+          ],
+          "T_x_REAL": [
+            0.9873630306592202,
+            0.1355817199997851,
+            0.018532370374141016,
+            0.0028592415351157275,
+            0.001383885848779913,
+            0.0014592991988902782,
+            0.001530190767757803,
+            0.0015972669162059004
+          ],
+          "T_x_NULL": [
+            0.9873630306592202,
+            0.9877694847205731,
+            0.9870919774212795,
+            0.9866928013606512,
+            0.9871063012935959,
+            0.9872314171532192,
+            0.986723586875357,
+            0.9871142708240982
+          ],
+          "evaluation_T_all": {
+            "mono_REAL": false,
+            "mono_NULL": false,
+            "slope_REAL_global": -0.924117454705152,
+            "R2_REAL_global": 0.7792554595895403,
+            "slope_NULL_global": 5.375443957240559e-05,
+            "R2_NULL_global": 0.7571007588891507,
+            "slope_diff_abs": 0.9241712091447245,
+            "slope_REAL_fase_temprana_diagnostico": -1.9745196232136653,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997586952191165,
+            "slope_REAL_fase_tardia_diagnostico": 0.03848309313052083,
+            "R2_REAL_fase_tardia_diagnostico": 0.9975033192274096,
+            "cond_mono_real": false,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": false
+          },
+          "evaluation_T_x": {
+            "mono_REAL": false,
+            "mono_NULL": false,
+            "slope_REAL_global": -0.9139301062791568,
+            "R2_REAL_global": 0.7728878264071715,
+            "slope_NULL_global": -7.50138116233048e-05,
+            "R2_NULL_global": 0.2696675971029564,
+            "slope_diff_abs": 0.9138550924675335,
+            "slope_REAL_fase_temprana_diagnostico": -1.978421251853999,
+            "R2_REAL_fase_temprana_diagnostico": 0.9997805673540363,
+            "slope_REAL_fase_tardia_diagnostico": 0.04840101399700182,
+            "R2_REAL_fase_tardia_diagnostico": 0.997737793438966,
+            "cond_mono_real": false,
+            "cond_r2_real_min": true,
+            "cond_null_muerde": true,
+            "punto_pass": false
+          }
+        }
+      },
+      "n_colisiones_final_REAL_por_eps": [
+        792982,
+        799495,
+        792758
+      ],
+      "n_colisiones_final_NULL_por_eps": [
+        11047238,
+        11136624,
+        11045452
+      ],
+      "ledger_rel_dev_max_REAL": 3.345500843520162e-15,
+      "ledger_rel_dev_max_NULL": 0.0
+    }
+  },
+  "curva_robustez_P_epsilon_T_all": {
+    "1.000000e-12": 1.0,
+    "1.389495e-07": 1.0,
+    "1.930698e-02": 0.0
+  },
+  "resumen": {
+    "n_total_combinaciones": 6,
+    "n_pass_T_all": 4,
+    "n_pass_T_x": 4,
+    "rate_T_all": 0.6666666666666666,
+    "rate_T_x": 0.6666666666666666,
+    "rate_NULL_muerde": 1.0,
+    "rate_acuerdo_T_all_vs_T_x": 1.0,
+    "exponente_n_T_all_global": {
+      "media": -0.9403170243018945,
+      "std": 0.010879718048037975,
+      "min": -0.9497246053537337,
+      "max": -0.924117454705152,
+      "n": 6
+    },
+    "exponente_n_T_all_fase_temprana_diagnostico": {
+      "media": -1.9755540192955143,
+      "std": 0.0035239264356222446,
+      "min": -1.980327943188829,
+      "max": -1.9699726114855054,
+      "n": 6
+    },
+    "exponente_n_T_all_fase_tardia_diagnostico": {
+      "media": 0.013300728250878696,
+      "std": 0.020258450659216394,
+      "min": -0.0017387786119808877,
+      "max": 0.045147030972422966,
+      "n": 6
+    },
+    "exponente_n_T_x_global": {
+      "media": -0.9385230326302344,
+      "std": 0.013876765591614023,
+      "min": -0.9510796584414056,
+      "max": -0.9139301062791568,
+      "n": 6
+    },
+    "slope_NULL_global": {
+      "media": 1.9068125939397597e-05,
+      "std": 2.7040012063174815e-05,
+      "min": -3.028292828109355e-10,
+      "max": 6.065471376125762e-05,
+      "n": 6
+    },
+    "ledger_energia_max_dev_relativa_toda_la_corrida": 4.031640442143422e-15,
+    "verdict": "E5_4_2_PASS"
+  },
+  "veredicto_defecto_F3_2": {
+    "descripcion": "F3-2 definia T_energy = grad_energy_comov / a^2 en AMBAS ramas; su ajuste asintotico REAL convergia a slope=-1.999999... (el exponente exacto de la propia division por a^2, no una medida fisica), y en (sigma=1e-4, seed=7) slope_NULL=-2.1876 vs slope_REAL=-2.1225 (diff=0.065) - el NULL casi no se distinguia del REAL. Este motor mide T=mean(v^2) SIN dividir por ninguna potencia de a en ninguna rama; el NULL usa pared fisicamente fija (a=1 siempre), no la misma trayectoria con densidad fija.",
+    "media_slope_REAL_global_T_all": -0.9403170243018945,
+    "media_slope_NULL_global_T_all": 1.9068125939397597e-05,
+    "separacion_REAL_vs_NULL": 0.9403360924278339,
+    "evita_division_a_n_en_observable": true,
+    "NULL_es_pared_fisicamente_fija_no_reinterpretado": true
+  },
+  "runtime_seconds": 143.02720880508423,
+  "generated_at_unix": 1784941112.179449
+}

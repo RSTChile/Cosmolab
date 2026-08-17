@@ -1,0 +1,51 @@
+============================================================================================================
+CS067 — BLINDAJE DE SEMILLAS: barrido de gamma, 'completo' vs sin_correlacion/sin_causal, media+IC95%
+N=1200 · steps=20 · seeds completo=16 · seeds/control=8 · gammas=[0.5, 1.0, 1.5, 2.0, 2.5]
+============================================================================================================
+
+--- gamma=0.50 ---
+  completo (n=16): n_ejes=[np.int64(4), np.int64(7), np.int64(6), np.int64(4), np.int64(7), np.int64(7), np.int64(7), np.int64(7), np.int64(6), np.int64(4), np.int64(5), np.int64(0), np.int64(6), np.int64(4), np.int64(4), np.int64(6)]
+    pico_medio: media=0.759 IC95%=[0.727,0.791]  n_ejes_medio=5.25
+  sin_correlacion (n=8): pico_medio media=0.734 IC95%=[0.656,0.812] n_ejes_medio=3.12
+  sin_causal      (n=8): pico_medio media=0.703 IC95%=[0.659,0.747] n_ejes_medio=5.50
+
+--- gamma=1.00 ---
+  completo (n=16): n_ejes=[np.int64(0), np.int64(6), np.int64(4), np.int64(1), np.int64(0), np.int64(0), np.int64(5), np.int64(4), np.int64(0), np.int64(6), np.int64(6), np.int64(6), np.int64(7), np.int64(5), np.int64(6), np.int64(5)]
+    pico_medio: media=0.766 IC95%=[0.727,0.805]  n_ejes_medio=3.81
+  sin_correlacion (n=8): pico_medio media=0.746 IC95%=[0.692,0.800] n_ejes_medio=3.25
+  sin_causal      (n=8): pico_medio media=0.727 IC95%=[0.665,0.790] n_ejes_medio=4.38
+
+--- gamma=1.50 ---
+  completo (n=16): n_ejes=[np.int64(4), np.int64(5), np.int64(5), np.int64(1), np.int64(0), np.int64(7), np.int64(6), np.int64(4), np.int64(4), np.int64(7), np.int64(6), np.int64(4), np.int64(7), np.int64(0), np.int64(2), np.int64(6)]
+    pico_medio: media=0.786 IC95%=[0.754,0.819]  n_ejes_medio=4.25
+  sin_correlacion (n=8): pico_medio media=0.789 IC95%=[0.715,0.863] n_ejes_medio=2.75
+  sin_causal      (n=8): pico_medio media=0.754 IC95%=[0.707,0.802] n_ejes_medio=4.38
+
+--- gamma=2.00 ---
+  completo (n=16): n_ejes=[np.int64(2), np.int64(0), np.int64(4), np.int64(1), np.int64(4), np.int64(0), np.int64(6), np.int64(1), np.int64(7), np.int64(4), np.int64(4), np.int64(6), np.int64(4), np.int64(7), np.int64(4), np.int64(4)]
+    pico_medio: media=0.823 IC95%=[0.789,0.857]  n_ejes_medio=3.62
+  sin_correlacion (n=8): pico_medio media=0.767 IC95%=[0.696,0.838] n_ejes_medio=4.00
+  sin_causal      (n=8): pico_medio media=0.758 IC95%=[0.706,0.810] n_ejes_medio=2.62
+
+--- gamma=2.50 ---
+  completo (n=16): n_ejes=[np.int64(5), np.int64(0), np.int64(0), np.int64(4), np.int64(7), np.int64(7), np.int64(5), np.int64(5), np.int64(5), np.int64(0), np.int64(0), np.int64(4), np.int64(0), np.int64(0), np.int64(6), np.int64(5)]
+    pico_medio: media=0.778 IC95%=[0.742,0.814]  n_ejes_medio=3.31
+  sin_correlacion (n=8): pico_medio media=0.784 IC95%=[0.731,0.838] n_ejes_medio=2.62
+  sin_causal      (n=8): pico_medio media=0.804 IC95%=[0.760,0.849] n_ejes_medio=4.50
+
+============================================================================================================
+RESUMEN por régimen (Guarda 3 con IC95%: (i) n_ejes~>1 (ii) IC95%_inf(completo)>=0.85 (iii) IC95%_sup(controles) < IC95%_inf(completo)):
+ gamma  nej~            pico~[IC95%]          sin_corr~[IC95%]          sin_caus~[IC95%]  ENCIENDE
+  0.50  5.25      0.759[0.727,0.791]        0.734[0.656,0.812]        0.703[0.659,0.747]     False
+  1.00  3.81      0.766[0.727,0.805]        0.746[0.692,0.800]        0.727[0.665,0.790]     False
+  1.50  4.25      0.786[0.754,0.819]        0.789[0.715,0.863]        0.754[0.707,0.802]     False
+  2.00  3.62      0.823[0.789,0.857]        0.767[0.696,0.838]        0.758[0.706,0.810]     False
+  2.50  3.31      0.778[0.742,0.814]        0.784[0.731,0.838]        0.804[0.760,0.849]     False
+
+VEREDICTO PRE-INSCRITO (blindado con IC95%, sin tunear tras ver los números):
+  NINGÚN régimen de gamma en [0.5, 2.5] cumple las tres condiciones con poder estadístico.
+  (B) CANÓNICO: el espacio emergente no es bastante métrico para soportar direcciones, ni con
+  16/8 semillas se despega el piso 0.85 ni se separa de los controles. No tunear más. Reportar
+  (B) a CS -> reorienta el arco a cerrar el cabo de mundo-pequeño (candidato CS068: inflación).
+
+tiempo total: 8.55 min

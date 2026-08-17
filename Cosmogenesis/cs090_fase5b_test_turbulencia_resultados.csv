@@ -1,0 +1,4 @@
+carpeta,rule_id,clase,seed,K,J,noise,meandeg,kcap,n_aristas_grafo_final,diam_grafo_final,n_gas_inicial,n_dump_final,masa_gas_final,masa_sumideros_final,masa_total_final,fraccion_masa_en_sumideros,n_sumideros,t_primer_sumidero,masa_acretada_total,kappa_v_agregado,kappa_v_medio_valido,n_kappa_indefinidos,turb_seed_test
+A2-B0-C2-r9_I,A2-B0-C2-r9,I,272702,5,0.493,0.244,4.25,7,3939,10.0,2000,cosmog_00500,17286.600000000002,1513.4000000000005,18800.000000000004,0.08050000000000002,8,0.046,1513.4,0.3859649122807018,0.3824404761904762,0,42
+turbseed_7,,,,,,,,,,,2000,cosmog_00500,17286.600000000002,1513.4000000000003,18800.000000000004,0.0805,8,0.046,1513.4,0.3275862068965518,0.34126984126984133,0,7
+turbseed_99,,,,,,,,,,,2000,cosmog_00500,17305.4,1494.6000000000004,18800.0,0.07950000000000002,8,0.046,1494.6000000000001,0.34482758620689646,0.34672619047619047,0,99

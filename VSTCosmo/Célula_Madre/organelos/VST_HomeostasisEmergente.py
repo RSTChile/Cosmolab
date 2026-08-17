@@ -14,7 +14,7 @@ CANON:
   no un setpoint. La BANDA viable EMERGE de la propia historia de A (EMA centro + varianza).
 
 FASE 1 — HomeostasisEmergente: H real con ICR/IRDE LITERALES (de RC).
-   H_homeostasis_real = calidad con que la competencia ICR↔IRDE sostiene A_sys-env estable en su banda.
+   acople_sostenido = calidad con que la competencia ICR↔IRDE sostiene A_sys-env estable en su banda.
 FASE 2 — soporte_A_sys_env: descomposición DIAGNÓSTICA (no mando) de qué sostiene/degrada A.
 
 Regla anti-Shannon: ninguna constante elegida "para que gire" ni "para que H sea alta" ni target_A.
@@ -42,9 +42,9 @@ def _num(v, d=0.0):
 
 
 # Columnas exportadas (se añaden a COLS sin tocar las anteriores)
-COLS_HOMEO_REAL = ["H_homeostasis_real", "H_A_estabilidad", "H_RC_vivo", "H_competencia_ICR_IRDE",
-                   "H_recuperacion_A", "H_autoencierro", "H_anestesia",
-                   "H_banda_centro_A", "H_banda_var_A", "H_dA_sys_env"]
+COLS_HOMEO_REAL = ["acople_sostenido", "acople_A_estabilidad", "acople_RC_vivo", "acople_competencia_ICR_IRDE",
+                   "acople_recuperacion_A", "acople_autoencierro", "acople_anestesia",
+                   "acople_banda_centro_A", "acople_banda_var_A", "acople_dA_sys_env"]
 COLS_SOPORTE_A = ["A_soporte_LF", "A_soporte_comprension", "A_soporte_confianza", "A_soporte_S_shared",
                   "A_soporte_altruismo", "A_soporte_fatiga", "A_soporte_RC",
                   "A_soporte_total", "A_riesgo_desacople"]
@@ -60,11 +60,28 @@ class HomeostasisEmergente:
     Constantes FISIOLÓGICAS declaradas (no para producir orientación ni estabilizar artificialmente)."""
 
     def __init__(self, ema: float = 0.05, banda: float = 0.15, escala_dA: float = 0.002,
-                 A_min: float = 0.1, rc_piso: float = 0.002) -> None:
+                 rc_piso: float = 0.002, A_min=None) -> None:
         self.ema = ema              # memoria de la historia de A (banda emergente)
         self.banda = banda          # ancho viable fisiológico (como 36–37.5°C: tolerancia, no objetivo)
         self.escala_dA = escala_dA  # escala de la derivada dA/dt que cuenta como "moverse"
-        self.A_min = A_min          # piso de viabilidad: A∈ℝ⁺ (O-N2.1); A→0 = colapso
+        # ── EL PISO DE VIABILIDAD DEL ACOPLE ES `banda`, NO UN NÚMERO PROPIO (8-ago-2026) ──
+        # ERA `A_min = 0.1` y MEDIDO no discriminaba: sobre 157.421 pasos (108 CSV, 3–8 ago)
+        # `A_sys_env` nunca bajó de 0,1638 ⇒ `viable = min(1, A/A_min)` valió 1,0 en el 100,00 %
+        # de los pasos, y la pata baja de `anestesia` (A < 2·A_min = 0,20) se cumplió el 0,094 %,
+        # con `acople_anestesia` = 0,0000 en el 99,996 %. Dos usos, ningún caso decidido.
+        # NO SE RELATIVIZA CONTRA LA HISTORIA DE A: es una condición de vida, no una percepción
+        # (advertencia 2 de escala.py). Se deriva de una relación YA DECLARADA aquí mismo y en las
+        # MISMAS UNIDADES: `banda` es la anchura de fluctuación de A que este organelo considera
+        # tolerable (estab_A = 1 − sd(A)/banda). Un acoplamiento menor que la tolerancia de sus
+        # propias fluctuaciones ya no es un agarre. Un número menos; y si `banda` se mide, el piso
+        # la sigue. Se llama `A_piso` y no `A_min` porque ya no es un mínimo elegido, sino un
+        # derivado. `A_min` se sigue aceptando en la firma para no romper llamadas: se IGNORA.
+        # QUÉ SE MUEVE, REPLAYADO fila por fila sobre los 157.421 pasos: `viable` sigue en 1,0 el
+        # 100 % del tiempo (un piso de muerte se mide en que NO se cruza) pero el margen sobre el
+        # peor acople registrado baja de 63,8 % a 9,2 %; `acople_sostenido` cambia en el 0,04 % de
+        # los pasos (|ΔH| máximo 0,0825, medio 0,000008) y todo ese cambio viene de la anestesia,
+        # que pasa de existir el 0,00 % del tiempo al 0,34 %. Deja de haber un término muerto.
+        self.A_piso = banda         # piso de viabilidad: A∈ℝ⁺ (O-N2.1); A→0 = colapso
         # rc_piso: nivel de "razón cosmosemiótica mínima viva". CALIBRADO a la escala medida de
         # RC_total (silencio ≈ 0.0004; actividad típica ≈ 0.004) — NO elegido para subir H.
         self.rc_piso = rc_piso
@@ -91,7 +108,7 @@ class HomeostasisEmergente:
         self._dA_ema = (1.0 - self.ema) * self._dA_ema + self.ema * (A - self._A_prev)
         self._A_prev = A
         estab_A = max(0.0, 1.0 - (self._varA ** 0.5) / max(1e-6, self.banda))   # A estable en su banda
-        viable = min(1.0, A / max(1e-6, self.A_min))                            # A>0 (no colapso)
+        viable = min(1.0, A / max(1e-6, self.A_piso))                           # A>0 (no colapso)
         tendencia = max(0.0, min(1.0, 1.0 + self._dA_ema / self.escala_dA))     # A se mantiene/mejora
         rc_gate = min(1.0, RC / max(1e-6, self.rc_piso))                        # razón cosmosemiótica VIVA (no anestesia)
         # competencia ICR↔IRDE VIVA: ambas ramas presentes (no igualdad fija). 2·min(cuotas): es 1
@@ -102,16 +119,21 @@ class HomeostasisEmergente:
         # patologías (O-N2.1), en cuotas: AUTOENCIERRO = la rama de ORDEN domina mientras A cae;
         autoencierro = max(0.0, min(1.0, icr_r - irde_r)) * max(0.0, min(1.0, -self._dA_ema / self.escala_dA))
         # ANESTESIA = la razón cae a casi-silencio (deja de registrar el entorno) mientras A es baja.
-        anestesia = max(0.0, 1.0 - RC / max(1e-6, self.rc_piso)) * max(0.0, 1.0 - A / max(1e-6, 2.0 * self.A_min))
+        # La pata baja de la anestesia usa el MISMO piso (dos tolerancias de A): con el piso viejo
+        # (2·0,10 = 0,20) se cumplía el 0,094 % de los pasos y `acople_anestesia` era 0,0000 en el
+        # 99,996 % —otro término muerto—; con 2·banda = 0,30 se cumple el 20,75 %, y como sigue
+        # exigiendo que la razón cosmosemiótica esté además apagada (RC < rc_piso), la anestesia
+        # acaba existiendo en el 0,34 % de los pasos (máximo 0,3097 contra el 0,0250 de antes).
+        anestesia = max(0.0, 1.0 - RC / max(1e-6, self.rc_piso)) * max(0.0, 1.0 - A / max(1e-6, 2.0 * self.A_piso))
         # H = ¿la competencia sostiene A estable y viable? (NO distancia a un punto)
         H = estab_A * viable * tendencia * competencia * rc_gate
         H = max(0.0, min(1.0, H - autoencierro - anestesia))
         return {
-            "H_homeostasis_real": round(H, 4), "H_A_estabilidad": round(estab_A, 4),
-            "H_RC_vivo": round(rc_gate, 4), "H_competencia_ICR_IRDE": round(competencia, 4),
-            "H_recuperacion_A": round(recuperacion, 4), "H_autoencierro": round(autoencierro, 4),
-            "H_anestesia": round(anestesia, 4), "H_banda_centro_A": round(self._A_ema, 4),
-            "H_banda_var_A": round(self._varA, 6), "H_dA_sys_env": round(self._dA_ema, 6),
+            "acople_sostenido": round(H, 4), "acople_A_estabilidad": round(estab_A, 4),
+            "acople_RC_vivo": round(rc_gate, 4), "acople_competencia_ICR_IRDE": round(competencia, 4),
+            "acople_recuperacion_A": round(recuperacion, 4), "acople_autoencierro": round(autoencierro, 4),
+            "acople_anestesia": round(anestesia, 4), "acople_banda_centro_A": round(self._A_ema, 4),
+            "acople_banda_var_A": round(self._varA, 6), "acople_dA_sys_env": round(self._dA_ema, 6),
         }
 
 
@@ -168,7 +190,7 @@ def permeabilidad_activa(fila: dict, escala_alpha: float = 1.0) -> dict:
     se cierra el lazo (APLICAR_PERMEABILIDAD); por defecto NO se aplica — sólo se mide."""
     icr_r = _c01(fila.get("ICR_ratio"))                                   # cuota de conversión (vs protección)
     fat = _num(fila.get("act_fatiga")); energia = 1.0 - fat / (1.0 + fat) # energía disponible
-    demanda = max(0.0, min(1.0, 1.0 - _c01(fila.get("H_homeostasis_real"))))  # H baja ⇒ presión por re-acoplar
+    demanda = max(0.0, min(1.0, 1.0 - _c01(fila.get("acople_sostenido"))))  # H baja ⇒ presión por re-acoplar
     modo = icr_r                                                          # disposición a abrir/convertir
     act_perm = max(0.0, min(1.0, demanda * modo * energia))              # abrir membrana para re-acoplar
     alpha_sugerido = 1.0 + escala_alpha * act_perm                       # multiplicador LATENTE (no aplicado)
@@ -183,6 +205,6 @@ if __name__ == "__main__":
          "act_comprension_L": 0.3, "act_comprension_R": 0.2, "act_confianza": 0.4, "act_fatiga": 2.0}
     for _ in range(50):
         r = he.actualizar(f)
-    s = soporte_A_sys_env(f, dA_sys_env=r["H_dA_sys_env"])
+    s = soporte_A_sys_env(f, dA_sys_env=r["acople_dA_sys_env"])
     print("smoke H:", r)
     print("smoke soporte:", s)

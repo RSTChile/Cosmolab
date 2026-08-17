@@ -1,0 +1,9 @@
+F0 triada holistica inicio
+T0=1.00e+15K Tc=97MeV a0=1.0 rho0=1.00e+30 H_inf=1.00e+35
+step 0 t_g=0.00e+00s a=1.000 T=1.00e+15K rho=1.00e+30 lambda_D=6.90e-20m K_phys=0.000 k1=0 k3=0 m_k1/m_k3_fis=0.0000
+step 40 t_g=4.00e-37s a=1.041 T=4.58e+14K rho=8.87e+29 lambda_D=4.86e-20m K_phys=0.000 k1=0 k3=0 m_k1/m_k3_fis=0.0000
+step 80 t_g=8.00e-37s a=1.051 T=6.72e+13K rho=8.62e+29 lambda_D=1.88e-20m K_phys=0.000 k1=0 k3=0 m_k1/m_k3_fis=0.0000
+step 120 t_g=1.20e-36s a=1.051 T=9.28e+12K rho=8.61e+29 lambda_D=6.99e-21m K_phys=0.000 k1=0 k3=0 m_k1/m_k3_fis=0.0000
+step 160 t_g=1.60e-36s a=1.051 T=1.26e+12K rho=8.60e+29 lambda_D=2.58e-21m K_phys=0.000 k1=0 k3=0 m_k1/m_k3_fis=0.0000
+F0 triada completa - observables holísticos listos
+Nota: masa fisica = E_int / P_plasma / a(t) busca quiebre O(1)->0.00054

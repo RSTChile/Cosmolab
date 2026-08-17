@@ -1,0 +1,13 @@
+rule_id,seed,lote,rol_fase5b,K,kcap,pendiente_corregida,frac_masa_fase5b,carpeta_fase5b,motivo_seleccion
+A2-B0-C2-r9,272702,271828,I,5,7,0.5562821419510406,0.08050000000000002,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r9_I,min_pendiente_lote_271828
+A2-B0-C2-r19,273672,271828,III,5,7,0.7198659721923732,0.08700000000000001,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r19_III,mediana_pendiente_lote_271828
+A2-B0-C2-r14,273187,271828,III,8,5,0.7728999554058272,0.09900000000000003,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r14_III,max_pendiente_lote_271828
+A2-B0-C2-r2,372023,371828,I,5,6,0.5395267020843031,0.07600000000000001,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_escala_v2/A2-B0-C2-r2_I,min_pendiente_lote_371828
+A2-B0-C2-r28,374545,371828,III,6,6,0.7055880853285688,0.08950000000000002,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_escala_v2/A2-B0-C2-r28_III,mediana_pendiente_lote_371828
+A2-B0-C2-r20,373769,371828,III,5,6,0.7745872074489132,0.08650000000000002,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_escala_v2/A2-B0-C2-r20_III,max_pendiente_lote_371828
+A2-B0-C2-batch3-r9,472702,471828,I,7,6,0.47896094159125624,0.07650000000000001,A2-B0-C2-batch3-r9_I,min_pendiente_lote_471828
+A2-B0-C2-batch3-r21,473866,471828,III,6,5,0.7248004383475681,0.09650000000000004,A2-B0-C2-batch3-r21_III,mediana_pendiente_lote_471828
+A2-B0-C2-batch3-r100,481529,471828,I,5,4,1.2549922266543088,0.14999999999999994,A2-B0-C2-batch3-r100_I,max_pendiente_lote_471828
+A2-B0-C2-batch4-r18,573575,571828,I,5,6,0.5348611955256038,0.08200000000000002,A2-B0-C2-batch4-r18_I,min_pendiente_lote_571828
+A2-B0-C2-batch4-r43,576000,571828,III,7,5,0.7452540925441452,0.09350000000000003,A2-B0-C2-batch4-r43_III,mediana_pendiente_lote_571828
+A2-B0-C2-batch4-r51,576776,571828,I,8,4,1.080657709435624,0.14499999999999996,A2-B0-C2-batch4-r51_I,max_pendiente_lote_571828

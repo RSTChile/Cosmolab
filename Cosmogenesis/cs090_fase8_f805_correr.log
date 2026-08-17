@@ -1,0 +1,30 @@
+12 grafos × 2 brazos = 24 corridas; 24 md5 distintos OK
+dt=0.002 (250 pasos), eps=0.6, t_final=0.5, 6 procesos
+  [ok] A2-B0-C2-batch3-r60      solap  dE/E=-4.59e-06 fof_ini=0.3885 fof_fin=0.3480 (77.3s)
+  [ok] A2-B0-C2-batch3-r0       solap  dE/E=-4.75e-06 fof_ini=0.5810 fof_fin=0.4665 (77.5s)
+  [ok] A2-B0-C2-batch3-r111     disj   dE/E=-2.55e-06 fof_ini=0.4250 fof_fin=0.4005 (77.6s)
+  [ok] A2-B0-C2-batch3-r111     solap  dE/E=-3.79e-06 fof_ini=0.4305 fof_fin=0.3675 (77.9s)
+  [ok] A2-B0-C2-batch3-r0       disj   dE/E=-5.83e-06 fof_ini=0.6270 fof_fin=0.4895 (77.9s)
+  [ok] A2-B0-C2-batch3-r60      disj   dE/E=-3.31e-06 fof_ini=0.4235 fof_fin=0.3880 (78.0s)
+  [ok] A2-B0-C2-batch4-r10      solap  dE/E=-3.84e-06 fof_ini=0.4345 fof_fin=0.3925 (116.1s)
+  [ok] A2-B0-C2-batch4-r10      disj   dE/E=-3.61e-06 fof_ini=0.4830 fof_fin=0.3785 (116.7s)
+  [ok] A2-B0-C2-batch4-r62      solap  dE/E=-3.06e-06 fof_ini=0.3340 fof_fin=0.3345 (116.7s)
+  [ok] A2-B0-C2-batch4-r36      solap  dE/E=-8.20e-06 fof_ini=0.5885 fof_fin=0.4335 (117.3s)
+  [ok] A2-B0-C2-batch4-r36      disj   dE/E=-5.25e-06 fof_ini=0.6360 fof_fin=0.4755 (117.4s)
+  [ok] A2-B0-C2-batch4-r62      disj   dE/E=-3.26e-06 fof_ini=0.3975 fof_fin=0.3130 (118.0s)
+  [ok] A2-B0-C2-r14             solap  dE/E=-2.66e-06 fof_ini=0.3695 fof_fin=0.2930 (185.7s)
+  [ok] A2-B0-C2-r14             disj   dE/E=-2.52e-06 fof_ini=0.3915 fof_fin=0.3080 (185.2s)
+  [ok] A2-B0-C2-r17             disj   dE/E=-2.87e-06 fof_ini=0.4115 fof_fin=0.3720 (185.1s)
+  [ok] A2-B0-C2-r19             solap  dE/E=-2.89e-06 fof_ini=0.3735 fof_fin=0.3275 (184.9s)
+  [ok] A2-B0-C2-r19             disj   dE/E=-2.79e-06 fof_ini=0.4060 fof_fin=0.3765 (184.1s)
+  [ok] A2-B0-C2-r17             solap  dE/E=-4.96e-06 fof_ini=0.3895 fof_fin=0.3485 (185.6s)
+  [ok] A2-B0-C2-r20             disj   dE/E=-3.12e-06 fof_ini=0.3025 fof_fin=0.2890 (131.0s)
+  [ok] A2-B0-C2-r20             solap  dE/E=-5.13e-06 fof_ini=0.3130 fof_fin=0.2925 (131.6s)
+  [ok] A2-B0-C2-r28             disj   dE/E=-3.88e-06 fof_ini=0.3295 fof_fin=0.3215 (131.6s)
+  [ok] A2-B0-C2-r39             disj   dE/E=-8.19e-07 fof_ini=0.2495 fof_fin=0.2530 (131.6s)
+  [ok] A2-B0-C2-r28             solap  dE/E=-3.18e-06 fof_ini=0.3525 fof_fin=0.3185 (132.1s)
+  [ok] A2-B0-C2-r39             solap  dE/E=-3.76e-06 fof_ini=0.3100 fof_fin=0.2675 (132.1s)
+
+escrito /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f805_corridas_nbody.csv — 24 filas en 514.8 s
+deriva de energía: min -8.20e-06  max -8.19e-07
+error relativo de momento: max 1.80e-14

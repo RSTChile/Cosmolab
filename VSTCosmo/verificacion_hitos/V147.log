@@ -1,0 +1,74 @@
+==== VERIFICACIÓN HITO V147 ====
+script   : V147.py
+sha1[:12]: 057dd9a6c05a
+mtime    : 2026-06-01T04:11:30.007701
+reporta  : Clausura: baseline fisiológico sano
+inicio   : 2026-06-22T01:13:19.303174
+======================================================================
+
+====================================================================================================
+EXPERIMENTO V147 — Alternancia lenta (40s por polo)
+====================================================================================================
+  Basado en V146 (dirección por error, confianza por gradiente)
+  Cambio: período aumentado a 80s (40s en cada polo)
+
+  Parámetros:
+    - Kp_base: 0.002
+    - Inercia: 0.95
+    - Zona muerta: 2.0°
+    - Período: 80.0s (40.0s por polo)
+====================================================================================================
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+  Iniciando test de alternancia lenta...
+
+  Test con amplitud: ±60° (período 80s)
+      t=0s | setpoint=-60° | orient=-0.0° | grad=-1.822
+      t=10s | setpoint=-60° | orient=-48.4° | grad=-1.840
+      t=20s | setpoint=-60° | orient=-55.9° | grad=-1.835
+      t=30s | setpoint=-60° | orient=-57.5° | grad=-1.860
+      t=40s | setpoint=+60° | orient=-58.0° | grad=-1.211
+      t=50s | setpoint=+60° | orient=15.0° | grad=-1.216
+      t=60s | setpoint=+60° | orient=50.0° | grad=-1.203
+      t=70s | setpoint=+60° | orient=56.1° | grad=-1.180
+      t=80s | setpoint=-60° | orient=57.6° | grad=-1.832
+      t=90s | setpoint=-60° | orient=-15.2° | grad=-1.833
+      t=100s | setpoint=-60° | orient=-50.0° | grad=-1.841
+      t=110s | setpoint=-60° | orient=-56.1° | grad=-1.854
+      t=120s | setpoint=+60° | orient=-57.6° | grad=-1.190
+      t=130s | setpoint=+60° | orient=15.2° | grad=-1.165
+      t=140s | setpoint=+60° | orient=50.0° | grad=-1.179
+      t=150s | setpoint=+60° | orient=56.1° | grad=-1.192
+
+================================================================================
+RESULTADOS V147
+================================================================================
+
+  Amplitud ±60°:
+    Alternancia: ✅
+    Signo correcto: ✅
+    Amplitud real: 115.6°
+    Cruces por cero: 3
+    T_settle (primer semiciclo): 31.0s
+    Error a los 40s: 2.0°
+    Error medio últimos 10s: 2.1°
+
+================================================================================
+CONCLUSION V147
+================================================================================
+
+  ✅ BASELINE SANO CONFIRMADO
+     El organismo alterna correctamente con período lento
+     T_settle: 31.0s (<45s)
+     Error final: 2.1° (<10°)
+
+  ANIMA-1 listo para V148 (Fatiga progresiva)
+
+  Graficos guardados: v147_logs/v147_alternancia_lenta_20260622_012550.png
+
+  Tiempo de ejecucion: 12.5 minutos
+
+
+[fin rc=0 760s]

@@ -1,0 +1,27 @@
+CG004-f ETAPA 1 — fabricar y VALIDAR sustratos de curvatura controlada {3,q}
+====================================================================================================
+q∈[6, 7, 8] (6=plano, ≥7=hiperbólico) · tamaños≈[800, 3000] · déficit/vértice=(6−q)·π/3
+
+Validación pre-registrada: q=6 → δ CRECE, turn~1, defic≈0 ; q≥7 → δ ACOTADA, turn alto,
+  defic(déficit angular interior, Gauss-Bonnet) ≈ |6−q|·π/3 → q7≈1.05, q8≈2.09 rad
+
+   q      N grado*  %gig   diam   δ_med d_grow  turn   defic  %int        ver
+  ---------------------------------------------------------------------------
+   6    784    6.0  100     51    1.51   1.55  1.18   0.000   86  GEOMETRIA
+   6   3025    6.0  100    103    2.87   1.66  1.12   0.000   93  GEOMETRIA
+   7    801    4.0  100     11    0.24   2.12  1.72   1.047   38  AZAR(exp)
+   7   3000    4.0  100     14    0.25   2.38  1.70   1.047   38  AZAR(exp)
+   8    800    3.0  100      9    0.16   2.26  2.09   2.094   26  AZAR(exp)
+   8   3002    3.0  100     11    0.17   2.61  2.04   2.094   27  AZAR(exp)
+
+====================================================================================================
+VEREDICTO DE VALIDACIÓN (¿la familia de sustratos es SANA para la Etapa 2?)
+  q=6: métrica δ 1.51→2.87 [PLANO ok] · defdev=0.00e+00 [ok (≈0)] · %gig=100
+  q=7: métrica δ 0.24→0.25 [HIPERB ok] · defdev=1.05e+00 [ok (>0, 1.05e+00)] · %gig=100
+  q=8: métrica δ 0.16→0.17 [HIPERB ok] · defdev=2.09e+00 [ok (>0, 2.09e+00)] · %gig=100
+
+  defdev por q: 6:0.00e+00 7:1.05e+00 8:2.09e+00  [CRECE con κ ✓]
+
+  ✓ SUSTRATOS SANOS → derecho a Etapa 2 (cortar+repegar por κ).
+
+Tiempo: 0.1 min

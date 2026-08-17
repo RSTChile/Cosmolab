@@ -1,0 +1,27 @@
+   [selección] A2-B0-C2-r2v1fix (seed 272023) no está en la remedición corregida -- queda fuera
+   [selección] A2-B0-C2-r12v1fix (seed 272993) no está en la remedición corregida -- queda fuera
+   [selección] A2-B0-C2-r9v2fix (seed 372702) no está en la remedición corregida -- queda fuera
+   [selección] lote 271828: 6 disponibles -> [('A2-B0-C2-r9', 0.556), ('A2-B0-C2-r19', 0.72), ('A2-B0-C2-r14', 0.773)]
+   [selección] lote 371828: 5 disponibles -> [('A2-B0-C2-r2', 0.54), ('A2-B0-C2-r28', 0.706), ('A2-B0-C2-r20', 0.775)]
+   [selección] lote 471828: 34 disponibles -> [('A2-B0-C2-batch3-r9', 0.479), ('A2-B0-C2-batch3-r21', 0.725), ('A2-B0-C2-batch3-r100', 1.255)]
+   [selección] lote 571828: 28 disponibles -> [('A2-B0-C2-batch4-r18', 0.535), ('A2-B0-C2-batch4-r43', 0.745), ('A2-B0-C2-batch4-r51', 1.081)]
+   [selección] 12 grafos -> cs090_fase7_f704_seleccion.csv
+
+[f704] procesando 3 grafos base x 5 brazos (generar_ic=True, verificar_motor=True)
+[1/3] A2-B0-C2-batch4-r18 (lote 571828, min_pendiente_lote_571828)...
+    M_pre=4191 n_cut=205 M_final={c2:3986, azar:3986, anticosto:3986, soporte:3986, antisoporte:3986} [identico=True] c2==motor:True meta5b_ok:True
+    clustering c2=0.00295 azar=0.00572 anticosto=0.00340 soporte=0.00583 antisoporte=0.00000
+    pendiente  c2=0.562515762560359 azar=0.5948013757290326 anticosto=0.5705350338642573 soporte=0.5791661019482962 antisoporte=0.5901467511577816
+    376.52s  cron={'t_dinamica_s': 1.71, 't_costos_s': 0.06, 't_verif_motor_s': 1.89, 't_clustering_s': 0.16, 't_pendiente_s': 2.47, 't_ic_s': 370.08, 't_total_s': 376.52}
+[2/3] A2-B0-C2-batch4-r43 (lote 571828, mediana_pendiente_lote_571828)...
+    M_pre=3388 n_cut=119 M_final={c2:3269, azar:3269, anticosto:3269, soporte:3269, antisoporte:3269} [identico=True] c2==motor:True meta5b_ok:True
+    clustering c2=0.00205 azar=0.00447 anticosto=0.00243 soporte=0.00450 antisoporte=0.00000
+    pendiente  c2=0.7393344988081424 azar=0.620931557411937 anticosto=0.7401566902083312 soporte=0.7538732943544552 antisoporte=0.7494517436982963
+    314.06s  cron={'t_dinamica_s': 1.05, 't_costos_s': 0.01, 't_verif_motor_s': 1.03, 't_clustering_s': 0.08, 't_pendiente_s': 1.7, 't_ic_s': 310.05, 't_total_s': 314.06}
+[3/3] A2-B0-C2-batch4-r51 (lote 571828, max_pendiente_lote_571828)...
+    M_pre=2592 n_cut=109 M_final={c2:2483, azar:2483, anticosto:2483, soporte:2483, antisoporte:2483} [identico=True] c2==motor:True meta5b_ok:True
+    clustering c2=0.00908 azar=0.01542 anticosto=0.00917 soporte=0.01758 antisoporte=0.00000
+    pendiente  c2=1.0059268047621233 azar=0.9886449397802648 anticosto=1.0081947288932736 soporte=1.084996828831628 antisoporte=1.056481234539111
+    180.08s  cron={'t_dinamica_s': 0.54, 't_costos_s': 0.01, 't_verif_motor_s': 0.55, 't_clustering_s': 0.03, 't_pendiente_s': 0.63, 't_ic_s': 178.29, 't_total_s': 180.08}
+
+[f704] 3 filas -> cs090_fase7_f704_estructura_shard3.csv  (total 871s)

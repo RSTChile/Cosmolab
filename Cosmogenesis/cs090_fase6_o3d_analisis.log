@@ -1,0 +1,99 @@
+====================================================================================================
+O3-D — barrido de kcap en Phantom: 32 reglas A2-B0-C2 + 6 controles Erdős-Rényi emparejados en aristas
+====================================================================================================
+
+### 1. ¿Varía la masa acretada monótonamente con kcap?
+
+   kcap   n  frac_masa media     ±ee  mediana  pend media  kappaV media  grado medio  n_sinks
+      4   8           0.1488  0.0022   0.1520       1.047         1.297         2.35     8.00
+      5   8           0.1097  0.0040   0.1083       0.807         0.650         3.20     8.00
+      6   8           0.0820  0.0025   0.0798       0.587         0.409         3.95     8.00
+      7   8           0.0649  0.0021   0.0655       0.480         0.390         4.61     8.00
+     ER   6           0.1103  0.0179   0.1110           —         0.895         3.46
+
+  fracción de masa         Spearman(kcap,·) ρ=-0.969 p=0.00000 | Kruskal-Wallis H=29.11 p=0.00000 | η²(kcap)=0.949
+
+  pendiente corregida      Spearman(kcap,·) ρ=-0.938 p=0.00000 | Kruskal-Wallis H=27.34 p=0.00001 | η²(kcap)=0.858
+
+  κ_V agregado             Spearman(kcap,·) ρ=-0.893 p=0.00000 | Kruskal-Wallis H=26.12 p=0.00001 | η²(kcap)=0.924
+
+  grado medio del grafo    Spearman(kcap,·) ρ=+0.969 p=0.00000 | Kruskal-Wallis H=29.09 p=0.00000 | η²(kcap)=0.971
+
+
+### 2. ¿El efecto de kcap sobre la masa pasa a través de la geometría (pendiente continua)?
+
+  correlaciones simples:  r(pendiente, masa)=+0.964 (p=0.00000)   r(kcap, masa)=-0.959 (p=0.00000)   r(kcap, pendiente)=-0.915 (p=0.00000)
+
+  masa ~ kcap   R²=0.920  R²aj=0.917  gl=30
+      intercepto                 β=+0.25498  ee=0.00845  t=+30.19  p=0.0000
+      kcap                       β=-0.02793  ee=0.00150  t=-18.56  p=0.0000
+
+  masa ~ pendiente   R²=0.928  R²aj=0.926  gl=30
+      intercepto                 β=+0.00386  ee=0.00520  t=+0.74  p=0.4636
+      pendiente                  β=+0.13350  ee=0.00677  t=+19.71  p=0.0000
+
+  masa ~ kcap + pendiente   R²=0.965  R²aj=0.963  gl=29
+      intercepto                 β=+0.12425  ee=0.02186  t=+5.69  p=0.0000
+      kcap                       β=-0.01387  ee=0.00248  t=-5.59  p=0.0000
+      pendiente                  β=+0.07313  ee=0.01181  t=+6.19  p=0.0000
+
+  masa ~ kcap + pendiente + grado_medio (control por aristas)   R²=0.975  R²aj=0.973  gl=28
+      intercepto                 β=+0.15321  ee=0.02075  t=+7.39  p=0.0000
+      kcap                       β=+0.00090  ee=0.00493  t=+0.18  p=0.8558
+      pendiente                  β=+0.04815  ee=0.01265  t=+3.81  p=0.0007
+      grado_medio                β=-0.02606  ee=0.00783  t=-3.33  p=0.0025
+
+  colinealidad entre los tres candidatos a causa:
+      r(kcap, pendiente) = -0.915 (p=0.00000)
+      r(kcap, grado_medio) = +0.984 (p=0.00000)
+      r(pendiente, grado_medio) = -0.943 (p=0.00000)
+      VIF(kcap) = 32.5   (R² de explicar kcap con las otras dos = 0.969)
+      VIF(pendiente) = 9.4   (R² de explicar pendiente con las otras dos = 0.894)
+      VIF(grado_medio) = 47.8   (R² de explicar grado_medio con las otras dos = 0.979)
+
+  parcial r(kcap, masa | pendiente) = -0.720 (p=0.0000)
+  parcial r(pendiente, masa | kcap) = +0.754 (p=0.0000)
+
+  mediación:  a=kcap->pendiente -0.1922 | b=pendiente->masa|kcap +0.07313 | c=total -0.02793 | c'=directo -0.01387
+    efecto INDIRECTO a·b = -0.01406  IC95% bootstrap [-0.01884, -0.01034]
+    efecto DIRECTO   c'  = -0.01387  IC95% bootstrap [-0.01759, -0.00922]
+    proporción mediada por la geometría = 50.3% del efecto total
+
+  ANOVA de dos vías (kcap × grupo_K, diseño balanceado 4 por celda) sobre la masa:
+      kcap           gl=3  F=153.30  p=0.0000  η²=0.949
+      grupo_K        gl=1  F=0.08  p=0.7779  η²=0.000
+      interacción    gl=3  F=0.28  p=0.8397  η²=0.002
+      error          gl=24
+      K_alto: masa media=0.1018 (n=16), pendiente media=0.749
+      K_bajo: masa media=0.1009 (n=16), pendiente media=0.712
+
+
+### 3. kcap=7 (0 % de geometría extendida en el grafo) vs control sin estructura
+
+  kcap=7: media=0.0649 (n=8, rango 0.0545-0.0720)
+  control ER emparejado en aristas: media=0.1103 (n=6, rango 0.0685-0.1510)
+  diferencia kcap7 − control = -0.0453  Mann-Whitney U=4.0 p=0.0116 | Welch t=-2.52 p=0.0519
+  (referencia) kcap=4: media=0.1488; diferencia vs control +0.0386  Mann-Whitney U=39.0 p=0.0609
+  kcap=4 vs kcap=7: diferencia +0.0839  U=64.0 p=0.0009
+    control ER ~2321 aristas (espejo de kcap=4): media=0.1502 n=3 rango 0.1490-0.1510
+    control ER ~4608 aristas (espejo de kcap=7): media=0.0703 n=3 rango 0.0685-0.0730
+
+  controles HISTÓRICOS del proyecto (bateria_grafo_random_masa_fija, N=2000, 4945 aristas, corridos hace meses con los mismos parámetros): frac_masa=[0.062, 0.059] (media 0.0605), κ_V=[0.533, 0.316]
+
+  los controles ER medidos con LA MISMA vara de pendiente (mismo coarse-graining, mismo diam_gigante):
+      CONTROL-ER-a2321-s3000001: aristas=2321 pendiente=1.053 frac_masa=0.1510 κ_V=1.360
+      CONTROL-ER-a2321-s3000002: aristas=2321 pendiente=1.181 frac_masa=0.1505 κ_V=1.176
+      CONTROL-ER-a2321-s3000003: aristas=2321 pendiente=1.089 frac_masa=0.1490 κ_V=1.449
+      CONTROL-ER-a4608-s3000011: aristas=4608 pendiente=0.639 frac_masa=0.0695 κ_V=0.395
+      CONTROL-ER-a4608-s3000012: aristas=4608 pendiente=0.505 frac_masa=0.0685 κ_V=0.425
+      CONTROL-ER-a4608-s3000013: aristas=4608 pendiente=0.458 frac_masa=0.0730 κ_V=0.564
+    residuo de los controles respecto de la recta de las reglas: media -0.0032, rango [-0.0197, +0.0079]
+    (para comparar, residuo de las 32 reglas: desvío estándar 0.0089, rango [-0.0162, +0.0206])
+    pendiente media del NULL_topo de las propias reglas (grafo ER de la misma densidad, medido dentro del motor) por kcap:
+        kcap=4: pendiente REAL=1.047 vs NULL_topo=1.075  (z_agg medio=0.81)
+        kcap=5: pendiente REAL=0.807 vs NULL_topo=0.768  (z_agg medio=0.76)
+        kcap=6: pendiente REAL=0.587 vs NULL_topo=0.571  (z_agg medio=0.45)
+        kcap=7: pendiente REAL=0.480 vs NULL_topo=0.471  (z_agg medio=0.72)
+
+[figura] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3d_barrido.png
+[resumen] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3d_resumen_por_kcap.csv

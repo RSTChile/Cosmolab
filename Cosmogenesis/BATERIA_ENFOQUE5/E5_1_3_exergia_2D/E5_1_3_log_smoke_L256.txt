@@ -1,0 +1,6 @@
+[calibracion] modo=smoke_L256 L=256 eps=1e-3 mediana_lavado=2237 pasos=2573 lavo_todas=True tiempos=[2400, 1925, 3075, 2075]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_3_exergia_2D/E5_1_3_resultado_smoke_L256.json
+[control_r0_lava] True {'mean_X_r0_eps_gt0': 0.12770446034162566, 'n': 3, 'X_max': 0.15}
+[elapsed] 1705.4s
+EXIT=0

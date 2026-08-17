@@ -1,0 +1,32 @@
+[eps_idx=0 eps=0.000e+00] D_eps=0.000000 pasos=100
+  ... 13 celdas de r listas (acumulado 2.7s)
+[eps_idx=1 eps=1.000e-12] D_eps=0.000843 pasos=3000
+  ... 13 celdas de r listas (acumulado 94.8s)
+[eps_idx=2 eps=1.000e-11] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 184.0s)
+[eps_idx=3 eps=1.000e-10] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 274.4s)
+[eps_idx=4 eps=1.000e-09] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 375.2s)
+[eps_idx=5 eps=1.000e-08] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 474.3s)
+[eps_idx=6 eps=1.000e-07] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 571.4s)
+[eps_idx=7 eps=1.000e-06] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 682.9s)
+[eps_idx=8 eps=1.000e-05] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 796.0s)
+[eps_idx=9 eps=1.000e-04] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 885.6s)
+[eps_idx=10 eps=1.000e-03] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 971.1s)
+[eps_idx=11 eps=1.000e-02] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 1050.7s)
+[eps_idx=12 eps=1.000e-01] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 1133.3s)
+[eps_idx=13 eps=1.000e+00] D_eps=0.000841 pasos=3000
+  ... 13 celdas de r listas (acumulado 1215.5s)
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_1_eficiencia_12decadas/E5_3_1_resultado_crudo.json
+[guardian_todas_ok] True (violaciones=0)
+[elapsed] 1215.5s

@@ -1,0 +1,61 @@
+====================================================================================================
+CS072 -- TANDA DE VEREDICTO: REAL vs NULL_CATALOGO (motor de perillas, 21 piezas confirmadas)
+====================================================================================================
+
+--- brazo: real ---
+  N=100: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.7162  (t=1.2min)
+  N=200: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.6963  (t=1.2min)
+  N=400: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.7018  (t=1.2min)
+  N=800: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.6936  (t=1.2min)
+  >>> beta(real) = 0.000
+
+--- brazo: null_catalogo ---
+  N=100: diam(onset)=3.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.4964  (t=2.1min)
+  N=200: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.4151  (t=2.1min)
+  N=400: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.4394  (t=2.1min)
+  N=800: diam(onset)=2.0 frac_gigante=0.900 d_s=nan frac_pares_onset=0.4036  (t=2.1min)
+  >>> beta(null_catalogo) = -0.175
+
+====================================================================================================
+CURVA DE FILTRACIÓN COMPLETA en N=400 (REAL vs NULL) + segundo sello
+====================================================================================================
+
+  [real] curva completa (n_niveles totales=52549):
+    frac_pares=0.000  frac_gigante=0.005  diam=nan  d_s=nan
+    frac_pares=0.067  frac_gigante=0.725  diam=5.0  d_s=1.9768557885443723
+    frac_pares=0.133  frac_gigante=0.738  diam=3.0  d_s=nan
+    frac_pares=0.200  frac_gigante=0.743  diam=3.0  d_s=nan
+    frac_pares=0.267  frac_gigante=0.748  diam=2.0  d_s=nan
+    frac_pares=0.333  frac_gigante=0.750  diam=2.0  d_s=nan
+    frac_pares=0.400  frac_gigante=0.767  diam=2.0  d_s=nan
+    frac_pares=0.467  frac_gigante=0.805  diam=2.0  d_s=nan
+    frac_pares=0.533  frac_gigante=0.807  diam=2.0  d_s=nan
+    frac_pares=0.600  frac_gigante=0.807  diam=1.5  d_s=nan
+    frac_pares=0.667  frac_gigante=0.850  diam=2.0  d_s=nan
+    frac_pares=0.734  frac_gigante=0.922  diam=2.0  d_s=nan
+    frac_pares=0.826  frac_gigante=0.990  diam=2.0  d_s=nan
+    frac_pares=1.000  frac_gigante=1.000  diam=1.0  d_s=nan
+  [real] jueces continuos: {'log_dispersion': 8.957193348404115, 'max_h': 0.008147158609822, 'k_eff_medio': 124.64845914155612, 'k_eff_max': 195.7504908127544, 'rango_efectivo_laplaciano': 393, 'n_autovalores': 400}
+  [real] segundo sello: {'delta_gromov_log': 0.06510737228786567, 'delta_gromov_inv': 0.29392733647408154}
+
+  [null_catalogo] curva completa (n_niveles totales=57909):
+    frac_pares=0.000  frac_gigante=0.005  diam=nan  d_s=nan
+    frac_pares=0.067  frac_gigante=0.748  diam=6.0  d_s=1.8663465171911442
+    frac_pares=0.133  frac_gigante=0.770  diam=3.0  d_s=1.8159274099488267
+    frac_pares=0.200  frac_gigante=0.787  diam=2.0  d_s=nan
+    frac_pares=0.267  frac_gigante=0.800  diam=2.0  d_s=nan
+    frac_pares=0.333  frac_gigante=0.835  diam=2.0  d_s=nan
+    frac_pares=0.400  frac_gigante=0.870  diam=2.0  d_s=nan
+    frac_pares=0.467  frac_gigante=0.922  diam=2.0  d_s=nan
+    frac_pares=0.533  frac_gigante=0.932  diam=2.0  d_s=nan
+    frac_pares=0.600  frac_gigante=0.932  diam=2.0  d_s=nan
+    frac_pares=0.667  frac_gigante=0.932  diam=2.0  d_s=nan
+    frac_pares=0.733  frac_gigante=0.943  diam=2.0  d_s=nan
+    frac_pares=0.801  frac_gigante=0.980  diam=2.0  d_s=nan
+    frac_pares=0.875  frac_gigante=0.998  diam=2.0  d_s=nan
+    frac_pares=0.934  frac_gigante=1.000  diam=1.5  d_s=nan
+    frac_pares=1.000  frac_gigante=1.000  diam=1.0  d_s=nan
+  [null_catalogo] jueces continuos: {'log_dispersion': 8.015254433229757, 'max_h': 0.007807554287257183, 'k_eff_medio': 120.67118361907629, 'k_eff_max': 202.01424439365576, 'rango_efectivo_laplaciano': 398, 'n_autovalores': 400}
+  [null_catalogo] segundo sello: {'delta_gromov_log': 0.12418137563546505, 'delta_gromov_inv': 0.6921858604094915}
+
+tiempo total: 2.52 min

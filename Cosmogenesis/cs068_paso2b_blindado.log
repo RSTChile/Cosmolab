@@ -1,0 +1,32 @@
+============================================================================================================
+CS068 PASO 2b — BLINDADO: varias semillas por N (la corrida de 1 semilla saltó 5->5->13,
+sospechoso para adjudicar el arco con una muestra)
+escalas N=[900, 1500, 2500]  semillas/N=4  umbral pre-inscrito: pendiente > 0.3
+============================================================================================================
+
+--- N=900 (4 semillas) ---
+  diam por semilla: [8.0, 5.0, 6.0, 5.0]
+  diam media=6.00 rango=[5.00,8.00]  frac_gigante media=0.899
+  n_atajos por semilla: [63, 334, 185, 223]
+  tiempo acumulado: 1.59 min
+
+--- N=1500 (4 semillas) ---
+  diam por semilla: [6.0, 6.0, 5.0, 7.0]
+  diam media=6.00 rango=[5.00,7.00]  frac_gigante media=0.903
+  n_atajos por semilla: [228, 181, 408, 191]
+  tiempo acumulado: 4.54 min
+
+--- N=2500 (4 semillas) ---
+  diam por semilla: [6.5, 7.0, 11.5, 5.0]
+  diam media=7.50 rango=[5.00,11.50]  frac_gigante media=0.902
+  n_atajos por semilla: [399, 383, 238, 943]
+  tiempo acumulado: 8.78 min
+
+============================================================================================================
+diám medio(N): [(900, 6.0), (1500, 6.0), (2500, 7.5)]
+pendiente sobre la MEDIA = 0.218  (rango de pendiente usando min/max por N: [-0.000,0.355])
+
+VEREDICTO (blindado): MUNDO B. pendiente media <= 0.3, consistente con
+mundo-pequeño incluso con varias semillas por escala.
+
+tiempo total: 8.78 min

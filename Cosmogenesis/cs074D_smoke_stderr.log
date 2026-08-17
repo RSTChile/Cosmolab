@@ -1,0 +1,26 @@
+[2026-07-26 19:54:09] === SMOKE TEST: 20 configuraciones ===
+[2026-07-26 19:54:09] [D] 20 configuraciones LHS generadas, 12 semillas c/u, REAL+NULL -> 480 corridas totales
+[2026-07-26 19:55:27] [D] config 1/20 t=78s eta=1477s
+[2026-07-26 19:55:51] [D] config 2/20 t=102s eta=916s
+[2026-07-26 19:58:17] [D] config 3/20 t=248s eta=1404s
+[2026-07-26 19:58:36] [D] config 4/20 t=267s eta=1069s
+[2026-07-26 20:01:09] [D] config 5/20 t=420s eta=1261s
+[2026-07-26 20:05:15] [D] config 6/20 t=666s eta=1553s
+[2026-07-26 20:06:12] [D] config 7/20 t=723s eta=1343s
+[2026-07-26 20:09:52] [D] config 8/20 t=943s eta=1415s
+[2026-07-26 20:14:21] [D] config 9/20 t=1212s eta=1481s
+[2026-07-26 20:17:10] [D] config 10/20 t=1381s eta=1381s
+[2026-07-26 20:20:55] [D] config 11/20 t=1606s eta=1314s
+[2026-07-26 20:21:05] [D] config 12/20 t=1616s eta=1077s
+[2026-07-26 20:21:41] [D] config 13/20 t=1652s eta=890s
+[2026-07-26 20:26:26] [D] config 14/20 t=1937s eta=830s
+[2026-07-26 20:32:55] [D] config 15/20 t=2326s eta=775s
+[2026-07-26 20:33:40] [D] config 16/20 t=2371s eta=593s
+[2026-07-26 20:37:14] [D] config 17/20 t=2585s eta=456s
+[2026-07-26 20:39:29] [D] config 18/20 t=2720s eta=302s
+[2026-07-26 20:41:33] [D] config 19/20 t=2844s eta=150s
+[2026-07-26 20:42:33] [D] config 20/20 t=2904s eta=0s
+[2026-07-26 20:42:33] [D] TOTAL elapsed=2904s ok=16/20
+[2026-07-26 20:42:33] [D] configuraciones con z>2.0: 0/16 (0.0%)
+[2026-07-26 20:42:33] [D] conectividad = {'n_hit': 0, 'frac_hit': 0.0, 'tasa_vecinos_hit_obs': None, 'z_conectividad': None, 'lectura': 'sin_hits_z2'}
+[2026-07-26 20:42:33] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/resultados_cs074D_barrido_fino/cs074D_result_smoke.json

@@ -1,0 +1,13 @@
+F0 smoke preregistro
+verdict=F0-PASS
+max|Ta/T0-1|=0.000000%
+max|rho a^3/rho0-1|=0.000000%
+step | a | T | Ta/T0-1 | rho_a3/rho0-1
+   0 | 1.000000 | 1.0000e+15 | +0.000e+00 | +0.000e+00
+  40 | 1.040811 | 9.6079e+14 | -1.110e-16 | +0.000e+00
+  80 | 1.083287 | 9.2312e+14 | -1.110e-16 | +2.220e-16
+ 120 | 1.127497 | 8.8692e+14 | +0.000e+00 | +0.000e+00
+ 160 | 1.173511 | 8.5214e+14 | +2.220e-16 | +0.000e+00
+ 199 | 1.220182 | 8.1955e+14 | +2.220e-16 | +0.000e+00
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/f0_smoke_preregistro_result.json
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/codigo/f0_smoke/f0_constants.json

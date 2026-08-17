@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Levitrón Cosmosemiótico v4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap');
+  :root{
+    --bg:#0a0c10;--panel:#0f1318;--border:#1e2a35;
+    --teal:#00c8a0;--gold:#f0a500;--red:#e03040;
+    --blue:#3080f0;--text:#c8d8e8;--sub:#607080;
+    --ch1:#00c8a0;--ch2:#3080f0;--ch3:#f0a500;--ch4:#c060ff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px;min-height:100vh;overflow-x:hidden;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--panel);}
+  header h1{font-size:17px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);}
+  .sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--sub);letter-spacing:1px;}
+  .sdot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .workspace{display:grid;grid-template-columns:260px 1fr 280px;height:calc(100vh - 46px);}
+  .panel{background:var(--panel);border-right:1px solid var(--border);overflow-y:auto;padding:13px;}
+  .panel:last-child{border-right:none;border-left:1px solid var(--border);}
+  .ptitle{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .canvas-area{display:flex;flex-direction:column;background:var(--bg);}
+  .ctabs{display:flex;border-bottom:1px solid var(--border);background:var(--panel);flex-wrap:wrap;}
+  .tab{padding:8px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+  .tab.active{color:var(--teal);border-bottom-color:var(--teal);}
+  .tab:hover{color:var(--text);}
+  .cviews{flex:1;position:relative;}
+  .cview{position:absolute;inset:0;display:none;align-items:center;justify-content:center;}
+  .cview.active{display:flex;}
+  canvas{display:block;}
+  .cgrp{margin-bottom:13px;}
+  .clbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;}
+  .clbl span{color:var(--gold);font-family:'Share Tech Mono',monospace;}
+  .clbl .warn{color:var(--red);}
+  input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--border);border-radius:2px;outline:none;margin-bottom:3px;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 0 5px var(--teal);}
+  input[type=range].freq-slider::-webkit-slider-thumb{background:var(--gold);box-shadow:0 0 5px var(--gold);}
+  .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;border-radius:3px;transition:all .2s;}
+  .btn:hover{border-color:var(--teal);color:var(--teal);}
+  .btn.primary{border-color:var(--teal);color:var(--teal);}
+  .btn.active{background:var(--teal);color:var(--bg);}
+  .btn.danger{border-color:var(--red);color:var(--red);}
+  .btn.csv{border-color:var(--gold);color:var(--gold);}
+  .btn.csv:hover{background:var(--gold);color:var(--bg);}
+  .brow{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;}
+  .metric{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:7px;}
+  .mname{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);margin-bottom:3px;}
+  .mval{font-family:'Share Tech Mono',monospace;font-size:15px;}
+  .mval.good{color:var(--teal)}.mval.warn{color:var(--gold)}.mval.bad{color:var(--red)}.mval.blue{color:var(--blue)}.mval.purple{color:var(--ch4)}
+  .mfull{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:7px;margin-bottom:6px;}
+  .cvar{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:8px;margin-bottom:6px;}
+  .cvname{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--teal);margin-bottom:2px;}
+  .cvdesc{font-size:10px;color:var(--sub);margin-bottom:4px;line-height:1.4;}
+  .btrack{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .bfill{height:100%;border-radius:2px;transition:width .08s;}
+  .cval{font-family:'Share Tech Mono',monospace;font-size:13px;margin-top:3px;}
+  .sep{height:1px;background:var(--border);margin:11px 0;}
+  .ntag{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 5px;border:1px solid var(--teal);border-radius:2px;color:var(--teal);margin:2px;}
+  .ntag.gold{border-color:var(--gold);color:var(--gold);}
+  .ntag.red{border-color:var(--red);color:var(--red);}
+  .log{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);height:65px;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:5px 7px;line-height:1.6;}
+  .log .eg{color:var(--teal)}.log .ew{color:var(--gold)}.log .eb{color:var(--red)}
+  .itext{font-size:11px;color:var(--sub);line-height:1.6;}
+  .csv-info{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);margin-top:5px;}
+  /* Freq indicator */
+  .freq-box{background:var(--bg);border:1px solid var(--gold);border-radius:3px;padding:8px;margin-bottom:10px;}
+  .freq-val{font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--gold);text-align:center;}
+  .freq-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px;}
+  .freq-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .1s;}
+  .freq-status{font-size:10px;text-align:center;margin-top:4px;font-family:'Share Tech Mono',monospace;}
+  /* Oscilloscope channel legend */
+  .ch-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ch-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle;}
+  .ch-item{font-family:'Share Tech Mono',monospace;font-size:10px;display:flex;align-items:center;}
+  ::-webkit-scrollbar{width:3px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+  .scope-bg {
+    background-image:
+      linear-gradient(rgba(0,255,150,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,150,0.08) 1px, transparent 1px),
+      linear-gradient(rgba(0,255,150,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,150,0.03) 1px, transparent 1px);
+    background-size: 10% 25%, 10% 25%, 2% 6.25%, 2% 6.25%;
+    background-color: #060810;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Simulador Levitrón Cosmosemiótico v4</h1>
+    <div class="sub">EIT-3 · RMD 2.0 · 250Hz · Punto de equilibrio · Osciloscopio 4CH · Control de frecuencia</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span style="font-size:10px;color:var(--sub);font-family:'Share Tech Mono',monospace;" id="sim-time">t = 0.000 s</span>
+    <div class="sdot" id="sdot"></div>
+  </div>
+</header>
+
+<div class="workspace">
+
+<!-- ── LEFT PANEL ── -->
+<div class="panel">
+  <div class="ptitle">Control PID</div>
+  <div class="cgrp"><div class="clbl">Kp — Proporcional <span id="v-kp">15.0</span></div><input type="range" id="kp" min="1" max="60" step="0.5" value="15"></div>
+  <div class="cgrp"><div class="clbl">Ki — Integral <span id="v-ki">0.05</span></div><input type="range" id="ki" min="0" max="1.5" step="0.01" value="0.05"></div>
+  <div class="cgrp"><div class="clbl">Kd — Derivativo <span id="v-kd">6.0</span></div><input type="range" id="kd" min="0" max="30" step="0.1" value="6.0"></div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Frecuencia de Control</div>
+
+  <div class="freq-box">
+    <div class="freq-val" id="freq-val">250 Hz</div>
+    <div class="freq-bar"><div class="freq-fill" id="freq-fill" style="width:100%"></div></div>
+    <div class="freq-status" id="freq-status" style="color:var(--teal)">● ESTABLE</div>
+  </div>
+  <div class="cgrp">
+    <div class="clbl">Frecuencia loop PID <span id="v-freq">250 Hz</span></div>
+    <input type="range" id="freq" min="10" max="250" step="5" value="250" class="freq-slider">
+  </div>
+  <p class="itext">Reduce la frecuencia para encontrar el límite mínimo de estabilidad. El sistema colapsa cuando el controlador no puede responder a tiempo.</p>
+
+  <div class="sep"></div>
+  <div class="cgrp"><div class="clbl">Setpoint X (mm) <span id="v-spx">0</span></div><input type="range" id="spx" min="-20" max="20" step="0.5" value="0"></div>
+  <div class="cgrp"><div class="clbl">Setpoint Y (mm) <span id="v-spy">0</span></div><input type="range" id="spy" min="-20" max="20" step="0.5" value="0"></div>
+  <div class="sep"></div>
+  <div class="cgrp"><div class="clbl">Masa flotante <span id="v-mass">6.0 g</span></div><input type="range" id="mass" min="1" max="20" step="0.5" value="6"></div>
+  <div class="cgrp"><div class="clbl">Campo base (B_perm) <span id="v-bf">1.00</span></div><input type="range" id="bf" min="0.3" max="2.5" step="0.05" value="1.0"></div>
+  <div class="cgrp"><div class="clbl">Inestabilidad Earnshaw <span id="v-earn">0.006</span></div><input type="range" id="earn" min="0.001" max="0.05" step="0.001" value="0.006"></div>
+  <div class="cgrp"><div class="clbl">Amortiguamiento (aire) <span id="v-damp">0.35</span></div><input type="range" id="damp" min="0.01" max="0.8" step="0.01" value="0.35"></div>
+  <div class="cgrp"><div class="clbl">Ganancia LM324 <span id="v-amp">4.0×</span></div><input type="range" id="amp" min="1" max="10" step="0.5" value="4"></div>
+  <div class="sep"></div>
+  <div class="brow">
+    <button class="btn primary active" id="btn-run">▶ CORRER</button>
+    <button class="btn" id="btn-pause">⏸ PAUSA</button>
+    <button class="btn danger" id="btn-reset">↺ RESET</button>
+  </div>
+  <div class="brow"><button class="btn" id="btn-perturb">⚡ PERTURBACIÓN</button></div>
+  <div class="sep"></div>
+  <div class="ptitle">Modo PID</div>
+  <div class="brow">
+    <button class="btn active" id="pid-full">P+I+D</button>
+    <button class="btn" id="pid-pd">P+D</button>
+    <button class="btn" id="pid-p">Solo P</button>
+  </div>
+  <div class="sep"></div>
+  <div class="ptitle">Λ_Cos Adaptativo</div>
+  <div class="brow"><button class="btn" id="btn-cosmo">ACTIVAR</button></div>
+  <div class="sep"></div>
+  <div class="ptitle">Exportar CSV</div>
+  <div class="brow"><button class="btn csv" id="btn-csv">⬇ DESCARGAR CSV</button></div>
+  <div class="csv-info" id="csv-info">0 muestras</div>
+  <div class="brow"><button class="btn" id="btn-clrcsv">✕ LIMPIAR</button></div>
+</div>
+
+<!-- ── CENTER ── -->
+<div class="canvas-area">
+  <div class="ctabs">
+    <div class="tab active" data-view="top">Vista X-Y</div>
+    <div class="tab" data-view="side">Vista X-Z</div>
+    <div class="tab" data-view="field">Campo</div>
+    <div class="tab" data-view="scope">Osciloscopio</div>
+    <div class="tab" data-view="charts">Gráficas</div>
+  </div>
+  <div class="cviews">
+    <div class="cview active" id="view-top"><canvas id="cv-top"></canvas></div>
+    <div class="cview" id="view-side"><canvas id="cv-side"></canvas></div>
+    <div class="cview" id="view-field"><canvas id="cv-field"></canvas></div>
+    <!-- OSCILOSCOPIO 4CH — layout completo -->
+    <div class="cview" id="view-scope" style="display:none;flex-direction:row;align-items:stretch;overflow:hidden;">
+      <!-- Canales -->
+      <div style="flex:1;overflow-y:auto;padding:10px;background:#060810;display:flex;flex-direction:column;gap:7px;" id="scope-channels">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:2px;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#00c8a0;letter-spacing:2px;">OSCILOSCOPIO 4CH · LEVITRÓN COSMOSEMIÓTICO</span>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div id="scope-dot" style="width:7px;height:7px;border-radius:50%;background:#00c8a0;box-shadow:0 0 6px #00c8a0;animation:pulse 1.5s infinite;"></div>
+            <span id="scope-status-txt" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;">RUNNING</span>
+          </div>
+        </div>
+        <!-- CH A -->
+        <div style="background:#0a0c12;border:1px solid #1e2a35;border-radius:5px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 9px;background:#0f1318;border-bottom:1px solid #1e2a35;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:9px;height:9px;border-radius:50%;background:#00c8a0;box-shadow:0 0 5px #00c8a0;"></div>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;color:#c8d8e8;">CH A</span>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;">PWM X · L298N · −255..+255</span>
+            </div>
+            <span id="info-chA" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;"></span>
+          </div>
+          <div class="scope-bg"><canvas id="sco-A" style="display:block;width:100%;" height="115"></canvas></div>
+        </div>
+        <!-- CH B -->
+        <div style="background:#0a0c12;border:1px solid #1e2a35;border-radius:5px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 9px;background:#0f1318;border-bottom:1px solid #1e2a35;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:9px;height:9px;border-radius:50%;background:#3080f0;box-shadow:0 0 5px #3080f0;"></div>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;color:#c8d8e8;">CH B</span>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;">PWM Y · L298N · ~90° vs A</span>
+            </div>
+            <span id="info-chB" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;"></span>
+          </div>
+          <div class="scope-bg"><canvas id="sco-B" style="display:block;width:100%;" height="115"></canvas></div>
+        </div>
+        <!-- CH C -->
+        <div style="background:#0a0c12;border:1px solid #1e2a35;border-radius:5px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 9px;background:#0f1318;border-bottom:1px solid #1e2a35;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:9px;height:9px;border-radius:50%;background:#f0a500;box-shadow:0 0 5px #f0a500;"></div>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;color:#c8d8e8;">CH C</span>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;">Hall X · SS49E + LM324 · ADC 0–1023</span>
+            </div>
+            <span id="info-chC" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;"></span>
+          </div>
+          <div class="scope-bg"><canvas id="sco-C" style="display:block;width:100%;" height="115"></canvas></div>
+        </div>
+        <!-- CH D -->
+        <div style="background:#0a0c12;border:1px solid #1e2a35;border-radius:5px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 9px;background:#0f1318;border-bottom:1px solid #1e2a35;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:9px;height:9px;border-radius:50%;background:#c060ff;box-shadow:0 0 5px #c060ff;"></div>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:700;color:#c8d8e8;">CH D</span>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;">Λ_Cos · Razón cosmosemiótica [C-N2.8.12] · 0..3</span>
+            </div>
+            <span id="info-chD" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#607080;"></span>
+          </div>
+          <div class="scope-bg"><canvas id="sco-D" style="display:block;width:100%;" height="115"></canvas></div>
+        </div>
+      </div><!-- /canales -->
+
+      <!-- Panel de control scope (derecha) -->
+      <div style="width:205px;background:#0f1318;border-left:1px solid #1e2a35;overflow-y:auto;padding:11px;flex-shrink:0;">
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#00c8a0;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #1e2a35;">Controles</div>
+        <!-- Base de tiempo -->
+        <div style="margin-bottom:13px;">
+          <div style="font-size:9px;color:#607080;margin-bottom:6px;letter-spacing:2px;text-transform:uppercase;">Base de Tiempo</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px;" id="tdiv-btns">
+            <button class="tdiv-btn" data-ms="1"  style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">1ms</button>
+            <button class="tdiv-btn" data-ms="2"  style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #00c8a0;background:#00c8a0;color:#0a0c10;cursor:pointer;font-weight:700;">2ms</button>
+            <button class="tdiv-btn" data-ms="5"  style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">5ms</button>
+            <button class="tdiv-btn" data-ms="10" style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">10ms</button>
+            <button class="tdiv-btn" data-ms="20" style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">20ms</button>
+            <button class="tdiv-btn" data-ms="50" style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">50ms</button>
+          </div>
+          <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:17px;color:#f0a500;" id="tdiv-display">2.0 ms/div</div>
+        </div>
+        <div style="height:1px;background:#1e2a35;margin:9px 0;"></div>
+        <!-- Escala vertical -->
+        <div style="margin-bottom:13px;">
+          <div style="font-size:9px;color:#607080;margin-bottom:6px;letter-spacing:2px;text-transform:uppercase;">Escala Vertical</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px;" id="vdiv-btns">
+            <button class="vdiv-btn" data-v="0.5" style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">0.5V</button>
+            <button class="vdiv-btn" data-v="1"   style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #00c8a0;background:#00c8a0;color:#0a0c10;cursor:pointer;font-weight:700;">1V</button>
+            <button class="vdiv-btn" data-v="2"   style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">2V</button>
+            <button class="vdiv-btn" data-v="5"   style="font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 3px;border-radius:3px;border:1px solid #1e2a35;background:#0a0c10;color:#607080;cursor:pointer;">5V</button>
+          </div>
+          <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:17px;color:#3080f0;" id="vdiv-display">1.0 V/div</div>
+        </div>
+        <div style="height:1px;background:#1e2a35;margin:9px 0;"></div>
+        <!-- Métricas -->
+        <div style="margin-bottom:13px;">
+          <div style="font-size:9px;color:#607080;margin-bottom:7px;letter-spacing:2px;text-transform:uppercase;">Métricas</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:10px;"><span style="color:#607080;">Periodo:</span><span style="color:#c8d8e8;" id="sc-period">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:10px;"><span style="color:#607080;">f_loop:</span><span style="color:#c060ff;" id="sc-freq">250 Hz</span></div>
+            <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:10px;"><span style="color:#607080;">Ventana:</span><span style="color:#c8d8e8;" id="sc-window">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:10px;"><span style="color:#607080;">Muestras:</span><span style="color:#c8d8e8;" id="sc-points">—</span></div>
+          </div>
+        </div>
+        <div style="height:1px;background:#1e2a35;margin:9px 0;"></div>
+        <!-- Valores actuales -->
+        <div style="margin-bottom:13px;">
+          <div style="font-size:9px;color:#607080;margin-bottom:7px;letter-spacing:2px;text-transform:uppercase;">Valores Actuales</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:10px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#00c8a0;flex-shrink:0;"></div>
+              <span style="color:#607080;width:12px;">A:</span><span style="color:#c8d8e8;" id="sc-valA">0</span><span style="color:#607080;margin-left:3px;">PWM X</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:10px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#3080f0;flex-shrink:0;"></div>
+              <span style="color:#607080;width:12px;">B:</span><span style="color:#c8d8e8;" id="sc-valB">0</span><span style="color:#607080;margin-left:3px;">PWM Y</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:10px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#f0a500;flex-shrink:0;"></div>
+              <span style="color:#607080;width:12px;">C:</span><span style="color:#c8d8e8;" id="sc-valC">512</span><span style="color:#607080;margin-left:3px;">Hall ADC</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:10px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#c060ff;flex-shrink:0;"></div>
+              <span style="color:#607080;width:12px;">D:</span><span style="color:#c8d8e8;" id="sc-valD">0.000</span><span style="color:#607080;margin-left:3px;">Λ_Cos</span>
+            </div>
+          </div>
+        </div>
+        <div style="height:1px;background:#1e2a35;margin:9px 0;"></div>
+        <!-- Fases -->
+        <div>
+          <div style="font-size:9px;color:#607080;margin-bottom:7px;letter-spacing:2px;text-transform:uppercase;">Relaciones de Fase</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;justify-content:space-between;padding:3px 6px;background:#0a0c10;border:1px solid #1e2a35;border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:9px;">
+              <span style="color:#607080;">A ↔ B (X/Y PID)</span><span style="color:#3080f0;">~90°</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:3px 6px;background:#0a0c10;border:1px solid #1e2a35;border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:9px;">
+              <span style="color:#607080;">A/B → C (Hall)</span><span style="color:#f0a500;">correlado</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:3px 6px;background:#0a0c10;border:1px solid #1e2a35;border-radius:3px;font-family:'Share Tech Mono',monospace;font-size:9px;">
+              <span style="color:#607080;">C → D (Λ_Cos)</span><span style="color:#c060ff;">emergente</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /panel control scope -->
+    </div><!-- /view-scope -->
+    <div class="cview" id="view-charts"><canvas id="cv-charts"></canvas></div>
+  </div>
+</div>
+
+<!-- ── RIGHT PANEL ── -->
+<div class="panel">
+  <div class="ptitle">Estado del Sistema</div>
+  <div class="mgrid">
+    <div class="metric"><div class="mname">Pos X (mm)</div><div class="mval good" id="m-px">0.0</div></div>
+    <div class="metric"><div class="mname">Pos Y (mm)</div><div class="mval good" id="m-py">0.0</div></div>
+    <div class="metric"><div class="mname">Vel X (mm/s)</div><div class="mval blue" id="m-vx">0.0</div></div>
+    <div class="metric"><div class="mname">Vel Y (mm/s)</div><div class="mval blue" id="m-vy">0.0</div></div>
+    <div class="metric"><div class="mname">Error X</div><div class="mval warn" id="m-ex">0.0</div></div>
+    <div class="metric"><div class="mname">Error Y</div><div class="mval warn" id="m-ey">0.0</div></div>
+    <div class="metric"><div class="mname">PWM X</div><div class="mval" id="m-ux">0</div></div>
+    <div class="metric"><div class="mname">PWM Y</div><div class="mval" id="m-uy">0</div></div>
+  </div>
+  <div class="mgrid">
+    <div class="metric"><div class="mname">Hall X ADC</div><div class="mval good" id="m-hx">512</div></div>
+    <div class="metric"><div class="mname">Hall Y ADC</div><div class="mval good" id="m-hy">512</div></div>
+    <div class="metric"><div class="mname">Frec. loop</div><div class="mval purple" id="m-freq">250 Hz</div></div>
+    <div class="metric"><div class="mname">Dist setpoint</div><div class="mval good" id="m-dist">0.00 mm</div></div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Variables Cosmosemióticas</div>
+  <div class="cvar">
+    <div class="cvname">Δ_struct</div>
+    <div class="cvdesc">Diferencia estructural. Distancia normalizada al setpoint. O-N0.</div>
+    <div class="btrack"><div class="bfill" id="b-ds" style="background:var(--teal);width:0%"></div></div>
+    <div class="cval" style="color:var(--teal)" id="v-ds">0.000</div>
+  </div>
+  <div class="cvar">
+    <div class="cvname">e_R = −ΔA_sys-env</div>
+    <div class="cvdesc">Error operativo. Pérdida de acoplamiento. O-N4.1.</div>
+    <div class="btrack"><div class="bfill" id="b-er" style="background:var(--gold);width:0%"></div></div>
+    <div class="cval" style="color:var(--gold)" id="v-er">0.000</div>
+  </div>
+  <div class="cvar">
+    <div class="cvname">LF operativa</div>
+    <div class="cvdesc">Libertad funcional del controlador. O-N7.1.</div>
+    <div class="btrack"><div class="bfill" id="b-lf" style="background:var(--blue);width:0%"></div></div>
+    <div class="cval" style="color:var(--blue)" id="v-lf">0.000</div>
+  </div>
+  <div class="cvar">
+    <div class="cvname">A_sys-env</div>
+    <div class="cvdesc">Acoplamiento sistema-entorno. O-N2.1.</div>
+    <div class="btrack"><div class="bfill" id="b-ase" style="background:var(--teal);width:0%"></div></div>
+    <div class="cval" style="color:var(--teal)" id="v-ase">0.000</div>
+  </div>
+  <div class="cvar" style="border-color:var(--gold)">
+    <div class="cvname" style="color:var(--gold)">Λ_Cos</div>
+    <div class="cvdesc">Razón cosmosemiótica. Intensidad del cierre. C-N2.8.12.</div>
+    <div class="btrack"><div class="bfill" id="b-lc" style="background:var(--gold);width:0%"></div></div>
+    <div class="cval" id="v-lc" style="font-size:16px;color:var(--gold)">0.000</div>
+  </div>
+  <div class="sep"></div>
+  <div class="ptitle">PID ↔ Cosmo</div>
+  <div style="margin-bottom:7px;">
+    <span class="ntag">P → e_R</span><span class="ntag">I → C-N3</span>
+    <span class="ntag gold">D → e₂</span><span class="ntag red">colapso→S=0</span>
+  </div>
+  <div class="sep"></div>
+  <div class="ptitle">Registro</div>
+  <div class="log" id="log"></div>
+</div>
+
+</div><!-- workspace -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  ESTADO DEL SISTEMA
+// ═══════════════════════════════════════════════════════════════
+
+const P = {
+  // ── Posición inicial: ya en el punto de equilibrio, velocidad cero ──
+  // El operador humano coloca el imán en el centro y lo suelta
+  x:0.15, y:0.10, vx:0, vy:0,
+  t:0,
+  running:true, collapsed:false,
+
+  // Frecuencia de control (Hz) — clave del experimento
+  freq: 250,          // Hz, ajustable por slider
+  get dt() { return 1/this.freq; },
+
+  // PID
+  ex_prev:0, ey_prev:0, ix:0, iy:0, ux:0, uy:0,
+
+  // Parámetros
+  Kp:15, Ki:0.05, Kd:6.0,
+  spx:0, spy:0,
+  mass:6,
+  bfield:1.0,
+  earnshaw:0.006,
+  damp:0.35,    // amortiguamiento más alto → micro-oscilaciones
+  amp:4.0,
+  pidMode:'full',
+  cosmoAdapt:false,
+
+  get k_rest() { return (this.earnshaw * this.bfield + 0.025) * this.bfield; },
+
+  // Cosmo
+  delta_struct:0, e_R:0, LF:0, A_sys_env:0, Lambda_Cos:0,
+  hallX:512, hallY:512,
+
+  // Historia posición
+  N:600,
+  ht:new Float32Array(600), hx:new Float32Array(600), hy:new Float32Array(600),
+  hex:new Float32Array(600), hey:new Float32Array(600),
+  hlc:new Float32Array(600), hux:new Float32Array(600),
+  hi:0,
+
+  // Buffer osciloscopio — alta resolución temporal
+  // 4 canales: PWM_X, PWM_Y, Hall_X (norm), Λ_Cos
+  SCOPE_N: 2000,
+  scope_ch1: new Float32Array(2000),  // PWM X    (-255..255 → -1..1)
+  scope_ch2: new Float32Array(2000),  // PWM Y
+  scope_ch3: new Float32Array(2000),  // Hall X   (0..1023 → -1..1 centrado)
+  scope_ch4: new Float32Array(2000),  // Λ_Cos    (0..3 → 0..1)
+  scope_t:   new Float32Array(2000),
+  scope_i:   0,
+
+  // CSV
+  csv:[], csv_every:25, csv_step:0,  // 1 muestra cada 25 pasos → ~10ms si freq=250Hz
+
+  // Detección automática de frecuencia mínima
+  min_freq_found: null,
+  consec_stable: 0,
+  consec_needed: 500,  // pasos estables para declarar frecuencia estable
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  FÍSICA
+// ═══════════════════════════════════════════════════════════════
+
+function fPermanent(x, y) {
+  const B=P.bfield, kr=P.k_rest, earn=P.earnshaw;
+  const fx_rest=-kr*x, fy_rest=-kr*y;
+  const fx_earn=earn*B*x, fy_earn=earn*B*y;
+  const r2=x*x+y*y;
+  const falloff=1.0/(1.0+r2/1800);
+  return { fx:(fx_rest+fx_earn)*falloff, fy:(fy_rest+fy_earn)*falloff };
+}
+
+function fCoils(x, y, ux, uy) {
+  const kc=0.18;
+  const r2=x*x+y*y;
+  const eff=1.0/(1.0+r2/3000);
+  return { fx:ux*kc*eff, fy:uy*kc*eff };
+}
+
+function hallRead(x, y, axis) {
+  const sens=4.0*P.amp/4.0;
+  let raw=axis==='x'? 512+x*sens : 512+y*sens;
+  raw+=(Math.random()-.5)*0.8;   // ruido reducido (sistema ya estable)
+  return Math.max(0,Math.min(1023,raw));
+}
+
+function pidStep(hall, sp_hall, eprev, integ, Kp, Ki, Kd, dt, mode) {
+  const e=sp_hall-hall;
+  const d=(e-eprev)/dt;
+  let i2=integ+e*dt;
+  i2=Math.max(-800,Math.min(800,i2));
+  let u=Kp*e;
+  if (mode!=='p')    u+=Kd*d;
+  if (mode==='full') u+=Ki*i2;
+  return {u:Math.max(-255,Math.min(255,u)), eprev:e, integ:i2};
+}
+
+function cosmo(x,y,spx,spy,ux,uy,ix,iy,vx,vy) {
+  const ex=spx-x,ey=spy-y;
+  const dist=Math.sqrt(ex*ex+ey*ey);
+  const velmag=Math.sqrt(vx*vx+vy*vy);
+  const umag=Math.sqrt(ux*ux+uy*uy);
+  const imag=Math.sqrt(ix*ix+iy*iy);
+  const MAX=50;
+  const ds=Math.min(1,dist/MAX);
+  const eR=Math.min(1,(ds+0.15*velmag/200)/1.15);
+  const lf=Math.min(1,umag/362+0.2*imag/800);
+  const ase=Math.max(0,1-ds*1.3);
+  const eps=0.008;
+  const lc=Math.min(4,(ds*lf)/(eR*Math.max(eps,ase)+eps));
+  return {ds,eR,lf,ase,lc};
+}
+
+function step() {
+  if (!P.running || P.collapsed) return;
+
+  const dt=P.dt;
+  let {x,y,vx,vy}=P;
+  let {Kp,Ki,Kd}=P;
+
+  if (P.cosmoAdapt) {
+    const lc=P.Lambda_Cos;
+    const bkp=parseFloat(document.getElementById('kp').value);
+    const bki=parseFloat(document.getElementById('ki').value);
+    const bkd=parseFloat(document.getElementById('kd').value);
+    if (lc<0.2){Kp=bkp*1.2;Ki=0;Kd=bkd*2.5;}
+    else if(lc>2.0){Kp=bkp*0.7;Ki=bki*0.5;Kd=bkd*0.7;}
+    else{Kp=bkp;Ki=bki;Kd=bkd;}
+  }
+
+  const hx=hallRead(x,y,'x'); const hy=hallRead(x,y,'y');
+  P.hallX=hx; P.hallY=hy;
+
+  const sp_hx=512+P.spx*4.0*P.amp/4.0;
+  const sp_hy=512+P.spy*4.0*P.amp/4.0;
+
+  const rx=pidStep(hx,sp_hx,P.ex_prev,P.ix,Kp,Ki,Kd,dt,P.pidMode);
+  P.ux=rx.u; P.ex_prev=rx.eprev; P.ix=rx.integ;
+  const ry=pidStep(hy,sp_hy,P.ey_prev,P.iy,Kp,Ki,Kd,dt,P.pidMode);
+  P.uy=ry.u; P.ey_prev=ry.eprev; P.iy=ry.integ;
+
+  const fp=fPermanent(x,y);
+  const fc=fCoils(x,y,P.ux,P.uy);
+  const ms=P.mass/5.0;
+  const ax=(fp.fx+fc.fx)/ms - P.damp*vx;
+  const ay=(fp.fy+fc.fy)/ms - P.damp*vy;
+
+  vx+=ax*dt; vy+=ay*dt;
+  vx=Math.max(-400,Math.min(400,vx));
+  vy=Math.max(-400,Math.min(400,vy));
+  x+=vx*dt; y+=vy*dt;
+
+  P.x=x; P.y=y; P.vx=vx; P.vy=vy; P.t+=dt;
+
+  if (Math.abs(x)>60||Math.abs(y)>60) {
+    P.collapsed=true;
+    log(`COLAPSO a ${P.freq}Hz. Límite mínimo detectado.`,'eb');
+    // Registrar frecuencia mínima
+    if (P.min_freq_found===null || P.freq < P.min_freq_found) {
+      P.min_freq_found=P.freq;
+    }
+    document.getElementById('sdot').style.cssText='background:var(--red);box-shadow:0 0 8px var(--red)';
+  }
+
+  const cv=cosmo(x,y,P.spx,P.spy,P.ux,P.uy,P.ix,P.iy,vx,vy);
+  P.delta_struct=cv.ds; P.e_R=cv.eR; P.LF=cv.lf; P.A_sys_env=cv.ase; P.Lambda_Cos=cv.lc;
+
+  // Historia posición
+  const hi=P.hi%P.N;
+  P.ht[hi]=P.t; P.hx[hi]=x; P.hy[hi]=y;
+  P.hex[hi]=P.spx-x; P.hey[hi]=P.spy-y;
+  P.hlc[hi]=cv.lc; P.hux[hi]=P.ux;
+  P.hi++;
+
+  // Buffer osciloscopio — se llena a la frecuencia del loop
+  const si=P.scope_i%P.SCOPE_N;
+  P.scope_ch1[si]=P.ux/255;
+  P.scope_ch2[si]=P.uy/255;
+  P.scope_ch3[si]=(hx-512)/511;
+  P.scope_ch4[si]=Math.min(1,cv.lc/3);
+  P.scope_t[si]=P.t;
+  P.scope_i++;
+
+  // Estabilidad sostenida (para detección de frecuencia mínima)
+  const dist=Math.sqrt((P.spx-x)**2+(P.spy-y)**2);
+  if (dist<1.0) P.consec_stable++;
+  else P.consec_stable=0;
+
+  // CSV
+  P.csv_step++;
+  if (P.csv_step>=P.csv_every) {
+    P.csv_step=0;
+    P.csv.push([
+      P.t.toFixed(4),x.toFixed(4),y.toFixed(4),
+      vx.toFixed(3),vy.toFixed(3),
+      (P.spx-x).toFixed(4),(P.spy-y).toFixed(4),
+      P.ux.toFixed(1),P.uy.toFixed(1),
+      hx.toFixed(0),hy.toFixed(0),
+      P.freq,
+      cv.ds.toFixed(5),cv.eR.toFixed(5),cv.lf.toFixed(5),cv.ase.toFixed(5),cv.lc.toFixed(5)
+    ]);
+    if (P.csv.length>40000) P.csv.shift();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDERING
+// ═══════════════════════════════════════════════════════════════
+
+const TWO_PI=Math.PI*2;
+function resize(){
+  document.querySelectorAll('.cview').forEach(v=>{
+    if(v.id==='view-scope') return;  // scope has own resize
+    const w=v.clientWidth,h=v.clientHeight;
+    v.querySelectorAll('canvas').forEach(c=>{c.width=w;c.height=h;});
+  });
+  resizeScopeCanvases();
+}
+
+function drawMagnetTop(ctx,mx,my,r,lc,collapsed){
+  if(collapsed){
+    ctx.fillStyle='var(--red)'; ctx.font='bold 14px Rajdhani';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('×',mx,my); return;
+  }
+  const grd=ctx.createRadialGradient(mx,my,0,mx,my,r*2.2);
+  grd.addColorStop(0,lc>.8?'rgba(0,200,160,.18)':lc>.3?'rgba(240,165,0,.14)':'rgba(224,48,64,.12)');
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath(); ctx.arc(mx,my,r*2.2,0,TWO_PI); ctx.fillStyle=grd; ctx.fill();
+  const bg=ctx.createRadialGradient(mx-r*.3,my-r*.3,0,mx,my,r);
+  bg.addColorStop(0,'rgba(180,195,210,0.85)');
+  bg.addColorStop(0.6,'rgba(110,130,155,0.80)');
+  bg.addColorStop(1,'rgba(60,80,110,0.72)');
+  ctx.beginPath(); ctx.arc(mx,my,r,0,TWO_PI); ctx.fillStyle=bg; ctx.fill();
+  ctx.strokeStyle=lc>.8?'rgba(0,200,160,.85)':lc>.3?'rgba(240,165,0,.85)':'rgba(224,48,64,.85)';
+  ctx.lineWidth=2; ctx.stroke();
+  const sh=ctx.createRadialGradient(mx-r*.35,my-r*.4,0,mx,my,r*.75);
+  sh.addColorStop(0,'rgba(255,255,255,0.35)'); sh.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.beginPath(); ctx.arc(mx,my,r,0,TWO_PI); ctx.fillStyle=sh; ctx.fill();
+  ctx.fillStyle='rgba(64,144,255,0.9)';
+  ctx.font=`bold ${Math.max(9,r*.55)}px Rajdhani`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('N',mx,my);
+}
+
+function drawMagnetSide(ctx,mx,my,hw,hh,lc,collapsed){
+  if(collapsed) return;
+  const grd=ctx.createRadialGradient(mx,my,0,mx,my,hw*1.8);
+  grd.addColorStop(0,lc>.8?'rgba(0,200,160,.14)':lc>.3?'rgba(240,165,0,.11)':'rgba(224,48,64,.09)');
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath(); ctx.ellipse(mx,my,hw*1.8,hh*2.5,0,0,TWO_PI); ctx.fillStyle=grd; ctx.fill();
+  const bg=ctx.createLinearGradient(mx-hw,my,mx+hw,my);
+  bg.addColorStop(0,'rgba(70,90,110,0.75)');
+  bg.addColorStop(0.3,'rgba(170,185,200,0.85)');
+  bg.addColorStop(0.7,'rgba(150,170,190,0.85)');
+  bg.addColorStop(1,'rgba(70,90,110,0.75)');
+  const rc=Math.min(hh*.8,3);
+  ctx.beginPath();
+  ctx.moveTo(mx-hw+rc,my-hh); ctx.lineTo(mx+hw-rc,my-hh);
+  ctx.arcTo(mx+hw,my-hh,mx+hw,my-hh+rc,rc); ctx.lineTo(mx+hw,my+hh-rc);
+  ctx.arcTo(mx+hw,my+hh,mx+hw-rc,my+hh,rc); ctx.lineTo(mx-hw+rc,my+hh);
+  ctx.arcTo(mx-hw,my+hh,mx-hw,my+hh-rc,rc); ctx.lineTo(mx-hw,my-hh+rc);
+  ctx.arcTo(mx-hw,my-hh,mx-hw+rc,my-hh,rc); ctx.closePath();
+  ctx.fillStyle=bg; ctx.fill();
+  ctx.strokeStyle=lc>.8?'rgba(0,200,160,.75)':lc>.3?'rgba(240,165,0,.75)':'rgba(224,48,64,.75)';
+  ctx.lineWidth=1.5; ctx.stroke();
+  ctx.beginPath(); ctx.rect(mx-hw*.7,my-hh,hw*1.4,hh*.4); ctx.fillStyle='rgba(255,255,255,0.2)'; ctx.fill();
+  ctx.font=`bold ${Math.max(7,hh*.9)}px Rajdhani`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillStyle='rgba(64,144,255,0.9)'; ctx.fillText('N',mx,my-hh-8);
+  ctx.fillStyle='rgba(255,64,96,0.9)';  ctx.fillText('S',mx,my+hh+8);
+}
+
+// ── Vista superior X-Y ──────────────────────────────────────────
+function drawTop(cv){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const cx=W/2,cy=H/2;
+  const sc=Math.min(W,H)/140;
+  ctx.clearRect(0,0,W,H);
+
+  // Grid
+  ctx.strokeStyle='#0e1520'; ctx.lineWidth=1;
+  for(let g=-70;g<=70;g+=10){
+    const px=cx+g*sc; ctx.beginPath(); ctx.moveTo(px,0); ctx.lineTo(px,H); ctx.stroke();
+    const py=cy+g*sc; ctx.beginPath(); ctx.moveTo(0,py); ctx.lineTo(W,py); ctx.stroke();
+  }
+
+  // Campo de fondo
+  const rz=22,cw=W/rz,ch=H/rz;
+  for(let i=0;i<rz;i++) for(let j=0;j<rz;j++){
+    const wx=(i/rz-.5)*140,wy=(j/rz-.5)*140;
+    const fp=fPermanent(wx,wy);
+    const mag=Math.min(1,Math.sqrt(fp.fx*fp.fx+fp.fy*fp.fy)/1.5);
+    ctx.fillStyle=`rgba(0,200,160,${mag*.06})`;
+    ctx.fillRect(i*cw,j*ch,cw+1,ch+1);
+  }
+
+  // Ejes
+  ctx.strokeStyle='#1a2530'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx,0); ctx.lineTo(cx,H); ctx.stroke();
+
+  const Rc=26*sc, Rm=34*sc;
+  const r_coil=Rc*0.55, r_perm=Rm*0.42, r_float=Rc*0.70;
+
+  // Disco base
+  ctx.beginPath(); ctx.arc(cx,cy,(Rm+r_perm)*1.15,0,TWO_PI);
+  ctx.fillStyle='rgba(10,14,20,0.55)'; ctx.fill();
+  ctx.strokeStyle='#1a2530'; ctx.lineWidth=1; ctx.stroke();
+
+  // Zona estable
+  ctx.strokeStyle='rgba(0,200,160,0.15)'; ctx.lineWidth=1; ctx.setLineDash([3,4]);
+  ctx.beginPath(); ctx.arc(cx,cy,r_float*1.3,0,TWO_PI); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // 4 imanes permanentes
+  [{a:45,p:1},{a:135,p:-1},{a:225,p:1},{a:315,p:-1}].forEach(m=>{
+    const rad=m.a*Math.PI/180;
+    const mx=cx+Math.cos(rad)*Rm,my=cy+Math.sin(rad)*Rm;
+    const col=m.p>0?'#4090ff':'#ff4060';
+    const mg=ctx.createRadialGradient(mx-r_perm*.3,my-r_perm*.3,0,mx,my,r_perm);
+    mg.addColorStop(0,'rgba(180,195,210,0.85)');
+    mg.addColorStop(0.6,'rgba(110,130,155,0.80)');
+    mg.addColorStop(1,'rgba(60,80,110,0.75)');
+    ctx.beginPath(); ctx.arc(mx,my,r_perm,0,TWO_PI); ctx.fillStyle=mg; ctx.fill();
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke();
+    const sh=ctx.createRadialGradient(mx-r_perm*.35,my-r_perm*.4,0,mx,my,r_perm*.75);
+    sh.addColorStop(0,'rgba(255,255,255,0.32)'); sh.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.beginPath(); ctx.arc(mx,my,r_perm,0,TWO_PI); ctx.fillStyle=sh; ctx.fill();
+    ctx.fillStyle=col; ctx.font=`bold ${Math.max(9,r_perm*.5)}px Rajdhani`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(m.p>0?'N':'S',mx,my);
+  });
+
+  // 4 bobinas
+  [{a:0,u:P.ux,l:'X+'},{a:90,u:P.uy,l:'Y+'},{a:180,u:-P.ux,l:'X-'},{a:270,u:-P.uy,l:'Y-'}].forEach(c=>{
+    const rad=c.a*Math.PI/180;
+    const mx=cx+Math.cos(rad)*Rc,my=cy+Math.sin(rad)*Rc;
+    const it=Math.abs(c.u)/255;
+    const bc=c.u>0?[64,144,255]:c.u<0?[255,64,96]:[120,140,160];
+    const rings=4;
+    for(let ri=rings;ri>=1;ri--){
+      const rr=r_coil*(ri/rings);
+      ctx.beginPath(); ctx.arc(mx,my,rr,0,TWO_PI);
+      ctx.strokeStyle=`rgba(180,100,30,${(0.3+0.5*(1-ri/rings))*(0.4+it*0.6)})`;
+      ctx.lineWidth=r_coil/(rings*1.8); ctx.stroke();
+    }
+    const ng=ctx.createRadialGradient(mx-r_coil*.28*.3,my-r_coil*.28*.3,0,mx,my,r_coil*.28);
+    ng.addColorStop(0,'rgba(180,195,210,0.9)'); ng.addColorStop(1,'rgba(80,100,120,0.8)');
+    ctx.beginPath(); ctx.arc(mx,my,r_coil*.28,0,TWO_PI); ctx.fillStyle=ng; ctx.fill();
+    ctx.beginPath(); ctx.arc(mx,my,r_coil,0,TWO_PI);
+    ctx.strokeStyle=`rgba(${bc.join(',')},${0.5+it*.5})`; ctx.lineWidth=2.5; ctx.stroke();
+    if(it>0.1){
+      const gg=ctx.createRadialGradient(mx,my,r_coil*.5,mx,my,r_coil*1.6);
+      gg.addColorStop(0,`rgba(${bc.join(',')},0)`);
+      gg.addColorStop(0.5,`rgba(${bc.join(',')},${it*0.12})`);
+      gg.addColorStop(1,`rgba(${bc.join(',')},0)`);
+      ctx.beginPath(); ctx.arc(mx,my,r_coil*1.6,0,TWO_PI); ctx.fillStyle=gg; ctx.fill();
+    }
+    ctx.fillStyle=`rgba(${bc.join(',')},0.85)`;
+    ctx.font=`bold ${Math.max(8,r_coil*.32)}px Share Tech Mono`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(c.l,mx,my);
+  });
+
+  // Sensores Hall
+  [{dx:10,dy:0,lb:'HX'},{dx:0,dy:10,lb:'HY'}].forEach(s=>{
+    ctx.fillStyle='rgba(240,165,0,.15)'; ctx.strokeStyle='rgba(240,165,0,.7)'; ctx.lineWidth=1;
+    ctx.fillRect(cx+s.dx-2.5,cy+s.dy-4.5,5,9); ctx.strokeRect(cx+s.dx-2.5,cy+s.dy-4.5,5,9);
+  });
+
+  // Trayectoria
+  const n=Math.min(P.hi,P.N);
+  if(n>2){
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const idx=(P.hi-n+i)%P.N;
+      const px=cx+P.hx[idx]*sc,py=cy+P.hy[idx]*sc;
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.strokeStyle='rgba(0,200,160,.22)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  // Setpoint
+  const spxp=cx+P.spx*sc,spyp=cy+P.spy*sc;
+  ctx.strokeStyle='rgba(240,165,0,.7)'; ctx.lineWidth=1; ctx.setLineDash([2,3]);
+  ctx.beginPath(); ctx.arc(spxp,spyp,4,0,TWO_PI); ctx.stroke(); ctx.setLineDash([]);
+  ctx.strokeStyle='rgba(240,165,0,.5)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(spxp-6,spyp); ctx.lineTo(spxp+6,spyp); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(spxp,spyp-6); ctx.lineTo(spxp,spyp+6); ctx.stroke();
+
+  // Imán flotante
+  const fmx=cx+P.x*sc,fmy=cy+P.y*sc;
+  drawMagnetTop(ctx,fmx,fmy,r_float,P.Lambda_Cos,P.collapsed);
+
+  // Info
+  ctx.fillStyle='var(--sub)'; ctx.font='9px Share Tech Mono';
+  ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.fillText('Vista Superior X-Y',7,7);
+  const dist=Math.sqrt((P.spx-P.x)**2+(P.spy-P.y)**2);
+  const fcol=dist<0.3?'#00c8a0':dist<1.0?'#f0a500':'#e03040';
+  ctx.fillStyle=fcol;
+  ctx.fillText(`t=${P.t.toFixed(2)}s  dist=${dist.toFixed(3)}mm  f=${P.freq}Hz`,7,19);
+}
+
+// ── Vista lateral ──────────────────────────────────────────────
+function drawSide(cv){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const cx=W/2,base=H*.70,sc=Math.min(W,H)/170;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#0e1520'; ctx.lineWidth=1;
+  for(let g=-85;g<=85;g+=10){
+    const px=cx+g*sc; ctx.beginPath(); ctx.moveTo(px,0); ctx.lineTo(px,H); ctx.stroke();
+  }
+  ctx.fillStyle='#0c1118'; ctx.fillRect(cx-52*sc,base,104*sc,8*sc);
+  ctx.strokeStyle='#1e2a35'; ctx.lineWidth=1; ctx.strokeRect(cx-52*sc,base,104*sc,8*sc);
+  ctx.fillStyle='var(--sub)'; ctx.font='8px Share Tech Mono'; ctx.textAlign='center'; ctx.textBaseline='top';
+  ctx.fillText('BASE · 4 imanes N-S-N-S + 4 bobinas + sensores Hall',cx,base+8*sc+3);
+  const xp=[-30,-10,10,30],poles=[1,-1,1,-1];
+  for(let i=0;i<4;i++){
+    const mx=cx+xp[i]*sc;
+    ctx.fillStyle=poles[i]>0?'#4090ff18':'#ff406018'; ctx.strokeStyle=poles[i]>0?'#4090ff':'#ff4060'; ctx.lineWidth=1;
+    ctx.fillRect(mx-5,base-8*sc,10,8*sc); ctx.strokeRect(mx-5,base-8*sc,10,8*sc);
+    ctx.fillStyle=poles[i]>0?'#4090ff':'#ff4060'; ctx.font='bold 7px Rajdhani'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(poles[i]>0?'N':'S',mx,base-4*sc);
+  }
+  for(let i=0;i<4;i++){
+    const mx=cx+xp[i]*sc;
+    ctx.fillStyle='#301808'; ctx.strokeStyle='#905020'; ctx.lineWidth=1;
+    ctx.fillRect(mx-4,base-8*sc-10*sc,8,10*sc); ctx.strokeRect(mx-4,base-8*sc-10*sc,8,10*sc);
+  }
+  ctx.fillStyle='rgba(240,165,0,.18)'; ctx.strokeStyle='var(--gold)'; ctx.lineWidth=1;
+  ctx.fillRect(cx-3,base-8*sc-4,6,4); ctx.strokeRect(cx-3,base-8*sc-4,6,4);
+
+  const h_nom=20*sc,disp=Math.sqrt(P.x*P.x+P.y*P.y);
+  const h_eff=Math.max(4,h_nom-disp*sc*0.25);
+  const top_base=base-8*sc-10*sc;
+  const fy=top_base-h_eff,fx=cx+P.x*sc*0.5;
+
+  ctx.strokeStyle='rgba(0,200,160,.22)'; ctx.lineWidth=1; ctx.setLineDash([2,3]);
+  ctx.beginPath(); ctx.moveTo(fx,fy+5); ctx.lineTo(fx,top_base); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle='var(--sub)'; ctx.font='8px Share Tech Mono'; ctx.textAlign='left'; ctx.textBaseline='middle';
+  ctx.fillText(`gap≈${(h_eff/sc).toFixed(2)}mm`,fx+5,(fy+top_base)/2);
+
+  const fp=fPermanent(P.x,P.y),fc=fCoils(P.x,P.y,P.ux,P.uy);
+  const as=0.5*sc;
+  arrowFn(ctx,fx,fy,fx+fp.fx*as,fy+fp.fy*as,'#4090ff');
+  arrowFn(ctx,fx,fy,fx+fc.fx*as,fy+fc.fy*as,'#00c8a0');
+
+  const hw=17.5*sc/2.8,hh=2.5*sc/2.8;
+  drawMagnetSide(ctx,fx,fy,hw,hh,P.Lambda_Cos,P.collapsed);
+  ctx.fillStyle='var(--sub)'; ctx.font='9px Share Tech Mono'; ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.fillText('Vista Lateral X-Z',7,7);
+}
+
+function arrowFn(ctx,x1,y1,x2,y2,col){
+  const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy);
+  if(len<2) return;
+  ctx.strokeStyle=col; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  const a=Math.atan2(dy,dx);
+  ctx.beginPath(); ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-7*Math.cos(a-.4),y2-7*Math.sin(a-.4));
+  ctx.lineTo(x2-7*Math.cos(a+.4),y2-7*Math.sin(a+.4));
+  ctx.closePath(); ctx.fillStyle=col; ctx.fill();
+}
+
+// ── Campo magnético ─────────────────────────────────────────────
+function drawField(cv){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const cx=W/2,cy=H/2,sc=Math.min(W,H)/140;
+  ctx.clearRect(0,0,W,H);
+  const res=52,cw=W/res,ch=H/res;
+  for(let i=0;i<res;i++) for(let j=0;j<res;j++){
+    const wx=(i/res-.5)*140,wy=(j/res-.5)*140;
+    const fp=fPermanent(wx,wy);
+    const fc=fCoils(wx,wy,P.ux,P.uy);
+    const mp=Math.min(1,Math.sqrt(fp.fx*fp.fx+fp.fy*fp.fy)/1.2);
+    const mc=Math.min(1,Math.sqrt(fc.fx*fc.fx+fc.fy*fc.fy)/.5);
+    ctx.fillStyle=`rgb(${Math.round(mc*50+mp*30)},${Math.round(mc*200+mp*80)},${Math.round(mc*160+mp*220)})`;
+    ctx.fillRect(i*cw,j*ch,cw+1,ch+1);
+  }
+  const vr=14;
+  for(let i=0;i<vr;i++) for(let j=0;j<vr;j++){
+    const wx=(i/(vr-1)-.5)*130,wy=(j/(vr-1)-.5)*130;
+    const fp=fPermanent(wx,wy),fc=fCoils(wx,wy,P.ux,P.uy);
+    const fx=fp.fx+fc.fx,fy=fp.fy+fc.fy,mag=Math.sqrt(fx*fx+fy*fy);
+    if(mag<0.05) continue;
+    const px=cx+wx*sc,py=cy+wy*sc,al=Math.min(9,mag*3)*sc/4;
+    ctx.strokeStyle='rgba(255,255,255,.2)'; ctx.lineWidth=.8;
+    ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(px+fx/mag*al,py+fy/mag*al); ctx.stroke();
+  }
+  const Rm=34*sc,r_perm=Rm*0.42;
+  [{a:45,p:1},{a:135,p:-1},{a:225,p:1},{a:315,p:-1}].forEach(m=>{
+    const r=m.a*Math.PI/180,mx=cx+Math.cos(r)*Rm,my=cy+Math.sin(r)*Rm;
+    ctx.beginPath(); ctx.arc(mx,my,5,0,TWO_PI); ctx.fillStyle='#000a'; ctx.fill();
+    ctx.strokeStyle=m.p>0?'#4090ff':'#ff4060'; ctx.lineWidth=1.5; ctx.stroke();
+  });
+  if(!P.collapsed){
+    const mx=cx+P.x*sc,my=cy+P.y*sc,Rc=26*sc,r_float=Rc*0.70;
+    drawMagnetTop(ctx,mx,my,r_float,P.Lambda_Cos,false);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  OSCILOSCOPIO 4 CANALES — diseño integrado
+// ═══════════════════════════════════════════════════════════════
+
+let scope_tdiv_ms = 2;   // ms por división
+let scope_vdiv    = 1.0; // V por división (escala visual)
+
+// Canvases del osciloscopio (se obtienen cuando se activa la vista)
+const SCOPE_CVS  = ['sco-A','sco-B','sco-C','sco-D'];
+const SCOPE_COLS = ['#00c8a0','#3080f0','#f0a500','#c060ff'];
+const SCOPE_BUFS = ()=>[P.scope_ch1, P.scope_ch2, P.scope_ch3, P.scope_ch4];
+
+// Rangos de cada canal para normalización visual
+// CH A/B: PWM ∈ [-1,1] ya normalizado
+// CH C:   Hall ∈ [-1,1] ya normalizado (centrado en 512)
+// CH D:   Λ_Cos ∈ [0,1] ya normalizado (÷3)
+const SCOPE_YRANGE = [1, 1, 1, 1];  // ±range
+
+function resizeScopeCanvases(){
+  SCOPE_CVS.forEach(id=>{
+    const cv=document.getElementById(id);
+    if(!cv) return;
+    const rect=cv.parentElement.getBoundingClientRect();
+    if(rect.width>0) cv.width=rect.width;
+  });
+}
+
+function drawScopeChannel(canvasId, buf, col, ci){
+  const cv=document.getElementById(canvasId);
+  if(!cv) return;
+  const ctx=cv.getContext('2d'), W=cv.width, H=cv.height;
+  ctx.clearRect(0,0,W,H);
+
+  const n_total=Math.min(P.scope_i, P.SCOPE_N);
+  // Calcular cuántas muestras corresponden a (10 divisiones × ms_por_div)
+  const window_s = scope_tdiv_ms * 10 / 1000;
+  const n_show = Math.min(n_total, Math.round(P.freq * window_s));
+  if(n_show<2) return;
+
+  const centerY=H/2;
+
+  // Grid de fondo
+  const divX=W/10, divY=H/8;
+  ctx.strokeStyle='rgba(0,255,150,0.12)'; ctx.lineWidth=1;
+  for(let i=0;i<=10;i++){
+    ctx.beginPath(); ctx.moveTo(i*divX,0); ctx.lineTo(i*divX,H); ctx.stroke();
+  }
+  for(let j=0;j<=8;j++){
+    ctx.beginPath(); ctx.moveTo(0,j*divY); ctx.lineTo(W,j*divY); ctx.stroke();
+  }
+  // Líneas centrales más brillantes
+  ctx.strokeStyle='rgba(0,255,150,0.28)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,centerY); ctx.lineTo(W,centerY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2,0); ctx.lineTo(W/2,H); ctx.stroke();
+
+  // Escala: 1 V/div visual. Los datos están en [-1,1] o [0,1]
+  // 4 divisiones arriba/abajo del centro → ±4V rango visible
+  const px_per_v = (H/2) / (4 * scope_vdiv);  // píxeles por volt
+  // Ajuste por canal:
+  // CH D (Λ_Cos) está en [0,1] → centrarlo: desplazar -0.5 para centrar en 0
+  const y_offset = ci===3 ? 0.5 : 0.0;
+
+  // Señal con glow
+  ctx.strokeStyle=col; ctx.lineWidth=2;
+  ctx.shadowColor=col; ctx.shadowBlur=6;
+  ctx.beginPath();
+  for(let i=0;i<n_show;i++){
+    const idx=(P.scope_i - n_show + i + P.SCOPE_N)%P.SCOPE_N;
+    const val=buf[idx] - y_offset;
+    const px=(i/(n_show-1))*W;
+    const py=centerY - val*px_per_v;
+    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+  }
+  ctx.stroke();
+  ctx.shadowBlur=0;
+
+  // Punto del valor actual
+  const li=(P.scope_i-1+P.SCOPE_N)%P.SCOPE_N;
+  const lval=buf[li]-y_offset;
+  const lpy=centerY - lval*px_per_v;
+  ctx.beginPath(); ctx.arc(W-2,lpy,3.5,0,TWO_PI);
+  ctx.fillStyle=col; ctx.shadowColor=col; ctx.shadowBlur=8; ctx.fill(); ctx.shadowBlur=0;
+
+  // Info header del canal
+  const raw=buf[li]+y_offset;
+  let valStr;
+  if(ci===0||ci===1) valStr=(raw*255).toFixed(0);
+  else if(ci===2)    valStr=(raw*511+512).toFixed(0)+' ADC';
+  else               valStr=(raw*3).toFixed(3);
+  const infoEl=document.getElementById(['info-chA','info-chB','info-chC','info-chD'][ci]);
+  if(infoEl) infoEl.textContent=`${scope_vdiv.toFixed(1)}V/div · ${scope_tdiv_ms}ms/div · val=${valStr}`;
+}
+
+function drawScope(){
+  // Resize si es necesario
+  resizeScopeCanvases();
+  const bufs=SCOPE_BUFS();
+  SCOPE_CVS.forEach((id,ci)=>{
+    drawScopeChannel(id, bufs[ci], SCOPE_COLS[ci], ci);
+  });
+
+  // Actualizar métricas del panel
+  const window_s=scope_tdiv_ms*10/1000;
+  const n_show=Math.min(Math.min(P.scope_i,P.SCOPE_N), Math.round(P.freq*window_s));
+  const period_ms=1000/P.freq;
+  const sc_el=(id)=>document.getElementById(id);
+  if(sc_el('sc-period'))  sc_el('sc-period').textContent=period_ms.toFixed(2)+' ms';
+  if(sc_el('sc-freq'))    sc_el('sc-freq').textContent=P.freq+' Hz';
+  if(sc_el('sc-window'))  sc_el('sc-window').textContent=window_s.toFixed(3)+'s';
+  if(sc_el('sc-points'))  sc_el('sc-points').textContent=n_show;
+  if(sc_el('tdiv-display')) sc_el('tdiv-display').textContent=scope_tdiv_ms.toFixed(1)+' ms/div';
+  if(sc_el('vdiv-display')) sc_el('vdiv-display').textContent=scope_vdiv.toFixed(1)+' V/div';
+
+  // Valores actuales
+  const li=(P.scope_i-1+P.SCOPE_N)%P.SCOPE_N;
+  const b=SCOPE_BUFS();
+  if(sc_el('sc-valA')) sc_el('sc-valA').textContent=(b[0][li]*255).toFixed(0);
+  if(sc_el('sc-valB')) sc_el('sc-valB').textContent=(b[1][li]*255).toFixed(0);
+  if(sc_el('sc-valC')) sc_el('sc-valC').textContent=(b[2][li]*511+512).toFixed(0);
+  if(sc_el('sc-valD')) sc_el('sc-valD').textContent=(b[3][li]*3).toFixed(3);
+
+  // Status dot y texto
+  const dotEl=document.getElementById('scope-dot');
+  const txtEl=document.getElementById('scope-status-txt');
+  if(P.collapsed){
+    if(dotEl) dotEl.style.background='#e03040';
+    if(txtEl){txtEl.textContent='COLAPSO';txtEl.style.color='#e03040';}
+  } else if(!P.running){
+    if(dotEl){dotEl.style.background='#f0a500';dotEl.style.boxShadow='0 0 6px #f0a500';}
+    if(txtEl){txtEl.textContent='PAUSED';txtEl.style.color='#f0a500';}
+  } else {
+    if(dotEl){dotEl.style.background='#00c8a0';dotEl.style.boxShadow='0 0 6px #00c8a0';}
+    if(txtEl){txtEl.textContent='RUNNING';txtEl.style.color='#607080';}
+  }
+}
+
+function setScopeWindow(){
+  // No-op, ahora el scope calcula su ventana desde scope_tdiv_ms
+}
+
+// Botones base de tiempo
+function initScopeControls(){
+  document.querySelectorAll('.tdiv-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      scope_tdiv_ms=parseFloat(btn.dataset.ms);
+      document.querySelectorAll('.tdiv-btn').forEach(b=>{
+        b.style.background='#0a0c10'; b.style.borderColor='#1e2a35'; b.style.color='#607080'; b.style.fontWeight='normal';
+      });
+      btn.style.background='#00c8a0'; btn.style.borderColor='#00c8a0'; btn.style.color='#0a0c10'; btn.style.fontWeight='700';
+    });
+  });
+  document.querySelectorAll('.vdiv-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      scope_vdiv=parseFloat(btn.dataset.v);
+      document.querySelectorAll('.vdiv-btn').forEach(b=>{
+        b.style.background='#0a0c10'; b.style.borderColor='#1e2a35'; b.style.color='#607080'; b.style.fontWeight='normal';
+      });
+      btn.style.background='#00c8a0'; btn.style.borderColor='#00c8a0'; btn.style.color='#0a0c10'; btn.style.fontWeight='700';
+    });
+  });
+}
+
+// ── Gráficas ────────────────────────────────────────────────────
+function drawCharts(cv){
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const n=Math.min(P.hi,P.N); if(n<2) return;
+  const charts=[
+    {data:P.hx,  col:'#00c8a0',lbl:'X (mm)', min:-15,max:15},
+    {data:P.hy,  col:'#3080f0',lbl:'Y (mm)', min:-15,max:15},
+    {data:P.hex, col:'#f0a500',lbl:'Error X',min:-15,max:15},
+    {data:P.hlc, col:'#c060ff',lbl:'Λ_Cos',  min:0,  max:3},
+    {data:P.hux, col:'#e03040',lbl:'PWM X',  min:-255,max:255},
+  ];
+  const pl=50,pr=8,pt=12,ch=(H-pt)/charts.length,cw=W-pl-pr;
+  charts.forEach((c,ci)=>{
+    const y0=pt+ci*ch,y1=y0+ch-5;
+    ctx.fillStyle='#0a0c10'; ctx.fillRect(pl,y0,cw,y1-y0);
+    const zy=y1-(0-c.min)/(c.max-c.min)*(y1-y0);
+    ctx.strokeStyle='#1a2530'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pl,zy); ctx.lineTo(W-pr,zy); ctx.stroke();
+    ctx.strokeStyle=c.col; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const idx=(P.hi-n+i)%P.N;
+      const px=pl+(i/(P.N-1))*cw;
+      const nm=(c.data[idx]-c.min)/(c.max-c.min);
+      const py=y1-nm*(y1-y0);
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    const li=(P.hi-1+P.N)%P.N;
+    const lnm=(c.data[li]-c.min)/(c.max-c.min);
+    ctx.beginPath(); ctx.arc(W-pr,y1-lnm*(y1-y0),3,0,TWO_PI); ctx.fillStyle=c.col; ctx.fill();
+    ctx.fillStyle=c.col; ctx.font='9px Share Tech Mono'; ctx.textAlign='right'; ctx.textBaseline='middle';
+    ctx.fillText(c.lbl,pl-2,(y0+y1)/2);
+    ctx.fillStyle='rgba(255,255,255,.5)'; ctx.font='8px Share Tech Mono'; ctx.textAlign='left'; ctx.textBaseline='top';
+    ctx.fillText(c.data[li].toFixed(3),pl+3,y0+2);
+    ctx.strokeStyle='#1e2a35'; ctx.lineWidth=1; ctx.strokeRect(pl,y0,cw,y1-y0);
+  });
+  ctx.fillStyle='var(--sub)'; ctx.font='8px Share Tech Mono'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+  ctx.fillText(`← ${(P.N*P.dt).toFixed(2)}s historia  |  f=${P.freq}Hz  |  CSV: ${P.csv.length} muestras`,W/2,H-1);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  UI UPDATE
+// ═══════════════════════════════════════════════════════════════
+
+function updateFreqStatus(){
+  const f=P.freq;
+  const pct=f/250;
+  document.getElementById('freq-fill').style.width=`${pct*100}%`;
+  document.getElementById('freq-fill').style.background=
+    f>=100?'var(--teal)':f>=50?'var(--gold)':'var(--red)';
+  document.getElementById('freq-val').textContent=`${f} Hz`;
+  document.getElementById('v-freq').textContent=`${f} Hz`;
+  document.getElementById('m-freq').textContent=`${f} Hz`;
+
+  let status,col;
+  if(P.collapsed){
+    status=`✕ COLAPSO @ ${f}Hz`;col='var(--red)';
+  } else if(f>=100){
+    status='● ESTABLE';col='var(--teal)';
+  } else if(f>=50){
+    status='◐ LÍMITE';col='var(--gold)';
+  } else {
+    status='⚠ RIESGO COLAPSO';col='var(--red)';
+  }
+  if(P.min_freq_found!==null){
+    status+= `  |  mín. obs: ${P.min_freq_found}Hz`;
+  }
+  document.getElementById('freq-status').textContent=status;
+  document.getElementById('freq-status').style.color=col;
+}
+
+function updateUI(){
+  document.getElementById('sim-time').textContent=`t = ${P.t.toFixed(3)} s`;
+  const vals={px:P.x,py:P.y,vx:P.vx,vy:P.vy,ex:P.spx-P.x,ey:P.spy-P.y,ux:P.ux,uy:P.uy};
+  Object.entries(vals).forEach(([k,v])=>{
+    const el=document.getElementById('m-'+k);
+    if(el) el.textContent=(['ux','uy'].includes(k)?v.toFixed(0):v.toFixed(3));
+  });
+  document.getElementById('m-hx').textContent=(P.hallX||512).toFixed(0);
+  document.getElementById('m-hy').textContent=(P.hallY||512).toFixed(0);
+  const dist=Math.sqrt((P.spx-P.x)**2+(P.spy-P.y)**2);
+  document.getElementById('m-dist').textContent=dist.toFixed(4)+' mm';
+  const dEl=document.getElementById('m-dist');
+  dEl.className='mval '+(dist<0.3?'good':dist<1.0?'warn':'bad');
+  const pxEl=document.getElementById('m-px'),pyEl=document.getElementById('m-py');
+  pxEl.className=pyEl.className='mval '+(dist<0.3?'good':dist<1.0?'warn':'bad');
+
+  [{id:'ds',v:P.delta_struct,max:1,c:'var(--teal)'},
+   {id:'er',v:P.e_R,max:1,c:'var(--gold)'},
+   {id:'lf',v:P.LF,max:1,c:'var(--blue)'},
+   {id:'ase',v:P.A_sys_env,max:1,c:'var(--teal)'},
+   {id:'lc',v:P.Lambda_Cos,max:3,c:P.Lambda_Cos>1?'var(--teal)':P.Lambda_Cos>.4?'var(--gold)':'var(--red)'},
+  ].forEach(c=>{
+    document.getElementById('v-'+c.id).textContent=c.v.toFixed(4);
+    document.getElementById('b-'+c.id).style.cssText=`width:${Math.min(100,c.v/c.max*100)}%;background:${c.c}`;
+  });
+  document.getElementById('v-lc').style.color=P.Lambda_Cos>1?'var(--teal)':P.Lambda_Cos>.4?'var(--gold)':'var(--red)';
+  document.getElementById('csv-info').textContent=`${P.csv.length} muestras @ ${P.freq}Hz`;
+  updateFreqStatus();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  LOG + CSV
+// ═══════════════════════════════════════════════════════════════
+
+const logEl=document.getElementById('log');
+let lastMsg='',lastT=0;
+function log(msg,cls='eg'){
+  if(msg===lastMsg&&P.t-lastT<0.3) return;
+  lastMsg=msg; lastT=P.t;
+  const d=document.createElement('div'); d.className=cls;
+  d.textContent=`[${P.t.toFixed(2)}s @ ${P.freq}Hz] ${msg}`;
+  logEl.appendChild(d);
+  if(logEl.children.length>120) logEl.removeChild(logEl.firstChild);
+  logEl.scrollTop=logEl.scrollHeight;
+}
+
+function downloadCSV(){
+  if(!P.csv.length){log('Sin datos.','ew');return;}
+  const meta=[
+    `# Simulador Levitrón Cosmosemiótico v4 — RMD 2.0`,
+    `# Fecha: ${new Date().toISOString()}`,
+    `# Posición inicial: (0.15, 0.10) mm — punto de equilibrio`,
+    `# Kp=${P.Kp}  Ki=${P.Ki}  Kd=${P.Kd}  Modo PID: ${P.pidMode}`,
+    `# Λ_Cos adaptativo: ${P.cosmoAdapt}`,
+    `# mass=${P.mass}g  bfield=${P.bfield}  earnshaw=${P.earnshaw}  damp=${P.damp}  amp=${P.amp}x`,
+    `# Frecuencia mínima observada: ${P.min_freq_found||'N/A'} Hz`,
+    `# k_rest=${P.k_rest.toFixed(4)}`,
+    `#`,
+    `# COLUMNAS: t | x | y | vx | vy | err_x | err_y | pwm_x | pwm_y | hall_x | hall_y | freq_hz | delta_struct | e_R | LF | A_sys_env | Lambda_Cos`,
+  ].join('\n');
+  const hdr='t_s,x_mm,y_mm,vx,vy,error_x,error_y,pwm_x,pwm_y,hall_x_adc,hall_y_adc,freq_hz,delta_struct,e_R,LF,A_sys_env,Lambda_Cos';
+  const blob=new Blob([meta+'\n'+hdr+'\n'+P.csv.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`levitron_cosmo_v4_${new Date().toISOString().slice(0,19).replace(/[:.]/g,'-')}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+  log(`CSV exportado: ${P.csv.length} filas.`,'eg');
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  MAIN LOOP
+// ═══════════════════════════════════════════════════════════════
+
+let activeView='top', frame=0;
+
+function loop(){
+  // Pasos físicos por frame:
+  // A 60fps y freq=250Hz necesitamos ~4 pasos/frame
+  // A freq=10Hz necesitamos ~0.17 pasos/frame (1 cada 6 frames)
+  // Usamos tiempo real para acumular pasos correctamente
+  const target_steps_per_frame = P.freq / 60;
+  const steps = Math.max(1, Math.round(target_steps_per_frame));
+  for(let i=0;i<steps;i++) step();
+  setScopeWindow();
+
+  const cm={top:'cv-top',side:'cv-side',field:'cv-field',charts:'cv-charts'};
+  const cv=document.getElementById(cm[activeView]);
+  if(activeView==='top')        drawTop(cv);
+  else if(activeView==='side')  drawSide(cv);
+  else if(activeView==='field') drawField(cv);
+  else if(activeView==='scope') drawScope();
+  else                          drawCharts(cv);
+
+  if(frame%3===0) updateUI();
+
+  if(frame%180===0&&P.running&&!P.collapsed){
+    const d=Math.sqrt((P.spx-P.x)**2+(P.spy-P.y)**2);
+    if(d<0.3)  log(`Estable: dist=${d.toFixed(4)}mm  Λ=${P.Lambda_Cos.toFixed(3)}  @${P.freq}Hz`,'eg');
+    else if(d>5) log(`Alerta: dist=${d.toFixed(2)}mm  @${P.freq}Hz`,'ew');
+  }
+
+  frame++; requestAnimationFrame(loop);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  CONTROLES
+// ═══════════════════════════════════════════════════════════════
+
+function bs(id,key,fmt,lid){
+  document.getElementById(id).addEventListener('input',function(){
+    const v=parseFloat(this.value); P[key]=v;
+    document.getElementById(lid).textContent=fmt(v);
+  });
+}
+bs('kp','Kp',v=>v.toFixed(1),'v-kp');
+bs('ki','Ki',v=>v.toFixed(2),'v-ki');
+bs('kd','Kd',v=>v.toFixed(1),'v-kd');
+bs('spx','spx',v=>v.toFixed(1),'v-spx');
+bs('spy','spy',v=>v.toFixed(1),'v-spy');
+bs('mass','mass',v=>v.toFixed(1)+' g','v-mass');
+bs('bf','bfield',v=>v.toFixed(2),'v-bf');
+bs('earn','earnshaw',v=>v.toFixed(3),'v-earn');
+bs('damp','damp',v=>v.toFixed(2),'v-damp');
+bs('amp','amp',v=>v.toFixed(1)+'×','v-amp');
+
+// Frecuencia
+document.getElementById('freq').addEventListener('input',function(){
+  const f=parseInt(this.value);
+  P.freq=f;
+  P.ex_prev=0; P.ey_prev=0;  // reset derivada al cambiar dt
+  document.getElementById('v-freq').textContent=f+' Hz';
+  log(`Frecuencia cambiada a ${f}Hz  (dt=${(1000/f).toFixed(1)}ms)`,f>=100?'eg':f>=50?'ew':'eb');
+});
+
+document.getElementById('btn-run').onclick=()=>{
+  P.running=true;
+  document.getElementById('sdot').style.cssText='width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s infinite';
+  log('Simulación corriendo.','eg');
+};
+document.getElementById('btn-pause').onclick=()=>{
+  P.running=false;
+  document.getElementById('sdot').style.background='var(--gold)';
+  log('Simulación pausada.','ew');
+};
+document.getElementById('btn-reset').onclick=()=>{
+  // Reset a posición de equilibrio — como el operador humano que coloca el imán
+  Object.assign(P,{x:0.15,y:0.10,vx:0,vy:0,t:0,ix:0,iy:0,ex_prev:0,ey_prev:0,
+    collapsed:false,running:true,hi:0,scope_i:0,consec_stable:0});
+  P.hx.fill(0);P.hy.fill(0);P.hex.fill(0);P.hey.fill(0);P.hlc.fill(0);P.hux.fill(0);
+  P.scope_ch1.fill(0);P.scope_ch2.fill(0);P.scope_ch3.fill(0);P.scope_ch4.fill(0);
+  document.getElementById('sdot').style.cssText='width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s infinite';
+  log(`Reset — imán en (0.15, 0.10)mm — posición de equilibrio — ${P.freq}Hz`,'eg');
+};
+document.getElementById('btn-perturb').onclick=()=>{
+  if(P.collapsed) return;
+  const amp=30+Math.random()*50;
+  P.vx+=(Math.random()-.5)*amp;
+  P.vy+=(Math.random()-.5)*amp;
+  P.consec_stable=0;
+  log(`Perturbación: vx=${P.vx.toFixed(1)} vy=${P.vy.toFixed(1)} @${P.freq}Hz`,'ew');
+};
+
+['full','pd','p'].forEach(m=>{
+  document.getElementById('pid-'+m).onclick=function(){
+    P.pidMode=m; P.ix=0; P.iy=0;
+    document.querySelectorAll('[id^=pid-]').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    log(`Modo PID: ${m.toUpperCase()}`,'eg');
+  };
+});
+
+document.getElementById('btn-cosmo').onclick=function(){
+  P.cosmoAdapt=!P.cosmoAdapt;
+  this.classList.toggle('active',P.cosmoAdapt);
+  this.textContent=P.cosmoAdapt?'✓ ACTIVO':'ACTIVAR';
+  log(`Λ_Cos adaptativo: ${P.cosmoAdapt?'ACTIVO':'INACTIVO'}`,P.cosmoAdapt?'eg':'ew');
+};
+
+document.getElementById('btn-csv').onclick=downloadCSV;
+document.getElementById('btn-clrcsv').onclick=()=>{P.csv=[];P.csv_step=0;log('CSV limpiado.','ew');};
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.cview').forEach(x=>{
+      x.classList.remove('active');
+      x.style.display='none';
+    });
+    t.classList.add('active');
+    activeView=t.dataset.view;
+    const activeEl=document.getElementById('view-'+activeView);
+    activeEl.classList.add('active');
+    // scope view needs flex-row, others need flex (centered)
+    activeEl.style.display=activeView==='scope'?'flex':'flex';
+    resize();
+    if(activeView==='scope') setTimeout(resizeScopeCanvases, 50);
+  };
+});
+
+window.addEventListener('resize',resize);
+resize();
+
+log(`v4 iniciada — posición de equilibrio (0.15, 0.10)mm — 250Hz`,'eg');
+log(`Kp=${P.Kp} Ki=${P.Ki} Kd=${P.Kd} | damp=${P.damp} | k_rest=${P.k_rest.toFixed(4)}`,'eg');
+log('Reducir frecuencia para encontrar límite mínimo de estabilidad.','eg');
+initScopeControls();
+setTimeout(resizeScopeCanvases, 100);
+loop();
+</script>
+</body>
+</html>

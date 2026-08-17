@@ -1,0 +1,289 @@
+{
+  "fuente": "recomputado_por_E5_3_5_SMOKE",
+  "resultado": {
+    "experimento": "E5_3_2_eficiencia_vs_ligadura",
+    "protocolo": "PROTOCOLO_E5.3-2_PREREGISTRO.md",
+    "N": 200,
+    "semillas": 3,
+    "eps_list": [
+      0.0,
+      0.001,
+      1.0
+    ],
+    "L_list": [
+      0.001,
+      1.0,
+      100.0
+    ],
+    "noise_rel": 0.02,
+    "pasos": 6095,
+    "calibracion_lavado": {
+      "tiempos": [
+        5300,
+        5300,
+        5300
+      ],
+      "mediana": 5300,
+      "pasos": 6095,
+      "P_thr": 0.05,
+      "lavo_todas": true
+    },
+    "meta_D_por_eps": {
+      "0.0": {
+        "D_medio": 0.0,
+        "D_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "0.001": {
+        "D_medio": 0.0008413667864298384,
+        "D_por_semilla": [
+          0.0008413667864359825,
+          0.0008413667864305573,
+          0.0008413667864229755
+        ]
+      },
+      "1.0": {
+        "D_medio": 0.0008413667864350568,
+        "D_por_semilla": [
+          0.0008413667864350938,
+          0.0008413667864349827,
+          0.0008413667864350938
+        ]
+      }
+    },
+    "filas": [
+      {
+        "eps": 0.0,
+        "L": 0.001,
+        "H0": 0.0,
+        "D": 0.0,
+        "pasos": 6095,
+        "eficiencia_real_media": 0.0,
+        "eficiencia_real_std": 0.0,
+        "eficiencia_real_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eficiencia_null_media": 0.0,
+        "eficiencia_null_std": 0.0,
+        "eficiencia_null_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "z": 0.0,
+        "n_segmentos_medio": 1.0,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 0.0
+      },
+      {
+        "eps": 0.0,
+        "L": 1.0,
+        "H0": 0.0,
+        "D": 0.0,
+        "pasos": 6095,
+        "eficiencia_real_media": 0.0,
+        "eficiencia_real_std": 0.0,
+        "eficiencia_real_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eficiencia_null_media": 0.0,
+        "eficiencia_null_std": 0.0,
+        "eficiencia_null_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "z": 0.0,
+        "n_segmentos_medio": 1.0,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 0.0
+      },
+      {
+        "eps": 0.0,
+        "L": 100.0,
+        "H0": 0.0,
+        "D": 0.0,
+        "pasos": 6095,
+        "eficiencia_real_media": 0.0,
+        "eficiencia_real_std": 0.0,
+        "eficiencia_real_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eficiencia_null_media": 0.0,
+        "eficiencia_null_std": 0.0,
+        "eficiencia_null_por_semilla": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "z": 0.0,
+        "n_segmentos_medio": 1.0,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 0.0
+      },
+      {
+        "eps": 0.001,
+        "L": 0.001,
+        "H0": 0.0008413667864298384,
+        "D": 0.0008413667864298384,
+        "pasos": 6095,
+        "eficiencia_real_media": 2.825151989818048,
+        "eficiencia_real_std": 0.1413497905064945,
+        "eficiencia_real_por_semilla": [
+          2.8809791805723335,
+          2.6310092198243287,
+          2.9634675690574817
+        ],
+        "eficiencia_null_media": 2.794787904863336,
+        "eficiencia_null_std": 0.18269808225077325,
+        "eficiencia_null_por_semilla": [
+          2.879942208513429,
+          2.5409539370190988,
+          2.9634675690574808
+        ],
+        "z": 0.1858976884923091,
+        "n_segmentos_medio": 198.66666666666666,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 2.8251519898180475
+      },
+      {
+        "eps": 0.001,
+        "L": 1.0,
+        "H0": 0.0008413667864298384,
+        "D": 0.0008413667864298384,
+        "pasos": 6095,
+        "eficiencia_real_media": 2.5058952051580534,
+        "eficiencia_real_std": 0.21537405073101987,
+        "eficiencia_real_por_semilla": [
+          2.5866573822922385,
+          2.2111775764500647,
+          2.7198506567318574
+        ],
+        "eficiencia_null_media": 2.2464830192222465,
+        "eficiencia_null_std": 0.28862509364260647,
+        "eficiencia_null_por_semilla": [
+          2.5312231726100674,
+          1.8508365109228366,
+          2.3573893741338354
+        ],
+        "z": 1.0187119766443535,
+        "n_segmentos_medio": 185.66666666666666,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 2.5058963933570992
+      },
+      {
+        "eps": 0.001,
+        "L": 100.0,
+        "H0": 0.0008413667864298384,
+        "D": 0.0008413667864298384,
+        "pasos": 6095,
+        "eficiencia_real_media": 0.3527468443284119,
+        "eficiencia_real_std": 0.08387060832215842,
+        "eficiencia_real_por_semilla": [
+          0.25092499731635487,
+          0.4563422248761838,
+          0.3509733107926971
+        ],
+        "eficiencia_null_media": 0.009466737437908353,
+        "eficiencia_null_std": 0.003941447628346979,
+        "eficiencia_null_por_semilla": [
+          0.00669883622808164,
+          0.006660633594490172,
+          0.015040742491153248
+        ],
+        "z": 5.7819563233655185,
+        "n_segmentos_medio": 10.0,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 0.3582448924620822
+      },
+      {
+        "eps": 1.0,
+        "L": 0.001,
+        "H0": 0.0008413667864350568,
+        "D": 0.0008413667864350568,
+        "pasos": 6095,
+        "eficiencia_real_media": 2.825151989818073,
+        "eficiencia_real_std": 0.14134979050670196,
+        "eficiencia_real_por_semilla": [
+          2.8809791805726985,
+          2.6310092198240045,
+          2.9634675690575154
+        ],
+        "eficiencia_null_media": 2.794787904863368,
+        "eficiencia_null_std": 0.1826980822509805,
+        "eficiencia_null_por_semilla": [
+          2.879942208513793,
+          2.540953937018796,
+          2.9634675690575145
+        ],
+        "z": 0.18589768849203148,
+        "n_segmentos_medio": 198.66666666666666,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 2.8251519898180724
+      },
+      {
+        "eps": 1.0,
+        "L": 1.0,
+        "H0": 0.0008413667864350568,
+        "D": 0.0008413667864350568,
+        "pasos": 6095,
+        "eficiencia_real_media": 2.505895205158048,
+        "eficiencia_real_std": 0.21537405073130367,
+        "eficiencia_real_por_semilla": [
+          2.586657382292529,
+          2.211177576449621,
+          2.7198506567319938
+        ],
+        "eficiencia_null_media": 2.246483019221932,
+        "eficiencia_null_std": 0.28862509364297895,
+        "eficiencia_null_por_semilla": [
+          2.531223172610224,
+          1.8508365109220473,
+          2.357389374133525
+        ],
+        "z": 1.0187119766442425,
+        "n_segmentos_medio": 185.66666666666666,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 2.505896393357093
+      },
+      {
+        "eps": 1.0,
+        "L": 100.0,
+        "H0": 0.0008413667864350568,
+        "D": 0.0008413667864350568,
+        "pasos": 6095,
+        "eficiencia_real_media": 0.35274684432845627,
+        "eficiencia_real_std": 0.0838706083217946,
+        "eficiencia_real_por_semilla": [
+          0.2509249973171149,
+          0.4563422248760389,
+          0.35097331079221494
+        ],
+        "eficiencia_null_media": 0.009466737437900366,
+        "eficiencia_null_std": 0.003941447628334204,
+        "eficiencia_null_por_semilla": [
+          0.006698836228092562,
+          0.006660633594481389,
+          0.015040742491127149
+        ],
+        "z": 5.7819563233914675,
+        "n_segmentos_medio": 10.0,
+        "anova_ok_todas": true,
+        "E_final_sobre_E_total_medio": 0.3582448924620987
+      }
+    ],
+    "elapsed_s": 131.7712790966034,
+    "definicion_eficiencia": "eficiencia = E_ligada/E_total; E_ligada = varianza ENTRE segmentos (ANOVA, segmentos = tramos vivos tras cortes de expansion); E_total = energia de desviacion inicial Sum((phi0-mean)^2), fija por (eps,semilla).",
+    "definicion_ligadura": "H_eff(L) = H0/(1+L); H0 = D medido (ancla r=1 de cs074_rcruz.py)",
+    "advertencia_definicion_propia": "E5_3_1_eficiencia_12decadas/ estaba VACIA (sin protocolo) en el momento de este pre-registro y motor -> esta es una definicion PROPIA, no heredada."
+  }
+}

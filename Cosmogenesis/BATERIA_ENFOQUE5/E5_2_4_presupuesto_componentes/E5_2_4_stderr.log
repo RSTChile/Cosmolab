@@ -1,0 +1,71 @@
+[calibracion] midiendo pasos de lavado en N=200, eps=0.001 ...
+[calibracion] mediana_lavado=5300 pasos_fijo=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300]
+[12/780] eps=0.001 r_tgt=0.001 H=8.414e-07 X=0.0466 Lig=0.0000 Deg=0.9534 peor_deriva=4.45e-15
+[24/780] eps=0.001 r_tgt=0.003162 H=2.661e-06 X=0.0247 Lig=0.0818 Deg=0.8935 peor_deriva=1.92e-13
+[36/780] eps=0.001 r_tgt=0.01 H=8.414e-06 X=0.0016 Lig=0.2208 Deg=0.7776 peor_deriva=1.92e-13
+[48/780] eps=0.001 r_tgt=0.03162 H=2.661e-05 X=0.0000 Lig=0.4511 Deg=0.5489 peor_deriva=1.92e-13
+[60/780] eps=0.001 r_tgt=0.1 H=8.414e-05 X=0.0000 Lig=0.6461 Deg=0.3539 peor_deriva=1.92e-13
+[72/780] eps=0.001 r_tgt=0.3162 H=0.0002661 X=0.0000 Lig=0.7806 Deg=0.2194 peor_deriva=1.92e-13
+[84/780] eps=0.001 r_tgt=1 H=0.0008414 X=0.0000 Lig=0.8829 Deg=0.1171 peor_deriva=1.92e-13
+[96/780] eps=0.001 r_tgt=3.162 H=0.002661 X=0.0000 Lig=0.9323 Deg=0.0677 peor_deriva=1.92e-13
+[108/780] eps=0.001 r_tgt=10 H=0.008414 X=0.0000 Lig=0.9655 Deg=0.0345 peor_deriva=1.92e-13
+[120/780] eps=0.001 r_tgt=31.62 H=0.02661 X=0.0000 Lig=0.9845 Deg=0.0155 peor_deriva=1.92e-13
+[132/780] eps=0.001 r_tgt=100 H=0.08414 X=0.0000 Lig=0.9924 Deg=0.0076 peor_deriva=1.92e-13
+[144/780] eps=0.001 r_tgt=316.2 H=0.2661 X=0.0000 Lig=0.9963 Deg=0.0037 peor_deriva=1.92e-13
+[156/780] eps=0.001 r_tgt=1000 H=0.8414 X=0.0000 Lig=0.9981 Deg=0.0019 peor_deriva=1.92e-13
+[168/780] eps=0.01 r_tgt=0.001 H=8.414e-07 X=0.0466 Lig=0.0000 Deg=0.9534 peor_deriva=1.92e-13
+[180/780] eps=0.01 r_tgt=0.003162 H=2.661e-06 X=0.0247 Lig=0.0818 Deg=0.8935 peor_deriva=1.92e-13
+[192/780] eps=0.01 r_tgt=0.01 H=8.414e-06 X=0.0016 Lig=0.2208 Deg=0.7776 peor_deriva=1.92e-13
+[204/780] eps=0.01 r_tgt=0.03162 H=2.661e-05 X=0.0000 Lig=0.4511 Deg=0.5489 peor_deriva=1.92e-13
+[216/780] eps=0.01 r_tgt=0.1 H=8.414e-05 X=0.0000 Lig=0.6461 Deg=0.3539 peor_deriva=1.92e-13
+[228/780] eps=0.01 r_tgt=0.3162 H=0.0002661 X=0.0000 Lig=0.7806 Deg=0.2194 peor_deriva=1.92e-13
+[240/780] eps=0.01 r_tgt=1 H=0.0008414 X=0.0000 Lig=0.8829 Deg=0.1171 peor_deriva=1.92e-13
+[252/780] eps=0.01 r_tgt=3.162 H=0.002661 X=0.0000 Lig=0.9323 Deg=0.0677 peor_deriva=1.92e-13
+[264/780] eps=0.01 r_tgt=10 H=0.008414 X=0.0000 Lig=0.9655 Deg=0.0345 peor_deriva=1.92e-13
+[276/780] eps=0.01 r_tgt=31.62 H=0.02661 X=0.0000 Lig=0.9845 Deg=0.0155 peor_deriva=1.92e-13
+[288/780] eps=0.01 r_tgt=100 H=0.08414 X=0.0000 Lig=0.9924 Deg=0.0076 peor_deriva=1.92e-13
+[300/780] eps=0.01 r_tgt=316.2 H=0.2661 X=0.0000 Lig=0.9963 Deg=0.0037 peor_deriva=1.92e-13
+[312/780] eps=0.01 r_tgt=1000 H=0.8414 X=0.0000 Lig=0.9981 Deg=0.0019 peor_deriva=1.92e-13
+[324/780] eps=0.1 r_tgt=0.001 H=8.414e-07 X=0.0466 Lig=0.0000 Deg=0.9534 peor_deriva=1.92e-13
+[336/780] eps=0.1 r_tgt=0.003162 H=2.661e-06 X=0.0247 Lig=0.0818 Deg=0.8935 peor_deriva=1.92e-13
+[348/780] eps=0.1 r_tgt=0.01 H=8.414e-06 X=0.0016 Lig=0.2208 Deg=0.7776 peor_deriva=1.92e-13
+[360/780] eps=0.1 r_tgt=0.03162 H=2.661e-05 X=0.0000 Lig=0.4511 Deg=0.5489 peor_deriva=1.92e-13
+[372/780] eps=0.1 r_tgt=0.1 H=8.414e-05 X=0.0000 Lig=0.6461 Deg=0.3539 peor_deriva=1.92e-13
+[384/780] eps=0.1 r_tgt=0.3162 H=0.0002661 X=0.0000 Lig=0.7806 Deg=0.2194 peor_deriva=1.92e-13
+[396/780] eps=0.1 r_tgt=1 H=0.0008414 X=0.0000 Lig=0.8829 Deg=0.1171 peor_deriva=1.92e-13
+[408/780] eps=0.1 r_tgt=3.162 H=0.002661 X=0.0000 Lig=0.9323 Deg=0.0677 peor_deriva=1.92e-13
+[420/780] eps=0.1 r_tgt=10 H=0.008414 X=0.0000 Lig=0.9655 Deg=0.0345 peor_deriva=1.92e-13
+[432/780] eps=0.1 r_tgt=31.62 H=0.02661 X=0.0000 Lig=0.9845 Deg=0.0155 peor_deriva=1.92e-13
+[444/780] eps=0.1 r_tgt=100 H=0.08414 X=0.0000 Lig=0.9924 Deg=0.0076 peor_deriva=1.92e-13
+[456/780] eps=0.1 r_tgt=316.2 H=0.2661 X=0.0000 Lig=0.9963 Deg=0.0037 peor_deriva=1.92e-13
+[468/780] eps=0.1 r_tgt=1000 H=0.8414 X=0.0000 Lig=0.9981 Deg=0.0019 peor_deriva=1.92e-13
+[480/780] eps=0.3 r_tgt=0.001 H=8.414e-07 X=0.0466 Lig=0.0000 Deg=0.9534 peor_deriva=1.92e-13
+[492/780] eps=0.3 r_tgt=0.003162 H=2.661e-06 X=0.0247 Lig=0.0818 Deg=0.8935 peor_deriva=1.92e-13
+[504/780] eps=0.3 r_tgt=0.01 H=8.414e-06 X=0.0016 Lig=0.2208 Deg=0.7776 peor_deriva=1.92e-13
+[516/780] eps=0.3 r_tgt=0.03162 H=2.661e-05 X=0.0000 Lig=0.4511 Deg=0.5489 peor_deriva=1.92e-13
+[528/780] eps=0.3 r_tgt=0.1 H=8.414e-05 X=0.0000 Lig=0.6461 Deg=0.3539 peor_deriva=1.92e-13
+[540/780] eps=0.3 r_tgt=0.3162 H=0.0002661 X=0.0000 Lig=0.7806 Deg=0.2194 peor_deriva=1.92e-13
+[552/780] eps=0.3 r_tgt=1 H=0.0008414 X=0.0000 Lig=0.8829 Deg=0.1171 peor_deriva=1.92e-13
+[564/780] eps=0.3 r_tgt=3.162 H=0.002661 X=0.0000 Lig=0.9323 Deg=0.0677 peor_deriva=1.92e-13
+[576/780] eps=0.3 r_tgt=10 H=0.008414 X=0.0000 Lig=0.9655 Deg=0.0345 peor_deriva=1.92e-13
+[588/780] eps=0.3 r_tgt=31.62 H=0.02661 X=0.0000 Lig=0.9845 Deg=0.0155 peor_deriva=1.92e-13
+[600/780] eps=0.3 r_tgt=100 H=0.08414 X=0.0000 Lig=0.9924 Deg=0.0076 peor_deriva=1.92e-13
+[612/780] eps=0.3 r_tgt=316.2 H=0.2661 X=0.0000 Lig=0.9963 Deg=0.0037 peor_deriva=1.92e-13
+[624/780] eps=0.3 r_tgt=1000 H=0.8414 X=0.0000 Lig=0.9981 Deg=0.0019 peor_deriva=1.92e-13
+[636/780] eps=1 r_tgt=0.001 H=8.414e-07 X=0.0466 Lig=0.0000 Deg=0.9534 peor_deriva=1.92e-13
+[648/780] eps=1 r_tgt=0.003162 H=2.661e-06 X=0.0247 Lig=0.0818 Deg=0.8935 peor_deriva=1.92e-13
+[660/780] eps=1 r_tgt=0.01 H=8.414e-06 X=0.0016 Lig=0.2208 Deg=0.7776 peor_deriva=1.92e-13
+[672/780] eps=1 r_tgt=0.03162 H=2.661e-05 X=0.0000 Lig=0.4511 Deg=0.5489 peor_deriva=1.92e-13
+[684/780] eps=1 r_tgt=0.1 H=8.414e-05 X=0.0000 Lig=0.6461 Deg=0.3539 peor_deriva=1.92e-13
+[696/780] eps=1 r_tgt=0.3162 H=0.0002661 X=0.0000 Lig=0.7806 Deg=0.2194 peor_deriva=1.92e-13
+[708/780] eps=1 r_tgt=1 H=0.0008414 X=0.0000 Lig=0.8829 Deg=0.1171 peor_deriva=1.92e-13
+[720/780] eps=1 r_tgt=3.162 H=0.002661 X=0.0000 Lig=0.9323 Deg=0.0677 peor_deriva=1.92e-13
+[732/780] eps=1 r_tgt=10 H=0.008414 X=0.0000 Lig=0.9655 Deg=0.0345 peor_deriva=1.92e-13
+[744/780] eps=1 r_tgt=31.62 H=0.02661 X=0.0000 Lig=0.9845 Deg=0.0155 peor_deriva=1.92e-13
+[756/780] eps=1 r_tgt=100 H=0.08414 X=0.0000 Lig=0.9924 Deg=0.0076 peor_deriva=1.92e-13
+[768/780] eps=1 r_tgt=316.2 H=0.2661 X=0.0000 Lig=0.9963 Deg=0.0037 peor_deriva=1.92e-13
+[780/780] eps=1 r_tgt=1000 H=0.8414 X=0.0000 Lig=0.9981 Deg=0.0019 peor_deriva=1.92e-13
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_2_4_presupuesto_componentes/E5_2_4_resultado_crudo.json
+[peor_deriva_global] 1.920e-13 (tolerancia 1e-09)
+[elapsed] 5152.0s

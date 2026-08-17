@@ -1,0 +1,2 @@
+ciclo,t,ultra_cm,ultra_vivo,eopd_raw,eopd_vivo,color_r,color_g,color_b,color_luminosidad,color_vivo,touch_raw,touch_presionado,gyro_raw,accel_x,accel_y,accel_z,compass_deg,smux_vivo,cambio_total,veto_reactivo,volante_elegido,D_actual,contador_sin_cambio,tiempo_deliberacion_s,potencia,duracion_s,ultra_cm_post,error_post,e_R,prop_bienestar,prop_vigor,prop_acople,prop_malestar,prop_dW
+1,0.0,255.0,1,7.81631749350903,1,0,0,0,0,1,,0,,,,,,0,0,0,60,0.0,1,7.0,45,0.644,255.0,215.0,215.0,0.3833,0.0,0.0,0.1667,0.0

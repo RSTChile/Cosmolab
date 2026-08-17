@@ -1,0 +1,12 @@
+[Unit]
+Description=ANIMA E - VNC separado para pantalla SPI fb1
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/anima/celula_madre
+ExecStart=/home/ubuntu/anima/celula_madre/docker/ejecutar-cabeza-e-fb1-vnc.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

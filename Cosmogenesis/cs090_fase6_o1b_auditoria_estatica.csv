@@ -1,0 +1,16 @@
+script,fase,estado,llamadas_propias,modulos_con_diam,n_modulos_alcanzables,conclusion_publicada
+cs076_direccion_temporal.py,CS07x,NO-TOCA,,,1,"asimetría temporal de campo (skew, gradientes) — sin grafo"
+cs077_gradientes_atractores.py,CS07x,NO-TOCA,,,1,gradientes y atractores del motor holístico
+cs078_kappaV_permutacion.py,CS07x,NO-TOCA,,,0,kappa_V por permutación
+cs079_delimitacion_cn4.py,CS07x,NO-TOCA,,,1,delimitación C-N4 sobre volcados Phantom
+cs080_renormalizacion.py,Fase III Exp.1,USA,_diam|metricas_escala()->_diam,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis,8,PENDIENTE diám vs N_cajas (YA AUDITADO: 0/54)
+cs081_poda_dinamica.py,Fase III Exp.2,USA,_diam|metricas_escala()->_diam,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion,9,PENDIENTE diám vs N_cajas (auditado en esta tarea)
+cs082_fase4_4sustratos.py,Fase IV,NO-TOCA,,,0,"HOLONOMÍA de triángulos, REAL vs NULL vs SHUF"
+cs083_fase4_robustecer.py,Fase IV,NO-TOCA,,,1,"HOLONOMÍA, 20 semillas + control fino (92%/8%)"
+cs083b_fase4_control_local_global.py,Fase IV,NO-TOCA,,,2,"HOLONOMÍA, NULL-GLOBAL vs NULL-LOCAL-ROTO"
+cs084_espectro_laplaciano.py,CS08x,IMPORTA-NO-USA,,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion,9,"espectro del laplaciano (lambda_max, dispersión)"
+cs085_espectro_jerarquia_cs073.py,CS08x,IMPORTA-NO-USA,,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion,16,espectro sobre la jerarquía CS073
+cs086_espectro_renorm_poda.py,CS08x,IMPORTA-NO-USA,,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion|cs081_poda_dinamica,11,espectro bajo renormalización y poda
+cs087_hodge_fase4.py,CS08x/Fase IV,NO-TOCA,,,1,descomposición de Hodge sobre los sustratos de Fase IV
+cs088_espectro_proximidad_null12.py,CS08x,IMPORTA-NO-USA,,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion,18,espectro de proximidad NULL-1/NULL-2
+cs089_on77_espectral.py,CS08x,IMPORTA-NO-USA,,cs057_paisaje_completo|cs062_paisaje_peso|cs064_sistema_completo|cs066_localidad_geometrogenesis|cs080_renormalizacion,20,espectro del sistema A/B de O-N7.7

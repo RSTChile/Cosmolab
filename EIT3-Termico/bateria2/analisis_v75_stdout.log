@@ -1,0 +1,241 @@
+=== Experimento D ===
+{
+  "parada": {
+    "n_semillas": 10,
+    "r_media": 0.3672080829717116,
+    "r_desv": 0.04049722353949917,
+    "frontera_media": 0.8551,
+    "frontera_desv": 0,
+    "frontera_min": 0.8551,
+    "frontera_max": 0.8551
+  },
+  "inicio": {
+    "n_semillas": 10,
+    "r_media": 0.5085870025214294,
+    "r_desv": 0.023606324586358144,
+    "frontera_media": 1.3448999999999998,
+    "frontera_desv": 2.220446049250313e-16,
+    "frontera_min": 1.3449,
+    "frontera_max": 1.3449
+  }
+}
+
+=== Experimento A prima ===
+{
+  "n_semillas": 30,
+  "r_media": 0.3750591023468628,
+  "r_desv": 0.039404933391053866,
+  "r_min": 0.2847518358889305,
+  "r_max": 0.44304938709277736,
+  "percentil_media": 99.72333333333336,
+  "fuera_de_95": 30,
+  "fuera_de_99": 25,
+  "frontera_media": 0.8551000000000001,
+  "frontera_desv": 1.1102230246251565e-16,
+  "frontera_min": 0.8551,
+  "frontera_max": 0.8551
+}
+
+=== Experimento B prima ===
+{
+  "n_combos_semilla": 1080,
+  "n_combos": 108,
+  "r_media": -0.024814040484812214,
+  "r_desv": 0.32677160209418576,
+  "percentil_media": 52.80842592592593,
+  "fuera_de_95": 468,
+  "fuera_de_99": 338,
+  "combos_con_mas_10pct_saturado": 48,
+  "SIN_COMBOS_SATURADOS": {
+    "n_combos_semilla": 600,
+    "n_combos": 60,
+    "r_media": 0.07814465314502411,
+    "r_desv": 0.17423534830106963,
+    "percentil_media": 61.402166666666695,
+    "fuera_de_95": 136,
+    "fuera_de_99": 74
+  }
+}
+
+tabla frontera por nivel (todas las combinaciones):
+[
+  {
+    "parametro": "beta",
+    "nivel": 0.8,
+    "frontera_media": 0.8508222222222223,
+    "frontera_desv": 0.12252997387890618,
+    "n_combos": 27
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.88,
+    "frontera_media": 0.8521022222222223,
+    "frontera_desv": 0.12171734473720883,
+    "n_combos": 27
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.94,
+    "frontera_media": 0.8532759259259259,
+    "frontera_desv": 0.12230388916802334,
+    "n_combos": 27
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.98,
+    "frontera_media": 0.8545559259259259,
+    "frontera_desv": 0.12198404705228373,
+    "n_combos": 27
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 22,
+    "frontera_media": 0.7106911111111112,
+    "frontera_desv": 0.04083083269742896,
+    "n_combos": 36
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 25,
+    "frontera_media": 0.8499,
+    "frontera_desv": 0.033261052298446524,
+    "n_combos": 36
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 28,
+    "frontera_media": 0.9974761111111111,
+    "frontera_desv": 0.029122069740793656,
+    "n_combos": 36
+  },
+  {
+    "parametro": "exponente_ptc",
+    "nivel": 3,
+    "frontera_media": 0.8863111111111109,
+    "frontera_desv": 0.11840700021014564,
+    "n_combos": 36
+  },
+  {
+    "parametro": "exponente_ptc",
+    "nivel": 4.1,
+    "frontera_media": 0.8514894444444443,
+    "frontera_desv": 0.11729656026368103,
+    "n_combos": 36
+  },
+  {
+    "parametro": "exponente_ptc",
+    "nivel": 6,
+    "frontera_media": 0.820266666666667,
+    "frontera_desv": 0.12163158398303557,
+    "n_combos": 36
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.3,
+    "frontera_media": 0.8287583333333334,
+    "frontera_desv": 0.12433623867248932,
+    "n_combos": 36
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.47,
+    "frontera_media": 0.855168888888889,
+    "frontera_desv": 0.119897386167825,
+    "n_combos": 36
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.65,
+    "frontera_media": 0.8741400000000001,
+    "frontera_desv": 0.11782266524079497,
+    "n_combos": 36
+  }
+]
+
+tabla frontera por nivel (excluyendo combinaciones >10% saturadas):
+[
+  {
+    "parametro": "beta",
+    "nivel": 0.8,
+    "frontera_media": 0.89736,
+    "frontera_desv": 0.10641357707861654,
+    "n_combos": 15
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.88,
+    "frontera_media": 0.899664,
+    "frontera_desv": 0.10368112427373974,
+    "n_combos": 15
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.94,
+    "frontera_media": 0.9017766666666667,
+    "frontera_desv": 0.103944505300772,
+    "n_combos": 15
+  },
+  {
+    "parametro": "beta",
+    "nivel": 0.98,
+    "frontera_media": 0.9031206666666667,
+    "frontera_desv": 0.10415965786340806,
+    "n_combos": 15
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 22,
+    "frontera_media": 0.7472733333333333,
+    "frontera_desv": 0.03906407841255474,
+    "n_combos": 12
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 25,
+    "frontera_media": 0.8664999999999999,
+    "frontera_desv": 0.027214084588683046,
+    "n_combos": 24
+  },
+  {
+    "parametro": "t_optima",
+    "nivel": 28,
+    "frontera_media": 1.0110641666666664,
+    "frontera_desv": 0.02679993764244398,
+    "n_combos": 24
+  },
+  {
+    "parametro": "exponente_ptc",
+    "nivel": 3,
+    "frontera_media": 0.8863111111111109,
+    "frontera_desv": 0.11840700021014564,
+    "n_combos": 36
+  },
+  {
+    "parametro": "exponente_ptc",
+    "nivel": 4.1,
+    "frontera_media": 0.9217341666666666,
+    "frontera_desv": 0.07455388369699835,
+    "n_combos": 24
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.3,
+    "frontera_media": 0.8710850000000001,
+    "frontera_desv": 0.10671152864147339,
+    "n_combos": 20
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.47,
+    "frontera_media": 0.9013440000000001,
+    "frontera_desv": 0.10385206201130537,
+    "n_combos": 20
+  },
+  {
+    "parametro": "potencia_base",
+    "nivel": 0.65,
+    "frontera_media": 0.9290119999999998,
+    "frontera_desv": 0.09464825373983393,
+    "n_combos": 20
+  }
+]

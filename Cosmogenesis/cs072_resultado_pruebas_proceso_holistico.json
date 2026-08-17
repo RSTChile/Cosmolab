@@ -1,0 +1,616 @@
+{
+  "P1": {
+    "paso": true,
+    "filas": [
+      {
+        "brazo": "A homog",
+        "homogeneo": true,
+        "expansion": false,
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "brazo": "B homog+exp",
+        "homogeneo": true,
+        "expansion": true,
+        "seq": {
+          "bariones": 2,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 3
+        },
+        "hol": {
+          "bariones": 2,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 3
+        },
+        "igual": true
+      },
+      {
+        "brazo": "C grad",
+        "homogeneo": false,
+        "expansion": false,
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "brazo": "D grad+exp",
+        "homogeneo": false,
+        "expansion": true,
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      }
+    ]
+  },
+  "P2": {
+    "paso": true,
+    "base": 3,
+    "perms": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "P3": {
+    "paso": true,
+    "filas": [
+      {
+        "pieza": "1_espin",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "2_gravedad",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "3_fuerte",
+        "seq": {
+          "bariones": 2,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 3
+        },
+        "hol": {
+          "bariones": 2,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 3
+        },
+        "igual": true
+      },
+      {
+        "pieza": "4_em",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 0,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 0,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "5_debil",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 1,
+          "hidrogeno": 1,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 1,
+          "hidrogeno": 1,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "7_masa",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "8_aniquilacion",
+        "seq": {
+          "bariones": 0,
+          "antibariones": 0,
+          "protones": 0,
+          "hidrogeno": 0,
+          "quarks_sueltos": 30
+        },
+        "hol": {
+          "bariones": 0,
+          "antibariones": 0,
+          "protones": 0,
+          "hidrogeno": 0,
+          "quarks_sueltos": 30
+        },
+        "igual": true
+      },
+      {
+        "pieza": "9_expansion",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "10_enfriamiento",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "11_tres_cuerpos",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "12_localidad",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "13_pauli",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "14_correlacion",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "15_causal",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "16_ssb",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "17_oscuro",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "22_qcd",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "23_campo",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "M1_semilla",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      },
+      {
+        "pieza": "M2_memoria",
+        "seq": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "hol": {
+          "bariones": 3,
+          "antibariones": 0,
+          "protones": 2,
+          "hidrogeno": 2,
+          "quarks_sueltos": 0
+        },
+        "igual": true
+      }
+    ]
+  },
+  "P4": {
+    "paso": true,
+    "n": 23,
+    "sin_repetidos": true,
+    "inventario": [
+      {
+        "numero": 1,
+        "nombre": "1_espin",
+        "mecanismo": "A1_Espin",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 2,
+        "nombre": "2_gravedad",
+        "mecanismo": "A2_Gravedad",
+        "estado": "activo"
+      },
+      {
+        "numero": 3,
+        "nombre": "3_fuerte",
+        "mecanismo": "A3_Fuerte",
+        "estado": "activo"
+      },
+      {
+        "numero": 4,
+        "nombre": "4_em",
+        "mecanismo": "A4_EM",
+        "estado": "activo"
+      },
+      {
+        "numero": 5,
+        "nombre": "5_debil",
+        "mecanismo": "A5_Debil",
+        "estado": "activo"
+      },
+      {
+        "numero": 6,
+        "nombre": "6_catalogo",
+        "mecanismo": "A6_Catalogo",
+        "estado": "condicion inicial (siempre)"
+      },
+      {
+        "numero": 7,
+        "nombre": "7_masa",
+        "mecanismo": "A7_Masa",
+        "estado": "condicion inicial (siempre)"
+      },
+      {
+        "numero": 8,
+        "nombre": "8_aniquilacion",
+        "mecanismo": "A8_Aniquilacion",
+        "estado": "activo"
+      },
+      {
+        "numero": 9,
+        "nombre": "9_expansion",
+        "mecanismo": "A9_ExpansionEnfriamiento + A9_Poda",
+        "estado": "activo"
+      },
+      {
+        "numero": 10,
+        "nombre": "10_enfriamiento",
+        "mecanismo": "A9_ExpansionEnfriamiento (rama elif)",
+        "estado": "INERTE si expansion=True (verificado, co-emergente con #9)"
+      },
+      {
+        "numero": 11,
+        "nombre": "11_tres_cuerpos",
+        "mecanismo": "A11_TresCuerpos",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 12,
+        "nombre": "12_localidad",
+        "mecanismo": "A12_LocalidadM2Memoria",
+        "estado": "activo"
+      },
+      {
+        "numero": 13,
+        "nombre": "13_pauli",
+        "mecanismo": "A13_Pauli",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 14,
+        "nombre": "14_correlacion",
+        "mecanismo": "A14_Correlacion",
+        "estado": "INERTE (verificado, sin codigo propio en corre())"
+      },
+      {
+        "numero": 15,
+        "nombre": "15_causal",
+        "mecanismo": "A15_Causal",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 16,
+        "nombre": "16_ssb",
+        "mecanismo": "A16_SSB",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 17,
+        "nombre": "17_oscuro",
+        "mecanismo": "A17_Oscuro",
+        "estado": "INERTE (verificado)"
+      },
+      {
+        "numero": 18,
+        "nombre": "18_inflacion",
+        "mecanismo": "A9_Poda (co-emergente con #9, verbatim docstring cs072_motor_23.py)",
+        "estado": "activo, comparte mecanismo con #9"
+      },
+      {
+        "numero": 22,
+        "nombre": "22_qcd",
+        "mecanismo": "A22_QCD (masa_ef, resuelto antes del paso)",
+        "estado": "activo"
+      },
+      {
+        "numero": 23,
+        "nombre": "23_campo",
+        "mecanismo": "A23_Campo",
+        "estado": "INERTE para bar/H (verificado, solo afecta condicion inicial de T)"
+      },
+      {
+        "numero": 101,
+        "nombre": "M1_semilla",
+        "mecanismo": "M1_Semilla",
+        "estado": "INERTE para bar/H (verificado, solo afecta condicion inicial de T)"
+      },
+      {
+        "numero": 102,
+        "nombre": "M2_memoria",
+        "mecanismo": "A12_LocalidadM2Memoria (gate compartido con #12)",
+        "estado": "activo, comparte mecanismo con #12"
+      },
+      {
+        "numero": 103,
+        "nombre": "M3_fase_cuantica",
+        "mecanismo": "M3_FaseCuantica",
+        "estado": "ausencia arquitectonica declarada (no hay amplitud/fase en esta base)"
+      }
+    ]
+  },
+  "resumen": {
+    "P1": true,
+    "P2": true,
+    "P3": true,
+    "P4": true,
+    "completo": true,
+    "elapsed_s": 6.392089128494263
+  }
+}

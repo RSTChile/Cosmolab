@@ -1,0 +1,94 @@
+====================================================================================================
+CS072 v7.2 -- CORRIDA COMPLETA (30q/21aq/10e/7p base, pasos=300)
+====================================================================================================
+
+--- (1) LOS 4 BRAZOS DE CONTROL ---
+  brazo A (homogeneo=True, expansion=False): n_firmas=6, diametro=2, componentes=39, tam_mayor=30, bariones=0, hidrogeno=0
+  brazo B (homogeneo=True, expansion=True): n_firmas=6, diametro=2, componentes=39, tam_mayor=30, bariones=0, hidrogeno=0
+  brazo C (homogeneo=False, expansion=False): n_firmas=68, diametro=0, componentes=68, tam_mayor=1, bariones=0, hidrogeno=0
+  brazo D (homogeneo=False, expansion=True): n_firmas=62, diametro=4, componentes=31, tam_mayor=38, bariones=9, hidrogeno=4
+  D vs A: D>A | D vs B: D>B | D vs C: D<=C (la expansión NO aportó diferencia medible sobre el gradiente solo)
+  *** NO se cumple el patrón esperado -- ver detalle arriba ***
+  (t=0.21 min)
+
+--- (2) INVARIANCIA DURA (brazo D) ---
+  INVARIANCIA DURA (brazo D, N=68): max_dif=2.776e-17 -- *** INVARIANTE (atol 1e-9) ***
+  (t=0.31 min)
+
+--- (3) AUDITORÍA DE LAS 23 PIEZAS (apagar una a una, brazo D) ---
+  LÍNEA BASE (brazo D, todas las piezas activas): bariones=9, hidrogeno=4, |W|_suma=32.204835
+  apagar 'gravedad': max_dif_W=9.888016e-03, bariones=9, hidrogeno=2 -- ACTÚA (cambia el resultado)
+  apagar 'confinamiento': max_dif_W=1.081695e-02, bariones=9, hidrogeno=3 -- ACTÚA (cambia el resultado)
+  apagar 'em': max_dif_W=6.196449e-03, bariones=9, hidrogeno=4 -- ACTÚA (cambia el resultado)
+  apagar 'debil': max_dif_W=8.666923e-03, bariones=9, hidrogeno=4 -- ACTÚA (cambia el resultado)
+  apagar 'aniquilacion': max_dif_W=1.388064e+00, bariones=0, hidrogeno=0 -- ACTÚA (cambia el resultado)
+  apagar 'localidad': max_dif_W=1.346700e-02, bariones=9, hidrogeno=5 -- ACTÚA (cambia el resultado)
+  apagar 'correlacion': max_dif_W=0.000000e+00, bariones=9, hidrogeno=4 -- *** NO ACTÚA -- declarada, no operante ***
+  apagar 'causal': max_dif_W=0.000000e+00, bariones=9, hidrogeno=4 -- *** NO ACTÚA -- declarada, no operante ***
+  apagar 'marco': max_dif_W=0.000000e+00, bariones=9, hidrogeno=4 -- *** NO ACTÚA -- declarada, no operante ***
+  apagar 'pauli': max_dif_W=8.708547e-03, bariones=9, hidrogeno=2 -- ACTÚA (cambia el resultado)
+  apagar 'tres_cuerpos': max_dif_W=0.000000e+00, bariones=9, hidrogeno=4 -- *** NO ACTÚA -- declarada, no operante ***
+  apagar 'memoria_termica': max_dif_W=4.290512e-02, bariones=0, hidrogeno=0 -- ACTÚA (cambia el resultado)
+  apagar 'qcd': max_dif_W=8.828453e-03, bariones=9, hidrogeno=4 -- ACTÚA (cambia el resultado)
+  9/13 piezas auditadas ACTÚAN de verdad sobre el estado.
+  (t=0.97 min)
+
+--- (4) VALIDACIÓN DE HIDRÓGENO DISCRETO (brazo D) ---
+  H: trio=(np.int64(0), np.int64(4), np.int64(8)) colores=(0, 1, 2) cargas_quarks=(2, -1, 2) carga_e=-3 -- VÁLIDO (uud+e discreto)
+  H: trio=(np.int64(12), np.int64(16), np.int64(20)) colores=(0, 1, 2) cargas_quarks=(2, 2, -1) carga_e=-3 -- VÁLIDO (uud+e discreto)
+  H: trio=(np.int64(24), np.int64(28), np.int64(31)) colores=(0, 1, 2) cargas_quarks=(2, -1, 2) carga_e=-3 -- VÁLIDO (uud+e discreto)
+  H: trio=(np.int64(41), np.int64(43), np.int64(45)) colores=(0, 1, 2) cargas_quarks=(2, -1, 2) carga_e=-3 -- VÁLIDO (uud+e discreto)
+  TODOS VÁLIDOS: True
+  (t=1.02 min)
+
+--- (5) BARRIDO DE N (3 escalas, 4 brazos, pasos=300) ---
+  N=68 brazo A (q=30,aq=21,e=10,p=7): diametro=2, componentes=39, tam_mayor=30, bariones=0, hidrogeno=0
+  N=68 brazo B (q=30,aq=21,e=10,p=7): diametro=2, componentes=39, tam_mayor=30, bariones=0, hidrogeno=0
+  N=68 brazo C (q=30,aq=21,e=10,p=7): diametro=0, componentes=68, tam_mayor=1, bariones=0, hidrogeno=0
+  N=68 brazo D (q=30,aq=21,e=10,p=7): diametro=4, componentes=31, tam_mayor=38, bariones=9, hidrogeno=4
+  N=136 brazo A (q=60,aq=42,e=20,p=14): diametro=2, componentes=77, tam_mayor=60, bariones=0, hidrogeno=0
+  N=136 brazo B (q=60,aq=42,e=20,p=14): diametro=2, componentes=77, tam_mayor=60, bariones=0, hidrogeno=0
+  N=136 brazo C (q=60,aq=42,e=20,p=14): diametro=7, componentes=100, tam_mayor=37, bariones=0, hidrogeno=0
+  N=136 brazo D (q=60,aq=42,e=20,p=14): diametro=6, componentes=59, tam_mayor=78, bariones=18, hidrogeno=9
+  N=272 brazo A (q=120,aq=84,e=40,p=28): diametro=2, componentes=153, tam_mayor=120, bariones=0, hidrogeno=0
+  N=272 brazo B (q=120,aq=84,e=40,p=28): diametro=2, componentes=153, tam_mayor=120, bariones=0, hidrogeno=0
+  N=272 brazo C (q=120,aq=84,e=40,p=28): diametro=0, componentes=272, tam_mayor=1, bariones=0, hidrogeno=0
+  N=272 brazo D (q=120,aq=84,e=40,p=28): diametro=7, componentes=115, tam_mayor=158, bariones=38, hidrogeno=14
+  *** EL DIÁMETRO (brazo D) CRECE CON N ***
+  (t=2.51 min)
+
+--- (6) BARRIDO DE SENSIBILIDAD DE PARÁMETROS (27 combinaciones, pasos=150) ---
+  alpha=0.8 tasa_exp=0.01 amplitud=0.05: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,3,0) brecha_D-C={'firmas': 0, 'diametro': -3} patron_ok=False
+  alpha=0.8 tasa_exp=0.01 amplitud=0.1: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,4,0) brecha_D-C={'firmas': 0, 'diametro': -4} patron_ok=False
+  alpha=0.8 tasa_exp=0.01 amplitud=0.2: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,4,5) brecha_D-C={'firmas': 0, 'diametro': 1} patron_ok=True
+  alpha=0.8 tasa_exp=0.02 amplitud=0.05: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,3,7) brecha_D-C={'firmas': 0, 'diametro': 4} patron_ok=True
+  alpha=0.8 tasa_exp=0.02 amplitud=0.1: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,4,5) brecha_D-C={'firmas': 0, 'diametro': 1} patron_ok=True
+  alpha=0.8 tasa_exp=0.02 amplitud=0.2: n_firmas(A,B,C,D)=(4,4,68,68) diametros(A,B,C,D)=(2,2,4,3) brecha_D-C={'firmas': 0, 'diametro': -1} patron_ok=False
+  alpha=0.8 tasa_exp=0.04 amplitud=0.05: n_firmas(A,B,C,D)=(4,4,68,64) diametros(A,B,C,D)=(2,2,3,4) brecha_D-C={'firmas': -4, 'diametro': 1} patron_ok=False
+  alpha=0.8 tasa_exp=0.04 amplitud=0.1: n_firmas(A,B,C,D)=(4,4,68,62) diametros(A,B,C,D)=(2,2,4,4) brecha_D-C={'firmas': -6, 'diametro': 0} patron_ok=False
+  alpha=0.8 tasa_exp=0.04 amplitud=0.2: n_firmas(A,B,C,D)=(4,4,68,62) diametros(A,B,C,D)=(2,2,4,3) brecha_D-C={'firmas': -6, 'diametro': -1} patron_ok=False
+  alpha=0.9 tasa_exp=0.01 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,2,2) brecha_D-C={'firmas': 0, 'diametro': 0} patron_ok=False
+  alpha=0.9 tasa_exp=0.01 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,0,7) brecha_D-C={'firmas': 0, 'diametro': 7} patron_ok=True
+  alpha=0.9 tasa_exp=0.01 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,7,10) brecha_D-C={'firmas': 0, 'diametro': 3} patron_ok=True
+  alpha=0.9 tasa_exp=0.02 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,2,6) brecha_D-C={'firmas': 0, 'diametro': 4} patron_ok=True
+  alpha=0.9 tasa_exp=0.02 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,0,8) brecha_D-C={'firmas': 0, 'diametro': 8} patron_ok=True
+  alpha=0.9 tasa_exp=0.02 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,7,3) brecha_D-C={'firmas': 0, 'diametro': -4} patron_ok=False
+  alpha=0.9 tasa_exp=0.04 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,67) diametros(A,B,C,D)=(2,2,2,4) brecha_D-C={'firmas': -1, 'diametro': 2} patron_ok=False
+  alpha=0.9 tasa_exp=0.04 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,62) diametros(A,B,C,D)=(2,2,0,4) brecha_D-C={'firmas': -6, 'diametro': 4} patron_ok=False
+  alpha=0.9 tasa_exp=0.04 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,62) diametros(A,B,C,D)=(2,2,7,3) brecha_D-C={'firmas': -6, 'diametro': -4} patron_ok=False
+  alpha=0.95 tasa_exp=0.01 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,3,3) brecha_D-C={'firmas': 0, 'diametro': 0} patron_ok=False
+  alpha=0.95 tasa_exp=0.01 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,3,5) brecha_D-C={'firmas': 0, 'diametro': 2} patron_ok=True
+  alpha=0.95 tasa_exp=0.01 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,5,7) brecha_D-C={'firmas': 0, 'diametro': 2} patron_ok=True
+  alpha=0.95 tasa_exp=0.02 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,3,8) brecha_D-C={'firmas': 0, 'diametro': 5} patron_ok=True
+  alpha=0.95 tasa_exp=0.02 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,3,6) brecha_D-C={'firmas': 0, 'diametro': 3} patron_ok=True
+  alpha=0.95 tasa_exp=0.02 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,5,3) brecha_D-C={'firmas': 0, 'diametro': -2} patron_ok=False
+  alpha=0.95 tasa_exp=0.04 amplitud=0.05: n_firmas(A,B,C,D)=(6,6,68,68) diametros(A,B,C,D)=(2,2,3,4) brecha_D-C={'firmas': 0, 'diametro': 1} patron_ok=True
+  alpha=0.95 tasa_exp=0.04 amplitud=0.1: n_firmas(A,B,C,D)=(6,6,68,62) diametros(A,B,C,D)=(2,2,3,4) brecha_D-C={'firmas': -6, 'diametro': 1} patron_ok=False
+  alpha=0.95 tasa_exp=0.04 amplitud=0.2: n_firmas(A,B,C,D)=(6,6,68,62) diametros(A,B,C,D)=(2,2,5,3) brecha_D-C={'firmas': -6, 'diametro': -2} patron_ok=False
+  empates EXACTOS D=C (firmas Y diámetro iguales): 2 de 27
+  *** PATRÓN NO ROBUSTO -- ver empates/brechas arriba, NO declarar éxito ***
+  (t=5.70 min)
+
+====================================================================================================
+TIEMPO TOTAL: 5.70 min
+====================================================================================================

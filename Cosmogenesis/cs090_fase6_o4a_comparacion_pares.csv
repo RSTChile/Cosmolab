@@ -1,0 +1,11 @@
+par,estrato,regla_I,regla_III,phantom_frac_I,phantom_frac_III,phantom_dIII_menos_I,nbody_obs_I,nbody_obs_III,nbody_dIII_menos_I,gana_en_phantom,gana_en_nbody,orden_coincide
+PAR_piloto_B_r1_r17,fuerte,A2-B0-C2-r1,A2-B0-C2-r17,0.087,0.121,0.034,0.18,0.295,0.115,III,III,True
+A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10,fuerte,A2-B0-C2-batch4-r23,A2-B0-C2-batch4-r10,0.0955,0.1279999999999999,0.0325,0.3125,0.3265,0.014,III,III,True
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111,fuerte,A2-B0-C2-batch3-r120,A2-B0-C2-batch3-r111,0.0925,0.122,0.0295,0.298,0.3155,0.0175,III,III,True
+A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60,fuerte,A2-B0-C2-batch3-r104,A2-B0-C2-batch3-r60,0.0985,0.1254999999999999,0.027,0.3265,0.3525,0.026,III,III,True
+PAR_v2_G_r12v1fix_r19,fuerte,A2-B0-C2-r12v1fix,A2-B0-C2-r19,0.062,0.087,0.025,0.1065,0.257,0.1505,III,III,True
+A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58,empate,A2-B0-C2-batch3-r59,A2-B0-C2-batch3-r58,0.1035,0.1025,-0.001,0.316,0.3365,0.0205,I,III,False
+A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26,empate,A2-B0-C2-batch4-r39,A2-B0-C2-batch4-r26,0.1015,0.1025,0.001,0.313,0.307,-0.006,III,I,False
+PAR_piloto_C_r6_r14,empate,A2-B0-C2-r6,A2-B0-C2-r14,0.1005,0.099,-0.0015,0.2805,0.304,0.0235,I,III,False
+A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72,empate,A2-B0-C2-batch4-r38,A2-B0-C2-batch4-r72,0.0995,0.1015,0.002,0.2955,0.3,0.0045,III,III,True
+PAR_v2_H_r9_r39,empate,A2-B0-C2-r9,A2-B0-C2-r39,0.0805,0.0785,-0.002,0.236,0.202,-0.034,I,I,True

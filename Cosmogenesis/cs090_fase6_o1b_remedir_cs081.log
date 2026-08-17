@@ -1,0 +1,38 @@
+====================================================================================================
+O1-B / Parte 1 — re-medición del diámetro (viejo vs corregido) en FASE III Exp.2 (cs081, poda)
+N=8000  k_local=6  semillas=(80100, 80200, 80300)  escalas b=1,(2, 4, 8, 16, 32)  percentiles P=(50, 70, 90)
+====================================================================================================
+
+--- semilla 80100 ---
+  sustrato local construido: aristas=31213 (50.2s)
+  [sin_poda  ] podadas=0      pend VIEJA=+0.3873  CORREGIDA=+0.3873  (dif +0.0000)  diám viejo=[9.0, 7.0, 7.0, 5.0, 5.0, 4.0] corr=[9.0, 7.0, 7.0, 5.0, 5.0, 4.0]  (0.9s)
+  [costo_P50 ] podadas=14613  pend VIEJA=+0.8279  CORREGIDA=+0.8279  (dif +0.0000)  diám viejo=[20.0, 16.0, 11.0, 10.0, 6.0, 5.0] corr=[20.0, 16.0, 11.0, 10.0, 6.0, 5.0]  (0.6s)
+  [azar_P50  ] podadas=14613  pend VIEJA=+0.6078  CORREGIDA=+0.6078  (dif +0.0000)  diám viejo=[14.0, 10.0, 8.0, 7.0, 6.0, 5.0] corr=[14.0, 10.0, 8.0, 7.0, 6.0, 5.0]  (0.7s)
+  [costo_P70 ] podadas=7618   pend VIEJA=+0.6061  CORREGIDA=+0.6061  (dif +0.0000)  diám viejo=[13.0, 10.0, 9.0, 6.0, 6.0, 4.0] corr=[13.0, 10.0, 9.0, 6.0, 6.0, 4.0]  (0.7s)
+  [azar_P70  ] podadas=7618   pend VIEJA=+0.5126  CORREGIDA=+0.5126  (dif +0.0000)  diám viejo=[12.0, 9.0, 8.0, 6.0, 5.0, 5.0] corr=[12.0, 9.0, 8.0, 6.0, 5.0, 5.0]  (0.7s)
+  [costo_P90 ] podadas=2951   pend VIEJA=+0.4481  CORREGIDA=+0.4481  (dif +0.0000)  diám viejo=[10.0, 8.0, 7.0, 6.0, 5.0, 4.0] corr=[10.0, 8.0, 7.0, 6.0, 5.0, 4.0]  (0.9s)
+  [azar_P90  ] podadas=2951   pend VIEJA=+0.4510  CORREGIDA=+0.4510  (dif +0.0000)  diám viejo=[9.0, 8.0, 6.0, 6.0, 4.0, 4.0] corr=[9.0, 8.0, 6.0, 6.0, 4.0, 4.0]  (0.8s)
+
+--- semilla 80200 ---
+  sustrato local construido: aristas=31535 (51.9s)
+  [sin_poda  ] podadas=0      pend VIEJA=+0.4075  CORREGIDA=+0.4075  (dif +0.0000)  diám viejo=[10.0, 7.0, 7.0, 6.0, 5.0, 4.0] corr=[10.0, 7.0, 7.0, 6.0, 5.0, 4.0]  (0.8s)
+  [costo_P50 ] podadas=15127  pend VIEJA=+0.6023  CORREGIDA=+0.6023  (dif +0.0000)  diám viejo=[17.0, 14.0, 10.0, 9.0, 8.0, 6.0] corr=[17.0, 14.0, 10.0, 9.0, 8.0, 6.0]  (0.6s)
+  [azar_P50  ] podadas=15127  pend VIEJA=+0.7486  CORREGIDA=+0.7486  (dif +0.0000)  diám viejo=[16.0, 11.0, 9.0, 8.0, 5.0, 5.0] corr=[16.0, 11.0, 9.0, 8.0, 5.0, 5.0]  (0.7s)
+  [costo_P70 ] podadas=7940   pend VIEJA=+0.5556  CORREGIDA=+0.5556  (dif +0.0000)  diám viejo=[15.0, 11.0, 9.0, 8.0, 7.0, 5.0] corr=[15.0, 11.0, 9.0, 8.0, 7.0, 5.0]  (0.8s)
+  [azar_P70  ] podadas=7940   pend VIEJA=+0.4700  CORREGIDA=+0.4700  (dif +0.0000)  diám viejo=[11.0, 9.0, 7.0, 6.0, 5.0, 5.0] corr=[11.0, 9.0, 7.0, 6.0, 5.0, 5.0]  (0.8s)
+  [costo_P90 ] podadas=3076   pend VIEJA=+0.4728  CORREGIDA=+0.4728  (dif +0.0000)  diám viejo=[12.0, 9.0, 7.0, 6.0, 5.0, 5.0] corr=[12.0, 9.0, 7.0, 6.0, 5.0, 5.0]  (0.9s)
+  [azar_P90  ] podadas=3076   pend VIEJA=+0.4695  CORREGIDA=+0.4695  (dif +0.0000)  diám viejo=[10.0, 7.0, 7.0, 6.0, 4.0, 4.0] corr=[10.0, 7.0, 7.0, 6.0, 4.0, 4.0]  (0.8s)
+
+--- semilla 80300 ---
+  sustrato local construido: aristas=31219 (62.0s)
+  [sin_poda  ] podadas=0      pend VIEJA=+0.3840  CORREGIDA=+0.3840  (dif +0.0000)  diám viejo=[9.0, 7.0, 5.0, 5.0, 5.0, 4.0] corr=[9.0, 7.0, 5.0, 5.0, 5.0, 4.0]  (1.0s)
+  [costo_P50 ] podadas=15036  pend VIEJA=+0.8378  CORREGIDA=+0.8378  (dif +0.0000)  diám viejo=[20.0, 15.0, 11.0, 10.0, 6.0, 5.0] corr=[20.0, 15.0, 11.0, 10.0, 6.0, 5.0]  (0.8s)
+  [azar_P50  ] podadas=15036  pend VIEJA=+0.7006  CORREGIDA=+0.7006  (dif +0.0000)  diám viejo=[16.0, 11.0, 8.0, 8.0, 6.0, 5.0] corr=[16.0, 11.0, 8.0, 8.0, 6.0, 5.0]  (0.8s)
+  [costo_P70 ] podadas=8153   pend VIEJA=+0.4896  CORREGIDA=+0.4896  (dif +0.0000)  diám viejo=[12.0, 10.0, 8.0, 7.0, 6.0, 5.0] corr=[12.0, 10.0, 8.0, 7.0, 6.0, 5.0]  (0.9s)
+  [azar_P70  ] podadas=8153   pend VIEJA=+0.4451  CORREGIDA=+0.4451  (dif +0.0000)  diám viejo=[10.0, 7.0, 6.0, 6.0, 5.0, 4.0] corr=[10.0, 7.0, 6.0, 6.0, 5.0, 4.0]  (0.9s)
+  [costo_P90 ] podadas=2992   pend VIEJA=+0.4462  CORREGIDA=+0.4462  (dif +0.0000)  diám viejo=[10.0, 7.0, 7.0, 5.0, 5.0, 4.0] corr=[10.0, 7.0, 7.0, 5.0, 5.0, 4.0]  (1.1s)
+  [azar_P90  ] podadas=2992   pend VIEJA=+0.3301  CORREGIDA=+0.3301  (dif +0.0000)  diám viejo=[9.0, 7.0, 6.0, 5.0, 5.0, 5.0] corr=[9.0, 7.0, 6.0, 5.0, 5.0, 5.0]  (1.1s)
+
+[csv] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o1b_remedicion_cs081.csv (126 filas, 185s)
+[resultado] escalas donde la medición vieja DESCARRILA: 0/126
+[resultado] escalas donde viejo != corregido:           0/126

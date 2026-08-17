@@ -1,0 +1,13 @@
+# Region Metropolitana community/citizen FM segment.
+# This is a dense local segment; reception depends strongly on comuna/location.
+f=105900000,d=CL RM Comunitaria 105.9
+f=106100000,d=CL RM Comunitaria 106.1
+f=106300000,d=CL RM Comunitaria 106.3
+f=106500000,d=CL RM Comunitaria 106.5
+f=106700000,d=CL RM Comunitaria 106.7
+f=106900000,d=CL RM Comunitaria 106.9
+f=107100000,d=CL RM Comunitaria 107.1
+f=107300000,d=CL RM Comunitaria 107.3
+f=107500000,d=CL RM Comunitaria 107.5
+f=107700000,d=CL RM Comunitaria 107.7
+f=107900000,d=CL RM Comunitaria 107.9

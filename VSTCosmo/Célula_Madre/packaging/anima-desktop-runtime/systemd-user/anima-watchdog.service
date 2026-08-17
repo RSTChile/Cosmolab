@@ -1,0 +1,14 @@
+[Unit]
+Description=ANIMA Watchdog (desktop)
+After=anima-organismo.service
+Requires=anima-organismo.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/anima/celula_madre
+ExecStart=/opt/anima/celula_madre/docker/anima-watchdog-desktop.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

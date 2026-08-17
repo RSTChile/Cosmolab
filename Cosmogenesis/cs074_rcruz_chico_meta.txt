@@ -1,0 +1,5 @@
+[calibracion chico] pasos=1553 tiempos=[1350, 1350, 1350, 1350]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs074_rcruz_chico_resultado.json
+[control_r0_lava] True {'mean_P_r0_eps_gt0': 0.03178183200686299, 'n': 3, 'P_max': 0.15}
+[elapsed] 52.3s

@@ -1,0 +1,26 @@
+[
+  {
+    "grafo": "r23_I",
+    "n_replicas": 6,
+    "dump_comun": 246,
+    "media": 0.14106250012782176,
+    "sigma": 0.00951700299913774,
+    "rango": 0.025749983087815287,
+    "sigma_rel": 0.06746656971565118,
+    "n_sumideros_media": 72.16666666666667,
+    "n_sumideros_min": 54,
+    "n_sumideros_max": 78
+  },
+  {
+    "grafo": "r10_III",
+    "n_replicas": 6,
+    "dump_comun": 72,
+    "media": 0.04622916917757213,
+    "sigma": 0.0019387770095086897,
+    "rango": 0.005250000802760453,
+    "sigma_rel": 0.04193839179894408,
+    "n_sumideros_media": 10.5,
+    "n_sumideros_min": 9,
+    "n_sumideros_max": 13
+  }
+]

@@ -1,0 +1,12 @@
+prueba,estadistico,p,n,efecto_particulas,detalle
+Friedman (¿algún brazo difiere?),31.514644351464426,2.4037347888348653e-06,12,nan,"bloques=grafos, tratamientos=5 brazos"
+Wilcoxon solap vs disj  (eje SOLAPAMIENTO de aristas),0.014333333333333309,0.00048828125,12,28.666666666666618,"media Δ=+0.01433 (+28.7 part.), signos 12/12, binomial p=0.0004883"
+Wilcoxon conc  vs disp  (eje CONCENTRACIÓN en nodos),0.0033333333333333305,0.02783203125,12,6.666666666666661,"media Δ=+0.00333 (+6.7 part.), signos 9/12, binomial p=0.146"
+Wilcoxon conc vs libre,0.003666666666666663,0.00048828125,12,7.333333333333326,"media Δ=+0.00367 (+7.3 part.), signos 12/12, binomial p=0.0004883"
+Wilcoxon disp vs libre,0.00033333333333333245,0.83447265625,12,0.6666666666666649,"media Δ=+0.00033 (+0.7 part.), signos 7/12, binomial p=0.7744"
+Wilcoxon solap vs libre,0.013874999999999985,0.00048828125,12,27.749999999999968,"media Δ=+0.01387 (+27.7 part.), signos 12/12, binomial p=0.0004883"
+Wilcoxon disj vs libre,-0.00045833333333332335,0.5986328125,12,-0.9166666666666466,"media Δ=-0.00046 (-0.9 part.), signos 5/12, binomial p=0.7744"
+rango masa max-min dentro de cada grafo,32.66666666666662,nan,12,32.66666666666662,"mediana=28.0 part., min=12.0, max=67.0 (grano = 1 partícula = 0.0005)"
+contraste de clustering logrado (rango C entre brazos),0.06640992063492064,nan,12,nan,media del (C_max - C_min) dentro de cada grafo
+contraste de solapamiento logrado (rango frac_aristas_multi),0.853299598534503,nan,12,nan,media del (multi_max - multi_min) dentro de cada grafo
+diferencia de triángulos entre brazos (control del diseño),0.08333333333333333,nan,12,nan,máx entre grafos = 1 triángulos

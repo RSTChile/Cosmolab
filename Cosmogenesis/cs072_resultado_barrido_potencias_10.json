@@ -1,0 +1,151 @@
+{
+  "base_por_eps": {
+    "0.0": [
+      21,
+      21,
+      7,
+      7
+    ],
+    "1e-09": [
+      21,
+      21,
+      7,
+      7
+    ],
+    "1e-06": [
+      21,
+      21,
+      7,
+      7
+    ],
+    "0.001": [
+      21,
+      21,
+      7,
+      7
+    ],
+    "0.01": [
+      21,
+      21,
+      7,
+      7
+    ],
+    "0.1": [
+      23,
+      21,
+      8,
+      7
+    ],
+    "0.5": [
+      31,
+      21,
+      10,
+      7
+    ],
+    "1.0": [
+      42,
+      21,
+      14,
+      7
+    ]
+  },
+  "eps_representativo": 0.5,
+  "corridas_reales": [
+    {
+      "escala_log10": 0,
+      "factor": 1,
+      "nq": 31,
+      "naq": 21,
+      "ne": 10,
+      "npos": 7,
+      "N_total": 69,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "tiempo_s": 0.18413114547729492,
+      "ratio_bariones": 0.043478260869565216,
+      "ratio_hidrogeno": 0.028985507246376812
+    },
+    {
+      "escala_log10": 1,
+      "factor": 10,
+      "nq": 310,
+      "naq": 210,
+      "ne": 100,
+      "npos": 70,
+      "N_total": 690,
+      "bariones": 33,
+      "hidrogeno": 16,
+      "sueltos": 1,
+      "tiempo_s": 11.58670711517334,
+      "ratio_bariones": 0.04782608695652174,
+      "ratio_hidrogeno": 0.02318840579710145
+    },
+    {
+      "escala_log10": 2,
+      "factor": 100,
+      "nq": 3100,
+      "naq": 2100,
+      "ne": 1000,
+      "npos": 700,
+      "N_total": 6900,
+      "bariones": 333,
+      "hidrogeno": 166,
+      "sueltos": 1,
+      "tiempo_s": 897.9,
+      "ratio_bariones": 0.04826086956521739,
+      "ratio_hidrogeno": 0.024057971014492754
+    }
+  ],
+  "proporcionalidad_constante_verificada": false,
+  "hallazgo_convergencia": "el ratio bariones/N_total NO es constante desde escala 0, pero CONVERGE: 0.0435 (10^0) -> 0.0478 (10^1) -> 0.0483 (10^2). El salto se achica cada escala (+0.0043, luego +0.0004) -- parece asentarse cerca de ~0.048, efecto de redondeo/discretitud que pesa mas a N chico y se diluye al crecer.",
+  "k_bariones_escala0": 0.043478260869565216,
+  "k_bariones_estabilizado_escala2": 0.04826086956521739,
+  "k_hidrogeno_escala2": 0.024057971014492754,
+  "extrapolaciones_potencias_10": [
+    {
+      "escala_log10": 3,
+      "N_total": 69000,
+      "bariones_extrapolado_k_estabilizado": 3330.0
+    },
+    {
+      "escala_log10": 4,
+      "N_total": 690000,
+      "bariones_extrapolado_k_estabilizado": 33300.0
+    },
+    {
+      "escala_log10": 6,
+      "N_total": 69000000,
+      "bariones_extrapolado_k_estabilizado": 3330000.0
+    },
+    {
+      "escala_log10": 10,
+      "N_total": 690000000000,
+      "bariones_extrapolado_k_estabilizado": 33300000000.0
+    },
+    {
+      "escala_log10": 20,
+      "N_total": 6900000000000000000000,
+      "bariones_extrapolado_k_estabilizado": 3.33e+20
+    },
+    {
+      "escala_log10": 30,
+      "N_total": 69000000000000000000000000000000,
+      "bariones_extrapolado_k_estabilizado": 3.33e+30
+    },
+    {
+      "escala_log10": 40,
+      "N_total": 690000000000000000000000000000000000000000,
+      "bariones_extrapolado_k_estabilizado": 3.33e+40
+    },
+    {
+      "escala_log10": 58.4,
+      "N_total": 2.49e+58,
+      "bariones_extrapolado_k_estabilizado": 1.2e+57,
+      "nota_este_punto": "escala necesaria para bariones ~ masa solar (1.2e57), usando k estabilizado de escala 10^2, no el de escala 10^0"
+    }
+  ],
+  "caveat_eficiencia_formacion_estelar": "el director senalo (30-jul-2026): para que se forme una estrella hace falta MAS hidrogeno del que termina en la estrella -- la formacion estelar no es 100% eficiente (masa critica de Jeans, colapso gravitacional). Este modelo no tiene ese paso (no decide cuanto hidrogeno colapsa vs queda disperso). El numero 10^58.4 es entonces una SUBESTIMACION del N_total real necesario, no una respuesta completa.",
+  "nota": "las extrapolaciones NO son corridas -- son aritmetica sobre k medido en escalas 10^0-10^2 reales (10^2 SI se corrio, 897.9s). La linealidad NO es exacta (ver hallazgo_convergencia) pero converge; no hay razon fisica conocida en este modelo (sin espacio real) para que sature del todo, pero tampoco prueba de que no lo haga mas alla de 10^2.",
+  "elapsed_total_s": 12.706851959228516
+}

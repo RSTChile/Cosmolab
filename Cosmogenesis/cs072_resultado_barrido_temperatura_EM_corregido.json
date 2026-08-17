@@ -1,0 +1,68 @@
+{
+  "pasos": 2000,
+  "filas": [
+    {
+      "T_umbral": 0.6,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.4,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.2,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.1,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.05,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.03,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.02,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.0158,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 0.13446371962551792
+    },
+    {
+      "T_umbral": 0.01,
+      "bariones": 3,
+      "hidrogeno": 0,
+      "sueltos": 1,
+      "B_max": 0.27247434497620787
+    }
+  ]
+}

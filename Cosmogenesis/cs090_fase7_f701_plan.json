@@ -1,0 +1,15 @@
+{
+  "_comentario": "Plan de la grilla factorial F7-01, CONGELADO ANTES de correr Phantom. Los M objetivo se eligieron SOLO con el mapa de M alcanzable por kcap (cs090_fase7_f701_mapa_M.csv, 1200 reglas), que no contiene ningun desenlace: ni pendiente, ni clase, ni masa. La interseccion real de rangos naturales de M es kcap 6 x kcap 7, M en [3722, 4287]; kcap 4 (max 2665) y kcap 5 (max 3454) no alcanzan ese rango y kcap 5 vs 6 quedan separados por apenas 37 aristas (3454 vs 3491) sin solape. Por eso el factorial ortogonal se arma sobre kcap {6,7}. Ningun M se iguala podando: todas las reglas caen naturalmente en su celda.",
+  "igualacion_M": "seleccion",
+  "tolerancia_frac": 0.015,
+  "n_por_celda": 6,
+  "_nota_ampliacion": "El plan se congelo con 4 reglas por celda y se AMPLIO a 6 por celda cuando iban 6 corridas de Phantom de 24. La ampliacion es UNIFORME sobre las 6 celdas (no se agrego a una celda y no a otra), el criterio de eleccion de las reglas nuevas es el mismo criterio ciego declarado desde el principio (las siguientes mas cercanas al M objetivo, desempate por seed ascendente, leidas del mapa de M) y no se miro ningun desenlace para decidirla: se hizo por potencia estadistica sobre el numero que decide (el efecto residual de kcap a M igualado), no por lo que dieran los resultados. Se declara aca para que quede en el registro. Con tolerancia 1.5 % la celda kcap=7 / M=3800 tiene exactamente 6 candidatas disponibles: 6 es el maximo que el diseno por seleccion admite sin aflojar la tolerancia.",
+  "celdas": [
+    {"kcap": 6, "M_objetivo": 3800},
+    {"kcap": 6, "M_objetivo": 4000},
+    {"kcap": 6, "M_objetivo": 4200},
+    {"kcap": 7, "M_objetivo": 3800},
+    {"kcap": 7, "M_objetivo": 4000},
+    {"kcap": 7, "M_objetivo": 4200}
+  ]
+}

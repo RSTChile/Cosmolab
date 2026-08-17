@@ -1,0 +1,17 @@
+# Santiago de Chile AM broadcast stations.
+# Source basis: public Santiago station list reviewed 2026-07-06.
+f=570000,d=CL STGO CNN Chile Radio
+f=600000,d=CL STGO Tiempos Finales
+f=660000,d=CL STGO Radio Divina
+f=760000,d=CL STGO Radio Novedad
+f=820000,d=CL STGO Carabineros
+f=880000,d=CL STGO Colo Colo
+f=930000,d=CL STGO Nuevo Mundo
+f=1000000,d=CL STGO BBN
+f=1140000,d=CL STGO Nacional
+f=1180000,d=CL STGO Portales
+f=1300000,d=CL STGO Conexion Profetica
+f=1380000,d=CL STGO Plenitud
+f=1420000,d=CL STGO Panamericana
+f=1460000,d=CL STGO Radio Fe
+f=1600000,d=CL STGO Nuevo Tiempo

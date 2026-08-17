@@ -1,0 +1,16 @@
+CS063 — VÉRTICE DE 3 CUERPOS GENUINO: ¿el update de 3 cuerpos selecciona dim donde el pareado no?
+========================================================================================================
+G-IRREDUCIBLE (∂³E≠0 del producto triple): PASA ✓
+PREDICCIÓN CIEGA: si el 3-cuerpos GENUINO es el ingrediente, seleccionará una dim a IGUAL longitud de
+  ciclo (donde el pareado no pudo), colapsando bajo NULL. Si no, NI el vértice de 3 puntos basta (B).
+dims=['d2', 'd3', 'd4', 'curv'] brazos=['3cuerpos', '2cuerpos', 'null_triada', 'null_marco'] seeds=10 · corridas=160 · workers=14 · K=3
+  20/160 · 0.8min · ETA 5.6min
+  40/160 · 1.4min · ETA 4.1min
+  60/160 · 2.1min · ETA 3.5min
+  80/160 · 2.9min · ETA 2.9min
+  100/160 · 3.3min · ETA 2.0min
+  120/160 · 3.8min · ETA 1.3min
+  140/160 · 4.3min · ETA 0.6min
+  160/160 · 4.8min · ETA 0.0min
+
+COMPLETO: 160 corridas en 4.8 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs063_3cuerpos.csv

@@ -1,0 +1,1 @@
+"""CosmoGénesis CG001 — laboratorio de persistencia diferencial."""

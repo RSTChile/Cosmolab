@@ -1,0 +1,136 @@
+[f706] estructura consolidada: 12 grafos base -> cs090_fase7_f706_estructura.csv
+[A2-B0-C2-batch3-r100_f706_alin_dil] brazo=alin_dil   aristas=1938 frac_masa=0.15599999999999994 kappaV=1.274261603375527
+[A2-B0-C2-batch3-r100_f706_alineado] brazo=alineado   aristas=2500 frac_masa=0.15699999999999992 kappaV=1.3636363636363638
+[A2-B0-C2-batch3-r100_f706_anti] brazo=anti       aristas=1938 frac_masa=0.15499999999999994 kappaV=1.425925925925926
+[A2-B0-C2-batch3-r100_f706_perm_dil] brazo=perm_dil   aristas=1938 frac_masa=0.15299999999999994 kappaV=1.3167420814479638
+[A2-B0-C2-batch3-r100_f706_permutado] brazo=permutado  aristas=2256 frac_masa=0.15299999999999997 kappaV=1.337899543378995
+[A2-B0-C2-batch3-r21_f706_alin_dil] brazo=alin_dil   aristas=2348 frac_masa=0.14449999999999996 kappaV=1.2592592592592589
+[A2-B0-C2-batch3-r21_f706_alineado] brazo=alineado   aristas=4671 frac_masa=0.068 kappaV=0.45967741935483886
+[A2-B0-C2-batch3-r21_f706_anti] brazo=anti       aristas=2348 frac_masa=0.13799999999999998 kappaV=1.1848341232227477
+[A2-B0-C2-batch3-r21_f706_perm_dil] brazo=perm_dil   aristas=2348 frac_masa=0.14799999999999996 kappaV=1.3380281690140843
+[A2-B0-C2-batch3-r21_f706_permutado] brazo=permutado  aristas=3046 frac_masa=0.10800000000000003 kappaV=0.5846153846153846
+[A2-B0-C2-batch3-r9_f706_alin_dil] brazo=alin_dil   aristas=2828 frac_masa=0.133 kappaV=1.056338028169014
+[A2-B0-C2-batch3-r9_f706_alineado] brazo=alineado   aristas=5378 frac_masa=0.056500000000000015 kappaV=0.4687499999999999
+[A2-B0-C2-batch3-r9_f706_anti] brazo=anti       aristas=2828 frac_masa=0.11700000000000002 kappaV=0.7536945812807883
+[A2-B0-C2-batch3-r9_f706_perm_dil] brazo=perm_dil   aristas=2828 frac_masa=0.12450000000000001 kappaV=0.8883720930232557
+[A2-B0-C2-batch3-r9_f706_permutado] brazo=permutado  aristas=3519 frac_masa=0.09450000000000001 kappaV=0.5172413793103448
+[A2-B0-C2-batch4-r18_f706_alin_dil] brazo=alin_dil   aristas=2717 frac_masa=0.12799999999999997 kappaV=0.9004329004329
+[A2-B0-C2-batch4-r18_f706_alineado] brazo=alineado   aristas=5480 frac_masa=0.05350000000000001 kappaV=0.41772151898734156
+[A2-B0-C2-batch4-r18_f706_anti] brazo=anti       aristas=2717 frac_masa=0.12450000000000001 kappaV=0.8935185185185178
+[A2-B0-C2-batch4-r18_f706_perm_dil] brazo=perm_dil   aristas=2717 frac_masa=0.1305 kappaV=1.0285714285714285
+[A2-B0-C2-batch4-r18_f706_permutado] brazo=permutado  aristas=3437 frac_masa=0.09650000000000004 kappaV=0.5322580645161291
+[A2-B0-C2-batch4-r43_f706_alin_dil] brazo=alin_dil   aristas=1906 frac_masa=0.15449999999999994 kappaV=1.3215859030837005
+[A2-B0-C2-batch4-r43_f706_alineado] brazo=alineado   aristas=4235 frac_masa=0.07450000000000002 kappaV=0.36956521739130443
+[A2-B0-C2-batch4-r43_f706_anti] brazo=anti       aristas=1906 frac_masa=0.15349999999999994 kappaV=1.465753424657534
+[A2-B0-C2-batch4-r43_f706_perm_dil] brazo=perm_dil   aristas=1906 frac_masa=0.15249999999999994 kappaV=1.282051282051282
+[A2-B0-C2-batch4-r43_f706_permutado] brazo=permutado  aristas=2628 frac_masa=0.1275 kappaV=0.9705882352941175
+[A2-B0-C2-batch4-r51_f706_alin_dil] brazo=alin_dil   aristas=1848 frac_masa=0.15949999999999992 kappaV=1.384615384615384
+[A2-B0-C2-batch4-r51_f706_alineado] brazo=alineado   aristas=3101 frac_masa=0.12000000000000002 kappaV=0.8142857142857141
+[A2-B0-C2-batch4-r51_f706_anti] brazo=anti       aristas=1848 frac_masa=0.15649999999999994 kappaV=1.3376623376623376
+[A2-B0-C2-batch4-r51_f706_perm_dil] brazo=perm_dil   aristas=1848 frac_masa=0.15749999999999995 kappaV=1.4736842105263155
+[A2-B0-C2-batch4-r51_f706_permutado] brazo=permutado  aristas=2359 frac_masa=0.14499999999999996 kappaV=1.2453703703703698
+[A2-B0-C2-r14_f706_alin_dil] brazo=alin_dil   aristas=2161 frac_masa=0.15349999999999997 kappaV=1.2927927927927918
+[A2-B0-C2-r14_f706_alineado] brazo=alineado   aristas=4088 frac_masa=0.09000000000000004 kappaV=0.44262295081967207
+[A2-B0-C2-r14_f706_anti] brazo=anti       aristas=2161 frac_masa=0.14849999999999997 kappaV=1.32
+[A2-B0-C2-r14_f706_perm_dil] brazo=perm_dil   aristas=2161 frac_masa=0.15099999999999997 kappaV=1.273504273504273
+[A2-B0-C2-r14_f706_permutado] brazo=permutado  aristas=2844 frac_masa=0.12300000000000001 kappaV=0.8823529411764707
+[A2-B0-C2-r19_f706_alin_dil] brazo=alin_dil   aristas=2237 frac_masa=0.14849999999999997 kappaV=1.2077922077922079
+[A2-B0-C2-r19_f706_alineado] brazo=alineado   aristas=3857 frac_masa=0.08200000000000002 kappaV=0.41818181818181815
+[A2-B0-C2-r19_f706_anti] brazo=anti       aristas=2237 frac_masa=0.14449999999999996 kappaV=1.3568075117370886
+[A2-B0-C2-r19_f706_perm_dil] brazo=perm_dil   aristas=2237 frac_masa=0.14699999999999996 kappaV=1.3653846153846145
+[A2-B0-C2-r19_f706_permutado] brazo=permutado  aristas=2988 frac_masa=0.11250000000000004 kappaV=0.7575757575757575
+[A2-B0-C2-r20_f706_alin_dil] brazo=alin_dil   aristas=2396 frac_masa=0.14349999999999996 kappaV=1.3382352941176472
+[A2-B0-C2-r20_f706_alineado] brazo=alineado   aristas=4446 frac_masa=0.06950000000000002 kappaV=0.39024390243902446
+[A2-B0-C2-r20_f706_anti] brazo=anti       aristas=2396 frac_masa=0.13599999999999998 kappaV=1.1126760563380278
+[A2-B0-C2-r20_f706_perm_dil] brazo=perm_dil   aristas=2396 frac_masa=0.14349999999999996 kappaV=1.2796208530805682
+[A2-B0-C2-r20_f706_permutado] brazo=permutado  aristas=3081 frac_masa=0.11000000000000003 kappaV=0.7024390243902437
+[A2-B0-C2-r28_f706_alin_dil] brazo=alin_dil   aristas=3038 frac_masa=0.13599999999999998 kappaV=1.0416666666666665
+[A2-B0-C2-r28_f706_alineado] brazo=alineado   aristas=4458 frac_masa=0.09500000000000003 kappaV=0.5517241379310345
+[A2-B0-C2-r28_f706_anti] brazo=anti       aristas=3038 frac_masa=0.11600000000000003 kappaV=0.7794117647058824
+[A2-B0-C2-r28_f706_perm_dil] brazo=perm_dil   aristas=3038 frac_masa=0.11600000000000003 kappaV=0.75
+[A2-B0-C2-r28_f706_permutado] brazo=permutado  aristas=3606 frac_masa=0.09400000000000003 kappaV=0.4769230769230769
+[A2-B0-C2-r2_f706_alin_dil] brazo=alin_dil   aristas=2575 frac_masa=0.1415 kappaV=1.2394366197183098
+[A2-B0-C2-r2_f706_alineado] brazo=alineado   aristas=5395 frac_masa=0.054000000000000006 kappaV=0.40740740740740733
+[A2-B0-C2-r2_f706_anti] brazo=anti       aristas=2575 frac_masa=0.14 kappaV=1.2242152466367715
+[A2-B0-C2-r2_f706_perm_dil] brazo=perm_dil   aristas=2575 frac_masa=0.13849999999999996 kappaV=1.1523809523809518
+[A2-B0-C2-r2_f706_permutado] brazo=permutado  aristas=3312 frac_masa=0.10350000000000004 kappaV=0.5781249999999998
+[A2-B0-C2-r9_f706_alin_dil] brazo=alin_dil   aristas=2447 frac_masa=0.14049999999999999 kappaV=1.1333333333333333
+[A2-B0-C2-r9_f706_alineado] brazo=alineado   aristas=4141 frac_masa=0.07750000000000003 kappaV=0.4347826086956522
+[A2-B0-C2-r9_f706_anti] brazo=anti       aristas=2447 frac_masa=0.1325 kappaV=0.9861111111111109
+[A2-B0-C2-r9_f706_perm_dil] brazo=perm_dil   aristas=2447 frac_masa=0.13749999999999998 kappaV=1.0666666666666667
+[A2-B0-C2-r9_f706_permutado] brazo=permutado  aristas=3215 frac_masa=0.09900000000000003 kappaV=0.4238095238095236
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/venv/lib/python3.13/site-packages/scipy/stats/_wilcoxon.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  z = (r_plus - mn) / se
+
+[f706] 60 corridas -> cs090_fase7_f706_phantom_crudo.csv
+[f706] 12 grafos con los 5 brazos -> cs090_fase7_f706_pares.csv
+
+=== verificaciones (contra disco, no contra el script que generó los datos) ===
+  multiconjunto de cupos idéntico alineado/permutado/anti : 12/12 grafos
+  brazo `unif` reproduce MOT.dinamica_B0 arista por arista : 12/12
+  nº de aristas de `unif` == meta_regla.json de Fase V-B   : 12/12
+  densidad EXACTAMENTE igual en alin_dil/perm_dil/anti     : 12/12
+  ρ(cupo, grado inicial) medio: alineado=+0.996  permutado=-0.006  anti=-0.979
+
+=== el confound de densidad, en números ===
+  brazo         aristas  clustering  pendiente  frac_masa  kappa_V  n_sink
+  alineado       4312.5     0.00388     0.5776    0.08313   0.5449    8.00
+  permutado      3024.2     0.00815     0.8546    0.11388   0.7508    8.08
+  anti           2369.9     0.00979     1.0352    0.13850   1.1534    8.08
+  alin_dil       2369.9     0.00160     1.0844    0.14492   1.2041    8.08
+  perm_dil       2369.9     0.00506     1.0336    0.14162   1.1846    8.08
+
+  masa vs aristas sobre las 60 corridas: Spearman ρ=-0.962 (p=1.89e-34)  <- por esto hacen falta los brazos diluidos
+
+=== contrastes pareados, endpoint primario (fracción de masa en sumideros), n=12 ===
+  grano del instrumento: 1 partícula = 0.0005 de fracción de masa
+
+  alin_dil   vs perm_dil    medias 0.14492/0.14162  Δ=+0.00329 (+6.58 partículas, +2.3%)  signos 9/11 p=0.0654  Wilcoxon p=0.0977
+      LIMPIO: misma densidad exacta, mismo tratamiento (ambos diluidos)
+  alineado   vs permutado   medias 0.08313/0.11388  Δ=-0.03075 (-61.50 partículas, -27.0%)  signos 2/12 p=0.0386  Wilcoxon p=0.0024
+      CRUDO: confundido con densidad (alineado tiene más aristas)
+  alineado   vs anti        medias 0.08313/0.13850  Δ=-0.05537 (-110.75 partículas, -40.0%)  signos 1/12 p=0.0063  Wilcoxon p=0.0010
+      CRUDO: confundido con densidad
+  permutado  vs anti        medias 0.11388/0.13850  Δ=-0.02462 (-49.25 partículas, -17.8%)  signos 0/12 p=0.0005  Wilcoxon p=0.0005
+      CRUDO: confundido con densidad
+  alin_dil   vs anti        medias 0.14492/0.13850  Δ=+0.00642 (+12.83 partículas, +4.6%)  signos 12/12 p=0.0005  Wilcoxon p=0.0005
+      misma densidad, pero `anti` no fue diluido
+  perm_dil   vs anti        medias 0.14162/0.13850  Δ=+0.00312 (+6.25 partículas, +2.3%)  signos 8/11 p=0.2266  Wilcoxon p=0.0283
+      misma densidad, pero `anti` no fue diluido
+
+=== los mismos contrastes en κ_V y en nº de sumideros ===
+  kappa_v_agregado     alin_dil   vs perm_dil    Δ=+0.0196  signos 7/12  p=0.7744  Wilcoxon p=0.8501
+  kappa_v_agregado     alineado   vs permutado   Δ=-0.2059  signos 3/12  p=0.1460  Wilcoxon p=0.0093
+  kappa_v_agregado     alineado   vs anti        Δ=-0.6085  signos 0/12  p=0.0005  Wilcoxon p=0.0005
+  kappa_v_agregado     permutado  vs anti        Δ=-0.4026  signos 0/12  p=0.0005  Wilcoxon p=0.0005
+  n_sumideros          alin_dil   vs perm_dil    Δ=+0.0000  signos 0/0  p=nan  Wilcoxon p=1.0000
+  n_sumideros          alineado   vs permutado   Δ=-0.0833  signos 0/1  p=1.0000  Wilcoxon p=1.0000
+  n_sumideros          alineado   vs anti        Δ=-0.0833  signos 0/1  p=1.0000  Wilcoxon p=1.0000
+  n_sumideros          permutado  vs anti        Δ=+0.0000  signos 1/2  p=1.0000  Wilcoxon p=1.0000
+
+=== tamaño del efecto contra el grano del instrumento ===
+  LIMPIO alin_dil−perm_dil  : |Δ| medio=0.00429 (8.58 part.) | Δ medio=+0.00329 (+6.58 part.) | |Δ|>1 partícula en 11/12 grafos | IC95 de la media [-0.00014, +0.00672]
+  CRUDO alineado−permutado  : |Δ| medio=0.03158 (63.17 part.) | Δ medio=-0.03075 (-61.50 part.) | |Δ|>1 partícula en 12/12 grafos | IC95 de la media [-0.04094, -0.02056]
+
+=== contraste crudo, descontando la densidad por regresión (control secundario) ===
+  frac_masa = +0.9183 -0.1002·log(aristas)   R²=0.942  (n=60)
+  residuo alineado   − permutado : Δ=+0.00355 (+7.10 part.)  signos 8/12 p=0.3877  Wilcoxon p=0.3394
+  residuo alineado   − anti      : Δ=+0.00349 (+6.98 part.)  signos 6/12 p=1.0000  Wilcoxon p=0.5693
+  residuo permutado  − anti      : Δ=-0.00006 (-0.12 part.)  signos 4/12 p=0.3877  Wilcoxon p=0.7910
+
+=== ¿con qué se mueve el Δ limpio? (Spearman sobre los mismos grafos) ===
+  Δmasa_limpio vs Δ pendiente (alin_dil−perm_dil)    ρ=+0.186 (p=0.564)
+  Δmasa_limpio vs Δ clustering (alin_dil−perm_dil)   ρ=-0.424 (p=0.170)
+  Δmasa_limpio vs kcap de la regla                   ρ=+0.125 (p=0.699)
+  Δmasa_limpio vs nº de aristas del trío igualado    ρ=+0.375 (p=0.230)
+
+=== control de la asimetría: ¿el orden a densidad igual es DOSIS DE DILUCIÓN? ===
+  aristas quitadas al azar (media): alin_dil=1943  perm_dil=654  anti=0
+  dosis vs masa, centrado por grafo (36 corridas a densidad igualada): ρ=+0.671 (p=0.0000)
+  Δdosis (alin_dil−perm_dil) vs Δmasa limpio: ρ=-0.154 (p=0.6325)
+  (no hay en esta corrida ningún par con la MISMA dosis de dilución y distinto origen:
+   ése es el control que este diseño no incluye — queda declarado como límite)
+
+=== omnibus Friedman ===
+  frac_masa, los 5 brazos                       chi2=34.874 p=0.0000
+  frac_masa, sólo el trío de densidad igualada  chi2=14.217 p=0.0008

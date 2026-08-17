@@ -1,0 +1,15 @@
+[Unit]
+Description=ANIMA cabeza 3D (Chromium headless → fb1)
+After=anima-organismo.service
+Wants=anima-organismo.service
+ConditionPathExists=/dev/fb1
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/ubuntu/anima/celula_madre/docker/anima-pi-headless.py
+Restart=always
+RestartSec=8
+Environment=ANIMA_PI_HEADLESS_S=0.4
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EIT-3 κ_H Térmico v7.13 | Física real de Daisyworld (Stefan-Boltzmann)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0a0e1a;--panel:#111827;--line:#243047;--soft:#334155;--text:#e5eefc;--muted:#9fb2cc;--accent:#14b8a6;--accent2:#38bdf8;--vivo:#10b981}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#0f172a 0%,#0a0e1a 55%,#050814 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px}
+.container{max-width:1520px;margin:0 auto;padding:16px}.layout{display:grid;grid-template-columns:360px 1fr;gap:16px}.panel{background:linear-gradient(180deg,rgba(17,24,39,.95),rgba(15,23,42,.96));border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.25);padding:16px}.sidebar{display:flex;flex-direction:column;gap:14px}.section{padding:14px;border:1px solid rgba(255,255,255,.04);border-radius:12px;background:rgba(255,255,255,.02)}.section h3{margin:0 0 10px;font-size:0.95rem;color:#d8e5fb;text-transform:uppercase;letter-spacing:.08em;font-weight:600}.control{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;margin-bottom:10px}.control label{font-size:0.88rem;color:#d7e5fa;font-weight:500}.control small{grid-column:1/-1;color:var(--muted);margin-top:-2px;font-size:0.74rem}.value{font-variant-numeric:tabular-nums;color:var(--accent2);font-weight:700;font-size:0.95rem}input[type="range"]{width:100%;accent-color:var(--accent)}.inline{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding:10px 12px;border:1px solid var(--soft);border-radius:10px;background:rgba(255,255,255,.02)}.switch{position:relative;display:inline-block;width:52px;height:30px}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#334155;border-radius:999px;transition:.2s}.slider:before{content:"";position:absolute;height:22px;width:22px;left:4px;top:4px;background:white;border-radius:50%;transition:.2s}.switch input:checked + .slider{background:linear-gradient(90deg,var(--accent),#0f766e)}.switch input:checked + .slider:before{transform:translateX(22px)}button{width:100%;background:#0b1220;color:var(--text);border:1px solid var(--soft);border-radius:10px;padding:10px;font-weight:700;cursor:pointer;transition:.2s}button:hover{border-color:var(--accent);transform:translateY(-1px)}button.primary{background:linear-gradient(90deg,var(--accent),#0f766e);border-color:var(--accent)}button.secondary{background:linear-gradient(90deg,#1d4ed8,#1e40af);border-color:#1e40af}button.ghost{background:transparent}.main{display:grid;grid-template-rows:auto auto auto;gap:16px;min-width:0}
+.layout>*,main>*,.charts>*,.cards>*{min-width:0}.chart-card,.table-wrap{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;overflow-x:auto}.planet-wrap{display:flex;flex-direction:column;align-items:center;margin:0 0 16px}.planet-wrap canvas{display:block;border-radius:16px;box-shadow:0 0 0 1px var(--line),0 10px 30px rgba(0,0,0,.4);max-width:100%;height:auto}.planet-caption{max-width:640px;margin:10px 0 0;color:var(--muted);font-size:.78rem;line-height:1.5;text-align:center}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{padding:12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}.metric .k{color:var(--muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em}.metric .v{font-size:1.3rem;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}.metric .s{margin-top:2px;color:var(--muted);font-size:0.78rem}.metric.big{grid-column:1/-1}.regime{padding:14px;border-radius:14px;font-size:1.1rem;font-weight:800;text-align:center;border:1px solid var(--line);background:linear-gradient(90deg,rgba(20,184,166,.14),rgba(56,189,248,.1))}.quadrant-box{margin-top:12px;width:100%}#quadrantCanvas{display:block;width:100%;height:220px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(0,0,0,0.25)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 0 16px}.card{padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.charts{display:grid;grid-template-columns:1fr;gap:18px;padding:0 0 16px}.chart-wrap{height:300px}.table-box{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;font-size:.84rem}th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05);text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}th{position:sticky;top:0;background:#0b1220;color:#dce8fb;z-index:2}.footer-note{padding:10px 0 0;color:var(--muted);font-size:.82rem}@media (max-width: 1280px){.layout{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}}@media (max-width: 760px){.charts,.cards,.inline,.metrics{grid-template-columns:1fr}}
+
+/* ── AYUDA EN PANTALLA (v7.3) ────────────────────────────────────────────── */
+.qmark{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;
+  margin-left:6px;padding:0;border:1px solid #46536b;border-radius:50%;background:transparent;
+  color:#8fa4c4;font:600 10px/1 inherit;cursor:pointer;vertical-align:middle;flex:0 0 auto;
+  transition:.18s}
+.qmark:hover{border-color:#7fd4e8;color:#cfe6f4}
+.qmark:focus-visible{outline:2px solid #7fd4e8;outline-offset:2px}
+.qmark[aria-expanded="true"]{background:#7fd4e8;border-color:#7fd4e8;color:#0b1020}
+.ayuda{grid-column:1/-1;margin:6px 0 2px;padding:9px 11px;border-left:2px solid #7fd4e8;
+  border-radius:0 6px 6px 0;background:rgba(127,212,232,.07);color:#c3d3e8;
+  font-size:.78rem;line-height:1.5}
+.ayuda b{display:block;margin-bottom:3px;color:#e6f2fb;font-size:.8rem}
+.ayuda[hidden]{display:none}
+.metric .ayuda{margin-top:8px}
+/* las tarjetas de indicador no podían encogerse: el panel de ayuda las
+   empujaba fuera de pantalla en 1281 y 320 px */
+.metric,.metrics>*{min-width:0}
+.ayuda{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.ayuda b{overflow-wrap:anywhere}
+.section h3{display:flex;align-items:center}
+.explicar{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:9px 11px;
+  border:1px solid #46536b;border-radius:10px;background:rgba(255,255,255,.02);
+  color:#c3d3e8;font-size:.8rem;cursor:pointer}
+.explicar:hover{border-color:#7fd4e8}
+.explicar input{width:15px;height:15px;accent-color:#7fd4e8;cursor:pointer}
+.tarjeta{margin:0 0 14px;padding:14px 16px;border:1px solid #46536b;border-left:2px solid #e8c477;
+  border-radius:0 10px 10px 0;background:rgba(232,196,119,.05)}
+.tarjeta h4{margin:0 0 7px;font-size:.9rem;color:#f0dcae;text-transform:uppercase;
+  letter-spacing:.07em}
+.tarjeta p{margin:0 0 8px;color:#cdd8e8;font-size:.82rem;line-height:1.55}
+.tarjeta p:last-child{margin-bottom:0}
+
+
+/* v7.6 — aviso de sensor ciego */
+#satWarn{display:flex;align-items:center;gap:10px;margin:8px 0 4px;padding:10px 12px;
+  border:1px solid #f59e0b;border-left:4px solid #f59e0b;border-radius:8px;
+  background:rgba(245,158,11,.12);color:#fde68a;font-size:13px;line-height:1.45}
+#satWarn[hidden]{display:none}
+#satWarn .sw-t{font-weight:700;color:#fbbf24;letter-spacing:.02em}
+#satWarn .sw-n{font-variant-numeric:tabular-nums;color:#fff;font-weight:700}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Barra de navegación del sitio (autocontenida) ─────────────────────────
+   Variables propias bajo .cs-nav: las páginas de simuladores definen --gold,
+   --line y --border con valores distintos entre sí, y heredarlas daría una
+   barra diferente en cada una. */
+.cs-nav{
+  --cs-bg:#0c0f18; --cs-line:#242a37; --cs-gold:#e8c477;
+  --cs-ink:#c9c3b4; --cs-brand:#e2d9c4; --cs-dim:#767c87;
+  display:flex; align-items:center; flex-wrap:wrap; gap:16px;
+  margin:0 0 18px; padding:16px clamp(16px,4vw,58px);
+  background:var(--cs-bg); border-bottom:1px solid var(--cs-line);
+  font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  box-sizing:border-box;
+}
+.cs-nav .cs-brand{
+  font-size:13px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--cs-brand); text-decoration:none; font-weight:400; white-space:nowrap;
+}
+.cs-nav .cs-brand:hover{color:#fff}
+.cs-nav ul{
+  display:flex; flex-wrap:wrap; gap:clamp(11px,2vw,28px);
+  list-style:none; margin:0 0 0 auto; padding:0;
+}
+.cs-nav li{margin:0;padding:0}
+.cs-nav a{
+  color:var(--cs-ink); text-decoration:none; font-size:13.5px; font-weight:300;
+  padding:4px 0; border-bottom:1px solid transparent; transition:.22s;
+  display:inline-block;
+}
+.cs-nav a:hover,.cs-nav a:focus-visible{color:#fff;border-bottom-color:var(--cs-gold)}
+.cs-nav a[aria-current]{color:#fff;border-bottom-color:var(--cs-gold)}
+.cs-nav .cs-ver{
+  font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11.5px; letter-spacing:.06em; color:var(--cs-dim);
+  border:1px solid var(--cs-line); border-radius:999px; padding:3px 10px;
+  white-space:nowrap;
+}
+@media(max-width:640px){
+  .cs-nav{gap:10px;padding:12px 16px}
+  .cs-nav ul{margin-left:0;width:100%;gap:14px}
+}
+</style>
+</head>
+<body>
+<nav class="cs-nav" aria-label="Navegación del sitio">
+  <a class="cs-brand" href="https://cosmosemiotica.cl/index.html">Cosmosemiótica</a>
+  <ul>
+    <li><a href="https://cosmosemiotica.cl/teoria.html">Teoría</a></li>
+    <li><a href="https://cosmosemiotica.cl/experimentos.html" aria-current="true">Experimentos</a></li>
+    <li><a href="https://cosmosemiotica.cl/observatorio.html">Observatorio</a></li>
+    <li><a href="https://cosmosemiotica.cl/publicaciones.html">Publicaciones</a></li>
+    <li><a href="https://cosmosemiotica.cl/autor.html">Autor</a></li>
+  </ul>
+  <span class="cs-ver">v7.13</span>
+</nav>
+
+<div class="container">
+<div class="layout">
+<aside class="panel sidebar">
+<div class="tarjeta"><h4>Qué es esto</h4><p>Un planeta de laboratorio con vegetación encima. Las margaritas oscuras absorben calor y luminosidad, y las blancas reflejan el calor y la luminosidad, así que al crecer donde les acomoda terminan manteniendo el planeta habitable sin proponérselo. Es el modelo Daisyworld, de Watson y Lovelock, 1983.</p><p>Lo que agregamos es una pregunta que el modelo original no se hacía: mirando desde afuera, ¿cómo se sabe si adentro hay alguien regulando, o si es un sistema que ya no hace nada y todavía no se cae?</p><p>Sube el brillo del sol con la perilla «Luminosidad» y observa la huella de la vegetación y la variación de la conducta. El umbral que buscamos —κ_H— es el mínimo de variación que un sistema tiene que mostrar para que se pueda decir algo de él. Por debajo no está muerto: está callado.</p></div><label class="explicar"><input type="checkbox" id="explicarTodo">Explicar todo &mdash; abre las ayudas de la página</label><section class="section"><h3>Modo Operación<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s0" data-ay="s0" title="Qué es esto">?</button><div class="ayuda" id="ay-s0" hidden><b>Modo Operación</b>Controla si el entorno se mantiene fijo o se le aplica un ciclo de día y noche.</div></h3><div class="toggle-row"><label for="dayNightToggle">Día/Noche</label><label class="switch"><input id="dayNightToggle" type="checkbox" checked><span class="slider"></span></label></div><div class="inline" style="margin-top:10px;"><button id="btnStopDayNight" class="ghost">Detener Día/Noche</button><button id="btnApplyDayNight" class="ghost">Aplicar ciclo</button></div><div class="toggle-row"><label for="seasonToggle">Estaciones</label><label class="switch"><input id="seasonToggle" type="checkbox" checked><span class="slider"></span></label></div>
+<div class="control"><label for="seasonDays">Días por año</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seasonDays" data-ay="seasonDays" title="Qué es esto">?</button><div class="ayuda" id="ay-seasonDays" hidden><b>Duración del año</b>Cuántas vueltas de día/noche entran en un año simulado. Cada vuelta dura 1 segundo real, así que la órbita completa dura tantos segundos como días le pongas: con 1 día, el año entero pasa en 1 segundo; con 365, en 365 segundos. Solo actúa con Día/Noche encendido.</div><span id="seasonDaysVal" class="value">12</span><input id="seasonDays" type="range" min="1" max="365" step="1" value="12"><small>Vueltas de día/noche por año (año corto = rápido de ver)</small></div>
+<div class="control"><label for="seasonLumWinter">Invierno (Luminosidad)</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seasonLumWinter" data-ay="seasonLumWinter" title="Qué es esto">?</button><div class="ayuda" id="ay-seasonLumWinter" hidden><b>Qué tan frío es el invierno</b>Cuánto BAJA la luminosidad en pleno invierno respecto del valor del panel. Independiente del verano — hay inviernos más duros que otros, sin que el verano tenga que cambiar.</div><span id="seasonLumWinterVal" class="value">-0.150</span><input id="seasonLumWinter" type="range" min="-0.3" max="0" step="0.01" value="-0.15"><small>Luminosidad en pleno invierno (negativo = más frío)</small></div>
+<div class="control"><label for="seasonLumSummer">Verano (Luminosidad)</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seasonLumSummer" data-ay="seasonLumSummer" title="Qué es esto">?</button><div class="ayuda" id="ay-seasonLumSummer" hidden><b>Qué tan caluroso es el verano</b>Cuánto SUBE la luminosidad en pleno verano respecto del valor del panel. Independiente del invierno.</div><span id="seasonLumSummerVal" class="value">0.150</span><input id="seasonLumSummer" type="range" min="0" max="0.3" step="0.01" value="0.15"><small>Luminosidad en pleno verano (positivo = más calor)</small></div>
+<div class="control"><label for="seasonEnvWinter">Invierno (temperatura)</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seasonEnvWinter" data-ay="seasonEnvWinter" title="Qué es esto">?</button><div class="ayuda" id="ay-seasonEnvWinter" hidden><b>Temperatura ambiente en pleno invierno</b>La temperatura del entorno (no del planeta — esa es Tf, resultado real) en pleno invierno, sin importar la hora del día. Se acota a un rango donde a las margaritas les puede llegar a interesar vivir; fuera de ahí ya sabemos que se mueren, así que no hace falta explorarlo con este control. Independiente del verano — hay inviernos más duros que otros.</div><span id="seasonEnvWinterVal" class="value">15.0°C</span><input id="seasonEnvWinter" type="range" min="-5" max="35" step="0.5" value="15"><small>Temperatura ambiente en pleno invierno</small></div>
+<div class="control"><label for="seasonEnvSummer">Verano (temperatura)</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seasonEnvSummer" data-ay="seasonEnvSummer" title="Qué es esto">?</button><div class="ayuda" id="ay-seasonEnvSummer" hidden><b>Temperatura ambiente en pleno verano</b>La temperatura del entorno en pleno verano. Independiente del invierno — hay veranos más calurosos que otros.</div><span id="seasonEnvSummerVal" class="value">32.0°C</span><input id="seasonEnvSummer" type="range" min="0" max="45" step="0.5" value="32"><small>Temperatura ambiente en pleno verano</small></div>
+</section>
+<section class="section"><h3>Parámetros<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s1" data-ay="s1" title="Qué es esto">?</button><div class="ayuda" id="ay-s1" hidden><b>Parámetros</b>Los controles del planeta y de su sensor. El brillo del sol es la perilla principal.</div></h3><div class="control"><label for="powerBase">PowerBase</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-powerBase" data-ay="powerBase" title="Qué es esto">?</button><div class="ayuda" id="ay-powerBase" hidden><b>Consigna base</b>Cuánta potencia se le pide al sistema como punto de partida. Todo lo que hace se mueve alrededor de este valor: es el centro, no el máximo.</div><span id="powerBaseVal" class="value">0.500</span><input id="powerBase" type="range" min="0" max="1" step="0.001" value="0.47"><small>Consigna base del operador</small></div><div class="control"><label for="beta">β Rel</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-beta" data-ay="beta" title="Qué es esto">?</button><div class="ayuda" id="ay-beta" hidden><b>Persistencia</b>Cuánto del estado anterior se conserva en cada paso. Alto significa que el sistema tiene memoria y cambia despacio; bajo, que olvida rápido y reacciona de inmediato.</div><span id="betaVal" class="value">0.820</span><input id="beta" type="range" min="0.5" max="0.99" step="0.001" value="0.94"><small>Persistencia del sistema</small></div><div class="control"><label for="noise">E</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-noise" data-ay="noise" title="Qué es esto">?</button><div class="ayuda" id="ay-noise" hidden><b>Ruido de fondo</b>El temblor permanente del sistema. Sin nada de ruido queda muerto y no explora nada. Cuidado: este control también entra en la tasa de muerte de la vegetación, así que moverlo desplaza el borde donde la vida se extingue — que es justo lo que estamos midiendo.</div><span id="noiseVal" class="value">0.0079</span><input id="noise" type="range" min="0" max="0.01" step="0.0001" value="0.0079"><small>Ruido estocástico</small></div><div class="control"><label for="luminosity">Luminosidad</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-luminosity" data-ay="luminosity" title="Qué es esto">?</button><div class="ayuda" id="ay-luminosity" hidden><b>Brillo del sol</b>La perilla principal del experimento. Sube el brillo y el planeta se calienta; bájalo y se enfría. Fuera de cierto rango la vegetación no aguanta y se extingue.</div><span id="lumVal" class="value">0.94</span><input id="luminosity" type="range" min="0.6" max="1.4" step="0.01" value="0.94"><small>Forzante radiativa global</small></div><div class="control"><label for="tOpt">T óptima (margaritas)</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-tOpt" data-ay="tOpt" title="Qué es esto">?</button><div class="ayuda" id="ay-tOpt" hidden><b>Esto NO es la temperatura del planeta</b>Ojo con esto: no es un termómetro del planeta, es la preferencia BIOLÓGICA de las margaritas — la temperatura donde a ELLAS más les gusta vivir. La temperatura real del planeta (Tf, arriba) la fija la Luminosidad más el albedo, es un resultado, no se pone a mano acá. Mover esta perilla no calienta ni enfría el planeta: solo corre dónde las margaritas prosperan, y por lo tanto en qué luminosidad les toca vivir bien o morirse.</div><span id="tOptVal" class="value">25.0°C</span><input id="tOpt" type="range" min="20" max="30" step="0.1" value="25.0"><small>Temperatura preferida de las margaritas, no del planeta</small></div><div class="control"><label for="ptcTc">Tc PTC</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-ptcTc" data-ay="ptcTc" title="Qué es esto">?</button><div class="ayuda" id="ay-ptcTc" hidden><b>Punto medio del sensor</b>La temperatura en Celsius en que el sensor está en el centro de su rango de lectura. Si la dejas lejos de donde vive el experimento, el sensor se queda pegado en un extremo y deja de informar aunque los gráficos sigan moviéndose. Recalibrado a 16°C (30-jul-2026): con Estaciones encendidas de fábrica, el planeta pasa buena parte del año bastante más frío que los 25°C de antes — el punto medio se corrió para cubrir invierno y verano sin quedar pegado en ninguno de los dos.<br><br><b>Nota de unidades (01-ago-2026, auditoría Belbo)</b>: el sensor calcula su razón (temperatura ÷ Tc) en Celsius, y esa razón NO es físicamente invariante — cambiaría si la misma temperatura se expresara en Kelvin. El sensor sigue operando en Celsius (así está calibrado desde el 30-jul-2026, cambiarlo movería toda la curva de saturación), pero la razón equivalente en Kelvin (la escala físicamente absoluta) se calcula en paralelo y queda en el CSV exportado (columnas ptcRatioCelsius/ptcRatioKelvin) para que la diferencia sea auditable, no escondida.</div><span id="ptcTcVal" class="value">16.0°C</span><input id="ptcTc" type="range" min="1" max="100" step="0.1" value="16.0"><small>Temperatura crítica del sensor</small></div><div class="control"><label for="ptcSharp">Exponente PTC</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-ptcSharp" data-ay="ptcSharp" title="Qué es esto">?</button><div class="ayuda" id="ay-ptcSharp" hidden><b>Brusquedad del sensor</b>Cuán abrupta es la respuesta del sensor, en la misma escala Celsius que todo lo demás. Alto reacciona de golpe y se satura fácil; bajo responde suave a lo largo de un rango ancho. Junto con el punto medio decide si el instrumento está leyendo o está ciego. Bajado a 1 (30-jul-2026) para que el sensor no se quede pegado durante el vaivén de las Estaciones — con un exponente alto ni el mejor punto medio evita la saturación en un rango tan ancho.</div><span id="ptcSharpVal" class="value">1.0</span><input id="ptcSharp" type="range" min="1" max="16" step="0.1" value="1.0"><small>Curvatura del lazo pasivo</small></div></section>
+<section class="section"><h3>Acciones<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s2" data-ay="s2" title="Qué es esto">?</button><div class="ayuda" id="ay-s2" hidden><b>Acciones</b>Arrancar, pausar, reiniciar y descargar los datos de lo que se ha corrido.</div></h3><div class="inline"><button id="btnStart" class="primary">▶ Iniciar</button><button id="btnPause" class="ghost">⏸ Pausa</button></div><div class="inline" style="margin-top:10px;"><button id="btnReset" class="ghost">↺ Reiniciar</button><button id="btnExport" class="ghost">Descargar CSV</button></div></section>
+<section class="section"><h3>Barrido automático (κ_H)<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s3" data-ay="s3" title="Qué es esto">?</button><div class="ayuda" id="ay-s3" hidden><b>Barrido automático (κ_H)</b>Recorre un control de punta a punta deteniéndose en cada parada a medir, sin que nadie toque nada. Es la forma de obtener datos comparables entre puntos.</div></h3>
+<div class="control"><label for="sweepReset">Punto de partida</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepReset" data-ay="sweepReset" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepReset" hidden><b>Punto de partida</b>Decide con qué estado llega el sistema a cada parada del recorrido, y no es un detalle: cambia lo que se mide. Con <b>reinicio en cada parada</b>, cada punto es independiente y mide una propiedad del sistema en esa configuración. Con <b>arrastre</b>, cada parada hereda el estado de la anterior y lo que se mide es la trayectoria — el resultado puede quedar fijado por la inercia y dejar de responder a los parámetros. El tercer modo reproduce el comportamiento anterior a julio de 2026, en que no se reiniciaba nada: arranca con el estado que haya quedado de lo último que se hizo. Solo se distingue del segundo si antes se corrió algo — en una página recién abierta los dos dan lo mismo, y esa es justamente la trampa: el resultado dependía de lo que hubieras hecho antes.</div>
+<select id="sweepReset" style="width:100%;padding:6px;background:#0f1b2e;color:#dce8fb;border:1px solid #2a3b55;border-radius:6px;">
+<option value="parada" selected>Reiniciar en cada parada (puntos independientes)</option>
+<option value="inicio">Reiniciar solo al empezar (arrastra el estado)</option>
+<option value="ninguno">No reiniciar (comportamiento antiguo)</option>
+</select><small>Qué estado tiene el sistema al llegar a cada parada</small></div>
+<div class="control"><label for="seedInput">Semilla</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-seedInput" data-ay="seedInput" title="Qué es esto">?</button><div class="ayuda" id="ay-seedInput" hidden><b>Semilla</b>Fija el azar del sistema. Dos barridos con la misma semilla y los mismos parámetros dan exactamente el mismo resultado, número por número. Cambiarla es la forma de saber si algo que apareció es un hallazgo o una casualidad de esa corrida en particular.</div><span id="seedInputVal" class="value">1</span><input id="seedInput" type="range" min="1" max="200" step="1" value="1"><small>Cambiar la semilla y repetir es la prueba mínima</small></div>
+<div class="control"><label for="sweepAxis">Eje a barrer</label>
+<select id="sweepAxis" style="width:100%;padding:6px;background:#0f1b2e;color:#dce8fb;border:1px solid #2a3b55;border-radius:6px;">
+<option value="luminosity">Luminosidad (Daisyworld)</option>
+<option value="envelope">Posición del sobre (envTemp)</option>
+<option value="both">Ambos en secuencia</option>
+</select><small>Qué forzante recorre el barrido</small></div>
+<div class="control"><label for="sweepFrom">Desde</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepFrom" data-ay="sweepFrom" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepFrom" hidden><b>Desde</b>Valor inicial del recorrido automático.</div><span id="sweepFromVal" class="value">0.60</span><input id="sweepFrom" type="range" min="-60" max="60" step="0.01" value="0.60"><small>Inicio del eje</small></div>
+<div class="control"><label for="sweepTo">Hasta</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepTo" data-ay="sweepTo" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepTo" hidden><b>Hasta</b>Valor final del recorrido. Conviene que abarque los dos bordes donde la vegetación se extingue, para que el cruce quede adentro.</div><span id="sweepToVal" class="value">1.40</span><input id="sweepTo" type="range" min="-60" max="60" step="0.01" value="1.40"><small>Fin del eje</small></div>
+<div class="control"><label for="sweepSteps">Puntos</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepSteps" data-ay="sweepSteps" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepSteps" hidden><b>Paradas</b>En cuántos puntos se detiene el recorrido a medir. Más paradas dan más resolución y tardan más.</div><span id="sweepStepsVal" class="value">40</span><input id="sweepSteps" type="range" min="5" max="120" step="1" value="40"><small>Resolución del barrido</small></div>
+<div class="control"><label for="sweepSettle">Estabilización</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepSettle" data-ay="sweepSettle" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepSettle" hidden><b>Asentamiento</b>Cuántos pasos se deja al sistema estabilizarse en cada parada antes de empezar a medir. Si es corto se mide el transitorio en vez del estado.</div><span id="sweepSettleVal" class="value">160</span><input id="sweepSettle" type="range" min="0" max="600" step="10" value="160"><small>Pasos antes de medir (0 = mide en transitorio)</small></div>
+<div class="control"><label for="sweepMeasure">Medición</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepMeasure" data-ay="sweepMeasure" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepMeasure" hidden><b>Medición</b>Cuántos pasos dura la observación en cada parada. Es además el largo de la ventana con que se calcula la variación de la conducta.</div><span id="sweepMeasureVal" class="value">120</span><input id="sweepMeasure" type="range" min="30" max="600" step="10" value="120"><small>Pasos de medición (= ventana de H)</small></div>
+<div class="control"><label for="sweepNoise">E del barrido</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepNoise" data-ay="sweepNoise" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepNoise" hidden><b>Ruido del barrido</b>Si vale cero se usa el ruido del panel. Si es mayor que cero, lo fuerza durante todo el recorrido, ignorando el del panel.</div><span id="sweepNoiseVal" class="value">auto</span><input id="sweepNoise" type="range" min="0" max="0.02" step="0.0005" value="0"><small>0 = usa la E del panel; &gt;0 la fuerza</small></div>
+<div class="control"><label for="sweepTraceN">Trazas crudas</label><button type="button" class="qmark" aria-expanded="false" aria-controls="ay-sweepTraceN" data-ay="sweepTraceN" title="Qué es esto">?</button><div class="ayuda" id="ay-sweepTraceN" hidden><b>Registros crudos</b>De cuántas paradas se guarda el registro completo, no solo el resumen. Sirve para poder verificar después que los números resumidos son correctos. Súbelo si vas a auditar.</div><span id="sweepTraceNVal" class="value">6</span><input id="sweepTraceN" type="range" min="0" max="20" step="1" value="6"><small>Nº de puntos con traza powerLive exportada</small></div>
+<div class="inline" style="margin-top:8px;"><button id="btnSweep" class="primary">▶ Correr barrido κ_H</button><button id="btnSweepStop" class="ghost">Detener</button></div>
+<div id="sweepStatus" style="margin-top:8px;font-size:12px;color:#9fb2cc;">Listo. Preset luminosidad 0.60→1.40 (PTC en rango responsivo).</div>
+</section>
+<section class="section"><h3>Bitácora de parámetros<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s4" data-ay="s4" title="Qué es esto">?</button><div class="ayuda" id="ay-s4" hidden><b>Bitácora de parámetros</b>Deja registro de qué se cambió y cuándo. Sirve para saber después si una corrida fue limpia o si se movió algo a mitad de camino.</div></h3>
+<div class="inline"><button id="btnLogExport" class="ghost">Descargar bitácora</button><button id="btnLogClear" class="ghost">Limpiar</button></div>
+<div id="logBox" style="margin-top:8px;max-height:150px;overflow:auto;font-size:11px;line-height:1.5;color:#9fb2cc;font-family:monospace;background:#0c1626;border:1px solid #20304a;border-radius:6px;padding:8px;"></div>
+</section>
+</aside>
+<main class="main">
+<section class="panel"><div class="canvas-head" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;"><h2 style="margin:0;font-size:1.1rem;color:#dce8fb;">Estado del experimento</h2><div class="canvas-meta" style="display:flex;gap:16px;color:#9fb2cc;font-size:.85rem;"><span>t=<strong id="timeLabel">0</strong></span><span>PowerLive=<strong id="powerLiveLabel">0.500</strong></span><span id="seasonBadge" hidden>Estación: <strong id="seasonLabelSpan">Invierno</strong></span></div></div><div id="satWarn" role="status" hidden><span class="sw-t">SENSOR CIEGO</span><span>El sensor está pegado en un tope el <span class="sw-n" id="satPct">0%</span> del tiempo: dejó de informar, aunque los gráficos sigan moviéndose. Baje «Exponente PTC» o acerque «Tc PTC» a la temperatura en que vive el experimento.</span></div><div class="planet-wrap"><canvas id="planetCanvas" width="940" height="820"></canvas><p class="planet-caption">Cada punto es una margarita — negra o blanca según cuál domina ahí, suelo desnudo si ninguna cubre ese punto — y el fondo cambia de color con la temperatura. Vista solo para ver lo que pasa: no mide nada; lo que mide κ_H es H(a_t), abajo.</p></div><div class="chart-card" style="max-width:940px;margin:0 auto 16px;width:100%;box-sizing:border-box;"><h3 style="margin:0 0 8px;font-size:.95rem;color:#dce8fb;">Población de margaritas en vivo<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-popChart" data-ay="popChart" title="Qué es esto">?</button><div class="ayuda" id="ay-popChart" hidden><b>Curvas de población</b>Cuántas margaritas de cada color hay vivas a lo largo del tiempo, y el total (negras+blancas) — cantidad real, no porcentaje. Se cuentan sobre las 900 margaritas del planeta de arriba: si el 62% del planeta está cubierto, son ~558 margaritas vivas, no 900. Nunca llega a las 900: ningún planeta real tiene el 100% de su superficie habitable, y acá tampoco — la tasa de muerte le pone un techo real de ~550 a ~640 margaritas, según cuánto ruido tenga el sistema.</div></h3><div class="chart-wrap" style="height:220px"><canvas id="popChart"></canvas></div><div class="scrub-row" style="margin-top:10px;"><div style="display:flex;align-items:center;gap:10px;"><span style="color:#9fb2cc;font-size:.78rem;white-space:nowrap;">Línea de tiempo</span><input id="popScrub" type="range" min="0" max="0" step="1" value="0" style="flex:1 1 auto;width:100%;min-width:0;"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;"><span id="popScrubLabel" style="color:#dce8fb;font-size:.78rem;font-variant-numeric:tabular-nums;">en vivo</span><button type="button" id="popScrubLive" class="ghost" style="padding:4px 10px;font-size:.75rem;">Volver a vivo</button></div></div></div><div class="metrics"><div class="metric"><div class="k">Tf<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-tfMetric" data-ay="tfMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-tfMetric" hidden><b>Temperatura del campo</b>La temperatura efectiva del planeta en este instante.</div></div><div class="v" id="tfMetric">24.600</div><div class="s">Temperatura efectiva</div></div><div class="metric"><div class="k">envTemp<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-envMetric" data-ay="envMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-envMetric" hidden><b>Temperatura del entorno</b>La temperatura de afuera. Con el ciclo día/noche apagado se mantiene fija.</div></div><div class="v" id="envMetric">0.000</div><div class="s">Entorno externo</div></div><div class="metric"><div class="k">stress<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-stressMetric" data-ay="stressMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-stressMetric" hidden><b>Desacople</b>Cuánto se aparta el sistema de su entorno, en escala de cero a uno.</div></div><div class="v" id="stressMetric">0.000</div><div class="s">Desacople normalizado</div></div><div class="metric"><div class="k">H(a_t) abs<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-hatMetric" data-ay="hatMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-hatMetric" hidden><b>Variación de la conducta</b>Cuánta variedad hay en lo que el sistema hace (powerLive, el sensor PTC). Si se mueve de formas distintas el número sube; si repite siempre lo mismo, cae hacia cero. Ojo: el ruido puro da un número alto, así que «alto» no quiere decir «mejor». El orden real es silencio, después regulación, después ruido. Este es κ_H: el umbral que buscamos.</div></div><div class="v" id="hatMetric">0.000</div><div class="s">rel <span id="hrelMetric">0.000</span> · piso <span id="hnoiseMetric">0.000</span></div></div><div class="metric"><div class="k">huella<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-footMetric" data-ay="footMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-footMetric" hidden><b>Huella de la vegetación</b>Cuánto se aparta este planeta de un gemelo idéntico pero sin vida encima. Si vale cero, la vegetación no está aportando nada y el planeta se comporta como si estuviera estéril.</div></div><div class="v" id="footMetric">0.000</div><div class="s">Biótica vs abiótica</div></div><div class="metric"><div class="k">Δ_struct<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-deltaStructMetric" data-ay="deltaStructMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-deltaStructMetric" hidden><b>Estructura del campo</b>Cuán desparejo está el campo térmico interno. Sin diferencias no hay nada que distinguir, y sin eso no hay sistema que estudiar. No mide κ_H — junto con LF, decide si el sistema está "activo" en el plano Cierre de abajo (Jardín Fértil/Cierre/Selva Hostil/Colapso).</div></div><div class="v" id="deltaStructMetric">0.000</div><div class="s">Estructura espacial</div></div><div class="metric"><div class="k">A_sys_env<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-asysMetric" data-ay="asysMetric" title="Qué es esto">?</button><div class="ayuda" id="ay-asysMetric" hidden><b>Acoplamiento sistema-entorno</b>Qué tan cerca está la temperatura real del planeta (Tf) de lo que su entorno real le pide — el ambiente externo y el equilibrio físico que darían la luminosidad y el albedo actuales, promediados. Junto con e_R (abajo, no visible como métrica propia pero sí en el plano Cierre), decide si el sistema está "viable".</div></div><div class="v" id="asysMetric">0.000</div><div class="s">Acoplamiento</div></div><div class="metric big"><div class="k">Régimen</div><div class="regime" id="regimeMetric">RÍGIDO</div><div class="s" id="actionMetric" style="margin-top:8px">dejar oscilar</div></div></div><div class="quadrant-box"><h3 style="margin:0 0 8px;font-size:.85rem;color:#9fb2cc;text-transform:uppercase;letter-spacing:.06em;">Plano Cierre — Viabilidad (A_sys_env × e_R) × Activación (LF × Δ_struct)</h3><canvas id="quadrantCanvas"></canvas></div></section>
+<section class="panel"><div class="cards"><div class="card"><div class="label">PowerBase</div><div class="num" id="cardPowerBase">0.500</div></div><div class="card"><div class="label">PowerLive</div><div class="num" id="cardPowerLive">0.500</div></div><div class="card"><div class="label">R_PTC</div><div class="num" id="cardRptc">1.000</div></div><div class="card"><div class="label">Lambda</div><div class="num" id="cardLambda">0.100</div></div></div><div class="charts"><div class="chart-card"><h3>Evolución temporal<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s5" data-ay="s5" title="Qué es esto">?</button><div class="ayuda" id="ay-s5" hidden><b>Evolución temporal</b>Cómo se mueven las variables a lo largo del tiempo.</div></h3><div class="chart-wrap"><canvas id="evoChart"></canvas></div><div class="scrub-row" style="margin-top:10px;"><div style="display:flex;align-items:center;gap:10px;"><span style="color:#9fb2cc;font-size:.78rem;white-space:nowrap;">Línea de tiempo</span><input id="evoScrub" type="range" min="0" max="0" step="1" value="0" style="flex:1 1 auto;width:100%;min-width:0;"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;"><span id="evoScrubLabel" style="color:#dce8fb;font-size:.78rem;font-variant-numeric:tabular-nums;">en vivo</span><button type="button" id="evoScrubLive" class="ghost" style="padding:4px 10px;font-size:.75rem;">Volver a vivo</button></div></div></div></div></section>
+<section class="panel table-wrap"><h3>Historial de resultados<button type="button" class="qmark" aria-expanded="false" aria-controls="ay-s7" data-ay="s7" title="Qué es esto">?</button><div class="ayuda" id="ay-s7" hidden><b>Historial de resultados</b>La tabla de lo registrado hasta ahora, exportable a CSV.</div></h3><div class="table-box"><table><thead><tr><th>t</th><th>PowerBase</th><th>PowerLive</th><th>Th</th><th>Tc</th><th>Tf</th><th>env</th><th>stress</th><th>H(a_t)</th><th>huella</th><th>LF</th><th>Δ_struct</th><th>A_sys_env</th><th>e_R</th><th>Λ_exp</th><th>Zona Cierre</th></tr></thead><tbody id="historyBody"></tbody></table></div><div class="footer-note">v7.13 — κ_H · física planetaria real (Stefan-Boltzmann, Watson &amp; Lovelock 1983) · Daisyworld puro regula Tf (las margaritas, no el sensor) · powerLive/PTC es a_t, la conducta medida, sin retroalimentar la temperatura · sensor PTC en Celsius · doble escala (ABS local + REL) · curva abiótica = planeta estéril · plano Cierre (Viabilidad×Activación: A_sys_env, e_R, LF, Δ_struct — Jardín Fértil/Cierre/Selva Hostil/Colapso, C-N2.8.8) restituido y recalibrado a los rangos reales del instrumento como representación de la Teoría · azar aislado por fuente y por parada · punto de partida declarado · aviso de sensor ciego en pantalla · asentamiento medido hasta el equilibrio antes del golpe · las cinco repeticiones exportadas una por una · mide la tasa de recuperación y los indicadores de ralentización crítica</div></section>
+</main></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const els={powerBase:$('powerBase'),beta:$('beta'),noise:$('noise'),luminosity:$('luminosity'),tOpt:$('tOpt'),ptcTc:$('ptcTc'),ptcSharp:$('ptcSharp'),seasonDays:$('seasonDays'),seasonLumWinter:$('seasonLumWinter'),seasonLumSummer:$('seasonLumSummer'),seasonEnvWinter:$('seasonEnvWinter'),seasonEnvSummer:$('seasonEnvSummer'),dayNightToggle:$('dayNightToggle'),seasonToggle:$('seasonToggle'),powerBaseVal:$('powerBaseVal'),betaVal:$('betaVal'),noiseVal:$('noiseVal'),lumVal:$('lumVal'),tOptVal:$('tOptVal'),ptcTcVal:$('ptcTcVal'),ptcSharpVal:$('ptcSharpVal'),seasonDaysVal:$('seasonDaysVal'),seasonLumWinterVal:$('seasonLumWinterVal'),seasonLumSummerVal:$('seasonLumSummerVal'),seasonEnvWinterVal:$('seasonEnvWinterVal'),seasonEnvSummerVal:$('seasonEnvSummerVal')};
+const state={running:true,dayNightMode:true,step:0,tick:0,dt:5,dayNightSpeed:0.4,powerBase:0.47,powerLive:0.47,beta:0.94,noise:0.0079,luminosity:0.94,tOpt:25,ptcTc:16,ptcSharp:1,minTemp:-6,maxTemp:25,ptcR:1,ptcOut:1,ptcRatioC:1,ptcRatioK:1,H_at:0,H_noise:0,H_rel:0,absBand:0,absFloor:0,bioticTf:24.6,abioticTf:25,bioticFootprint:0,Tf:24.6,Tc:25,Th:28,delta:3.4,envTemp:24.6,externalStress:0,envDrift:0,history:[],black:0.18,white:0.14,bare:0.68,albedoBlack:0.25,albedoWhite:0.75,albedoBare:0.5,seed:1,satFrac:0,satCiego:false,faseAzar:'libre',
+  // ── ESTACIONES (v7.9, encendidas por defecto desde v7.10) — luminosidad Y
+  // temperatura ambiente se mueven juntos con el año, por encima del ciclo
+  // diario. Solo actúa si dayNightMode también está encendido. Alexis pidió
+  // que el experimento ARRANQUE así (el sol ya se ve orbitando, tiene que
+  // verse moviendo margaritas desde el vamos) y poder variar invierno y
+  // verano por separado (hay inviernos más fríos que otros).
+  // v7.11 — se sacaron los controles sueltos "Mínima"/"Máxima": Alexis los
+  // confundía con la temperatura del planeta (igual que "T óptima" antes) y
+  // su rango libre (-60/+60) no decía nada, porque las margaritas ni
+  // siquiera llegan vivas ahí. seasonEnvWinter/Summer pasan de ser un
+  // CORRIMIENTO (±) a ser la temperatura ambiente ABSOLUTA de cada estación;
+  // el ancho del vaivén diario queda fijo en DAY_NIGHT_WIDTH, no expuesto
+  // (no aporta nada nuevo, solo la mitad de un día se lee, no hace falta
+  // tocarla a mano).
+  seasonMode:true, seasonSpeed:1/(60*12),
+  seasonLumWinter:-0.15, seasonLumSummer:0.15,
+  seasonEnvWinter:15, seasonEnvSummer:32,
+  seasonFase:0, seasonLabel:'Invierno',
+  // ── TEORÍA (Cosmosemiótica Canónica) — restituido 30-jul-2026 a pedido de
+  // Alexis: este bloque no mide κ_H (eso es H_at/H_rel/H_noise, arriba), pero
+  // es la representación del régimen/Λ que le da sentido al experimento
+  // dentro de la Teoría, más allá de solo re-correr Daisyworld. sigma/band
+  // son internos (calibran el campo 2D headless que alimenta Δ_struct), sin
+  // slider propio salvo que se pida.
+  sigma:6.8, band:1.105, mult:0, _A_prev:0, LF:0, err:0, err_exp:0,
+  Lambda:0.1, Lambda_exp:0.1, deltaStruct:0, A_sys_env:0, LF_exp:0,
+  fertileScore:0, action:'dejar oscilar', regime:'RÍGIDO'};
+// ── SEMILLA EXPLÍCITA (mulberry32) ─────────────────────────────────────────
+// Math.random() no es reproducible. v7.4 llevó toda la aleatoriedad a un rng
+// sembrado, pero a un ÚNICO flujo compartido, y eso dejó abierto un problema
+// que v7.6 cierra:
+//
+//   La medición de recuperación (medirRecuperacion) avanza la física una
+//   cantidad VARIABLE de pasos —según cuánto tarde el planeta en volver— y
+//   cada uno de esos pasos consume del mismo flujo. Como la semilla se fijaba
+//   una sola vez al empezar el barrido, cada parada arrancaba en un punto del
+//   flujo que dependía de cuánto habían tardado TODAS las paradas anteriores.
+//
+//   No sesga los números (el estado sí se reinicia por parada), pero rompe la
+//   comparabilidad: cambiar el golpe o el tope de espera corre el azar de todo
+//   el recorrido, y después no se puede distinguir si una diferencia vino del
+//   cambio o del rebarajado. El instrumento de medir quedaba metido dentro del
+//   azar de lo medido.
+//
+// v7.6 — tres separaciones:
+//   1. un flujo por FUENTE (térmico y eco de ruido), para que tocar una no
+//      corra la otra;
+//   2. un flujo por PARADA, derivado de (semilla, eje, punto, fase), para que
+//      una parada dé siempre lo mismo sin importar qué pasó antes;
+//   3. una fase propia para la recuperación, para que su duración variable no
+//      pueda desplazar la ventana de medición.
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+// Hash FNV-1a de 32 bits: convierte (semilla, eje, punto, fase, fuente) en una
+// semilla derivada. Determinista y sin colisiones prácticas en este uso.
+function claveSemilla(...partes){
+  const s = partes.join('|');
+  let h = 0x811c9dc5;
+  for(let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+  return h>>>0;
+}
+let rngTf  = mulberry32(claveSemilla(1,'libre',0,'libre','Tf'));   // término estocástico de la temperatura
+let rngEco = mulberry32(claveSemilla(1,'libre',0,'libre','eco'));  // eco pasivo del ruido E
+// Modo libre (la simulación andando en pantalla, sin barrido): un solo sembrado
+// al fijar la semilla, y los flujos corren continuos desde ahí.
+function setSeed(seed){
+  state.seed = seed>>>0;
+  state.faseAzar = 'libre';
+  rngTf  = mulberry32(claveSemilla(state.seed,'libre',0,'libre','Tf'));
+  rngEco = mulberry32(claveSemilla(state.seed,'libre',0,'libre','eco'));
+}
+// Modo barrido: se resiembra en cada parada y en cada fase de esa parada.
+// Resembrar a mitad de trayectoria no introduce sesgo —el estado físico sigue
+// intacto, lo único que reinicia es la secuencia de ruido— y a cambio hace que
+// cada parada sea reproducible por sí sola.
+function sembrarFase(eje, punto, fase){
+  state.faseAzar = eje+':'+punto+':'+fase;
+  rngTf  = mulberry32(claveSemilla(state.seed, eje, punto, fase, 'Tf'));
+  rngEco = mulberry32(claveSemilla(state.seed, eje, punto, fase, 'eco'));
+}
+// ── MEDICIÓN κ_H ──────────────────────────────────────────────────────────
+// a_t = powerLive (conducta del campo). H(a_t) = entropía de Shannon sobre la
+// distribución de powerLive en ventana deslizante, discretización por bins.
+const HCFG = {win:120, bins:24, lo:0, hi:1.2, margin:0.05}; // win, bins, (lo/hi legado), margen de calibración
+let aBuf = [];           // buffer deslizante de powerLive (la conducta)
+let noiseEchoBuf = [];   // eco pasivo del ruido E (piso de ruido = suelo de silencio que declara el sistema)
+function shannonEntropy(samples, bins, lo, hi){
+  if(samples.length < 8) return 0;
+  const counts = new Array(bins).fill(0);
+  const span = Math.max(1e-9, hi-lo);
+  for(const v of samples){
+    let idx = Math.floor((v-lo)/span*bins);
+    if(idx<0) idx=0; if(idx>=bins) idx=bins-1;
+    counts[idx]++;
+  }
+  const n = samples.length;
+  let H = 0;
+  for(const c of counts){ if(c>0){ const p=c/n; H -= p*Math.log2(p); } }
+  return H; // bits; máximo = log2(bins)
+}
+// ── ESCALA ABS LOCAL (v7) ──────────────────────────────────────────────────
+// Binning calibrado a la banda real de ESTA muestra, con SUELO de silencio.
+// El suelo no lo ponemos nosotros: es el ancho de la banda del eco de ruido pasivo.
+// Si la conducta varía MENOS que su propio ruido, la banda usada es la del ruido y
+// powerLive (más angosto) colapsa en pocos bins -> H baja = silencio real.
+// Si la conducta varía con estructura por encima del ruido, los bins cubren su banda
+// real -> H capta la forma a la escala que el propio sistema declara.
+function entropyLocalAbs(samples, floorSamples, bins, margin){
+  if(samples.length < 8) return {H:0, lo:0, hi:0, band:0, floor:0};
+  let pLo=Infinity,pHi=-Infinity; for(const v of samples){ if(v<pLo)pLo=v; if(v>pHi)pHi=v; }
+  let fLo=Infinity,fHi=-Infinity; for(const v of floorSamples){ if(v<fLo)fLo=v; if(v>fHi)fHi=v; }
+  const band = pHi-pLo;
+  const floor = (floorSamples.length>=8) ? (fHi-fLo) : 0;
+  const center = (pLo+pHi)/2;
+  let width = Math.max(band, floor) * (1 + 2*margin);
+  if(!(width>0)) width = 1e-9;
+  const lo = center - width/2, hi = center + width/2;
+  return {H:shannonEntropy(samples, bins, lo, hi), lo, hi, band, floor};
+}
+
+// ── PISO DE SILENCIO (v7.1) ────────────────────────────────────────────────
+// Mide la entropía de una serie con una regla de anchura dada, centrada en la
+// propia serie. Necesario porque el eco de ruido pasivo y powerLive no viven en
+// el mismo tramo del eje: usar la ventana de la conducta para binear el ruido
+// tiraba todas sus muestras al bin del borde y devolvía H = 0 siempre.
+// Lo comparable entre ambas series es la ANCHURA de la regla, no su posición.
+function entropyAtWidth(samples, bins, width){
+  if(samples.length < 8 || !(width > 0)) return 0;
+  let lo = Infinity, hi = -Infinity;
+  for(const v of samples){ if(v < lo) lo = v; if(v > hi) hi = v; }
+  const c = (lo + hi) / 2;
+  return shannonEntropy(samples, bins, c - width/2, c + width/2);
+}
+
+// ── RALENTIZACIÓN CRÍTICA (v7.5) ───────────────────────────────────────────
+// Mide cuántos pasos tarda el sistema en dejar de moverse. Cerca de una
+// bifurcación ese número se dispara: es el fenómeno que Scheffer y otros
+// describen como critical slowing down y que sirve de alerta temprana.
+// Devuelve el tope si no converge, y eso también es un dato: significa que en
+// ese punto del eje el sistema no se asienta en un tiempo razonable.
+// ── ASENTAMIENTO HASTA EL EQUILIBRIO (v7.6.1) ─────────────────────────────
+// Antes de golpear hay que estar EN el equilibrio, no cerca. Con asentamiento
+// fijo (160 pasos) el extremo frío del eje llegaba al golpe todavía en
+// transitorio: la población venía subiendo, el criterio de retorno pedía volver
+// a un valor que el sistema ya había dejado atrás, y la repetición se comía el
+// tope de 20.000 pasos sin converger nunca. Medido: el asentamiento real va de
+// ~700 a ~16.500 pasos según el punto del eje.
+// Lo grave era la lectura. En x=0,60 las cinco repeticiones daban
+// [TOPE, 31, 30, 30, 30] y se exportaba el promedio, 4.024,2 — que no es ni el
+// tope ni los treinta pasos, y que además volteaba la bandera «convergió» por
+// culpa de una sola repetición arruinada. Ese número entró como hallazgo de
+// ralentización crítica y lo que medía era asentamiento insuficiente.
+// El umbral sale del propio criterio de retorno: la línea base no puede moverse
+// más de una décima de la tolerancia (golpe*0,2) durante una ventana del largo
+// de una recuperación típica. Si no alcanza a asentarse, se reporta y se sigue:
+// eso también es un dato, y queda en el CSV en vez de disfrazarse de promedio.
+function asentarHastaEquilibrio(tope, tol){
+  // El botón Detener tiene que seguir funcionando durante un barrido, pero la
+  // función también se usa fuera de uno (pruebas, uso manual). Se recuerda si
+  // entramos desde un barrido en vez de consultar el estado global en cada
+  // vuelta: consultarlo directo dejaba el asentamiento en cero fuera del barrido.
+  const V=50, NECESARIAS=3, enBarrido=sweepActive;
+  let prev=state.black, quietas=0, pasos=0;
+  while(pasos<tope){
+    if(enBarrido && !sweepActive) break;
+    for(let s=0;s<V;s++) stepHeadless();
+    pasos+=V;
+    const d=Math.abs(state.black-prev); prev=state.black;
+    if(d<tol){ quietas++; if(quietas>=NECESARIAS) return {pasos, asentado:1}; }
+    else quietas=0;
+  }
+  return {pasos, asentado:0};
+}
+// ── INSTANTÁNEA DEL ESTADO (v7.6.1) ───────────────────────────────────────
+// Necesaria para que las repeticiones sean réplicas de verdad. El golpe baja
+// white en golpe*0.5 y el criterio de retorno solo mira black, así que white
+// quedaba desplazado: recuperaba cerca del 60% antes del golpe siguiente y el
+// resto se acumulaba. Medido en x=0,805: white de partida caía 0,41935 →
+// 0,40100 entre la primera repetición y la quinta, y black subía 0,20685 →
+// 0,22544. Las cinco repeticiones corrían sobre cinco sistemas distintos, y el
+// tiempo de recuperación bajaba monótono —[658, 518, 431, 372, 329]— por esa
+// deriva y no por el azar. Restaurando el estado antes de cada golpe, las cinco
+// parten del mismo punto y difieren solo en la realización del ruido, que es lo
+// que una réplica tiene que ser.
+function instantanea(){
+  return {black:state.black, white:state.white, bare:state.bare,
+          Tf:state.Tf, Tc:state.Tc, Th:state.Th, delta:state.delta,
+          powerLive:state.powerLive, ptcR:state.ptcR, ptcOut:state.ptcOut};
+}
+function restaurarInstantanea(s){
+  state.black=s.black; state.white=s.white; state.bare=s.bare;
+  state.Tf=s.Tf; state.Tc=s.Tc; state.Th=s.Th; state.delta=s.delta;
+  state.powerLive=s.powerLive; state.ptcR=s.ptcR; state.ptcOut=s.ptcOut;
+}
+function medirRecuperacion(golpe, tope){
+  // Golpea la POBLACIÓN de margaritas, no la temperatura. La temperatura se
+  // recupera en unos quince pasos en todo el eje —es rápida y no informa—;
+  // la variable lenta es la vegetación, y es ahí donde está la bifurcación:
+  // las margaritas negras se extinguen alrededor de luminosidad 0,93 y cerca
+  // de ese punto la recuperación se hace lenta. Eso es la ralentización
+  // crítica y es lo que este barrido sale a medir.
+  const REPS=5, UMBRAL=0.2;
+  const base = instantanea();   // el equilibrio alcanzado antes de golpear
+  let suma=0, fallos=0; const reps=[];
+  for(let r=0;r<REPS;r++){
+    restaurarInstantanea(base);   // cada repetición parte del MISMO estado
+    const bB=base.black;
+    state.black = clamp(bB + golpe, 0, 0.9);
+    state.white = clamp(base.white - golpe*0.5, 0, 0.9);
+    let i=1;
+    for(; i<=tope; i++){
+      stepHeadless();
+      if(Math.abs(state.black-bB) <= golpe*UMBRAL) break;
+    }
+    if(i>tope) fallos++;
+    reps.push(Math.min(i,tope));
+    suma+=Math.min(i,tope);
+  }
+  // devolver el sistema al equilibrio: la ventana de medición tiene que medir el
+  // punto de operación, no un sistema todavía sonando por cinco golpes seguidos.
+  restaurarInstantanea(base);
+  // v7.6.1 — se devuelven las repeticiones una por una. El promedio de una
+  // distribución bimodal no describe ninguno de sus dos modos, y con la bandera
+  // binaria sola no había forma de notarlo desde el CSV.
+  const ord=reps.slice().sort((a,b)=>a-b);
+  return {pasos: suma/REPS, convergio: fallos===0?1:0, reps,
+          topes: fallos, mediana: ord[Math.floor(REPS/2)]};
+}
+// Varianza y autocorrelación de retardo 1. Los otros dos indicadores del mismo
+// fenómeno: cerca del punto crítico ambos suben.
+function varianzaYAutocorr(xs0){
+  // Se le quita la tendencia lineal primero. Sin eso, la deriva hacia el
+  // equilibrio domina y la autocorrelación sale ~1 en todo el eje, que fue
+  // exactamente lo que pasó en la primera versión de esta medición.
+  const n=xs0.length;
+  if(n<3) return {varianza:0, autocorr1:0};
+  let sx=0,sy=0,sxy=0,sxx=0;
+  for(let i=0;i<n;i++){ sx+=i; sy+=xs0[i]; sxy+=i*xs0[i]; sxx+=i*i; }
+  const den=n*sxx-sx*sx;
+  const b = den!==0 ? (n*sxy-sx*sy)/den : 0;
+  const a = sy/n - b*sx/n;
+  const xs = xs0.map((y,i)=> y-(a+b*i));
+  let m=0; for(const x of xs) m+=x; m/=n;
+  let s2=0; for(const x of xs) s2+=(x-m)*(x-m); s2/=n;
+  if(s2<=0) return {varianza:0, autocorr1:0};
+  let c=0; for(let i=1;i<n;i++) c+=(xs[i]-m)*(xs[i-1]-m);
+  return {varianza:s2, autocorr1:(c/(n-1))/s2};
+}
+// ── ESCALA REL (v5) ────────────────────────────────────────────────────────
+// Binning adaptado al [min,max] de la muestra, SIN suelo. Capta forma pura;
+// por construcción es ciega al silencio (estira cualquier banda hasta llenar bins).
+function entropyRel(samples, bins){
+  if(samples.length < 8) return 0;
+  let lo=Infinity,hi=-Infinity; for(const v of samples){ if(v<lo)lo=v; if(v>hi)hi=v; }
+  if(hi-lo < 1e-9) return 0;
+  return shannonEntropy(samples, bins, lo, hi);
+}
+// Eco pasivo: lo que daría powerLive si fuera solo ruido E sin regulación.
+function passiveNoiseSample(){
+  // powerBase modulado SOLO por ruido del campo, sin respuesta PTC ni inercia regulatoria
+  return state.powerBase + (rngEco()-0.5)*state.noise*10;
+}
+function updateBehavioralEntropy(){
+  aBuf.push(state.powerLive);
+  if(aBuf.length>HCFG.win) aBuf.shift();
+  noiseEchoBuf.push(passiveNoiseSample());
+  if(noiseEchoBuf.length>HCFG.win) noiseEchoBuf.shift();
+  // dos escalas en paralelo (v5) sobre la ventana viva, con calibración local (v7):
+  const la = entropyLocalAbs(aBuf, noiseEchoBuf, HCFG.bins, HCFG.margin); // ABS local, suelo=ruido
+  state.H_at    = la.H;                              // amplitud calibrada al sistema
+  state.H_rel   = entropyRel(aBuf, HCFG.bins);       // forma (ciega al silencio)
+  state.H_noise = entropyAtWidth(noiseEchoBuf, HCFG.bins, la.hi-la.lo); // piso: misma ANCHURA de regla, centrada en el propio ruido (v7.1)
+  state.absBand = la.band; state.absFloor = la.floor;
+}
+// ── FÍSICA REAL DE DAISYWORLD (v7.7) ───────────────────────────────────────
+// Hasta v7.6.1 la temperatura planetaria era una RECTA (12+34*absorbido).
+// Watson & Lovelock 1983 (Tellus 35B, "the parable of Daisyworld") usan la
+// ley de Stefan-Boltzmann de verdad: σ(Te+273)⁴ = S·L·(1−A). Verificado
+// leyendo el texto completo del paper (jameslovelock.org): S=9,17×10⁵
+// erg·cm⁻²·s⁻¹ es SU constante solar, σ=5,6704×10⁻⁵ erg·cm⁻²·s⁻¹·K⁻⁴ es la
+// constante física universal. K=S/σ.
+// Esto no es un simple cambio de pendiente: la recta vieja cubría 17-48°C en
+// todo el rango de luminosidad/albedo posible; la física real cubre de
+// -51°C a +88°C — mucho más ancha, y hace que la meseta regulada por las
+// margaritas contraste mucho más con la curva estéril (que es justamente el
+// fenómeno que Daisyworld existe para mostrar).
+const DAISY_S = 9.17e5, DAISY_SIGMA = 5.6704e-5, DAISY_K = DAISY_S/DAISY_SIGMA;
+function temperaturaPlanetariaReal(absorbido){
+  return Math.pow(DAISY_K*Math.max(absorbido,1e-9), 0.25) - 273;
+}
+// Curva abiótica: Tf que tendría el campo sin contribución regulatoria (powerLive=0).
+// La huella biótica es la divergencia entre Tf real y esta referencia.
+function abioticTf(lum){
+  // CURVA DEL PLANETA ESTÉRIL (v7.2, física real desde v7.7). Es la
+  // temperatura que tendría este mismo planeta sin vegetación: sin
+  // margaritas el albedo es el del suelo desnudo, y no existe el empuje
+  // regulatorio 8.2*powerLive. Misma forma que targetTf en computeDaisyworld,
+  // con albedo fijo.
+  // ANTES devolvía tOpt constante: la huella biótica no era una huella sino
+  // la desviación |Tf − tOpt|. Corregido tras la auditoría del 25-jul-2026.
+  // v7.9 — acepta luminosidad EFECTIVA (con estación aplicada) para que la
+  // huella biótica siga siendo válida cuando las estaciones están activas;
+  // sin argumento usa state.luminosity, igual que siempre.
+  if(lum===undefined) lum=state.luminosity;
+  return temperaturaPlanetariaReal(lum*(1 - state.albedoBare));
+}
+
+let evoChart;let popChart;const HIST_MAX=6000;let scrubT=null;
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)),lerp=(a,b,t)=>a+(b-a)*t,gauss=(x,m,s)=>Math.exp(-0.5*Math.pow((x-m)/Math.max(s,1e-6),2));
+
+// ── CAMPO 2D HEADLESS → Δ_struct (restituido 30-jul-2026) ──────────────────
+// Ya no se dibuja (el planeta lo reemplaza como vista), pero Δ_struct —cuán
+// desparejo está el campo térmico— alimenta el régimen/Λ de la Teoría, y eso
+// SÍ Alexis lo quiere de vuelta. sigma/band quedan fijos (no son sliders):
+// solo calibran esta cuadrícula interna, no son parte de lo que se mide.
+const gridSize=64;
+let field=Array.from({length:gridSize},()=>Array.from({length:gridSize},()=>24.5));
+function resetField(){field=Array.from({length:gridSize},()=>Array.from({length:gridSize},()=>24.5))}
+function pseudoNoise(x,y,t){const s=Math.sin(x*12.9898+y*78.233+t*0.021)*43758.5453;return(s-Math.floor(s))*2-1}
+function evolveField(albedo){const next=field.map(r=>r.slice());const cx=gridSize/2,cy=gridSize/2;for(let y=0;y<gridSize;y++)for(let x=0;x<gridSize;x++){const dx=(x-cx)/cx,dy=(y-cy)/cy,r=Math.sqrt(dx*dx+dy*dy),edge=gauss(r,0.72,0.11+state.band*0.03),daisyMix=state.black*(1-r)+state.white*r,noise=(pseudoNoise(x,y,state.tick+state.seed*1013.9)-0.5)*state.noise*16,target=state.Tf+edge*state.delta*1.8+daisyMix*1.2-albedo*1.8+noise,smooth=clamp(0.05+state.sigma*0.01,0.04,0.16);let n=0,c=0;for(let oy=-1;oy<=1;oy++)for(let ox=-1;ox<=1;ox++){const nx=x+ox,ny=y+oy;if(nx>=0&&nx<gridSize&&ny>=0&&ny<gridSize){n+=field[ny][nx];c++}}next[y][x]=lerp(n/c,target,smooth)}field=next}
+function computeDeltaStruct(field){let sum=0,sumSq=0,n=0;for(let y=0;y<field.length;y++)for(let x=0;x<field[0].length;x++){const v=field[y][x];sum+=v;sumSq+=v*v;n++}const mean=sum/n;return Math.sqrt(Math.max(sumSq/n-mean*mean,0))}
+function computeCoupling(Tf,targetTf){const diff=Math.abs(Tf-targetTf);return Math.max(0,1-diff/8.0)}
+// BLOQUE 6 — régimen: depende de estructura, multiplicidad y error real
+function classifyRegime(){
+  if(state.deltaStruct<0.2&&state.LF<0.15) return['CERRADO','dejar oscilar'];
+  if(state.deltaStruct>=0.2&&state.deltaStruct<1.2&&state.fertileScore>=0.05) return['TRANSICIÓN','dejar oscilar'];
+  if(state.deltaStruct>1.4||state.err>2.5) return['SOBRECARGA','enfriar borde'];
+  return['RÍGIDO','reanclar'];
+}
+
+// ── PLANETA (v7.8) ─────────────────────────────────────────────────────────
+// Vista LITERAL, no de medición: un punto fijo por "parcela" de superficie,
+// coloreado según qué fracción del planeta cubren las margaritas en este
+// instante. No alimenta κ_H ni ninguna métrica — es solo para ver lo que
+// pasa, el mismo error que tenía el campo 2D viejo pero sin la trampa: acá
+// nunca se lee de vuelta hacia la física ni hacia la conducta medida.
+const planetCanvas=$('planetCanvas'), pctx=planetCanvas?planetCanvas.getContext('2d'):null;
+// v7.9 — densidad subida de 260 a 900 (a pedido de Alexis: "muy pocas... si
+// fuera real no cambian el albedo en nada" — con tan pocos puntos el dibujo
+// no transmitía que la cobertura real SÍ mueve el albedo del planeta).
+const PLANET_N = 900;
+
+// ── Cuadrante Cierre (Jardín Fértil / Cierre / Selva Hostil / Colapso) ────
+// Umbrales canónicos (C-N2.8.8: A_sys-env≥κ_V, 0<|e_R|<κ_O, LF≥κ_LF, Δ_struct>umbral),
+// calibrados a los rangos REALES de ESTE simulador (no a la mitad de 0-1),
+// siguiendo el mismo método que Célula_Madre/experimentos/investigar_diferenciacion_audio.py
+// (medido en 7200 pasos con defaults reales: A_sys_env p10=0.71,p50=0.84; e_R p90=0.010;
+// LF p50=0.081,max=0.131; deltaStruct p50=0.53,p90=1.12).
+const KAPPA_V = 0.75, KAPPA_O = 0.01, KAPPA_LF = 0.05, KAPPA_DELTA = 0.3;
+function clasificarCierre(){
+  const ratioLF = state.LF / KAPPA_LF;
+  const ratioDelta = state.deltaStruct / KAPPA_DELTA;
+  const ratioA = state.A_sys_env / KAPPA_V;
+  const ratioE = 2 - (state.err / KAPPA_O); // ≥1 ⇔ e_R<κ_O (con margen), =2 si e_R=0
+  const xRatio = Math.min(ratioLF, ratioDelta);   // ≥1 ⇔ ACTIVACIÓN
+  const yRatio = Math.min(ratioA, ratioE);        // ≥1 ⇔ VIABILIDAD
+  const activo = xRatio >= 1, viable = yRatio >= 1;
+  let zona;
+  if (viable && activo) zona = 'JARDIN_FERTIL';
+  else if (viable && !activo) zona = 'CIERRE';
+  else if (!viable && activo) zona = 'SELVA_HOSTIL';
+  else zona = 'COLAPSO';
+  // signo por zona: activo→+X, quieto→-X; viable→+Y, no-viable→-Y.
+  // En reposo (todo en 0) xRatio=yRatio=0 → signedX=signedY=0 SIEMPRE, sin
+  // importar el signo (0×±1=0): el marcador arranca exacto en el centro.
+  const signedX = activo ? xRatio : -xRatio;
+  const signedY = viable ? yRatio : -yRatio;
+  return { zona, signedX, signedY, xRatio, yRatio };
+}
+const _planetPts = (function(){
+  // semilla fija y propia, sin relación con el azar de la física: el dibujo
+  // tiene que ser siempre el mismo layout, nunca debe tocar rngTf/rngEco.
+  const rng = mulberry32(0xDA157A);
+  const pts = [];
+  for(let i=0;i<PLANET_N;i++){
+    const a = rng()*Math.PI*2, r = Math.sqrt(rng());
+    pts.push({x:Math.cos(a)*r, y:Math.sin(a)*r, p:rng(), rot:rng()*Math.PI*2, sc:0.78+rng()*0.4});
+  }
+  return pts;
+})();
+// Margarita de 6 pétalos + centro, calcada de las referencias de Alexis
+// (Margarita-Blanca.png / Margarita-Negra.jpg): pétalos redondeados con un
+// leve entalle en la punta, centro de color INVERTIDO al pétalo (blanca→
+// centro naranja/bronce, negra→centro blanco), con un borde fino que separa
+// la flor del fondo del planeta.
+function drawDaisy(x, y, r, cfg, rot){
+  const n=6, len=r*1.18, w=r*0.72;
+  pctx.save();
+  pctx.translate(x,y); pctx.rotate(rot);
+  pctx.fillStyle=cfg.petal;
+  if(cfg.outline){ pctx.strokeStyle=cfg.outline; pctx.lineWidth=Math.max(0.5,r*0.09); }
+  for(let i=0;i<n;i++){
+    pctx.save();
+    pctx.rotate(i*(Math.PI*2/n));
+    pctx.beginPath();
+    pctx.moveTo(0,0);
+    pctx.quadraticCurveTo(-w*0.5,-len*0.34, -w*0.16,-len*0.86);
+    pctx.quadraticCurveTo(0,-len,          w*0.16,-len*0.86);
+    pctx.quadraticCurveTo(w*0.5,-len*0.34,  0,0);
+    pctx.closePath();
+    pctx.fill();
+    if(cfg.outline) pctx.stroke();
+    pctx.restore();
+  }
+  pctx.restore();
+  pctx.beginPath();
+  pctx.arc(x,y,r*0.38,0,Math.PI*2);
+  pctx.fillStyle=cfg.center;
+  pctx.fill();
+  if(cfg.centerRing){ pctx.strokeStyle=cfg.centerRing; pctx.lineWidth=Math.max(0.4,r*0.07); pctx.stroke(); }
+}
+const DAISY_NEGRA = {petal:'#121214', outline:'rgba(255,255,255,.55)', center:'#f5f5f2', centerRing:null};
+const DAISY_BLANCA = {petal:'#f2f1ea', outline:'rgba(150,150,150,.55)', center:'#f4a622', centerRing:'#8a5a2b'};
+function colorForTempPlanet(t){
+  // -60°C a +90°C (rango real con Stefan-Boltzmann): frío azul, templado
+  // verde/tierra, caliente rojo.
+  const stops=[[56,120,200],[110,150,110],[196,150,72],[196,88,40],[150,30,20]];
+  const u=clamp((t+60)/150,0,1), p=u*(stops.length-1), i=Math.floor(p), f=p-i;
+  const a=stops[Math.min(i,stops.length-1)], b=stops[Math.min(i+1,stops.length-1)];
+  return `rgb(${Math.round(lerp(a[0],b[0],f))},${Math.round(lerp(a[1],b[1],f))},${Math.round(lerp(a[2],b[2],f))})`;
+}
+// El sol sobre la ECLÍPTICA (v5, calcado del esquema de Alexis: anillo fino
+// alrededor del planeta, inclinado los 23,5° reales del eje). Compacto a
+// propósito — sin agrandar el canvas: el anillo vive DENTRO del cuadro de
+// siempre. El sol recorre el anillo con la ÉPOCA DEL AÑO (estaciones), no
+// con la hora del día — es la eclíptica (ciclo anual), no el ciclo diario.
+//
+// v5 — dos correcciones de Alexis sobre v4:
+// 1) la elipse estaba centrada en el planeta (se veía "circular"); ahora el
+//    planeta está en un FOCO de verdad (SUN_A/SUN_E/SUN_C reales, el centro
+//    geométrico de la elipse queda desplazado del planeta) — así el lado
+//    cercano y el lejano son visiblemente distintos, como una órbita real.
+// 2) el ángulo estaba invertido (la parte alta quedaba a la izquierda);
+//    TILT negativo dejó la parte alta a la DERECHA como pidió.
+// v6 — "está demasiado cerca... hazla mucho más larga en sentido
+// horizontal aprovechando el espacio lateral": SUN_A/SUN_E mucho más
+// grandes (antes vivía casi pegada al planeta) y el canvas pasa a ser un
+// panel ANCHO (no un cuadrado chico) con el planeta corrido hacia el lado
+// cercano de la órbita, dejando todo el espacio lejano para el lado largo.
+const SUN_TILT = -23.5*Math.PI/180;
+const SUN_A = 440, SUN_E = 0.55;
+const SUN_B = SUN_A*Math.sqrt(1-SUN_E*SUN_E), SUN_C = SUN_A*SUN_E;
+function sunPos(cx, cy, ang){
+  // Elipse centrada en (-SUN_C,0) ANTES de inclinar: el foco (el planeta)
+  // queda en el origen. Esto es lo que le faltaba a v4 — ahí el "centro"
+  // de la parametrización coincidía con el planeta, que es justo el error.
+  const ex0=SUN_A*Math.cos(ang)-SUN_C, ey0=SUN_B*Math.sin(ang);
+  const ex=ex0*Math.cos(SUN_TILT)-ey0*Math.sin(SUN_TILT);
+  const ey=ex0*Math.sin(SUN_TILT)+ey0*Math.cos(SUN_TILT);
+  return {x:cx+ex, y:cy+ey};
+}
+function drawOrbitArc(cx, cy, from, to){
+  // El centro geométrico de la elipse (no el foco) para poder usar
+  // ctx.ellipse nativo: está a SUN_C del foco, en la misma dirección
+  // inclinada.
+  const ecx=cx-SUN_C*Math.cos(SUN_TILT), ecy=cy-SUN_C*Math.sin(SUN_TILT);
+  pctx.save();
+  pctx.strokeStyle='rgba(255,214,120,.38)'; pctx.lineWidth=1.4;
+  pctx.beginPath(); pctx.ellipse(ecx,ecy,SUN_A,SUN_B,SUN_TILT,from,to); pctx.stroke();
+  pctx.restore();
+}
+function drawSunDisc(sx, sy, R){
+  let lumEf=state.luminosity;
+  if(state.dayNightMode && state.seasonMode){
+    const factor=(Math.sin(state.seasonFase*Math.PI*2-Math.PI/2)+1)/2; // 0 invierno, 1 verano
+    lumEf=clamp(state.luminosity+lerp(state.seasonLumWinter,state.seasonLumSummer,factor), 0.3, 1.6);
+  }
+  const t=clamp((lumEf-0.6)/0.8,0,1);
+  const sunR=R*(0.09+t*0.05);
+  pctx.beginPath(); pctx.arc(sx,sy,sunR,0,Math.PI*2); pctx.fillStyle='#ffdc7a'; pctx.fill();
+}
+function drawPlanet(){
+  if(!pctx) return;
+  const w=planetCanvas.width, h=planetCanvas.height, cx=690, cy=320, R=130;
+  pctx.clearRect(0,0,w,h);
+  let ang;
+  // v7.12 — bug real encontrado por Alexis: con ang=fase*2π el sol quedaba
+  // en periastro (más cerca) exactamente en fase=0 (Invierno) y en apoastro
+  // (más lejos) en fase=0,5 (Verano) — al revés de lo que corresponde.
+  // factor() (seasonFactor) usa fase*2π−π/2 y pica en fase=0,5; para que el
+  // sol se vea más cerca justo ahí, el ángulo orbital necesita el mismo
+  // desfase de medio período: (fase−0,5)*2π. Verificado con node: con el fix,
+  // distancia mínima (198) cae exacto en factor=1,00 (Verano) y máxima (682)
+  // en factor=0,00 (Invierno).
+  if(state.seasonMode){ ang=(state.seasonFase-0.5)*Math.PI*2; }
+  else { ang=(state.tick*0.004)%(Math.PI*2); }
+  // El eje MAYOR es la bisagra (el anillo, real, es un círculo tilteado —
+  // ahí no hay foreshortening); el eje MENOR es donde más se aleja/acerca
+  // al espectador. Por eso la mitad de "atrás" es donde sin(ang)<0, no
+  // cos(ang) — igual que un anillo de Saturno se separa en dos semi-arcos.
+  const atras = Math.sin(ang) < 0;
+  drawOrbitArc(cx,cy, Math.PI, Math.PI*2); // mitad de atrás
+  const sp = sunPos(cx,cy,ang);
+  if(atras) drawSunDisc(sp.x, sp.y, R);
+  pctx.save();
+  pctx.beginPath(); pctx.arc(cx,cy,R,0,Math.PI*2); pctx.clip();
+  pctx.fillStyle=colorForTempPlanet(state.Tf);
+  pctx.fillRect(0,0,w,h);
+  const bT=state.black, wT=state.black+state.white;
+  for(const pt of _planetPts){
+    if(pt.p>=wT) continue; // suelo desnudo: se ve el color de fondo, sin punto encima
+    const x=cx+pt.x*R, y=cy+pt.y*R, r=R*0.045*pt.sc;
+    drawDaisy(x, y, r, pt.p<bT ? DAISY_NEGRA : DAISY_BLANCA, pt.rot);
+  }
+  pctx.restore();
+  pctx.strokeStyle='rgba(255,255,255,.25)'; pctx.lineWidth=2;
+  pctx.beginPath(); pctx.arc(cx,cy,R,0,Math.PI*2); pctx.stroke();
+  drawOrbitArc(cx,cy, 0, Math.PI); // mitad de adelante, encima del planeta
+  if(!atras) drawSunDisc(sp.x, sp.y, R);
+}
+
+// ─── PLANO COSMOSEMIÓTICO (restituido 30-jul-2026) ────────────────────────
+// Libertad Funcional (LF) × Δ_struct, con las cuatro zonas de la Teoría:
+// Fértil, Colapso, Cerrado, Hostil. Es la representación por la que este
+// experimento es de la Teoría y no solo una re-corrida de Daisyworld.
+const _quadTrail = [];
+const _quadTrailMax = 80;
+
+function drawQuadrant(){
+  const canvas = document.getElementById('quadrantCanvas');
+  if(!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const W = Math.round(rect.width)  || 400;
+  const H = Math.round(rect.height) || 220;
+  if(canvas.width !== W || canvas.height !== H){ canvas.width=W; canvas.height=H; }
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+
+  // Los 4 cuadrantes son SIEMPRE del mismo tamaño (50/50 en ambos ejes) —
+  // el umbral (xRatio=1, yRatio=1) cae siempre exacto en la línea central.
+  // Lo que se ajusta es la ESCALA de los datos dentro de cada mitad, no el
+  // tamaño de las cajas: [0,1] (quieto/no-viable) se reparte linealmente en
+  // su mitad, y (1,∞) (activo/viable) se satura suavemente hacia el borde
+  // exterior de la suya, calibrado a los máximos reales observados aquí.
+  const K_X = 1.3, K_Y = 0.55; // ritmo de saturación más allá del umbral (calibrado a máx. reales: xRatio~2.6, yRatio~1.3)
+  function mapEje(ratio, K){
+    if (ratio <= 1) return ratio * 0.5;                                   // 0→0 (borde), 1→0.5 (centro)
+    return 0.5 + 0.5 * (1 - Math.exp(-(ratio - 1) / K));                  // 1→0.5, satura hacia 1 (borde opuesto)
+  }
+
+  ctx.fillStyle = "rgba(59,130,246,0.15)";   // Cierre         — arriba izq (viable, quieto)
+  ctx.fillRect(0,0,w/2,h/2);
+  ctx.fillStyle = "rgba(16,185,129,0.15)";   // Jardín Fértil  — arriba der (viable, activo)
+  ctx.fillRect(w/2,0,w/2,h/2);
+  ctx.fillStyle = "rgba(239,68,68,0.15)";    // Colapso        — abajo izq (no viable, quieto)
+  ctx.fillRect(0,h/2,w/2,h/2);
+  ctx.fillStyle = "rgba(245,158,11,0.15)";   // Selva Hostil   — abajo der (no viable, activo)
+  ctx.fillRect(w/2,h/2,w/2,h/2);
+
+  ctx.strokeStyle = "rgba(255,255,255,0.2)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(w/2,0); ctx.lineTo(w/2,h);
+  ctx.moveTo(0,h/2); ctx.lineTo(w,h/2);
+  ctx.stroke();
+
+  ctx.font = "10px Inter,sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.fillText("Cierre",       6,        12);
+  ctx.fillText("Jardín Fértil", w/2+6,   12);
+  ctx.fillText("Colapso",      6,        h-6);
+  ctx.fillText("Selva Hostil", w/2+6,    h-6);
+
+  ctx.fillStyle = "rgba(255,255,255,0.3)";
+  ctx.font = "9px Inter,sans-serif";
+  ctx.fillText("Activación →", w-70,    h-3);
+  ctx.fillText("Viabilidad ↑", 2,        9);
+
+  const { zona, xRatio, yRatio } = clasificarCierre();
+  const px = mapEje(xRatio, K_X) * w;
+  const py = h - mapEje(yRatio, K_Y) * h;
+
+  _quadTrail.push({px, py});
+  if(_quadTrail.length > _quadTrailMax) _quadTrail.shift();
+
+  for(let i = 1; i < _quadTrail.length; i++){
+    const alpha = (i / _quadTrail.length) * 0.4;
+    ctx.beginPath();
+    ctx.moveTo(_quadTrail[i-1].px, _quadTrail[i-1].py);
+    ctx.lineTo(_quadTrail[i].px,   _quadTrail[i].py);
+    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  const zonaColor = {
+    'JARDIN_FERTIL': '#10b981',
+    'CIERRE':        '#38bdf8',
+    'SELVA_HOSTIL':  '#f59e0b',
+    'COLAPSO':       '#ef4444',
+  }[zona] || '#ffffff';
+
+  ctx.beginPath();
+  ctx.arc(px, py, 5, 0, Math.PI*2);
+  ctx.fillStyle = zonaColor;
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+}
+// ── SATURACIÓN DEL SENSOR ──────────────────────────────────────────────────
+// El sensor PTC tiene topes: si la respuesta se pega en 1.2 o en 0.05, dejó de
+// informar. Lo grave es que los gráficos siguen moviéndose igual —el resto del
+// motor no se detiene— así que desde la pantalla no se nota. Hasta v7.5 la
+// marca existía solo como columna del CSV, o sea que uno se enteraba después de
+// correr. Acá se lleva en ventana deslizante y se muestra mientras corre.
+// El umbral de 10% es el mismo criterio con que la batería B' excluyó
+// combinaciones: no se inventa un número nuevo para la pantalla.
+let satBuf=[];
+const SAT_VENTANA=120, SAT_UMBRAL=0.10;
+function registrarSaturacion(){
+  const sat=(state.ptcOut>=1.2-1e-9||state.ptcOut<=0.05+1e-9)?1:0;
+  satBuf.push(sat); if(satBuf.length>SAT_VENTANA) satBuf.shift();
+  let n=0; for(const b of satBuf) n+=b;
+  state.satFrac = satBuf.length ? n/satBuf.length : 0;
+  state.satCiego = state.satFrac > SAT_UMBRAL;
+  return sat;
+}
+// Sensor en Celsius, como siempre — sin conversión a Kelvin. Con la física
+// real la temperatura puede alejarse mucho de ptcTc (hasta ~-50°C o ~+90°C
+// en los bordes del eje); cuando eso pasa, el sensor se satura (se pega en
+// 0,05 o 1,2), y eso es exactamente lo que el aviso en pantalla está para
+// mostrar — no es un error a esconder, es información real sobre dónde el
+// instrumento dejó de leer. Se corrige acercando «Tc PTC» a la temperatura
+// donde vive el experimento, o bajando «Exponente PTC» si el rango a
+// explorar es ancho (ver ayuda de cada control).
+// v7.13 — Corrección 01-ago-2026 (auditoría externa, Belbo/GPT-5.6): una razón entre
+// grados Celsius no es físicamente invariante -- cambia si la misma
+// temperatura se expresara en Kelvin o Fahrenheit, porque Celsius tiene un
+// cero arbitrario (no es el cero absoluto). Alexis: dejar AMBAS a la vista en
+// vez de elegir una sola. El sensor SIGUE calibrado y operando en Celsius
+// (ptcRatioC, sin tocar -- es el número que ya está calibrado con Tc PTC=16°C
+// y Exponente PTC=1.0 desde el 30-jul-2026, cambiarlo rompería esa
+// calibración); ptcRatioK es la misma razón pero en Kelvin (escala absoluta,
+// invariante de verdad), calculada en paralelo solo como referencia/exportable
+// -- no alimenta ptcR ni ptcOut. Hace explícito, en vez de esconder, que la
+// razón Celsius que sí gobierna al sensor NO es la magnitud físicamente
+// invariante.
+function ptcResponse(temp){
+  const ratioC=clamp(temp/Math.max(0.1,state.ptcTc),0.2,3);
+  state.ptcRatioC=ratioC;
+  state.ptcRatioK=(temp+273)/(Math.max(0.1,state.ptcTc)+273);
+  state.ptcR=Math.max(0.15,Math.pow(ratioC,state.ptcSharp));
+  state.ptcOut=clamp(1/state.ptcR,0.05,1.2);
+  registrarSaturacion();
+  return state.ptcOut
+}
+// v7.7 — el offset de temperatura local ("14" hasta v7.6.1) se reemplaza por
+// q' = q/[4·(273+22,5)³], con q en su cota superior declarada por el propio
+// paper (q < 0,2·S·L/σ, evaluada en L=1): q'≈31,34. Antes era un número fijo
+// sin origen documentado; ahora sale directo del paper.
+const DAISY_QPRIME = 31.336694844781125;
+// v7.9 — acepta luminosidad EFECTIVA opcional (con estación aplicada); sin
+// argumento usa state.luminosity, así los llamados existentes no cambian.
+function computeDaisyworld(lum){if(lum===undefined)lum=state.luminosity;state.bare=clamp(1-state.black-state.white,0,1);const albedo=state.black*state.albedoBlack+state.white*state.albedoWhite+state.bare*state.albedoBare;const absorbed=lum*(1-albedo);const Tplanet=temperaturaPlanetariaReal(absorbed);const localBlack=Tplanet+(albedo-state.albedoBlack)*DAISY_QPRIME;const localWhite=Tplanet+(albedo-state.albedoWhite)*DAISY_QPRIME;const growthBlack=clamp(1-0.003265*Math.pow(state.tOpt-localBlack,2),0,1);const growthWhite=clamp(1-0.003265*Math.pow(state.tOpt-localWhite,2),0,1);const death=0.28+state.noise*10;const spawn=Math.max(0,state.bare);state.black=clamp(state.black+(state.black*(growthBlack*spawn-death))*0.08,0,0.9);state.white=clamp(state.white+(state.white*(growthWhite*spawn-death))*0.08,0,0.9);state.bare=clamp(1-state.black-state.white,0,1);const albedo2=state.black*state.albedoBlack+state.white*state.albedoWhite+state.bare*state.albedoBare;return{albedo:albedo2,targetTf:temperaturaPlanetariaReal(lum*(1-albedo2))}}
+// v7.9 — acepta sobre EFECTIVO opcional (min/max con estación aplicada).
+function getDayNightTemp(hour,minT,maxT){let lo=minT===undefined?state.minTemp:minT,hi=maxT===undefined?state.maxTemp:maxT;if(lo>=hi){const m=(lo+hi)/2;lo=m-0.05;hi=m+0.05;}const phase=(hour/24)*Math.PI*2;const normalized=(Math.sin(phase-Math.PI/2)+1)/2;return lo+normalized*(hi-lo)}
+// ── ESTACIONES (v7.9) ───────────────────────────────────────────────────────
+// Ciclo anual LENTO por encima del ciclo diario: modula luminosidad Y el
+// sobre día/noche juntos (a pedido de Alexis: "ambos a la vez", más fiel a
+// la Tierra real, donde las dos cosas cambian con la estación). Requiere
+// Día/Noche encendido — sin días no hay "año" que contar. invierno=fase 0
+// (luminosidad/sobre en su mínimo), verano=fase 0,5 (máximo).
+function seasonFactor(){
+  // 0 en pleno invierno, 1 en pleno verano
+  const fase=(state.tick*state.seasonSpeed)%1;
+  return {fase, factor:(Math.sin(fase*Math.PI*2-Math.PI/2)+1)/2};
+}
+function seasonLabel(fase){
+  if(fase<0.25) return 'Invierno';
+  if(fase<0.5)  return 'Primavera';
+  if(fase<0.75) return 'Verano';
+  return 'Otoño';
+}
+
+function updateLabels(){els.powerBaseVal.textContent=Number(state.powerBase).toFixed(3);els.betaVal.textContent=Number(state.beta).toFixed(3);els.noiseVal.textContent=Number(state.noise).toFixed(4);els.lumVal.textContent=Number(state.luminosity).toFixed(2);els.tOptVal.textContent=Number(state.tOpt).toFixed(1)+'°C';els.ptcTcVal.textContent=Number(state.ptcTc).toFixed(1)+'°C';els.ptcSharpVal.textContent=Number(state.ptcSharp).toFixed(1);if(els.seasonDaysVal)els.seasonDaysVal.textContent=els.seasonDays.value;if(els.seasonLumWinterVal)els.seasonLumWinterVal.textContent=Number(els.seasonLumWinter.value).toFixed(3);if(els.seasonLumSummerVal)els.seasonLumSummerVal.textContent=Number(els.seasonLumSummer.value).toFixed(3);if(els.seasonEnvWinterVal)els.seasonEnvWinterVal.textContent=Number(els.seasonEnvWinter.value).toFixed(1)+'°C';if(els.seasonEnvSummerVal)els.seasonEnvSummerVal.textContent=Number(els.seasonEnvSummer.value).toFixed(1)+'°C'}
+function syncStateFromUI(){state.powerBase=Number(els.powerBase.value);state.beta=Number(els.beta.value);state.noise=Number(els.noise.value);state.luminosity=Number(els.luminosity.value);state.tOpt=Number(els.tOpt.value);state.ptcTc=Number(els.ptcTc.value);state.ptcSharp=Number(els.ptcSharp.value);state.dayNightSpeed=0.4;if(els.seasonDays)state.seasonSpeed=1/(60*Math.max(1,Number(els.seasonDays.value)));if(els.seasonLumWinter)state.seasonLumWinter=Number(els.seasonLumWinter.value);if(els.seasonLumSummer)state.seasonLumSummer=Number(els.seasonLumSummer.value);if(els.seasonEnvWinter)state.seasonEnvWinter=Number(els.seasonEnvWinter.value);if(els.seasonEnvSummer)state.seasonEnvSummer=Number(els.seasonEnvSummer.value)}
+
+// powerLive es a_t, la conducta medida: la respuesta del sensor PTC a la
+// temperatura, con inercia (no instantánea). H(a_t) se mide sobre esta serie
+// (eso es κ_H). El resto de esta función (mult/err) no mide κ_H — alimenta
+// Λ/régimen, la representación de la Teoría, restituida a pedido de Alexis.
+function computeLFandErr(){
+  const targetPower=state.powerBase*ptcResponse(state.Tf);
+  state.powerLive=lerp(state.powerLive,targetPower,0.08);
+
+  // MULTIPLICIDAD DE ATRACTORES (no es LF declarativa: sin R3 no hay LF genuina).
+  const deviation=Math.abs(state.powerLive-state.powerBase);
+  const inertiaPenalty=Math.exp(-deviation*4);
+  state.mult=clamp(deviation*(1-inertiaPenalty),0,1);
+  state.LF=state.mult; // eje del cuadrante: Libertad Funcional (proxy, no LF declarativa de O-N7)
+
+  // e_R = −ΔA_sys-env: el error es la PÉRDIDA de acoplamiento (derivada).
+  const dA = state.A_sys_env - state._A_prev;
+  state.err = Math.max(0, -dA);
+  state._A_prev = state.A_sys_env;
+  state.err_exp=state.externalStress;
+}
+
+// Ancho fijo del vaivén diario (día vs noche), en °C. Ya no es un control
+// del panel — solo IMPORTA dónde está centrado (eso lo deciden Invierno/
+// Verano), no cuánto mide; exponerlo no aportaba nada que valiera la pena
+// tocar a mano.
+const DAY_NIGHT_WIDTH = 6;
+function applyDayNightCycle(){
+  const cycleHour=(state.tick*state.dayNightSpeed)%24;
+  // Estación: luminosidad Y temperatura ambiente se mueven juntas con el
+  // "año". seasonEnvWinter/Summer son ahora temperaturas ABSOLUTAS (no un
+  // corrimiento) — sin estaciones, se usa el punto medio entre ambas como
+  // centro fijo del vaivén diario.
+  let luminosidadEf=state.luminosity, centerEf=(state.seasonEnvWinter+state.seasonEnvSummer)/2;
+  if(state.seasonMode){
+    const {fase, factor}=seasonFactor();
+    state.seasonFase=fase; state.seasonLabel=seasonLabel(fase);
+    luminosidadEf=clamp(state.luminosity+lerp(state.seasonLumWinter,state.seasonLumSummer,factor), 0.3, 1.6);
+    centerEf=lerp(state.seasonEnvWinter,state.seasonEnvSummer,factor);
+  }
+  const minEf=centerEf-DAY_NIGHT_WIDTH/2, maxEf=centerEf+DAY_NIGHT_WIDTH/2;
+  state.minTemp=minEf; state.maxTemp=maxEf; // se guardan para historial/CSV
+  const envTemp=getDayNightTemp(cycleHour, minEf, maxEf);
+  state.envTemp=envTemp;
+  state.envDrift=envTemp-state.Tf;
+  state.externalStress=Math.abs(state.envDrift)/Math.max(1,maxEf-minEf);
+  const daisies=computeDaisyworld(luminosidadEf);
+  computeLFandErr();
+  // Daisyworld puro regula Tf — powerLive ya NO empuja la temperatura (v7.8):
+  // el sensor/PTC mide, no calienta. Ver nota en pasoFisica().
+  const thermalDrive=0.46*(daisies.targetTf-state.Tf);
+  const envForce=(envTemp-state.Tf);
+  const damping=0.09+(1-state.beta)*0.65;
+  const stochastic=(rngTf()-0.5)*state.noise*10;
+  state.Tf=state.Tf+thermalDrive*0.12+envForce*0.12-damping*(state.Tf-state.tOpt)*0.05+stochastic;
+  state.Th=lerp(state.Th,state.Tf+0.9+0.4*Math.sin(cycleHour/24*Math.PI*2),0.08);
+  state.Tc=lerp(state.Tc,state.Tf+0.4,0.05);
+  state.delta=state.Th-state.Tf;
+  evolveField(daisies.albedo);
+  state.deltaStruct=computeDeltaStruct(field);
+  state.A_sys_env=computeCoupling(state.Tf,lerp(envTemp,daisies.targetTf,0.5));
+  state.abioticTf=abioticTf(luminosidadEf);
+  state.bioticTf=state.Tf;
+  state.bioticFootprint=Math.abs(state.Tf-state.abioticTf);
+  updateBehavioralEntropy();
+  state.LF_exp=clamp(Math.abs(state.powerLive-state.powerBase),0,1);
+  // BLOQUE 3 — Lambda cosmosemiótica unificada
+  state.Lambda=(state.deltaStruct*state.LF)/Math.max(state.err,1e-6)*state.A_sys_env;
+  state.Lambda_exp=state.Lambda;
+  state.fertileScore=clamp(state.LF*(0.55+state.powerLive*0.25),0,1);
+  const rr=classifyRegime(); state.regime=rr[0]; state.action=rr[1];
+}
+
+function pasoFisica(){
+  if(state.dayNightMode){
+    applyDayNightCycle();
+  } else {
+    const daisies=computeDaisyworld();
+    computeLFandErr();
+    // Daisyworld puro regula Tf (Watson & Lovelock 1983): solo el albedo de
+    // las margaritas empuja la temperatura del planeta. Hasta v7.7 un término
+    // 8.2*powerLive sumaba el empuje del PTC/Peltier directamente sobre Tf,
+    // heredado del diseño "Pastor del Borde" (v1.5.4): ahí el sensor SÍ era
+    // parte del lazo de control. En este experimento powerLive es solo a_t,
+    // la conducta que se MIDE (H(a_t)=κ_H) — quien regula la temperatura son
+    // las margaritas, no el sensor. Retirado 30-jul-2026 a pedido de Alexis.
+    const thermalDrive=0.46*(daisies.targetTf-state.Tf);
+    const damping=0.09+(1-state.beta)*0.65;
+    const stochastic=(rngTf()-0.5)*state.noise*14;
+    state.Tf=state.Tf+thermalDrive*0.12-damping*(state.Tf-state.tOpt)*0.05+stochastic;
+    const edgeBias=(state.black-state.white)*4.2;
+    state.Tc=lerp(state.Tc,state.Tf+edgeBias*0.18,0.12);
+    state.Th=lerp(state.Th,state.Tf+0.65+state.powerLive*1.8+edgeBias*0.32,0.10);
+    state.delta=state.Th-state.Tf;
+    evolveField(daisies.albedo);
+    state.deltaStruct=computeDeltaStruct(field);
+    // v7.12 — unificado con applyDayNightCycle(): sin Día/Noche no hay ciclo
+    // externo que computar, pero el "entorno" de referencia para A_sys_env
+    // tiene que existir igual (antes quedaba con el envTemp viejo, sin
+    // sentido en este modo). Se usa el punto medio Invierno/Verano, la misma
+    // línea base que applyDayNightCycle() usa cuando Estaciones está apagado.
+    state.envTemp=(state.seasonEnvWinter+state.seasonEnvSummer)/2;
+    state.A_sys_env=computeCoupling(state.Tf,lerp(state.envTemp,daisies.targetTf,0.5));
+    state.abioticTf=abioticTf();
+    state.bioticTf=state.Tf;
+    state.bioticFootprint=Math.abs(state.Tf-state.abioticTf);
+    updateBehavioralEntropy();
+    state.LF_exp=clamp(Math.abs(state.powerLive-state.powerBase),0,1);
+    // BLOQUE 3 — Lambda cosmosemiótica unificada
+    state.Lambda=(state.deltaStruct*state.LF)/Math.max(state.err,1e-6)*state.A_sys_env;
+    state.Lambda_exp=state.Lambda;
+    // v7.12 — unificado con applyDayNightCycle(): tenía una fórmula propia
+    // (con delta/Lambda) distinta a la de ese modo, sin razón declarada —
+    // ahora es la misma fórmula en ambos modos.
+    state.fertileScore=clamp(state.LF*(0.55+state.powerLive*0.25),0,1);
+    const rr=classifyRegime(); state.regime=rr[0]; state.action=rr[1];
+  }
+  pushHistory();state.step+=state.dt;state.tick+=1;
+}
+function updateSimulation(){ syncStateFromUI(); pasoFisica(); renderAll(); }
+function stepHeadless(){ pasoFisica(); }   // ahora sí headless de verdad
+
+function pushHistory(){state.history.push({t:state.step,PowerBase:state.powerBase,PowerLive:state.powerLive,beta:state.beta,noise:state.noise,Th:state.Th,Tc:state.Tc,Tf:state.Tf,envTemp:state.envTemp,stress:state.externalStress,luminosity:state.luminosity,minTemp:state.minTemp,maxTemp:state.maxTemp,abioticTf:state.abioticTf,bioticFootprint:state.bioticFootprint,H_at:state.H_at,H_noise:state.H_noise,H_rel:state.H_rel,LF:state.LF,deltaStruct:state.deltaStruct,A_sys_env:state.A_sys_env,e_R:state.err,LF_exp:state.LF_exp,Lambda_exp:state.Lambda_exp,Regimen:state.regime,ZonaCierre:clasificarCierre().zona,seasonFase:state.seasonMode?state.seasonFase:null,seasonLabel:state.seasonMode?state.seasonLabel:'',black:state.black,white:state.white,ptcRatioC:state.ptcRatioC,ptcRatioK:state.ptcRatioK});if(state.history.length>HIST_MAX)state.history.shift()}
+function updateMetrics(){$('timeLabel').textContent=state.step;$('powerLiveLabel').textContent=state.powerLive.toFixed(3);$('tfMetric').textContent=state.Tf.toFixed(3);$('envMetric').textContent=state.envTemp.toFixed(3);$('stressMetric').textContent=state.externalStress.toFixed(3);const _h=$('hatMetric');if(_h)_h.textContent=state.H_at.toFixed(3);const _hr=$('hrelMetric');if(_hr)_hr.textContent=state.H_rel.toFixed(3);const _hn=$('hnoiseMetric');if(_hn)_hn.textContent=state.H_noise.toFixed(3);const _f=$('footMetric');if(_f)_f.textContent=state.bioticFootprint.toFixed(3);const _ds=$('deltaStructMetric');if(_ds)_ds.textContent=state.deltaStruct.toFixed(3);const _as=$('asysMetric');if(_as)_as.textContent=state.A_sys_env.toFixed(3);const _cierre=clasificarCierre();const _cierreInfo={JARDIN_FERTIL:['JARDÍN FÉRTIL','sostener'],CIERRE:['CIERRE','dejar oscilar'],SELVA_HOSTIL:['SELVA HOSTIL','enfriar el borde'],COLAPSO:['COLAPSO','recuperar acople']}[_cierre.zona]||[_cierre.zona,''];const _rm=$('regimeMetric');if(_rm)_rm.textContent=_cierreInfo[0];const _am=$('actionMetric');if(_am)_am.textContent=_cierreInfo[1];$('cardPowerBase').textContent=state.powerBase.toFixed(3);$('cardPowerLive').textContent=state.powerLive.toFixed(3);$('cardRptc').textContent=state.ptcR.toFixed(3);const _cl=$('cardLambda');if(_cl)_cl.textContent=state.Lambda.toFixed(3);const _sw=$('satWarn');if(_sw){_sw.hidden=!state.satCiego;const _sp=$('satPct');if(_sp)_sp.textContent=Math.round((state.satFrac||0)*100)+'%';}const _sb=$('seasonBadge');if(_sb){_sb.hidden=!(state.dayNightMode&&state.seasonMode);const _sl=$('seasonLabelSpan');if(_sl)_sl.textContent=state.seasonLabel;}}
+function updateTable(){$('historyBody').innerHTML=state.history.slice(-40).reverse().map(r=>`<tr><td>${r.t}</td><td>${r.PowerBase.toFixed(3)}</td><td>${r.PowerLive.toFixed(3)}</td><td>${r.Th.toFixed(3)}</td><td>${r.Tc.toFixed(3)}</td><td>${r.Tf.toFixed(3)}</td><td>${r.envTemp.toFixed(3)}</td><td>${r.stress.toFixed(3)}</td><td>${r.H_at.toFixed(3)}</td><td>${r.bioticFootprint.toFixed(3)}</td><td>${r.LF.toFixed(3)}</td><td>${r.deltaStruct.toFixed(3)}</td><td>${r.A_sys_env.toFixed(3)}</td><td>${r.e_R.toFixed(4)}</td><td>${r.Lambda_exp.toFixed(3)}</td><td>${r.ZonaCierre}</td></tr>`).join('');}
+function makeCharts(){const common={responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{labels:{color:'#dce8fb'}}},scales:{x:{ticks:{color:'#9fb2cc'},grid:{color:'rgba(255,255,255,.06)'}},y:{ticks:{color:'#9fb2cc'},grid:{color:'rgba(255,255,255,.06)'}}}};evoChart=new Chart($('evoChart').getContext('2d'),{type:'line',data:{labels:[],datasets:[{label:'Tf',data:[],borderColor:'#38bdf8',tension:.22,pointRadius:0},{label:'envTemp',data:[],borderColor:'#f59e0b',tension:.22,pointRadius:0},{label:'stress',data:[],borderColor:'#ef4444',tension:.22,pointRadius:0,yAxisID:'y1'},{label:'H(a_t)',data:[],borderColor:'#a78bfa',tension:.22,pointRadius:0,yAxisID:'y1'},{label:'Λ_exp',data:[],borderColor:'#eab308',tension:.22,pointRadius:0,yAxisID:'y1'}]},options:{...common,scales:{x:common.scales.x,y:{...common.scales.y},y1:{position:'right',ticks:{color:'#9fb2cc'},grid:{display:false},min:0,max:5}}}});popChart=new Chart($('popChart').getContext('2d'),{type:'line',data:{labels:[],datasets:[{label:'Negras',data:[],borderColor:'#94a3b8',backgroundColor:'#94a3b8',tension:.22,pointRadius:0,borderWidth:2},{label:'Blancas',data:[],borderColor:'#f8fafc',backgroundColor:'#f8fafc',tension:.22,pointRadius:0,borderWidth:2},{label:'Total',data:[],borderColor:'#4ade80',backgroundColor:'#4ade80',tension:.22,pointRadius:0,borderWidth:2,borderDash:[4,3]}]},options:{...common,scales:{x:common.scales.x,y:{...common.scales.y,min:0,title:{display:true,text:'Cantidad de margaritas',color:'#9fb2cc'}}}}});}
+function updateCharts(){syncScrubUI();const rows=(scrubT===null)?state.history.slice(-120):state.history.filter(r=>r.t<=scrubT).slice(-120);evoChart.data.labels=rows.map(r=>r.t);evoChart.data.datasets[0].data=rows.map(r=>r.Tf);evoChart.data.datasets[1].data=rows.map(r=>r.envTemp);evoChart.data.datasets[2].data=rows.map(r=>r.stress);evoChart.data.datasets[3].data=rows.map(r=>r.H_at);evoChart.data.datasets[4].data=rows.map(r=>Math.min(r.Lambda_exp,5));evoChart.update();popChart.data.labels=rows.map(r=>r.t);popChart.data.datasets[0].data=rows.map(r=>Math.round(r.black*PLANET_N));popChart.data.datasets[1].data=rows.map(r=>Math.round(r.white*PLANET_N));popChart.data.datasets[2].data=rows.map(r=>Math.round((r.black+r.white)*PLANET_N));popChart.update();}
+function renderAll(){drawPlanet();updateMetrics();updateTable();updateCharts();drawQuadrant();}
+
+// ── REINICIO PARA BARRIDO (v7.4) ───────────────────────────────────────────
+// Igual que resetSimulation pero sin renderAll: durante un barrido nadie mira
+// la pantalla y dibujar en cada parada cuesta el 99% del tiempo.
+// Existe porque el barrido no reiniciaba nada: arrancaba de lo que hubiera en
+// pantalla y cada parada heredaba el estado de la anterior. Esa inercia fija
+// la frontera de la huella con independencia de los parámetros — la
+// invariancia observada en la batería del 25-jul-2026 es del método de
+// barrido, no del sistema.
+function reiniciarSilencioso(){
+  Object.assign(state,{step:0,tick:0,
+    powerLive:state.powerBase,ptcR:1,ptcOut:1,Tf:24.6,Tc:25,Th:28,delta:3.4,
+    LF:0,err:0,Lambda:0.1,deltaStruct:0,A_sys_env:0,LF_exp:0,err_exp:0,
+    Lambda_exp:0.1,fertileScore:0,regime:'RÍGIDO',action:'dejar oscilar',
+    externalStress:0,envDrift:0,black:0.18,white:0.14,bare:0.68});
+  aBuf=[]; noiseEchoBuf=[]; state._A_prev=0;
+  satBuf=[]; state.satFrac=0; state.satCiego=false;
+  resetField();
+}
+function resetSimulation(){Object.assign(state,{step:0,tick:0,powerBase:0.47,powerLive:0.47,ptcR:1,ptcOut:1,Tf:24.6,Tc:25,Th:28,delta:3.4,LF:0,err:0,Lambda:0.1,deltaStruct:0,A_sys_env:0,LF_exp:0,err_exp:0,Lambda_exp:0.1,fertileScore:0,regime:'RÍGIDO',action:'dejar oscilar',envTemp:24.6,externalStress:0,envDrift:0,history:[],black:0.18,white:0.14,bare:0.68});aBuf=[];noiseEchoBuf=[];state._A_prev=0;satBuf=[];state.satFrac=0;scrubT=null;state.satCiego=false;els.dayNightToggle.checked=true;state.dayNightMode=true;els.seasonToggle.checked=true;state.seasonMode=true;resetField();pushHistory();renderAll()}
+function exportCSV(){const header=['t','PowerBase','PowerLive','luminosity','minTemp','maxTemp','Tf','abioticTf','bioticFootprint','envTemp','H_at','H_rel','H_noise','LF','deltaStruct','A_sys_env','e_R','Lambda_exp','Regimen','ZonaCierre','seasonFase','seasonLabel','negras','blancas','poblacionTotal','ptcRatioCelsius','ptcRatioKelvin'];const rows=state.history.map(r=>[r.t,r.PowerBase.toFixed(4),r.PowerLive.toFixed(4),r.luminosity.toFixed(3),r.minTemp.toFixed(1),r.maxTemp.toFixed(1),r.Tf.toFixed(3),r.abioticTf.toFixed(3),r.bioticFootprint.toFixed(3),r.envTemp.toFixed(3),r.H_at.toFixed(4),r.H_rel.toFixed(4),r.H_noise.toFixed(4),r.LF.toFixed(4),r.deltaStruct.toFixed(4),r.A_sys_env.toFixed(4),r.e_R.toFixed(5),r.Lambda_exp.toFixed(5),r.Regimen,r.ZonaCierre,r.seasonFase===null?'':r.seasonFase.toFixed(4),r.seasonLabel,Math.round(r.black*PLANET_N),Math.round(r.white*PLANET_N),Math.round((r.black+r.white)*PLANET_N),(r.ptcRatioC===undefined?'':r.ptcRatioC.toFixed(4)),(r.ptcRatioK===undefined?'':r.ptcRatioK.toFixed(4))]);const csv=[header.join(','),...rows.map(r=>r.join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EIT3_Termico_kappaH_v7.csv';a.click()}
+$('btnStart').onclick=()=>state.running=true;$('btnPause').onclick=()=>state.running=false;$('btnReset').onclick=()=>{resetSimulation()};$('btnExport').onclick=exportCSV;
+function onScrubInput(e){const idx=Number(e.target.value);const row=state.history[idx];scrubT=row?row.t:null;syncScrubUI();updateCharts();}
+$('popScrub').oninput=onScrubInput;$('evoScrub').oninput=onScrubInput;
+function volverAVivo(){scrubT=null;syncScrubUI();updateCharts();}
+$('popScrubLive').onclick=volverAVivo;$('evoScrubLive').onclick=volverAVivo;
+function syncScrubUI(){
+  const n=state.history.length;const maxIdx=Math.max(0,n-1);
+  for(const id of ['popScrub','evoScrub']){
+    const el=$(id);el.max=maxIdx;
+    if(scrubT===null) el.value=maxIdx;
+  }
+  let idxAtT=maxIdx;
+  if(scrubT!==null){
+    idxAtT=state.history.findIndex(r=>r.t>=scrubT);
+    if(idxAtT<0)idxAtT=maxIdx;
+    for(const id of ['popScrub','evoScrub'])$(id).value=idxAtT;
+  }
+  const row=state.history[idxAtT];
+  const label=(scrubT===null)?'en vivo':('t='+(row?row.t:'—')+(row&&row.seasonLabel?' · '+row.seasonLabel:''));
+  $('popScrubLabel').textContent=label;$('evoScrubLabel').textContent=label;
+}
+    (function(){ const s=document.getElementById('seedInput'), o=document.getElementById('seedInputVal');
+      if(s&&o){ s.addEventListener('input',()=>{o.textContent=s.value; setSeed(Math.round(Number(s.value))||1);}); } })();els.dayNightToggle.onchange=()=>{state.dayNightMode=els.dayNightToggle.checked;renderAll()};els.seasonToggle.onchange=()=>{state.seasonMode=els.seasonToggle.checked;renderAll()};$('btnStopDayNight').onclick=()=>{els.dayNightToggle.checked=false;state.dayNightMode=false;renderAll()};$('btnApplyDayNight').onclick=()=>{els.dayNightToggle.checked=true;state.dayNightMode=true;renderAll()};Object.values(els).forEach(el=>{if(el&&el.tagName==='INPUT'&&el.id!=='dayNightToggle'&&el.id!=='seasonToggle')el.oninput=()=>{updateLabels();syncStateFromUI();renderAll()}});
+
+// ── BITÁCORA DE PARÁMETROS ────────────────────────────────────────────────
+const PARAM_IDS=['powerBase','beta','noise','luminosity','tOpt','ptcTc','ptcSharp','seasonDays','seasonLumWinter','seasonLumSummer','seasonEnvWinter','seasonEnvSummer'];
+let paramLog=[];
+function nowStamp(){return new Date().toISOString().replace('T',' ').slice(0,19);}
+function snapshotParams(){const o={};for(const id of PARAM_IDS)o[id]=Number(els[id].value);o.dayNight=state.dayNightMode;o.season=state.seasonMode;return o;}
+let _lastParams=null;
+function logEvent(kind,detail){
+  const entry={stamp:nowStamp(),step:state.step,kind:kind,detail:detail,params:snapshotParams()};
+  paramLog.push(entry);
+  const box=document.getElementById('logBox');
+  if(box){const p=entry.params;
+    const line=`[${entry.stamp}] ${kind}${detail?(' · '+detail):''}  {pB=${p.powerBase}, lum=${p.luminosity}, tOpt=${p.tOpt}, ptcTc=${p.ptcTc}, sharp=${p.ptcSharp}, estac_temp=[${p.seasonEnvWinter},${p.seasonEnvSummer}], DN=${p.dayNight?'on':'off'}, estac=${p.season?('on/'+p.seasonDays+'d'):'off'}}`;
+    const div=document.createElement('div');div.textContent=line;box.prepend(div);
+  }
+}
+function logParamChange(){
+  const cur=snapshotParams();
+  if(_lastParams){
+    for(const id of PARAM_IDS){ if(cur[id]!==_lastParams[id]){ logEvent('cambio',`${id}: ${_lastParams[id]} → ${cur[id]}`); } }
+    if(cur.dayNight!==_lastParams.dayNight) logEvent('cambio',`dayNight: ${_lastParams.dayNight} → ${cur.dayNight}`);
+    if(cur.season!==_lastParams.season) logEvent('cambio',`season: ${_lastParams.season} → ${cur.season}`);
+  }
+  _lastParams=cur;
+}
+function exportLog(){
+  const header=['stamp','step','kind','detail',...PARAM_IDS,'dayNight','season'];
+  const rows=paramLog.map(e=>[e.stamp,e.step,e.kind,'"'+(e.detail||'').replace(/"/g,'""')+'"',...PARAM_IDS.map(id=>e.params[id]),e.params.dayNight,e.params.season]);
+  const csv=[header.join(','),...rows.map(r=>r.join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EIT3_kappaH_bitacora.csv';a.click();
+}
+
+// ── MOTOR DE BARRIDO κ_H ──────────────────────────────────────────────────
+// El barrido mantiene tOpt y ptcTc centrados donde el sensor PTC responde, y
+// el preset de luminosidad evita el tramo donde powerLive se riela en su
+// techo — así el sensor sigue informando en todo el recorrido.
+let sweepActive=false, sweepRows=[], sweepTraces=[];
+// settle/measure ahora se leen de la UI dentro de runSweep (v4): sliders sweepSettle/sweepMeasure
+
+function setAxisValue(axis, v){
+  if(axis==='luminosity'){ els.luminosity.value=String(v); }
+  else if(axis==='envelope'){
+    // mueve el centro del sobre a v: invierno=verano=v durante este barrido
+    // (el ancho diario lo pone DAY_NIGHT_WIDTH, ya no es ajustable)
+    els.seasonEnvWinter.value=String(v);
+    els.seasonEnvSummer.value=String(v);
+    els.dayNightToggle.checked=true; state.dayNightMode=true;
+  }
+  updateLabels(); syncStateFromUI();
+}
+
+async function runSweep(){
+  if(sweepActive) return;
+  sweepActive=true; sweepRows=[]; sweepTraces=[];
+  // v7.4 — punto de partida definido y reproducible. Antes se arrancaba desde
+  // lo que hubiera en pantalla: dos barridos con los mismos parámetros podían
+  // no coincidir, y nadie podía saberlo desde los datos.
+  const modoReinicio = (document.getElementById('sweepReset')||{value:'parada'}).value;
+  const semillaBarrido = Math.round(Number((document.getElementById('seedInput')||{value:1}).value))||1;
+  // La semilla se fija SIEMPRE: el azar tiene que ser reproducible en los tres
+  // modos, porque es lo que permite repetir una corrida. El ESTADO, en cambio,
+  // se reinicia o no según el modo declarado — son dos cosas distintas y antes
+  // estaban mezcladas, lo que dejaba 'ninguno' idéntico a 'inicio'.
+  setSeed(semillaBarrido);
+  if(modoReinicio!=='ninguno'){ reiniciarSilencioso(); }
+  const statusEl=document.getElementById('sweepStatus');
+  const axisSel=document.getElementById('sweepAxis').value;
+  const axes = axisSel==='both' ? ['luminosity','envelope'] : [axisSel];
+  const from=Number(document.getElementById('sweepFrom').value);
+  const to=Number(document.getElementById('sweepTo').value);
+  const steps=Math.round(Number(document.getElementById('sweepSteps').value));
+  const SETTLE=Math.round(Number(document.getElementById('sweepSettle').value));
+  const MEASURE=Math.round(Number(document.getElementById('sweepMeasure').value));
+  const forceNoise=Number(document.getElementById('sweepNoise').value);
+  const traceN=Math.round(Number(document.getElementById('sweepTraceN').value));
+  const bins=HCFG.bins, margin=HCFG.margin;
+  // el golpe que se le da a la temperatura para medir cuánto tarda en volver,
+  // y el tope de pasos que se le concede para hacerlo
+  // golpe a la población de margaritas, y tope de pasos para volver
+  const GOLPE_TF = 0.03, TOPE_REC = 20000;
+  // v7.6.1 — tolerancia del asentamiento: una décima de la tolerancia de
+  // retorno (GOLPE_TF*0.2), por ventana de 50 pasos. No es un número puesto
+  // a mano: sale de exigir que la línea base no se mueva de forma apreciable
+  // mientras dura una recuperación.
+  const TOPE_EQ = 20000, TOL_EQ = GOLPE_TF*0.2/10;
+  const noisePanel=state.noise;
+  state.running=false;
+  logEvent('barrido-inicio',`eje=${axisSel} rango=[${from},${to}] puntos=${steps} settle=${SETTLE} measure=${MEASURE} E=${forceNoise>0?forceNoise:'panel'}`);
+
+  // índices con traza cruda, repartidos parejo por el eje
+  const traceSet=new Set();
+  if(traceN>0){ for(let i=0;i<traceN;i++){ traceSet.add(Math.round(i*(steps-1)/Math.max(1,traceN-1))); } }
+
+  for(const axis of axes){
+    // ── PASADA DE CALIBRACIÓN GLOBAL (columna comparativa abs-global, v6) ──
+    // No imponemos la banda: medimos en qué banda vive powerLive a lo largo de TODO el eje.
+    let gLo=Infinity,gHi=-Infinity;
+    for(let k=0;k<steps && sweepActive;k++){
+      const v=from+(to-from)*k/(steps-1);
+      // v7.4.1 — el modo de reinicio también rige acá. La pasada de calibración
+      // recorre el eje completo antes de medir; si arrastra el estado, deja el
+      // sistema condicionado antes de que empiece la medición.
+      if(modoReinicio==='parada'){ reiniciarSilencioso(); }
+      resetField(); aBuf=[]; noiseEchoBuf=[]; state._A_prev=0;
+      if(forceNoise>0){ els.noise.value=String(forceNoise); }
+      setAxisValue(axis,v);
+      // v7.6 — la calibración tiene su propia fase de azar. Antes consumía del
+      // mismo flujo que la medición, así que recorrer el eje para calibrar
+      // desplazaba el ruido con que después se medía.
+      sembrarFase(axis, k, 'calibracion');
+      const calSteps=Math.min(80, Math.max(20, Math.round(SETTLE/2)||40));
+      for(let s=0;s<calSteps && sweepActive;s++){ stepHeadless(); if(s>calSteps*0.5){ if(state.powerLive<gLo)gLo=state.powerLive; if(state.powerLive>gHi)gHi=state.powerLive; } }
+      if(statusEl) statusEl.textContent=`Calibrando banda global ${axis}: ${k+1}/${steps}`;
+      await new Promise(r=>setTimeout(r,0));
+    }
+    if(!isFinite(gLo)||!isFinite(gHi)){ gLo=0; gHi=1; }
+    const gMargin=((gHi-gLo)*margin)||1e-3;
+    const gLoCal=gLo-gMargin, gHiCal=gHi+gMargin;
+    logEvent('calibracion-global',`${axis}: banda powerLive global=[${gLo.toFixed(4)},${gHi.toFixed(4)}]`);
+
+    // ── PASADA DE MEDICIÓN (calibración LOCAL por punto, v7) ──
+    logEvent('barrido-reinicio', 'modo='+modoReinicio+' semilla='+semillaBarrido);
+    for(let k=0;k<steps && sweepActive;k++){
+      const v = from + (to-from)*k/(steps-1);
+      // v7.4 — el reinicio de antes limpiaba el campo y los búferes de medición
+      // pero NO el estado del sistema: black, white, Tf y powerLive llegaban
+      // heredados de la parada anterior, y son justamente los que determinan la
+      // huella. Ahora el estado se reinicia o no según el modo declarado.
+      if(modoReinicio==='parada'){ reiniciarSilencioso(); }
+      resetField(); aBuf=[]; noiseEchoBuf=[]; state._A_prev=0;
+      if(forceNoise>0){ els.noise.value=String(forceNoise); }
+      setAxisValue(axis, v);
+      // v7.5 — primero se MIDE cuánto tarda en asentarse, en vez de suponerlo.
+      // El tope es SETTLE: si no converge antes, se reporta sin converger y se
+      // sigue igual, de modo que el barrido nunca se cuelga en la zona lenta.
+      // v7.6 — cada tramo con su propia fase de azar. La clave es la fase
+      // 'recuperacion': su duración es variable por construcción, y al tener
+      // flujo propio ya no puede desplazar el ruido de lo que viene después.
+      // primero se deja asentar un poco, y después se mide la recuperación
+      sembrarFase(axis, k, 'preasentamiento');
+      const eq = asentarHastaEquilibrio(TOPE_EQ, TOL_EQ);
+      sembrarFase(axis, k, 'recuperacion');
+      const asent = medirRecuperacion(GOLPE_TF, TOPE_REC);
+      // y después el asentamiento normal, para que la ventana de medición
+      // arranque en el mismo lugar que antes
+      sembrarFase(axis, k, 'asentamiento');
+      for(let s=0;s<SETTLE && sweepActive;s++){ stepHeadless(); }
+      // La ventana de medición también resiembra: así cambiar SETTLE no corre
+      // el ruido con que se mide, y las ventanas siguen siendo comparables
+      // entre corridas hechas con distinto asentamiento.
+      sembrarFase(axis, k, 'medicion');
+      // medir: recolectar las series crudas de powerLive y del eco de ruido en este punto
+      const plS=[], neS=[]; let footSum=0,c=0;
+      for(let s=0;s<MEASURE && sweepActive;s++){
+        stepHeadless();
+        plS.push(state.powerLive); neS.push(passiveNoiseSample());
+        footSum+=state.bioticFootprint; c++;
+      }
+      if(c>0){
+        // ABS LOCAL (v7): banda calibrada a ESTE punto; suelo = banda del ruido del punto
+        const la = entropyLocalAbs(plS, neS, bins, margin);
+        const H_noiseLocal = entropyAtWidth(neS, bins, la.hi-la.lo);
+        // ABS GLOBAL (v6): bins fijos a la banda global del eje (muestra el artefacto de borde)
+        const H_absGlobal  = shannonEntropy(plS, bins, gLoCal, gHiCal);
+        const H_noiseGlobal= entropyAtWidth(neS, bins, gHiCal-gLoCal);
+        // REL (v5): binning adaptado a la ventana, sin suelo
+        const H_rel = entropyRel(plS, bins);
+        // diagnóstico v4: ¿se mueve powerLive, o está clavado?
+        let pLo=Infinity,pHi=-Infinity,sum=0; for(const x of plS){ if(x<pLo)pLo=x; if(x>pHi)pHi=x; sum+=x; }
+        const plRange=pHi-pLo, plMean=sum/plS.length;
+        const distinct=new Set(plS.map(x=>x.toFixed(5))).size;
+        // Bandera DESCRIPTIVA de amplitud (NO veredicto de κ_H): ¿la banda de conducta
+        // supera su propio piso de ruido? El silencio estructural y la decisión sobre κ_H
+        // los resuelve el experimento leyendo H_absLocal / H_rel / H_noiseLocal en crudo;
+        // el instrumento no precocina la conclusión. (Aviso: la entropía de Shannon premia
+        // el desorden, así que una regulación estructurada puede tener MENOS H que el ruido
+        // uniforme; por eso aquí NO se usa H>H_piso como criterio de conducta.)
+        const diag = (plRange <= Math.max(la.floor, 1e-9)) ? 'banda<=ruido' : 'banda>ruido';
+        const vac = varianzaYAutocorr(plS);
+      sweepRows.push({axis, x:v,
+          pasos_recuperacion:asent.pasos, convergio:asent.convergio,
+          rec_mediana:asent.mediana, rec_topes:asent.topes, rec_reps:asent.reps,
+          asent_pasos:eq.pasos, asent_ok:eq.asentado,
+          tasa_recuperacion:asent.mediana>0?1/asent.mediana:0,
+          varianza_pl:vac.varianza, autocorr1_pl:vac.autocorr1,
+          H_absLocal:la.H, H_noiseLocal,
+          H_absGlobal, H_noiseGlobal,
+          H_rel,
+          footprint:footSum/c,
+          powerLive:plMean, plRange, plBand:la.band, noiseFloor:la.floor, distinct,
+          diag, ptcSat:(state.ptcOut>=1.2-1e-9||state.ptcOut<=0.05+1e-9)?1:0});
+        if(traceSet.has(k)){ for(let i=0;i<plS.length;i++){ sweepTraces.push({axis, x:v, step:i, powerLive:plS[i], noiseEcho:neS[i]}); } }
+      }
+      const last=sweepRows[sweepRows.length-1];
+      // v7.6 — cuántas paradas llevan el sensor saturado, a la vista mientras
+      // corre. Antes esto solo se sabía abriendo el CSV al final.
+      const nSat=sweepRows.reduce((a,r)=>a+(r.ptcSat?1:0),0);
+      const nNoEq=sweepRows.reduce((a,r)=>a+(r.asent_ok?0:1),0);
+      if(statusEl) statusEl.textContent=`Barriendo ${axis}: ${k+1}/${steps} (x=${v.toFixed(3)})  asent=${eq.pasos}${eq.asentado?'':'⚠'}  rec=${asent.mediana}  Habs=${last?last.H_absLocal.toFixed(3):'—'} [${last?last.diag:'—'}]`
+        +(nSat?`  ·  ⚠ ${nSat} con sensor saturado`:'')
+        +(nNoEq?`  ·  ⚠ ${nNoEq} sin alcanzar equilibrio`:'');
+      renderAll();
+      await new Promise(r=>setTimeout(r,0));
+    }
+    if(forceNoise>0){ els.noise.value=String(noisePanel); syncStateFromUI(); }
+  }
+  sweepActive=false;
+  if(statusEl) statusEl.textContent=`Barrido terminado: ${sweepRows.length} puntos · ${sweepTraces.length} filas de traza. CSVs descargados.`;
+  logEvent('barrido-fin',`puntos=${sweepRows.length} trazas=${sweepTraces.length}`);
+  exportSweepCSV();
+  if(sweepTraces.length) exportTracesCSV();
+}
+
+// paso headless: definido arriba junto a pasoFisica()/updateSimulation() (separación física/dibujo, v7.3b)
+
+function exportSweepCSV(){
+  if(!sweepRows.length) return;
+  const header=['eje','x','asent_pasos','asent_ok','pasos_recuperacion','rec_mediana','rec_topes','rec_1','rec_2','rec_3','rec_4','rec_5','recuperaron_todos','tasa_recuperacion','varianza_pl','autocorr1_pl','H_absLocal','H_noiseLocal','H_absGlobal','H_noiseGlobal','H_rel','footprint','powerLive','plRange','plBand','noiseFloor','distinct','diag','ptc_saturado'];
+  const rows=sweepRows.map(r=>[r.axis,r.x.toFixed(4),r.asent_pasos,r.asent_ok,r.pasos_recuperacion.toFixed(1),r.rec_mediana,r.rec_topes,...[0,1,2,3,4].map(i=>r.rec_reps[i]),r.convergio,r.tasa_recuperacion.toFixed(6),r.varianza_pl.toExponential(4),r.autocorr1_pl.toFixed(5),r.H_absLocal.toFixed(4),r.H_noiseLocal.toFixed(4),r.H_absGlobal.toFixed(4),r.H_noiseGlobal.toFixed(4),r.H_rel.toFixed(4),r.footprint.toFixed(4),r.powerLive.toFixed(4),r.plRange.toFixed(5),r.plBand.toFixed(5),r.noiseFloor.toFixed(5),r.distinct,r.diag,r.ptcSat]);
+  const csv=[header.join(','),...rows.map(r=>r.join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EIT3_kappaH_barrido.csv';a.click();
+}
+function exportTracesCSV(){
+  if(!sweepTraces.length) return;
+  const header=['eje','x','step','powerLive','noiseEcho'];
+  const rows=sweepTraces.map(r=>[r.axis,r.x.toFixed(4),r.step,r.powerLive.toFixed(6),r.noiseEcho.toFixed(6)]);
+  const csv=[header.join(','),...rows.map(r=>r.join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='EIT3_kappaH_trazas.csv';a.click();
+}
+
+function loop(){if(state.running)updateSimulation();requestAnimationFrame(loop)}
+updateLabels();makeCharts();resetSimulation();
+// — listeners del barrido y bitácora —
+['sweepFrom','sweepTo','sweepSteps'].forEach(id=>{const e=$(id);if(e)e.oninput=()=>{$(id+'Val').textContent=Number(e.value).toFixed(id==='sweepSteps'?0:2);};});
+['sweepSettle','sweepMeasure','sweepTraceN'].forEach(id=>{const e=$(id);if(e)e.oninput=()=>{$(id+'Val').textContent=String(Math.round(Number(e.value)));};});
+(()=>{const e=$('sweepNoise');if(e)e.oninput=()=>{$('sweepNoiseVal').textContent=(Number(e.value)>0?Number(e.value).toFixed(4):'auto');};})();
+// v7.6.1 — los deslizadores «Desde» y «Hasta» estaban fijos en −60 a 60 para
+// los dos ejes. Sirve para el sobre, que es una temperatura, pero la luminosidad
+// solo existe entre 0,60 y 1,40: su propio control está limitado a ese rango, y
+// asignarle un valor de afuera NO da error — el navegador lo recorta al borde.
+// El barrido pedía luminosidad −30 y el sistema corría en 0,60, mientras el CSV
+// anotaba −30. Un barrido de −60 a 60 producía cuarenta filas que decían cosas
+// distintas y habían corrido todas en uno de los dos extremos. Ahora el rango
+// del deslizador sigue al eje elegido y ese desajuste no puede ocurrir.
+const RANGO_EJE = {
+  luminosity: {min:0.60, max:1.40, step:0.01, desde:0.60, hasta:1.40, dec:2,
+               nota:'Luminosidad: el eje solo existe entre 0,60 y 1,40.'},
+  envelope:   {min:-5,  max:45,   step:0.5,  desde:5,    hasta:40,   dec:1,
+               nota:'Sobre: centro en °C (invierno=verano=v durante el barrido).'}
+};
+function aplicarRangoEje(){
+  const ax=$('sweepAxis').value, st=$('sweepStatus');
+  const r = RANGO_EJE[ax] || RANGO_EJE.luminosity;
+  for(const id of ['sweepFrom','sweepTo']){
+    const e=$(id);
+    e.min=r.min; e.max=r.max; e.step=r.step;
+  }
+  $('sweepFrom').value=r.desde; $('sweepTo').value=r.hasta; $('sweepSteps').value='40';
+  st.textContent = (ax==='both')
+    ? 'Ambos ejes en secuencia. Ojo: el rango mostrado es el de luminosidad; el del sobre se aplica en su tramo.'
+    : r.nota;
+  ['sweepFrom','sweepTo'].forEach(id=>$(id+'Val').textContent=Number($(id).value).toFixed(r.dec));
+  $('sweepStepsVal').textContent=Number($('sweepSteps').value).toFixed(0);
+}
+$('sweepAxis').onchange=aplicarRangoEje;
+aplicarRangoEje();
+$('btnSweep').onclick=()=>runSweep();
+$('btnSweepStop').onclick=()=>{sweepActive=false;};
+$('btnLogExport').onclick=()=>exportLog();
+$('btnLogClear').onclick=()=>{paramLog=[];const b=document.getElementById('logBox');if(b)b.innerHTML='';logEvent('inicio','bitácora reiniciada');};
+// log automático en cada cambio de slider/modo
+PARAM_IDS.forEach(id=>{const e=els[id];if(e){const prev=e.oninput;e.oninput=()=>{if(prev)prev();logParamChange();};}});
+els.dayNightToggle.addEventListener('change',()=>logParamChange());
+els.seasonToggle.addEventListener('change',()=>logParamChange());
+// evento de arranque
+logEvent('inicio','parámetros iniciales del experimento');
+
+loop();
+
+// ── AYUDA EN PANTALLA (v7.3) ──────────────────────────────────────────────
+// El «?» abre la explicación y la deja abierta hasta que se cierre. Nada de
+// globitos al pasar el mouse: en proyección o en pantalla táctil no existen.
+(function(){
+  function panel(b){ return document.getElementById('ay-' + b.dataset.ay); }
+  function mostrar(b, abierto){
+    const p = panel(b); if(!p) return;
+    p.hidden = !abierto;
+    b.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+  }
+  document.addEventListener('click', function(ev){
+    const b = ev.target.closest('.qmark');
+    if(!b) return;
+    ev.preventDefault(); ev.stopPropagation();
+    mostrar(b, b.getAttribute('aria-expanded') !== 'true');
+  });
+  const todo = document.getElementById('explicarTodo');
+  if(todo) todo.addEventListener('change', function(){
+    document.querySelectorAll('.qmark').forEach(b => mostrar(b, todo.checked));
+  });
+})();
+</script>
+<footer style="margin:0;padding:26px 20px;background:#0c0f18;border-top:1px solid #242a37;font:300 13px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;text-align:center"><a href="informe-eit3-termico.html" style="color:#e8c477;text-decoration:none;border-bottom:1px solid #a8874a;padding-bottom:2px">Informe del experimento · EIT-3 Térmico</a><span style="color:#767c87"> &nbsp;·&nbsp; </span><a href="experimentos.html" style="color:#a8adb6;text-decoration:none">Experimentos</a><span style="color:#767c87"> &nbsp;·&nbsp; </span><a href="index.html" style="color:#a8adb6;text-decoration:none">cosmosemiotica.cl</a></footer>
+</body>
+</html>

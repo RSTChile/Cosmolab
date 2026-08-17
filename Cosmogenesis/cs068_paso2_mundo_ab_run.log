@@ -1,0 +1,47 @@
+============================================================================================================
+CS068 PASO 2 — MUNDO A vs MUNDO B: ¿el blob real de CS067 tiene tejido métrico latente
+(más soporte local que su propia reconexión que preserva grados) o es mundo-pequeño hasta el fondo?
+N=1500 · K_reconexiones=30 · semillas=5 · factor_swaps=10
+============================================================================================================
+
+--- semilla 0 (seed=68200) ---
+  n_edges=6856  soporte_medio REAL=2.5589
+  soporte_medio NULL(config-model, n=30): media=0.2638 std=0.0188
+  z=+121.977  percentil_real_en_null=1.000
+  tiempo acumulado: 0.86 min
+
+--- semilla 1 (seed=68297) ---
+  n_edges=5891  soporte_medio REAL=2.7637
+  soporte_medio NULL(config-model, n=30): media=0.1476 std=0.0160
+  z=+163.447  percentil_real_en_null=1.000
+  tiempo acumulado: 1.52 min
+
+--- semilla 2 (seed=68394) ---
+  n_edges=4910  soporte_medio REAL=2.8246
+  soporte_medio NULL(config-model, n=30): media=0.0540 std=0.0092
+  z=+300.505  percentil_real_en_null=1.000
+  tiempo acumulado: 2.07 min
+
+--- semilla 3 (seed=68491) ---
+  n_edges=5711  soporte_medio REAL=2.6853
+  soporte_medio NULL(config-model, n=30): media=0.0904 std=0.0095
+  z=+272.898  percentil_real_en_null=1.000
+  tiempo acumulado: 2.71 min
+
+--- semilla 4 (seed=68588) ---
+  n_edges=4997  soporte_medio REAL=2.7587
+  soporte_medio NULL(config-model, n=30): media=0.0632 std=0.0145
+  z=+185.437  percentil_real_en_null=1.000
+  tiempo acumulado: 3.23 min
+
+============================================================================================================
+z por semilla: [121.977, 163.447, 300.505, 272.898, 185.437]
+z medio=208.853  min=121.977  max=300.505
+
+VEREDICTO: MUNDO A. El blob real tiene MÁS soporte local que su propia reconexión que
+preserva grados, en TODAS las semillas (z>2.0). Hay estructura métrica de vecindario por
+encima de lo que la secuencia de grados sola explica -> hay tejido latente que el
+enfriamiento puede intentar revelar. Proceder con el clasificador config-model + re-correr
+Etapa 1 sobre el tejido/atajo así clasificado en el blob real.
+
+tiempo total: 3.23 min

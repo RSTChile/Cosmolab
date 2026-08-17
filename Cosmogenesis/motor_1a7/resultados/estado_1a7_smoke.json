@@ -1,0 +1,60 @@
+{
+  "protocolo": "MOTOR_1A7_2026-07-23",
+  "modo": "smoke",
+  "campo_ok": true,
+  "r0_lava": true,
+  "r_cruz_ok": true,
+  "P_r0": 0.031782,
+  "P_r_high": 0.9029785000000001,
+  "z_r_high": 3.4996666666666663,
+  "D_campo": 0.003347001047041484,
+  "N_campo": 100,
+  "stretch_ok": true,
+  "rho_ok": true,
+  "mass_pre_e4_zero": true,
+  "e3_ok": true,
+  "rate_E3": 1.0,
+  "e4_lineage_ok": true,
+  "rate_e4_lineage": 0.6666666666666666,
+  "mass_nulls_clean": true,
+  "stages": {
+    "1_campo": {
+      "pass": true,
+      "detail": "ε=0→P=0; campo continuo"
+    },
+    "2_expansion_r": {
+      "pass": true,
+      "P_r0": 0.031782,
+      "P_r_high": 0.9029785000000001,
+      "z_r_high": 3.4996666666666663
+    },
+    "3_estiramiento": {
+      "pass": true
+    },
+    "4_densidad": {
+      "pass": true
+    },
+    "5_orden_sin_masa": {
+      "pass": true
+    },
+    "6_atomo_E3": {
+      "pass": true,
+      "rate_E3": 1.0
+    },
+    "7_masa_linaje": {
+      "pass": true,
+      "rate_e4_lineage": 0.6666666666666666,
+      "mass_nulls_clean": true
+    }
+  },
+  "chain_pass": true,
+  "notes": [
+    "5–7 smoke 3 seeds (no barrido completo v5)",
+    "cierre: need=[True, True, True, True, True] chain_pass=True"
+  ],
+  "artifacts": {
+    "rcruz": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs074_rcruz_chico_resultado.json",
+    "rho": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/test_rho_dispersion/TEST_RHO_DISPERSION_result.json",
+    "elapsed_s": 138.80845165252686
+  }
+}

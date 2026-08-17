@@ -1,0 +1,5 @@
+Listo en 29.3 min. n=16643 días con dato real (1981-2026).
+floración: media=0.1415, rango observado en estos pares: [0.000, 0.509]
+tmax real: media=21.97°C
+Regresión tmax_real = 23.305 + -9.4000 * floracion
+KAPPA_REGULACION_INTERGLACIAL (pendiente, signo esperado negativo) = -9.4000

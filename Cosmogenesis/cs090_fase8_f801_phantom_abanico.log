@@ -1,0 +1,636 @@
+patron=*_f801_abanico: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_abanico: 2 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] exit_setup=0 t_setup=4.89s  exit_run=0 t_run=33.65s
+[A2-B0-C2-batch4-r36_s575321_f801_abanico] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_abanico] exit_setup=0 t_setup=4.75s  exit_run=0 t_run=31.39s
+
+[TOTAL] tiempo script=74.7s
+patron=*_f801_abanico: 5 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] exit_setup=0 t_setup=4.37s  exit_run=0 t_run=28.6s
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] exit_setup=0 t_setup=4.34s  exit_run=-15 t_run=14.48s
+  AVISO: exit_run != 0. Tail run.log:
+  |         |#     |N_substep|  dthydro/dtextf   |             dt              |
+  |         |times |  mean   |   mean  |   max   |     mean     |     min      |
+  |         |     1|    2.00 |    1.57 |    1.57 |    6.356E-04 |    6.356E-04 |
+  ------------------------------------------------------------------------------
+  -------------------------------------------------
+  | bin |    dt    |   npart  |   frac  | cpufrac |
+  -------------------------------------------------
+  |  0    1.000E-03       1844  100.00%  100.00% |
+  -------------------------------------------------
+   0.01M particles per second, IND TIMESTEPS efficiency:100.00%
+  
+   npart=      2000, n_alive=      1844, n_dead_or_accreted=       156, nptmass=         8
+   Etot=-2.892E+06, Ekin= 7.839E+04, Etherm= 4.500E-01, Epot=-2.970E+06
+   Linm= 4.964E+03, Angm= 2.837E+05
+   Centre of Mass =  4.862E+01,  4.904E+01,  4.965E+01
+   density  (max)= 8.249E+00 (mean)= 6.772E-01 (max)= 8.249E+00 g/cm^3
+   alpha(max)= 1.000E+00
+   RMS Mach #= 4.937E+00
+  
+  
+[A2-B0-C2-batch4-r36_s575321_f801_abanico] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-r17_s273478_f801_abanico] setup + run...
+[A2-B0-C2-r17_s273478_f801_abanico] exit_setup=0 t_setup=3.51s  exit_run=0 t_run=25.89s
+
+[TOTAL] tiempo script=81.2s
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.
+patron=*_f801_abanico: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_abanico', 'A2-B0-C2-batch3-r60_s477649_f801_abanico', 'A2-B0-C2-batch4-r10_s572799_f801_abanico', 'A2-B0-C2-batch4-r36_s575321_f801_abanico', 'A2-B0-C2-r14_s273187_f801_abanico', 'A2-B0-C2-r17_s273478_f801_abanico', 'A2-B0-C2-r20_s373769_f801_abanico', 'A2-B0-C2-r39_s375612_f801_abanico']
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_abanico] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch4-r10_s572799_f801_abanico] setup + run...
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 118, in <module>
+    main(carpetas)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 94, in main
+    info = correr_una(carpeta)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 78, in correr_una
+    editar_cosmog_in(carpeta / "cosmog.in")
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f801_correr.py", line 55, in editar_cosmog_in
+    assert BLOQUE_SINKS_DEFAULT in texto, (
+AssertionError: /Users/alexis/phantom_cs073/bateria_fase8_f801_desacople/A2-B0-C2-batch4-r10_s572799_f801_abanico/cosmog.in: el bloque de sumideros por defecto no coincide con lo esperado -- ¿cambió el binario phantomsetup_cosmogenesis_backup? no se edita a ciegas.

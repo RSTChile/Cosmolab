@@ -1,0 +1,126 @@
+{
+  "guardas": {
+    "replica_motor": {
+      "n_comparaciones": 30,
+      "err_rel_S_max": 5.1435633919000335e-16,
+      "err_rel_delta_struct_max": 3.5522776346126943e-16,
+      "frac_tau_igual": 1.0,
+      "frac_vivos_igual": 1.0,
+      "frac_aristas_igual": 1.0
+    },
+    "no_isomorfia": {
+      "frac_identicas": 0.0
+    },
+    "identidades": {
+      "lambda_vs_n_vivos_fin": {
+        "spearman": 0.0637895706907062,
+        "pearson": 0.058766714197162506
+      },
+      "lambda_vs_S_final_max": {
+        "spearman": 0.9524912982431082,
+        "pearson": 0.33314589458211363
+      },
+      "lambda_vs_delta_struct": {
+        "spearman": 0.9397162080078023,
+        "pearson": 0.33314589458211363
+      },
+      "lambda_vs_n_aristas": {
+        "spearman": 0.4581095698224497,
+        "pearson": 0.2429161386586817
+      },
+      "lambda_vs_tau_final": {
+        "spearman": 0.5855591228151197,
+        "pearson": 0.1637387286585983
+      },
+      "lambda_vs_k_micro": {
+        "spearman": -0.5929770114892341,
+        "pearson": -0.19156716706102672
+      },
+      "lambda_vs_alpha": {
+        "spearman": 0.9376852081913821,
+        "pearson": 0.9796068993322947
+      },
+      "alpha_c_vs_lambda_max_G": {
+        "spearman": -0.19999999999999998,
+        "pearson": -0.7421502197000419
+      }
+    },
+    "piso_de_ruido": {
+      "n_semillas_por_brazo_por_punto": 10,
+      "p_minimo_fisher_2x2_10vs10": 5.412544112234515e-06,
+      "nota": "Con 10 semillas por brazo y por punto del barrido, ningún test 2x2 puede dar un p menor que éste, ni con separación total. Las curvas se reportan crudas; los umbrales se obtienen por bisección del signo de λ, sin binarizar por ningún umbral nuevo."
+    }
+  },
+  "umbrales_alpha_c": [
+    {
+      "semilla": 1,
+      "lambda_max_G": 4.0,
+      "alpha_c_teorico": 0.050505050505050504,
+      "alpha_c_float64": 0.07719556234235103,
+      "alpha_c_float80": 0.07719556234235103,
+      "alpha_c_REAL_k400": 0.09479259111981216,
+      "alpha_c_BARAJADO_float64": NaN,
+      "alpha_c_BARAJADO_float80": NaN,
+      "alpha_c_mpmath50": 0.07803425020015074
+    },
+    {
+      "semilla": 2,
+      "lambda_max_G": 4.414213562373094,
+      "alpha_c_teorico": 0.04576584235575484,
+      "alpha_c_float64": 0.08374575430000604,
+      "alpha_c_float80": 0.08374575430000604,
+      "alpha_c_REAL_k400": 0.12128200125329103,
+      "alpha_c_BARAJADO_float64": NaN,
+      "alpha_c_BARAJADO_float80": NaN,
+      "alpha_c_mpmath50": 0.08999229225410375
+    },
+    {
+      "semilla": 3,
+      "lambda_max_G": 4.581138830084192,
+      "alpha_c_teorico": 0.04409824925923263,
+      "alpha_c_float64": 0.07848673926686325,
+      "alpha_c_float80": 0.07848673926686325,
+      "alpha_c_REAL_k400": 0.12424587145236167,
+      "alpha_c_BARAJADO_float64": NaN,
+      "alpha_c_BARAJADO_float80": NaN,
+      "alpha_c_mpmath50": 0.09289513540899025
+    },
+    {
+      "semilla": 4,
+      "lambda_max_G": 5.236067977499788,
+      "alpha_c_teorico": 0.03858242537879851,
+      "alpha_c_float64": 0.04441159145649767,
+      "alpha_c_float80": 0.04441159145649767,
+      "alpha_c_REAL_k400": 0.04934728729222937,
+      "alpha_c_BARAJADO_float64": 0.09030485316689293,
+      "alpha_c_BARAJADO_float80": 0.09030485316689293,
+      "alpha_c_mpmath50": 0.04494888137924231
+    },
+    {
+      "semilla": 5,
+      "lambda_max_G": 3.7071067811865483,
+      "alpha_c_teorico": 0.05449538250299351,
+      "alpha_c_float64": 0.0772403318525815,
+      "alpha_c_float80": 0.0772403318525815,
+      "alpha_c_REAL_k400": 0.09493170178479546,
+      "alpha_c_BARAJADO_float64": NaN,
+      "alpha_c_BARAJADO_float80": NaN,
+      "alpha_c_mpmath50": 0.07879406107095191
+    }
+  ],
+  "kappa_delta": {
+    "delta_min_distinguible_float64": 1e-15,
+    "delta_min_distinguible_float80": 1e-15,
+    "delta_min_distinguible_mpmath40": 1e-09,
+    "delta_min_operable_float64": 1.0,
+    "delta_min_operable_float80": 1.0,
+    "delta_min_operable_epsTau_1e-12": 1.0,
+    "delta_min_operable_epsTau_1e-1": 1.0,
+    "eps_maquina": {
+      "float64": 2.220446049250313e-16,
+      "float80": 1.0842021724855044e-19,
+      "mpmath_dps40": 1e-40
+    },
+    "kappa_delta_del_alfabeto_K8": 0.2928932188134524
+  }
+}

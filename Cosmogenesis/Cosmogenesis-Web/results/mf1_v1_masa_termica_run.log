@@ -1,0 +1,14 @@
+MF-1 V1 m_fis = sum * exp(-var/T_local) / P_norm
+Objetivo: romper 0.3333 -> 0.00054 (1/1836) sin ajustar e
+step   0 a=   1.0 T=1.00e+15 | k1=  0 k3=  0 | var_k1=0.00e+00 var_k3=0.00e+00 | mk1=0.00e+00 mk3=0.00e+00 ratio=0.000000 objetivo 0.00054
+step  50 a=   1.8 T=5.49e+14 | k1= 11 k3=  4 | var_k1=0.00e+00 var_k3=3.19e-25 | mk1=1.62e-01 mk3=1.89e+01 ratio=0.008600 objetivo 0.00054
+step 100 a=   3.3 T=3.01e+14 | k1= 72 k3= 12 | var_k1=0.00e+00 var_k3=2.65e-27 | mk1=2.72e-02 mk3=1.10e+02 ratio=0.000247 objetivo 0.00054
+step 150 a=   6.0 T=1.65e+14 | k1=153 k3= 16 | var_k1=0.00e+00 var_k3=4.11e-31 | mk1=4.52e-03 mk3=6.54e+02 ratio=0.000007 objetivo 0.00054
+step 200 a=  11.0 T=9.07e+13 | k1=215 k3= 26 | var_k1=0.00e+00 var_k3=6.95e-33 | mk1=7.40e-04 mk3=4.07e+03 ratio=0.000000 objetivo 0.00054
+step 250 a=  20.1 T=4.98e+13 | k1=253 k3= 31 | var_k1=0.00e+00 var_k3=3.12e-31 | mk1=1.22e-04 mk3=2.46e+04 ratio=0.000000 objetivo 0.00054
+step 300 a=  36.6 T=2.73e+13 | k1=292 k3= 30 | var_k1=0.00e+00 var_k3=5.75e-33 | mk1=2.04e-05 mk3=1.48e+05 ratio=0.000000 objetivo 0.00054
+step 350 a=  66.7 T=1.50e+13 | k1=333 k3= 36 | var_k1=0.00e+00 var_k3=3.54e-33 | mk1=3.39e-06 mk3=8.76e+05 ratio=0.000000 objetivo 0.00054
+step 400 a= 121.5 T=8.23e+12 | k1=333 k3= 36 | var_k1=0.00e+00 var_k3=3.54e-33 | mk1=5.60e-07 mk3=5.30e+06 ratio=0.000000 objetivo 0.00054
+step 450 a= 221.4 T=4.52e+12 | k1=333 k3= 36 | var_k1=0.00e+00 var_k3=3.54e-33 | mk1=9.26e-08 mk3=3.21e+07 ratio=0.000000 objetivo 0.00054
+
+MF-1 V1 FIN - ratio debe caer de 0.3333 hacia 0.00054 con var y a^beta

@@ -1,0 +1,23 @@
+# Chile amateur radio bands - SUBTEL Tabla de Bandas Actualizada 2025.
+# Operator reference: CD3LZK.
+# Units in Hz. Modes are broad defaults for quick PortaPack tuning.
+a=135700,b=137800,m=AM,bw=DSB 3k,s=100Hz,d=CL HAM 2200m sec
+a=472000,b=479000,m=AM,bw=DSB 3k,s=100Hz,d=CL HAM 630m sec
+a=1800000,b=1850000,m=AM,bw=LSB-3k,s=1kHz,d=CL HAM 160m
+a=3500000,b=3750000,m=AM,bw=LSB-3k,s=1kHz,d=CL HAM 80m
+a=5351500,b=5366500,m=AM,bw=USB+3k,s=100Hz,d=CL HAM 60m
+a=7000000,b=7300000,m=AM,bw=LSB-3k,s=1kHz,d=CL HAM 40m
+a=10100000,b=10150000,m=AM,bw=USB+3k,s=100Hz,d=CL HAM 30m
+a=14000000,b=14350000,m=AM,bw=USB+3k,s=1kHz,d=CL HAM 20m
+a=18068000,b=18168000,m=AM,bw=USB+3k,s=1kHz,d=CL HAM 17m
+a=21000000,b=21450000,m=AM,bw=USB+3k,s=1kHz,d=CL HAM 15m
+a=24890000,b=24990000,m=AM,bw=USB+3k,s=1kHz,d=CL HAM 12m
+a=28000000,b=29700000,m=AM,bw=USB+3k,s=1kHz,d=CL HAM 10m
+a=50000000,b=54000000,m=NFM,bw=16k,s=5kHz,d=CL HAM 6m
+a=144000000,b=148000000,m=NFM,bw=16k,s=5kHz,d=CL HAM 2m
+a=220000000,b=225000000,m=NFM,bw=16k,s=5kHz,d=CL HAM 1.25m
+a=430000000,b=440000000,m=NFM,bw=16k,s=12.5kHz,d=CL HAM 70cm sec
+a=1240000000,b=1300000000,m=NFM,bw=16k,s=25kHz,d=CL HAM 23cm sec
+a=2400000000,b=2450000000,m=NFM,bw=16k,s=25kHz,d=CL HAM 13cm sec
+a=3300000000,b=3400000000,m=NFM,bw=16k,s=25kHz,d=CL HAM 9cm
+a=5650000000,b=5850000000,m=NFM,bw=16k,s=100kHz,d=CL HAM 6cm sec

@@ -1,0 +1,5 @@
+[calibracion] modo=prod_L128 L=128 eps=1e-3 mediana_lavado=600 pasos=690 lavo_todas=True tiempos=[450, 500, 600, 600, 1500, 875, 2350, 475]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_6_2D/F1_6_resultado_prod_L128.json
+[control_r0_lava] True {'mean_P_r0_eps_gt0': 0.09206360597138094, 'n': 7, 'P_max': 0.15}
+[elapsed] 2259.5s

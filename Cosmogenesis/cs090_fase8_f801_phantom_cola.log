@@ -1,0 +1,56 @@
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_cola: 2 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_cola', 'A2-B0-C2-batch4-r36_s575321_f801_cola']
+[A2-B0-C2-batch3-r0_s471829_f801_cola] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_cola] exit_setup=0 t_setup=1.94s  exit_run=0 t_run=23.25s
+[A2-B0-C2-batch4-r36_s575321_f801_cola] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_cola] exit_setup=0 t_setup=1.7s  exit_run=0 t_run=24.11s
+
+[TOTAL] tiempo script=51.0s
+patron=*_f801_cola: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_cola', 'A2-B0-C2-batch3-r60_s477649_f801_cola', 'A2-B0-C2-batch4-r10_s572799_f801_cola', 'A2-B0-C2-batch4-r36_s575321_f801_cola', 'A2-B0-C2-r14_s273187_f801_cola', 'A2-B0-C2-r17_s273478_f801_cola', 'A2-B0-C2-r20_s373769_f801_cola', 'A2-B0-C2-r39_s375612_f801_cola']
+[A2-B0-C2-batch3-r0_s471829_f801_cola] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_cola] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_cola] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_cola] exit_setup=0 t_setup=1.7s  exit_run=0 t_run=20.12s
+[A2-B0-C2-batch4-r10_s572799_f801_cola] setup + run...
+[A2-B0-C2-batch4-r10_s572799_f801_cola] exit_setup=0 t_setup=1.6s  exit_run=0 t_run=19.62s
+[A2-B0-C2-batch4-r36_s575321_f801_cola] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_cola] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-r14_s273187_f801_cola] setup + run...
+[A2-B0-C2-r14_s273187_f801_cola] exit_setup=0 t_setup=2.03s  exit_run=0 t_run=21.24s
+[A2-B0-C2-r17_s273478_f801_cola] setup + run...
+[A2-B0-C2-r17_s273478_f801_cola] exit_setup=0 t_setup=1.72s  exit_run=0 t_run=21.14s
+[A2-B0-C2-r20_s373769_f801_cola] setup + run...
+[A2-B0-C2-r20_s373769_f801_cola] exit_setup=0 t_setup=1.4s  exit_run=0 t_run=17.74s
+[A2-B0-C2-r39_s375612_f801_cola] setup + run...
+[A2-B0-C2-r39_s375612_f801_cola] exit_setup=0 t_setup=1.55s  exit_run=0 t_run=18.19s
+
+[TOTAL] tiempo script=128.1s

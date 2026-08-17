@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG002 — Visor del universo (Génesis · Cosmos)</title>
+<!--
+  CG002 VISOR INTEGRADO (Claude CC para Alexis, 29-jun-2026)
+  Incorpora los hallazgos del arco (INFORME_GENERAL_CG002_ARCO.md) en pestañas:
+   · GÉNESIS  : nacen en el foco, acoplamiento global → el estallido (C-N1→C-N2.5).
+   · COSMOS   : posiciones en volumen, acoplamiento LOCAL (alcance rc) → dominios
+                que coexisten y TRANSICIÓN DE FASE al variar rc (C-N2.5.9, C-N2.7).
+  Transversal (ambos modos): dimensión de firma d (el espacio HEREDA la dim del
+  sustrato, C-N2.6), constantes emergentes f y |orden| (ley) vs dirección (historia,
+  C-N2.8.15), aniquilación (C-N2.5.10), flecha del tiempo τ (C-N3).
+  Regla validada: g=U·R(θ_CP)·U, f=α·η·g·√(sat S·sat S), banda C-N5.1, extinción κ_s.
+  Nada se pinta que no salga de la dinámica; el layout es visualización.
+  ACTUALIZACIÓN 30-jun R7a: pestaña PLASMA QCD — Ω_firma = color SU(3) × spin ℤ₂ (12 microestados),
+  c_ij = v_i·v_j (antiquark = −v_c), spin pasivo, θ_CP=0, semilla simétrica q/q̄, sin confinamiento.
+  Régimen 10⁻³²–10⁻⁶ s (reloj cosmológico visual). K_eff falsable: 6 / 8 / 12.
+  ACTUALIZACIÓN 30-jun (cierre arco κ_Δ): añadida la capa del cierre — frac_pos (trivialidad
+  C-N1.3), exceso de orden sobre nulo finito (capa FINA, ~0.015@d3), L2 de fase vs nulo
+  combinatorio y m_eff/K con grano 1/√K (capa GRUESA; m_eff/K=½ DERIVADO, banda 6×, κ_Δ≡2π/K).
+  Por eso f y |orden| YA NO se rotulan "ley/constantes": son triviales (geometría del hemisferio).
+  + criticidad χ (fluctuación del orden por celda; pico esperado rc≈3, C-N2.7) en modo Cosmos,
+  y tipología de ruptura viva (disolución κ_P / desacoplamiento κ_V / homogeneización κ_Δ, C-N2.8.9a).
+  ACTUALIZACIÓN 30-jun: pestaña ◇ Arco κ_Δ — motor ℤ_K del cierre (cg002_dynamic_l2_sweep.py):
+  ω_i fijo en Z_K, c_ij=cos(2π(ω_i−ω_j)/K), θ_CP=0, barrido banda 6×, HUD capas gruesa/fina/trivial.
+-->
+<style>
+  html,body{margin:0;height:100%;background:#04050a;overflow:hidden;font-family:-apple-system,system-ui,sans-serif;color:#cfd6e4}
+  #c{display:block;width:100vw;height:100vh}
+  #tabs{position:fixed;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+  #tabs button{background:rgba(12,16,26,.8);color:#9fb0d0;border:1px solid #233; border-radius:9px;padding:7px 16px;cursor:pointer;font-size:13px}
+  #tabs button.act{background:#1f2c4d;color:#fff;border-color:#3a5}
+  #hud{position:fixed;top:54px;left:12px;font-size:12px;line-height:1.55;text-shadow:0 0 6px #000;pointer-events:none}
+  #hud b{color:#fff}
+  #fase{position:fixed;top:54px;right:12px;font-size:13px;background:rgba(9,12,20,.7);border:1px solid #1d2740;border-radius:8px;padding:6px 10px}
+  #panel{position:fixed;bottom:12px;right:12px;background:rgba(9,12,20,.8);border:1px solid #1d2740;border-radius:10px;padding:10px 12px;font-size:12px;width:460px;backdrop-filter:blur(6px)}
+  #panel label{display:block;margin:7px 0 2px;color:#90a0c0}
+  #panel input[type=range]{width:100%;height:18px;margin:0}
+  #panel .ticks{position:relative;height:12px;margin:1px 2px 6px;font-size:0}
+  #panel .ticks span{position:absolute;top:3px;transform:translateX(-50%);font-size:8.5px;color:#5a6a86;white-space:nowrap;pointer-events:none}
+  #panel .ticks span::before{content:'';position:absolute;left:50%;top:-3px;width:1px;height:3px;background:#46587e}
+  #panel .val{color:#fff;float:right}
+  #panel .row{display:flex;gap:6px;margin-top:8px}
+  #panel button{flex:1;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:7px;padding:6px;cursor:pointer;font-size:11.5px}
+  #panel button:hover{background:#1f2c4d}
+  #panel .hide{display:none}
+  #info{position:fixed;left:12px;bottom:12px;max-width:30vw;background:rgba(9,12,20,.85);border:1px solid #1d2740;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.5;display:none}
+  #info h3{margin:0 0 6px;color:#fff}#info p{margin:5px 0}
+  #nodos{position:fixed;top:150px;left:12px;width:300px;font-size:11.5px;line-height:1.5;background:rgba(9,12,20,.72);border:1px solid #1d2740;border-radius:9px;padding:9px 11px;display:none;text-shadow:0 0 5px #000}
+  #nodos b{color:#cfe}
+  #infoBtn{position:fixed;left:12px;bottom:12px;background:rgba(9,12,20,.8);border:1px solid #1d2740;border-radius:50%;width:30px;height:30px;color:#cfd6e4;cursor:pointer}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="tabs">
+  <button id="tabGen" class="act">● Génesis</button>
+  <button id="tabCos">○ Cosmos</button>
+  <button id="tabNar">▶ Del punto al cosmos</button>
+  <button id="tabQcd">◆ Plasma QCD</button>
+  <button id="tabKappa">◇ Arco κ_Δ</button>
+</div>
+<div id="hud"></div>
+<div id="fase"></div>
+<div id="nodos"></div>
+<button id="infoBtn" title="¿Qué veo?">?</button>
+<div id="info">
+  <h3 id="infoT">Génesis</h3>
+  <div id="infoBody"></div>
+  <div id="legend" style="margin:6px 0"></div>
+  <button id="infoClose" style="margin-top:4px;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:6px;padding:4px 10px;cursor:pointer">cerrar</button>
+</div>
+<div id="panel">
+  <label>N diferencias <span class="val" id="vN">800</span></label>
+  <input id="N" type="range" min="2" max="100000" step="1" value="800">
+  <div class="ticks" id="tkN"></div>
+  <label>d · dimensión de firma <span class="val" id="vD">3</span></label>
+  <input id="D" type="range" min="2" max="6" step="1" value="3">
+  <div class="ticks" id="tkD"></div>
+  <label>θ_CP · asimetría primordial <span class="val" id="vT">+0.30</span></label>
+  <input id="theta" type="range" min="-1" max="1" step="0.05" value="0.3">
+  <div class="ticks" id="tkT"></div>
+  <label>α · intensidad acoplamiento <span class="val" id="vA">1.00</span></label>
+  <input id="alpha" type="range" min="0" max="1" step="0.05" value="1">
+  <div class="ticks" id="tkA"></div>
+  <div id="rcWrap" class="hide">
+    <label>alcance rc · escala <span class="val" id="vR">2.0</span></label>
+    <input id="rc" type="range" min="0.6" max="8" step="0.2" value="2.0">
+    <div class="ticks" id="tkR"></div>
+  </div>
+  <div id="qcdWrap" class="hide">
+    <label>Fase QCD <span class="val" id="vQcd">R7a</span></label>
+    <div class="row"><button id="qcdA" type="button">R7a acoplamiento</button><button id="qcdB" type="button">R7b gluón entidad</button></div>
+  </div>
+  <div id="kappaWrap" class="hide">
+    <label>K · clases ℤ_K <span class="val" id="vKappaK">8</span></label>
+    <div class="row"><button id="kappaK6" type="button">K=6</button><button id="kappaK8" type="button">K=8</button><button id="kappaK12" type="button">K=12</button></div>
+    <label>banda S_BAND × <span class="val" id="vBandMult">1.00</span> <span style="color:#7a8">(barrido 6× del cierre)</span></label>
+    <input id="bandMult" type="range" min="0.5" max="3" step="0.1" value="1">
+    <div class="ticks" id="tkBand"></div>
+    <div class="row"><button id="kappaN2k" type="button">N=2000</button><button id="kappaN16k" type="button">N=16000</button></div>
+    <p style="margin:6px 0 0;font-size:11px;color:#7a8">θ_CP=0 fijo · ω uniforme en Z_K · motor = cierre CC</p>
+  </div>
+  <div id="spWrap" class="hide">
+    <label>velocidad (pasos/frame) <span class="val" id="vSp">3</span></label>
+    <input id="sp" type="range" min="1" max="12" step="1" value="3">
+    <div class="ticks" id="tkSp"></div>
+  </div>
+  <label>Configuración inicial <span class="val" id="vS">3</span></label>
+  <input id="conf" type="range" min="1" max="120" step="1" value="3">
+  <div class="ticks" id="tkC"></div>
+  <div class="row"><button id="play">⏸ pausa</button><button id="reset">↺ reset</button><button id="csv">⬇ estado CSV</button><button id="rec">⏺ video</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ===== regla validada =====
+const ETA=0.05,MU=0.01,KAPPA_S=1e-6,S0=1.0,S_BAND=8.0;
+const KC=0.9,KB=1.4,KCEN=0.015,DAMP=0.86,DT=0.18;
+const NBIG=2500;   // sobre este N: motor O(N) (campo medio + expansión), bajo: force-directed
+const sat=s=>s/(1+s/S_BAND);
+let cfg={mode:'genesis',N:800,d:3,theta:0.3,alpha:1,seed:3,rc:2.0,L:12.0,speed:3,qcdVer:'a',
+  kappaK:8,bandMult:1.0};
+let omega;
+const N_MICRO_A=12,N_MICRO_B=20,N_GLUON=8;
+const K_CANDS_A=[6,8,12],K_CANDS_B=[8,12,20];
+const COL3=[[1,0,0],[0,1,0],[0,0,1]];  // r,g,b rep. fundamental SU(3)
+const QCD_T0=-32,QCD_T1=-6;  // reloj cosmológico visual (segundos, log10)
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function randn(r){let u=Math.max(1e-12,r()),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(6.28318530718*v);}
+
+// estado
+let N,d,U,RU,S,alive,px,py,pz,vx,vy,vz,W,nb_i,nb_j,nbN;
+let colV,msLab,qcdC;   // QCD: color 3D + microestado; qcdC = matriz compat N×N (R7b)
+const GLU_ROOTS=[[1,-1,0],[0,1,-1],[-1,1,0],[1,0,-1],[0,-1,1],[-1,0,1],[1,1,-2],[1,1,1]].map(r=>{const n=Math.hypot(r[0],r[1],r[2])||1;return[r[0]/n,r[1]/n,r[2]/n];});
+let dirx,diry,dirz;   // direcciones de visualización (alta-N): ALEATORIAS fijas, NO la firma → nube esférica, sin casquete forzado
+let tau,dStruct,nAlive,nAnnih,we;
+let dStructRate=0,_prevDStruct=0;   // ritmo de cambio estructural (para tipología de ruptura C-N2.8.9a)
+
+function rotateU(){ // RU = R(θ) U   (rota componentes 0,1)
+  const c=Math.cos(cfg.theta),s=Math.sin(cfg.theta);
+  for(let i=0;i<N;i++){const b=i*d,u0=U[b],u1=U[b+1];RU[b]=c*u0-s*u1;RU[b+1]=s*u0+c*u1;for(let k=2;k<d;k++)RU[b+k]=U[b+k];}
+}
+function gdot(i,j){let s=0;const bi=i*d,bj=j*d;for(let k=0;k<d;k++)s+=U[bi+k]*RU[bj+k];return s;} // g_{i<-j}=U_i·R·U_j
+
+// ===== R7a QCD: color SU(3) × spin pasivo =====
+function decodeMs(ms){const aq=ms>=6,b=aq?ms-6:ms;return[aq,b>>1,b&1];}
+function colorVec(aq,ci){const s=aq?-1:1;return[s*COL3[ci][0],s*COL3[ci][1],s*COL3[ci][2]];}
+function qcdTime(){const t=Math.min(1,tau/200);return Math.pow(10,QCD_T0+t*(QCD_T1-QCD_T0));}
+function isGluon(ms){return ms>=N_MICRO_A;}
+function qgCoup(v,a){const r=GLU_ROOTS[a];return Math.abs(v[0]*r[0]+v[1]*r[1]+v[2]*r[2]);}
+function qcdCompat(i,j){
+  const mi=msLab[i],mj=msLab[j],gi=isGluon(mi),gj=isGluon(mj);
+  if(!gi&&!gj)return colV[i*3]*colV[j*3]+colV[i*3+1]*colV[j*3+1]+colV[i*3+2]*colV[j*3+2];
+  if(gi&&gj)return mi===mj?1:0;
+  if(gi)return qgCoup([colV[j*3],colV[j*3+1],colV[j*3+2]],mi-N_MICRO_A);
+  return qgCoup([colV[i*3],colV[i*3+1],colV[i*3+2]],mj-N_MICRO_A);
+}
+function buildQcdCompat(){qcdC=new Float64Array(N*N);for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(i!==j)qcdC[i*N+j]=qcdCompat(i,j);}
+function initQcdSymmetric(rng){
+  const nMicro=cfg.qcdVer==='b'?N_MICRO_B:N_MICRO_A;
+  const per=Math.floor(N/nMicro),rem=N%nMicro;msLab=new Uint8Array(N);colV=new Float32Array(N*3);
+  let pos=0;for(let ms=0;ms<nMicro;ms++){const n=per+(ms<rem?1:0);
+    if(ms<N_MICRO_A){const[aq,ci,sp]=decodeMs(ms);const cv=colorVec(aq,ci);
+      for(let k=0;k<n;k++){msLab[pos]=ms;colV[pos*3]=cv[0];colV[pos*3+1]=cv[1];colV[pos*3+2]=cv[2];pos++;}}
+    else{for(let k=0;k<n;k++){msLab[pos]=ms;colV[pos*3]=0;colV[pos*3+1]=0;colV[pos*3+2]=0;pos++;}}}
+  for(let i=N-1;i>0;i--){const j=(rng()* (i+1))|0;const t=msLab[i];msLab[i]=msLab[j];msLab[j]=t;
+    for(let k=0;k<3;k++){const t2=colV[i*3+k];colV[i*3+k]=colV[j*3+k];colV[j*3+k]=t2;}}
+}
+function binQcd(K){
+  const cnt=new Float64Array(K);let ns=0,nq=0,ng=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;ns++;const ms=msLab[i];
+    if(cfg.qcdVer==='b'){if(K===20)cnt[ms]++;else if(K===12&&ms<N_MICRO_A)cnt[ms]++;else if(K===8&&ms>=N_MICRO_A)cnt[ms-N_MICRO_A]++;if(ms<N_MICRO_A)nq++;else ng++;}
+    else{if(K===12)cnt[ms]++;else if(K===6&&ms<6)cnt[ms]++;else{const[aq,ci,sp]=decodeMs(ms);cnt[(aq?3:0)+ci]++;cnt[6+sp]++;}}}
+  return{cnt,ns,nq,ng};}
+function metricsQcd(){
+  const K_CANDS=cfg.qcdVer==='b'?K_CANDS_B:K_CANDS_A;const out={};for(const K of K_CANDS){const{cnt,ns,nq,ng}=binQcd(K);
+    if(ns<5){out['L2_'+K]=0;out['meff_'+K]=0;out['null_'+K]=0;out['grain_'+K]=1/Math.sqrt(K);continue;}
+    let L2=0,sf2=0;for(let k=0;k<K;k++){const fk=cnt[k]/ns;L2+=(fk-1/K)*(fk-1/K);sf2+=fk*fk;}
+    out['L2_'+K]=Math.sqrt(L2);out['meff_'+K]=sf2>0?1/(K*sf2):0;
+    out['null_'+K]=Math.sqrt((K-1)/(K*ns));out['grain_'+K]=1/Math.sqrt(K);}
+  let cx=0,cy=0,cz=0,ns=0;for(let i=0;i<N;i++)if(alive[i]){cx+=colV[i*3];cy+=colV[i*3+1];cz+=colV[i*3+2];ns++;}
+  const ordC=ns?Math.hypot(cx,cy,cz)/ns:0;let fn=0;
+  if(ns>=2){const inv=1/(Math.hypot(cx,cy,cz)+1e-9);cx*=inv;cy*=inv;cz*=inv;
+    for(let i=0;i<N;i++)if(alive[i]){const d=Math.abs(colV[i*3]*cx+colV[i*3+1]*cy+colV[i*3+2]*cz);if(d<0.15)fn++;}}
+  out.ordC=ordC;out.fracNeutral=ns?fn/ns:0;out.f=ns/N;
+  const{cnt:_,ns:ns2,nq,ng}=binQcd(20);out.fracQuark=ns2?nq/ns2:0;out.fracGluon=ns2?ng/ns2:0;
+  let best=K_CANDS[0],br=0;for(const K of K_CANDS){const r=out['L2_'+K]/(out['null_'+K]+1e-9);out['excess_'+K]=r;if(r>br){br=r;best=K;}}
+  out.kBest=best;out.K_CANDS=K_CANDS;return out;
+}
+
+function satBand(s){const sb=S_BAND*cfg.bandMult;return s/(1+s/sb);}
+function kappaCij(i,j){return Math.cos(2*Math.PI*(omega[i]-omega[j])/cfg.kappaK);}
+function nullOrdenFase(n,K,seed){
+  if(n<2)return 0;const r=mulberry32((seed+999)>>>0);let acc=0;
+  for(let rep=0;rep<120;rep++){let cx=0,cy=0;for(let i=0;i<n;i++){const ang=2*Math.PI*((r()*K)|0)/K;cx+=Math.cos(ang);cy+=Math.sin(ang);}acc+=Math.hypot(cx/n,cy/n);}
+  return acc/120;
+}
+function initKappa(){
+  const K=cfg.kappaK;N=cfg.N;d=3;cfg.theta=0;
+  const rng=mulberry32((cfg.seed*2654435761)>>>0);
+  omega=new Uint8Array(N);U=new Float32Array(N*d);S=new Float64Array(N);alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+  const golden=Math.PI*(3-Math.sqrt(5));
+  for(let i=0;i<N;i++){
+    omega[i]=(rng()*K)|0;S[i]=S0;alive[i]=1;
+    const ang=2*Math.PI*omega[i]/K+(i*golden)%6.28318530718*0.06;
+    U[i*d]=Math.cos(ang);U[i*d+1]=Math.sin(ang);U[i*d+2]=0.12*randn(rng);
+    let nn=Math.hypot(U[i*d],U[i*d+1],U[i*d+2])||1;U[i*d]/=nn;U[i*d+1]/=nn;U[i*d+2]/=nn;
+    px[i]=(rng()-.5)*0.08;py[i]=(rng()-.5)*0.08;pz[i]=(rng()-.5)*0.08;
+    dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);
+    nn=Math.hypot(dirx[i],diry[i],dirz[i])||1;dirx[i]/=nn;diry[i]/=nn;dirz[i]/=nn;
+    vx[i]=vy[i]=vz[i]=0;
+  }
+  tau=0;dStruct=0;nAlive=N;nAnnih=0;we=1;
+  resetKappaNodos();buildPoints(N);
+}
+function stepKappaPhys(){
+  const K=cfg.kappaK,al=cfg.alpha,M=new Float64Array(K);let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]*=(1-MU);M[omega[i]]+=Math.sqrt(satBand(S[i]));}
+  for(let i=0;i<N;i++){
+    if(!alive[i])continue;const mi=Math.sqrt(satBand(S[i])),wi=omega[i];let coop=0;
+    for(let k=0;k<K;k++)coop+=Math.cos(2*Math.PI*(wi-k)/K)*M[k];
+    const ds=al*ETA*mi*coop-al*ETA*mi*mi;S[i]+=ds;if(S[i]<0)S[i]=0;dstep+=Math.abs(ds);
+    if(S[i]<=KAPPA_S){alive[i]=0;S[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepKappaLayout(){
+  if(N<=NBIG){
+    const ax=new Float64Array(N),ay=new Float64Array(N),az=new Float64Array(N);let maxW=1e-9;const ws=we+1e-9;
+    for(let i=0;i<N;i++){if(!alive[i])continue;const xi=px[i],yi=py[i],zi=pz[i];
+      for(let j=i+1;j<N;j++){if(!alive[j])continue;
+        const cij=kappaCij(i,j),mag=Math.sqrt(satBand(S[i])*satBand(S[j]));
+        const w=cij*mag,aw=Math.abs(w);if(aw>maxW)maxW=aw;
+        let dx=xi-px[j],dy=yi-py[j],dz=zi-pz[j],dist=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-4,inv=1/dist;
+        const wf=Math.tanh(w/ws),fc=-wf*KC,fb=KB/(dist*dist),li=(fc+fb)*inv,lj=(fc-fb)*inv;
+        ax[i]+=dx*li;ay[i]+=dy*li;az[i]+=dz*li;ax[j]+=dx*lj;ay[j]+=dy*lj;az[j]+=dz*lj;}}
+    we=0.9*we+0.1*maxW;
+    for(let i=0;i<N;i++){if(!alive[i])continue;
+      let aX=ax[i]-KCEN*px[i],aY=ay[i]-KCEN*py[i],aZ=az[i]-KCEN*pz[i];
+      vx[i]=(vx[i]+aX*DT)*DAMP;vy[i]=(vy[i]+aY*DT)*DAMP;vz[i]=(vz[i]+aZ*DT)*DAMP;
+      let vm=Math.hypot(vx[i],vy[i],vz[i]);if(vm>3){const k=3/vm;vx[i]*=k;vy[i]*=k;vz[i]*=k;}
+      px[i]+=vx[i]*DT;py[i]+=vy[i]*DT;pz[i]+=vz[i]*DT;}
+  }else{
+    const Rt=0.35*tau;
+    for(let i=0;i<N;i++){if(!alive[i])continue;
+      const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));
+      px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+  }
+}
+function stepKappa(){stepKappaPhys();stepKappaLayout();}
+function metricsKappa(){
+  const K=cfg.kappaK;let n=0;const cnt=new Float64Array(K);
+  for(let i=0;i<N;i++)if(alive[i]){cnt[omega[i]]++;n++;}
+  let L2=0,sf2=0,cx=0,cy=0;
+  for(let k=0;k<K;k++){const fk=n?cnt[k]/n:0;L2+=(fk-1/K)*(fk-1/K);sf2+=fk*fk;
+    if(n){const ang=2*Math.PI*k/K;cx+=fk*Math.cos(ang);cy+=fk*Math.sin(ang);}}
+  L2=Math.sqrt(L2);const meffK=sf2>0?1/(K*sf2):0;
+  const granoNulo=n?Math.sqrt((K-1)/(K*n)):0,granoGrueso=1/Math.sqrt(K),kappaDelta=2*Math.PI/K;
+  let ordG=0;if(n>0){let ox=0,oy=0,oz=0;for(let i=0;i<N;i++)if(alive[i]){ox+=U[i*3];oy+=U[i*3+1];oz+=U[i*3+2];}
+    ordG=Math.hypot(ox,oy,oz)/n;}
+  const nullOrd=nullOrderMean(n,d);
+  let fp=0;if(n>0){let ox=0,oy=0,oz=0;for(let i=0;i<N;i++)if(alive[i]){ox+=U[i*3];oy+=U[i*3+1];oz+=U[i*3+2];}
+    const inv=1/(Math.hypot(ox,oy,oz)+1e-9),ux=ox*inv,uy=oy*inv,uz=oz*inv;
+    for(let i=0;i<N;i++)if(alive[i]){const d=U[i*3]*ux+U[i*3+1]*uy+U[i*3+2]*uz;if(d>0)fp++;}}
+  const ver=Math.abs(meffK-0.5)<0.02?'✅ DERIVACIÓN':'⚠ revisar';
+  return{f:N?n/N:0,ordG,exOrden:ordG-nullOrd,L2,meffK,granoNulo,granoGrueso,K,kappaDelta,
+    fracPos:n?fp/n:1,ratio:L2/(granoNulo+1e-9),veredicto:ver,sBand:S_BAND*cfg.bandMult};
+}
+let KAPPA_NODOS=[];
+function resetKappaNodos(){
+  KAPPA_NODOS=[
+   {id:'C-N1',txt:'S>0 — la diferencia persiste',test:m=>tau>=1},
+   {id:'C-N2',txt:'acoplamiento c_ij=cos(2πΔω/K)',test:m=>dStruct>0},
+   {id:'C-N2.5.10',txt:'aniquilación — ~½ sobrevive',test:m=>m.f<0.55&&tau>3},
+   {id:'C-N2.8.4',txt:'κ_Δ>0 — L2 supera nulo combinatorio',test:m=>m.ratio>3&&tau>5},
+   {id:'C-N2.8.14a',txt:'exceso fino ~0.015 (dominio d=2 fase)',test:m=>m.exOrden>0.008&&tau>8},
+   {id:'DERIV',txt:'m_eff/K≈½ estable (banda 6×)',test:m=>Math.abs(m.meffK-0.5)<0.02&&tau>10},
+  ].map(n=>({...n,fired:false,tau:null}));renderKappaNodos();}
+function renderKappaNodos(){const el=document.getElementById('nodos');if(!el)return;
+  el.innerHTML='<div style="color:#fff;margin-bottom:5px;font-weight:bold">Arco κ_Δ · nodos cumplidos</div>'+
+    KAPPA_NODOS.map(n=>`<div style="opacity:${n.fired?1:0.32}">${n.fired?'✓':'○'} <b>${n.id}</b> ${n.txt}${n.fired?' <span style="color:#7fd">τ='+n.tau+'</span>':''}</div>`).join('');}
+function detectaKappaNodos(m){let chg=false;for(const n of KAPPA_NODOS)if(!n.fired&&n.test(m)){n.fired=true;n.tau=tau;chg=true;}if(chg)renderKappaNodos();}
+
+function init(){
+  if(cfg.mode==='kappa'){initKappa();return;}
+  N=(cfg.mode==='cosmos')?Math.min(cfg.N,4000):cfg.N;
+  d=(cfg.mode==='qcd')?3:cfg.d;const rng=mulberry32((cfg.seed*2654435761)>>>0);
+  U=new Float32Array(N*d);RU=new Float32Array(N*d);S=new Float64Array(N);alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  if(cfg.mode==='qcd'){
+    initQcdSymmetric(rng);
+    for(let i=0;i<N;i++){S[i]=S0;alive[i]=1;px[i]=(rng()-.5)*.05;py[i]=(rng()-.5)*.05;pz[i]=(rng()-.5)*.05;
+      for(let k=0;k<3;k++)U[i*d+k]=colV[i*3+k];}
+  }else for(let i=0;i<N;i++){
+    let n=0;for(let k=0;k<d;k++){const g=randn(rng);U[i*d+k]=g;n+=g*g;}n=Math.sqrt(n)||1;for(let k=0;k<d;k++)U[i*d+k]/=n;
+    S[i]=S0;alive[i]=1;
+    if(cfg.mode!=='cosmos'){px[i]=(rng()-.5)*.05;py[i]=(rng()-.5)*.05;pz[i]=(rng()-.5)*.05;}
+    else{px[i]=(rng()-.5)*cfg.L;py[i]=(rng()-.5)*cfg.L;pz[i]=(rng()-.5)*cfg.L;}
+  }
+  rotateU();
+  if(cfg.mode==='cosmos'){buildNeighbors();}
+  else if(cfg.mode==='qcd'||N<=NBIG){if(cfg.mode!=='qcd')W=new Float64Array(N*N);}
+  else{dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+    for(let i=0;i<N;i++){dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);}}
+  if(cfg.mode==='qcd'){if(cfg.qcdVer==='b')buildQcdCompat();}
+  if(cfg.mode==='qcd'&&N>NBIG){dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+    for(let i=0;i<N;i++){dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);}}
+  tau=0;dStruct=0;nAlive=N;nAnnih=0;we=1;
+  resetNodos();
+  buildPoints(N);
+}
+function buildNeighbors(){ // pares dentro de rc (posiciones fijas) -> lista dispersa
+  const rc2=cfg.rc*cfg.rc;const I=[],J=[];
+  for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const dx=px[i]-px[j],dy=py[i]-py[j],dz=pz[i]-pz[j];if(dx*dx+dy*dy+dz*dz<rc2){I.push(i);J.push(j);}}
+  nb_i=new Int32Array(I);nb_j=new Int32Array(J);nbN=I.length;
+}
+
+function stepGenesis(){
+  const al=cfg.alpha;const dS=new Float64Array(N);
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  let dstep=0,maxW=1e-9;const ws=we+1e-9;
+  const ax=new Float64Array(N),ay=new Float64Array(N),az=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i])continue;const xi=px[i],yi=py[i],zi=pz[i];
+    for(let j=i+1;j<N;j++){if(!alive[j])continue;
+      const gij=gdot(i,j),gji=gdot(j,i),mag=Math.sqrt(sat(S[i])*sat(S[j]));
+      const fi=al*ETA*gij*mag,fj=al*ETA*gji*mag;dS[i]+=fi;dS[j]+=fj;
+      const idx=i*N+j,wij=W[idx]+fi;W[idx]=wij;W[j*N+i]+=fj;dstep+=Math.abs(fi)+Math.abs(fj);
+      const aw=Math.abs(wij);if(aw>maxW)maxW=aw;
+      let dx=xi-px[j],dy=yi-py[j],dz=zi-pz[j],dist=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-4,inv=1/dist;
+      const w=Math.tanh(wij/ws),fc=-w*KC,fb=KB/(dist*dist),li=(fc+fb)*inv,lj=(fc-fb)*inv;
+      ax[i]+=dx*li;ay[i]+=dy*li;az[i]+=dz*li;ax[j]+=dx*lj;ay[j]+=dy*lj;az[j]+=dz*lj;}}
+  we=0.9*we+0.1*maxW;
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;continue;}
+    let aX=ax[i]-KCEN*px[i],aY=ay[i]-KCEN*py[i],aZ=az[i]-KCEN*pz[i];
+    vx[i]=(vx[i]+aX*DT)*DAMP;vy[i]=(vy[i]+aY*DT)*DAMP;vz[i]=(vz[i]+aZ*DT)*DAMP;
+    let vm=Math.hypot(vx[i],vy[i],vz[i]);if(vm>3){const k=3/vm;vx[i]*=k;vy[i]*=k;vz[i]*=k;}
+    px[i]+=vx[i]*DT;py[i]+=vy[i]*DT;pz[i]+=vz[i]*DT;}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepCosmos(){ // posiciones fijas; acoplamiento solo entre vecinos (rc)
+  const al=cfg.alpha;const dS=new Float64Array(N);let dstep=0;
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  for(let e=0;e<nbN;e++){const i=nb_i[e],j=nb_j[e];if(!alive[i]||!alive[j])continue;
+    const gij=gdot(i,j),gji=gdot(j,i),mag=Math.sqrt(sat(S[i])*sat(S[j]));
+    const fi=al*ETA*gij*mag,fj=al*ETA*gji*mag;dS[i]+=fi;dS[j]+=fj;dstep+=Math.abs(fi)+Math.abs(fj);}
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function count(){nAlive=0;for(let i=0;i<N;i++)if(alive[i])nAlive++;}
+
+// N grande: campo medio O(N) + layout de EXPANSIÓN (embedding relacional). Escala a 100k+.
+function stepGenesisBig(){
+  const al=cfg.alpha;const m=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i]){m[i]=0;continue;}S[i]*=(1-MU);m[i]=Math.sqrt(sat(S[i]));}
+  const v=new Float64Array(d);
+  for(let i=0;i<N;i++)if(alive[i]){const b=i*d,mi=m[i];for(let k=0;k<d;k++)v[k]+=mi*U[b+k];}
+  const c=Math.cos(cfg.theta),s=Math.sin(cfg.theta),Rv=new Float64Array(d);
+  for(let k=0;k<d;k++)Rv[k]=v[k];Rv[0]=c*v[0]-s*v[1];Rv[1]=s*v[0]+c*v[1];
+  let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const b=i*d;let dot=0,self=0;for(let k=0;k<d;k++){dot+=U[b+k]*Rv[k];self+=U[b+k]*RU[b+k];}
+    const dS=al*ETA*m[i]*dot-al*ETA*m[i]*m[i]*self;S[i]+=dS;if(S[i]<0)S[i]=0;dstep+=Math.abs(dS);
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+  // radio de VISUALIZACIÓN (no expansión física): crece con τ. Dirección ALEATORIA fija → nube esférica, sin casquete forzado.
+  const Rt=0.35*tau;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+}
+function stepGen(){ (N>NBIG)?stepGenesisBig():stepGenesis(); }
+
+function stepQcd(){
+  const al=cfg.alpha,m=new Float64Array(N),coop=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i]){m[i]=0;continue;}S[i]*=(1-MU);m[i]=Math.sqrt(sat(S[i]));}
+  let dstep=0;
+  if(cfg.qcdVer==='b'&&qcdC){for(let i=0;i<N;i++){if(!alive[i])continue;let s=0;for(let j=0;j<N;j++)if(alive[j])s+=qcdC[i*N+j]*m[j];coop[i]=s;}}
+  else{let vx=0,vy=0,vz=0;for(let i=0;i<N;i++)if(alive[i]){const mi=m[i];vx+=mi*colV[i*3];vy+=mi*colV[i*3+1];vz+=mi*colV[i*3+2];}
+    for(let i=0;i<N;i++)if(alive[i])coop[i]=colV[i*3]*vx+colV[i*3+1]*vy+colV[i*3+2]*vz;}
+  for(let i=0;i<N;i++){if(!alive[i])continue;
+    const dS=al*ETA*m[i]*coop[i]-al*ETA*m[i]*m[i];S[i]+=dS;if(S[i]<0)S[i]=0;dstep+=Math.abs(dS);
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+  const Rt=0.35*tau;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));
+    if(N>NBIG){px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+    else{px[i]+=(Math.random()-.5)*0.002;py[i]+=(Math.random()-.5)*0.002;pz[i]+=(Math.random()-.5)*0.002;}}
+}
+function stepQcdPair(){
+  const al=cfg.alpha,dS=new Float64Array(N);
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;
+    for(let j=i+1;j<N;j++){if(!alive[j])continue;
+      const cij=cfg.qcdVer==='b'?qcdCompat(i,j):(colV[i*3]*colV[j*3]+colV[i*3+1]*colV[j*3+1]+colV[i*3+2]*colV[j*3+2]);
+      const mag=Math.sqrt(sat(S[i])*sat(S[j]));const f=al*ETA*cij*mag;
+      dS[i]+=f;dS[j]+=f;dstep+=2*Math.abs(f);}}
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepQcdRun(){(N>NBIG)?stepQcd():stepQcdPair();}
+
+// ===== métricas =====
+function eig3(a,b,c,dd,e,f){const p1=dd*dd+e*e+f*f;if(p1<1e-12)return[a,b,c].sort((x,y)=>y-x);const q=(a+b+c)/3,p2=(a-q)**2+(b-q)**2+(c-q)**2+2*p1,p=Math.sqrt(p2/6);const det=((a-q)/p)*(((b-q)/p)*((c-q)/p)-(f/p)**2)-(dd/p)*((dd/p)*((c-q)/p)-(f/p)*(e/p))+(e/p)*((dd/p)*(f/p)-((b-q)/p)*(e/p));let r=Math.max(-1,Math.min(1,det/2)),phi=Math.acos(r)/3;const e1=q+2*p*Math.cos(phi),e3=q+2*p*Math.cos(phi+2*Math.PI/3);return[e1,3*q-e1-e3,e3];}
+// nulo finito del orden: |media| de n firmas unidad uniformes en el MISMO hemisferio (frac_pos≈1).
+// Es la línea base que vuelve TRIVIAL a |orden|≈½; el EXCESO sobre este nulo es la capa fina (κ_Δ).
+let _nullN=-1,_nullD=-1,_nullV=0;
+function nullOrderMean(n,dd){
+  if(n<2)return 0;
+  if(dd===_nullD&&Math.abs(n-_nullN)<=Math.max(2,0.02*n))return _nullV;   // cache: recomputa solo si n/d cambia
+  const r=mulberry32(0x9E3779B1>>>0),R=6,u=new Float64Array(dd);let acc=0;
+  for(let rep=0;rep<R;rep++){const s=new Float64Array(dd);
+    for(let i=0;i<n;i++){let nn=0;for(let k=0;k<dd;k++){const g=randn(r);u[k]=g;nn+=g*g;}nn=Math.sqrt(nn)||1;
+      let dot=0;for(let k=0;k<dd;k++){u[k]/=nn;dot+=u[k];}const sg=dot<0?-1:1;   // hemisferio respecto al eje 0
+      for(let k=0;k<dd;k++)s[k]+=sg*u[k];}
+    let m=0;for(let k=0;k<dd;k++)m+=s[k]*s[k];acc+=Math.sqrt(m)/n;}
+  _nullN=n;_nullD=dd;_nullV=acc/R;return _nullV;
+}
+function metrics(){
+  let n=0,cx=0,cy=0,cz=0;for(let i=0;i<N;i++)if(alive[i]){cx+=px[i];cy+=py[i];cz+=pz[i];n++;}
+  // orden global (de las firmas vivas): |media U| completa sobre las d componentes
+  let ord=new Float64Array(d);for(let i=0;i<N;i++)if(alive[i]){for(let k=0;k<d;k++)ord[k]+=U[i*d+k];}
+  let ordGsq=0;for(let k=0;k<d;k++)ordGsq+=ord[k]*ord[k];const ordG=n?Math.sqrt(ordGsq)/n:0;
+  let dim=0,aniso=1,clump=0,ordL=ordG,chiS=0;
+  if(n>=5){cx/=n;cy/=n;cz/=n;let xx=0,yy=0,zz=0,xy=0,xz=0,yz=0,ext=0;
+    for(let i=0;i<N;i++)if(alive[i]){const x=px[i]-cx,y=py[i]-cy,z=pz[i]-cz;xx+=x*x;yy+=y*y;zz+=z*z;xy+=x*y;xz+=x*z;yz+=y*z;const m=Math.max(Math.abs(x),Math.abs(y),Math.abs(z));if(m>ext)ext=m;}
+    xx/=n;yy/=n;zz/=n;xy/=n;xz/=n;yz/=n;const ev=eig3(xx,yy,zz,xy,xz,yz);
+    const sP=ev[0]+ev[1]+ev[2],s2=ev[0]*ev[0]+ev[1]*ev[1]+ev[2]*ev[2];dim=s2>0?sP*sP/s2:0;aniso=ev[0]>1e-12?ev[2]/ev[0]:1;
+    const G=12,cells=new Int32Array(G*G*G),cc=v=>Math.min(G-1,Math.max(0,Math.floor((v+ext)/(2*ext+1e-9)*G)));
+    for(let i=0;i<N;i++)if(alive[i])cells[cc(px[i]-cx)*G*G+cc(py[i]-cy)*G+cc(pz[i]-cz)]++;
+    let mean=n/(G*G*G),v2=0;for(let k=0;k<cells.length;k++)v2+=(cells[k]-mean)**2;v2/=cells.length;clump=mean>0?v2/mean:0;
+    // orden LOCAL (cosmos): media de |media U| por celda
+    if(cfg.mode==='cosmos'){const oc=new Float64Array(G*G*G*d),cnt=new Int32Array(G*G*G);
+      for(let i=0;i<N;i++)if(alive[i]){const c=cc(px[i]-cx)*G*G+cc(py[i]-cy)*G+cc(pz[i]-cz);for(let k=0;k<d;k++)oc[c*d+k]+=U[i*d+k];cnt[c]++;}
+      let acc=0,acc2=0,m2=0;for(let c=0;c<cnt.length;c++)if(cnt[c]>=5){let s2=0;for(let k=0;k<d;k++)s2+=oc[c*d+k]*oc[c*d+k];const v=Math.sqrt(s2)/cnt[c];acc+=v;acc2+=v*v;m2++;}
+      ordL=m2?acc/m2:ordG;chiS=m2>1?Math.max(0,acc2/m2-(acc/m2)*(acc/m2)):0;}  // χ = varianza del orden por celda (susceptibilidad; pico en rc crítico)
+  }
+  // ===== capa κ_Δ (arco 30-jun) — observables del cierre + exceso fino =====
+  let fracPos=1,exOrden=0,L2=0,meffK=0,granoNulo=0;const Kd=8;          // K = clases ℤ_K (ref EMP-F1, K=8)
+  const granoGrueso=1/Math.sqrt(Kd);                                    // grano grueso = 1/√K = √(κ_Δ/2π)
+  if(n>=5){
+    let on=0;for(let k=0;k<d;k++)on+=ord[k]*ord[k];on=Math.sqrt(on)||1; // frac_pos: alineación al hemisferio
+    let fp=0;for(let i=0;i<N;i++)if(alive[i]){let dt=0;for(let k=0;k<d;k++)dt+=U[i*d+k]*ord[k];if(dt>0)fp++;}fracPos=fp/n;
+    exOrden=ordG-nullOrderMean(n,d);                                    // exceso fino sobre nulo finito (~0.015@d3)
+    const cntK=new Float64Array(Kd);                                    // participación por sector → L2 fase + m_eff/K
+    for(let i=0;i<N;i++)if(alive[i]){let a=Math.atan2(U[i*d+1],U[i*d]);let kk=Math.floor((a/6.28318530718+0.5)*Kd);kk=((kk%Kd)+Kd)%Kd;cntK[kk]++;}
+    let sf2=0;for(let k=0;k<Kd;k++){const fk=cntK[k]/n;L2+=(fk-1/Kd)*(fk-1/Kd);sf2+=fk*fk;}
+    L2=Math.sqrt(L2);meffK=sf2>0?1/(Kd*sf2):0;granoNulo=Math.sqrt((Kd-1)/(Kd*n)); // nulo combinatorio uniforme ℤ_K
+  }
+  return {f:N?nAlive/N:0,ordG,ordL,dim,aniso,clump,fracPos,exOrden,L2,meffK,granoGrueso,granoNulo,Kd,chiS};
+}
+
+// ===== Three.js =====
+let scene,camera,renderer,controls,points,geom,mat;
+const cv=document.getElementById('c');
+function initGL(){
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x04050a,0.012);
+  camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,5000);camera.position.set(0,0,90);
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  controls=new THREE.OrbitControls(camera,cv);controls.enableDamping=true;controls.autoRotate=false;  // cámara SOLO con cursor (sin auto-rotación) — para no confundir movimiento de cámara con física
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+}
+function buildPoints(n){
+  if(points){scene.remove(points);geom.dispose();mat.dispose();}
+  geom=new THREE.BufferGeometry();
+  geom.setAttribute('position',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('color',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('psize',new THREE.BufferAttribute(new Float32Array(n),1));
+  mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    vertexShader:`attribute float psize;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=psize*(420.0/-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`varying vec3 vC;void main(){vec2 d=gl_PointCoord-vec2(0.5);float r=length(d);if(r>0.5)discard;float g=smoothstep(0.5,0.0,r);gl_FragColor=vec4(vC*g*1.7,1.0);}`});
+  points=new THREE.Points(geom,mat);scene.add(points);
+}
+const _c=new THREE.Color();
+function updatePoints(){
+  const p=geom.attributes.position.array,col=geom.attributes.color.array,ps=geom.attributes.psize.array;
+  let maxS=1e-6;for(let i=0;i<N;i++)if(alive[i])maxS=Math.max(maxS,S[i]);const lmax=Math.log(1+maxS)+1e-9;
+  for(let i=0;i<N;i++){p[i*3]=px[i];p[i*3+1]=py[i];p[i*3+2]=pz[i];
+    if(alive[i]){const fr=Math.log(1+S[i])/lmax;
+      if(cfg.mode==='qcd'){const b=0.35+0.65*fr;
+        if(isGluon(msLab[i])){col[i*3]=0.95*b;col[i*3+1]=0.85*b;col[i*3+2]=0.35*b;}
+        else{const[aq,ci]=decodeMs(msLab[i]);const base=[[1,0.2,0.2],[0.2,0.9,0.2],[0.2,0.4,1]][ci];
+        col[i*3]=(aq?base[0]*0.45:base[0])*b;col[i*3+1]=(aq?base[1]*0.45:base[1])*b;col[i*3+2]=(aq?base[2]*0.45:base[2])*b;}}
+      else if(cfg.mode==='kappa'){
+        const hue=(omega[i]+0.08*Math.atan2(U[i*3+1],U[i*3]))/cfg.kappaK;
+        _c.setHSL(hue-Math.floor(hue),0.95,0.52);
+        const b=0.25+0.75*fr;col[i*3]=_c.r*b;col[i*3+1]=_c.g*b;col[i*3+2]=_c.b*b;}
+      else{const hue=(Math.atan2(U[i*d+1],U[i*d])/6.2832+0.5);_c.setHSL(hue,0.95,0.55);
+        const b=0.25+0.75*fr;col[i*3]=_c.r*b;col[i*3+1]=_c.g*b;col[i*3+2]=_c.b*b;}
+      ps[i]=2.0+9.0*fr;}
+    else{col[i*3]=col[i*3+1]=col[i*3+2]=0;ps[i]=0;}}
+  geom.attributes.position.needsUpdate=geom.attributes.color.needsUpdate=geom.attributes.psize.needsUpdate=true;
+}
+
+// ===== nodos de la teoría (se encienden cuando su fenómeno se MIDE) =====
+let NODOS=[],histF=[],histO=[];
+function resetNodos(){histF=[];histO=[];
+  NODOS=[
+   {id:'C-N1',txt:'S>0 — la diferencia persiste',test:m=>tau>=1},
+   {id:'C-N2',txt:'I⟺E — acoplamiento entre diferencias',test:m=>dStruct>0},
+   {id:'C-N2.5',txt:'el tiempo emerge (τ por Δ_struct)',test:m=>tau>=2},
+   {id:'C-N2.5.5',txt:'baryogénesis (asimetría θ→exceso)',test:m=>Math.abs(cfg.theta)>0.02&&m.exOrden>0.004},
+   {id:'C-N2.5.10',txt:'aniquilación (lo opuesto se cancela)',test:m=>nAnnih>0},
+   {id:'C-N3',txt:'flecha del tiempo (irreversible)',test:m=>nAnnih>5&&tau>5},
+   {id:'C-N2.6',txt:'curvatura: zonas densas y vacíos',test:m=>m.clump>1.3},
+   {id:'C-N2.6.4',txt:'orden a gran escala (proxy; auto-sim. real=ley potencias)',test:m=>m.ordG>0.3},
+   {id:'C-N2.8.4',txt:'κ_Δ>0 — L2 de fase supera el nulo (grano 1/√K)',test:m=>m.L2>3*m.granoNulo&&tau>5},
+   {id:'C-N2.8.15',txt:'constantes: trivial f,|orden| + exceso fino real',test:m=>estable()},
+  ].map(n=>({...n,fired:false,tau:null}));renderNodos();}
+function estable(){if(histF.length<25)return false;const f=histF.slice(-20),o=histO.slice(-20);const rg=a=>Math.max(...a)-Math.min(...a);return rg(f)<0.02&&rg(o)<0.02&&histF[histF.length-1]>0.1;}
+function detectaNodos(m){histF.push(m.f);histO.push(m.ordG);if(histF.length>250){histF.shift();histO.shift();}
+  let chg=false;for(const n of NODOS)if(!n.fired&&n.test(m)){n.fired=true;n.tau=tau;chg=true;}if(chg)renderNodos();}
+// tipología de ruptura (C-N2.8.9a): nombra el κ que se está violando, no genérico "falló".
+function tipologiaRuptura(m){const f=N?nAlive/N:0;
+  if(f<0.35)return['disolución (κ_P)','#e88'];                        // la masa muere: persistencia colapsa
+  if(dStructRate<1e-3&&tau>6)return['desacoplamiento (κ_V)','#ea0'];  // el acoplamiento se apaga: dStruct estanca
+  if(m.exOrden<0.003&&tau>6)return['homogeneización (κ_Δ)','#8cf'];   // se borra la diferencia: exceso→0
+  return['cierre estable','#7fd'];}
+function renderNodos(){const el=document.getElementById('nodos');if(!el)return;
+  el.innerHTML='<div style="color:#fff;margin-bottom:5px;font-weight:bold">Nodos cumplidos · cuándo (τ)</div>'+
+    NODOS.map(n=>`<div style="opacity:${n.fired?1:0.32}">${n.fired?'✓':'○'} <b>${n.id}</b> ${n.txt}${n.fired?' <span style="color:#7fd">τ='+n.tau+'</span>':''}</div>`).join('');}
+
+let playing=true,frame=0;
+function loop(){requestAnimationFrame(loop);
+    if(playing){const steps=(cfg.mode==='narrativa'||cfg.mode==='kappa')?cfg.speed:1;
+    for(let s=0;s<steps;s++){if(cfg.mode==='kappa')stepKappa();else if(cfg.mode==='cosmos')stepCosmos();else if(cfg.mode==='qcd')stepQcdRun();else stepGen();}}
+  updatePoints();controls.update();renderer.render(scene,camera);
+  if(frame%5===0){
+    if(cfg.mode==='kappa'){
+      const m=metricsKappa();detectaKappaNodos(m);
+      document.getElementById('hud').innerHTML=
+        `<b>τ</b> ${tau} &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih} &nbsp;<b>ℤ_${m.K}</b> · θ_CP=0 · S_BAND=${m.sBand.toFixed(1)}${N>NBIG?' · <span style="color:#7a8">expansión O(N)</span>':' · <span style="color:#7a8">layout force-directed</span>'}<br>`+
+        `<b>CAPA GRUESA:</b> L2=${m.L2.toFixed(4)} / nulo ${m.granoNulo.toFixed(4)} (×${m.ratio.toFixed(1)}) · m_eff/K=${m.meffK.toFixed(3)} <span style="color:#7fd">[esperado ≈0.5]</span> · grano 1/√K=${m.granoGrueso.toFixed(4)} · κ_Δ≡2π/K=${m.kappaDelta.toFixed(3)}<br>`+
+        `<b>CAPA FINA:</b> exceso|orden|=${m.exOrden.toFixed(4)} <span style="color:#7a8">(~0.015 ref. d=3)</span> &nbsp; <b>TRIVIAL (C-N1.3):</b> f=${m.f.toFixed(3)} · |orden|=${m.ordG.toFixed(3)} · frac_pos=${m.fracPos.toFixed(2)}<br>`+
+        `<b>veredicto cierre:</b> <span style="color:#7fd">${m.veredicto}</span> — mueve la banda (×0.5…3.0): m_eff/K debe quedar plano (cambio 0.0000 en 1080 corridas CC)`;
+      document.getElementById('fase').innerHTML=`<b>◇ Arco κ_Δ</b> (cierre 30-jun)<br>motor ℤ_K · cg002_dynamic_l2_sweep.py`;
+      document.getElementById('fase').style.display='block';
+      document.getElementById('nodos').style.display='block';
+    }else if(cfg.mode==='qcd'){
+      const q=metricsQcd();const t=qcdTime();const ver=cfg.qcdVer==='b'?'R7b':'R7a';
+      const kline=q.K_CANDS.map(K=>`K${K} ${q['excess_'+K].toFixed(1)}×nulo`).join(' · ');
+      document.getElementById('hud').innerHTML=
+        `<b>τ</b> ${tau} &nbsp;<b>t ~</b> ${t<1e-3?t.toExponential(1):t.toFixed(3)} s &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih}<br>`+
+        `<b>${ver}</b> θ_CP=0 · semilla simétrica · sin confinamiento${cfg.qcdVer==='b'?' · <b>8 gluones</b> en el lote':''}<br>`+
+        `<b>f</b>=${q.f.toFixed(3)}${cfg.qcdVer==='b'?` · q/g=${q.fracQuark.toFixed(2)}/${q.fracGluon.toFixed(2)}`:''} · <b>|orden color|</b>=${q.ordC.toFixed(3)} <span style="color:#7a8">(baryogénesis aquí, no en f)</span><br>`+
+        `<b>exceso L2/nulo:</b> ${kline} · <b>K_eff→${q.kBest}</b> <span style="color:#7a8">(no ½-trap)</span>`;
+      document.getElementById('fase').innerHTML=`<b>◆ plasma QCD ${ver}</b> (10⁻³²–10⁻⁶ s)<br>${cfg.qcdVer==='b'?'gluón = entidad octeto':'gluón = ley de acoplamiento'}`;
+      document.getElementById('fase').style.display='block';
+      document.getElementById('nodos').style.display='none';
+    }else{const m=metrics();
+    dStructRate=dStruct-_prevDStruct;_prevDStruct=dStruct;const _tip=tipologiaRuptura(m);
+    document.getElementById('hud').innerHTML=
+      `<b>τ</b> ${tau} &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih}${N>NBIG?' &nbsp;<span style="color:#7a8">(motor O(N) · radio = visualización, no expansión física)</span>':''}<br>`+
+      `<b>dim emergente</b> ${m.dim.toFixed(2)} (sustrato d=${cfg.d}) &nbsp;<b>clumping</b> ${m.clump.toFixed(2)}<br>`+
+      `<b>trivial (C-N1.3):</b> f=${m.f.toFixed(3)} · |orden|=${m.ordG.toFixed(3)} · frac_pos=${m.fracPos.toFixed(2)} <span style="color:#7a8">(geometría del hemisferio, NO ley)</span><br>`+
+      `<b>κ_Δ:</b> exceso|orden|=${m.exOrden.toFixed(3)} <span style="color:#7a8">(fino ~0.015@d3)</span> · L2=${m.L2.toFixed(3)}/nulo ${m.granoNulo.toFixed(3)} (×${(m.L2/(m.granoNulo+1e-9)).toFixed(1)}) · m_eff/K=${m.meffK.toFixed(2)} <span style="color:#7a8">[½ derivado] · grano 1/√K=${m.granoGrueso.toFixed(3)} · κ_Δ≡2π/K</span><br>`+
+      `<b>tipología ruptura:</b> <span style="color:${_tip[1]}">${_tip[0]}</span> <span style="color:#7a8">(C-N2.8.9a)</span>`;
+    if(cfg.mode==='narrativa'){detectaNodos(m);document.getElementById('nodos').style.display='block';}
+    else document.getElementById('nodos').style.display='none';
+    let fase='';
+    if(cfg.mode==='cosmos'){
+      const r=m.ordL/(m.ordG+1e-6);
+      fase = m.ordG>0.4 ? '🌐 cosmos único (fase ordenada)' : (r>2.5 ? '🧩 dominios coexisten (fase desordenada)' : '⚡ crítica (transición)');
+      document.getElementById('fase').innerHTML=`<b>${fase}</b><br>orden local ${m.ordL.toFixed(2)} · global ${m.ordG.toFixed(2)}<br>fluct χ=${m.chiS.toFixed(4)} <span style="color:#7a8">(susceptibilidad; pico esperado rc≈3)</span>`;
+      document.getElementById('fase').style.display='block';
+    } else document.getElementById('fase').style.display='none';}
+  }
+  frame++;
+}
+
+// ===== CSV / video =====
+function dl(name,txt,type){const b=new Blob([txt],{type});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+function csvState(){
+  if(cfg.mode==='kappa'){const m=metricsKappa();
+    let s=`# CG002 arco kappa | tau=${tau} N=${N} K=${m.K} bandMult=${cfg.bandMult} S_BAND=${m.sBand} seed=${cfg.seed} f=${m.f.toFixed(3)} L2=${m.L2.toFixed(4)} meffK=${m.meffK.toFixed(4)} exOrden=${m.exOrden.toFixed(4)} aniquiladas=${nAnnih}\nid,viva,omega,S,x,y,z\n`;
+    for(let i=0;i<N;i++)s+=`${i},${alive[i]},${omega[i]},${S[i].toExponential(3)},${px[i].toFixed(3)},${py[i].toFixed(3)},${pz[i].toFixed(3)}\n`;
+    dl('cg002_kappa_estado.csv',s,'text/csv');return;}
+  const m=metrics();let s=`# CG002 visor ${cfg.mode} | tau=${tau} N=${cfg.N} d=${cfg.d} theta=${cfg.theta} alpha=${cfg.alpha} rc=${cfg.rc} config=${cfg.seed} f=${m.f.toFixed(3)} ordenG=${m.ordG.toFixed(3)} dim=${m.dim.toFixed(3)} clump=${m.clump.toFixed(3)} aniquiladas=${nAnnih}\nid,viva,S,x,y,z`+Array.from({length:cfg.d},(_,k)=>',u'+k).join('')+"\n";
+  for(let i=0;i<N;i++){s+=`${i},${alive[i]},${S[i].toExponential(3)},${px[i].toFixed(3)},${py[i].toFixed(3)},${pz[i].toFixed(3)}`;for(let k=0;k<d;k++)s+=','+U[i*d+k].toFixed(3);s+="\n";}
+  dl(`cg002_${cfg.mode}_estado.csv`,s,'text/csv');}
+let rec=null,chunks=[];
+function toggleRec(e){if(rec&&rec.state==='recording'){rec.stop();e.target.textContent='⏺ video';return;}
+  const st=cv.captureStream(30);try{rec=new MediaRecorder(st,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:1.2e7});}catch(_){rec=new MediaRecorder(st);}
+  chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data);};rec.onstop=()=>dl(`cg002_${cfg.mode}.webm`,new Blob(chunks,{type:'video/webm'}),'video/webm');rec.start();e.target.textContent='⏹ guardar';}
+
+// ===== UI =====
+const $=id=>document.getElementById(id);
+function setMode(m){cfg.mode=m;
+  $('tabGen').classList.toggle('act',m==='genesis');$('tabCos').classList.toggle('act',m==='cosmos');
+  $('tabNar').classList.toggle('act',m==='narrativa');$('tabQcd').classList.toggle('act',m==='qcd');
+  $('tabKappa').classList.toggle('act',m==='kappa');
+  $('rcWrap').classList.toggle('hide',m!=='cosmos');$('spWrap').classList.toggle('hide',m!=='narrativa'&&m!=='kappa');
+  $('qcdWrap').classList.toggle('hide',m!=='qcd');$('kappaWrap').classList.toggle('hide',m!=='kappa');
+  const dimHide=m==='qcd'||m==='kappa';
+  for(const id of['D','tkD','theta','tkT'])$(''+id).classList.toggle('hide',dimHide);
+  $('D').previousElementSibling.classList.toggle('hide',dimHide);
+  $('theta').previousElementSibling.classList.toggle('hide',dimHide);
+  if(m==='qcd'){cfg.theta=0;cfg.d=3;vT.textContent='+0.00';vD.textContent='3';}
+  if(m==='kappa'){cfg.theta=0;vT.textContent='+0.00';if(cfg.N<500){cfg.N=2000;$('N').value=2000;vN.textContent='2000';}}
+  setInfo();init();}
+$('tabGen').onclick=()=>setMode('genesis');$('tabCos').onclick=()=>setMode('cosmos');
+$('tabNar').onclick=()=>setMode('narrativa');$('tabQcd').onclick=()=>setMode('qcd');
+$('tabKappa').onclick=()=>setMode('kappa');
+function setKappaK(k){cfg.kappaK=k;vKappaK.textContent=''+k;init();}
+$('kappaK6').onclick=()=>setKappaK(6);$('kappaK8').onclick=()=>setKappaK(8);$('kappaK12').onclick=()=>setKappaK(12);
+$('bandMult').oninput=e=>{cfg.bandMult=+e.target.value;vBandMult.textContent=cfg.bandMult.toFixed(2);};
+$('kappaN2k').onclick=()=>{cfg.N=2000;$('N').value=2000;vN.textContent='2000';init();};
+$('kappaN16k').onclick=()=>{cfg.N=16000;$('N').value=16000;vN.textContent='16000';init();};
+$('qcdA').onclick=()=>{cfg.qcdVer='a';vQcd.textContent='R7a';init();};
+$('qcdB').onclick=()=>{cfg.qcdVer='b';vQcd.textContent='R7b';init();};
+$('sp').oninput=e=>{cfg.speed=+e.target.value;vSp.textContent=cfg.speed;};
+// los sliders que reconstruyen el universo: actualizan etiqueta al arrastrar, pero solo RE-INICIAN al SOLTAR (evita congelar el arrastre)
+// snap de N a números redondos según magnitud (el rango 2..100000 es imposible de afinar a paso 1)
+function snapN(v){v=+v;let s;if(v<=100)s=10;else if(v<=2000)s=50;else if(v<=10000)s=500;else s=2500;return Math.max(2,Math.round(v/s)*s);}
+$('N').oninput=e=>{cfg.N=snapN(e.target.value);e.target.value=cfg.N;vN.textContent=cfg.N;};   $('N').onchange=init;
+$('D').oninput=e=>{cfg.d=+e.target.value;vD.textContent=cfg.d;};   $('D').onchange=init;
+$('rc').oninput=e=>{cfg.rc=+e.target.value;vR.textContent=cfg.rc.toFixed(1);};  $('rc').onchange=init;
+$('conf').oninput=e=>{cfg.seed=+e.target.value;vS.textContent=cfg.seed;};  $('conf').onchange=init;
+$('theta').oninput=e=>{cfg.theta=+e.target.value;vT.textContent=(cfg.theta>=0?'+':'')+cfg.theta.toFixed(2);rotateU();};
+$('alpha').oninput=e=>{cfg.alpha=+e.target.value;vA.textContent=cfg.alpha.toFixed(2);};
+$('play').onclick=e=>{playing=!playing;e.target.textContent=playing?'⏸ pausa':'▶ play';};
+$('reset').onclick=init;$('csv').onclick=csvState;$('rec').onclick=toggleRec;
+$('infoBtn').onclick=()=>{$('info').style.display='block';$('infoBtn').style.display='none';};
+$('infoClose').onclick=()=>{$('info').style.display='none';$('infoBtn').style.display='block';};
+function setInfo(){
+  $('infoT').textContent=cfg.mode==='genesis'?'Génesis — el estallido':cfg.mode==='cosmos'?'Cosmos — alcance y fases':cfg.mode==='qcd'?'Plasma QCD — R7a color×spin':cfg.mode==='kappa'?'Arco κ_Δ — simulación del cierre':'Del punto al cosmos — guion automático';
+  $('infoBody').innerHTML=cfg.mode==='kappa'
+    ?`<p><b>El experimento completo que cerraron el 30-jun.</b> Motor discreto <b>ℤ_K</b> (no el continuo S^{d−1} de Génesis/Cosmos): cada nodo lleva fase <b>ω_i ∈ Z_K</b> fija; acoplamiento <b>c_ij = cos(2π(ω_i−ω_j)/K)</b>; dinámica de persistencia S con η, μ, banda C-N5.1 y extinción κ_s. <b>θ_CP = 0</b> — el caso de la derivación.</p>`+
+     `<p><b>Dos capas (no confundir):</b> <b>Gruesa</b> — L2 de fase, m_eff/K ≈ ½, grano 1/√K, invariante al barrido de banda 6× (1080 corridas, <i>engine_output.csv</i>). <b>Fina</b> — exceso de |orden| sobre nulo hemisferio (~0.015 ref.). <b>Trivial</b> — f≈½, |orden|≈½ (geometría del hemisferio, C-N1.3).</p>`+
+     `<p><b>Visualización</b> (igual que Génesis/Cosmos): nacen en el <b>foco</b>, se despliegan por acoplamiento <b>c_ij</b> (fases afines se atraen, opuestas se repelen) y <b>expansión 3D</b> con τ. Color = fase ω ∈ Z_K · brillo = persistencia S. Con N grande: nube esférica como Génesis O(N).</p>`+
+     `<p><b>Controles:</b> K ∈ {6,8,12} · banda ×0.5…3.0 · N · <b>velocidad</b> (pasos/frame). Mueve la banda: m_eff/K debe quedar en ~0.5 (derivación C-N2.5.10).</p>`
+    :cfg.mode==='qcd'
+    ?(cfg.qcdVer==='b'
+    ?`<p><b>R7b</b>: extiende R7a con <b>8 gluones</b> como entidades (octeto SU(3), spin-1 etiqueta) en el mismo lote (20 microestados). <b>c_ij</b>: quark–quark v_i·v_j; gluón–gluón δ; quark–gluón vía raíces SU(3). Semilla simétrica. <b>K_eff ∈ {8,12,20}</b>.</p>`
+    :`<p><b>R7a</b>: <b>Ω_firma</b> = 12 microestados quark/antiquark × spin. Gluón solo como ley de acoplamiento. <b>K_eff ∈ {6,8,12}</b>.</p>`)+`<p>Reloj: <b>10⁻³²–10⁻⁶ s</b>. θ_CP=0. Sin confinamiento impuesto.</p>`
+    :cfg.mode==='genesis'
+    ?`<p>Las diferencias nacen en el <b>foco</b> (la singularidad) y se despliegan por su <b>acoplamiento</b>: el espacio y el tiempo emergen del enredo. Persisten <b>las pocas</b> que cooperan; el resto se <b>aniquila</b>.</p>`
+    :cfg.mode==='cosmos'
+    ?`<p>Posiciones en un volumen; el acoplamiento es <b>local</b> (alcance rc). Desliza <b>rc</b> y verás la <b>transición de fase</b>: rc corto → <b>dominios coexisten</b> (colores distintos); rc largo → <b>un cosmos único</b>. El cruce es el punto crítico — la <b>fluct χ</b> (susceptibilidad) hace pico ahí (rc≈3, C-N2.7). <span style="color:#89a">(Cosmos usa hasta ~4.000 puntos: el acoplamiento local tiene demasiados pares a más densidad.)</span></p>`
+    :`<p>El proceso completo en tiempo acelerado: del <b>punto</b> (singularidad) al <b>cosmos</b>. Ajusta la <b>velocidad</b>. A la izquierda, los <b>nodos de la Teoría se encienden cuando su fenómeno se mide</b>, con el <b>τ</b> en que ocurren — la teoría cumpliéndose, en orden, ante tus ojos.</p>`;
+  $('infoBody').innerHTML+=`<p><b>color</b>=identidad (firma ω) · <b>tamaño/brillo</b>=persistencia. <b>dim emergente</b> rastrea la dimensión del sustrato d.</p>`+
+   `<p><b>Cierre arco κ_Δ (30-jun):</b> f≈½ y |orden|≈½ NO son ley — son <b>triviales</b> (geometría del hemisferio, frac_pos≈1, C-N1.3). Lo invariante: el <b>exceso</b> del orden sobre el nulo finito (capa <b>fina</b>, ~0.015 a d=3) y, en el motor discreto-K, <b>m_eff/K=½</b> como <b>derivación</b> (cambio 0.0000 al barrer banda 6×) con <b>grano 1/√K</b> y <b>κ_Δ≡2π/K</b>. La <b>dirección</b> es historia (~90°). El HUD muestra estos observables vivos; los números duros del cierre están en <i>cierre_kappaDelta_regla.py</i> / <i>engine_output.csv</i>.</p>`;
+}
+setInfo();
+// marcas de detención: tick + etiqueta posicionada por valor real (left% = (v-min)/(max-min))
+function mkTicks(sliderId,boxId,marks){const s=$(sliderId),box=$(boxId);if(!s||!box)return;const lo=+s.min,hi=+s.max;box.innerHTML='';
+  for(const mk of marks){const sp=document.createElement('span');sp.style.left=((mk.v-lo)/(hi-lo)*100)+'%';sp.textContent=mk.t;sp.title=mk.v;box.appendChild(sp);}}
+mkTicks('N','tkN',[{v:2,t:'2'},{v:800,t:'800'},{v:2500,t:'2.5k'},{v:10000,t:'10k'},{v:50000,t:'50k'},{v:100000,t:'100k'}]);
+mkTicks('D','tkD',[2,3,4,5,6].map(v=>({v,t:''+v})));
+mkTicks('theta','tkT',[{v:-1,t:'-1'},{v:-0.5,t:'-.5'},{v:0,t:'0'},{v:0.5,t:'+.5'},{v:1,t:'+1'}]);
+mkTicks('alpha','tkA',[{v:0,t:'0'},{v:0.25,t:'.25'},{v:0.5,t:'.5'},{v:0.75,t:'.75'},{v:1,t:'1'}]);
+mkTicks('rc','tkR',[{v:0.6,t:'.6'},{v:2,t:'2'},{v:3,t:'3'},{v:4,t:'4'},{v:6,t:'6'},{v:8,t:'8'}]);
+mkTicks('sp','tkSp',[1,3,6,9,12].map(v=>({v,t:''+v})));
+mkTicks('conf','tkC',[{v:1,t:'1'},{v:30,t:'30'},{v:60,t:'60'},{v:90,t:'90'},{v:120,t:'120'}]);
+mkTicks('bandMult','tkBand',[{v:0.5,t:'×0.5'},{v:1,t:'×1'},{v:2,t:'×2'},{v:3,t:'×3'}]);
+initGL();init();loop();
+</script>
+</body>
+</html>

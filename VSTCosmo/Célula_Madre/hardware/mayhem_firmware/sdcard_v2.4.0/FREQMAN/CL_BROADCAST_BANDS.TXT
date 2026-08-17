@@ -1,0 +1,6 @@
+# Chile broadcast ranges for Recon/Scanner style use.
+# FM commercial allocation in Chile: 88.1-105.7 MHz.
+# RM community/citizen segment: 105.9-107.9 MHz.
+a=530000,b=1710000,m=AM,bw=DSB 9k,s=10kHz,d=CL AM broadcast
+a=88100000,b=105700000,m=WFM,bw=200k,s=100kHz,d=CL FM commercial
+a=105900000,b=107900000,m=WFM,bw=200k,s=100kHz,d=CL RM community FM

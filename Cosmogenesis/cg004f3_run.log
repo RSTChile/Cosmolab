@@ -1,0 +1,30 @@
+CG004-f3 — CINTA DE TRIÁNGULOS INTERIORES (transporte por caras) + EISENSTEIN EXACTO
+====================================================================================================
+q∈[6, 7, 8] · radios de cinta [2, 3, 4] · Burgers = |traslación acumulada| (Z[ω] exacto)
+guardián: q=6 (plano) debe cerrar EXACTO (a=b=0 en Eisenstein → Burgers=0 real)
+
+   q  R cinta_n  encerr cerr_exacto   BURGERS  defic
+  --------------------------------------------------------
+   6  2      12       7        True    0.0000   0.00
+   6  3      18      19        True    0.0000   0.00
+   6  4      24      37        True    0.0000   0.00
+   7  2      21       8       False    1.0000   1.05
+   7  3      56      29       False    1.0000   1.05
+   7  4     147      85       False    2.6458   1.05
+   8  2      32       9        True    0.0000   2.09
+   8  3     120      41       False    1.7321   2.09
+   8  4     448     161       False    1.7321   2.09
+
+====================================================================================================
+GUARDIÁN (plano q=6): cierra EXACTO (Burgers=0 real) ✓
+
+FRONTERA — Burgers de la cinta vs curvatura κ:
+  q=6 (defic=0.00): R2:0.000  R3:0.000  R4:0.000   [CIERRA (Burgers=0 → reconverge/aplana)]
+  q=7 (defic=1.05): R2:1.000  R3:1.000  R4:2.646   [NO cierra (Burgers>0 → NO puede aplanar)]
+  q=8 (defic=2.09): R2:0.000  R3:1.732  R4:1.732   [NO cierra (Burgers>0 → NO puede aplanar)]
+
+LECTURA (pre-registrada, adjudicación CS):
+  · Burgers=0 SÓLO en κ=0 y >0 para todo κ>0 → el pegado-por-desarrollo PRESERVA lo plano
+    pero NO puede GENERARLO desde curvatura (el Burgers no-nulo impide cerrar el lazo).
+  · Frontera en κ=0⁺: cualquier curvatura bloquea la reconvergencia. El lever está AGUAS
+    ARRIBA (generar consistencia de marcos local), no en el pegado. 3er cierre con mecanismo.

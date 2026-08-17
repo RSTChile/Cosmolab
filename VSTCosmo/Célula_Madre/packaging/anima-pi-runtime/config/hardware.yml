@@ -1,0 +1,23 @@
+hardware:
+  perfil_base: limpio
+  pantalla_spi:
+    enabled: true
+    framebuffer: /dev/fb1
+    rotate: 180
+    vnc_port: 5901
+  atmega:
+    puerto: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+    wifi_tcp_port: 5000
+  camara_ptz:
+    enabled: false
+    host: 192.168.86.34
+  audio_server:
+    wait_on_boot: false
+  audio_local:
+    enabled: true
+    policy: prefer-system-input
+    match: ""
+  presencia:
+    mode: local
+    mdns: true
+    udp_fallback: true

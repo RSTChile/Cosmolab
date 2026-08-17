@@ -1,0 +1,13 @@
+{
+  "file": "codigo/mf1_v2_formula_unica.py",
+  "exit": 0,
+  "smoke": "PASS",
+  "max_err_Ta": 2.22e-16,
+  "formula": "m = sum_rho * exp(-var_3x3 / T_norm)  # unique, no if k",
+  "ratio_all_samples_with_k3": 0.3333,
+  "var_scale": "~1e-20 both k1 and k3 (phi nearly flat 1+1e-9*pert)",
+  "verdict": "MF1-FAIL-geometric under unique formula; v1 drop was asymmetric k1/k3 powers",
+  "k1_final": 333,
+  "k3_final": 36,
+  "perim8_equals_k3": true
+}

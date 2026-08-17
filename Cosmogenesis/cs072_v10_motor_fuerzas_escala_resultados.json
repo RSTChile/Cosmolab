@@ -1,0 +1,116 @@
+{
+  "punto0_pasos_equilibrados": {
+    "68": {
+      "pasos": 300,
+      "estabilizo": true
+    },
+    "136": {
+      "pasos": 300,
+      "estabilizo": true
+    },
+    "272": {
+      "pasos": 300,
+      "estabilizo": true
+    },
+    "544": {
+      "pasos": 300,
+      "estabilizo": true
+    }
+  },
+  "tarea1_confinamiento_apagado": {
+    "68": {
+      "pasos": 300,
+      "con_confinamiento": 10,
+      "sin_confinamiento": 0,
+      "admisible": true
+    },
+    "136": {
+      "pasos": 300,
+      "con_confinamiento": 20,
+      "sin_confinamiento": 0,
+      "admisible": true
+    },
+    "272": {
+      "pasos": 300,
+      "con_confinamiento": 40,
+      "sin_confinamiento": 0,
+      "admisible": true
+    },
+    "544": {
+      "pasos": 300,
+      "con_confinamiento": 80,
+      "sin_confinamiento": 0,
+      "admisible": true
+    }
+  },
+  "tarea2_escala_n_quarks_tercio": {
+    "68": {
+      "n_quarks": 30,
+      "bariones": 10,
+      "n_quarks_div3": 10.0,
+      "ratio": 1.0
+    },
+    "136": {
+      "n_quarks": 60,
+      "bariones": 20,
+      "n_quarks_div3": 20.0,
+      "ratio": 1.0
+    },
+    "272": {
+      "n_quarks": 120,
+      "bariones": 40,
+      "n_quarks_div3": 40.0,
+      "ratio": 1.0
+    },
+    "544": {
+      "n_quarks": 240,
+      "bariones": 80,
+      "n_quarks_div3": 80.0,
+      "ratio": 1.0
+    }
+  },
+  "tarea3_auditoria": {
+    "68": {
+      "base": 10,
+      "piezas": {
+        "confinamiento": {
+          "bariones_sin": 0,
+          "actua": true
+        },
+        "em": {
+          "bariones_sin": 10,
+          "actua": false
+        },
+        "gravedad": {
+          "bariones_sin": 10,
+          "actua": false
+        },
+        "aniquilacion": {
+          "bariones_sin": 10,
+          "actua": false
+        }
+      }
+    },
+    "544": {
+      "base": 80,
+      "piezas": {
+        "confinamiento": {
+          "bariones_sin": 0,
+          "actua": true
+        },
+        "em": {
+          "bariones_sin": 80,
+          "actua": false
+        },
+        "gravedad": {
+          "bariones_sin": 80,
+          "actua": false
+        },
+        "aniquilacion": {
+          "bariones_sin": 80,
+          "actua": false
+        }
+      }
+    }
+  }
+}

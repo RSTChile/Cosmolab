@@ -1,0 +1,1052 @@
+{
+ "13": {
+  "final": "CERRADO",
+  "secuencia": [
+   "CERRADO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "CERRADO",
+    "W": 0.6693,
+    "gusto": 0.5628330085198581
+   }
+  ]
+ },
+ "14": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.4015,
+    "gusto": 0.49497371678364793
+   }
+  ]
+ },
+ "15": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.4181,
+    "gusto": 0.42090851674106106
+   }
+  ]
+ },
+ "18": {
+  "final": "CERRADO",
+  "secuencia": [
+   "CERRADO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "CERRADO",
+    "W": 0.6106,
+    "gusto": 0.5520455825896919
+   }
+  ]
+ },
+ "19": {
+  "final": "CERRADO",
+  "secuencia": [
+   "CERRADO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "CERRADO",
+    "W": 0.5931,
+    "gusto": 0.50734336
+   }
+  ]
+ },
+ "22": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3754,
+    "gusto": 0.41054501777611474
+   }
+  ]
+ },
+ "6": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.4056,
+    "gusto": 0.45418934957816315
+   }
+  ]
+ },
+ "7": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3174,
+    "gusto": 0.3889262885899958
+   }
+  ]
+ },
+ "acknowledged": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3292,
+    "gusto": 0.3834282437877686
+   }
+  ]
+ },
+ "acuerdo": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.32,
+    "gusto": 0.43160085967705003
+   }
+  ]
+ },
+ "afirmacion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3488,
+    "gusto": 0.4445714834919679
+   }
+  ]
+ },
+ "alegria": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3538,
+    "gusto": 0.44877821387702194
+   }
+  ]
+ },
+ "alerta": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3535,
+    "gusto": 0.44547829613648987
+   }
+  ]
+ },
+ "asombro": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3605,
+    "gusto": 0.4503241590122746
+   }
+  ]
+ },
+ "atencion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3505,
+    "gusto": 0.45036578912796343
+   }
+  ]
+ },
+ "bateria_baja": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3881,
+    "gusto": 0.4666103814822054
+   }
+  ]
+ },
+ "calma": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3764,
+    "gusto": 0.45804079164448697
+   }
+  ]
+ },
+ "chat": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3833,
+    "gusto": 0.41865992085766335
+   }
+  ]
+ },
+ "compania": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3567,
+    "gusto": 0.45820129326734255
+   }
+  ]
+ },
+ "comprension": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3604,
+    "gusto": 0.4550765918566884
+   }
+  ]
+ },
+ "confusion": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3836,
+    "gusto": 0.4591125523321596
+   }
+  ]
+ },
+ "curiosidad": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3562,
+    "gusto": 0.44820953470387875
+   }
+  ]
+ },
+ "desacuerdo": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3575,
+    "gusto": 0.450741663263515
+   }
+  ]
+ },
+ "despedida": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3882,
+    "gusto": 0.46462642014394107
+   }
+  ]
+ },
+ "despertar": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.4337,
+    "gusto": 0.4638615542071031
+   }
+  ]
+ },
+ "dolor": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.4386,
+    "gusto": 0.467262730125405
+   }
+  ]
+ },
+ "duda": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3531,
+    "gusto": 0.45025711204247365
+   }
+  ]
+ },
+ "energia_plena": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3561,
+    "gusto": 0.4509339605756942
+   }
+  ]
+ },
+ "excited": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3618,
+    "gusto": 0.40286641306849613
+   }
+  ]
+ },
+ "excited-2": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3728,
+    "gusto": 0.45891870839463744
+   }
+  ]
+ },
+ "exploracion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3502,
+    "gusto": 0.4504068868965561
+   }
+  ]
+ },
+ "fatiga": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3788,
+    "gusto": 0.46228376413915995
+   }
+  ]
+ },
+ "fon_afirmativa": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3593,
+    "gusto": 0.44326920172421436
+   }
+  ]
+ },
+ "fon_alarma": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3598,
+    "gusto": 0.4495044468072793
+   }
+  ]
+ },
+ "fon_atencion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3581,
+    "gusto": 0.4520096107148826
+   }
+  ]
+ },
+ "fon_curioso": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3563,
+    "gusto": 0.44724546027255435
+   }
+  ]
+ },
+ "fon_espacio_timbre": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3478,
+    "gusto": 0.454572621298853
+   }
+  ]
+ },
+ "fon_espacio_tono": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3728,
+    "gusto": 0.46393249062841985
+   }
+  ]
+ },
+ "fon_frustracion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3718,
+    "gusto": 0.45731893126947465
+   }
+  ]
+ },
+ "fon_interrogacion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3614,
+    "gusto": 0.4438354161353455
+   }
+  ]
+ },
+ "fon_negativa": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3859,
+    "gusto": 0.47187029301807715
+   }
+  ]
+ },
+ "fon_novedad": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.36,
+    "gusto": 0.4498489837355529
+   }
+  ]
+ },
+ "fon_saludo": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3468,
+    "gusto": 0.42959732797278893
+   }
+  ]
+ },
+ "fon_sirena": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3554,
+    "gusto": 0.4456270801614308
+   }
+  ]
+ },
+ "fon_ternura": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3525,
+    "gusto": 0.449676281411054
+   }
+  ]
+ },
+ "fon_wobble": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3952,
+    "gusto": 0.473848841728588
+   }
+  ]
+ },
+ "frustracion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3927,
+    "gusto": 0.4643244549171309
+   }
+  ]
+ },
+ "hallazgo": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3575,
+    "gusto": 0.4453770133370367
+   }
+  ]
+ },
+ "hambre": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3813,
+    "gusto": 0.46933676439062044
+   }
+  ]
+ },
+ "insistencia": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.385,
+    "gusto": 0.4598348711892176
+   }
+  ]
+ },
+ "llamada": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3065,
+    "gusto": 0.39985451879232886
+   }
+  ]
+ },
+ "miedo": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3906,
+    "gusto": 0.4648765115900186
+   }
+  ]
+ },
+ "negacion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3958,
+    "gusto": 0.47770224083151164
+   }
+  ]
+ },
+ "novedad": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3598,
+    "gusto": 0.44745786029782586
+   }
+  ]
+ },
+ "peligro": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3565,
+    "gusto": 0.4467922955021579
+   }
+  ]
+ },
+ "precaucion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3204,
+    "gusto": 0.4041891321572653
+   }
+  ]
+ },
+ "pregunta": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3599,
+    "gusto": 0.4465901883852971
+   }
+  ]
+ },
+ "reconocimiento": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3517,
+    "gusto": 0.4429017127038408
+   }
+  ]
+ },
+ "respuesta": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3656,
+    "gusto": 0.45436748915209885
+   }
+  ]
+ },
+ "retirada": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3823,
+    "gusto": 0.4688096660897991
+   }
+  ]
+ },
+ "saciedad": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.362,
+    "gusto": 0.4506051045619013
+   }
+  ]
+ },
+ "saludo": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.351,
+    "gusto": 0.4423487144451783
+   }
+  ]
+ },
+ "satisfaccion": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3568,
+    "gusto": 0.44989061385124174
+   }
+  ]
+ },
+ "screaming": {
+  "final": "CERRADO",
+  "secuencia": [
+   "CERRADO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "CERRADO",
+    "W": 0.5863,
+    "gusto": 0.5320720742358719
+   }
+  ]
+ },
+ "shout": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3942,
+    "gusto": 0.4380968225534307
+   }
+  ]
+ },
+ "sing": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3655,
+    "gusto": 0.4079264400838859
+   }
+  ]
+ },
+ "ternura": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.3699,
+    "gusto": 0.45810489074854666
+   }
+  ]
+ },
+ "tristeza": {
+  "final": "SELVA_HOSTIL",
+  "secuencia": [
+   "SELVA_HOSTIL"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "SELVA_HOSTIL",
+    "W": 0.4004,
+    "gusto": 0.47110731025278824
+   }
+  ]
+ },
+ "urgencia": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3588,
+    "gusto": 0.4493243501967439
+   }
+  ]
+ },
+ "worried": {
+  "final": "COLAPSO",
+  "secuencia": [
+   "COLAPSO"
+  ],
+  "cambios": 0,
+  "estable": true,
+  "detalle": [
+   {
+    "regimen": "COLAPSO",
+    "W": 0.3956,
+    "gusto": 0.4090385295762524
+   }
+  ]
+ }
+}

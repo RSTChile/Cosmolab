@@ -1,0 +1,66 @@
+=== 00:39:34 N=1500 patches=100 ===
+================================================================================================
+CS065b — EXCLUSIÓN ORTOGONALIZANTE (Pauli fiel). PRE-REGISTRADO. ¿rompe B' con especificidad?
+================================================================================================
+N=1500 · patches=100 · steps=20 · D_max=8 (G-NO-TOPADO) · arms=['excl_orto', 'sin_excl', 'excl_orto_barajada', 'excl_orto_bosones', 'marco_congelado']
+PRE-INSCRITO §5: (A) excl_orto>>sin_excl Y >barajada Y bosones≈sin_excl Y corr(frac_ferm)>0 ; (B) abre ejes pero no 3 ; (C) excl_orto≈sin_excl O ≈barajada → EXCLUSIÓN MUERE (sin duelo) ; (D) depende de N. DECISIVO: excl_orto vs barajada. ÉXITO=discriminar, no que salga 3. Verificar n_ejes < D_max.
+  5/100 parches · 2.1min · ETA 0.66h
+  10/100 parches · 4.2min · ETA 0.62h
+  15/100 parches · 6.0min · ETA 0.57h
+  20/100 parches · 7.9min · ETA 0.53h
+  25/100 parches · 9.9min · ETA 0.49h
+  30/100 parches · 10.3min · ETA 0.40h
+  35/100 parches · 12.4min · ETA 0.38h
+  40/100 parches · 14.5min · ETA 0.36h
+  45/100 parches · 16.5min · ETA 0.34h
+  50/100 parches · 18.6min · ETA 0.31h
+  55/100 parches · 20.8min · ETA 0.28h
+  60/100 parches · 21.3min · ETA 0.24h
+  65/100 parches · 23.0min · ETA 0.21h
+  70/100 parches · 25.0min · ETA 0.18h
+  75/100 parches · 26.9min · ETA 0.15h
+  80/100 parches · 29.0min · ETA 0.12h
+  85/100 parches · 31.3min · ETA 0.09h
+  90/100 parches · 32.0min · ETA 0.06h
+  95/100 parches · 34.3min · ETA 0.03h
+  100/100 parches · 36.0min · ETA 0.00h
+
+COMPLETO: 100 parches en 36.0 min → cs065b_N1500.csv
+=== 01:15:36 N=2500 patches=100 ===
+================================================================================================
+CS065b — EXCLUSIÓN ORTOGONALIZANTE (Pauli fiel). PRE-REGISTRADO. ¿rompe B' con especificidad?
+================================================================================================
+N=2500 · patches=100 · steps=20 · D_max=8 (G-NO-TOPADO) · arms=['excl_orto', 'sin_excl', 'excl_orto_barajada', 'excl_orto_bosones', 'marco_congelado']
+PRE-INSCRITO §5: (A) excl_orto>>sin_excl Y >barajada Y bosones≈sin_excl Y corr(frac_ferm)>0 ; (B) abre ejes pero no 3 ; (C) excl_orto≈sin_excl O ≈barajada → EXCLUSIÓN MUERE (sin duelo) ; (D) depende de N. DECISIVO: excl_orto vs barajada. ÉXITO=discriminar, no que salga 3. Verificar n_ejes < D_max.
+  5/100 parches · 5.7min · ETA 1.79h
+  10/100 parches · 11.2min · ETA 1.68h
+  15/100 parches · 15.3min · ETA 1.45h
+  20/100 parches · 18.7min · ETA 1.25h
+  25/100 parches · 22.1min · ETA 1.10h
+  30/100 parches · 22.4min · ETA 0.87h
+  35/100 parches · 26.1min · ETA 0.81h
+  40/100 parches · 29.6min · ETA 0.74h
+  45/100 parches · 33.0min · ETA 0.67h
+  50/100 parches · 36.4min · ETA 0.61h
+  55/100 parches · 40.8min · ETA 0.56h
+  60/100 parches · 41.5min · ETA 0.46h
+  65/100 parches · 46.3min · ETA 0.42h
+  70/100 parches · 51.3min · ETA 0.37h
+  75/100 parches · 56.4min · ETA 0.31h
+  80/100 parches · 61.0min · ETA 0.25h
+  85/100 parches · 65.1min · ETA 0.19h
+  90/100 parches · 65.9min · ETA 0.12h
+  95/100 parches · 69.7min · ETA 0.06h
+  100/100 parches · 73.2min · ETA 0.00h
+
+COMPLETO: 100 parches en 73.2 min → cs065b_N2500.csv
+=== 02:28:51 N=3500 patches=60 ===
+================================================================================================
+CS065b — EXCLUSIÓN ORTOGONALIZANTE (Pauli fiel). PRE-REGISTRADO. ¿rompe B' con especificidad?
+================================================================================================
+N=3500 · patches=60 · steps=20 · D_max=8 (G-NO-TOPADO) · arms=['excl_orto', 'sin_excl', 'excl_orto_barajada', 'excl_orto_bosones', 'marco_congelado']
+PRE-INSCRITO §5: (A) excl_orto>>sin_excl Y >barajada Y bosones≈sin_excl Y corr(frac_ferm)>0 ; (B) abre ejes pero no 3 ; (C) excl_orto≈sin_excl O ≈barajada → EXCLUSIÓN MUERE (sin duelo) ; (D) depende de N. DECISIVO: excl_orto vs barajada. ÉXITO=discriminar, no que salga 3. Verificar n_ejes < D_max.
+  5/60 parches · 8.5min · ETA 1.55h
+  10/60 parches · 16.2min · ETA 1.35h
+  15/60 parches · 25.8min · ETA 1.29h
+  20/60 parches · 31.9min · ETA 1.06h

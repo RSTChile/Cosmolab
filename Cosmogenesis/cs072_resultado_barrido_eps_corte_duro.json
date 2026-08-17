@@ -1,0 +1,92 @@
+[
+  {
+    "eps": 0.1,
+    "N": 59,
+    "bariones_base": 0,
+    "bariones_corte": 0,
+    "hidrogeno_base": 0,
+    "hidrogeno_corte": 0,
+    "cambio": false
+  },
+  {
+    "eps": 0.2,
+    "N": 61,
+    "bariones_base": 1,
+    "bariones_corte": 1,
+    "hidrogeno_base": 1,
+    "hidrogeno_corte": 1,
+    "cambio": false
+  },
+  {
+    "eps": 0.3,
+    "N": 64,
+    "bariones_base": 2,
+    "bariones_corte": 2,
+    "hidrogeno_base": 1,
+    "hidrogeno_corte": 1,
+    "cambio": false
+  },
+  {
+    "eps": 0.4,
+    "N": 67,
+    "bariones_base": 2,
+    "bariones_corte": 2,
+    "hidrogeno_base": 1,
+    "hidrogeno_corte": 2,
+    "cambio": false
+  },
+  {
+    "eps": 0.5,
+    "N": 69,
+    "bariones_base": 3,
+    "bariones_corte": 2,
+    "hidrogeno_base": 2,
+    "hidrogeno_corte": 2,
+    "cambio": true
+  },
+  {
+    "eps": 0.6,
+    "N": 73,
+    "bariones_base": 4,
+    "bariones_corte": 3,
+    "hidrogeno_base": 2,
+    "hidrogeno_corte": 3,
+    "cambio": true
+  },
+  {
+    "eps": 0.7,
+    "N": 76,
+    "bariones_base": 5,
+    "bariones_corte": 0,
+    "hidrogeno_base": 3,
+    "hidrogeno_corte": 0,
+    "cambio": true
+  },
+  {
+    "eps": 0.8,
+    "N": 79,
+    "bariones_base": 5,
+    "bariones_corte": 0,
+    "hidrogeno_base": 3,
+    "hidrogeno_corte": 0,
+    "cambio": true
+  },
+  {
+    "eps": 0.9,
+    "N": 81,
+    "bariones_base": 6,
+    "bariones_corte": 0,
+    "hidrogeno_base": 3,
+    "hidrogeno_corte": 0,
+    "cambio": true
+  },
+  {
+    "eps": 1.0,
+    "N": 84,
+    "bariones_base": 7,
+    "bariones_corte": 0,
+    "hidrogeno_base": 4,
+    "hidrogeno_corte": 0,
+    "cambio": true
+  }
+]

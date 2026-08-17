@@ -1,0 +1,74 @@
+{
+  "experimento": "E5.1-2",
+  "nombre": "Vida media de la exergia: cuantos pasos tarda X en decaer sin expansion (H=0) -- RE-CORRIDA con definicion comun (Arreglo 3) + ruido calibrado (Arreglo 2)",
+  "protocolo": "PROTOCOLO_E5.1-2_PREREGISTRO.md (congelado 2026-07-24; ADENDA de re-corrida congelada 2026-07-25 ANTES de re-ejecutar)",
+  "base_code": "cs074_rcruz.py importado sin editar (paso_difusion, campo_inicial, medir_D)",
+  "definiciones_comparadas": {
+    "tau (vieja, heredada del diseno original de E5.1-2)": "X(t) = var(phi_t)/var(phi_0); tau = primer t con X(t)<=0.5",
+    "tau_canonico (nueva, Arreglo 3, BATERIA_ENFOQUE5/_observables_homologadas.py)": "Xh(t) = exergia_X(phi_t)/exergia_X(phi_0), exergia_X(phi)=(1/N)*sum((phi_i-1)^2); tau_canonico = primer t con Xh(t)<=0.5"
+  },
+  "timestamps": {
+    "motor_rerun_inicio": "2026-07-25 08:02:30",
+    "motor_rerun_fin": "2026-07-25 08:19:54",
+    "elapsed_s_total_rerun": 1044.1471021175385
+  },
+  "hallazgo_estructural_CLAVE": "tau == tau_canonico EXACTAMENTE (hasta punto flotante) en TODAS las filas de los 4 tiers (Tier1: 16 N x 16 semillas; Tier2: 25 combos; Tier3: 1 N x 4 semillas; Tier4: 6 combos x 8 semillas), no solo en promedio sino punto a punto por semilla. Razon estructural (no coincidencia numerica): bajo H=0 permanente, paso_difusion conserva Sum(phi) exactamente (promedio local lineal sobre grafo regular siempre conectado), y campo_inicial resta la media de la perturbacion antes de escalar por eps -- por tanto mean(phi)=1.0 exacto en t=0 y se mantiene exacto en todo t. Bajo esa condicion exergia_X(phi)=(1/N)*Sum((phi_i-1)^2)=(1/N)*Sum((phi_i-mean(phi))^2)=var(phi) (poblacional, mismo denominador N que numpy phi.var()) -- es decir Xh(t) y X(t) son ALGEBRAICAMENTE LA MISMA CANTIDAD para este experimento en particular (a diferencia de E5.5-3, donde la re-inyeccion de energia SI mueve la media de phi y por eso X y Xh divergen ahi). Predicho en la ADENDA del protocolo ANTES de correr, confirmado por los datos.",
+  "ley_tau_D": {
+    "ajuste_tau_viejo_recalculado_ahora": "log10(tau) = -1.0062*log10(D) + -0.2001  =>  tau ~= 0.6308 * D^-1.0062",
+    "R2_tau_viejo": 0.9999468837291405,
+    "ajuste_tau_canonico": "log10(tau_canonico) = -1.0062*log10(D) + -0.2001  =>  tau_canonico ~= 0.6308 * D^-1.0062",
+    "R2_tau_canonico": 0.9999468837291405,
+    "rango_D_decadas": 4.685288807070738,
+    "chequeo_de_sanidad": "El ajuste de tau (viejo) recalculado en esta re-corrida coincide EXACTAMENTE con el historico (k=0.6308, pendiente=-1.0062, R2=0.9999468837291405, verbatim de E5_1_2_resultado_CONSOLIDADO_DEFINICION_VIEJA_pre_ARREGLO3.json) -- confirma que la re-corrida reprodujo la fisica identica (mismas semillas, mismo barrido, mismo motor de difusion), y que el unico cambio real es la metrica agregada.",
+    "veredicto": "SE MANTIENE. tau_canonico(D) sigue la MISMA ley de potencia limpia que tau (viejo): mismo exponente (-1.0062, compatible con tau~1/D), mismo prefactor (k=0.6308), mismo R2 (0.99995), porque en este experimento (H=0, perturbacion de media cero) ambas metricas son la misma cantidad algebraica. No hay movimiento del hallazgo insignia -- es una confirmacion, no una re-derivacion independiente."
+  },
+  "tier4_arreglo2_efecto_ruido_calibrado": {
+    "nota": "Comparacion tau(frac=0.1) vs baseline limpio (mismo N, tier1), ANTES (bug: sigma=frac*eps constante) vs DESPUES (fix: sigma=ruido_por_paso, ver _ruido_calibrado.py)",
+    "N=524_frac=0.1": {
+      "baseline_limpio_tier1": 5450.0,
+      "ANTES_bug_tau_media": 12203.2,
+      "ANTES_bug_tau_std": 6230.7,
+      "ANTES_bug_desviacion_pct": "+123.9%",
+      "ANTES_bug_n_censurados": 1,
+      "DESPUES_fix_tau_media": 5475.0,
+      "DESPUES_fix_tau_std": 25.0,
+      "DESPUES_fix_desviacion_pct": "+0.46%",
+      "DESPUES_fix_n_censurados": 0
+    },
+    "N=130_frac=0.1": {
+      "baseline_limpio_tier1": 336.0,
+      "ANTES_bug_tau_media": 620.5,
+      "ANTES_bug_tau_std": 324.2,
+      "ANTES_bug_desviacion_pct": "+84.7%",
+      "ANTES_bug_n_censurados": 1,
+      "DESPUES_fix_tau_media": 349.2,
+      "DESPUES_fix_tau_std": 7.3,
+      "DESPUES_fix_desviacion_pct": "+3.9%",
+      "DESPUES_fix_n_censurados": 0
+    },
+    "interpretacion": "El bug de ruido (Arreglo 2) SI afectaba a este experimento de forma severa: el ruido constante por paso, sostenido durante max_steps pasos (que escala con 1/D ~ N^2), inflaba tau artificialmente (+85% a +124% en vez del efecto real, mucho mas chico) y producia censura espuria. Con el fix, el ruido dinamico de baja intensidad (frac=0.01/0.1) apenas mueve tau respecto del baseline limpio -- resultado fisicamente mas razonable (una perturbacion pequena no deberia casi duplicar la vida media de la exergia)."
+  },
+  "desviaciones_declaradas_respecto_al_pre_registro_original": [
+    "Mismas que el CONSOLIDADO historico (D maximo ~0.10 estructural del codigo base; Tier2 restringido a N<=1493 con N=1493 solo en eps=1e-9; N=3000 ausente de Tier2; Tier3 recortado a N=4000 (4 semillas) en vez de N en {4500,6000} (6 semillas); Tier4 limitado a N en {16,130,524}).",
+    "NUEVA (2026-07-25, declarada en la ADENDA del protocolo ANTES de correr): esta re-corrida reproduce EXACTAMENTE las combinaciones que quedaron guardadas en el historico (incluyendo los recortes de arriba, ya declarados en 2026-07-24), no el diseno preregistrado completo que nunca se termino de correr -- para que la comparacion lado a lado sea sobre el mismo numero de combinaciones."
+  ],
+  "archivos": {
+    "protocolo": "PROTOCOLO_E5.1-2_PREREGISTRO.md (con ADENDA 2026-07-25)",
+    "motor": "E5_1_2_motor_vida_media.py (unico motor autocontenido, ver ADENDA en su docstring)",
+    "motor_extension_historico": "E5_1_2_motor_extension.py (ya NO se ejecuta; queda como registro historico de la corrida truncada del 2026-07-24)",
+    "resultado_completo": "E5_1_2_resultado_FINAL.json (13MB, incluye curvas completas X(t)/Xh(t)/c(t) de las 16 semillas por N en Tier1)",
+    "tier1_crudo": "E5_1_2_resultado_tier1_PARCIAL.json",
+    "tier2_crudo": "E5_1_2_resultado_tier2_PARCIAL.json",
+    "tier3_crudo": "E5_1_2_resultado_tier3_PARCIAL.json",
+    "tier4_crudo": "E5_1_2_resultado_tier4_PARCIAL.json",
+    "log_ejecucion": "E5_1_2_log_ejecucion.txt (append historico + esta re-corrida)",
+    "definicion_vieja_preservada": [
+      "E5_1_2_resultado_CONSOLIDADO_DEFINICION_VIEJA_pre_ARREGLO3.json",
+      "E5_1_2_resultado_tier1_PARCIAL_DEFINICION_VIEJA_pre_ARREGLO3.json",
+      "E5_1_2_resultado_tier2_PARCIAL_DEFINICION_VIEJA_pre_ARREGLO3.json",
+      "E5_1_2_resultado_tier3_final_DEFINICION_VIEJA_pre_ARREGLO3.json",
+      "E5_1_2_resultado_tier4_final_DEFINICION_VIEJA_pre_ARREGLO3.json"
+    ]
+  },
+  "nota_final": "Ningun resultado de este archivo se auto-adjudica como cierre del experimento -- se entrega crudo, comparado, honesto. El cierre es del director."
+}

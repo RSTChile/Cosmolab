@@ -6,20 +6,22 @@ ETA_HEBB = 0.02
 TAU_W = 0.005
 GAMMA_PLAST = 0.15
 
-Test A (Persistencia - voz->voz):
-  w_tras_entreno = 0.0325
+Test A (Persistencia):
   grad_estable = 0.5320
   persistencia = 27.0s
-  min_acop = 0.071688
+  w_tras_entreno = 0.0325
 
-Test B (Asimetría - voz->ruido):
-  grad_estable = 0.5320
-  min_acop = 0.071688
+Test B (Asimetría):
+  grad_estable ruido->voz = 0.5320
 
-Test C (Especificidad - SILENCIO):
-  grad_estable = 0.4966
-  min_acop = 0.075939
+Test C (Especificidad):
+  grad_estable sin entreno = 0.4966
+
+Test D (Acoplamiento):
+  min_acop A = 0.071688
+  min_acop B = 0.071688
 
 ============================================================
 DECISION: PENDIENTE - Ajustar parametros
+- Subir TAU_W a 0.01 o bajar ETA_HEBB a 0.01
 ============================================================

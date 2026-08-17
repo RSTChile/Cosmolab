@@ -1,0 +1,47 @@
+
+====================================================================================================
+FILTRO DE ADMISIÓN P1-P5 (ndim=3) — verificado, no asumido
+====================================================================================================
+  F3D00    ADMITIDA
+           P1 persistencia_real=0.743 vs sin_memoria=0.501 (burn-in=25 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos)
+  F3D01    ADMITIDA
+           P1 persistencia_real=0.711 vs sin_memoria=0.500 (burn-in=25 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos)
+  F3D02    ADMITIDA
+           P1 persistencia_real=0.775 vs sin_memoria=0.501 (burn-in=25 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos)
+  R3D00    DESCARTADA (P1=persistencia_real=0.938 vs sin_memoria=0.937 (burn-in=400 pasos); P4=desplazamientos cerrados bajo negación=True (6 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 -> NO recíproco: el patrón murió (V≈0 en todo el dominio), el acople U·V² queda apagado y la influencia deja de ir en los dos sentidos)
+           P1 persistencia_real=0.938 vs sin_memoria=0.937 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 -> NO recíproco: el patrón murió (V≈0 en todo el dominio), el acople U·V² queda apagado y la influencia deja de ir en los dos sentidos
+  R3D01    ADMITIDA
+           P1 persistencia_real=0.999 vs sin_memoria=0.500 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos); en el sitio de V máximo (V=0.435): U→V=9.45e-03, V→U=3.59e-03 -> recíproco (ambos >0)
+  R3D02    DESCARTADA (P1=persistencia_real=0.938 vs sin_memoria=0.926 (burn-in=400 pasos); P4=desplazamientos cerrados bajo negación=True (6 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 -> NO recíproco: el patrón murió (V≈0 en todo el dominio), el acople U·V² queda apagado y la influencia deja de ir en los dos sentidos)
+           P1 persistencia_real=0.938 vs sin_memoria=0.926 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (6 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 -> NO recíproco: el patrón murió (V≈0 en todo el dominio), el acople U·V² queda apagado y la influencia deja de ir en los dos sentidos
+
+  admitidas=4/6
+
+====================================================================================================
+BARRIDO ndim=3 L=48: 4 configuraciones × 3 semillas
+====================================================================================================
+  F3D00    s1  k_pico=  1.0 prom= 214.07 (null  1.20)  H_esp=0.352 (null 0.999)  boxD25=2.571 (null 2.585)  H_bloq=0.974 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (28.7s)
+  F3D00    s2  k_pico=  1.0 prom= 242.78 (null  1.38)  H_esp=0.323 (null 0.999)  boxD25=2.571 (null 2.584)  H_bloq=0.974 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (28.6s)
+  F3D00    s3  k_pico=  1.0 prom= 301.49 (null  1.34)  H_esp=0.307 (null 0.999)  boxD25=2.568 (null 2.585)  H_bloq=0.968 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (32.3s)
+  F3D01    s1  k_pico=  1.0 prom=  36.66 (null  1.06)  H_esp=0.659 (null 1.000)  boxD25=2.569 (null 2.585)  H_bloq=0.967 (null 0.998)  qc=0.25 (null 0.35)  xi=1  (34.9s)
+  F3D01    s2  k_pico=  1.0 prom=  56.35 (null  1.15)  H_esp=0.620 (null 0.999)  boxD25=2.567 (null 2.584)  H_bloq=0.967 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (32.4s)
+  F3D01    s3  k_pico=  1.0 prom=  24.85 (null  1.25)  H_esp=0.714 (null 0.999)  boxD25=2.569 (null 2.585)  H_bloq=0.969 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (33.2s)
+  F3D02    s1  k_pico=  2.0 prom=  11.93 (null  1.24)  H_esp=0.816 (null 0.999)  boxD25=2.570 (null 2.585)  H_bloq=0.971 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (37.0s)
+  F3D02    s2  k_pico=  1.0 prom=  16.63 (null  1.12)  H_esp=0.772 (null 1.000)  boxD25=2.570 (null 2.585)  H_bloq=0.971 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (29.9s)
+  F3D02    s3  k_pico=  1.0 prom=  13.90 (null  1.08)  H_esp=0.803 (null 0.997)  boxD25=2.570 (null 2.585)  H_bloq=0.971 (null 0.998)  qc=0.3 (null 0.35)  xi=1  (32.3s)
+  R3D01    s1  k_pico= 24.0 prom=    nan (null  1.17)  H_esp=0.000 (null 0.999)  boxD25=nan (null nan)  H_bloq=-0.000 (null 0.998)  qc=nan (null 0.5)  xi=1  (133.2s)
+  R3D01    s2  k_pico= 24.0 prom=    nan (null  1.18)  H_esp=0.000 (null 0.999)  boxD25=nan (null nan)  H_bloq=-0.000 (null 0.998)  qc=nan (null 0.5)  xi=1  (116.4s)
+  R3D01    s3  k_pico=  4.0 prom=3778.99 (null  1.11)  H_esp=0.299 (null 0.997)  boxD25=2.460 (null 2.585)  H_bloq=0.442 (null 0.998)  qc=0.55 (null 0.35)  xi=4  (117.4s)
+
+  -> cs090_fase6_o2d_3d_raw.csv (12 filas)
+  -> cs090_fase6_o2d_3d_filtro_P1P5.csv (6 filas)
+  -> cs090_fase6_o2d_3d_percolacion.csv (76 filas)
+  -> cs090_fase6_o2d_3d_espectros.csv (96 filas)
+
+TOTAL ndim=3: 12 corridas en 689.4s

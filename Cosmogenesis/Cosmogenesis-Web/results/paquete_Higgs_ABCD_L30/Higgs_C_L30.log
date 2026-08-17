@@ -1,0 +1,13 @@
+HIGGS C L=30 eta=|grad theta|^2
+step   0 a=   1.0 K=0.368 <eta>=3.159 k1=33 k3=7 ratio=1.427 ratio_NULL=0.333
+step  50 a=   1.8 K=0.578 <eta>=2.002 k1=14 k3=0 ratio=0.000 ratio_NULL=0.000
+step 100 a=   3.3 K=0.740 <eta>=1.922 k1=63 k3=10 ratio=2.059 ratio_NULL=0.333
+step 150 a=   6.0 K=0.848 <eta>=1.917 k1=145 k3=9 ratio=4.752 ratio_NULL=0.333
+step 200 a=  11.0 K=0.913 <eta>=1.835 k1=200 k3=20 ratio=1.671 ratio_NULL=0.333
+step 250 a=  20.1 K=0.951 <eta>=1.806 k1=245 k3=26 ratio=1.931 ratio_NULL=0.333
+step 300 a=  36.6 K=0.973 <eta>=1.804 k1=282 k3=35 ratio=1.060 ratio_NULL=0.333
+step 350 a=  66.7 K=0.985 <eta>=1.804 k1=320 k3=46 ratio=0.813 ratio_NULL=0.333
+step 400 a= 121.5 K=0.992 <eta>=1.804 k1=320 k3=46 ratio=0.808 ratio_NULL=0.333
+step 450 a= 221.4 K=0.995 <eta>=1.804 k1=320 k3=46 ratio=0.809 ratio_NULL=0.333
+FIN C: k3 liso eta~0 => m grande, k1 rugoso eta grande => m chico => ratio <<1 si funciona
+EXIT:0

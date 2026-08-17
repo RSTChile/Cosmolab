@@ -1,0 +1,21 @@
+====================================================================================================
+CS072 v6 EXPLORATORIA -- (a) invarianza a ε, (b) β sobre 3 N (TODO/NULL/control)
+====================================================================================================
+
+--- (a) invarianza a ε (N=400, 1 foco) ---
+  delta=1e-02: CV[-1]=2.611  diam=4.00  d_s=3.40  delta_gromov=0.00  frac_gigante=0.998
+  delta=1e-04: CV[-1]=2.802  diam=4.00  d_s=3.42  delta_gromov=0.00  frac_gigante=0.998
+  delta=1e-06: CV[-1]=2.047  diam=4.00  d_s=3.45  delta_gromov=0.00  frac_gigante=0.998
+
+--- (b) β sobre 3 N: TODO vs NULL_BARAJADO vs CONTROL_POSITIVO (ε: 1 foco, delta=1e-4) ---
+  [TODO] N=400: CV[-1]=2.345 diam=4.00 d_s=3.44 delta_g=0.00 frac_gig=0.998 (t=0.5min)
+  [TODO] N=900: CV[-1]=2.196 diam=4.00 d_s=3.68 delta_g=0.00 frac_gig=0.999 (t=0.9min)
+  [TODO] N=1600: CV[-1]=2.309 diam=4.00 d_s=3.75 delta_g=0.50 frac_gig=0.996 (t=2.0min)
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs072_v6_exploratoria.py", line 107, in <module>
+    main()
+    ~~~~^^
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs072_v6_exploratoria.py", line 98, in main
+    beta, _ = S71._pendiente_loglog(Ns_validos, diams_validos)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cs071_histeresis' has no attribute '_pendiente_loglog'

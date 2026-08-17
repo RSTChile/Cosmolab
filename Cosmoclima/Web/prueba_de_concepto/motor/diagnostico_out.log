@@ -1,0 +1,18 @@
+
+=== MODO A ===
+powerLive global: media=0.1090 var=0.008240 min=0.0500 max=0.7681
+  1997-06-25: powerLive=0.4591 LF=0.0014 H_at=0.9659 floracion=0.1825 A_sys_env=0.4968
+  1997-07-25: powerLive=0.0500 LF=0.2537 H_at=0.3843 floracion=0.3213 A_sys_env=0.5744
+  1997-08-24: powerLive=0.3690 LF=0.1081 H_at=1.6299 floracion=0.3485 A_sys_env=0.5853
+  2019-06-25: powerLive=0.0500 LF=0.3417 H_at=0.0000 floracion=0.0379 A_sys_env=0.4465
+  2019-07-25: powerLive=0.0500 LF=0.3417 H_at=0.0000 floracion=0.0316 A_sys_env=0.5188
+  2019-08-24: powerLive=0.0500 LF=0.3417 H_at=0.0000 floracion=0.0264 A_sys_env=0.6227
+
+=== MODO B ===
+powerLive global: media=0.4240 var=0.054664 min=0.0500 max=1.1132
+  1997-06-25: powerLive=0.3535 LF=0.1523 H_at=2.9074 floracion=0.1825 A_sys_env=0.4968
+  1997-07-25: powerLive=0.6013 LF=0.0144 H_at=2.3622 floracion=0.3213 A_sys_env=0.5744
+  1997-08-24: powerLive=0.6371 LF=0.1442 H_at=1.8240 floracion=0.3485 A_sys_env=0.5853
+  2019-06-25: powerLive=0.0781 LF=0.2798 H_at=1.0000 floracion=0.0379 A_sys_env=0.4465
+  2019-07-25: powerLive=0.0763 LF=0.3127 H_at=0.3534 floracion=0.0316 A_sys_env=0.5188
+  2019-08-24: powerLive=0.0768 LF=0.3229 H_at=1.0000 floracion=0.0264 A_sys_env=0.6227

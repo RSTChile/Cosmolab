@@ -1,0 +1,25 @@
+Benchmark previo a F2_1_motor.py (para justificar la decision de compute pre-registrada).
+Corrido: 2026-07-24, antes de escribir PROTOCOLO_F2-1_PREREGISTRO.md seccion 3.
+
+--- benchmark 1: paso_difusion + paso_expansion puros, 3000 pasos ---
+N=200 steps=3000 time=0.257s per_step=85.66us
+N=400 steps=3000 time=0.271s per_step=90.35us
+N=800 steps=3000 time=0.316s per_step=105.41us
+N=1600 steps=3000 time=0.349s per_step=116.42us
+
+--- benchmark 2: medir_D (4 semillas) y corrida() completa a N=1600 ---
+N=200 D=8.413668e-04 medir_D(4seeds)=0.037s
+N=400 D=2.106320e-04 medir_D(4seeds)=0.002s
+N=800 D=5.267616e-05 medir_D(4seeds)=0.002s
+N=1600 D=1.317018e-05 medir_D(4seeds)=0.002s
+N=1600 pasos=2000 corrida_time=0.255s per_step=127.59us P=0.9978
+
+Lectura: el costo por paso es ~85-130us, CASI INDEPENDIENTE de N (dominado por overhead
+de Python/numpy en arrays chicos, no por ancho de banda de memoria). D escala ~1/N^2
+(confirmado: D(1600)=D(800)/4=D(400)/16=D(200)/64, dentro de error numerico), por lo
+tanto pasos_lavado (~1/D) escala ~N^2, y el costo total del barrido escala ~N^2 x
+(r_puntos x semillas x 2). Con eso, N=1600 con el grid completo de 33 puntos y 16
+semillas se estima en ~12h de CPU single-thread (sin contencion). Con 23 agentes
+hermanos compitiendo por 16 nucleos en la misma maquina, el tiempo de pared real puede
+ser sustancialmente mayor. Por eso se declara ANTES de correr (T3) el sub-grid de 15
+puntos para N=1600 en el protocolo.

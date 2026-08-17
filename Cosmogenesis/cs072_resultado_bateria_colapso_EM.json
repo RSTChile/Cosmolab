@@ -1,0 +1,229 @@
+{
+  "H1_trayectoria_T": [
+    {
+      "eps": 0.2,
+      "N": 61,
+      "paso_T_CONF": 118,
+      "piso": 0.01789484278202282
+    },
+    {
+      "eps": 0.5,
+      "N": 69,
+      "paso_T_CONF": 119,
+      "piso": 0.015799915002549045
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "paso_T_CONF": 113,
+      "piso": 0.013890578762563678
+    },
+    {
+      "eps": 1.0,
+      "N": 84,
+      "paso_T_CONF": 116,
+      "piso": 0.013001856395807934
+    }
+  ],
+  "H2_traza_temporal": {
+    "eps": 0.8,
+    "filas": [
+      {
+        "paso": 0,
+        "T_ef": 0.9982552036600407,
+        "bariones": 5,
+        "hidrogeno": 3,
+        "B_max": 0.0015073058809322555
+      },
+      {
+        "paso": 50,
+        "T_ef": 0.8719045892857482,
+        "bariones": 5,
+        "hidrogeno": 3,
+        "B_max": 0.0020139305124236917
+      },
+      {
+        "paso": 100,
+        "T_ef": 0.6628313763831796,
+        "bariones": 5,
+        "hidrogeno": 3,
+        "B_max": 0.0020139305124236917
+      },
+      {
+        "paso": 119,
+        "T_ef": 0.5694425122225928,
+        "bariones": 5,
+        "hidrogeno": 0,
+        "B_max": 0.10224154173887326
+      },
+      {
+        "paso": 200,
+        "T_ef": 0.220853103543606,
+        "bariones": 5,
+        "hidrogeno": 0,
+        "B_max": 0.10224883602537527
+      },
+      {
+        "paso": 300,
+        "T_ef": 0.04977329212428237,
+        "bariones": 5,
+        "hidrogeno": 0,
+        "B_max": 0.10225066241597831
+      },
+      {
+        "paso": 500,
+        "T_ef": 0.014557332995479665,
+        "bariones": 4,
+        "hidrogeno": 3,
+        "B_max": 0.13445903377365556
+      },
+      {
+        "paso": 800,
+        "T_ef": 0.013892135594798651,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.10003707586313658
+      },
+      {
+        "paso": 1000,
+        "T_ef": 0.013890606144111724,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.1004319113787637
+      },
+      {
+        "paso": 1200,
+        "T_ef": 0.013890579244148904,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.10043129090804907
+      },
+      {
+        "paso": 1500,
+        "T_ef": 0.013890578763686979,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.10043129090804907
+      },
+      {
+        "paso": 1800,
+        "T_ef": 0.013890578762566297,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.10043129090804907
+      },
+      {
+        "paso": 1999,
+        "T_ef": 0.013890578762563723,
+        "bariones": 0,
+        "hidrogeno": 0,
+        "B_max": 0.0996432300475951
+      }
+    ],
+    "max_bariones_visto": 5
+  },
+  "H3_desacoplar_N_de_eps": {
+    "nq": 35,
+    "naq": 24,
+    "ne": 11,
+    "npos": 8,
+    "N": 78,
+    "bariones": 2,
+    "hidrogeno": 2
+  },
+  "H4_barrido_fino_eps": [
+    {
+      "eps": 0.5,
+      "N": 69,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 2,
+      "hidrogeno": 2,
+      "sueltos": 4,
+      "B_max": 0.03432820645313021
+    },
+    {
+      "eps": 0.55,
+      "N": 72,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 3,
+      "hidrogeno": 3,
+      "sueltos": 3,
+      "B_max": 0.08698602656296595
+    },
+    {
+      "eps": 0.6,
+      "N": 73,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 0,
+      "hidrogeno": 0,
+      "sueltos": 13,
+      "B_max": 0.08698380927718975
+    },
+    {
+      "eps": 0.65,
+      "N": 75,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 0,
+      "hidrogeno": 0,
+      "sueltos": 14,
+      "B_max": 0.10041002235862631
+    },
+    {
+      "eps": 0.7,
+      "N": 76,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 0,
+      "hidrogeno": 0,
+      "sueltos": 15,
+      "B_max": 0.10040533888069839
+    },
+    {
+      "eps": 0.75,
+      "N": 77,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 0,
+      "hidrogeno": 0,
+      "sueltos": 16,
+      "B_max": 0.10002448412557552
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 999,
+      "pasos": 2000,
+      "bariones": 0,
+      "hidrogeno": 0,
+      "sueltos": 17,
+      "B_max": 0.0996432300475951
+    }
+  ],
+  "H5_poda_diagnostico": [
+    {
+      "eps": 0.5,
+      "N": 69,
+      "n_pasos_con_poda": 2000,
+      "celdas_podadas_total": 24887,
+      "bariones_final": 2
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "n_pasos_con_poda": 2000,
+      "celdas_podadas_total": 35008,
+      "bariones_final": 0
+    }
+  ]
+}

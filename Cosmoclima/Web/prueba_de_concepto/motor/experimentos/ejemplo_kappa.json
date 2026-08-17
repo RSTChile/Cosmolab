@@ -1,0 +1,34 @@
+[
+  {
+    "_nota": "misma config que el botón Experimento Completo del HTML -- referencia/control",
+    "id": "kappa_actual",
+    "resolucionLluvia": "mensual",
+    "overrides": { "dayNightMode": true, "seasonMode": true },
+    "kappa": { "V": 0.92, "O": 0.0099, "LF": 0.069, "DELTA": 0.51 },
+    "semilla": "regimen1966-2027"
+  },
+  {
+    "_nota": "kappa viejos (baseline genérico pre-recalibración), para comparar",
+    "id": "kappa_viejo_baseline",
+    "resolucionLluvia": "mensual",
+    "overrides": { "dayNightMode": true, "seasonMode": true },
+    "kappa": { "V": 0.75, "O": 0.01, "LF": 0.05, "DELTA": 0.3 },
+    "semilla": "regimen1966-2027"
+  },
+  {
+    "_nota": "kappa actuales pero usando p75 en vez de mediana para LF/DELTA -- umbral más exigente",
+    "id": "kappa_p75",
+    "resolucionLluvia": "mensual",
+    "overrides": { "dayNightMode": true, "seasonMode": true },
+    "kappa": { "V": 0.92, "O": 0.0099, "LF": 0.128, "DELTA": 0.8711 },
+    "semilla": "regimen1966-2027"
+  },
+  {
+    "_nota": "diagnóstico aislado, sin Día/Noche -- referencia del hallazgo de saturación ya documentado",
+    "id": "diagnostico_solo_lluvia",
+    "resolucionLluvia": "mensual",
+    "overrides": { "dayNightMode": false, "seasonMode": false },
+    "kappa": { "V": 0.92, "O": 0.0099, "LF": 0.069, "DELTA": 0.51 },
+    "semilla": "regimen1966-2027"
+  }
+]

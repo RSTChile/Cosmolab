@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ANIMA_USER="${ANIMA_USER:-${SUDO_USER:-$USER}}"
+ANIMA_HOME="$(getent passwd "$ANIMA_USER" 2>/dev/null | cut -d: -f6 || echo "/home/$ANIMA_USER")"
+ANIMA_ROOT="/opt/anima"
+CM_DIR="${ANIMA_ROOT}/celula_madre"
+USER_UID="$(id -u "$ANIMA_USER" 2>/dev/null || true)"
+
+if [ -z "$USER_UID" ]; then
+  echo "anima-desktop-runtime: usuario '$ANIMA_USER' no existe." >&2
+  exit 1
+fi
+
+mkdir -p /etc/anima /var/lib/anima/{historia,voces_creadas,snapshots,logs}
+
+sync_template() {
+  src="$1"
+  dst="$2"
+  if [ ! -f "$dst" ]; then
+    cp "$src" "$dst"
+    return
+  fi
+  if ! cmp -s "$src" "$dst"; then
+    cp "$dst" "${dst}.bak.$(date +%Y%m%d%H%M%S)"
+    cp "$src" "$dst"
+  fi
+}
+
+sync_template /usr/share/anima-desktop-runtime/config/organelos.yml /etc/anima/organelos.yml
+sync_template /usr/share/anima-desktop-runtime/config/hardware.yml /etc/anima/hardware.yml
+
+chown -R "$ANIMA_USER:$ANIMA_USER" /var/lib/anima "$ANIMA_ROOT" || true
+
+if [ ! -f "$ANIMA_HOME/.anima/identity.json" ] && [ "${ANIMA_SKIP_SETUP:-0}" != "1" ]; then
+  if [ -r /dev/tty ] && [ -w /dev/tty ]; then
+    sudo -H -u "$ANIMA_USER" /usr/bin/anima setup --perfil "${ANIMA_PERFIL:-limpio}" </dev/tty >/dev/tty || true
+  else
+    sudo -H -u "$ANIMA_USER" /usr/bin/anima setup --perfil "${ANIMA_PERFIL:-limpio}" --nombre "${ANIMA_NOMBRE:-Animalito}" || true
+  fi
+fi
+
+install -d -o "$ANIMA_USER" -g "$ANIMA_USER" "${ANIMA_HOME}/.config/systemd/user"
+cp /usr/share/anima-desktop-runtime/systemd-user/*.service "${ANIMA_HOME}/.config/systemd/user/"
+chown -R "$ANIMA_USER:$ANIMA_USER" "${ANIMA_HOME}/.config/systemd"
+
+if command -v loginctl >/dev/null 2>&1; then
+  loginctl enable-linger "$ANIMA_USER" || true
+fi
+
+if [ -f "$CM_DIR/requirements-desktop.txt" ]; then
+  sudo -H -u "$ANIMA_USER" python3 -m venv "$CM_DIR/.venv-desktop" || true
+  if [ -x "$CM_DIR/.venv-desktop/bin/pip" ]; then
+    sudo -H -u "$ANIMA_USER" "$CM_DIR/.venv-desktop/bin/pip" install -q --upgrade pip || true
+    sudo -H -u "$ANIMA_USER" "$CM_DIR/.venv-desktop/bin/pip" install -q -r "$CM_DIR/requirements-desktop.txt" || true
+  fi
+fi
+
+RUNTIME_DIR="/run/user/${USER_UID}"
+if [ -d "$RUNTIME_DIR" ]; then
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user daemon-reload || true
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user enable anima-organismo.service anima-watchdog.service || true
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user start anima-organismo.service anima-watchdog.service || true
+fi
+
+echo "anima-desktop-runtime instalado. Comandos: anima status | anima open | anima restart"

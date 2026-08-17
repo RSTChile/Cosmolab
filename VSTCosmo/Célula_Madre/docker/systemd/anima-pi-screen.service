@@ -1,0 +1,14 @@
+[Unit]
+Description=ANIMA cabeza en pantalla pequeña (PiScreen / fb1)
+After=anima-organismo.service
+Wants=anima-organismo.service
+ConditionPathExists=/dev/fb1
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/ubuntu/anima/celula_madre/docker/anima-pi-screen.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

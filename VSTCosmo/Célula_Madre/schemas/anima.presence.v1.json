@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geografiasagrada.cl/schemas/anima.presence.v1.json",
+  "title": "ANIMA Presence Heartbeat v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "protocol_version",
+    "organism_id",
+    "installation_id",
+    "name",
+    "state",
+    "visibility",
+    "ts",
+    "ttl_s",
+    "nonce",
+    "public_key",
+    "signature",
+    "capabilities"
+  ],
+  "properties": {
+    "schema": {
+      "const": "anima.presence.v1"
+    },
+    "protocol_version": {
+      "type": "string",
+      "pattern": "^1\\.0\\.\\d+$"
+    },
+    "organism_id": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "installation_id": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 128
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "species": {
+      "type": "string",
+      "default": "ANIMA"
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "latente",
+        "dormido",
+        "atento",
+        "activo",
+        "conversando",
+        "explorando",
+        "silencioso"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "privado",
+        "local",
+        "plaza_latente",
+        "plaza_publico",
+        "experimento"
+      ]
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ttl_s": {
+      "type": "integer",
+      "minimum": 15,
+      "maximum": 3600
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 128
+    },
+    "public_key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alg",
+        "kid",
+        "value"
+      ],
+      "properties": {
+        "alg": {
+          "const": "Ed25519"
+        },
+        "kid": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128
+        },
+        "value": {
+          "type": "string",
+          "contentEncoding": "base64"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alg",
+        "value"
+      ],
+      "properties": {
+        "alg": {
+          "const": "Ed25519"
+        },
+        "value": {
+          "type": "string",
+          "contentEncoding": "base64"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "audio_local",
+          "audio_server",
+          "voz",
+          "comunicacion",
+          "gps",
+          "cloroplasto",
+          "wifi",
+          "radio_digital",
+          "sdr",
+          "camara",
+          "ptz",
+          "pantalla_cabeza"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "public_endpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "state_summary": {
+          "type": "string"
+        },
+        "voice_summary": {
+          "type": "string"
+        },
+        "relay": {
+          "type": "string"
+        }
+      }
+    },
+    "local_endpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "base_url": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "voice": {
+          "type": "string"
+        },
+        "head": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "off",
+            "aproximada",
+            "exacta"
+          ]
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 2
+        },
+        "region": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "accuracy_m": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "arousal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "valence": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "energy": {
+          "type": "number",
+          "minimum": 0
+        },
+        "voice_active": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

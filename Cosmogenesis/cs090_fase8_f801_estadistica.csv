@@ -1,0 +1,14 @@
+prueba,estadistico,p,n,efecto_particulas,detalle
+Friedman (¿algún brazo difiere?),9.099999999999994,0.058647984330382354,8,nan,"bloques=grafos, tratamientos=5 brazos"
+Wilcoxon abanico vs disp  [C1  Gini por nodo (las tres medidas de arista fijas POR CONSTRUCCIÓN)],0.0,0.9453125,8,0.0,"media Δ=+0.00000 (+0.0 part.), signos 4/8, binomial p=1, |Δ| min=3.0 part."
+Wilcoxon cola vs malla  [C2  cola (máximo por arista) contra media (fracción con >=2)],-0.0026874999999999937,0.1953125,8,-5.374999999999988,"media Δ=-0.00269 (-5.4 part.), signos 2/8, binomial p=0.2891, |Δ| min=0.0 part."
+"Wilcoxon abanico vs malla  [C3  solapamiento, con la concentración por nodo lo más pareja posible]",-0.0049999999999999975,0.0546875,8,-9.999999999999995,"media Δ=-0.00500 (-10.0 part.), signos 2/8, binomial p=0.2891, |Δ| min=1.0 part."
+Wilcoxon solap vs disp  [C4  ancla: el eje de F7-03 sobre estos mismos grafos base],0.014187499999999985,0.0234375,8,28.374999999999968,"media Δ=+0.01419 (+28.4 part.), signos 7/8, binomial p=0.07031, |Δ| min=2.0 part."
+Wilcoxon cola vs disp  [C5  control de ruido: dos brazos que salieron casi IDÉNTICOS],0.002312500000000004,0.09375,8,4.625000000000007,"media Δ=+0.00231 (+4.6 part.), signos 6/8, binomial p=0.2891, |Δ| min=1.0 part."
+Wilcoxon abanico vs cola  (par adicional),-0.002312500000000004,0.15625,8,-4.625000000000007,"media Δ=-0.00231 (-4.6 part.), signos 2/8, binomial p=0.2891, |Δ| min=2.0 part."
+Wilcoxon abanico vs solap  (par adicional),-0.014187499999999985,0.0390625,8,-28.374999999999968,"media Δ=-0.01419 (-28.4 part.), signos 2/8, binomial p=0.2891, |Δ| min=7.0 part."
+Wilcoxon disp vs malla  (par adicional),-0.0049999999999999975,0.078125,8,-9.999999999999995,"media Δ=-0.00500 (-10.0 part.), signos 2/8, binomial p=0.2891, |Δ| min=0.0 part."
+Wilcoxon cola vs solap  (par adicional),-0.011874999999999981,0.0390625,8,-23.74999999999996,"media Δ=-0.01187 (-23.7 part.), signos 2/8, binomial p=0.2891, |Δ| min=6.0 part."
+Wilcoxon malla vs solap  (par adicional),-0.009187499999999987,0.0546875,8,-18.374999999999975,"media Δ=-0.00919 (-18.4 part.), signos 2/8, binomial p=0.2891, |Δ| min=2.0 part."
+rango masa max-min dentro de cada grafo,35.249999999999964,nan,8,35.249999999999964,"mediana=24.5 part., min=8.0, max=90.0 (grano = 1 partícula = 0.0005)"
+diferencia de triángulos entre brazos (control del diseño),0.0,nan,8,nan,máx entre grafos = 0

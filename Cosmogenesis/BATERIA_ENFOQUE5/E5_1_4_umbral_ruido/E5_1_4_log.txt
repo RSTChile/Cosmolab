@@ -1,0 +1,81 @@
+[2026-07-25 10:55:24] E5.1-4 motor — inicio (re-corrida ADENDA 2026-07-25: Arreglo 2 ruido calibrado + Arreglo 3 Xh canonica). N=200 eps_real=0.001 semillas=16
+[2026-07-25 10:55:24] amplitudes_ruido (17 pts): [np.float64(1e-08), np.float64(3.162277660168379e-08), np.float64(1e-07), np.float64(3.162277660168379e-07), np.float64(1e-06), np.float64(3.162277660168379e-06), np.float64(1e-05), np.float64(3.1622776601683795e-05), np.float64(0.0001), np.float64(0.00031622776601683794), np.float64(0.001), np.float64(0.0031622776601683794), np.float64(0.01), np.float64(0.03162277660168379), np.float64(0.1), np.float64(0.31622776601683794), np.float64(1.0)]
+[2026-07-25 10:55:24] r_grid (8 pts): [0.0, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+[2026-07-25 10:55:28] calibracion pasos_lavado: mediana=5300 pasos=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+[2026-07-25 10:55:28] D medido (eps_real=0.001, promedio 8 semillas) = 0.00084137
+[2026-07-25 10:55:28] H(r) derivado: {0.0: 0.0, 0.1: 8.413667864338949e-05, 0.3: 0.00025241003593016846, 1.0: 0.0008413667864338949, 3.0: 0.0025241003593016844, 10.0: 0.008413667864338949, 30.0: 0.025241003593016845, 100.0: 0.08413667864338949}
+[2026-07-25 10:55:28] Arreglo 2 — amplitud_por_paso = amplitud_total/sqrt(pasos=6095) = 1/78.0705: {1e-08: np.float64(1.2808938634475362e-10), 3.162277660168379e-08: np.float64(4.05054204942691e-10), 1e-07: np.float64(1.2808938634475361e-09), 3.162277660168379e-07: np.float64(4.05054204942691e-09), 1e-06: np.float64(1.280893863447536e-08), 3.162277660168379e-06: np.float64(4.0505420494269095e-08), 1e-05: np.float64(1.280893863447536e-07), 3.1622776601683795e-05: np.float64(4.05054204942691e-07), 0.0001: np.float64(1.2808938634475362e-06), 0.00031622776601683794: np.float64(4.05054204942691e-06), 0.001: np.float64(1.2808938634475361e-05), 0.0031622776601683794: np.float64(4.0505420494269103e-05), 0.01: np.float64(0.00012808938634475362), 0.03162277660168379: np.float64(0.000405054204942691), 0.1: np.float64(0.001280893863447536), 0.31622776601683794: np.float64(0.00405054204942691), 1.0: np.float64(0.01280893863447536)}
+[2026-07-25 10:55:28] total corridas planificadas: 4352
+[2026-07-25 10:56:06] progreso: 64/4352 (1.5%) elapsed=41s eta=2770s | r=0.0 amplitud=3.162e-08 X_final_real=0.0337 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 10:56:44] progreso: 128/4352 (2.9%) elapsed=80s eta=2640s | r=0.0 amplitud=3.162e-07 X_final_real=0.0337 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 10:57:19] progreso: 192/4352 (4.4%) elapsed=115s eta=2491s | r=0.0 amplitud=3.162e-06 X_final_real=0.0338 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 10:58:01] progreso: 256/4352 (5.9%) elapsed=156s eta=2502s | r=0.0 amplitud=3.162e-05 X_final_real=0.0340 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 10:58:40] progreso: 320/4352 (7.4%) elapsed=196s eta=2464s | r=0.0 amplitud=3.162e-04 X_final_real=0.0365 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 10:59:20] progreso: 384/4352 (8.8%) elapsed=235s eta=2432s | r=0.0 amplitud=3.162e-03 X_final_real=0.1013 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:00:00] progreso: 448/4352 (10.3%) elapsed=275s eta=2399s | r=0.0 amplitud=3.162e-02 X_final_real=4.7294 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:00:36] progreso: 512/4352 (11.8%) elapsed=312s eta=2339s | r=0.0 amplitud=3.162e-01 X_final_real=448.9368 X_final_null=0.0000 Xh_real=0.0011 Xh_null=0.0011
+[2026-07-25 11:01:17] progreso: 576/4352 (13.2%) elapsed=353s eta=2314s | r=0.1 amplitud=1.000e-08 X_final_real=0.6289 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:01:59] progreso: 640/4352 (14.7%) elapsed=394s eta=2286s | r=0.1 amplitud=1.000e-07 X_final_real=0.6289 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:02:39] progreso: 704/4352 (16.2%) elapsed=435s eta=2253s | r=0.1 amplitud=1.000e-06 X_final_real=0.6289 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:03:19] progreso: 768/4352 (17.6%) elapsed=474s eta=2214s | r=0.1 amplitud=1.000e-05 X_final_real=0.6286 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:04:00] progreso: 832/4352 (19.1%) elapsed=515s eta=2180s | r=0.1 amplitud=1.000e-04 X_final_real=0.6274 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:04:40] progreso: 896/4352 (20.6%) elapsed=555s eta=2143s | r=0.1 amplitud=1.000e-03 X_final_real=0.7169 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:05:15] progreso: 960/4352 (22.1%) elapsed=590s eta=2086s | r=0.1 amplitud=1.000e-02 X_final_real=11.8278 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:05:50] progreso: 1024/4352 (23.5%) elapsed=626s eta=2033s | r=0.1 amplitud=1.000e-01 X_final_real=1144.5343 X_final_null=0.0000 Xh_real=0.0023 Xh_null=0.0023
+[2026-07-25 11:06:23] progreso: 1088/4352 (25.0%) elapsed=659s eta=1976s | r=0.1 amplitud=1.000e+00 X_final_real=114631.2995 X_final_null=0.0000 Xh_real=0.2262 Xh_null=0.2254
+[2026-07-25 11:06:57] progreso: 1152/4352 (26.5%) elapsed=693s eta=1925s | r=0.3 amplitud=3.162e-08 X_final_real=0.7622 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:07:32] progreso: 1216/4352 (27.9%) elapsed=727s eta=1876s | r=0.3 amplitud=3.162e-07 X_final_real=0.7622 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:08:09] progreso: 1280/4352 (29.4%) elapsed=765s eta=1835s | r=0.3 amplitud=3.162e-06 X_final_real=0.7622 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:08:43] progreso: 1344/4352 (30.9%) elapsed=798s eta=1786s | r=0.3 amplitud=3.162e-05 X_final_real=0.7617 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:09:17] progreso: 1408/4352 (32.4%) elapsed=833s eta=1741s | r=0.3 amplitud=3.162e-04 X_final_real=0.7686 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:09:53] progreso: 1472/4352 (33.8%) elapsed=869s eta=1699s | r=0.3 amplitud=3.162e-03 X_final_real=2.0145 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:10:27] progreso: 1536/4352 (35.3%) elapsed=903s eta=1655s | r=0.3 amplitud=3.162e-02 X_final_real=132.1430 X_final_null=0.0000 Xh_real=0.0005 Xh_null=0.0005
+[2026-07-25 11:11:02] progreso: 1600/4352 (36.8%) elapsed=938s eta=1613s | r=0.3 amplitud=3.162e-01 X_final_real=13200.3562 X_final_null=0.0000 Xh_real=0.0499 Xh_null=0.0500
+[2026-07-25 11:11:37] progreso: 1664/4352 (38.2%) elapsed=973s eta=1572s | r=1.0 amplitud=1.000e-08 X_final_real=0.8727 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:12:13] progreso: 1728/4352 (39.7%) elapsed=1009s eta=1532s | r=1.0 amplitud=1.000e-07 X_final_real=0.8727 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:12:49] progreso: 1792/4352 (41.2%) elapsed=1045s eta=1493s | r=1.0 amplitud=1.000e-06 X_final_real=0.8727 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:13:24] progreso: 1856/4352 (42.6%) elapsed=1080s eta=1452s | r=1.0 amplitud=1.000e-05 X_final_real=0.8726 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:13:58] progreso: 1920/4352 (44.1%) elapsed=1113s eta=1410s | r=1.0 amplitud=1.000e-04 X_final_real=0.8724 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:14:31] progreso: 1984/4352 (45.6%) elapsed=1147s eta=1369s | r=1.0 amplitud=1.000e-03 X_final_real=0.9393 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:15:06] progreso: 2048/4352 (47.1%) elapsed=1182s eta=1330s | r=1.0 amplitud=1.000e-02 X_final_real=8.5296 X_final_null=0.0000 Xh_real=0.0001 Xh_null=0.0001
+[2026-07-25 11:15:37] progreso: 2112/4352 (48.5%) elapsed=1213s eta=1286s | r=1.0 amplitud=1.000e-01 X_final_real=776.5386 X_final_null=0.0000 Xh_real=0.0078 Xh_null=0.0078
+[2026-07-25 11:16:08] progreso: 2176/4352 (50.0%) elapsed=1244s eta=1244s | r=1.0 amplitud=1.000e+00 X_final_real=77667.2229 X_final_null=0.0000 Xh_real=0.7828 Xh_null=0.7815
+[2026-07-25 11:16:46] progreso: 2240/4352 (51.5%) elapsed=1282s eta=1208s | r=3.0 amplitud=3.162e-08 X_final_real=0.9282 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:17:24] progreso: 2304/4352 (52.9%) elapsed=1320s eta=1173s | r=3.0 amplitud=3.162e-07 X_final_real=0.9282 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:18:01] progreso: 2368/4352 (54.4%) elapsed=1357s eta=1137s | r=3.0 amplitud=3.162e-06 X_final_real=0.9281 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:18:38] progreso: 2432/4352 (55.9%) elapsed=1394s eta=1100s | r=3.0 amplitud=3.162e-05 X_final_real=0.9278 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:19:18] progreso: 2496/4352 (57.4%) elapsed=1434s eta=1066s | r=3.0 amplitud=3.162e-04 X_final_real=0.9274 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:20:01] progreso: 2560/4352 (58.8%) elapsed=1477s eta=1034s | r=3.0 amplitud=3.162e-03 X_final_real=1.2800 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:20:35] progreso: 2624/4352 (60.3%) elapsed=1511s eta=995s | r=3.0 amplitud=3.162e-02 X_final_real=49.9493 X_final_null=0.0000 Xh_real=0.0009 Xh_null=0.0009
+[2026-07-25 11:21:10] progreso: 2688/4352 (61.8%) elapsed=1545s eta=957s | r=3.0 amplitud=3.162e-01 X_final_real=4976.3753 X_final_null=0.0000 Xh_real=0.0935 Xh_null=0.0917
+[2026-07-25 11:21:44] progreso: 2752/4352 (63.2%) elapsed=1580s eta=918s | r=10.0 amplitud=1.000e-08 X_final_real=0.9619 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:22:20] progreso: 2816/4352 (64.7%) elapsed=1616s eta=881s | r=10.0 amplitud=1.000e-07 X_final_real=0.9619 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:23:02] progreso: 2880/4352 (66.2%) elapsed=1657s eta=847s | r=10.0 amplitud=1.000e-06 X_final_real=0.9619 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:23:38] progreso: 2944/4352 (67.6%) elapsed=1694s eta=810s | r=10.0 amplitud=1.000e-05 X_final_real=0.9617 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:24:11] progreso: 3008/4352 (69.1%) elapsed=1727s eta=772s | r=10.0 amplitud=1.000e-04 X_final_real=0.9605 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:24:44] progreso: 3072/4352 (70.6%) elapsed=1759s eta=733s | r=10.0 amplitud=1.000e-03 X_final_real=0.9688 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:25:20] progreso: 3136/4352 (72.1%) elapsed=1796s eta=696s | r=10.0 amplitud=1.000e-02 X_final_real=4.3205 X_final_null=0.0000 Xh_real=0.0001 Xh_null=0.0001
+[2026-07-25 11:25:53] progreso: 3200/4352 (73.5%) elapsed=1829s eta=658s | r=10.0 amplitud=1.000e-01 X_final_real=374.9893 X_final_null=0.0000 Xh_real=0.0098 Xh_null=0.0096
+[2026-07-25 11:26:26] progreso: 3264/4352 (75.0%) elapsed=1861s eta=620s | r=10.0 amplitud=1.000e+00 X_final_real=37581.7696 X_final_null=0.0000 Xh_real=0.9811 Xh_null=0.9589
+[2026-07-25 11:26:59] progreso: 3328/4352 (76.5%) elapsed=1895s eta=583s | r=30.0 amplitud=3.162e-08 X_final_real=0.9790 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:27:31] progreso: 3392/4352 (77.9%) elapsed=1927s eta=545s | r=30.0 amplitud=3.162e-07 X_final_real=0.9790 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:28:03] progreso: 3456/4352 (79.4%) elapsed=1959s eta=508s | r=30.0 amplitud=3.162e-06 X_final_real=0.9789 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:28:35] progreso: 3520/4352 (80.9%) elapsed=1991s eta=471s | r=30.0 amplitud=3.162e-05 X_final_real=0.9786 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:29:08] progreso: 3584/4352 (82.4%) elapsed=2024s eta=434s | r=30.0 amplitud=3.162e-04 X_final_real=0.9770 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:29:42] progreso: 3648/4352 (83.8%) elapsed=2057s eta=397s | r=30.0 amplitud=3.162e-03 X_final_real=1.1161 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:30:16] progreso: 3712/4352 (85.3%) elapsed=2091s eta=361s | r=30.0 amplitud=3.162e-02 X_final_real=33.7371 X_final_null=0.0000 Xh_real=0.0010 Xh_null=0.0010
+[2026-07-25 11:30:51] progreso: 3776/4352 (86.8%) elapsed=2127s eta=324s | r=30.0 amplitud=3.162e-01 X_final_real=3360.9354 X_final_null=0.0000 Xh_real=0.0998 Xh_null=0.0963
+[2026-07-25 11:31:25] progreso: 3840/4352 (88.2%) elapsed=2160s eta=288s | r=100.0 amplitud=1.000e-08 X_final_real=0.9882 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:32:03] progreso: 3904/4352 (89.7%) elapsed=2198s eta=252s | r=100.0 amplitud=1.000e-07 X_final_real=0.9882 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:32:40] progreso: 3968/4352 (91.2%) elapsed=2236s eta=216s | r=100.0 amplitud=1.000e-06 X_final_real=0.9882 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:33:15] progreso: 4032/4352 (92.6%) elapsed=2270s eta=180s | r=100.0 amplitud=1.000e-05 X_final_real=0.9881 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:33:49] progreso: 4096/4352 (94.1%) elapsed=2304s eta=144s | r=100.0 amplitud=1.000e-04 X_final_real=0.9873 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:34:27] progreso: 4160/4352 (95.6%) elapsed=2342s eta=108s | r=100.0 amplitud=1.000e-03 X_final_real=0.9928 X_final_null=0.0000 Xh_real=0.0000 Xh_null=0.0000
+[2026-07-25 11:35:08] progreso: 4224/4352 (97.1%) elapsed=2384s eta=72s | r=100.0 amplitud=1.000e-02 X_final_real=4.0320 X_final_null=0.0000 Xh_real=0.0001 Xh_null=0.0001
+[2026-07-25 11:35:43] progreso: 4288/4352 (98.5%) elapsed=2418s eta=36s | r=100.0 amplitud=1.000e-01 X_final_real=342.3271 X_final_null=0.0000 Xh_real=0.0100 Xh_null=0.0097
+[2026-07-25 11:36:20] progreso: 4352/4352 (100.0%) elapsed=2456s eta=0s | r=100.0 amplitud=1.000e+00 X_final_real=34291.4342 X_final_null=0.0000 Xh_real=1.0009 Xh_null=0.9662
+[2026-07-25 11:36:20] listo. 4352 corridas en 2455.8s (40.9 min)
+[2026-07-25 11:36:20] auditoria: max|X_final_null_mean| en toda la grilla = 0.000e+00 (debe ser ~0 por construccion, contraste0=0 con eps=0)
+[2026-07-25 11:36:20] auditoria Arreglo 2: max|phi_final| en toda la grilla (real+null) = 5.201847 (la corrida vieja SIN arreglo llegaba a X_final~2.7e7 a amplitud=1.0,r=0 -> exploto; aqui debe quedar acotado)
+[2026-07-25 11:36:20] escrito: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_4_umbral_ruido/E5_1_4_resultado.json
+[2026-07-25 11:36:21] escrito: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_4_umbral_ruido/E5_1_4_phi_final_crudo.npz (2.7 MB)

@@ -1,0 +1,17 @@
+=== F4-4 densidad crítica — modo=produccion workers=16 ===
+[calibracion] calibrando reloj físico y D(rho) por N (referencia rho=rho0, sin ruido)...
+  N=200: mediana_lavado=5300 pasos_fijo=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+  N=200: D(rho) medido en 15 puntos de rho (rho_min=1.000e-06->D=8.42154e-10, rho_max=1.000e+00->D=0.000841367)
+  N=400: mediana_lavado=21200 pasos_fijo=24380 lavo_todas=True tiempos=[21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200]
+  N=400: D(rho) medido en 15 puntos de rho (rho_min=1.000e-06->D=2.10681e-10, rho_max=1.000e+00->D=0.000210632)
+[barrido] 840 celdas x 12 semillas x 2 ramas (REAL/NULL) = 20160 corridas de campo. max_workers=16
+  [50/840] celdas completas, 396.1s transcurridos
+  [100/840] celdas completas, 703.2s transcurridos
+  [150/840] celdas completas, 988.2s transcurridos
+  [200/840] celdas completas, 1292.1s transcurridos
+  [250/840] celdas completas, 1587.4s transcurridos
+  [300/840] celdas completas, 1858.1s transcurridos
+  [350/840] celdas completas, 2143.6s transcurridos
+  [400/840] celdas completas, 2456.8s transcurridos
+  [450/840] celdas completas, 3303.0s transcurridos
+  [500/840] celdas completas, 4355.3s transcurridos

@@ -1,0 +1,6 @@
+[calibracion] modo=prod_L128 L=128 eps=1e-3 mediana_lavado=687 pasos=791 lavo_todas=True tiempos=[600, 500, 775, 525, 2175, 900, 2175, 425]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_3_exergia_2D/E5_1_3_resultado_prod_L128.json
+[control_r0_lava] True {'mean_X_r0_eps_gt0': 0.06265387819000502, 'n': 7, 'X_max': 0.15}
+[elapsed] 3068.2s
+EXIT=0

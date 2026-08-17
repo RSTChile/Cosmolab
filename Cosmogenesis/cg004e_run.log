@@ -1,0 +1,125 @@
+CG004-e — RE-PEGAR RETÍCULA CORTADA por MAPA DE DESARROLLO (test P = preservar)
+====================================================================================================
+L∈[32, 64, 128] (N=L²) · 8 semillas · REGLA=dev-adyacente vs CONTROL=azar (mismo nº) · tol=0.5
+
+Anclas (turn=razón S(r+1)/S(r); plano→~1, árbol→alto):
+   lattice2D N=4096: turn=1.09 diam=115 δ=4.58 d_grow=1.70 %gig=100
+    arbol_b3 N=4096: turn=1.97 diam=15 δ=0.00 d_grow=2.73 %gig=100
+
+filas=96 hechas=0 faltan=96  LOG=cg004e_reticula_cortada.csv
+
+   brazo    L      N sd   ng  defdev  %gig   diam   δ_med d_grow  turn        ver
+---------------------------------------------------------------------------------
+ INTACTA   32   1024  1    0 0.0e+00  100     59    2.27   1.60  1.16  GEOMETRIA
+ CORTADA   32   1024  1    0 0.0e+00  100     88    1.13   1.44  1.22  GEOMETRIA
+   REGLA   32   1024  1   31 0.0e+00  100     59    2.27   1.60  1.16  GEOMETRIA
+ CONTROL   32   1024  1   31 0.0e+00  100     37    1.17   1.77  1.31  GEOMETRIA
+ INTACTA   32   1024  2    0 0.0e+00  100     57    2.41   1.59  1.15  GEOMETRIA
+ CORTADA   32   1024  2    0 0.0e+00  100     87    1.24   1.43  1.21  GEOMETRIA
+   REGLA   32   1024  2   31 0.0e+00  100     57    2.41   1.59  1.15  GEOMETRIA
+ CONTROL   32   1024  2   31 0.0e+00  100     37    1.24   1.73  1.35  GEOMETRIA
+ INTACTA   32   1024  3    0 0.0e+00  100     60    2.33   1.60  1.19  GEOMETRIA
+ CORTADA   32   1024  3    0 0.0e+00  100     83    1.26   1.45  1.21  GEOMETRIA
+   REGLA   32   1024  3   31 0.0e+00  100     60    2.33   1.60  1.19  GEOMETRIA
+ CONTROL   32   1024  3   31 0.0e+00  100     37    1.17   1.76  1.34  GEOMETRIA
+ INTACTA   32   1024  4    0 0.0e+00  100     59    2.41   1.61  1.15  GEOMETRIA
+ CORTADA   32   1024  4    0 0.0e+00  100     85    1.12   1.44  1.20  GEOMETRIA
+   REGLA   32   1024  4   31 0.0e+00  100     59    2.41   1.61  1.15  GEOMETRIA
+ CONTROL   32   1024  4   31 0.0e+00  100     37    1.24   1.80  1.33  GEOMETRIA
+ INTACTA   32   1024  5    0 0.0e+00  100     61    2.37   1.60  1.15  GEOMETRIA
+ CORTADA   32   1024  5    0 0.0e+00  100     89    1.30   1.44  1.21  GEOMETRIA
+   REGLA   32   1024  5   31 0.0e+00  100     61    2.37   1.60  1.15  GEOMETRIA
+ CONTROL   32   1024  5   31 0.0e+00  100     38    1.34   1.78  1.29  GEOMETRIA
+ INTACTA   32   1024  6    0 0.0e+00  100     57    2.25   1.59  1.16  GEOMETRIA
+ CORTADA   32   1024  6    0 0.0e+00  100     88    1.12   1.43  1.18  GEOMETRIA
+   REGLA   32   1024  6   31 0.0e+00  100     57    2.25   1.59  1.16  GEOMETRIA
+ CONTROL   32   1024  6   31 0.0e+00  100     37    1.26   1.76  1.31  GEOMETRIA
+ INTACTA   32   1024  7    0 0.0e+00  100     57    2.18   1.60  1.15  GEOMETRIA
+ CORTADA   32   1024  7    0 0.0e+00  100     87    1.12   1.43  1.18  GEOMETRIA
+   REGLA   32   1024  7   31 0.0e+00  100     57    2.18   1.60  1.15  GEOMETRIA
+ CONTROL   32   1024  7   31 0.0e+00  100     37    1.21   1.75  1.28  GEOMETRIA
+ INTACTA   32   1024  8    0 0.0e+00  100     61    2.35   1.61  1.14  GEOMETRIA
+ CORTADA   32   1024  8    0 0.0e+00  100     92    1.35   1.45  1.22  GEOMETRIA
+   REGLA   32   1024  8   31 0.0e+00  100     61    2.35   1.61  1.14  GEOMETRIA
+ CONTROL   32   1024  8   31 0.0e+00  100     38    1.40   1.77  1.30  GEOMETRIA
+ INTACTA   64   4096  1    0 0.0e+00  100    110    4.97   1.67  1.10  GEOMETRIA
+ CORTADA   64   4096  1    0 0.0e+00  100    169    2.61   1.52  1.13  GEOMETRIA
+   REGLA   64   4096  1   63 0.0e+00  100    110    4.97   1.67  1.10  GEOMETRIA
+ CONTROL   64   4096  1   63 0.0e+00  100     69    1.96   1.84  1.22  GEOMETRIA
+ INTACTA   64   4096  2    0 0.0e+00  100    125    4.66   1.69  1.09  GEOMETRIA
+ CORTADA   64   4096  2    0 0.0e+00  100    188    2.55   1.54  1.14  GEOMETRIA
+   REGLA   64   4096  2   63 0.0e+00  100    125    4.66   1.69  1.09  GEOMETRIA
+ CONTROL   64   4096  2   63 0.0e+00  100     70    1.81   1.87  1.26  GEOMETRIA
+ INTACTA   64   4096  3    0 0.0e+00  100    120    4.55   1.68  1.09  GEOMETRIA
+ CORTADA   64   4096  3    0 0.0e+00  100    174    2.36   1.52  1.13  GEOMETRIA
+   REGLA   64   4096  3   63 0.0e+00  100    120    4.55   1.68  1.09  GEOMETRIA
+ CONTROL   64   4096  3   63 0.0e+00  100     70    1.71   1.85  1.20  GEOMETRIA
+ INTACTA   64   4096  4    0 0.0e+00  100    121    4.59   1.70  1.09  GEOMETRIA
+ CORTADA   64   4096  4    0 0.0e+00  100    184    2.31   1.52  1.12  GEOMETRIA
+   REGLA   64   4096  4   63 0.0e+00  100    121    4.59   1.70  1.09  GEOMETRIA
+ CONTROL   64   4096  4   63 0.0e+00  100     69    1.60   1.88  1.25  GEOMETRIA
+ INTACTA   64   4096  5    0 0.0e+00  100    122    4.84   1.68  1.10  GEOMETRIA
+ CORTADA   64   4096  5    0 0.0e+00  100    182    2.10   1.52  1.16  GEOMETRIA
+   REGLA   64   4096  5   63 0.0e+00  100    122    4.84   1.68  1.10  GEOMETRIA
+ CONTROL   64   4096  5   63 0.0e+00  100     70    1.68   1.86  1.26  GEOMETRIA
+ INTACTA   64   4096  6    0 0.0e+00  100    124    4.56   1.69  1.10  GEOMETRIA
+ CORTADA   64   4096  6    0 0.0e+00  100    187    2.40   1.51  1.13  GEOMETRIA
+   REGLA   64   4096  6   63 0.0e+00  100    124    4.56   1.69  1.10  GEOMETRIA
+ CONTROL   64   4096  6   63 0.0e+00  100     69    1.96   1.86  1.27  GEOMETRIA
+ INTACTA   64   4096  7    0 0.0e+00  100    115    4.58   1.70  1.09  GEOMETRIA
+ CORTADA   64   4096  7    0 0.0e+00  100    178    2.10   1.53  1.12  GEOMETRIA
+   REGLA   64   4096  7   63 0.0e+00  100    115    4.58   1.70  1.09  GEOMETRIA
+ CONTROL   64   4096  7   63 0.0e+00  100     67    1.87   1.89  1.21  GEOMETRIA
+ INTACTA   64   4096  8    0 0.0e+00  100    118    4.08   1.70  1.09  GEOMETRIA
+ CORTADA   64   4096  8    0 0.0e+00  100    181    2.40   1.54  1.12  GEOMETRIA
+   REGLA   64   4096  8   63 0.0e+00  100    118    4.08   1.70  1.09  GEOMETRIA
+ CONTROL   64   4096  8   63 0.0e+00  100     68    1.82   1.88  1.28  GEOMETRIA
+ INTACTA  128  16384  1    0 0.0e+00  100    241    9.54   1.74  1.06  GEOMETRIA
+ CORTADA  128  16384  1    0 0.0e+00  100    347    4.38   1.59  1.08  GEOMETRIA
+   REGLA  128  16384  1  127 0.0e+00  100    241    9.54   1.74  1.06  GEOMETRIA
+ CONTROL  128  16384  1  127 0.0e+00  100    133    2.87   1.92  1.12  GEOMETRIA
+ INTACTA  128  16384  2    0 0.0e+00  100    254    9.33   1.74  1.05  GEOMETRIA
+ CORTADA  128  16384  2    0 0.0e+00  100    381    4.78   1.58  1.08  GEOMETRIA
+   REGLA  128  16384  2  127 0.0e+00  100    254    9.33   1.74  1.05  GEOMETRIA
+ CONTROL  128  16384  2  127 0.0e+00  100    136    2.87   1.91  1.16  GEOMETRIA
+ INTACTA  128  16384  3    0 0.0e+00  100    245    9.78   1.74  1.06  GEOMETRIA
+ CORTADA  128  16384  3    0 0.0e+00  100    347    5.17   1.60  1.08  GEOMETRIA
+   REGLA  128  16384  3  127 0.0e+00  100    245    9.78   1.74  1.06  GEOMETRIA
+ CONTROL  128  16384  3  127 0.0e+00  100    134    3.00   1.89  1.16  GEOMETRIA
+ INTACTA  128  16384  4    0 0.0e+00  100    243    9.91   1.75  1.05  GEOMETRIA
+ CORTADA  128  16384  4    0 0.0e+00  100    370    3.99   1.58  1.08  GEOMETRIA
+   REGLA  128  16384  4  127 0.0e+00  100    243    9.91   1.75  1.05  GEOMETRIA
+ CONTROL  128  16384  4  127 0.0e+00  100    135    3.02   1.94  1.19  GEOMETRIA
+ INTACTA  128  16384  5    0 0.0e+00  100    239    9.23   1.74  1.06  GEOMETRIA
+ CORTADA  128  16384  5    0 0.0e+00  100    364    4.57   1.59  1.08  GEOMETRIA
+   REGLA  128  16384  5  127 0.0e+00  100    239    9.23   1.74  1.06  GEOMETRIA
+ CONTROL  128  16384  5  127 0.0e+00  100    133    2.97   1.93  1.22  GEOMETRIA
+ INTACTA  128  16384  6    0 0.0e+00  100    243    9.24   1.76  1.06  GEOMETRIA
+ CORTADA  128  16384  6    0 0.0e+00  100    370    4.74   1.59  1.07  GEOMETRIA
+   REGLA  128  16384  6  127 0.0e+00  100    243    9.24   1.76  1.06  GEOMETRIA
+ CONTROL  128  16384  6  127 0.0e+00  100    135    3.05   1.94  1.18  GEOMETRIA
+ INTACTA  128  16384  7    0 0.0e+00  100    235    8.88   1.78  1.06  GEOMETRIA
+ CORTADA  128  16384  7    0 0.0e+00  100    354    5.38   1.60  1.07  GEOMETRIA
+   REGLA  128  16384  7  127 0.0e+00  100    235    8.88   1.78  1.06  GEOMETRIA
+ CONTROL  128  16384  7  127 0.0e+00  100    134    2.76   2.00  1.22  GEOMETRIA
+ INTACTA  128  16384  8    0 0.0e+00  100    232    8.86   1.77  1.05  GEOMETRIA
+ CORTADA  128  16384  8    0 0.0e+00  100    353    4.71   1.62  1.07  GEOMETRIA
+   REGLA  128  16384  8  127 0.0e+00  100    232    8.86   1.77  1.05  GEOMETRIA
+ CONTROL  128  16384  8  127 0.0e+00  100    134    3.04   1.93  1.21  GEOMETRIA
+
+====================================================================================================
+RESUMEN — ¿REGLA (dev-adyacente) RESTAURA lo plano y CONTROL (azar) COLAPSA?
+objetivo plano: diam-pend→0.5, turn→~1.09, δ CRECE con N, %gig~100
+   INTACTA: diam-pend= 0.51±0.02  %gig=100  δ→    CRECE(plano)  δ=2.3/4.6/9.3  turn=1.15/1.09/1.06  d_grow=1.60/1.69/1.75
+   CORTADA: diam-pend= 0.51±0.02  %gig=100  δ→    CRECE(plano)  δ=1.2/2.4/4.7  turn=1.20/1.13/1.08  d_grow=1.44/1.53/1.59
+     REGLA: diam-pend= 0.51±0.02  %gig=100  δ→    CRECE(plano)  δ=2.3/4.6/9.3  turn=1.15/1.09/1.06  d_grow=1.60/1.69/1.75
+   CONTROL: diam-pend= 0.46±0.01  %gig=100  δ→    CRECE(plano)  δ=1.3/1.8/2.9  turn=1.31/1.25/1.18  d_grow=1.77/1.87/1.93
+
+LECTURA (pre-registrada, adjudicación CS):
+  · GANA (P) si REGLA≈INTACTA (turn→~1.09, diam-pend→0.5, δ CRECE) y CONTROL COLAPSA
+    (turn→2+, diam→log, δ acotada). Entonces el pegado-por-desarrollo PRESERVA => derecho a (B).
+  · Si REGLA NO restaura (≈CORTADA o ≈CONTROL) => el pegado no es operación válida:
+    puerta cerrada con mecanismo (script chico, negativo honesto).
+  · defdev (defecto de cierre afín) DEBE ser ~0: confirma sustrato plano (cuerda 1).
+
+Tiempo: 5.2 min · CSV: cg004e_reticula_cortada.csv

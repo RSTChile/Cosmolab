@@ -1,0 +1,13 @@
+MF-3 sigma = P*a tension cuerda
+step   0 a=   1.0 T=1.00e+15 rho=1.00e+30 P=3.00e+46 sigma=P*a=3.00e+46 E_k3=9.27e+46
+step  50 a=   1.8 T=5.49e+14 rho=1.65e+29 P=4.96e+45 sigma=P*a=9.04e+45 E_k3=1.43e+46
+step 100 a=   3.3 T=3.01e+14 rho=2.73e+28 P=8.20e+44 sigma=P*a=2.72e+45 E_k3=2.35e+45
+step 150 a=   6.0 T=1.65e+14 rho=4.52e+27 P=1.35e+44 sigma=P*a=8.20e+44 E_k3=3.99e+44
+step 200 a=  11.0 T=9.07e+13 rho=7.47e+26 P=2.24e+43 sigma=P*a=2.47e+44 E_k3=6.58e+43
+step 250 a=  20.1 T=4.98e+13 rho=1.23e+26 P=3.70e+42 sigma=P*a=7.44e+43 E_k3=1.09e+43
+step 300 a=  36.6 T=2.73e+13 rho=2.04e+25 P=6.12e+41 sigma=P*a=2.24e+43 E_k3=1.80e+42
+step 350 a=  66.7 T=1.50e+13 rho=3.37e+24 P=1.01e+41 sigma=P*a=6.75e+42 E_k3=2.98e+41
+step 400 a= 121.5 T=8.23e+12 rho=5.57e+23 P=1.67e+40 sigma=P*a=2.03e+42 E_k3=4.92e+40
+step 450 a= 221.4 T=4.52e+12 rho=9.21e+22 P=2.76e+39 sigma=P*a=6.12e+41 E_k3=8.13e+39
+MF-3 FIN: sigma = P*a crece con a? No, P~1/a^3 => sigma~1/a^2 decrece -> desconfinamiento, invierte a sigma~a si w crece
+EXIT:0

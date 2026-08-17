@@ -1,0 +1,55 @@
+{
+  "protocolo": "PROTOCOLO_EMPALME_CG002_ANIMA.md",
+  "version": "0.1",
+  "fecha_snapshot": "2026-06-30",
+  "estado_parte_II": "OPERACIONAL_PARCIAL",
+  "referencias": [
+    "../VSTCosmo/FUNDAMENTO_SENSORIAL.md",
+    "../VSTCosmo/ESTADO_DEL_DESARROLLO_2026-06-28.md",
+    "../VSTCosmo/Célula_Madre/genoma/VST_Genoma.py",
+    "../VSTCosmo/Célula_Madre/organelos/VST_OrganoMembrana.py",
+    "../VSTCosmo/Célula_Madre/organelos/VST_OrganoPropiocepcion.py"
+  ],
+  "motor": {
+    "campo": "Célula_Madre_Funcional_001.py",
+    "genoma_salud": "VST_Genoma.salud()",
+    "Lambda_Cos_formula": "(delta_struct * LF) / (|e_R| + 1e-9) * A_sys_env",
+    "diada": ["ANIMA_A", "ANIMA_B"],
+    "web_ports": { "A": 7788, "B": 7799 }
+  },
+  "KAPPA": {
+    "kP": 0.0,
+    "kDelta": 0.0,
+    "kO": 1000000000.0,
+    "kV": 0.0,
+    "kLF": 0.05,
+    "kH": 0.0,
+    "nota": "Umbrales de arranque C-N2.8.14a; no exportar desde CG002"
+  },
+  "umbrales_regimen_cierre": {
+    "fuente": "investigar_diferenciacion_audio.py",
+    "U_VIAB_A": 0.45,
+    "U_VIAB_eR": 6.0,
+    "U_LF": 0.05,
+    "U_DELTA": 0.012,
+    "intensidad_viable_base": 0.012
+  },
+  "organelos_empalme": [
+    "VST_OrganoMembrana",
+    "VST_OrganoPropiocepcion",
+    "VST_Genoma (salud)",
+    "VST_OrganoVE (read-only)",
+    "VST_RC_A / VST_RC_B (fase 4 desacoplamiento)"
+  ],
+  "observables_log": [
+    "mem_ds_L", "mem_ds_R", "delta_struct", "e_R", "LF_op", "A_sys_env",
+    "Lambda_Cos", "OI", "prop_bienestar", "prop_dW", "invariantes_ok"
+  ],
+  "fase2_barrido_decision": {
+    "opcion_aprobada": "ganancia_audio",
+    "factores": [0.5, 0.7, 1.0, 1.4, 2.0, 3.0],
+    "nota": "Análogo S_BAND ×6×; hook metabolismo pendiente si Alexis prefiere sat(S) directo"
+  },
+  "pair_id_anima_fase1": "ANIMA-F1",
+  "notas": "Fase 1 usa estímulos sintéticos pre-registrados en empalme_estimulos_fase1.json"
+}

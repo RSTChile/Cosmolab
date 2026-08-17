@@ -1,0 +1,53 @@
+[phantom] 6 corridas pendientes de 7 con IC
+[1/6] A2-B0-C2-kbar-r19: frac_masa=0.13999999999999999 n_sinks=8 kappa_v=1.236111111111111 (33s, acumulado 0.5 min)
+[2/6] A2-B0-C2-kbar-r2: frac_masa=0.15199999999999994 n_sinks=8 kappa_v=1.2735042735042732 (40s, acumulado 1.2 min)
+[3/6] A2-B0-C2-kbar-r32: frac_masa=0.15199999999999994 n_sinks=8 kappa_v=1.3116883116883118 (41s, acumulado 1.9 min)
+[4/6] A2-B0-C2-kbar-r6: frac_masa=0.13899999999999998 n_sinks=8 kappa_v=1.1187214611872143 (41s, acumulado 2.6 min)
+[5/6] A2-B0-C2-kbar-r65: frac_masa=0.14749999999999996 n_sinks=8 kappa_v=1.3194444444444444 (42s, acumulado 3.3 min)
+[6/6] A2-B0-C2-kbar-r7: frac_masa=0.15249999999999994 n_sinks=8 kappa_v=1.3911111111111114 (41s, acumulado 4.0 min)
+[phantom] FIN — 6 corridas en 4.0 min
+[phantom] 6 corridas pendientes de 13 con IC
+[1/6] A2-B0-C2-kbar-r10: frac_masa=0.10850000000000003 n_sinks=8 kappa_v=0.5915492957746479 (51s, acumulado 0.8 min)
+[2/6] A2-B0-C2-kbar-r15: frac_masa=0.12450000000000001 n_sinks=8 kappa_v=0.8981481481481479 (46s, acumulado 1.6 min)
+[3/6] A2-B0-C2-kbar-r20: frac_masa=0.10900000000000004 n_sinks=8 kappa_v=0.5633802816901409 (46s, acumulado 2.4 min)
+[4/6] A2-B0-C2-kbar-r21: frac_masa=0.09900000000000003 n_sinks=8 kappa_v=0.47027027027026996 (47s, acumulado 3.2 min)
+[5/6] A2-B0-C2-kbar-r26: frac_masa=0.10350000000000005 n_sinks=8 kappa_v=0.536231884057971 (56s, acumulado 4.1 min)
+[6/6] A2-B0-C2-kbar-r74: frac_masa=0.15449999999999994 n_sinks=8 kappa_v=1.2933884297520657 (64s, acumulado 5.2 min)
+[phantom] FIN — 6 corridas en 5.2 min
+TODO_CORRIDO
+[phantom] 0 corridas pendientes de 13 con IC
+[phantom] FIN — 0 corridas en 0.0 min
+[phantom] 0 corridas pendientes de 13 con IC
+[phantom] FIN — 0 corridas en 0.0 min
+[phantom] 6 corridas pendientes de 19 con IC
+[1/6] A2-B0-C2-kbar-r11: frac_masa=0.1285 n_sinks=8 kappa_v=1.0000000000000002 (37s, acumulado 0.6 min)
+[2/6] A2-B0-C2-kbar-r14: frac_masa=0.07850000000000001 n_sinks=8 kappa_v=0.49056603773584895 (43s, acumulado 1.3 min)
+[3/6] A2-B0-C2-kbar-r25: frac_masa=0.10800000000000003 n_sinks=8 kappa_v=0.6218905472636812 (42s, acumulado 2.0 min)
+[4/6] A2-B0-C2-kbar-r3: frac_masa=0.08350000000000002 n_sinks=8 kappa_v=0.4464285714285715 (44s, acumulado 2.8 min)
+[5/6] A2-B0-C2-kbar-r36: frac_masa=0.09650000000000004 n_sinks=8 kappa_v=0.5156249999999999 (43s, acumulado 3.5 min)
+[6/6] A2-B0-C2-kbar-r9: frac_masa=0.08100000000000002 n_sinks=8 kappa_v=0.36363636363636365 (37s, acumulado 4.1 min)
+[phantom] FIN — 6 corridas en 4.1 min
+[phantom] 13 corridas pendientes de 32 con IC
+[1/13] A2-B0-C2-kbar-r12: frac_masa=0.05450000000000001 n_sinks=8 kappa_v=0.3870967741935484 (29s, acumulado 0.5 min)
+[2/13] A2-B0-C2-kbar-r22: frac_masa=0.06150000000000001 n_sinks=8 kappa_v=0.29999999999999993 (29s, acumulado 1.0 min)
+[3/13] A2-B0-C2-kbar-r28: frac_masa=0.07500000000000002 n_sinks=8 kappa_v=0.4054054054054055 (28s, acumulado 1.4 min)
+[4/13] A2-B0-C2-kbar-r31: frac_masa=0.07150000000000001 n_sinks=8 kappa_v=0.4347826086956523 (24s, acumulado 1.8 min)
+[5/13] A2-B0-C2-kbar-r33: frac_masa=0.06350000000000001 n_sinks=8 kappa_v=0.4000000000000001 (24s, acumulado 2.2 min)
+[6/13] A2-B0-C2-kbar-r4: frac_masa=0.09050000000000001 n_sinks=8 kappa_v=0.40322580645161293 (34s, acumulado 2.8 min)
+[7/13] A2-B0-C2-kbar-r8: frac_masa=0.06750000000000002 n_sinks=8 kappa_v=0.4444444444444436 (37s, acumulado 3.4 min)
+[8/13] CONTROL-ER-a2321-s3000001: frac_masa=0.15099999999999994 n_sinks=8 kappa_v=1.3599999999999999 (29s, acumulado 3.9 min)
+[9/13] CONTROL-ER-a2321-s3000002: frac_masa=0.15049999999999997 n_sinks=9 kappa_v=1.1756756756756754 (41s, acumulado 4.6 min)
+[10/13] CONTROL-ER-a2321-s3000003: frac_masa=0.14899999999999997 n_sinks=8 kappa_v=1.4492753623188404 (33s, acumulado 5.1 min)
+[11/13] CONTROL-ER-a4608-s3000011: frac_masa=0.06950000000000002 n_sinks=8 kappa_v=0.3953488372093025 (25s, acumulado 5.5 min)
+[12/13] CONTROL-ER-a4608-s3000012: frac_masa=0.06850000000000002 n_sinks=8 kappa_v=0.42499999999999993 (24s, acumulado 6.0 min)
+[13/13] CONTROL-ER-a4608-s3000013: frac_masa=0.07300000000000001 n_sinks=8 kappa_v=0.5641025641025641 (26s, acumulado 6.4 min)
+[phantom] FIN — 13 corridas en 6.4 min
+[phantom] 6 corridas pendientes de 38 con IC
+[1/6] A2-B0-C2-kbar-r128: frac_masa=0.06150000000000001 n_sinks=8 kappa_v=0.3513513513513515 (31s, acumulado 0.5 min)
+[2/6] A2-B0-C2-kbar-r132: frac_masa=0.07200000000000002 n_sinks=8 kappa_v=0.4112903225806453 (26s, acumulado 0.9 min)
+[3/6] A2-B0-C2-kbar-r18: frac_masa=0.09400000000000003 n_sinks=8 kappa_v=0.45161290322580655 (22s, acumulado 1.3 min)
+[4/6] A2-B0-C2-kbar-r27: frac_masa=0.06750000000000002 n_sinks=8 kappa_v=0.3902439024390245 (24s, acumulado 1.7 min)
+[5/6] A2-B0-C2-kbar-r35: frac_masa=0.07800000000000001 n_sinks=8 kappa_v=0.32484076433121 (20s, acumulado 2.0 min)
+[6/6] A2-B0-C2-kbar-r54: frac_masa=0.07550000000000001 n_sinks=8 kappa_v=0.3888888888888885 (22s, acumulado 2.4 min)
+[phantom] FIN — 6 corridas en 2.4 min
+TODO_CORRIDO_38

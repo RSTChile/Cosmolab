@@ -1,0 +1,45 @@
+densidad media = 0.02022; umbral de Phantom = 1000.0 = 49453× la media
+  [ok] A2-B0-C2-batch3-r0       solap  (140.7s)
+  [ok] A2-B0-C2-batch3-r0       disj   (141.0s)
+  [ok] A2-B0-C2-batch3-r60      disj   (140.7s)
+  [ok] A2-B0-C2-batch3-r111     solap  (141.2s)
+  [ok] A2-B0-C2-batch3-r60      solap  (141.2s)
+  [ok] A2-B0-C2-batch3-r111     disj   (141.9s)
+  [ok] A2-B0-C2-batch4-r10      disj   (153.7s)
+  [ok] A2-B0-C2-batch4-r10      solap  (154.1s)
+  [ok] A2-B0-C2-batch4-r36      disj   (153.8s)
+  [ok] A2-B0-C2-batch4-r36      solap  (154.2s)
+  [ok] A2-B0-C2-batch4-r62      disj   (153.9s)
+  [ok] A2-B0-C2-batch4-r62      solap  (155.0s)
+  [ok] A2-B0-C2-r14             solap  (163.2s)
+  [ok] A2-B0-C2-r14             disj   (163.4s)
+  [ok] A2-B0-C2-r19             solap  (162.3s)
+  [ok] A2-B0-C2-r17             solap  (163.2s)
+  [ok] A2-B0-C2-r17             disj   (163.1s)
+  [ok] A2-B0-C2-r19             disj   (162.5s)
+  [ok] A2-B0-C2-r20             solap  (133.8s)
+  [ok] A2-B0-C2-r20             disj   (133.8s)
+  [ok] A2-B0-C2-r39             solap  (133.7s)
+  [ok] A2-B0-C2-r28             disj   (134.0s)
+  [ok] A2-B0-C2-r28             solap  (134.2s)
+  [ok] A2-B0-C2-r39             disj   (133.9s)
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f805_umbrales.py:115: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  corr_ph=stats.pearsonr(df.frac_masa, df[c])[0])
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f805_umbrales.py:115: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  corr_ph=stats.pearsonr(df.frac_masa, df[c])[0])
+
+====================================================================================================================
+ESCALERA DE UMBRALES — `solap` − `disj`, en las condiciones iniciales y después de integrar
+====================================================================================================================
+ umbral_x_media  masa_sobre_umbral_media  ini_delta  ini_signos  ini_pct  ini_p  fin_delta  fin_signos  fin_pct  fin_p  aporte_dinamica  orden_fin_vs_phantom  orden_ini_vs_phantom  pearson_fin_vs_phantom  pearson_ini_vs_phantom
+             10                   0.5401    -0.0338           1  -5.5389 0.0010    -0.0282           0  -5.0827 0.0010           0.0056                     0                     1                  0.7472                  0.7329
+             30                   0.2708     0.0038           7   1.5033 0.7334    -0.0053           5  -1.9503 0.4351          -0.0091                     5                     7                  0.8597                  0.8806
+            100                   0.1794     0.0190          12  15.5389 0.0005     0.0109           9   6.2515 0.0493          -0.0082                     9                    12                  0.9469                  0.9844
+            300                   0.1434     0.0061          12   8.4726 0.0005     0.0127          10   9.3037 0.0024           0.0066                    10                    12                  0.9634                  0.9897
+           1000                   0.1140     0.0020          10   4.0799 0.0039     0.0088           9   8.0578 0.0049           0.0069                     9                    10                  0.9570                  0.9358
+           3000                   0.0869     0.0035           9  11.5489 0.0059     0.0038           9   4.5120 0.0146           0.0003                     9                     9                  0.9260                  0.8330
+          10000                   0.0644     0.0000           7   9.0909 0.2461     0.0048           9   7.7285 0.0117           0.0048                     9                     7                  0.8975                  0.4939
+          30000                   0.0401     0.0000           0      NaN    NaN     0.0044           8  11.5385 0.0508           0.0044                     8                     0                  0.8128                     NaN
+          49453                   0.0276     0.0000           0      NaN    NaN     0.0070           9  29.0155 0.0088           0.0070                     9                     0                  0.8642                     NaN
+
+referencia — PHANTOM: Δ=+0.01433 (+12.6%), 12/12, nivel medio de masa en sumideros 0.1209

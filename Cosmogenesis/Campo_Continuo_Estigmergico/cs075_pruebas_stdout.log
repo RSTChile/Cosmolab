@@ -1,0 +1,124 @@
+BATERÍA cs075 — Los 23 sobre base física (E1-E6)
+malla 16³ · T_total pruebas = 20.0 · dt=1e-3 · RATIO_EW_CONF=1025.81
+
+==============================================================================
+E1 — INVENTARIO COMPLETO: ¿son exactamente 23, sin repetidos?
+==============================================================================
+  23 agentes, sin nombres repetidos: True
+    23_campo             verbatim en cs072_motor_23.py
+    22_qcd               verbatim en cs072_motor_23.py
+    9_expansion          verbatim en cs072_motor_23.py
+    10_enfriamiento      verbatim en cs072_motor_23.py
+    M1_semilla           verbatim en cs072_motor_23.py
+    M3_fase_cuantica     JUSTIFICADO (no verbatim): sin clave operacional (declarada AUSENTE en cs072_motor_23.py l.29 -- "FUERA salvo acople sin grilla"). Es el elemento que faltaba en el §3.3 de la instrucción, resuelto contra MANIFIESTO_FOLD_CS072.md l.3, 22-23. Ver docstring del módulo.
+    5_debil              verbatim en cs072_motor_23.py
+    7_masa               JUSTIFICADO (no verbatim): clave verbatim en corre() l.93/121 (con_masa, masa_ef) aunque no en la lista __main__ de piezas (esa lista prueba admisibilidad de 20, no las 23).
+    6_catalogo           JUSTIFICADO (no verbatim): docstring cs072_motor_23.py l.13 ("6 catálogo de partículas"), sin clave operacional en la lista de piezas -- justificado en el docstring de este módulo.
+    16_ssb               verbatim en cs072_motor_23.py
+    3_fuerte             verbatim en cs072_motor_23.py
+    8_aniquilacion       verbatim en cs072_motor_23.py
+    1_espin              verbatim en cs072_motor_23.py
+    11_tres_cuerpos      verbatim en cs072_motor_23.py
+    13_pauli             verbatim en cs072_motor_23.py
+    2_gravedad           verbatim en cs072_motor_23.py
+    12_localidad         verbatim en cs072_motor_23.py
+    4_em                 verbatim en cs072_motor_23.py
+    14_correlacion       verbatim en cs072_motor_23.py
+    M2_memoria           verbatim en cs072_motor_23.py
+    17_oscuro            verbatim en cs072_motor_23.py
+    18_poda              JUSTIFICADO (no verbatim): sin clave "18_poda" literal, pero l.45/l.167 la nombran verbatim como la poda co-emergente con #9 -- justificado en el docstring del módulo.
+    15_causal            verbatim en cs072_motor_23.py
+
+  -> E1: PASA
+
+==============================================================================
+E3 — CERO EXACTO DORMIDO: ¿el depósito de un agente sin condiciones es 0.0 exacto?
+==============================================================================
+  agentes dormidos en este paso: 17/23
+  el proceso común (Proceso23SobreFisica.paso) sólo suma deposito() de agentes con condiciones_dadas()==True -- código verificado línea por línea, cero estructural.
+    M3_fase_cuantica     deposito()==0.0 exacto: True
+    16_ssb               deposito()==0.0 exacto: True
+    1_espin              deposito()==0.0 exacto: True
+    11_tres_cuerpos      deposito()==0.0 exacto: True
+    13_pauli             deposito()==0.0 exacto: True
+    15_causal            deposito()==0.0 exacto: True
+
+  -> E3: PASA
+
+==============================================================================
+E4 — CERO TURNOS: ¿el orden de consulta cambia el resultado?
+==============================================================================
+  orden original vs orden permutado: diferencia máxima relativa = 2.030e-15
+  -> E4: PASA (umbral 1e-12)
+
+==============================================================================
+E5 — LAS DIRECCIONES SE MANTIENEN con los 23 depositando
+==============================================================================
+  T_baja: True  (T: 1000 -> 31.41)
+  rho_baja: True  (rho: 1 -> 2.895e-05)
+  X_baja: False  (X: 0.009898 -> 0.05667)
+  S_sube: True  (S: 10.36 -> 15.64)
+
+  -> E5: FALLA
+
+==============================================================================
+E2 — NADIE MADRUGA (la tesis) · E6 — ORDEN ESPERADO
+==============================================================================
+  agente                nivel  despierta
+  23_campo                  0          0
+  22_qcd                    0          0
+  9_expansion               0          0
+  10_enfriamiento           0          0
+  M1_semilla                0          0
+  M3_fase_cuantica          0          0
+  5_debil                   1          1
+  7_masa                    1          1
+  6_catalogo                1          1
+  16_ssb                    1          1
+  3_fuerte                  2       None
+  8_aniquilacion            2       None
+  1_espin                   2       None
+  11_tres_cuerpos           2       None
+  13_pauli                  2       None
+  2_gravedad                3       None
+  12_localidad              3       None
+  4_em                      4       None
+  14_correlacion            5       None
+  M2_memoria                5       None
+  17_oscuro                 5       None
+  18_poda                   6       None
+  15_causal                 6       None
+
+  primer despertar por nivel: {0: 0, 1: 1}
+  violaciones E2 (nadie madruga): 0
+  violaciones E6 (orden creciente entre niveles alcanzados): 0
+  agentes que nunca despertaron en este T_total=20.0: 13/23
+    3_fuerte             (nivel 2, requiere ('T_bajo_confinamiento',))
+    8_aniquilacion       (nivel 2, requiere ('T_bajo_confinamiento',))
+    1_espin              (nivel 2, requiere ('T_bajo_confinamiento',))
+    11_tres_cuerpos      (nivel 2, requiere ('T_bajo_confinamiento',))
+    13_pauli             (nivel 2, requiere ('T_bajo_confinamiento',))
+    2_gravedad           (nivel 3, requiere ('hay_sobredensidad',))
+    12_localidad         (nivel 3, requiere ('hay_sobredensidad',))
+    4_em                 (nivel 4, requiere ('hay_nucleos',))
+    14_correlacion       (nivel 5, requiere ('hay_atomos',))
+    M2_memoria           (nivel 5, requiere ('hay_atomos',))
+    17_oscuro            (nivel 5, requiere ('hay_atomos',))
+    18_poda              (nivel 6, requiere ('hay_red',))
+    15_causal            (nivel 6, requiere ('hay_red',))
+
+  -> E2: PASA   E6: PASA
+
+==============================================================================
+RESUMEN
+==============================================================================
+  E1  PASA
+  E2  PASA
+  E3  PASA
+  E4  PASA
+  E5  FALLA
+  E6  PASA
+
+  batería completa: FALLA
+  tiempo total: 184.7s
+  [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/Campo_Continuo_Estigmergico/cs075_resultado_pruebas_23_sobre_fisica.json

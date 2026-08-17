@@ -1,0 +1,111 @@
+{
+  "protocolo": "PROTOCOLO_EMPALME_CG002_ANIMA.md",
+  "fase": 1,
+  "fecha_pre_registro": "2026-06-30",
+  "aprobado": "Alexis (dale)",
+  "sr": 48000,
+  "seg": 2.0,
+  "amp_viable_base": 0.012,
+  "estimulos": [
+    {
+      "audio_id": "E01_tono_220_sostenido",
+      "clase": "difieren",
+      "descripcion": "Tono 220 Hz sostenido — estructura periódica simple",
+      "path": "empalme_estimulos/E01_tono_220_sostenido.wav",
+      "sha256": "d062e369467969256c27a20bb8af1ca47be5c5d184e157108bd45e9e23a05302",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.008485
+    },
+    {
+      "audio_id": "E02_ruido_banda_amplia",
+      "clase": "difieren",
+      "descripcion": "Ruido blanco — estructura aleatoria; RMS matched a E01 post-hoc en manifest",
+      "path": "empalme_estimulos/E02_ruido_banda_amplia.wav",
+      "sha256": "1bd68000b6a29ed2211ac82aa94b153699ce2b87827e6e429a10e5dcf93aed6d",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.011953
+    },
+    {
+      "audio_id": "E03_pulsos_220_01s",
+      "clase": "difieren",
+      "descripcion": "Tono 220 Hz con envolvente pulso 0.1 s — modulación temporal",
+      "path": "empalme_estimulos/E03_pulsos_220_01s.wav",
+      "sha256": "3ba65d91b6bc5a3eed9189d59ee51cf3fc6de4eb4faf361e49a49939cb20f35d",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.006
+    },
+    {
+      "audio_id": "N01_silencio",
+      "clase": "no_difieren",
+      "descripcion": "Silencio digital — presión cero",
+      "path": "empalme_estimulos/N01_silencio.wav",
+      "sha256": "e3a90286b3b5420103c5d188beff5aeb90737b9ee66c505ee43582c8af92a32b",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.0
+    },
+    {
+      "audio_id": "N02_tono_ultra_estable",
+      "clase": "no_difieren",
+      "descripcion": "Tono 60 Hz muy bajo, amplitud mínima viable — casi estacionario",
+      "path": "empalme_estimulos/N02_tono_ultra_estable.wav",
+      "sha256": "bd719aa3c7fd209e118a1a7be2c445f3e05d4aa090984f9d962b3edb1a3cefdd",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.004243
+    },
+    {
+      "audio_id": "S01_rms_match_tono_vs_ruido",
+      "clase": "null_shannon",
+      "descripcion": "Ruido con RMS igualado al tono E01 — test RMS-only",
+      "path": "empalme_estimulos/S01_rms_match_tono_vs_ruido.wav",
+      "sha256": "63fd7dfa64e1519bce55f2a69c783f07ab2e8b7b67b1f7b7d805a6696433182f",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.008485
+    },
+    {
+      "audio_id": "S02_rms_match_440_vs_220",
+      "clase": "null_shannon",
+      "descripcion": "440 Hz RMS-matched a 220 Hz — misma energía, distinta frecuencia",
+      "path": "empalme_estimulos/S02_rms_match_440_vs_220.wav",
+      "sha256": "cd42989f4c3e5598beaa8921c661a4668c67e42ec6e6e550308cad60739ebe7e",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": 0.012,
+      "rms_L": 0.008485
+    },
+    {
+      "audio_id": "R01_saturacion_colapso",
+      "clase": "ruptura_kappa_O",
+      "descripcion": "Tono alta amplitud (0.08) — reflejo / e_R alto esperado",
+      "path": "empalme_estimulos/R01_saturacion_colapso.wav",
+      "sha256": "14035b18ef71a71cb8ee77edc635d18caa72279eec1ab3d0a3c982f2fc2a4fe5",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": "variable",
+      "rms_L": 0.056569
+    },
+    {
+      "audio_id": "R02_homogeneizacion_dc",
+      "clase": "ruptura_kappa_delta",
+      "descripcion": "Offset DC constante (no waveform) — mínima diferenciación temporal",
+      "path": "empalme_estimulos/R02_homogeneizacion_dc.wav",
+      "sha256": "a8ca5e77ae64c166ad9c63e43a60e3deb94bf69435dc984c789c8d5ee2ea288f",
+      "sr": 48000,
+      "seg": 2.0,
+      "amp_nominal": "variable",
+      "rms_L": 0.0036
+    }
+  ],
+  "criterio_pass": "clase 'difieren' → delta_struct > clase 'no_difieren'; null_shannon no colapsa diferencia"
+}

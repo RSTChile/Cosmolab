@@ -1,0 +1,14 @@
+[Unit]
+Description=ANIMA organismo local (runtime nativo)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/anima/celula_madre
+ExecStart=/opt/anima/celula_madre/docker/run_native_pi.sh start
+ExecStop=/opt/anima/celula_madre/docker/run_native_pi.sh stop
+
+[Install]
+WantedBy=default.target

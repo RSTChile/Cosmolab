@@ -1,0 +1,8 @@
+09 MF7 holografico S=A/4G perim
+step   0 a=  1.0 T=1.00e+15 k1=0 k3=0 perim_ratio=0.000
+step 100 a=  3.3 T=3.01e+14 k1=0 k3=0 perim_ratio=0.000
+step 200 a= 11.0 T=9.07e+13 k1=0 k3=0 perim_ratio=0.000
+step 300 a= 36.6 T=2.73e+13 k1=0 k3=0 perim_ratio=0.000
+step 400 a=121.5 T=8.23e+12 k1=0 k3=0 perim_ratio=0.000
+FIN 09: perim k1=4 k3=8 => ratio 0.5 O(1) no 0.00054, holografia sola no rompe
+EXIT:0

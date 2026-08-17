@@ -2,7 +2,7 @@
 EXPERIMENTO COSMOSEMIÓTICO - VALIDACIÓN CON GRABACIONES REALES
 ============================================================
 Fecha: 2026-04-23 06:55:26
-Directorio: /Volumes/LaCie/RMD/Cosmolab/VSTCosmo
+Directorio: /Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo
 
 [1] Cargando archivos...
   Frecuencias: Voz_Estudio=48000, Voz+Viento1=48000, Voz+Viento2=48000, Viento=48000

@@ -1,0 +1,2394 @@
+{
+ "convencion": {
+  "13": {
+   "voz_id": "13",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Alegría",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.51663,
+    "d_H": 0.35165,
+    "d_ICR": 0.02742,
+    "d_IRDE": -0.08521,
+    "d_LF_op": 0.2691,
+    "d_OI": 0.01866,
+    "d_Omega": -0.37542,
+    "d_RC_total": -0.0578,
+    "d_atencion": 0.0,
+    "d_energia": -0.0236,
+    "d_necesidad": 0.18073,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00438
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Cuidado",
+     "confianza": "media"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Alegría",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "14": {
+   "voz_id": "14",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Sí",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.06547,
+    "d_H": -0.02115,
+    "d_ICR": -0.00996,
+    "d_IRDE": -0.04986,
+    "d_LF_op": -0.0261,
+    "d_OI": -0.0124,
+    "d_Omega": 0.00518,
+    "d_RC_total": -0.05983,
+    "d_atencion": 0.0,
+    "d_energia": -0.0177,
+    "d_necesidad": -0.04158,
+    "d_orientacion": 0.0,
+    "d_valence": -0.02307
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Sí",
+     "confianza": "media"
+    }
+   ]
+  },
+  "15": {
+   "voz_id": "15",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Confianza",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.24073,
+    "d_H": -0.02115,
+    "d_ICR": -0.01089,
+    "d_IRDE": -0.09291,
+    "d_LF_op": 0.1961,
+    "d_OI": 0.0024,
+    "d_Omega": -0.28122,
+    "d_RC_total": -0.10381,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04538,
+    "d_orientacion": 0.0,
+    "d_valence": 0.0013
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Confianza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Confianza",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "18": {
+   "voz_id": "18",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Crear",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.50693,
+    "d_H": 0.35295,
+    "d_ICR": -0.01192,
+    "d_IRDE": -0.25436,
+    "d_LF_op": 0.2673,
+    "d_OI": -0.00935,
+    "d_Omega": -0.37302,
+    "d_RC_total": -0.26629,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04808,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00419
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Crear",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "19": {
+   "voz_id": "19",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Florecer",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.48743,
+    "d_H": 0.34705,
+    "d_ICR": -0.01194,
+    "d_IRDE": -0.26786,
+    "d_LF_op": 0.2635,
+    "d_OI": -0.01462,
+    "d_Omega": -0.36822,
+    "d_RC_total": -0.27981,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.05048,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00371
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Florecer",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "22": {
+   "voz_id": "22",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Alegría",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.39603,
+    "d_H": -0.02115,
+    "d_ICR": -0.01197,
+    "d_IRDE": -0.14707,
+    "d_LF_op": 0.2434,
+    "d_OI": -0.008,
+    "d_Omega": -0.34232,
+    "d_RC_total": -0.15905,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.05448,
+    "d_orientacion": 0.0,
+    "d_valence": 4e-05
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Alegría",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "6": {
+   "voz_id": "6",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Vigor",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.49953,
+    "d_H": 0.29875,
+    "d_ICR": 0.07244,
+    "d_IRDE": -0.07872,
+    "d_LF_op": 0.2659,
+    "d_OI": 0.0714,
+    "d_Omega": -0.41622,
+    "d_RC_total": -0.00628,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.27966,
+    "d_orientacion": 0.0,
+    "d_valence": 0.04157
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Vigor",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "7": {
+   "voz_id": "7",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Alegría",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.21393,
+    "d_H": -0.02115,
+    "d_ICR": -0.00811,
+    "d_IRDE": -0.07814,
+    "d_LF_op": 0.1855,
+    "d_OI": 0.0017,
+    "d_Omega": -0.26762,
+    "d_RC_total": -0.08625,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02328,
+    "d_orientacion": 0.0,
+    "d_valence": -0.03508
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Cuidado",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Alegría",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "acknowledged": {
+   "voz_id": "acknowledged",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Compañía",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.17953,
+    "d_H": -0.02115,
+    "d_ICR": -0.00587,
+    "d_IRDE": -0.03035,
+    "d_LF_op": 0.1704,
+    "d_OI": 0.0008,
+    "d_Omega": -0.24822,
+    "d_RC_total": -0.03621,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01278,
+    "d_orientacion": 0.0,
+    "d_valence": -0.03171
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Compañía",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "acuerdo": {
+   "voz_id": "acuerdo",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Cuidado",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.12417,
+    "d_H": -0.02115,
+    "d_ICR": -0.00261,
+    "d_IRDE": 0.09751,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.0038,
+    "d_Omega": 0.13298,
+    "d_RC_total": 0.0949,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01648,
+    "d_orientacion": 0.0,
+    "d_valence": -0.02766
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Cuidado",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "afirmacion": {
+   "voz_id": "afirmacion",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fatiga",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.12097,
+    "d_H": -0.02115,
+    "d_ICR": -0.00491,
+    "d_IRDE": 0.04232,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.006,
+    "d_Omega": 0.12478,
+    "d_RC_total": 0.03741,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02448,
+    "d_orientacion": 0.0,
+    "d_valence": -0.01631
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fatiga",
+     "confianza": "media"
+    }
+   ]
+  },
+  "alegria": {
+   "voz_id": "alegria",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fatiga",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.11547,
+    "d_H": -0.02115,
+    "d_ICR": 0.00432,
+    "d_IRDE": 0.04528,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.0086,
+    "d_Omega": 0.11078,
+    "d_RC_total": 0.0496,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.01282,
+    "d_orientacion": 0.0,
+    "d_valence": -0.01078
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fatiga",
+     "confianza": "media"
+    }
+   ]
+  },
+  "alerta": {
+   "voz_id": "alerta",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Enojo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13777,
+    "d_H": -0.02115,
+    "d_ICR": -0.00212,
+    "d_IRDE": 0.06054,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0029,
+    "d_Omega": 0.17088,
+    "d_RC_total": 0.05843,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01478,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00768
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "asombro": {
+   "voz_id": "asombro",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fin",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.13717,
+    "d_H": -0.02115,
+    "d_ICR": 0.00431,
+    "d_IRDE": 0.0422,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0016,
+    "d_Omega": 0.16918,
+    "d_RC_total": 0.04651,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.01242,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00556
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fin",
+     "confianza": "media"
+    }
+   ]
+  },
+  "atencion": {
+   "voz_id": "atencion",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Caída",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.06637,
+    "d_H": -0.02115,
+    "d_ICR": -0.00812,
+    "d_IRDE": -0.02368,
+    "d_LF_op": -0.0274,
+    "d_OI": -0.0093,
+    "d_Omega": 0.00688,
+    "d_RC_total": -0.0318,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.03418,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00381
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Caída",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "bateria_baja": {
+   "voz_id": "bateria_baja",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Tensión",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13777,
+    "d_H": -0.02115,
+    "d_ICR": 0.01494,
+    "d_IRDE": 0.06407,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0047,
+    "d_Omega": 0.17098,
+    "d_RC_total": 0.07901,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.05172,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00227
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Tensión",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "calma": {
+   "voz_id": "calma",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Ruptura",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.13847,
+    "d_H": -0.02115,
+    "d_ICR": 0.00244,
+    "d_IRDE": 0.04101,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0023,
+    "d_Omega": 0.17288,
+    "d_RC_total": 0.04345,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.00502,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00125
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Tensión",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Ruptura",
+     "confianza": "media"
+    }
+   ]
+  },
+  "chat": {
+   "voz_id": "chat",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Sí",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.25823,
+    "d_H": -0.02115,
+    "d_ICR": -0.00969,
+    "d_IRDE": 0.00703,
+    "d_LF_op": 0.2025,
+    "d_OI": 0.0145,
+    "d_Omega": -0.28962,
+    "d_RC_total": -0.00267,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04348,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00312
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Sí",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "compania": {
+   "voz_id": "compania",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Caída",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": -0.05807,
+    "d_H": -0.02115,
+    "d_ICR": -0.00645,
+    "d_IRDE": 0.04423,
+    "d_LF_op": -0.0161,
+    "d_OI": -0.0075,
+    "d_Omega": -0.00772,
+    "d_RC_total": 0.03777,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02778,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00083
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Caída",
+     "confianza": "media"
+    }
+   ]
+  },
+  "comprension": {
+   "voz_id": "comprension",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "No",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.04457,
+    "d_H": -0.02115,
+    "d_ICR": -0.00678,
+    "d_IRDE": 0.01287,
+    "d_LF_op": 0.0012,
+    "d_OI": -0.0069,
+    "d_Omega": -0.03002,
+    "d_RC_total": 0.00609,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02868,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00144
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "No",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "confusion": {
+   "voz_id": "confusion",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Acuerdo",
+   "confianza": "media",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 0.75,
+   "delta_residual": {
+    "d_A_sys_env": 0.01243,
+    "d_H": -0.02115,
+    "d_ICR": -0.00514,
+    "d_IRDE": -0.00078,
+    "d_LF_op": 0.0617,
+    "d_OI": -0.0041,
+    "d_Omega": -0.10812,
+    "d_RC_total": -0.00592,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01818,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00188
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Acuerdo",
+     "confianza": "media"
+    }
+   ]
+  },
+  "curiosidad": {
+   "voz_id": "curiosidad",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Cuidado",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13757,
+    "d_H": -0.02115,
+    "d_ICR": -0.00242,
+    "d_IRDE": 0.08163,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0029,
+    "d_Omega": 0.17028,
+    "d_RC_total": 0.07921,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01578,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00222
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Cuidado",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "desacuerdo": {
+   "voz_id": "desacuerdo",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Bloqueo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.10637,
+    "d_H": -0.02115,
+    "d_ICR": -0.00684,
+    "d_IRDE": -0.02359,
+    "d_LF_op": -0.091,
+    "d_OI": -0.0153,
+    "d_Omega": 0.08888,
+    "d_RC_total": -0.03043,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02818,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00244
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Bloqueo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "despedida": {
+   "voz_id": "despedida",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.04457,
+    "d_H": -0.02115,
+    "d_ICR": 0.01479,
+    "d_IRDE": 0.01428,
+    "d_LF_op": 0.0012,
+    "d_OI": -0.0203,
+    "d_Omega": -0.03002,
+    "d_RC_total": 0.02907,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.07012,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00264
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "despertar": {
+   "voz_id": "despertar",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Florecer",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.40833,
+    "d_H": 0.02435,
+    "d_ICR": -0.01197,
+    "d_IRDE": -0.19093,
+    "d_LF_op": 0.2464,
+    "d_OI": 0.0152,
+    "d_Omega": -0.34612,
+    "d_RC_total": -0.2029,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.05448,
+    "d_orientacion": 0.0,
+    "d_valence": 0.0036
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Florecer",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "dolor": {
+   "voz_id": "dolor",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Apertura",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.19153,
+    "d_H": -0.02115,
+    "d_ICR": -0.01046,
+    "d_IRDE": -0.07507,
+    "d_LF_op": 0.1759,
+    "d_OI": -0.0085,
+    "d_Omega": -0.25522,
+    "d_RC_total": -0.08552,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04108,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00125
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Apertura",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "duda": {
+   "voz_id": "duda",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Alerta",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13817,
+    "d_H": -0.02115,
+    "d_ICR": -0.00233,
+    "d_IRDE": 0.0986,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0028,
+    "d_Omega": 0.17188,
+    "d_RC_total": 0.09626,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01528,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00189
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "energia_plena": {
+   "voz_id": "energia_plena",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.08887,
+    "d_H": -0.02115,
+    "d_ICR": 0.0047,
+    "d_IRDE": 0.0101,
+    "d_LF_op": -0.0612,
+    "d_OI": -0.0084,
+    "d_Omega": 0.05048,
+    "d_RC_total": 0.0148,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.02112,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00042
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "excited": {
+   "voz_id": "excited",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Apertura",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.08103,
+    "d_H": -0.02115,
+    "d_ICR": -0.00497,
+    "d_IRDE": 0.00283,
+    "d_LF_op": 0.1155,
+    "d_OI": 0.0008,
+    "d_Omega": -0.17742,
+    "d_RC_total": -0.00214,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01368,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00206
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Apertura",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "excited-2": {
+   "voz_id": "excited-2",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Vigor",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.30563,
+    "d_H": -0.02115,
+    "d_ICR": -0.01197,
+    "d_IRDE": -0.18639,
+    "d_LF_op": 0.2184,
+    "d_OI": -0.01,
+    "d_Omega": -0.31002,
+    "d_RC_total": -0.19836,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.05448,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00319
+   },
+   "historial_nombres": [
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Vigor",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "exploracion": {
+   "voz_id": "exploracion",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Alerta",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.09577,
+    "d_H": -0.02115,
+    "d_ICR": -0.0027,
+    "d_IRDE": 0.08269,
+    "d_LF_op": -0.0725,
+    "d_OI": -0.0065,
+    "d_Omega": 0.06498,
+    "d_RC_total": 0.07999,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01588,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00052
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fatiga": {
+   "voz_id": "fatiga",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Acuerdo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.06587,
+    "d_H": -0.02115,
+    "d_ICR": -0.0111,
+    "d_IRDE": -0.12672,
+    "d_LF_op": -0.0267,
+    "d_OI": -0.0331,
+    "d_Omega": 0.00598,
+    "d_RC_total": -0.13781,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04668,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00169
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fin",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Acuerdo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_afirmativa": {
+   "voz_id": "fon_afirmativa",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Amenaza",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.17107,
+    "d_H": -0.02115,
+    "d_ICR": 0.00412,
+    "d_IRDE": 0.07946,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0229,
+    "d_Omega": 0.28248,
+    "d_RC_total": 0.08358,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.00852,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00229
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_alarma": {
+   "voz_id": "fon_alarma",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fatiga",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13587,
+    "d_H": -0.02115,
+    "d_ICR": -0.0025,
+    "d_IRDE": 0.03967,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0025,
+    "d_Omega": 0.16538,
+    "d_RC_total": 0.03716,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01548,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00259
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fatiga",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_atencion": {
+   "voz_id": "fon_atencion",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Enfermedad",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.10617,
+    "d_H": -0.02115,
+    "d_ICR": -0.00739,
+    "d_IRDE": 0.00452,
+    "d_LF_op": -0.0907,
+    "d_OI": -0.0083,
+    "d_Omega": 0.08848,
+    "d_RC_total": -0.00287,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.03298,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00276
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Enfermedad",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_curioso": {
+   "voz_id": "fon_curioso",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Amenaza",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13557,
+    "d_H": -0.02115,
+    "d_ICR": -0.00272,
+    "d_IRDE": 0.05387,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0026,
+    "d_Omega": 0.16448,
+    "d_RC_total": 0.05115,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01638,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00289
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_espacio_timbre": {
+   "voz_id": "fon_espacio_timbre",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Tensión",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.10477,
+    "d_H": -0.02115,
+    "d_ICR": -0.00294,
+    "d_IRDE": 0.05201,
+    "d_LF_op": -0.0881,
+    "d_OI": -0.0063,
+    "d_Omega": 0.08518,
+    "d_RC_total": 0.04907,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01728,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00299
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Tensión",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_espacio_tono": {
+   "voz_id": "fon_espacio_tono",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "No",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.10677,
+    "d_H": -0.02115,
+    "d_ICR": 0.00408,
+    "d_IRDE": 0.03693,
+    "d_LF_op": -0.0917,
+    "d_OI": -0.0072,
+    "d_Omega": 0.08968,
+    "d_RC_total": 0.04101,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.01382,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00309
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "No",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_frustracion": {
+   "voz_id": "fon_frustracion",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Huida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.14127,
+    "d_H": -0.02115,
+    "d_ICR": -0.00114,
+    "d_IRDE": 0.05807,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0059,
+    "d_Omega": 0.18118,
+    "d_RC_total": 0.05693,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01048,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00316
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_interrogacion": {
+   "voz_id": "fon_interrogacion",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Defensa",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.17537,
+    "d_H": -0.02115,
+    "d_ICR": 0.02354,
+    "d_IRDE": 0.05845,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0275,
+    "d_Omega": 0.29898,
+    "d_RC_total": 0.08197,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.07812,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00319
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_negativa": {
+   "voz_id": "fon_negativa",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fatiga",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.10557,
+    "d_H": -0.02115,
+    "d_ICR": 0.00317,
+    "d_IRDE": 0.01351,
+    "d_LF_op": -0.0896,
+    "d_OI": -0.0093,
+    "d_Omega": 0.08708,
+    "d_RC_total": 0.01667,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.01182,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00329
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fatiga",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_novedad": {
+   "voz_id": "fon_novedad",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Caída",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.12527,
+    "d_H": -0.02115,
+    "d_ICR": -0.00482,
+    "d_IRDE": 0.03839,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.0033,
+    "d_Omega": 0.13578,
+    "d_RC_total": 0.03357,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02358,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00329
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Caída",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_saludo": {
+   "voz_id": "fon_saludo",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Peligro",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.18327,
+    "d_H": -0.02115,
+    "d_ICR": 0.01595,
+    "d_IRDE": 0.07166,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0342,
+    "d_Omega": 0.33188,
+    "d_RC_total": 0.0876,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.04882,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00332
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_sirena": {
+   "voz_id": "fon_sirena",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Enfermedad",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13657,
+    "d_H": -0.02115,
+    "d_ICR": -0.00081,
+    "d_IRDE": 0.03379,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0024,
+    "d_Omega": 0.16718,
+    "d_RC_total": 0.03297,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.00838,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00339
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Enfermedad",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_ternura": {
+   "voz_id": "fon_ternura",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fin",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.05757,
+    "d_H": -0.02115,
+    "d_ICR": -0.00492,
+    "d_IRDE": 0.01569,
+    "d_LF_op": -0.0154,
+    "d_OI": -0.0003,
+    "d_Omega": -0.00862,
+    "d_RC_total": 0.01076,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02198,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00339
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fin",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "fon_wobble": {
+   "voz_id": "fon_wobble",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Alerta",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13737,
+    "d_H": -0.02115,
+    "d_ICR": 0.01424,
+    "d_IRDE": 0.04398,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0033,
+    "d_Omega": 0.16958,
+    "d_RC_total": 0.05821,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.05402,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00339
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "frustracion": {
+   "voz_id": "frustracion",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Enojo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.17057,
+    "d_H": -0.02115,
+    "d_ICR": 0.0411,
+    "d_IRDE": 0.03395,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0231,
+    "d_Omega": 0.28038,
+    "d_RC_total": 0.07503,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.14752,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00339
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "hallazgo": {
+   "voz_id": "hallazgo",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13757,
+    "d_H": -0.02115,
+    "d_ICR": -0.00248,
+    "d_IRDE": 0.03988,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0026,
+    "d_Omega": 0.17018,
+    "d_RC_total": 0.0374,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01528,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00339
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "hambre": {
+   "voz_id": "hambre",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Sí",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.06037,
+    "d_H": -0.02115,
+    "d_ICR": -0.01112,
+    "d_IRDE": -0.12774,
+    "d_LF_op": -0.0192,
+    "d_OI": -0.0176,
+    "d_Omega": -0.00372,
+    "d_RC_total": -0.13887,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04738,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Bloqueo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Sí",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "insistencia": {
+   "voz_id": "insistencia",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fin",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.02583,
+    "d_H": -0.02115,
+    "d_ICR": -0.00499,
+    "d_IRDE": 0.01539,
+    "d_LF_op": 0.0736,
+    "d_OI": -0.0005,
+    "d_Omega": -0.12342,
+    "d_RC_total": 0.01039,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01958,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fin",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "llamada": {
+   "voz_id": "llamada",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Defensa",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.07947,
+    "d_H": -0.02115,
+    "d_ICR": -0.00362,
+    "d_IRDE": 0.07438,
+    "d_LF_op": -0.0465,
+    "d_OI": 0.0022,
+    "d_Omega": 0.03148,
+    "d_RC_total": 0.07076,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01958,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "miedo": {
+   "voz_id": "miedo",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.00417,
+    "d_H": -0.02115,
+    "d_ICR": -0.00139,
+    "d_IRDE": -0.02407,
+    "d_LF_op": 0.0459,
+    "d_OI": -0.0068,
+    "d_Omega": -0.08772,
+    "d_RC_total": -0.02547,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.00352,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "negacion": {
+   "voz_id": "negacion",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Choque",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13497,
+    "d_H": -0.02115,
+    "d_ICR": 0.01527,
+    "d_IRDE": 0.05559,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0014,
+    "d_Omega": 0.16258,
+    "d_RC_total": 0.07085,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.05792,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "novedad": {
+   "voz_id": "novedad",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Fin",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13717,
+    "d_H": -0.02115,
+    "d_ICR": -0.0029,
+    "d_IRDE": 0.04061,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0017,
+    "d_Omega": 0.16918,
+    "d_RC_total": 0.0377,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01628,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Fin",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "peligro": {
+   "voz_id": "peligro",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Huida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13817,
+    "d_H": -0.02115,
+    "d_ICR": -0.00063,
+    "d_IRDE": 0.04557,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0028,
+    "d_Omega": 0.17208,
+    "d_RC_total": 0.04494,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.00758,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "precaucion": {
+   "voz_id": "precaucion",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Caída",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.08327,
+    "d_H": -0.02115,
+    "d_ICR": -0.00331,
+    "d_IRDE": 0.04421,
+    "d_LF_op": -0.0523,
+    "d_OI": 0.0022,
+    "d_Omega": 0.03888,
+    "d_RC_total": 0.04089,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01808,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Enojo",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Caída",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "pregunta": {
+   "voz_id": "pregunta",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Tensión",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13797,
+    "d_H": -0.02115,
+    "d_ICR": -0.00219,
+    "d_IRDE": 0.05641,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0028,
+    "d_Omega": 0.17138,
+    "d_RC_total": 0.05421,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01418,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Tensión",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "reconocimiento": {
+   "voz_id": "reconocimiento",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Choque",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13817,
+    "d_H": -0.02115,
+    "d_ICR": -0.00248,
+    "d_IRDE": 0.04709,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0028,
+    "d_Omega": 0.17188,
+    "d_RC_total": 0.04461,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01528,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "respuesta": {
+   "voz_id": "respuesta",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Enfermedad",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.04897,
+    "d_H": -0.02115,
+    "d_ICR": -0.00222,
+    "d_IRDE": 0.03565,
+    "d_LF_op": -0.0043,
+    "d_OI": -0.0059,
+    "d_Omega": -0.02292,
+    "d_RC_total": 0.03342,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01188,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Enfermedad",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "retirada": {
+   "voz_id": "retirada",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Huida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.12237,
+    "d_H": -0.02115,
+    "d_ICR": 0.011,
+    "d_IRDE": 0.04607,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.006,
+    "d_Omega": 0.12828,
+    "d_RC_total": 0.05705,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.04202,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Huida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "saciedad": {
+   "voz_id": "saciedad",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Peligro",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13817,
+    "d_H": -0.02115,
+    "d_ICR": -0.00222,
+    "d_IRDE": 0.05016,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0028,
+    "d_Omega": 0.17198,
+    "d_RC_total": 0.04793,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01418,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "saludo": {
+   "voz_id": "saludo",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Alerta",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13797,
+    "d_H": -0.02115,
+    "d_ICR": -0.00237,
+    "d_IRDE": 0.04722,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0029,
+    "d_Omega": 0.17138,
+    "d_RC_total": 0.04484,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01488,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "satisfaccion": {
+   "voz_id": "satisfaccion",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Bloqueo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.11717,
+    "d_H": -0.02115,
+    "d_ICR": -0.00154,
+    "d_IRDE": 0.02977,
+    "d_LF_op": -0.1045,
+    "d_OI": -0.0074,
+    "d_Omega": 0.11508,
+    "d_RC_total": 0.02823,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.00948,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Amenaza",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Bloqueo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "screaming": {
+   "voz_id": "screaming",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Acuerdo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.27163,
+    "d_H": -0.02115,
+    "d_ICR": -0.01005,
+    "d_IRDE": -0.03714,
+    "d_LF_op": 0.2072,
+    "d_OI": 0.0059,
+    "d_Omega": -0.29572,
+    "d_RC_total": -0.04719,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04318,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00349
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Acuerdo",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "shout": {
+   "voz_id": "shout",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Compañía",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.29723,
+    "d_H": -0.02115,
+    "d_ICR": -0.01021,
+    "d_IRDE": -0.01288,
+    "d_LF_op": 0.2157,
+    "d_OI": -0.0032,
+    "d_Omega": -0.30662,
+    "d_RC_total": -0.02311,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.04328,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00602
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Defensa",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Compañía",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "sing": {
+   "voz_id": "sing",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Alegría",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.36733,
+    "d_H": -0.02115,
+    "d_ICR": -0.00083,
+    "d_IRDE": -0.14995,
+    "d_LF_op": 0.2361,
+    "d_OI": 0.00717,
+    "d_Omega": -0.45462,
+    "d_RC_total": -0.1508,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.14055,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00752
+   },
+   "historial_nombres": [
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Dolor",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Alegría",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "ternura": {
+   "voz_id": "ternura",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.00167,
+    "d_H": -0.02115,
+    "d_ICR": -0.00619,
+    "d_IRDE": 0.0368,
+    "d_LF_op": 0.0484,
+    "d_OI": -0.0028,
+    "d_Omega": -0.09082,
+    "d_RC_total": 0.0306,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.02418,
+    "d_orientacion": 0.0,
+    "d_valence": -0.01568
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "tristeza": {
+   "voz_id": "tristeza",
+   "regimen_experiencial": "COLAPSO",
+   "campo_semantico": "pérdida/bloqueo",
+   "nombre_observacional": "Pérdida",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.03587,
+    "d_H": -0.02115,
+    "d_ICR": 0.0153,
+    "d_IRDE": 0.02447,
+    "d_LF_op": 0.0117,
+    "d_OI": -0.0209,
+    "d_Omega": -0.04352,
+    "d_RC_total": 0.03976,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": 0.07552,
+    "d_orientacion": 0.0,
+    "d_valence": -0.01014
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Peligro",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "COLAPSO",
+     "nombre": "Pérdida",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "urgencia": {
+   "voz_id": "urgencia",
+   "regimen_experiencial": "SELVA_HOSTIL",
+   "campo_semantico": "tensión/alerta",
+   "nombre_observacional": "Alerta",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": -0.13797,
+    "d_H": -0.02115,
+    "d_ICR": -0.0024,
+    "d_IRDE": 0.07125,
+    "d_LF_op": -0.1045,
+    "d_OI": 0.0029,
+    "d_Omega": 0.17138,
+    "d_RC_total": 0.06884,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.01508,
+    "d_orientacion": 0.0,
+    "d_valence": -0.00434
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Alerta",
+     "confianza": "alta"
+    }
+   ]
+  },
+  "worried": {
+   "voz_id": "worried",
+   "regimen_experiencial": "JARDIN_FERTIL",
+   "campo_semantico": "fertilidad/integración",
+   "nombre_observacional": "Acuerdo",
+   "confianza": "alta",
+   "n_organismos": 4,
+   "acuerdo_cohorte": 1.0,
+   "delta_residual": {
+    "d_A_sys_env": 0.34803,
+    "d_H": -0.02115,
+    "d_ICR": -0.01136,
+    "d_IRDE": -0.0782,
+    "d_LF_op": 0.2309,
+    "d_OI": -0.0089,
+    "d_Omega": -0.32612,
+    "d_RC_total": -0.08957,
+    "d_atencion": 0.0,
+    "d_energia": 0.00061,
+    "d_necesidad": -0.05008,
+    "d_orientacion": 0.0,
+    "d_valence": 0.00292
+   },
+   "historial_nombres": [
+    {
+     "regimen": "SELVA_HOSTIL",
+     "nombre": "Choque",
+     "confianza": "alta"
+    },
+    {
+     "regimen": "JARDIN_FERTIL",
+     "nombre": "Acuerdo",
+     "confianza": "alta"
+    }
+   ]
+  }
+ }
+}

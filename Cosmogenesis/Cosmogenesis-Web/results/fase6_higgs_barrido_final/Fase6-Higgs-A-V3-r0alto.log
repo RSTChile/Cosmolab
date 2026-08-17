@@ -1,0 +1,13 @@
+FASE6-HIGGS-A V3 segundo barrido r0 altos (5-20)
+r0=5.0 u=0.1 <|Phi|>=0.005 v_k1=0.005 v_k3=0.006 ratio=0.26320 k1=177 k3=19 APAGADO
+r0=5.0 u=0.3 <|Phi|>=0.005 v_k1=0.004 v_k3=0.005 ratio=0.27779 k1=180 k3=25 APAGADO
+r0=5.0 u=0.7 <|Phi|>=0.005 v_k1=0.005 v_k3=0.005 ratio=0.31808 k1=171 k3=24 APAGADO
+r0=8.0 u=0.1 <|Phi|>=0.004 v_k1=0.004 v_k3=0.003 ratio=0.41965 k1=191 k3=23 APAGADO
+r0=8.0 u=0.3 <|Phi|>=0.004 v_k1=0.004 v_k3=0.004 ratio=0.35620 k1=171 k3=26 APAGADO
+r0=8.0 u=0.7 <|Phi|>=0.004 v_k1=0.004 v_k3=0.004 ratio=0.37679 k1=174 k3=13 APAGADO
+r0=12.0 u=0.1 <|Phi|>=0.004 v_k1=0.004 v_k3=0.004 ratio=0.38640 k1=180 k3=20 APAGADO
+r0=12.0 u=0.3 <|Phi|>=0.004 v_k1=0.004 v_k3=0.004 ratio=0.29349 k1=166 k3=25 APAGADO
+r0=12.0 u=0.7 <|Phi|>=0.004 v_k1=0.004 v_k3=0.004 ratio=0.35051 k1=175 k3=27 APAGADO
+r0=20.0 u=0.1 <|Phi|>=0.006 v_k1=0.006 v_k3=0.007 ratio=0.29160 k1=181 k3=24 APAGADO
+r0=20.0 u=0.3 <|Phi|>=0.006 v_k1=0.005 v_k3=0.006 ratio=0.28238 k1=181 k3=18 APAGADO
+r0=20.0 u=0.7 <|Phi|>=0.006 v_k1=0.006 v_k3=0.006 ratio=0.32146 k1=188 k3=22 APAGADO

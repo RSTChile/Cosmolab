@@ -1,0 +1,16 @@
+[f801] 1 grafos base (generar_ic=False) brazos=('abanico', 'disp', 'libro', 'malla', 'solap')
+[1/1] A2-B0-C2-r39 seed=375612 lote=371828
+    piso: tri 20 -> 0  (19969 swaps, 7.7s)
+    abanico: techo_conectado tri=1103 (k=1103/1103) techo_libre=1103 [124.8s]
+       disp: techo_conectado tri=1446 (k=1412/1412) techo_libre=1446 [72.3s]
+      libro: techo_conectado tri=478 (k=370/370) techo_libre=478 [54.7s]
+      malla: techo_conectado tri=745 (k=680/680) techo_libre=745 [94.3s]
+      solap: techo_conectado tri=1053 (k=860/1203) techo_libre=1458 [63.9s]
+    T*=478  conseguidos={'abanico': 478, 'disp': 478, 'libro': 478, 'malla': 478, 'solap': 478}  dif_max=0
+    abanico  tri=478   A=1.000 D=0.3512 multi=0.000 max_e=1 gini_n=0.641 C=0.11765 nodos=0.453 gig=1970 pend=0.5087
+       disp  tri=478   A=1.001 D=0.3507 multi=0.001 max_e=2 gini_n=0.289 C=0.15382 nodos=0.714 gig=1970 pend=0.4998
+      libro  tri=478   A=3.267 D=0.1075 multi=0.913 max_e=5 gini_n=0.930 C=0.07408 nodos=0.093 gig=1949 pend=0.7499
+      malla  tri=478   A=1.724 D=0.2038 multi=0.667 max_e=4 gini_n=0.831 C=0.09548 nodos=0.220 gig=1970 pend=0.5217
+      solap  tri=478   A=2.584 D=0.1359 multi=0.795 max_e=5 gini_n=0.911 C=0.08480 nodos=0.135 gig=1961 pend=0.6666
+
+[f801] 5 filas -> cs090_fase8_f801_estructura_piloto.csv  (total 440s)

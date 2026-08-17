@@ -1,0 +1,12 @@
+7 configuraciones, concurrencia 15 (16 núcleos detectados).
+Cada corrida completa tarda minutos reales (ver benchmark_motor.js) -- una batería grande puede tardar horas. No es un número optimista, es lo medido en esta máquina.
+[k0_4] terminó (código 0) en 33.9 min.
+[k0_5] terminó (código 0) en 33.9 min.
+[k0] terminó (código 0) en 34.0 min.
+[k0_75] terminó (código 0) en 34.0 min.
+[k0_2] terminó (código 0) en 34.1 min.
+[k0_3] terminó (código 0) en 34.2 min.
+[k0_1] terminó (código 0) en 34.2 min.
+
+Batería completa en 34.2 min. Resumen: /Users/alexis/Desktop/RMD/Cosmolab/Cosmoclima/Web/prueba_de_concepto/motor/resultados/bateria_2026-08-11_resumen.csv
+Resultados individuales (JSON + CSV por año) en: /Users/alexis/Desktop/RMD/Cosmolab/Cosmoclima/Web/prueba_de_concepto/motor/resultados

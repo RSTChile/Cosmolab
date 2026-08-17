@@ -42,6 +42,15 @@ compone ambos bloques y muestra que la LF sube (a LF-3) cuando el R₂ es endóg
 """
 
 from __future__ import annotations
+
+# `escala` vive en celula_madre/; esto permite importar el organelo suelto (pruebas y smokes)
+# además de dentro del organismo. Unificado el 5-ago-2026: la revisión encontró CUATRO
+# variantes del mismo arranque, que es el problema contra el que existe el módulo compartido.
+import os as _os, sys as _sys
+_RAIZ_CM = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _RAIZ_CM not in _sys.path:
+    _sys.path.insert(0, _RAIZ_CM)
+from escala import Escala, rel, NEUTRO
 from typing import Any
 
 from VST_Genoma import (
@@ -81,21 +90,63 @@ class OrganeloConscienciaBasica(Organelo):
             secreta=["C_b", "C_b_norm", "R1_card"],
             depende_de=[],   # lee señales de base; corre tras las fuentes
             costo_base=1.0,
-            plast={"epsilon": 1e-3},
+            plast={},   # epsilon RETIRADO 4-ago-2026: era 1e-3 contra magnitudes de orden 1 a 10,
+                  # así que las cinco representables lo superaban siempre y C_b valía 5 fijo.
             criterio="C_b>0 sostenido (el sistema registra su propio estado)",
             estado=Estado.PRESENTE,
         )
         self.R1: list[str] = []
         self.C_b = 0
         self.C_b_norm = 0.0
+        self._escalas: dict = {}   # lo habitual de cada representable, aprendido
+        self._grados: dict = {}
 
     def percibir(self, milieu: "Milieu") -> None:
-        eps = self.plast["epsilon"]
         # R₁ = las representaciones de primer orden actualmente DISTINGUIBLES
-        self.R1 = [s for s in self.REPRESENTABLES if abs(milieu.leer(s, 0.0)) > eps]
+        # ── DISTINGUIRSE ES UN GRADO, NO UN SÍ/NO (4-ago-2026) ──────────────────────
+        # Antes: `abs(x) > eps` con eps = 1e-3. Las cinco representables viven entre tres y cinco
+        # órdenes de magnitud por encima de ese umbral —e_R ronda 8, A_sys_env 0,24— así que las
+        # cinco lo superaban SIEMPRE: C_b valía 5,0000 en el 98,43% de los pasos y C_b_norm 1,0000
+        # en el 100%. Y como R2 persigue a C_b_norm y LF_struct ES R2, la libertad estructural del
+        # organismo era un 1 heredado de una cuenta que no podía dar otra cosa. Peor aún: es una
+        # rampa temporal disfrazada de medida — no dice cuánta libertad tiene, dice cuánto lleva
+        # encendido.
+        #
+        # El 4-ago se sustituyó por `rel(|x|, media(|x|))`: cada representable aportaba su
+        # MAGNITUD comparada con su media. Y eso volvió a saturar, sólo que en 0,5 en vez de en 1.
+        #
+        # ── POR QUÉ SATURA `rel(|x|, media)` — 8-ago-2026, con la cifra ────────────────────
+        # `rel` devuelve r/(1+r) con r = |x|/media. Para una señal estacionaria r ronda 1, y su
+        # variación es el COEFICIENTE DE VARIACIÓN de la señal: e_R vive en ~9,5 con desviación de
+        # ~0,5 (r ∈ [0,95 · 1,05] ⇒ rel ∈ [0,487 · 0,512]). Comparar una magnitud contra su propia
+        # media DIVIDE la señal por sí misma: lo que queda no es información, es el resto.
+        # MEDIDO sobre las 31.846 filas del 7-ago (fisiologia_2026-08-07_*.csv, replay del propio
+        # organelo): C_b_norm p05–p95 = 0,4768–0,5054, una banda de 0,029 de ancho alrededor de 0,5.
+        # Y como R₂ persigue a C_b_norm y LF_struct ES R₂, la libertad estructural del organismo
+        # valía 0,5 pasara lo que pasara: LF_op = 0,5·(1−INR) ≤ 0,30 SIEMPRE, y los niveles LF-2 y
+        # LF-3 (u2=0,33, u3=0,66) quedaban fuera del alcance físico del organismo.
+        #
+        # ── LA FORMA CORRECTA: UNA DISTINCIÓN ES UNA DIFERENCIA ────────────────────────────
+        # C_b = |R₁| mide cuántas DISTINCIONES registra el sistema (O-N5.1). Distinguir no es tener
+        # un valor grande: es que el valor DIFIERA de lo que suele ser. Una señal constante y enorme
+        # no distingue nada. Así que cada representable aporta cuánto se desvía HOY de su propia
+        # costumbre, medido en unidades de su propia dispersión — las dos cifras que `Escala` ya
+        # aprende y que nadie estaba usando. Sigue sin haber umbral que elegir, y el punto neutro
+        # sigue siendo 0,5 (desviarse lo de siempre), pero ahora el índice puede recorrer su rango:
+        # MEDIDO en el mismo replay, C_b_norm p05–p95 = 0,2630–0,6519 (ancho 0,389 = 13,4× más).
+        # Mientras la escala no madura se devuelve NEUTRO: abstenerse, no inventar (escala.py).
+        for _s in self.REPRESENTABLES:
+            e = self._escalas.setdefault(_s, Escala())
+            x = abs(milieu.leer(_s, 0.0))
+            # se decide con la escala de ANTES y se aprende después, como el veto del Bloque 7:
+            # si se observa primero, la señal entra en su propia referencia y se resta a sí misma.
+            self._grados[_s] = rel(abs(x - e.media), e.dispersion) if e.madura else NEUTRO
+            e.observar(x)
+        # R1 conserva su sentido —las que HOY destacan sobre su propia costumbre— para R1_card.
+        self.R1 = [s for s, g in self._grados.items() if g > NEUTRO]
 
     def metabolizar(self, dt: float, tempo: float) -> None:
-        self.C_b = len(self.R1)                                   # C_b = |R₁|
+        self.C_b = sum(self._grados.values())                     # C_b = Σ cuánto se distingue cada una
         self.C_b_norm = self.C_b / max(1, len(self.REPRESENTABLES))
 
     def secretar(self, milieu: "Milieu") -> None:
@@ -181,7 +232,10 @@ class OrganeloSelf(Organelo):
         self.ventana = ventana
         self._hist: list[float] = []
         self.activo = False
-        self.coherencia = 0.0
+        self.coherencia = NEUTRO
+        # Lo habitual de la INESTABILIDAD del auto-modelo (desviación típica de R₂ en la ventana).
+        # Es la referencia contra la que "coherente" significa algo — ver metabolizar().
+        self.esc_desv = Escala()
 
     def percibir(self, milieu: "Milieu") -> None:
         self._R2 = milieu.leer("R2", 0.0)
@@ -190,14 +244,30 @@ class OrganeloSelf(Organelo):
         self._hist.append(self._R2)
         if len(self._hist) > self.ventana:
             self._hist.pop(0)
-        # varianza simple de R₂ en la ventana -> coherencia = 1/(1+var)
+        # ── POR QUÉ 1/(1+var) NO MEDÍA NADA — CORRECCIÓN 8-ago-2026, con la cifra ──────────
+        # R₂ es un paso bajo (τ=3 s) de un índice acotado en [0,1]: su varianza en una ventana de
+        # 50 pasos es del orden de 1e-6, así que 1/(1+var) = 0,999999… MEDIDO en las 31.846 filas
+        # del 7-ago: self_coherencia = 1,0000 exacto en el 98,46 % de los pasos. No estaba diciendo
+        # "el self es coherente": estaba diciendo "esta fórmula no puede dar otra cosa". Es el mismo
+        # techo que el cero: saturación por construcción, no medida.
+        #
+        # LA FORMA CORRECTA. "Coherente" es un COMPARATIVO — un self es coherente si sostiene su
+        # auto-modelo MÁS quieto de lo que lo sostiene habitualmente. La magnitud con la que hay que
+        # compararlo existe y es del propio organismo: su propia desviación típica habitual, que
+        # `Escala` aprende sin parámetro libre. 0,5 = tan estable como de costumbre; →1 mucho más
+        # estable; →0 el auto-modelo se está desarmando. Es una PERCEPCIÓN (comparación), no una
+        # condición de viabilidad, así que relativizarla es lo que la advertencia 2 de escala.py
+        # PIDE. La condición de viabilidad de este organelo es `self_activo` (R₂>umbral) y ésa se
+        # deja absoluta, intacta: un self crónicamente apagado debe seguir leyéndose apagado.
         n = len(self._hist)
         if n >= 2:
             media = sum(self._hist) / n
-            var = sum((x - media) ** 2 for x in self._hist) / n
-            self.coherencia = 1.0 / (1.0 + var)
+            desv = (sum((x - media) ** 2 for x in self._hist) / n) ** 0.5   # en las unidades de R₂
+            # abstención mientras no hay historia de desviaciones con la que comparar
+            self.coherencia = (1.0 - rel(desv, self.esc_desv)) if self.esc_desv.madura else NEUTRO
+            self.esc_desv.observar(desv)          # aprende después de decidir
         else:
-            self.coherencia = 0.0
+            self.coherencia = NEUTRO
         self.activo = self._R2 > self.plast["umbral_activo"]
 
     def secretar(self, milieu: "Milieu") -> None:

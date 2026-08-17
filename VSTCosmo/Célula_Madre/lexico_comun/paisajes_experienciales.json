@@ -1,0 +1,354 @@
+{
+ "k": 5,
+ "variables": [
+  "d_A_sys_env",
+  "d_H",
+  "d_ICR",
+  "d_IRDE",
+  "d_LF_op",
+  "d_OI",
+  "d_Omega",
+  "d_RC_total",
+  "d_atencion",
+  "d_energia",
+  "d_necesidad",
+  "d_orientacion",
+  "d_valence"
+ ],
+ "paisajes": [
+  {
+   "paisaje": 1,
+   "n": 3,
+   "acople": 1.4966,
+   "tendencia": "ACOPLA / integra",
+   "sube": [
+    [
+     "d_A_sys_env",
+     0.5037
+    ],
+    [
+     "d_H",
+     0.3505
+    ],
+    [
+     "d_LF_op",
+     0.2666
+    ],
+    [
+     "d_necesidad",
+     0.0274
+    ]
+   ],
+   "baja": [
+    [
+     "d_Omega",
+     -0.3722
+    ],
+    [
+     "d_IRDE",
+     -0.2025
+    ],
+    [
+     "d_RC_total",
+     -0.2013
+    ],
+    [
+     "d_energia",
+     -0.0075
+    ]
+   ],
+   "miembros": [
+    "13",
+    "18",
+    "19"
+   ],
+   "humanos": []
+  },
+  {
+   "paisaje": 2,
+   "n": 1,
+   "acople": 1.0134,
+   "tendencia": "ACOPLA / integra",
+   "sube": [
+    [
+     "d_A_sys_env",
+     0.4995
+    ],
+    [
+     "d_H",
+     0.2988
+    ],
+    [
+     "d_necesidad",
+     0.2797
+    ],
+    [
+     "d_LF_op",
+     0.2659
+    ]
+   ],
+   "baja": [
+    [
+     "d_Omega",
+     -0.4162
+    ],
+    [
+     "d_IRDE",
+     -0.0787
+    ],
+    [
+     "d_RC_total",
+     -0.0063
+    ]
+   ],
+   "miembros": [
+    "6"
+   ],
+   "humanos": []
+  },
+  {
+   "paisaje": 3,
+   "n": 13,
+   "acople": 0.6028,
+   "tendencia": "ACOPLA / integra",
+   "sube": [
+    [
+     "d_A_sys_env",
+     0.2338
+    ],
+    [
+     "d_LF_op",
+     0.1725
+    ],
+    [
+     "d_valence",
+     0.0031
+    ],
+    [
+     "d_energia",
+     0.0006
+    ]
+   ],
+   "baja": [
+    [
+     "d_Omega",
+     -0.2602
+    ],
+    [
+     "d_RC_total",
+     -0.1032
+    ],
+    [
+     "d_IRDE",
+     -0.0935
+    ],
+    [
+     "d_necesidad",
+     -0.0305
+    ]
+   ],
+   "miembros": [
+    "15",
+    "22",
+    "chat",
+    "despertar",
+    "dolor",
+    "excited",
+    "excited-2",
+    "fatiga",
+    "hambre",
+    "screaming",
+    "shout",
+    "sing",
+    "worried"
+   ],
+   "humanos": [
+    "chat",
+    "despertar",
+    "dolor",
+    "excited",
+    "excited-2",
+    "fatiga",
+    "hambre",
+    "screaming",
+    "shout",
+    "sing",
+    "worried"
+   ]
+  },
+  {
+   "paisaje": 4,
+   "n": 5,
+   "acople": 0.104,
+   "tendencia": "ACOPLA / integra",
+   "sube": [
+    [
+     "d_LF_op",
+     0.0547
+    ],
+    [
+     "d_A_sys_env",
+     0.0404
+    ]
+   ],
+   "baja": [
+    [
+     "d_Omega",
+     -0.0937
+    ],
+    [
+     "d_valence",
+     -0.0266
+    ],
+    [
+     "d_necesidad",
+     -0.0237
+    ],
+    [
+     "d_H",
+     -0.0212
+    ]
+   ],
+   "miembros": [
+    "14",
+    "7",
+    "acknowledged",
+    "acuerdo",
+    "ternura"
+   ],
+   "humanos": [
+    "acknowledged",
+    "acuerdo",
+    "ternura"
+   ]
+  },
+  {
+   "paisaje": 0,
+   "n": 48,
+   "acople": -0.2888,
+   "tendencia": "DESACOPLA / disrupta",
+   "sube": [
+    [
+     "d_Omega",
+     0.1122
+    ],
+    [
+     "d_RC_total",
+     0.0418
+    ],
+    [
+     "d_IRDE",
+     0.0401
+    ],
+    [
+     "d_necesidad",
+     0.0032
+    ]
+   ],
+   "baja": [
+    [
+     "d_A_sys_env",
+     -0.1094
+    ],
+    [
+     "d_LF_op",
+     -0.0746
+    ],
+    [
+     "d_H",
+     -0.0212
+    ],
+    [
+     "d_OI",
+     -0.0001
+    ]
+   ],
+   "miembros": [
+    "afirmacion",
+    "alegria",
+    "alerta",
+    "asombro",
+    "atencion",
+    "bateria_baja",
+    "calma",
+    "compania",
+    "comprension",
+    "confusion",
+    "curiosidad",
+    "desacuerdo",
+    "despedida",
+    "duda",
+    "energia_plena",
+    "exploracion",
+    "fon_afirmativa",
+    "fon_alarma",
+    "fon_atencion",
+    "fon_curioso",
+    "fon_espacio_timbre",
+    "fon_espacio_tono",
+    "fon_frustracion",
+    "fon_interrogacion",
+    "fon_negativa",
+    "fon_novedad",
+    "fon_saludo",
+    "fon_sirena",
+    "fon_ternura",
+    "fon_wobble",
+    "frustracion",
+    "hallazgo",
+    "insistencia",
+    "llamada",
+    "miedo",
+    "negacion",
+    "novedad",
+    "peligro",
+    "precaucion",
+    "pregunta",
+    "reconocimiento",
+    "respuesta",
+    "retirada",
+    "saciedad",
+    "saludo",
+    "satisfaccion",
+    "tristeza",
+    "urgencia"
+   ],
+   "humanos": [
+    "afirmacion",
+    "alegria",
+    "alerta",
+    "asombro",
+    "atencion",
+    "bateria_baja",
+    "calma",
+    "compania",
+    "comprension",
+    "confusion",
+    "curiosidad",
+    "desacuerdo",
+    "despedida",
+    "duda",
+    "energia_plena",
+    "exploracion",
+    "frustracion",
+    "hallazgo",
+    "insistencia",
+    "llamada",
+    "miedo",
+    "negacion",
+    "novedad",
+    "peligro",
+    "precaucion",
+    "pregunta",
+    "reconocimiento",
+    "respuesta",
+    "retirada",
+    "saciedad",
+    "saludo",
+    "satisfaccion",
+    "tristeza",
+    "urgencia"
+   ]
+  }
+ ]
+}

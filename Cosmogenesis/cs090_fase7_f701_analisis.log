@@ -1,0 +1,120 @@
+F7-01 — FACTORIAL ORTOGONAL kcap x M (número de aristas)
+n corridas = 36   ·   igualación de M = ['seleccion'] (100 % por selección, 0 celdas por poda)
+
+>> LO PRIMERO: ¿se rompió la colinealidad?
+   r(kcap, M) = +0.0083   [en O3-D era r(kcap, grado medio) = +0,984]
+   r(kcap, grado medio) = +0.0083   ·   VIF(kcap) = 1.00   [en O3-D VIF(kcap) = 32,5 y VIF(grado medio) = 47,8]
+   M por kcap: kcap6: media 3999.7 [3786–4206] · kcap7: media 4002.3 [3749–4232]
+
+>> TABLA POR CELDA
+ kcap  M_objetivo  n    M_real  grado_medio  meandeg_ER  clustering  pendiente  frac_masa  frac_masa_ee  kappa_v  n_sinks  t_1er_sink
+    6        3800  6 3801.0000       3.8010      4.6150      0.0016     0.5831     0.0852        0.0009   0.4403   8.0000      0.0408
+    6        4000  6 3999.3333       3.9993      5.8567      0.0038     0.5508     0.0783        0.0007   0.3993   8.0000      0.0417
+    6        4200  6 4198.8333       4.1988      6.3717      0.0048     0.5435     0.0744        0.0010   0.4036   8.0000      0.0457
+    7        3800  6 3812.0000       3.8120      4.1383      0.0013     0.6396     0.0868        0.0013   0.4267   8.0000      0.0428
+    7        4000  6 4013.1667       4.0132      4.3833      0.0010     0.5741     0.0781        0.0008   0.4108   8.0000      0.0413
+    7        4200  6 4181.8333       4.1818      4.6483      0.0016     0.5794     0.0745        0.0009   0.4000   8.0000      0.0462
+
+==============================================================================================
+ENDPOINT: fracción de masa  (fraccion_masa_en_sumideros)
+==============================================================================================
+
+-- (1) A kcap FIJO: efecto de M (la densidad) --
+   kcap=6 (n=18): R²(M) = 0.8219  r = -0.907  pendiente = -0.02696 por 1000 aristas  t(16) = -8.59  p = 2.17e-07
+   kcap=7 (n=18): R²(M) = 0.8503  r = -0.922  pendiente = -0.03404 por 1000 aristas  t(16) = -9.53  p = 5.321e-08
+   -> R² MEDIO de M sobre fracción de masa a kcap fijo: 0.8361
+
+-- (2) A M FIJO: efecto de kcap (el tope de vecinos) --
+   M≈3800 (n=12): R²(kcap) = 0.0998  media kcap6 = 0.0852 vs kcap7 = 0.0868  Δ = +0.0017  t = -1.05 p = 0.321  MWU p = 0.335
+   M≈4000 (n=12): R²(kcap) = 0.0056  media kcap6 = 0.0783 vs kcap7 = 0.0781  Δ = -0.0003  t = +0.24 p = 0.817  MWU p = 0.747
+   M≈4200 (n=12): R²(kcap) = 0.0004  media kcap6 = 0.0744 vs kcap7 = 0.0745  Δ = +0.0001  t = -0.06 p = 0.951  MWU p = 1.000
+   -> R² MEDIO de kcap sobre fracción de masa a M fijo: 0.0353
+
+-- (3) Modelos anidados sobre las 24 corridas --
+   fracción de masa ~ M          R² = 0.8245   n_aristas_grafo_final β=-3.02832e-05 (t=-12.64 p=2.12e-14)
+   fracción de masa ~ kcap       R² = 0.0022   kcap β=+0.0005 (t=+0.28 p=0.784)
+   fracción de masa ~ M + kcap   R² = 0.8275   n_aristas_grafo_final β=-3.02983e-05 (t=-12.56 p=4e-14)  kcap β=+0.000579112 (t=+0.76 p=0.453)
+   fracción de masa ~ M+kcap+meandeg R² = 0.8285   n_aristas_grafo_final β=-3.15817e-05 (t=-8.35 p=1.52e-09)  kcap β=+0.00111037 (t=+0.78 p=0.441)  meandeg β=+0.000431137 (t=+0.44 p=0.66)
+   correlación parcial r(kcap, fracción de masa | M) = +0.131  (t(33) = +0.76, p = 0.4531)
+   residuo medio de kcap6 = -0.00029 · kcap7 = +0.00029
+   [confound declarado] r(meandeg, fracción de masa | M) = -0.068 · r(kcap, meandeg | M) = -0.840
+
+==============================================================================================
+ENDPOINT: clustering  (clustering_medio)
+==============================================================================================
+
+-- (1) A kcap FIJO: efecto de M (la densidad) --
+   kcap=6 (n=18): R²(M) = 0.5599  r = +0.748  pendiente = +0.00803 por 1000 aristas  t(16) = +4.51  p = 0.0003546
+   kcap=7 (n=18): R²(M) = 0.0210  r = +0.145  pendiente = +0.00052 por 1000 aristas  t(16) = +0.59  p = 0.5663
+   -> R² MEDIO de M sobre clustering a kcap fijo: 0.2905
+
+-- (2) A M FIJO: efecto de kcap (el tope de vecinos) --
+   M≈3800 (n=12): R²(kcap) = 0.0943  media kcap6 = 0.0016 vs kcap7 = 0.0013  Δ = -0.0003  t = +1.02 p = 0.332  MWU p = 0.310
+   M≈4000 (n=12): R²(kcap) = 0.6196  media kcap6 = 0.0038 vs kcap7 = 0.0010  Δ = -0.0028  t = +4.04 p = 0.006  MWU p = 0.004
+   M≈4200 (n=12): R²(kcap) = 0.7745  media kcap6 = 0.0048 vs kcap7 = 0.0016  Δ = -0.0032  t = +5.86 p = 0.001  MWU p = 0.002
+   -> R² MEDIO de kcap sobre clustering a M fijo: 0.4961
+
+-- (3) Modelos anidados sobre las 24 corridas --
+   clustering ~ M          R² = 0.1758   n_aristas_grafo_final β=+4.43551e-06 (t=+2.69 p=0.0109)
+   clustering ~ kcap       R² = 0.4012   kcap β=-0.00211928 (t=-4.77 p=3.38e-05)
+   clustering ~ M + kcap   R² = 0.5813   n_aristas_grafo_final β=+4.49114e-06 (t=+3.77 p=0.000645)  kcap β=-0.002131 (t=-5.65 p=2.67e-06)
+   clustering ~ M+kcap+meandeg R² = 0.8171   n_aristas_grafo_final β=-1.58337e-06 (t=-1.28 p=0.21)  kcap β=+0.000383506 (t=+0.82 p=0.417)  meandeg β=+0.00204064 (t=+6.42 p=3.2e-07)
+   correlación parcial r(kcap, clustering | M) = -0.701  (t(33) = -5.65, p = 2.674e-06)
+   residuo medio de kcap6 = +0.00107 · kcap7 = -0.00107
+   [confound declarado] r(meandeg, clustering | M) = +0.879 · r(kcap, meandeg | M) = -0.840
+
+==============================================================================================
+ENDPOINT: pendiente corregida  (pendiente_corregida)
+==============================================================================================
+
+-- (1) A kcap FIJO: efecto de M (la densidad) --
+   kcap=6 (n=18): R²(M) = 0.0999  r = -0.316  pendiente = -0.09850 por 1000 aristas  t(16) = -1.33  p = 0.2014
+   kcap=7 (n=18): R²(M) = 0.2237  r = -0.473  pendiente = -0.14987 por 1000 aristas  t(16) = -2.15  p = 0.04746
+   -> R² MEDIO de M sobre pendiente corregida a kcap fijo: 0.1618
+
+-- (2) A M FIJO: efecto de kcap (el tope de vecinos) --
+   M≈3800 (n=12): R²(kcap) = 0.4285  media kcap6 = 0.5831 vs kcap7 = 0.6396  Δ = +0.0565  t = -2.74 p = 0.022  MWU p = 0.041
+   M≈4000 (n=12): R²(kcap) = 0.0338  media kcap6 = 0.5508 vs kcap7 = 0.5741  Δ = +0.0234  t = -0.59 p = 0.568  MWU p = 0.310
+   M≈4200 (n=12): R²(kcap) = 0.3237  media kcap6 = 0.5435 vs kcap7 = 0.5794  Δ = +0.0359  t = -2.19 p = 0.055  MWU p = 0.093
+   -> R² MEDIO de kcap sobre pendiente corregida a M fijo: 0.2620
+
+-- (3) Modelos anidados sobre las 24 corridas --
+   pendiente corregida ~ M          R² = 0.1305   n_aristas_grafo_final β=-0.000121716 (t=-2.26 p=0.0304)
+   pendiente corregida ~ kcap       R² = 0.1310   kcap β=+0.0385742 (t=+2.26 p=0.0301)
+   pendiente corregida ~ M + kcap   R² = 0.2636   n_aristas_grafo_final β=-0.000122731 (t=-2.44 p=0.0203)  kcap β=+0.0388946 (t=+2.44 p=0.0201)
+   pendiente corregida ~ M+kcap+meandeg R² = 0.2779   n_aristas_grafo_final β=-7.51053e-05 (t=-0.96 p=0.345)  kcap β=+0.0191801 (t=+0.65 p=0.52)  meandeg β=-0.0159993 (t=-0.80 p=0.432)
+   correlación parcial r(kcap, pendiente corregida | M) = +0.391  (t(33) = +2.44, p = 0.02009)
+   residuo medio de kcap6 = -0.01945 · kcap7 = +0.01945
+   [confound declarado] r(meandeg, pendiente corregida | M) = -0.398 · r(kcap, meandeg | M) = -0.840
+
+==============================================================================================
+ENDPOINT: κ_V agregado  (kappa_v_agregado)
+==============================================================================================
+
+-- (1) A kcap FIJO: efecto de M (la densidad) --
+   kcap=6 (n=18): R²(M) = 0.0633  r = -0.252  pendiente = -0.09042 por 1000 aristas  t(16) = -1.04  p = 0.314
+   kcap=7 (n=18): R²(M) = 0.0280  r = -0.167  pendiente = -0.05830 por 1000 aristas  t(16) = -0.68  p = 0.5072
+   -> R² MEDIO de M sobre κ_V agregado a kcap fijo: 0.0456
+
+-- (2) A M FIJO: efecto de kcap (el tope de vecinos) --
+   M≈3800 (n=12): R²(kcap) = 0.0288  media kcap6 = 0.4403 vs kcap7 = 0.4267  Δ = -0.0136  t = +0.54 p = 0.602  MWU p = 0.818
+   M≈4000 (n=12): R²(kcap) = 0.0125  media kcap6 = 0.3993 vs kcap7 = 0.4108  Δ = +0.0115  t = -0.36 p = 0.733  MWU p = 0.485
+   M≈4200 (n=12): R²(kcap) = 0.0007  media kcap6 = 0.4036 vs kcap7 = 0.4000  Δ = -0.0036  t = +0.08 p = 0.936  MWU p = 0.936
+   -> R² MEDIO de kcap sobre κ_V agregado a M fijo: 0.0140
+
+-- (3) Modelos anidados sobre las 24 corridas --
+   κ_V agregado ~ M          R² = 0.0452   n_aristas_grafo_final β=-7.53122e-05 (t=-1.27 p=0.213)
+   κ_V agregado ~ kcap       R² = 0.0003   kcap β=-0.00188964 (t=-0.10 p=0.922)
+   κ_V agregado ~ M + kcap   R² = 0.0454   n_aristas_grafo_final β=-7.5268e-05 (t=-1.25 p=0.221)  kcap β=-0.0016931 (t=-0.09 p=0.93)
+   κ_V agregado ~ M+kcap+meandeg R² = 0.1724   n_aristas_grafo_final β=+7.40609e-05 (t=+0.84 p=0.408)  kcap β=-0.063507 (t=-1.91 p=0.0649)  meandeg β=-0.0501648 (t=-2.22 p=0.034)
+   correlación parcial r(kcap, κ_V agregado | M) = -0.015  (t(33) = -0.09, p = 0.9298)
+   residuo medio de kcap6 = +0.00085 · kcap7 = -0.00085
+   [confound declarado] r(meandeg, κ_V agregado | M) = -0.185 · r(kcap, meandeg | M) = -0.840
+
+==============================================================================================
+LOS DOS NÚMEROS DEL CRITERIO CONGELADO (sobre la fracción de masa)
+   R² de M sobre la masa, a kcap fijo : 0.8361
+   R² de kcap sobre la masa, a M fijo : 0.0353
+==============================================================================================
+
+[figura] -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase7_f701_superficie.png

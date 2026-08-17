@@ -1,0 +1,73 @@
+{
+  "baseline_23": {
+    "X_inicial": 0.009898492339494263,
+    "X_final": 0.625506188593155,
+    "X_baja": false,
+    "n_agentes": 23,
+    "nombres": [
+      "23_campo",
+      "22_qcd",
+      "9_expansion",
+      "10_enfriamiento",
+      "M1_semilla",
+      "M3_fase_cuantica",
+      "5_debil",
+      "7_masa",
+      "6_catalogo",
+      "16_ssb",
+      "3_fuerte",
+      "8_aniquilacion",
+      "1_espin",
+      "11_tres_cuerpos",
+      "13_pauli",
+      "2_gravedad",
+      "12_localidad",
+      "4_em",
+      "14_correlacion",
+      "M2_memoria",
+      "17_oscuro",
+      "18_poda",
+      "15_causal"
+    ]
+  },
+  "sin_2_gravedad_3_fuerte": {
+    "X_inicial": 0.009898492339494263,
+    "X_final": 0.37028934574666184,
+    "X_baja": false,
+    "n_agentes": 21,
+    "nombres": [
+      "23_campo",
+      "22_qcd",
+      "9_expansion",
+      "10_enfriamiento",
+      "M1_semilla",
+      "M3_fase_cuantica",
+      "5_debil",
+      "7_masa",
+      "6_catalogo",
+      "16_ssb",
+      "8_aniquilacion",
+      "1_espin",
+      "11_tres_cuerpos",
+      "13_pauli",
+      "12_localidad",
+      "4_em",
+      "14_correlacion",
+      "M2_memoria",
+      "17_oscuro",
+      "18_poda",
+      "15_causal"
+    ]
+  },
+  "solo_2_gravedad_3_fuerte": {
+    "X_inicial": 0.009898492339494263,
+    "X_final": 2.4203063787468294e-06,
+    "X_baja": true,
+    "n_agentes": 2,
+    "nombres": [
+      "3_fuerte",
+      "2_gravedad"
+    ]
+  },
+  "elapsed_s": 227.26944708824158
+}

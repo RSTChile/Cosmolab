@@ -1,0 +1,48 @@
+=== TRACK D — Kepler cinemático (TRACKD_KEPLER_2026-07-23) smoke=False ===
+
+--- control principal G=0.20 ---
+  seed=    7 PASS_D=False T1=False T2=False nqualR=375 cvR=0.8292863844149416 cvS=0.9254943835005605 rhoR=0.5284237114575038 rhoS=0.6758420821374818 off_zero=True
+  seed=   42 PASS_D=True T1=False T2=True nqualR=248 cvR=0.8089643071127717 cvS=0.8875938416385147 rhoR=0.812541009014509 rhoS=0.6027249128944044 off_zero=True
+  seed=   99 PASS_D=True T1=True T2=False nqualR=193 cvR=0.6543201360699638 cvS=0.9878436706793474 rhoR=0.3612804470915015 rhoS=0.3112919791661911 off_zero=True
+  seed=  777 PASS_D=True T1=True T2=False nqualR=456 cvR=0.7027579748222805 cvS=0.8273562689199501 rhoR=-0.047282108654906084 rhoS=-0.04324714951019752 off_zero=True
+  seed= 2025 PASS_D=True T1=True T2=True nqualR=207 cvR=0.7068907254911887 cvS=0.9269472782973794 rhoR=0.6097401262027686 rhoS=0.3535036511623041 off_zero=True
+  seed= 3141 PASS_D=True T1=True T2=False nqualR=272 cvR=0.714483156135201 cvS=0.8909515103935942 rhoR=0.5083765268809766 rhoS=0.4864269144504236 off_zero=True
+  seed= 8191 PASS_D=True T1=True T2=True nqualR=257 cvR=0.7140946971348733 cvS=0.9573637871877853 rhoR=0.6557346337435526 rhoS=0.4948711594023309 off_zero=True
+  seed=99991 PASS_D=False T1=False T2=False nqualR=262 cvR=0.8031707625867395 cvS=0.8854368120158018 rhoR=0.43582444983353974 rhoS=0.485045948203843 off_zero=True
+  seed=12345 PASS_D=True T1=False T2=True nqualR=239 cvR=0.8177657500451415 cvS=0.7848541787169891 rhoR=0.5662801940860025 rhoS=0.041197634043947454 off_zero=True
+  seed=54321 PASS_D=True T1=True T2=False nqualR=363 cvR=0.7472065308307223 cvS=0.8667076746444676 rhoR=0.42118755177519623 rhoS=0.28856815937352853 off_zero=True
+
+--- barrido G ---
+  G=0.05 PASS_D_rate=0.50
+  G=0.10 PASS_D_rate=0.75
+  G=0.15 PASS_D_rate=1.00
+  G=0.20 PASS_D_rate=1.00
+  G=0.25 PASS_D_rate=0.75
+  G=0.30 PASS_D_rate=0.50
+  G=0.35 PASS_D_rate=0.50
+  G=0.40 PASS_D_rate=0.75
+
+JSON -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/etapa7_trackD_kepler/trackD_production_result.json
+
+=== GLOBAL === PASS
+{
+  "global_verdict": "PASS",
+  "protocol_id": "TRACKD_KEPLER_2026-07-23",
+  "smoke": false,
+  "pasos": 400,
+  "n_seeds": 10,
+  "rate_D": 0.8,
+  "frac_off_zero_pairs": 1.0,
+  "n_seeds_with_real_pairs": 10,
+  "thresholds": {
+    "PAIR_MIN_STEPS": 5,
+    "CV_RATIO_MIN": 1.15,
+    "RHO_REAL_MIN": 0.25,
+    "RHO_GAP_MIN": 0.15,
+    "SEED_RATE_PASS": 0.55,
+    "OFF_NULL_CLEAN_FRAC": 0.9
+  },
+  "elapsed_s": 1075.3313131332397,
+  "no_lineage_ingredients": true,
+  "note": "co_member_score / n_long_co_pairs / fusion_events NO se calculan en este archivo."
+}

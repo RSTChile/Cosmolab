@@ -73,7 +73,7 @@ REDUCCION_DISCREPANCIA_MIN = 0.50
 CORRELACION_CB_MIN = 0.30
 
 # Ruta de audios
-AUDIO_DIR = "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural"
+AUDIO_DIR = "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural"
 
 # ============================================================
 # LISTA DE AUDIOS SELECCIONADOS

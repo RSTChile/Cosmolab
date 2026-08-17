@@ -1,0 +1,42 @@
+[f703] 3 grafos base (generar_ic=True)
+[1/3] A2-B0-C2-r20 seed=373769 lote=371828
+    piso: tri 12 -> 0  (18272 swaps, 1.6s)
+    libre: techo_conectado tri=1794 (k=1700/2202) techo_libre=2348 [16.9s]
+     conc: techo_conectado tri=1905 (k=1740/2268) techo_libre=2523 [33.2s]
+     disp: techo_conectado tri=1369 (k=1342/1342) techo_libre=1369 [23.4s]
+    solap: techo_conectado tri=468 (k=380/522) techo_libre=652 [34.3s]
+     disj: techo_conectado tri=968 (k=966/966) techo_libre=968 [39.0s]
+    T*=468  conseguidos={'libre': 468, 'conc': 468, 'disp': 468, 'solap': 468, 'disj': 468}  dif_max=0
+    libre  tri=468   C=0.16733 trans=0.11289 multi=0.055 gini=0.527 Q=0.3573 nodos=0.562 comp=261 gig=1964 pend=0.6965 ic=166.59s
+     conc  tri=468   C=0.12910 trans=0.11289 multi=0.298 gini=0.756 Q=0.2762 nodos=0.364 comp=127 gig=1966 pend=0.5864 ic=196.86s
+     disp  tri=468   C=0.18492 trans=0.11289 multi=0.001 gini=0.300 Q=0.3772 nodos=0.701 comp=467 gig=1966 pend=0.6585 ic=199.02s
+    solap  tri=468   C=0.08987 trans=0.11289 multi=0.889 gini=0.911 Q=0.1403 nodos=0.122 comp=31 gig=1915 pend=0.6293 ic=255.75s
+     disj  tri=468   C=0.16702 trans=0.11289 multi=0.000 gini=0.463 Q=0.3762 nodos=0.607 comp=278 gig=1960 pend=0.6222 ic=326.02s
+[2/3] A2-B0-C2-r39 seed=375612 lote=371828
+    piso: tri 20 -> 0  (20233 swaps, 6.7s)
+    libre: techo_conectado tri=2626 (k=2420/2649) techo_libre=2891 [71.1s]
+     conc: techo_conectado tri=2549 (k=2300/2777) techo_libre=3111 [77.2s]
+     disp: techo_conectado tri=1530 (k=1484/1484) techo_libre=1530 [45.3s]
+    solap: techo_conectado tri=852 (k=700/1026) techo_libre=1239 [70.3s]
+     disj: techo_conectado tri=1092 (k=1088/1088) techo_libre=1092 [76.9s]
+    T*=852  conseguidos={'libre': 852, 'conc': 852, 'disp': 852, 'solap': 852, 'disj': 852}  dif_max=0
+    libre  tri=852   C=0.23898 trans=0.16897 multi=0.130 gini=0.385 Q=0.5411 nodos=0.803 comp=193 gig=1966 pend=0.5932 ic=305.07s
+     conc  tri=852   C=0.19168 trans=0.16897 multi=0.344 gini=0.627 Q=0.4217 nodos=0.572 comp=133 gig=1966 pend=0.5949 ic=292.88s
+     disp  tri=852   C=0.25427 trans=0.16897 multi=0.086 gini=0.278 Q=0.5688 nodos=0.874 comp=246 gig=1962 pend=0.6340 ic=267.53s
+    solap  tri=852   C=0.14122 trans=0.16897 multi=0.883 gini=0.861 Q=0.2142 nodos=0.196 comp=45 gig=1912 pend=0.6641 ic=201.15s
+     disj  tri=852   C=0.24767 trans=0.16897 multi=0.000 gini=0.285 Q=0.2228 nodos=0.879 comp=78 gig=1966 pend=0.5577 ic=109.89s
+[3/3] A2-B0-C2-r28 seed=374545 lote=371828
+    piso: tri 37 -> 0  (19459 swaps, 2.8s)
+    libre: techo_conectado tri=2234 (k=2100/2486) techo_libre=2674 [26.3s]
+     conc: techo_conectado tri=2531 (k=2300/2697) techo_libre=2991 [22.3s]
+     disp: techo_conectado tri=1433 (k=1398/1398) techo_libre=1433 [17.5s]
+    solap: techo_conectado tri=1062 (k=860/1673) techo_libre=2061 [22.2s]
+     disj: techo_conectado tri=1029 (k=1026/1026) techo_libre=1029 [19.8s]
+    T*=1029  conseguidos={'libre': 1029, 'conc': 1029, 'disp': 1029, 'solap': 1029, 'disj': 1029}  dif_max=0
+    libre  tri=1029  C=0.27345 trans=0.21209 multi=0.212 gini=0.404 Q=0.5556 nodos=0.805 comp=89 gig=1940 pend=0.5525 ic=79.42s
+     conc  tri=1029  C=0.24138 trans=0.21209 multi=0.395 gini=0.577 Q=0.5116 nodos=0.640 comp=130 gig=1951 pend=0.7344 ic=83.41s
+     disp  tri=1029  C=0.29103 trans=0.21209 multi=0.145 gini=0.286 Q=0.3324 nodos=0.859 comp=69 gig=1947 pend=0.6870 ic=76.77s
+    solap  tri=1029  C=0.17575 trans=0.21209 multi=0.853 gini=0.827 Q=0.2771 nodos=0.254 comp=63 gig=1900 pend=0.6877 ic=73.3s
+     disj  tri=1029  C=0.29117 trans=0.21209 multi=0.000 gini=0.293 Q=0.0222 nodos=0.885 comp=12 gig=1949 pend=0.5922 ic=41.22s
+
+[f703] 15 filas -> cs090_fase7_f703_estructura_shard1.csv  (total 3323s)

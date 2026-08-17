@@ -16,12 +16,42 @@ services:
       ANIMA_ROLE: a
       VST_PUERTO: "7788"
       VST_ORGANISMO_ID: ANIMA_A
-      VST_COMUNICACION_PEER: http://anima-b:7799/comunicacion/bloque.wav
+      ANIMA_PUBLIC_BASE_URL: "http://192.168.86.83:7788"
+      VST_ORGANISMO_LABEL: "Alfa"
+      ANIMA_CARA_GENERO: masculino
+      ANIMA_CARA_TONO: blanco
+      # ENSAYO 16-ago-2026 - se parte el ANILLO A>B>C>D>A en dos DIADAS aisladas para poder
+      # comparar. En anillo cerrado no hay control posible: la palabra de cualquiera acaba
+      # entrando en todos, asi que un cambio de regla contamina el grupo de control y la
+      # contaminacion ni siquiera es medible. Diada A<->B = CONTROL (afecto heredado, el de
+      # siempre). Diada C<->D = TRATAMIENTO (ANIMA_AFECTO_PROPIO_AL_APRENDER=1). Para volver
+      # al anillo: B apunta a anima-c y D a anima-a, y se quitan las dos banderas.
+      VST_COMUNICACION_PEER: http://anima-b:7799/comunicacion/bloque.wav   # DIADA CONTROL: A -> B
+      ANIMA_ESCUCHAR_TODOS: "1"                  # SOCIEDAD: oye la MEZCLA de todos los demás (todos oyen a todos)
+      ANIMA_OTROS_URLS: "http://anima-b:7799/comunicacion/bloque.wav,http://anima-c:7810/comunicacion/bloque.wav,http://anima-d:7820/comunicacion/bloque.wav,http://192.168.86.33:7788/comunicacion/bloque.wav"
       VST_SERVIDOR_HOST: host.docker.internal   # alcanza el AudioServer (Rødecaster) NATIVO del Mac
-      VST_SERVIDOR_PORT: "8766"                 # puerto donde el AudioServer expone el Rødecaster
+      VST_SERVIDOR_PORT: "8770"                 # puerto donde el AudioServer expone el Rødecaster
+      # PLAZA: ademas de la presencia LAN, late hacia el Observatorio publico (push, NAT-friendly).
+      ANIMA_PRESENCE_MODE: "both"
+      ANIMA_VISIBILITY: "plaza_publico"
+      ANIMA_PLAZA: "1"
+      ANIMA_PLAZA_URL: "https://observatorio.cosmosemiotica.cl"
+      ANIMA_PLAZA_INTERVAL_S: "20"
+      ANIMA_AUDIO_MODE: "server"
+      ANIMA_NRF24_URL: http://host.docker.internal:8772   # radio DIGITAL de A: puente nativo al Arduino Uno
+      ANIMA_RADIO_A: "1"                         # radio SDR de A: activa el órgano (RSPduo vía SDRconnect)
+      ANIMA_RADIO_SINTONIA: "1"                  # CAZA ACTIVA: el órgano barre el espectro, engancha una emisión (por SNR real) y sostiene — oír activo, no pasivo
+      ANIMA_SDRWS_URI: ws://192.168.86.250:5454            # API WebSocket del SDRconnect headless (IP LAN del Mac; host.docker.internal da 404 por el Host header)
       ANIMA_ESCUCHAR_PAR: "1"                   # nace OYENDO la voz del par (díada acoplada A↔B)
       ANIMA_OIDO_PAR: "R"                       # A (izquierda) oye al par por la DERECHA → mira hacia B
+      ANIMA_OIDO_DIGITAL: "1"                   # OÍDO DIGITAL: el símbolo nRF del otro modula (débil, emergente, falsable) la absorción del par
+      ANIMA_MUNDO_CANAL: "0"                    # MUNDO SONORO: canal 1 Rode (Main Mix, con señal). "" = silencio (basal)
+      ANIMA_MET_IM_PISO: "0.0"                  # CANÓNICO (CS): probar el lazo de atención SIN bajar el listón. -0.35 = indulgencia (parche)
+      # CANÓNICO: alimento = conversión endógena (ICR/ICES). duelo = legacy. Ver VST_Metabolismo.
+      ANIMA_MET_ALIMENTO: ${ANIMA_MET_ALIMENTO:-conversion}
+      ANIMA_RC_LOOP: "on"
       ANIMA_CONTROL: ${ANIMA_CONTROL:-real}     # control de falsación EN VIVO: real | null | shuffled
+      ANIMA_NO_ACUNAR: ${ANIMA_NO_ACUNAR:-}     # ablación experimental: si "1", el tercero es ESTÉRIL (no re-acuña) — C3 tríada
       VST_HISTORY_DIR: /history
       VST_HISTORY_ENABLE: "true"
       VST_HISTORY_FORMAT: csv
@@ -32,8 +62,29 @@ services:
       VST_LIFE_MODE: continuous
     volumes:
       - anima_a_data:/data                 # su disco propio (memoria/codebook/metabolismo persisten)
-      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
+      - ${HISTORY_HOST:-../../Docker_Historia}:/history     # biografía longitudinal en el disco externo (LaCie)
       - ../../audio_binaural:/app/audio_binaural:ro   # los .wav (Big Bang/Blue Monday) dentro del contenedor
+      # OrganoMembrana: solo micro-opt de allocs (misma física); montado para no perder el fix.
+      - ../organelos/VST_OrganoMembrana.py:/app/celula_madre/organelos/VST_OrganoMembrana.py:ro
+      - ../organelos/VST_Metabolismo.py:/app/celula_madre/organelos/VST_Metabolismo.py:ro
+      - ../organelos/VST_RC_A.py:/app/celula_madre/organelos/VST_RC_A.py:ro
+      # Anadidos 4-ago-2026: sin estos montajes el lab recibia la mitad de las correcciones.
+      # La memoria y el calibrador aprenden ahora del impacto real del bocado, y el glosario
+      # da el nombre en castellano de cada sigla: sin el no se puede auditar lo que se mide.
+      - ../organelos/VST_Memoria.py:/app/celula_madre/organelos/VST_Memoria.py:ro
+      - ../organelos/VST_CalibradorLexicoExperiencial.py:/app/celula_madre/organelos/VST_CalibradorLexicoExperiencial.py:ro
+      - ../glosario.py:/app/celula_madre/glosario.py:ro
+      - ../campo/VST_Celula_Madre_001.py:/app/celula_madre/campo/VST_Celula_Madre_001.py:ro
+      - ../campo/Célula_Madre_Funcional_001.py:/app/celula_madre/campo/Célula_Madre_Funcional_001.py:ro
+      - ../organelos/VST_OrganoComunicacion.py:/app/celula_madre/organelos/VST_OrganoComunicacion.py:ro
+      - ../web/VST_CelulaMadre_WebLive_A.py:/app/celula_madre/web/VST_CelulaMadre_WebLive_A.py:ro
+      - ../web/Cajas:/app/celula_madre/web/Cajas:ro
+      - ../audio/VST_AudioDispositivos.py:/app/celula_madre/audio/VST_AudioDispositivos.py:ro
+      - ../organelos/VST_OrganoPresencia.py:/app/celula_madre/organelos/VST_OrganoPresencia.py:ro
+      - ../organelos/VST_AparienciaCara.py:/app/celula_madre/organelos/VST_AparienciaCara.py:ro
+      # Atencion Social (1.2.x): organelo NUEVO, solo lo importa el WebLive_A.
+      - ../organelos/VST_OrganoAtencionSocial.py:/app/celula_madre/organelos/VST_OrganoAtencionSocial.py:ro
+      - ../organelos/VST_BitacoraSocial.py:/app/celula_madre/organelos/VST_BitacoraSocial.py:ro
     ports: ["7788:7788"]                   # interfaz web del organismo A
     extra_hosts: ["host.docker.internal:host-gateway"]   # alcanzar el AudioServer nativo del Mac
     restart: unless-stopped
@@ -46,12 +97,31 @@ services:
       ANIMA_ROLE: b
       VST_PUERTO: "7799"
       VST_ORGANISMO_ID: ANIMA_B
-      VST_COMUNICACION_PEER: http://anima-a:7788/comunicacion/bloque.wav
+      ANIMA_PUBLIC_BASE_URL: "http://192.168.86.83:7799"
+      VST_ORGANISMO_LABEL: "Brisa"
+      ANIMA_CARA_GENERO: femenino
+      ANIMA_CARA_TONO: rosado
+      VST_COMUNICACION_PEER: http://anima-a:7788/comunicacion/bloque.wav   # DIADA CONTROL: B -> A (cierra la diada)
+      ANIMA_ESCUCHAR_TODOS: "1"
+      ANIMA_OTROS_URLS: "http://anima-a:7788/comunicacion/bloque.wav,http://anima-c:7810/comunicacion/bloque.wav,http://anima-d:7820/comunicacion/bloque.wav,http://192.168.86.33:7788/comunicacion/bloque.wav"
       VST_SERVIDOR_HOST: host.docker.internal
-      VST_SERVIDOR_PORT: "8766"
+      VST_SERVIDOR_PORT: "8770"
+      # PLAZA: ademas de la presencia LAN, late hacia el Observatorio publico (push, NAT-friendly).
+      ANIMA_PRESENCE_MODE: "both"
+      ANIMA_VISIBILITY: "plaza_publico"
+      ANIMA_PLAZA: "1"
+      ANIMA_PLAZA_URL: "https://observatorio.cosmosemiotica.cl"
+      ANIMA_PLAZA_INTERVAL_S: "20"
+      ANIMA_AUDIO_MODE: "server"
       ANIMA_ESCUCHAR_PAR: "1"
       ANIMA_OIDO_PAR: "L"
+      ANIMA_MUNDO_CANAL: "0"                    # MUNDO SONORO: canal 1 Rode (Main Mix, con señal). "" = silencio (basal)
+      ANIMA_MET_IM_PISO: "0.0"                  # CANÓNICO (CS): probar el lazo de atención SIN bajar el listón. -0.35 = indulgencia (parche)
+      # CANÓNICO: alimento = conversión endógena (ICR/ICES). duelo = legacy. Ver VST_Metabolismo.
+      ANIMA_MET_ALIMENTO: ${ANIMA_MET_ALIMENTO:-conversion}
+      ANIMA_RC_LOOP: "on"
       ANIMA_CONTROL: ${ANIMA_CONTROL:-real}     # control de falsación EN VIVO: real | null | shuffled
+      ANIMA_NO_ACUNAR: ${ANIMA_NO_ACUNAR:-}     # ablación experimental: si "1", el tercero es ESTÉRIL (no re-acuña) — C3 tríada
       VST_HISTORY_DIR: /history
       VST_HISTORY_ENABLE: "true"
       VST_HISTORY_FORMAT: csv
@@ -62,9 +132,172 @@ services:
       VST_LIFE_MODE: continuous
     volumes:
       - anima_b_data:/data
-      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
+      - ${HISTORY_HOST:-../../Docker_Historia}:/history     # biografía longitudinal en el disco externo (LaCie)
       - ../../audio_binaural:/app/audio_binaural:ro
+      - ../organelos/VST_OrganoMembrana.py:/app/celula_madre/organelos/VST_OrganoMembrana.py:ro
+      - ../organelos/VST_Metabolismo.py:/app/celula_madre/organelos/VST_Metabolismo.py:ro
+      - ../organelos/VST_RC_A.py:/app/celula_madre/organelos/VST_RC_A.py:ro
+      # Anadidos 4-ago-2026: sin estos montajes el lab recibia la mitad de las correcciones.
+      # La memoria y el calibrador aprenden ahora del impacto real del bocado, y el glosario
+      # da el nombre en castellano de cada sigla: sin el no se puede auditar lo que se mide.
+      - ../organelos/VST_Memoria.py:/app/celula_madre/organelos/VST_Memoria.py:ro
+      - ../organelos/VST_CalibradorLexicoExperiencial.py:/app/celula_madre/organelos/VST_CalibradorLexicoExperiencial.py:ro
+      - ../glosario.py:/app/celula_madre/glosario.py:ro
+      - ../campo/VST_Celula_Madre_001.py:/app/celula_madre/campo/VST_Celula_Madre_001.py:ro
+      - ../campo/Célula_Madre_Funcional_001.py:/app/celula_madre/campo/Célula_Madre_Funcional_001.py:ro
+      - ../organelos/VST_OrganoComunicacion.py:/app/celula_madre/organelos/VST_OrganoComunicacion.py:ro
+      - ../web/VST_CelulaMadre_WebLive_B.py:/app/celula_madre/web/VST_CelulaMadre_WebLive_B.py:ro
+      - ../web/Cajas:/app/celula_madre/web/Cajas:ro
+      - ../audio/VST_AudioDispositivos.py:/app/celula_madre/audio/VST_AudioDispositivos.py:ro
+      - ../organelos/VST_OrganoPresencia.py:/app/celula_madre/organelos/VST_OrganoPresencia.py:ro
+      - ../organelos/VST_AparienciaCara.py:/app/celula_madre/organelos/VST_AparienciaCara.py:ro
+      # Atencion Social (1.2.x): organelo NUEVO, montado para los cuatro organismos.
+      - ../organelos/VST_OrganoAtencionSocial.py:/app/celula_madre/organelos/VST_OrganoAtencionSocial.py:ro
+      - ../organelos/VST_BitacoraSocial.py:/app/celula_madre/organelos/VST_BitacoraSocial.py:ro
     ports: ["7799:7799"]                   # interfaz web del organismo B
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    restart: unless-stopped
+
+  anima-c:                                  # FASE 1 sociedad: 3er individuo (anillo B→C→D)
+    image: anima-diada:latest
+    build: { context: .., dockerfile: docker/Dockerfile }
+    container_name: anima-c
+    environment:
+      ANIMA_ROLE: c
+      VST_PUERTO: "7810"
+      VST_ORGANISMO_ID: ANIMA_C
+      # EXPERIMENTO: sólo Coral copia la FORMA del otro al aprender una palabra.
+      # Alfa, Brisa y Duno siguen re-sintetizando = control simultáneo.
+      # ANIMA_IMITAR_FORMA: "1"   # APAGADO 16-ago-2026: era un tratamiento distinto (copia de
+      #   la FORMA en vez de resintetizar) y solo lo llevaba Coral. Dejarlo encendido mezclaria
+      #   dos manipulaciones en el mismo brazo y no se podria atribuir el efecto a ninguna.
+      ANIMA_AFECTO_PROPIO_AL_APRENDER: "1"   # DIADA TRATAMIENTO
+      ANIMA_PUBLIC_BASE_URL: "http://192.168.86.83:7810"
+      VST_ORGANISMO_LABEL: "Coral"
+      ANIMA_CARA_GENERO: femenino
+      ANIMA_CARA_TONO: amarillo
+      VST_COMUNICACION_PEER: http://anima-d:7820/comunicacion/bloque.wav   # DIADA TRATAMIENTO: C -> D
+      ANIMA_ESCUCHAR_TODOS: "1"
+      ANIMA_OTROS_URLS: "http://anima-a:7788/comunicacion/bloque.wav,http://anima-b:7799/comunicacion/bloque.wav,http://anima-d:7820/comunicacion/bloque.wav,http://192.168.86.33:7788/comunicacion/bloque.wav"
+      VST_SERVIDOR_HOST: host.docker.internal
+      VST_SERVIDOR_PORT: "8770"
+      # PLAZA: ademas de la presencia LAN, late hacia el Observatorio publico (push, NAT-friendly).
+      ANIMA_PRESENCE_MODE: "both"
+      ANIMA_VISIBILITY: "plaza_publico"
+      ANIMA_PLAZA: "1"
+      ANIMA_PLAZA_URL: "https://observatorio.cosmosemiotica.cl"
+      ANIMA_PLAZA_INTERVAL_S: "20"
+      ANIMA_AUDIO_MODE: "server"
+      ANIMA_ESCUCHAR_PAR: "1"
+      ANIMA_OIDO_PAR: "R"
+      ANIMA_MUNDO_CANAL: "0"                    # MUNDO SONORO: canal 1 Rode (Main Mix, con señal). "" = silencio (basal)
+      ANIMA_MET_IM_PISO: "0.0"                  # CANÓNICO (CS): probar el lazo de atención SIN bajar el listón. -0.35 = indulgencia (parche)
+      # CANÓNICO: alimento = conversión endógena (ICR/ICES). duelo = legacy. Ver VST_Metabolismo.
+      ANIMA_MET_ALIMENTO: ${ANIMA_MET_ALIMENTO:-conversion}
+      ANIMA_RC_LOOP: "on"
+      ANIMA_CONTROL: ${ANIMA_CONTROL:-real}
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
+      VST_HISTORY_ROTATE_SECONDS: "3600"
+      VST_SNAPSHOT_SECONDS: "600"
+      VST_RECORD_VOICE_WAV: "true"
+      VST_RECORD_EXTERNAL_AUDIO: "false"
+      VST_LIFE_MODE: continuous
+    volumes:
+      - anima_c_data:/data
+      - ${HISTORY_HOST:-../../Docker_Historia}:/history
+      - ../../audio_binaural:/app/audio_binaural:ro
+      - ../organelos/VST_OrganoMembrana.py:/app/celula_madre/organelos/VST_OrganoMembrana.py:ro
+      - ../organelos/VST_Metabolismo.py:/app/celula_madre/organelos/VST_Metabolismo.py:ro
+      - ../organelos/VST_RC_A.py:/app/celula_madre/organelos/VST_RC_A.py:ro
+      # Anadidos 4-ago-2026: sin estos montajes el lab recibia la mitad de las correcciones.
+      # La memoria y el calibrador aprenden ahora del impacto real del bocado, y el glosario
+      # da el nombre en castellano de cada sigla: sin el no se puede auditar lo que se mide.
+      - ../organelos/VST_Memoria.py:/app/celula_madre/organelos/VST_Memoria.py:ro
+      - ../organelos/VST_CalibradorLexicoExperiencial.py:/app/celula_madre/organelos/VST_CalibradorLexicoExperiencial.py:ro
+      - ../glosario.py:/app/celula_madre/glosario.py:ro
+      - ../campo/VST_Celula_Madre_001.py:/app/celula_madre/campo/VST_Celula_Madre_001.py:ro
+      - ../campo/Célula_Madre_Funcional_001.py:/app/celula_madre/campo/Célula_Madre_Funcional_001.py:ro
+      - ../organelos/VST_OrganoComunicacion.py:/app/celula_madre/organelos/VST_OrganoComunicacion.py:ro
+      - ../web/VST_CelulaMadre_WebLive_C.py:/app/celula_madre/web/VST_CelulaMadre_WebLive_C.py:ro
+      - ../web/Cajas:/app/celula_madre/web/Cajas:ro
+      - ../audio/VST_AudioDispositivos.py:/app/celula_madre/audio/VST_AudioDispositivos.py:ro
+      - ../organelos/VST_OrganoPresencia.py:/app/celula_madre/organelos/VST_OrganoPresencia.py:ro
+      - ../organelos/VST_AparienciaCara.py:/app/celula_madre/organelos/VST_AparienciaCara.py:ro
+      # Atencion Social (1.2.x): organelo NUEVO, montado para los cuatro organismos.
+      - ../organelos/VST_OrganoAtencionSocial.py:/app/celula_madre/organelos/VST_OrganoAtencionSocial.py:ro
+      - ../organelos/VST_BitacoraSocial.py:/app/celula_madre/organelos/VST_BitacoraSocial.py:ro
+    ports: ["7810:7810"]                   # interfaz web del organismo C
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    restart: unless-stopped
+
+  anima-d:                                  # FASE 1 sociedad: 4to individuo (anillo D→A cierra el ciclo)
+    image: anima-diada:latest
+    build: { context: .., dockerfile: docker/Dockerfile }
+    container_name: anima-d
+    environment:
+      ANIMA_ROLE: d
+      VST_PUERTO: "7820"
+      VST_ORGANISMO_ID: ANIMA_D
+      ANIMA_PUBLIC_BASE_URL: "http://192.168.86.83:7820"
+      VST_ORGANISMO_LABEL: "Duno"
+      ANIMA_CARA_GENERO: masculino
+      ANIMA_CARA_TONO: celeste
+      ANIMA_AFECTO_PROPIO_AL_APRENDER: "1"   # DIADA TRATAMIENTO
+      VST_COMUNICACION_PEER: http://anima-c:7810/comunicacion/bloque.wav   # DIADA TRATAMIENTO: D -> C (cierra)
+      ANIMA_ESCUCHAR_TODOS: "1"
+      ANIMA_OTROS_URLS: "http://anima-a:7788/comunicacion/bloque.wav,http://anima-b:7799/comunicacion/bloque.wav,http://anima-c:7810/comunicacion/bloque.wav,http://192.168.86.33:7788/comunicacion/bloque.wav"
+      VST_SERVIDOR_HOST: host.docker.internal
+      VST_SERVIDOR_PORT: "8770"
+      # PLAZA: ademas de la presencia LAN, late hacia el Observatorio publico (push, NAT-friendly).
+      ANIMA_PRESENCE_MODE: "both"
+      ANIMA_VISIBILITY: "plaza_publico"
+      ANIMA_PLAZA: "1"
+      ANIMA_PLAZA_URL: "https://observatorio.cosmosemiotica.cl"
+      ANIMA_PLAZA_INTERVAL_S: "20"
+      ANIMA_AUDIO_MODE: "server"
+      ANIMA_ESCUCHAR_PAR: "1"
+      ANIMA_OIDO_PAR: "L"
+      ANIMA_MUNDO_CANAL: "0"                    # MUNDO SONORO: canal 1 Rode (Main Mix, con señal). "" = silencio (basal)
+      ANIMA_MET_IM_PISO: "0.0"                  # CANÓNICO (CS): probar el lazo de atención SIN bajar el listón. -0.35 = indulgencia (parche)
+      # CANÓNICO: alimento = conversión endógena (ICR/ICES). duelo = legacy. Ver VST_Metabolismo.
+      ANIMA_MET_ALIMENTO: ${ANIMA_MET_ALIMENTO:-conversion}
+      ANIMA_RC_LOOP: "on"
+      ANIMA_CONTROL: ${ANIMA_CONTROL:-real}
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
+      VST_HISTORY_ROTATE_SECONDS: "3600"
+      VST_SNAPSHOT_SECONDS: "600"
+      VST_RECORD_VOICE_WAV: "true"
+      VST_RECORD_EXTERNAL_AUDIO: "false"
+      VST_LIFE_MODE: continuous
+    volumes:
+      - anima_d_data:/data
+      - ${HISTORY_HOST:-../../Docker_Historia}:/history
+      - ../../audio_binaural:/app/audio_binaural:ro
+      - ../organelos/VST_OrganoMembrana.py:/app/celula_madre/organelos/VST_OrganoMembrana.py:ro
+      - ../organelos/VST_Metabolismo.py:/app/celula_madre/organelos/VST_Metabolismo.py:ro
+      - ../organelos/VST_RC_A.py:/app/celula_madre/organelos/VST_RC_A.py:ro
+      # Anadidos 4-ago-2026: sin estos montajes el lab recibia la mitad de las correcciones.
+      # La memoria y el calibrador aprenden ahora del impacto real del bocado, y el glosario
+      # da el nombre en castellano de cada sigla: sin el no se puede auditar lo que se mide.
+      - ../organelos/VST_Memoria.py:/app/celula_madre/organelos/VST_Memoria.py:ro
+      - ../organelos/VST_CalibradorLexicoExperiencial.py:/app/celula_madre/organelos/VST_CalibradorLexicoExperiencial.py:ro
+      - ../glosario.py:/app/celula_madre/glosario.py:ro
+      - ../campo/VST_Celula_Madre_001.py:/app/celula_madre/campo/VST_Celula_Madre_001.py:ro
+      - ../campo/Célula_Madre_Funcional_001.py:/app/celula_madre/campo/Célula_Madre_Funcional_001.py:ro
+      - ../organelos/VST_OrganoComunicacion.py:/app/celula_madre/organelos/VST_OrganoComunicacion.py:ro
+      - ../web/VST_CelulaMadre_WebLive_D.py:/app/celula_madre/web/VST_CelulaMadre_WebLive_D.py:ro
+      - ../web/Cajas:/app/celula_madre/web/Cajas:ro
+      - ../audio/VST_AudioDispositivos.py:/app/celula_madre/audio/VST_AudioDispositivos.py:ro
+      - ../organelos/VST_OrganoPresencia.py:/app/celula_madre/organelos/VST_OrganoPresencia.py:ro
+      - ../organelos/VST_AparienciaCara.py:/app/celula_madre/organelos/VST_AparienciaCara.py:ro
+      # Atencion Social (1.2.x): organelo NUEVO, montado para los cuatro organismos.
+      - ../organelos/VST_OrganoAtencionSocial.py:/app/celula_madre/organelos/VST_OrganoAtencionSocial.py:ro
+      - ../organelos/VST_BitacoraSocial.py:/app/celula_madre/organelos/VST_BitacoraSocial.py:ro
+    ports: ["7820:7820"]                   # interfaz web del organismo D
     extra_hosts: ["host.docker.internal:host-gateway"]
     restart: unless-stopped
 
@@ -77,29 +310,57 @@ services:
       ANIMA_B_URL: http://anima-b:7799
       ANIMA_MCP_HTTP_PORT: "9000"
     ports: ["9000:9000"]                   # membrana MCP (streamable-http) para clientes externos
-    depends_on: [anima-a, anima-b]
+    depends_on:                            # no arranca hasta que A y B estén SANOS (/estado responde)
+      anima-a: { condition: service_healthy }
+      anima-b: { condition: service_healthy }
+    healthcheck:                           # rol mcp: sobreescribe el del Dockerfile (puerto 9000)
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',9000),5)"]
+      interval: 30s
+      timeout: 8s
+      start_period: 30s
+      retries: 3
     restart: unless-stopped
 
   anima-conversacion:
+    # build: misma imagen que A/B (anima-diada). El código de /stats vive además montado
+    # desde el host para no perder el fix P0 al recrear el contenedor sin rebuild.
+    build: { context: .., dockerfile: docker/Dockerfile }
     image: anima-diada:latest
     container_name: anima-conversacion
     environment:
       ANIMA_ROLE: conversacion
       ANIMA_A_URL: http://anima-a:7788
       ANIMA_B_URL: http://anima-b:7799
+      ANIMA_C_URL: http://anima-c:7810
+      ANIMA_D_URL: http://anima-d:7820
+      ANIMA_E_URL: http://192.168.86.33:7788   # E vive en la Pi (por IP); el observatorio la alcanza por LAN
       ANIMA_CONV_DIR: /data_conv        # registro PERMANENTE de la conversación (volumen)
       ANIMA_CONV_PORT: "9100"
       VST_HISTORY_DIR: /history
       VST_HISTORY_ENABLE: "true"
       VST_HISTORY_FORMAT: csv
+      # Self-heal del histograma /stats (segundos). 0 = solo scan al boot + incremental.
+      ANIMA_STATS_REBUILD_S: ${ANIMA_STATS_REBUILD_S:-3600}
     volumes:
       - anima_conv_data:/data_conv
-      - ../../Docker_Historia:/history     # biografía longitudinal en el disco externo (LaCie)
+      - ${HISTORY_HOST:-../../Docker_Historia}:/history     # biografía longitudinal en el disco externo (LaCie)
+      # Fix P0 /stats (caché + single-flight): siempre el archivo del repo, no el de la imagen vieja.
+      - ../conversacion/vst_conversacion.py:/app/celula_madre/conversacion/vst_conversacion.py:ro
     ports: ["9100:9100"]                # tablero del observatorio
-    depends_on: [anima-a, anima-b]
+    depends_on:                         # espera a que A y B estén SANOS antes de observarlos
+      anima-a: { condition: service_healthy }
+      anima-b: { condition: service_healthy }
+    healthcheck:                        # rol conversacion: puerto 9100
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',9100),5)"]
+      interval: 30s
+      timeout: 8s
+      start_period: 30s
+      retries: 3
     restart: unless-stopped
 
 volumes:
   anima_a_data:
   anima_b_data:
+  anima_c_data:
+  anima_d_data:
   anima_conv_data:

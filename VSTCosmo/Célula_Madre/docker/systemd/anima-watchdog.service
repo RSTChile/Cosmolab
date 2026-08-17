@@ -1,0 +1,13 @@
+[Unit]
+Description=ANIMA Watchdog (relanza organismo)
+After=anima-organismo.service
+Requires=anima-organismo.service
+
+[Service]
+Type=simple
+ExecStart=/home/ubuntu/anima/celula_madre/docker/anima-watchdog.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

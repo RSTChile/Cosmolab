@@ -1,0 +1,4 @@
+semilla=42 pasos=1000: estado idéntico=true campo idéntico=true (fieldSum con-render=104891.03107071099 sin-render=104891.03107071099)
+semilla=777 pasos=1000: estado idéntico=true campo idéntico=true (fieldSum con-render=104539.20261500536 sin-render=104539.20261500536)
+
+PASÓ: render vs no-render idéntico bit a bit en ambos casos.

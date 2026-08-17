@@ -1,0 +1,23 @@
+CS059 (R7) — EL ESPÍN COMO MARCO: ¿selecciona el marco una dimensión? (juez=holonomía del marco)
+========================================================================================================
+G-NO-FORZAR-3D: éxito = seleccionar ALGUNA dim robusta a K que COLAPSE bajo NULL, NO 'salió 3D'.
+PREDICCIÓN CIEGA (pre-registrada): si el MARCO selecciona, una dimensión tendrá holonomía del marco
+  sistemáticamente MENOR (marcos más consistentes) que las otras, ROBUSTA a K∈{2,3,4,5}, y esa
+  separación COLAPSA bajo NULL (transportes al azar). K=2 (abeliano) debe dar holonomía ~trivial
+  (chequeo interno: el marco necesita K≥3 para ser no-trivial, como el espín real SU(2)/S²).
+K_sweep=[2, 3, 4, 5] · dims=d1/d2/d3/d4/curv · seeds=2 · exp_pasos=[0, 1, 2, 3] · ciclos≤120
+corridas = 12 · workers=14 · salida cs059_smoke.csv
+  1/12 · 0.7s
+  2/12 · 0.9s
+  3/12 · 1.1s
+  4/12 · 1.3s
+  5/12 · 1.6s
+  6/12 · 1.8s
+  7/12 · 2.1s
+  8/12 · 2.3s
+  9/12 · 3.9s
+  10/12 · 5.4s
+  11/12 · 6.5s
+  12/12 · 7.6s
+
+COMPLETO: 12 corridas en 0.1 min → cs059_smoke.csv

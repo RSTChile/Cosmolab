@@ -1,0 +1,17 @@
+[E5.6-5] calibrando pasos (eps_ref=0.001, semillas=16)...
+[E5.6-5] calibracion: mediana_lavado=8700 pasos=10005 lavo_todas=True
+[E5.6-5] eps 1/9 (eps=0, D=0) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 2/9 (eps=1e-06, D=0.000513897) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 3/9 (eps=1e-05, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 4/9 (eps=0.0001, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 5/9 (eps=0.001, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 6/9 (eps=0.01, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 7/9 (eps=0.1, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 8/9 (eps=0.3, D=0.000513898) listo — 13 r_targets x 16 semillas
+[E5.6-5] eps 9/9 (eps=1, D=0.000513898) listo — 13 r_targets x 16 semillas
+
+[E5.6-5][archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_6_5_exergia_informacional_I/E5_6_5_resultado.json
+[E5.6-5][corr_pooled] {'pearson_real': 0.7843282601132694, 'spearman_real': 0.35098895604996105, 'pearson_null': 0.9387967007677916, 'spearman_null': 0.30573913640469147, 'n_pares_real': 1872, 'n_pares_null': 1872}
+[E5.6-5][corr_por_celda] {'pearson_real': 0.8262444107150949, 'spearman_real': 0.4828335506301608, 'pearson_null': 0.9838869314041476, 'spearman_null': 0.2503933821876545, 'n_celdas': 117}
+[E5.6-5][bootstrap] {'mean': 0.7845744044733907, 'std': 0.012389755093507704, 'p2_5': 0.7564891293650645, 'p97_5': 0.8093564922521603, 'n_boot': 200}
+[E5.6-5][elapsed] 1346.3s

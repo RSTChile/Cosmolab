@@ -1,0 +1,36 @@
+
+====================================================================================================
+ANCLA 1 — NULL_CLASICO (φ≡0): ¿reproduce el Mundo B de CS068 (diám_q plano, pendiente~0)?
+Nota: D_q (log-amplitud sobre integral de camino) es una MÉTRICA DISTINTA a la de CS068 (BFS
+sobre tejido residual) -- se compara la CONCLUSIÓN cualitativa (pendiente baja), no el valor.
+====================================================================================================
+  N=900: diam_q por semilla=[19.71, 29.79]  media=24.75
+  N=1500: diam_q por semilla=[34.9, 23.28]  media=29.09
+  N=2500: diam_q por semilla=[28.13, 23.5]  media=25.81
+
+  pendiente log-log(diam_q vs N) = 0.041
+  PASA: pendiente < 0.3 (mismo umbral cualitativo que CS068)
+
+====================================================================================================
+ANCLA 2 — juguete (retícula 2D 8-vecinos + atajos inyectados, verdad de fondo): ¿la fase ciega
+decohere los atajos MÁS que el tejido local, sin que la dinámica sepa cuál es cuál?
+====================================================================================================
+  w_ij (rho) media: local=0.6283  atajo=0.1130  (debe discriminar -- si no, es GIGO antes de la fase)
+  n_atajos=222 (validos=222)  n_locales=1482 (validos=1482)
+  Δ_Dq (evolved-clasico) atajos: media=0.1362 std=0.1232
+  Δ_Dq (evolved-clasico) locales: media=0.3073 std=0.1938
+  FALLA: Δ_Dq(atajo) <= Δ_Dq(local) -- la fase evolucionada decoherencia MÁS los atajos (sin haberlos etiquetado)
+
+====================================================================================================
+ANCLA 3 — NULL_FASE_TOPO y NULL_FASE_AZAR: ¿π sigue ESTALLANDO (CV alto, no converge)?
+====================================================================================================
+  null_fase_topo: CV por semilla=[1.211, 1.205, 1.213]  media=1.210
+  null_fase_azar: CV por semilla=[1.169, 0.931, 1.172]  media=1.091
+
+  PASA: CV medio > 0.30 en ambos nulls (no convergen espontáneamente)
+
+====================================================================================================
+RESUMEN: ancla1(NULL_CLASICO~CS068)=PASA  ancla2(decoherencia atajos)=FALLA  ancla3(nulls no encienden)=PASA
+tiempo total: 3.75 min
+
+AL MENOS UN ANCLA FALLA. NO correr la tanda -- reportar a CS antes de seguir.

@@ -18,6 +18,7 @@ simetria, normalizacion relativa y competencia entre bases endogenas:
 from __future__ import annotations
 
 import math
+import os
 import threading
 
 
@@ -27,6 +28,7 @@ COLS_RC = [
     "RC_delta_salud", "destino_RC",
     "RC_atencion_L", "RC_atencion_R",
     "RC_comprension_L", "RC_comprension_R",
+    "RC_ema_comp_L", "RC_ema_comp_R",
     "RC_riesgo_L", "RC_riesgo_R",
     "RC_consenso_orientacion", "RC_confianza_comprension", "RC_freno_riesgo",
     "RC_base_relacional", "RC_base_externo",
@@ -77,12 +79,17 @@ class OrganoRC:
         self._ema_rc = 0.0
         self._ema_icr = 0.0
         self._ema_irde = 0.0
+        self._ema_comp_l = 0.0     # comprensión sostenida por lado: memoria del LAZO de atención (lo que nutrió atrae la mirada)
+        self._ema_comp_r = 0.0
+        # TOGGLE del lazo por env ANIMA_RC_LOOP (on/off, def on): permite experimentos limpios sin swap de código.
+        self.loop_on = os.environ.get("ANIMA_RC_LOOP", "on").strip().lower() in ("on", "1", "true", "yes")
         self._energy_ref = 1e-9
 
     def reset(self) -> None:
         with self._lock:
             self._prev = None
             self._ema_rc = self._ema_icr = self._ema_irde = 0.0
+            self._ema_comp_l = self._ema_comp_r = 0.0
             self._energy_ref = 1e-9
 
     def _energia_relativa(self, raw_l: float, raw_r: float) -> tuple[float, float]:
@@ -166,6 +173,7 @@ class OrganoRC:
             vulnerabilidad = _media([1.0 - OI, 1.0 - H, 1.0 - Aenv, 1.0 - LF, e_R, 1.0 - Lambda])
             # ESTRUCTURA del input (membrana sensorial): el SENTIDO nace del ORDEN. La conversión en sentido
             # (ICR=ICES) sólo RINDE si hay estructura que convertir; el ruido (estructura→0) se DISIPA (IRDE).
+            # Default 1.0 → si no llega la señal, comportamiento previo (compat). (Aún no experiencial: directo.)
             estructura = _clip01(_num(fila.get("estructura", 1.0), 1.0))
             base_icr = _clip01(rc_total * soporte_conversion * peso_icr * estructura)
             base_irde = _clip01(rc_total * (vulnerabilidad * peso_irde + (1.0 - estructura) * peso_icr))
@@ -174,8 +182,15 @@ class OrganoRC:
             icr = rc_total * icr_ratio
             irde = rc_total - icr
 
-            at_l = _media([sal_l, rc_rel, energia_l, novelty_l])
-            at_r = _media([sal_r, rc_ext, energia_r, novelty_r])
+            # LAZO DE ATENCIÓN: sumar el retorno de la nutrición previa por lado (_ema_comp_*). Arranca en 0
+            # → primer paso idéntico al feedforward; el sesgo EMERGE con la historia (sin ponderación manual).
+            # Conmutable por ANIMA_RC_LOOP: con loop_on=False es feedforward puro (canónico), para el control 2×2.
+            _tl = [sal_l, rc_rel, energia_l, novelty_l]
+            _tr = [sal_r, rc_ext, energia_r, novelty_r]
+            if self.loop_on:
+                _tl.append(self._ema_comp_l); _tr.append(self._ema_comp_r)
+            at_l = _media(_tl)
+            at_r = _media(_tr)
             rel_sum = rc_rel + rc_ext
             peso_l, peso_r = _competir(rc_rel, rc_ext)
             if rel_sum <= 1e-12:
@@ -193,6 +208,9 @@ class OrganoRC:
             self._ema_rc = (1.0 - self.ema) * self._ema_rc + self.ema * rc_total
             self._ema_icr = (1.0 - self.ema) * self._ema_icr + self.ema * icr
             self._ema_irde = (1.0 - self.ema) * self._ema_irde + self.ema * irde
+            # cierre del lazo: recordar cuánto nutrió cada lado ESTE paso (misma constante de tiempo self.ema=0.20)
+            self._ema_comp_l = (1.0 - self.ema) * self._ema_comp_l + self.ema * comp_l
+            self._ema_comp_r = (1.0 - self.ema) * self._ema_comp_r + self.ema * comp_r
 
             if rc_total <= 1e-12:
                 destino = "silencio"
@@ -215,6 +233,8 @@ class OrganoRC:
                 "RC_atencion_R": round(at_r, 5),
                 "RC_comprension_L": round(comp_l, 5),
                 "RC_comprension_R": round(comp_r, 5),
+                "RC_ema_comp_L": round(self._ema_comp_l, 5),   # sesgo de atención emergente por lado (memoria del lazo)
+                "RC_ema_comp_R": round(self._ema_comp_r, 5),
                 "RC_riesgo_L": round(riesgo_l, 5),
                 "RC_riesgo_R": round(riesgo_r, 5),
                 "RC_consenso_orientacion": round(consenso, 5),

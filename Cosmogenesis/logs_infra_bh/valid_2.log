@@ -1,0 +1,6 @@
+[A2-B0-C2-batch3-r0] control_redondeo     t= 187.41s rms=3.907e-01 fof020=0.7945 (orig 0.7960)
+[A2-B0-C2-batch3-r0] bh_theta0.3          t=  93.81s rms=1.403e+00 fof020=0.7970 (orig 0.7960)
+[A2-B0-C2-batch3-r0] bh_theta0.5          t=  57.73s rms=1.557e+00 fof020=0.8055 (orig 0.7960)
+[A2-B0-C2-batch3-r0] bh_theta0.7          t=  35.30s rms=1.713e+00 fof020=0.7965 (orig 0.7960)
+[A2-B0-C2-batch3-r0] bh_theta1.0          t=  25.32s rms=1.879e+00 fof020=0.7980 (orig 0.7960)
+[OK] A2-B0-C2-batch3-r0 -> /Users/alexis/phantom_cs073/infra_layout_bh/valid_A2-B0-C2-batch3-r0_III.json

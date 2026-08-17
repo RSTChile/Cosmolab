@@ -1,0 +1,109 @@
+Cargadas 400 reglas A0-B0-C0 de cs090_fase6_o1c_a0_resumen.csv
+
+====================================================================================================
+CONTROL NULL (punto 4 de la tarea): campo REAL vs. el MISMO campo barajado
+====================================================================================================
+  dom_slope_nativo       REAL media=  1.4705 [0.494,2.314]  |  NULL media=  0.1353 [-0.231,0.390]  |  REAL>NULL en 400/400  Wilcoxon p=2.73e-67
+  corr_slope_nativo      REAL media=  0.5080 [0.300,0.720]  |  NULL media=  0.0000 [-0.000,-0.000]  |  REAL>NULL en 400/400  Wilcoxon p=6.77e-71
+  giant_frac_b1          REAL media=  0.3684 [0.011,1.000]  |  NULL media=  0.0059 [0.003,0.013]  |  REAL>NULL en 400/400  Wilcoxon p=2.72e-67
+  n_dominios_b1          REAL media= 50.1250 [1.000,572.000]  |  NULL media=1012.4625 [574.000,1414.000]  |  REAL>NULL en 0/400  Wilcoxon p=2.73e-67
+
+====================================================================================================
+DE DÓNDE SALE LA PENDIENTE VIEJA: la tupla de diámetros ENTEROS por escala
+====================================================================================================
+diám (b=1,2,4,8,16)       pendiente  n Clase I  n Clase II   total
+----------------------------------------------------------------------------------------------------
+(4, 3, 3, 2, 2)               0.295        147           0     147
+(5, 4, 3, 3, 2)               0.364          0          52      52
+(4, 3, 3, 3, 2)               0.229         50           0      50
+(5, 4, 3, 3, 3)               0.234         26           0      26
+(4, 4, 3, 3, 2)               0.281         16           0      16
+(5, 4, 4, 3, 3)               0.230         13           0      13
+(6, 4, 4, 3, 3)               0.307         12           0      12
+(5, 4, 4, 3, 2)               0.361          0           8       8
+(6, 4, 4, 4, 3)               0.253          8           0       8
+(6, 5, 4, 3, 3)               0.346          5           3       8
+(5, 3, 3, 3, 2)               0.312          7           0       7
+(6, 5, 4, 4, 3)               0.294          7           0       7
+(6, 5, 4, 4, 4)               0.192          5           0       5
+(6, 5, 4, 3, 4)               0.256          4           0       4
+... y 22 combinaciones más con menos reglas cada una
+
+  combinaciones de diámetros distintas: 36; de ellas, 33 son 'puras' (todas sus reglas caen en la MISMA clase)
+
+====================================================================================================
+MECANISMO: ¿con qué correlaciona la pendiente del método viejo?
+====================================================================================================
+variable                   qué es                                          Spearman rho          p
+----------------------------------------------------------------------------------------------------
+sim_thr_frac               parámetro: umbral de similitud (fracción de K)        -0.070   1.62e-01
+K                          parámetro: tamaño del alfabeto de fase                +0.030   5.55e-01
+J                          parámetro: constante de acople de la dinámica         -0.082   1.03e-01
+noise                      parámetro: ruido por sweep                            +0.049   3.24e-01
+n_aristas_b1               aristas del GRAFO DERIVADO de medición                -0.071   1.58e-01
+dom_slope_nativo           métrica NATIVA del campo (dominios)                   -0.072   1.49e-01
+giant_frac_b1              métrica NATIVA del campo (dominio mayor)              -0.077   1.26e-01
+corr_slope_nativo          métrica NATIVA del campo (ξ(r))                       -0.047   3.47e-01
+thr = sim_thr_frac*K       umbral absoluto (lo usan LOS DOS métodos)             -0.031   5.42e-01
+
+Valores DISTINTOS por métrica nativa (con empates masivos el KS asintótico se vuelve conservador; por eso también se reporta el p por permutación):
+  corr_slope_nativo         6 valores distintos sobre 400 reglas (los más bajos: [0.3, 0.417, 0.5, 0.5585, 0.6229, 0.72])
+  dom_slope_nativo        392 valores distintos sobre 400 reglas (los más bajos: [0.4941, 0.5207, 0.5644, 0.5938, 0.6044, 0.6117])
+  giant_frac_b1           263 valores distintos sobre 400 reglas (los más bajos: [0.011, 0.012, 0.0125, 0.014, 0.015, 0.0155])
+  corr_len_b1               5 valores distintos sobre 400 reglas (los más bajos: [2.0, 3.0, 4.0, 5.0, 7.0])
+  n_dominios_b1           131 valores distintos sobre 400 reglas (los más bajos: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
+
+====================================================================================================
+GRUPOS SEGÚN método viejo HISTÓRICO (cs055._diam): Clase I n=330, Clase II n=70, otras clases n=0
+====================================================================================================
+
+Parámetros de la regla por grupo (chequeo de confound; el umbral thr=sim_thr_frac*K lo comparten los DOS métodos):
+  K              I=   6.1394  II=   6.2571   MW p=0.4870
+  J              I=   0.5492  II=   0.5239   MW p=0.1950
+  noise          I=   0.2224  II=   0.2227   MW p=0.9247
+  sim_thr_frac   I=   0.2538  II=   0.2117   MW p=0.0000
+  n_aristas_b1   I=15155.0727  II=12651.8286   MW p=0.0000
+  thr=sim_thr*K  I=   1.5577  II=   1.3168   MW p=0.0002
+
+métrica nativa           media I  media II    KS D      KS p      MW p    perm p  δ Cliff  KS p Holm
+----------------------------------------------------------------------------------------------------
+corr_slope_nativo         0.5091    0.5032   0.084    0.7705    0.4620    0.5107    0.050     1.0000
+dom_slope_nativo          1.4940    1.3596   0.195    0.0214    0.0082    0.0097    0.201     0.0641
+giant_frac_b1             0.3946    0.2451   0.231    0.0034    0.0011    0.0014    0.248     0.0136
+corr_len_b1               4.0030    3.9143   0.084    0.7705    0.4045    0.3378    0.054     1.0000
+n_dominios_b1            48.1485   59.4429   0.264    0.0005    0.0006    0.3077   -0.260     0.0025
+
+Versión continua (sin dicotomía) — Spearman entre pendiente_vieja y cada métrica nativa, sobre las 400 reglas; 'parcial' = descontando el umbral compartido thr=sim_thr_frac*K:
+  corr_slope_nativo      rho=-0.047 (p=0.3473)   parcial(thr)=-0.047 (p=0.3473)
+  dom_slope_nativo       rho=-0.072 (p=0.1486)   parcial(thr)=-0.067 (p=0.1838)
+  giant_frac_b1          rho=-0.077 (p=0.1257)   parcial(thr)=-0.075 (p=0.1357)
+  corr_len_b1            rho=-0.045 (p=0.3667)   parcial(thr)=-0.045 (p=0.3703)
+  n_dominios_b1          rho=+0.073 (p=0.1444)   parcial(thr)=+0.071 (p=0.1567)
+
+Comparación EMPAREJADA por umbral thr (n=70 pares; |Δthr| medio=0.0028, máx=0.0160):
+  corr_slope_nativo      Clase I=   0.5196  Clase II=   0.5032   Wilcoxon pareado p=0.2636
+  dom_slope_nativo       Clase I=   1.4658  Clase II=   1.3596   Wilcoxon pareado p=0.0827
+  giant_frac_b1          Clase I=   0.3124  Clase II=   0.2451   Wilcoxon pareado p=0.0929
+  corr_len_b1            Clase I=   4.1143  Clase II=   3.9143   Wilcoxon pareado p=0.1114
+  n_dominios_b1          Clase I=  39.4571  Clase II=  59.4429   Wilcoxon pareado p=0.0283
+
+Potencia por simulación (bootstrap de la distribución observada, n1=330, n2=70, alfa=0.05). Métricas cuasi-discretas excluidas (valores distintos < 50% de n): se corren ['dom_slope_nativo', 'giant_frac_b1']
+  dom_slope_nativo (σ=0.399):
+     Δ=0.0997 (0.25σ): KS 38% / MW 45%  Δ=0.1993 (0.50σ): KS 92% / MW 95%  Δ=0.299 (0.75σ): KS 100% / MW 100%  Δ=0.3987 (1.00σ): KS 100% / MW 100%  Δ=0.598 (1.50σ): KS 100% / MW 100%
+  giant_frac_b1 (σ=0.358):
+     Δ=0.0895 (0.25σ): KS 100% / MW 98%  Δ=0.1789 (0.50σ): KS 100% / MW 100%  Δ=0.2684 (0.75σ): KS 100% / MW 100%  Δ=0.3579 (1.00σ): KS 100% / MW 100%  Δ=0.5368 (1.50σ): KS 100% / MW 100%
+
+====================================================================================================
+Método viejo CORREGIDO (diam_gigante): asigna EXACTAMENTE las mismas clases que el histórico en las 400 reglas
+-> el análisis no se repite porque sería fila por fila idéntico (ver sección 'BUG DE DIÁMETRO' abajo para el porqué).
+====================================================================================================
+
+====================================================================================================
+BUG DE DIÁMETRO en esta línea (grafos de medición derivados de A0)
+====================================================================================================
+  reglas con alguna escala descarrilada (componente medida <10% de la gigante): 0/400
+  reglas cuya CLASE cambia al usar el diámetro corregido: 0/400
+  |Δ pendiente| entre las dos versiones: media=0.00000 máx=0.00000
+
+  -> cs090_fase6_o1c_tests.csv (46 filas)
+  -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o1c_distribuciones.png

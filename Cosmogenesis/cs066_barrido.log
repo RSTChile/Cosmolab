@@ -1,0 +1,80 @@
+=== 02:51:29 N=1500 patches=100 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=100 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local∈[5,14] SORTEADO (G-NO-CALIBRAR) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/100 parches · 1.1min · ETA 0.35h
+  10/100 parches · 1.8min · ETA 0.27h
+  15/100 parches · 2.6min · ETA 0.25h
+  20/100 parches · 3.3min · ETA 0.22h
+  25/100 parches · 5.0min · ETA 0.25h
+  30/100 parches · 6.5min · ETA 0.25h
+  35/100 parches · 8.4min · ETA 0.26h
+  40/100 parches · 9.2min · ETA 0.23h
+  45/100 parches · 11.2min · ETA 0.23h
+  50/100 parches · 12.5min · ETA 0.21h
+  55/100 parches · 13.5min · ETA 0.18h
+  60/100 parches · 14.1min · ETA 0.16h
+  65/100 parches · 14.9min · ETA 0.13h
+  70/100 parches · 15.9min · ETA 0.11h
+  75/100 parches · 16.8min · ETA 0.09h
+  80/100 parches · 18.0min · ETA 0.07h
+  85/100 parches · 18.4min · ETA 0.05h
+  90/100 parches · 20.1min · ETA 0.04h
+  95/100 parches · 20.8min · ETA 0.02h
+  100/100 parches · 21.6min · ETA 0.00h
+
+COMPLETO: 100 parches en 21.6 min → cs066_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 03:13:06 N=2500 patches=100 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=100 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local∈[5,14] SORTEADO (G-NO-CALIBRAR) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/100 parches · 2.5min · ETA 0.79h
+  10/100 parches · 4.7min · ETA 0.71h
+  15/100 parches · 6.9min · ETA 0.65h
+  20/100 parches · 8.7min · ETA 0.58h
+  25/100 parches · 12.0min · ETA 0.60h
+  30/100 parches · 13.6min · ETA 0.53h
+  35/100 parches · 15.2min · ETA 0.47h
+  40/100 parches · 16.2min · ETA 0.41h
+  45/100 parches · 19.0min · ETA 0.39h
+  50/100 parches · 21.2min · ETA 0.35h
+  55/100 parches · 23.2min · ETA 0.32h
+  60/100 parches · 24.7min · ETA 0.27h
+  65/100 parches · 26.7min · ETA 0.24h
+  70/100 parches · 28.5min · ETA 0.20h
+  75/100 parches · 30.7min · ETA 0.17h
+  80/100 parches · 32.1min · ETA 0.13h
+  85/100 parches · 33.0min · ETA 0.10h
+  90/100 parches · 35.3min · ETA 0.07h
+  95/100 parches · 36.4min · ETA 0.03h
+  100/100 parches · 37.8min · ETA 0.00h
+
+COMPLETO: 100 parches en 37.8 min → cs066_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 03:50:56 N=3500 patches=60 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=60 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local∈[5,14] SORTEADO (G-NO-CALIBRAR) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/60 parches · 3.7min · ETA 0.69h
+  10/60 parches · 6.4min · ETA 0.53h
+  15/60 parches · 9.2min · ETA 0.46h
+  20/60 parches · 11.3min · ETA 0.38h
+  25/60 parches · 14.7min · ETA 0.34h
+  30/60 parches · 16.9min · ETA 0.28h
+  35/60 parches · 20.1min · ETA 0.24h
+  40/60 parches · 21.7min · ETA 0.18h
+  45/60 parches · 25.1min · ETA 0.14h
+  50/60 parches · 26.6min · ETA 0.09h
+  55/60 parches · 28.7min · ETA 0.04h
+  60/60 parches · 29.9min · ETA 0.00h
+
+COMPLETO: 60 parches en 29.9 min → cs066_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 04:20:52 BARRIDO CS066 COMPLETO ===

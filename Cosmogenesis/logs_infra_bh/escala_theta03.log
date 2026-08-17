@@ -1,0 +1,8 @@
+{'N': 2000, 'theta': 0.3, 't_eval_min_s': 2.4117, 't_100iters_s': 241.2, 'prof_octree': 3, 'interacciones_por_iter': 1333869, 'interacciones_por_particula': 666.9}
+{'N': 4000, 'theta': 0.3, 't_eval_min_s': 7.3538, 't_100iters_s': 735.4, 'prof_octree': 4, 'interacciones_por_iter': 3282836, 'interacciones_por_particula': 820.7}
+{'N': 8000, 'theta': 0.3, 't_eval_min_s': 16.8228, 't_100iters_s': 1682.3, 'prof_octree': 4, 'interacciones_por_iter': 8697955, 'interacciones_por_particula': 1087.2}
+{'N': 16000, 'theta': 0.3, 't_eval_min_s': 39.8292, 't_100iters_s': 3982.9, 'prof_octree': 4, 'interacciones_por_iter': 22319880, 'interacciones_por_particula': 1395.0}
+exponente tiempo theta=0.3: 1.333
+  tramo 2000->4000: 1.608
+  tramo 4000->8000: 1.194
+  tramo 8000->16000: 1.243

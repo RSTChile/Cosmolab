@@ -1,0 +1,69 @@
+=== MOTOR 1→7 (produccion) ===
+
+[1–2] campo_ok=True r0_lava=True r_cruz_ok=True
+[3–4] stretch_ok=True rho_ok=True
+[5–7] mass_pre0=True E3=True e4_lin=True nulls=True
+
+=== CHAIN_PASS = True ===
+estado → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/motor_1a7/resultados/estado_1a7_produccion.json
+{
+  "protocolo": "MOTOR_1A7_2026-07-23",
+  "modo": "produccion",
+  "campo_ok": true,
+  "r0_lava": true,
+  "r_cruz_ok": true,
+  "P_r0": 0.03373385714285714,
+  "P_r_high": 0.9396743333333333,
+  "z_r_high": 7.364166666666667,
+  "D_campo": 0.0008413671286873261,
+  "N_campo": 200,
+  "stretch_ok": true,
+  "rho_ok": true,
+  "mass_pre_e4_zero": true,
+  "e3_ok": true,
+  "rate_E3": 1.0,
+  "e4_lineage_ok": true,
+  "rate_e4_lineage": 0.8,
+  "mass_nulls_clean": true,
+  "stages": {
+    "1_campo": {
+      "pass": true,
+      "detail": "ε=0→P=0; campo continuo"
+    },
+    "2_expansion_r": {
+      "pass": true,
+      "P_r0": 0.03373385714285714,
+      "P_r_high": 0.9396743333333333,
+      "z_r_high": 7.364166666666667
+    },
+    "3_estiramiento": {
+      "pass": true
+    },
+    "4_densidad": {
+      "pass": true
+    },
+    "5_orden_sin_masa": {
+      "pass": true
+    },
+    "6_atomo_E3": {
+      "pass": true,
+      "rate_E3": 1.0
+    },
+    "7_masa_linaje": {
+      "pass": true,
+      "rate_e4_lineage": 0.8,
+      "mass_nulls_clean": true
+    }
+  },
+  "chain_pass": true,
+  "notes": [
+    "5–7 desde suite v6 (mass∝linaje)",
+    "cierre: need=[True, True, True, True, True] chain_pass=True"
+  ],
+  "artifacts": {
+    "rcruz": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs074_rcruz_produccion_resultado.json",
+    "rho": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/test_rho_dispersion/TEST_RHO_DISPERSION_result.json",
+    "v6": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v6/suite_epocas_masa_v6_result.json",
+    "elapsed_s": 0.0042150020599365234
+  }
+}

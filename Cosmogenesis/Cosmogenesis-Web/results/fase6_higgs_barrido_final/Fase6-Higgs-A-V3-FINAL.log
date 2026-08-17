@@ -1,0 +1,13 @@
+FASE6-HIGGS-A V3 barrido r0 x u VIVO H=0.01 L30
+r0=0.5 u=0.1 <|Phi|>=0.009 v_k1=0.009 v_k3=0.010 ratio_Higgs=0.30926 k1=177 k3=19 APAGADO
+r0=0.5 u=0.3 <|Phi|>=0.008 v_k1=0.008 v_k3=0.009 ratio_Higgs=0.30434 k1=180 k3=25 APAGADO
+r0=0.5 u=0.7 <|Phi|>=0.009 v_k1=0.009 v_k3=0.009 ratio_Higgs=0.33874 k1=171 k3=24 APAGADO
+r0=1.0 u=0.1 <|Phi|>=0.007 v_k1=0.007 v_k3=0.008 ratio_Higgs=0.29333 k1=191 k3=23 APAGADO
+r0=1.0 u=0.3 <|Phi|>=0.007 v_k1=0.007 v_k3=0.006 ratio_Higgs=0.34965 k1=171 k3=26 APAGADO
+r0=1.0 u=0.7 <|Phi|>=0.007 v_k1=0.008 v_k3=0.007 ratio_Higgs=0.36398 k1=174 k3=13 APAGADO
+r0=2.0 u=0.1 <|Phi|>=0.006 v_k1=0.006 v_k3=0.005 ratio_Higgs=0.44295 k1=180 k3=20 APAGADO
+r0=2.0 u=0.3 <|Phi|>=0.006 v_k1=0.006 v_k3=0.006 ratio_Higgs=0.34311 k1=166 k3=25 APAGADO
+r0=2.0 u=0.7 <|Phi|>=0.006 v_k1=0.006 v_k3=0.007 ratio_Higgs=0.30537 k1=175 k3=27 APAGADO
+r0=3.0 u=0.1 <|Phi|>=0.005 v_k1=0.005 v_k3=0.006 ratio_Higgs=0.29487 k1=181 k3=24 APAGADO
+r0=3.0 u=0.3 <|Phi|>=0.005 v_k1=0.005 v_k3=0.005 ratio_Higgs=0.34594 k1=181 k3=18 APAGADO
+r0=3.0 u=0.7 <|Phi|>=0.006 v_k1=0.006 v_k3=0.005 ratio_Higgs=0.36050 k1=188 k3=22 APAGADO

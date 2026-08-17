@@ -1,0 +1,65 @@
+  0.0% · faltan ~23 min
+  14.7% · faltan ~10 min
+  29.5% · faltan ~8 min
+  44.2% · faltan ~6 min
+  58.9% · faltan ~5 min
+  73.6% · faltan ~3 min
+  88.4% · faltan ~1 min
+  física lista en 11.2 min
+Verificación: 3285 bordes de semana reconstruidos, 0 ticks discrepantes de 1357380 (peor 0.00e+0)
+Excluidos los primeros 420 ticks (arrastre del asentamiento térmico).
+
+==============================================================================
+M0_publicado — lo que está publicado: err recortado a la baja, κ_Δ = p10 inventado
+    invariante      mín      p10      p50      p90      máx   umbral   veredicto
+    LF          0.0000   0.1812   0.4549   0.7913   0.9999   0.3500   discrimina
+    Δ_struct    0.4993   0.6114   0.6975   0.8233   1.0958   0.5102   discrimina
+    A_sys_env   0.3651   0.5259   0.7464   0.8878   0.9420   0.7000   discrimina
+    |e_R|       0.0000   0.0000   0.0000   0.0543   0.1788   0.2000   holgado, pero MEDIANA CERO
+    e_R = 0 (sin señal correctora, C-N2.8.8a): 50.50% del tiempo
+    quién decide la ACTIVACIÓN: LF 53.7% · Δ_struct 46.3%
+    quién decide la VIABILIDAD: A_sys_env 100.0% · e_R 0.0%
+    años por zona dominante: CIERRE 17 · JARDIN_FERTIL 41 · SELVA_HOSTIL 4
+
+==============================================================================
+M1_abs — |e_R| como lo escribe el canon; sin cota inferior todavía
+    invariante      mín      p10      p50      p90      máx   umbral   veredicto
+    LF          0.0000   0.1812   0.4549   0.7913   0.9999   0.3500   discrimina
+    Δ_struct    0.4993   0.6114   0.6975   0.8233   1.0958   0.5102   discrimina
+    A_sys_env   0.3651   0.5259   0.7464   0.8878   0.9420   0.7000   discrimina
+    |e_R|       0.0000   0.0045   0.0250   0.0726   0.3716   0.2000   llega al techo
+    e_R = 0 (sin señal correctora, C-N2.8.8a): 0.00% del tiempo
+    quién decide la ACTIVACIÓN: LF 53.7% · Δ_struct 46.3%
+    quién decide la VIABILIDAD: A_sys_env 99.9% · e_R 0.1%
+    años por zona dominante: CIERRE 17 · JARDIN_FERTIL 41 · SELVA_HOSTIL 4
+
+==============================================================================
+M2_abs_cota — |e_R| + la cota de abajo: err = 0 no es viable (C-N2.8.8a)
+    invariante      mín      p10      p50      p90      máx   umbral   veredicto
+    LF          0.0000   0.1812   0.4549   0.7913   0.9999   0.3500   discrimina
+    Δ_struct    0.4993   0.6114   0.6975   0.8233   1.0958   0.5102   discrimina
+    A_sys_env   0.3651   0.5259   0.7464   0.8878   0.9420   0.7000   discrimina
+    |e_R|       0.0000   0.0045   0.0250   0.0726   0.3716   0.2000   llega al techo
+    e_R = 0 (sin señal correctora, C-N2.8.8a): 0.00% del tiempo
+    quién decide la ACTIVACIÓN: LF 53.7% · Δ_struct 46.3%
+    quién decide la VIABILIDAD: A_sys_env 99.9% · e_R 0.1%
+    años por zona dominante: CIERRE 17 · JARDIN_FERTIL 41 · SELVA_HOSTIL 4
+
+==============================================================================
+M3_canonico — lectura literal: 0 < |e_R| < κ_O y Δ_struct > 0
+    invariante      mín      p10      p50      p90      máx   umbral   veredicto
+    LF          0.0000   0.1812   0.4549   0.7913   0.9999   0.3500   discrimina
+    Δ_struct    0.4993   0.6114   0.6975   0.8233   1.0958   0.5102   discrimina
+    A_sys_env   0.3651   0.5259   0.7464   0.8878   0.9420   0.7000   discrimina
+    |e_R|       0.0000   0.0045   0.0250   0.0726   0.3716   0.2000   llega al techo
+    e_R = 0 (sin señal correctora, C-N2.8.8a): 0.00% del tiempo
+    quién decide la ACTIVACIÓN: LF 100.0% · Δ_struct 0.0%
+    quién decide la VIABILIDAD: A_sys_env 99.9% · e_R 0.1%
+    años por zona dominante: CIERRE 17 · JARDIN_FERTIL 41 · SELVA_HOSTIL 4
+
+==============================================================================
+CSV escritos (pasarlos a evaluar_contra_ground_truth.js):
+  r16_M0_publicado_por_anio.csv
+  r16_M1_abs_por_anio.csv
+  r16_M2_abs_cota_por_anio.csv
+  r16_M3_canonico_por_anio.csv

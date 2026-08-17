@@ -1,0 +1,56 @@
+CS055 — PROCESO ACOPLADO: enfriamiento + gravedad-con-caída + confinamiento + despliegue, JUNTOS
+==============================================================================================================
+T:3.0→0.04 · T_conf=1.0 · G=0.06 C=0.06 H=0.08 α=2 D_MAX=2 SAT=6 (FIJOS)
+HIPÓTESIS pre-registrada: gravedad tira dim ABAJO (2D), confinamiento ARRIBA → 3D podría ser el filo. O no.
+
+         geom  dim0 |    acoplado      G_NULL   grav_sola confin_solo
+  --------------------------------------------------------------------------
+    cadena_d1  0.92 |       muere       muere       muere       muere
+   cuadr_d2pl  1.55 |        VIVE        VIVE        VIVE        VIVE
+     tri_d2pl  1.57 |       muere       muere        VIVE       muere
+   hip37_d2cv  2.13 |       muere       muere       muere        VIVE
+    cubo_d3pl  1.91 |       muere       muere       muere        VIVE
+   hcubo_d4pl  2.15 |       muere       muere       muere        VIVE
+     arbol_cv  2.27 |       muere       muere       muere       muere
+    cadena_d1  0.92 |       muere       muere       muere       muere
+   cuadr_d2pl  1.55 |       muere        VIVE        VIVE       muere
+     tri_d2pl  1.57 |       muere       muere        VIVE        VIVE
+   hip37_d2cv  2.13 |       muere       muere       muere        VIVE
+    cubo_d3pl  1.91 |       muere       muere       muere        VIVE
+   hcubo_d4pl  2.15 |       muere       muere       muere       muere
+     arbol_cv  2.27 |        VIVE       muere       muere       muere
+    cadena_d1  0.92 |       muere       muere       muere       muere
+   cuadr_d2pl  1.55 |        VIVE       muere        VIVE       muere
+     tri_d2pl  1.57 |       muere       muere        VIVE        VIVE
+   hip37_d2cv  2.13 |       muere       muere       muere        VIVE
+    cubo_d3pl  1.91 |       muere       muere       muere        VIVE
+   hcubo_d4pl  2.15 |       muere       muere       muere       muere
+     arbol_cv  2.27 |       muere       muere       muere       muere
+
+==============================================================================================================
+SUPERVIVIENTES por tipo (fracción) — ¿el ACOPLADO cambia el patrón de la gravedad-sola?:
+         geom  dim0 |   acoplado     G_NULL  grav_sola confin_solo
+     arbol_cv  2.27 | 1/3        0/3        0/3        0/3       
+    cadena_d1  0.92 | 0/3        0/3        0/3        0/3       
+   cuadr_d2pl  1.55 | 2/3        2/3        3/3        1/3       
+    cubo_d3pl  1.91 | 0/3        0/3        0/3        3/3       
+   hcubo_d4pl  2.15 | 0/3        0/3        0/3        1/3       
+   hip37_d2cv  2.13 | 0/3        0/3        0/3        3/3       
+     tri_d2pl  1.57 | 0/3        0/3        3/3        2/3       
+
+TRAYECTORIA (ej: cubo_d3pl, acoplado) — (T, %gig, diam) al enfriar:
+  T=3.0:gig=1.0,diam=14  T=0.27:gig=1.0,diam=8  T=0.04:gig=0.99,diam=7
+
+==============================================================================================================
+VEREDICTO (por TIPOS de retículo — la dimensión verdadera):
+     acoplado: 2D 2/9   3D 0/3   4D 0/3
+       G_NULL: 2D 2/9   3D 0/3   4D 0/3
+    grav_sola: 2D 6/9   3D 0/3   4D 0/3
+  confin_solo: 2D 6/9   3D 3/3   4D 1/3
+
+  LECTURA (pre-registrada):
+  · ¿el confinamiento RESCATA 3D? acoplado 3D=0/3 vs grav_sola 3D=0/3.
+    → El acoplado sigue prefiriendo 2D (como la gravedad sola): el confinamiento NO subió a 3D.
+      Falsación honesta: el acoplamiento propuesto no basta para fijar 3D. Falta otra pieza.
+  · G-NULL (color barajado): si su patrón dimensional = acoplado → el confinamiento fue inerte.
+  · G-NO-PRESUPONER-ESPACIO: toda distancia por BFS/saltos. G-CONFIN-CIEGO-A-DIM: confin solo vio color.

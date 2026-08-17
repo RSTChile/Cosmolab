@@ -1,0 +1,49 @@
+{
+  "eps": 0.5,
+  "N_particulas": 69,
+  "hay_wrap": false,
+  "consistente_con_cuenta": true,
+  "bariones_indices": [
+    [
+      "21",
+      "22",
+      "23"
+    ],
+    [
+      "24",
+      "25",
+      "26"
+    ],
+    [
+      "27",
+      "28",
+      "29"
+    ]
+  ],
+  "bariones_distancias": [
+    2.0,
+    2.0,
+    2.0
+  ],
+  "hidrogeno_indices": [
+    [
+      "21",
+      "22",
+      "23",
+      "59"
+    ],
+    [
+      "27",
+      "28",
+      "29",
+      "60"
+    ]
+  ],
+  "hidrogeno_distancias": [
+    6.324555320336759,
+    2.23606797749979
+  ],
+  "distancia_media_bariones": 2.0,
+  "distancia_media_hidrogeno": 4.280311648918275,
+  "distancia_media_control_azar": 14.599270291058051
+}

@@ -1,0 +1,87 @@
+=== 15:02:35 N=1500 patches=120 ===
+================================================================================================
+CS064 — SISTEMA COMPLETO. ¿emerge geometría+dirección de la relación plena? (el espacio como exaptación)
+================================================================================================
+N=1500 · patches=120 · steps=20 · arms=['completo', 'null_tipos', 'null_marco', 'null_mediado', 'subconjunto'] · reglas=['nematico'] · workers=6
+salida cs064_N1500.csv
+PRE-INSCRITO (§8): (A) 3 ejes+d_s≈3+δ≈0 y completo>NULL>subconjunto ⇒ 3D-plano EMERGE ; (B) dirección sí, 3D no ; (B') colapso a 1 eje ; (C) completo≈subconjunto≈NULL (negativo se sostiene) ; (D) depende de N. null_marco = test de EXAPTACIÓN (O-N8.3).
+  5/120 parches · 1.4min · 3.6/min · ETA 0.53h
+  10/120 parches · 2.8min · 3.6/min · ETA 0.51h
+  15/120 parches · 4.2min · 3.6/min · ETA 0.49h
+  20/120 parches · 5.5min · 3.6/min · ETA 0.46h
+  25/120 parches · 6.7min · 3.7/min · ETA 0.42h
+  30/120 parches · 7.0min · 4.3/min · ETA 0.35h
+  35/120 parches · 8.2min · 4.3/min · ETA 0.33h
+  40/120 parches · 9.6min · 4.2/min · ETA 0.32h
+  45/120 parches · 11.0min · 4.1/min · ETA 0.31h
+  50/120 parches · 12.3min · 4.0/min · ETA 0.29h
+  55/120 parches · 13.8min · 4.0/min · ETA 0.27h
+  60/120 parches · 14.0min · 4.3/min · ETA 0.23h
+  65/120 parches · 15.4min · 4.2/min · ETA 0.22h
+  70/120 parches · 16.8min · 4.2/min · ETA 0.20h
+  75/120 parches · 18.2min · 4.1/min · ETA 0.18h
+  80/120 parches · 19.6min · 4.1/min · ETA 0.16h
+  85/120 parches · 20.9min · 4.1/min · ETA 0.14h
+  90/120 parches · 21.0min · 4.3/min · ETA 0.12h
+  95/120 parches · 22.5min · 4.2/min · ETA 0.10h
+  100/120 parches · 24.0min · 4.2/min · ETA 0.08h
+  105/120 parches · 25.5min · 4.1/min · ETA 0.06h
+  110/120 parches · 26.8min · 4.1/min · ETA 0.04h
+  115/120 parches · 28.1min · 4.1/min · ETA 0.02h
+  120/120 parches · 28.3min · 4.2/min · ETA 0.00h
+
+COMPLETO: 120 parches en 28.3 min → cs064_N1500.csv
+RECORDATORIO: leer contra §8; no acomodar. El null_marco dice si el espacio fue exaptación. — CC
+=== 15:30:54 N=2500 patches=100 ===
+================================================================================================
+CS064 — SISTEMA COMPLETO. ¿emerge geometría+dirección de la relación plena? (el espacio como exaptación)
+================================================================================================
+N=2500 · patches=100 · steps=20 · arms=['completo', 'null_tipos', 'null_marco', 'null_mediado', 'subconjunto'] · reglas=['nematico'] · workers=6
+salida cs064_N2500.csv
+PRE-INSCRITO (§8): (A) 3 ejes+d_s≈3+δ≈0 y completo>NULL>subconjunto ⇒ 3D-plano EMERGE ; (B) dirección sí, 3D no ; (B') colapso a 1 eje ; (C) completo≈subconjunto≈NULL (negativo se sostiene) ; (D) depende de N. null_marco = test de EXAPTACIÓN (O-N8.3).
+  5/100 parches · 2.8min · 1.8/min · ETA 0.89h
+  10/100 parches · 5.5min · 1.8/min · ETA 0.82h
+  15/100 parches · 7.9min · 1.9/min · ETA 0.74h
+  20/100 parches · 10.5min · 1.9/min · ETA 0.70h
+  25/100 parches · 13.1min · 1.9/min · ETA 0.65h
+  30/100 parches · 13.6min · 2.2/min · ETA 0.53h
+  35/100 parches · 16.1min · 2.2/min · ETA 0.50h
+  40/100 parches · 19.0min · 2.1/min · ETA 0.47h
+  45/100 parches · 21.7min · 2.1/min · ETA 0.44h
+  50/100 parches · 25.1min · 2.0/min · ETA 0.42h
+  55/100 parches · 28.1min · 2.0/min · ETA 0.38h
+  60/100 parches · 28.7min · 2.1/min · ETA 0.32h
+  65/100 parches · 31.3min · 2.1/min · ETA 0.28h
+  70/100 parches · 34.0min · 2.1/min · ETA 0.24h
+  75/100 parches · 36.4min · 2.1/min · ETA 0.20h
+  80/100 parches · 39.0min · 2.1/min · ETA 0.16h
+  85/100 parches · 41.4min · 2.1/min · ETA 0.12h
+  90/100 parches · 42.5min · 2.1/min · ETA 0.08h
+  95/100 parches · 44.6min · 2.1/min · ETA 0.04h
+  100/100 parches · 46.5min · 2.2/min · ETA 0.00h
+
+COMPLETO: 100 parches en 46.5 min → cs064_N2500.csv
+RECORDATORIO: leer contra §8; no acomodar. El null_marco dice si el espacio fue exaptación. — CC
+=== 16:17:21 N=3500 patches=60 ===
+================================================================================================
+CS064 — SISTEMA COMPLETO. ¿emerge geometría+dirección de la relación plena? (el espacio como exaptación)
+================================================================================================
+N=3500 · patches=60 · steps=20 · arms=['completo', 'null_tipos', 'null_marco', 'null_mediado', 'subconjunto'] · reglas=['nematico'] · workers=6
+salida cs064_N3500.csv
+PRE-INSCRITO (§8): (A) 3 ejes+d_s≈3+δ≈0 y completo>NULL>subconjunto ⇒ 3D-plano EMERGE ; (B) dirección sí, 3D no ; (B') colapso a 1 eje ; (C) completo≈subconjunto≈NULL (negativo se sostiene) ; (D) depende de N. null_marco = test de EXAPTACIÓN (O-N8.3).
+  5/60 parches · 4.4min · 1.1/min · ETA 0.80h
+  10/60 parches · 8.6min · 1.2/min · ETA 0.72h
+  15/60 parches · 12.9min · 1.2/min · ETA 0.64h
+  20/60 parches · 17.4min · 1.1/min · ETA 0.58h
+  25/60 parches · 21.3min · 1.2/min · ETA 0.50h
+  30/60 parches · 23.0min · 1.3/min · ETA 0.38h
+  35/60 parches · 30.3min · 1.2/min · ETA 0.36h
+  40/60 parches · 37.8min · 1.1/min · ETA 0.32h
+  45/60 parches · 42.7min · 1.1/min · ETA 0.24h
+  50/60 parches · 48.8min · 1.0/min · ETA 0.16h
+  55/60 parches · 54.4min · 1.0/min · ETA 0.08h
+  60/60 parches · 55.7min · 1.1/min · ETA 0.00h
+
+COMPLETO: 60 parches en 55.7 min → cs064_N3500.csv
+RECORDATORIO: leer contra §8; no acomodar. El null_marco dice si el espacio fue exaptación. — CC
+=== 17:13:03 BARRIDO COMPLETO ===

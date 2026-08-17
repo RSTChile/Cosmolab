@@ -1,0 +1,43 @@
+====================================================================================================
+CS081 — Experimento 2 de Fase III: PODA DINÁMICA POR COSTO DE ENLACE (protocolo pre-registrado)
+N=8000  k_local=6  steps=20  escalas b=[2, 4, 8, 16, 32]  semillas=[80100, 80200, 80300]  percentiles P=[50, 70, 90]
+variantes por semilla: sin_poda | costo_P{50,70,90} | azar_P{50,70,90} (mismo nº de aristas que costo_P)
+====================================================================================================
+
+--- semilla 80100 ---
+  sustrato local construido: N=8000 aristas=31391 (21.5s)
+  costo calculado sobre 31391 aristas (22.0s acumulado)
+  [sin_poda  ] podadas=0      listo (1.8s)
+  [costo_P50 ] podadas=14886  listo (1.5s)
+  [azar_P50  ] podadas=14886  listo (1.6s)
+  [costo_P70 ] podadas=7817   listo (1.6s)
+  [azar_P70  ] podadas=7817   listo (1.9s)
+  [costo_P90 ] podadas=2974   listo (1.9s)
+  [azar_P90  ] podadas=2974   listo (1.8s)
+  (acumulado 0.6 min)
+
+--- semilla 80200 ---
+  sustrato local construido: N=8000 aristas=31282 (22.1s)
+  costo calculado sobre 31282 aristas (22.6s acumulado)
+  [sin_poda  ] podadas=0      listo (2.1s)
+  [costo_P50 ] podadas=14972  listo (1.5s)
+  [azar_P50  ] podadas=14972  listo (1.5s)
+  [costo_P70 ] podadas=7981   listo (1.5s)
+  [azar_P70  ] podadas=7981   listo (1.6s)
+  [costo_P90 ] podadas=2972   listo (1.8s)
+  [azar_P90  ] podadas=2972   listo (2.0s)
+  (acumulado 1.2 min)
+
+--- semilla 80300 ---
+  sustrato local construido: N=8000 aristas=31290 (22.5s)
+  costo calculado sobre 31290 aristas (23.0s acumulado)
+  [sin_poda  ] podadas=0      listo (1.7s)
+  [costo_P50 ] podadas=14845  listo (1.3s)
+  [azar_P50  ] podadas=14845  listo (1.4s)
+  [costo_P70 ] podadas=7790   listo (1.6s)
+  [azar_P70  ] podadas=7790   listo (1.7s)
+  [costo_P90 ] podadas=3033   listo (2.1s)
+  [azar_P90  ] podadas=3033   listo (1.8s)
+  (acumulado 1.7 min)
+
+COMPLETO en 1.7 min -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs081_poda_dinamica.csv

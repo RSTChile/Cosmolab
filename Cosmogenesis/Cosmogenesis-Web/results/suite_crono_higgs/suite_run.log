@@ -1,0 +1,141 @@
+=== SUITE CRONO_HIGGS ===
+Orden obligatorio: cronología SSB antes de interpretar Higgs/masa.
+
+umbrales: VEV_PRE_MAX=0.2 VEV_POST_MIN=0.12 SEP_THR=0.06 SEP_PRE_MAX=0.05 RATE_PASS=0.55
+CI: Φ~0.08·noise (sin VEV impuesto). ρ∝a⁻³, freeze T|ρ.
+
+  [A1_sweep_TC] 1/27 chrono_pass=False {'TC': 0.25, 'seed': 2025}
+  [A1_sweep_TC] 10/27 chrono_pass=False {'TC': 0.475, 'seed': 2025}
+  [A1_sweep_TC] 20/27 chrono_pass=False {'TC': 0.7, 'seed': 42}
+== A1_sweep_TC: rate_chrono=0.37 A1=0.56 A2=0.52 A3=0.56 early_mass_fail=0.41 broad_pass=False (7.1s)
+  [A1_sweep_R0] 1/24 chrono_pass=False {'R0': 0.5, 'seed': 2025}
+  [A1_sweep_R0] 10/24 chrono_pass=True {'R0': 2.0, 'seed': 2025}
+  [A1_sweep_R0] 20/24 chrono_pass=False {'R0': 3.5, 'seed': 42}
+== A1_sweep_R0: rate_chrono=0.42 A1=0.75 A2=0.54 A3=0.75 early_mass_fail=0.42 broad_pass=False (6.2s)
+  [A1_sweep_U] 1/14 chrono_pass=True {'U': 0.15, 'seed': 2025}
+  [A1_sweep_U] 10/14 chrono_pass=False {'U': 1.05, 'seed': 42}
+== A1_sweep_U: rate_chrono=0.29 A1=0.79 A2=0.36 A3=0.79 early_mass_fail=0.57 broad_pass=False (3.8s)
+  [A2_sweep_H_EXP] 1/21 chrono_pass=True {'H_EXP': 3.0, 'seed': 2025}
+  [A2_sweep_H_EXP] 10/21 chrono_pass=True {'H_EXP': 6.0, 'seed': 2025}
+  [A2_sweep_H_EXP] 20/21 chrono_pass=False {'H_EXP': 9.0, 'seed': 42}
+== A2_sweep_H_EXP: rate_chrono=0.48 A1=1.00 A2=0.48 A3=1.00 early_mass_fail=0.38 broad_pass=False (5.5s)
+  [A3_sweep_freeze] 1/30 chrono_pass=False {'FREEZE_TNORM': 0.15, 'RHO_FREEZE': 0.001}
+  [A3_sweep_freeze] 10/30 chrono_pass=False {'FREEZE_TNORM': 0.25, 'RHO_FREEZE': 0.3}
+  [A3_sweep_freeze] 20/30 chrono_pass=False {'FREEZE_TNORM': 0.45000000000000007, 'RHO_FREEZE': 0.3}
+  [A3_sweep_freeze] 30/30 chrono_pass=False {'FREEZE_TNORM': 0.65, 'RHO_FREEZE': 0.3}
+== A3_sweep_freeze: rate_chrono=0.33 A1=0.40 A2=0.93 A3=0.40 early_mass_fail=0.00 broad_pass=False (7.6s)
+  [B2_sweep_transport] 1/30 chrono_pass=False {'D_PHI': 0.005, 'SIGMA0': 0.02}
+  [B2_sweep_transport] 10/30 chrono_pass=False {'D_PHI': 0.01093362073943278, 'SIGMA0': 0.4}
+  [B2_sweep_transport] 20/30 chrono_pass=False {'D_PHI': 0.05228197762956364, 'SIGMA0': 0.4}
+  [B2_sweep_transport] 30/30 chrono_pass=False {'D_PHI': 0.25, 'SIGMA0': 0.4}
+== B2_sweep_transport: rate_chrono=0.23 A1=0.30 A2=0.87 A3=0.30 early_mass_fail=0.07 broad_pass=False (7.7s)
+  [B2_sweep_G_RHO] 1/12 chrono_pass=True {'G_RHO': 0.0, 'seed': 2025}
+  [B2_sweep_G_RHO] 10/12 chrono_pass=False {'G_RHO': 1.6, 'seed': 42}
+== B2_sweep_G_RHO: rate_chrono=0.50 A1=1.00 A2=0.50 A3=1.00 early_mass_fail=0.50 broad_pass=False (3.1s)
+  [B3_sweep_medium] 1/48 chrono_pass=False {'ALPHA_CUT': 0.5, 'MIX0': 0.05}
+  [B3_sweep_medium] 10/48 chrono_pass=True {'ALPHA_CUT': 1.1428571428571428, 'MIX0': 0.4399999999999999}
+  [B3_sweep_medium] 20/48 chrono_pass=False {'ALPHA_CUT': 2.428571428571429, 'MIX0': 0.18}
+  [B3_sweep_medium] 30/48 chrono_pass=False {'ALPHA_CUT': 3.0714285714285716, 'MIX0': 0.7}
+  [B3_sweep_medium] 40/48 chrono_pass=True {'ALPHA_CUT': 4.357142857142858, 'MIX0': 0.4399999999999999}
+== B3_sweep_medium: rate_chrono=0.60 A1=1.00 A2=0.60 A3=1.00 early_mass_fail=0.29 broad_pass=True (12.6s)
+  [B4_sweep_L] 1/18 chrono_pass=True {'L': 16, 'seed': 2025}
+  [B4_sweep_L] 10/18 chrono_pass=True {'L': 28, 'seed': 2025}
+== B4_sweep_L: rate_chrono=0.61 A1=1.00 A2=0.61 A3=1.00 early_mass_fail=0.28 broad_pass=True (4.5s)
+  [B5_ablation] ...
+    ablation full: {'n': 4, 'rate_chrono': 0.75, 'rate_A1': 1.0, 'rate_A2': 0.75, 'rate_A3': 1.0, 'mean_post_sep': 0.1307280272504154}
+    ablation no_medium: {'n': 4, 'rate_chrono': 0.0, 'rate_A1': 1.0, 'rate_A2': 0.0, 'rate_A3': 1.0, 'mean_post_sep': 0.03337229573333096}
+    ablation rho_fixed: {'n': 4, 'rate_chrono': 0.75, 'rate_A1': 1.0, 'rate_A2': 0.75, 'rate_A3': 1.0, 'mean_post_sep': 0.12836654593087815}
+    ablation no_freeze_T: {'n': 4, 'rate_chrono': 0.75, 'rate_A1': 1.0, 'rate_A2': 0.75, 'rate_A3': 1.0, 'mean_post_sep': 0.12869550331395216}
+    ablation no_freeze_rho: {'n': 4, 'rate_chrono': 0.75, 'rate_A1': 1.0, 'rate_A2': 0.75, 'rate_A3': 1.0, 'mean_post_sep': 0.1307280272504154}
+    ablation no_freeze_any: {'n': 4, 'rate_chrono': 0.0, 'rate_A1': 1.0, 'rate_A2': 0.0, 'rate_A3': 0.0, 'mean_post_sep': 0.01917022798381758}
+    ablation blind_cuts_only: {'n': 4, 'rate_chrono': 0.0, 'rate_A1': 1.0, 'rate_A2': 0.0, 'rate_A3': 1.0, 'mean_post_sep': 0.03337229573333096}
+  [B6_robust_seeds] 1/12 chrono_pass=True {'seed': 7}
+  [B6_robust_seeds] 10/12 chrono_pass=False {'seed': 99991}
+== B6_robust_seeds: rate_chrono=0.75 A1=1.00 A2=0.75 A3=1.00 early_mass_fail=0.17 broad_pass=True (3.1s)
+
+JSON → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_crono_higgs/suite_crono_higgs_result.json
+MD  → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_crono_higgs/RESUMEN_SUITE_CRONO_HIGGS.md
+
+=== GLOBAL === CHRONO_FAIL_HIGGS_CLAIM_SUSPENDED
+{
+  "global_verdict": "CHRONO_FAIL_HIGGS_CLAIM_SUSPENDED",
+  "chrono_admissible": false,
+  "chrono_block_rates": {
+    "A1_sweep_TC": 0.37037037037037035,
+    "A1_sweep_R0": 0.4166666666666667,
+    "A1_sweep_U": 0.2857142857142857,
+    "A2_sweep_H_EXP": 0.47619047619047616,
+    "A3_sweep_freeze": 0.3333333333333333
+  },
+  "n_chrono_blocks_pass": 0,
+  "medium_matters_vs_blind": true,
+  "ablation_rates": {
+    "full": {
+      "n": 4,
+      "rate_chrono": 0.75,
+      "rate_A1": 1.0,
+      "rate_A2": 0.75,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.1307280272504154
+    },
+    "no_medium": {
+      "n": 4,
+      "rate_chrono": 0.0,
+      "rate_A1": 1.0,
+      "rate_A2": 0.0,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.03337229573333096
+    },
+    "rho_fixed": {
+      "n": 4,
+      "rate_chrono": 0.75,
+      "rate_A1": 1.0,
+      "rate_A2": 0.75,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.12836654593087815
+    },
+    "no_freeze_T": {
+      "n": 4,
+      "rate_chrono": 0.75,
+      "rate_A1": 1.0,
+      "rate_A2": 0.75,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.12869550331395216
+    },
+    "no_freeze_rho": {
+      "n": 4,
+      "rate_chrono": 0.75,
+      "rate_A1": 1.0,
+      "rate_A2": 0.75,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.1307280272504154
+    },
+    "no_freeze_any": {
+      "n": 4,
+      "rate_chrono": 0.0,
+      "rate_A1": 1.0,
+      "rate_A2": 0.0,
+      "rate_A3": 0.0,
+      "mean_post_sep": 0.01917022798381758
+    },
+    "blind_cuts_only": {
+      "n": 4,
+      "rate_chrono": 0.0,
+      "rate_A1": 1.0,
+      "rate_A2": 0.0,
+      "rate_A3": 1.0,
+      "mean_post_sep": 0.03337229573333096
+    }
+  },
+  "B3_medium_rate_chrono": 0.6041666666666666,
+  "B6_seed_rate_chrono": 0.75,
+  "thresholds": {
+    "VEV_PRE_MAX": 0.2,
+    "VEV_POST_MIN": 0.12,
+    "VEV_CONTRAST": 1.4,
+    "SEP_THR": 0.06,
+    "SEP_PRE_MAX": 0.05,
+    "RATE_PASS": 0.55
+  },
+  "cronologia_relato": {
+    "pre": "Tnorm > TC ~ fase sim\u00e9trica, sin VEV, sin claim de masa/Higg

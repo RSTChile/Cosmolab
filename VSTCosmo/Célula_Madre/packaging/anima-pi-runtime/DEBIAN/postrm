@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "${1:-}" = "purge" ]; then
+  rm -rf /opt/anima /etc/anima /var/lib/anima
+fi

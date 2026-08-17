@@ -1,0 +1,1016 @@
+{
+  "experimento": "F1-2",
+  "modo": "smoke",
+  "N": 100,
+  "eps_list": [
+    0.0,
+    1e-09,
+    0.001,
+    1.0
+  ],
+  "r_list": [
+    0.0,
+    0.3,
+    0.9,
+    1.0,
+    1.1,
+    2.0,
+    10.0,
+    100.0
+  ],
+  "semillas": 4,
+  "K_bins": 8,
+  "n_bloques": 8,
+  "pasos": 1553,
+  "calibracion_lavado": {
+    "tiempos": [
+      1350,
+      1350,
+      1350,
+      1350
+    ],
+    "mediana": 1350,
+    "pasos": 1553,
+    "P_thr": 0.05,
+    "lavo_todas": true
+  },
+  "validacion_kernel_batched": {
+    "ok": true,
+    "detalle": "kernel batched == kernel base en 40 pasos, N=64, H=0.03"
+  },
+  "filas": [
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.0,
+      "r_eff": 0.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 0.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 0.3,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 0.9,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 1.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 1.1,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 2.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 10.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 0.0,
+      "r_target": 100.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r_eff": Infinity,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.0,
+      "P_mi_null_std": 0.0,
+      "P_mi_real_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_mi_null_seeds": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mi_bits_real_mean": 0.0,
+      "h_avg_bits_real_mean": 0.0,
+      "H_bloques_norm_real_mean": 0.0,
+      "frac_exp_mean": 1.0,
+      "z": 0.0
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.003347000811602193,
+      "r_eff": 0.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 1.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.2618982946377039,
+      "P_mi_null_std": 0.028078104388189917,
+      "P_mi_real_seeds": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "P_mi_null_seeds": [
+        0.237741,
+        0.260336,
+        0.3082,
+        0.241315
+      ],
+      "mi_bits_real_mean": 2.4697718293721302,
+      "h_avg_bits_real_mean": 2.4697718293721302,
+      "H_bloques_norm_real_mean": 0.9996151786650672,
+      "frac_exp_mean": 0.0,
+      "z": 2.9524
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 0.3,
+      "H": 0.001004100243480658,
+      "D": 0.003347000811602193,
+      "r_eff": 0.3,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5860543261474788,
+      "P_mi_real_std": 0.07822447023101396,
+      "P_mi_null_mean": 0.2925880137043382,
+      "P_mi_null_std": 0.03570801383008825,
+      "P_mi_real_seeds": [
+        0.480512,
+        0.557678,
+        0.610796,
+        0.695231
+      ],
+      "P_mi_null_seeds": [
+        0.261041,
+        0.35056,
+        0.26532,
+        0.29343
+      ],
+      "mi_bits_real_mean": 1.4375081822504083,
+      "h_avg_bits_real_mean": 2.435600360388232,
+      "H_bloques_norm_real_mean": 0.996917618536808,
+      "frac_exp_mean": 0.8050000000000002,
+      "z": 1.1739
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 0.9,
+      "H": 0.0030123007304419737,
+      "D": 0.003347000811602193,
+      "r_eff": 0.8999999999999999,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5951989485783011,
+      "P_mi_real_std": 0.06829679912683152,
+      "P_mi_null_mean": 0.2874754668264572,
+      "P_mi_null_std": 0.02791949525854794,
+      "P_mi_real_seeds": [
+        0.538037,
+        0.610642,
+        0.531555,
+        0.700562
+      ],
+      "P_mi_null_seeds": [
+        0.306693,
+        0.241086,
+        0.290394,
+        0.311729
+      ],
+      "mi_bits_real_mean": 1.4695834887848096,
+      "h_avg_bits_real_mean": 2.4545763943099894,
+      "H_bloques_norm_real_mean": 0.9969217238392376,
+      "frac_exp_mean": 0.9924999999999999,
+      "z": 1.2309
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 1.0,
+      "H": 0.003347000811602193,
+      "D": 0.003347000811602193,
+      "r_eff": 1.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.6249365001529488,
+      "P_mi_real_std": 0.1350359294648642,
+      "P_mi_null_mean": 0.28136485682349827,
+      "P_mi_null_std": 0.010767313265270348,
+      "P_mi_real_seeds": [
+        0.427508,
+        0.615003,
+        0.649997,
+        0.807238
+      ],
+      "P_mi_null_seeds": [
+        0.293763,
+        0.290356,
+        0.271121,
+        0.270219
+      ],
+      "mi_bits_real_mean": 1.5122636764259747,
+      "h_avg_bits_real_mean": 2.378920835119061,
+      "H_bloques_norm_real_mean": 0.9966631408307993,
+      "frac_exp_mean": 1.0,
+      "z": 1.3743
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 1.1,
+      "H": 0.0036817008927624126,
+      "D": 0.003347000811602193,
+      "r_eff": 1.1,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5627786003774595,
+      "P_mi_real_std": 0.08917400654772076,
+      "P_mi_null_mean": 0.2578801155033103,
+      "P_mi_null_std": 0.012567818151831403,
+      "P_mi_real_seeds": [
+        0.46396,
+        0.503144,
+        0.587539,
+        0.696471
+      ],
+      "P_mi_null_seeds": [
+        0.277775,
+        0.253159,
+        0.257314,
+        0.243273
+      ],
+      "mi_bits_real_mean": 1.3640805311438073,
+      "h_avg_bits_real_mean": 2.410094822133796,
+      "H_bloques_norm_real_mean": 0.9967824309326497,
+      "frac_exp_mean": 0.9924999999999999,
+      "z": 1.2196
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 2.0,
+      "H": 0.006694001623204386,
+      "D": 0.003347000811602193,
+      "r_eff": 2.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5649642231888578,
+      "P_mi_real_std": 0.03291224960986096,
+      "P_mi_null_mean": 0.3224447046754394,
+      "P_mi_null_std": 0.038000565321388666,
+      "P_mi_real_seeds": [
+        0.554891,
+        0.579899,
+        0.517832,
+        0.607236
+      ],
+      "P_mi_null_seeds": [
+        0.34187,
+        0.359234,
+        0.329448,
+        0.259228
+      ],
+      "mi_bits_real_mean": 1.3566255729156307,
+      "h_avg_bits_real_mean": 2.402755234424567,
+      "H_bloques_norm_real_mean": 0.9971002435876885,
+      "frac_exp_mean": 1.0,
+      "z": 0.9701
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 10.0,
+      "H": 0.03347000811602193,
+      "D": 0.003347000811602193,
+      "r_eff": 10.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5363423314186454,
+      "P_mi_real_std": 0.09458175803956952,
+      "P_mi_null_mean": 0.2867679907937623,
+      "P_mi_null_std": 0.03138085162008774,
+      "P_mi_real_seeds": [
+        0.455369,
+        0.443189,
+        0.571498,
+        0.675313
+      ],
+      "P_mi_null_seeds": [
+        0.29382,
+        0.303891,
+        0.234036,
+        0.315325
+      ],
+      "mi_bits_real_mean": 1.2982050175932527,
+      "h_avg_bits_real_mean": 2.4010170374694755,
+      "H_bloques_norm_real_mean": 0.9981622293822634,
+      "frac_exp_mean": 1.0,
+      "z": 0.9983
+    },
+    {
+      "N": 100,
+      "eps": 1e-09,
+      "r_target": 100.0,
+      "H": 0.3347000811602193,
+      "D": 0.003347000811602193,
+      "r_eff": 100.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.44587276789588526,
+      "P_mi_real_std": 0.10585202608626988,
+      "P_mi_null_mean": 0.3238279512558657,
+      "P_mi_null_std": 0.045735028418939304,
+      "P_mi_real_seeds": [
+        0.297574,
+        0.433211,
+        0.456669,
+        0.596037
+      ],
+      "P_mi_null_seeds": [
+        0.246004,
+        0.354544,
+        0.35872,
+        0.336044
+      ],
+      "mi_bits_real_mean": 1.129157923229387,
+      "h_avg_bits_real_mean": 2.4839232468402423,
+      "H_bloques_norm_real_mean": 0.9991368561780262,
+      "frac_exp_mean": 1.0,
+      "z": 0.4882
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.0033470010470447865,
+      "r_eff": 0.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 1.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.28561825278417674,
+      "P_mi_null_std": 0.028375630013448627,
+      "P_mi_real_seeds": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "P_mi_null_seeds": [
+        0.251296,
+        0.323717,
+        0.300818,
+        0.266642
+      ],
+      "mi_bits_real_mean": 2.4697718293721302,
+      "h_avg_bits_real_mean": 2.4697718293721302,
+      "H_bloques_norm_real_mean": 0.9996151786650672,
+      "frac_exp_mean": 0.0,
+      "z": 2.8575
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 0.3,
+      "H": 0.001004100314113436,
+      "D": 0.0033470010470447865,
+      "r_eff": 0.3,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.6448551565834925,
+      "P_mi_real_std": 0.0972013976151162,
+      "P_mi_null_mean": 0.28260664689207565,
+      "P_mi_null_std": 0.03258105362204669,
+      "P_mi_real_seeds": [
+        0.54782,
+        0.804464,
+        0.591842,
+        0.635294
+      ],
+      "P_mi_null_seeds": [
+        0.235806,
+        0.320424,
+        0.304206,
+        0.26999
+      ],
+      "mi_bits_real_mean": 1.5363166849186753,
+      "h_avg_bits_real_mean": 2.362729948170904,
+      "H_bloques_norm_real_mean": 0.9978742635108901,
+      "frac_exp_mean": 0.77,
+      "z": 1.449
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 0.9,
+      "H": 0.003012300942340308,
+      "D": 0.0033470010470447865,
+      "r_eff": 0.9,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5178548776921011,
+      "P_mi_real_std": 0.16935266240824356,
+      "P_mi_null_mean": 0.28107208312330323,
+      "P_mi_null_std": 0.01608555185358703,
+      "P_mi_real_seeds": [
+        0.327638,
+        0.382875,
+        0.619452,
+        0.741455
+      ],
+      "P_mi_null_seeds": [
+        0.289284,
+        0.269514,
+        0.262394,
+        0.303097
+      ],
+      "mi_bits_real_mean": 1.2650788039735386,
+      "h_avg_bits_real_mean": 2.3875264118975394,
+      "H_bloques_norm_real_mean": 0.9968202847379376,
+      "frac_exp_mean": 0.9850000000000001,
+      "z": 0.9471
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 1.0,
+      "H": 0.0033470010470447865,
+      "D": 0.0033470010470447865,
+      "r_eff": 1.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5213867874644779,
+      "P_mi_real_std": 0.150436893257231,
+      "P_mi_null_mean": 0.28178339610665204,
+      "P_mi_null_std": 0.01514950618431667,
+      "P_mi_real_seeds": [
+        0.34687,
+        0.469079,
+        0.509085,
+        0.760513
+      ],
+      "P_mi_null_seeds": [
+        0.285887,
+        0.272318,
+        0.30443,
+        0.264499
+      ],
+      "mi_bits_real_mean": 1.2972904964739491,
+      "h_avg_bits_real_mean": 2.440531961275445,
+      "H_bloques_norm_real_mean": 0.9971928154591818,
+      "frac_exp_mean": 0.9924999999999999,
+      "z": 0.9584
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 1.1,
+      "H": 0.0036817011517492654,
+      "D": 0.0033470010470447865,
+      "r_eff": 1.1,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.580986865412197,
+      "P_mi_real_std": 0.02864059052497831,
+      "P_mi_null_mean": 0.290580141185808,
+      "P_mi_null_std": 0.009887079048514005,
+      "P_mi_real_seeds": [
+        0.55055,
+        0.613387,
+        0.554481,
+        0.60553
+      ],
+      "P_mi_null_seeds": [
+        0.280079,
+        0.304914,
+        0.282835,
+        0.294492
+      ],
+      "mi_bits_real_mean": 1.4369409366484753,
+      "h_avg_bits_real_mean": 2.4697386168979323,
+      "H_bloques_norm_real_mean": 0.9971438360694748,
+      "frac_exp_mean": 1.0,
+      "z": 1.1616
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 2.0,
+      "H": 0.006694002094089573,
+      "D": 0.0033470010470447865,
+      "r_eff": 2.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.543336927022913,
+      "P_mi_real_std": 0.14827678300771716,
+      "P_mi_null_mean": 0.2661217565835686,
+      "P_mi_null_std": 0.0038723502667476943,
+      "P_mi_real_seeds": [
+        0.287733,
+        0.647608,
+        0.60701,
+        0.630996
+      ],
+      "P_mi_null_seeds": [
+        0.260259,
+        0.265172,
+        0.270396,
+        0.26866
+      ],
+      "mi_bits_real_mean": 1.2992375795252147,
+      "h_avg_bits_real_mean": 2.3383659975943374,
+      "H_bloques_norm_real_mean": 0.9986585336909852,
+      "frac_exp_mean": 1.0,
+      "z": 1.1089
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 10.0,
+      "H": 0.03347001047044786,
+      "D": 0.0033470010470447865,
+      "r_eff": 10.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5049272560361289,
+      "P_mi_real_std": 0.1190418106524767,
+      "P_mi_null_mean": 0.2881582018614425,
+      "P_mi_null_std": 0.02581338217307677,
+      "P_mi_real_seeds": [
+        0.327292,
+        0.471344,
+        0.639648,
+        0.581425
+      ],
+      "P_mi_null_seeds": [
+        0.298127,
+        0.325903,
+        0.263089,
+        0.265513
+      ],
+      "mi_bits_real_mean": 1.2780676864079379,
+      "h_avg_bits_real_mean": 2.4911474640305236,
+      "H_bloques_norm_real_mean": 0.9986339278747687,
+      "frac_exp_mean": 1.0,
+      "z": 0.8671
+    },
+    {
+      "N": 100,
+      "eps": 0.001,
+      "r_target": 100.0,
+      "H": 0.33470010470447864,
+      "D": 0.0033470010470447865,
+      "r_eff": 100.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.42706253680687845,
+      "P_mi_real_std": 0.1283061165889109,
+      "P_mi_null_mean": 0.2982592852370128,
+      "P_mi_null_std": 0.025397560166309938,
+      "P_mi_real_seeds": [
+        0.243599,
+        0.394984,
+        0.471854,
+        0.597813
+      ],
+      "P_mi_null_seeds": [
+        0.265414,
+        0.282377,
+        0.328186,
+        0.317061
+      ],
+      "mi_bits_real_mean": 1.0780982141069653,
+      "h_avg_bits_real_mean": 2.471742117385604,
+      "H_bloques_norm_real_mean": 0.9990365527417457,
+      "frac_exp_mean": 1.0,
+      "z": 0.5152
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.0033470010470397775,
+      "r_eff": 0.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 1.0,
+      "P_mi_real_std": 0.0,
+      "P_mi_null_mean": 0.2966084900763063,
+      "P_mi_null_std": 0.029860994947171177,
+      "P_mi_real_seeds": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "P_mi_null_seeds": [
+        0.291182,
+        0.266143,
+        0.345899,
+        0.28321
+      ],
+      "mi_bits_real_mean": 2.4697718293721302,
+      "h_avg_bits_real_mean": 2.4697718293721302,
+      "H_bloques_norm_real_mean": 0.9996151786650672,
+      "frac_exp_mean": 0.0,
+      "z": 2.8136
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 0.3,
+      "H": 0.0010041003141119333,
+      "D": 0.0033470010470397775,
+      "r_eff": 0.3,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5852053061025755,
+      "P_mi_real_std": 0.06158953265675707,
+      "P_mi_null_mean": 0.2775295394292853,
+      "P_mi_null_std": 0.028069756928240867,
+      "P_mi_real_seeds": [
+        0.497055,
+        0.584255,
+        0.588328,
+        0.671182
+      ],
+      "P_mi_null_seeds": [
+        0.286475,
+        0.237302,
+        0.315126,
+        0.271216
+      ],
+      "mi_bits_real_mean": 1.4201237397864483,
+      "h_avg_bits_real_mean": 2.416108701769248,
+      "H_bloques_norm_real_mean": 0.9977427302638573,
+      "frac_exp_mean": 0.8125,
+      "z": 1.2307
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 0.9,
+      "H": 0.0030123009423358,
+      "D": 0.0033470010470397775,
+      "r_eff": 0.9,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.558241313425994,
+      "P_mi_real_std": 0.14350663887940246,
+      "P_mi_null_mean": 0.2736686019634531,
+      "P_mi_null_std": 0.02564406149949741,
+      "P_mi_real_seeds": [
+        0.423767,
+        0.4907,
+        0.519024,
+        0.799474
+      ],
+      "P_mi_null_seeds": [
+        0.232019,
+        0.278739,
+        0.301985,
+        0.281932
+      ],
+      "mi_bits_real_mean": 1.3550278203014232,
+      "h_avg_bits_real_mean": 2.40067307666252,
+      "H_bloques_norm_real_mean": 0.9982548012537568,
+      "frac_exp_mean": 0.99,
+      "z": 1.1383
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 1.0,
+      "H": 0.0033470010470397775,
+      "D": 0.0033470010470397775,
+      "r_eff": 1.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.608767458785967,
+      "P_mi_real_std": 0.1530082154333825,
+      "P_mi_null_mean": 0.29024629388750345,
+      "P_mi_null_std": 0.033059175439160045,
+      "P_mi_real_seeds": [
+        0.49964,
+        0.506053,
+        0.558565,
+        0.870811
+      ],
+      "P_mi_null_seeds": [
+        0.315408,
+        0.314099,
+        0.234367,
+        0.297112
+      ],
+      "mi_bits_real_mean": 1.4491837788147013,
+      "h_avg_bits_real_mean": 2.3785646258173907,
+      "H_bloques_norm_real_mean": 0.9992294280495194,
+      "frac_exp_mean": 0.995,
+      "z": 1.2741
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 1.1,
+      "H": 0.0036817011517437555,
+      "D": 0.0033470010470397775,
+      "r_eff": 1.1,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.6646716283065476,
+      "P_mi_real_std": 0.05239999114642073,
+      "P_mi_null_mean": 0.2550902106459091,
+      "P_mi_null_std": 0.013890488448619278,
+      "P_mi_real_seeds": [
+        0.595941,
+        0.736847,
+        0.640103,
+        0.685795
+      ],
+      "P_mi_null_seeds": [
+        0.253466,
+        0.25002,
+        0.277425,
+        0.23945
+      ],
+      "mi_bits_real_mean": 1.6396437096786516,
+      "h_avg_bits_real_mean": 2.458116651428142,
+      "H_bloques_norm_real_mean": 0.998469763685641,
+      "frac_exp_mean": 0.9875,
+      "z": 1.6383
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 2.0,
+      "H": 0.006694002094079555,
+      "D": 0.0033470010470397775,
+      "r_eff": 2.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5834649475585296,
+      "P_mi_real_std": 0.10402561023274534,
+      "P_mi_null_mean": 0.30444336091345714,
+      "P_mi_null_std": 0.02328694178411858,
+      "P_mi_real_seeds": [
+        0.472102,
+        0.542762,
+        0.565517,
+        0.753479
+      ],
+      "P_mi_null_seeds": [
+        0.31934,
+        0.277493,
+        0.334431,
+        0.286509
+      ],
+      "mi_bits_real_mean": 1.4196433780542455,
+      "h_avg_bits_real_mean": 2.418153868667441,
+      "H_bloques_norm_real_mean": 0.9977739600746095,
+      "frac_exp_mean": 1.0,
+      "z": 1.1161
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 10.0,
+      "H": 0.03347001047039778,
+      "D": 0.0033470010470397775,
+      "r_eff": 10.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.48561106866664905,
+      "P_mi_real_std": 0.13389297868073918,
+      "P_mi_null_mean": 0.2799399805559336,
+      "P_mi_null_std": 0.04501969611319411,
+      "P_mi_real_seeds": [
+        0.328043,
+        0.38093,
+        0.589025,
+        0.644447
+      ],
+      "P_mi_null_seeds": [
+        0.295316,
+        0.342044,
+        0.218703,
+        0.263698
+      ],
+      "mi_bits_real_mean": 1.178462184434497,
+      "h_avg_bits_real_mean": 2.39169857397106,
+      "H_bloques_norm_real_mean": 0.9994223033572933,
+      "frac_exp_mean": 1.0,
+      "z": 0.8227
+    },
+    {
+      "N": 100,
+      "eps": 1.0,
+      "r_target": 100.0,
+      "H": 0.33470010470397776,
+      "D": 0.0033470010470397775,
+      "r_eff": 100.0,
+      "pasos": 1553,
+      "P_mi_real_mean": 0.5019874454038052,
+      "P_mi_real_std": 0.0714646600611986,
+      "P_mi_null_mean": 0.2786168594210075,
+      "P_mi_null_std": 0.014632712577683993,
+      "P_mi_real_seeds": [
+        0.415338,
+        0.459377,
+        0.529532,
+        0.603704
+      ],
+      "P_mi_null_seeds": [
+        0.294835,
+        0.255679,
+        0.286705,
+        0.277249
+      ],
+      "mi_bits_real_mean": 1.2358043606852642,
+      "h_avg_bits_real_mean": 2.4396907306398994,
+      "H_bloques_norm_real_mean": 0.9995148752287866,
+      "frac_exp_mean": 1.0,
+      "z": 0.8935
+    }
+  ],
+  "criterio_pass_mecanico": {
+    "frac_eps0_no_distinguible_de_null": 1.0,
+    "control_eps0_pass": true,
+    "mean_diff_P_mi_real_menos_null_r0_eps_gt0": 0.7186249875006044,
+    "control_r0_pass": false,
+    "frac_null_cae_z_ge_3_en_r_ge_10_eps_gt_1e-6": 0.0,
+    "null_cae_pass": false,
+    "veredicto_mecanico_PASS_FAIL": "FAIL_o_NEGATIVO_mecanico",
+    "nota": "Evaluación mecánica del gate interno pre-registrado de F1-2. El veredicto de comparación con F1-1 (T2, la verificación cruzada real de esta pareja) lo da CS cruzando ambos JSON crudos; CC no adjudica."
+  },
+  "n_canales_batch": 128,
+  "elapsed_s": 9.206892967224121,
+  "timestamp": "2026-07-24T15:00:12.459373-04:00"
+}

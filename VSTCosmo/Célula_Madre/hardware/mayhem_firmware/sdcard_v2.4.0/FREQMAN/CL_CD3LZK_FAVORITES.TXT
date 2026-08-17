@@ -1,0 +1,12 @@
+# CD3LZK operator favorites / quick access.
+# This file is for PortaPack FREQMAN convenience; Mayhem may store APRS callsign separately in UI.
+f=144390000,d=CD3LZK APRS
+f=145825000,d=CD3LZK ISS APRS listen
+f=146520000,d=CD3LZK 2m simplex
+f=146910000,d=CD3LZK RM CE3ETE rpt out
+f=146940000,d=CD3LZK RM CE3AA rpt out
+f=433920000,d=CD3LZK 433.920 monitor
+f=435000000,d=CD3LZK UHF sat center
+f=151575000,d=CD3LZK SENAPRED listen
+f=121500000,d=CD3LZK air guard listen
+f=156800000,d=CD3LZK marine Ch16 listen

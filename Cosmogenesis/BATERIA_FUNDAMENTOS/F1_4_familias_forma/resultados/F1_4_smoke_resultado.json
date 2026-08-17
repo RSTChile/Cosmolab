@@ -1,0 +1,3058 @@
+{
+  "experimento": "F1-4",
+  "modo": "smoke",
+  "N": 100,
+  "semillas": 4,
+  "eps_list": [
+    0.0,
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "r_targets": [
+    0.0,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "familias": [
+    "multi_modo",
+    "modo_unico",
+    "bulto_gaussiano",
+    "ruido_blanco",
+    "ruido_rojo",
+    "ruido_azul"
+  ],
+  "eps_representativo_calibracion": 0.01,
+  "por_familia": {
+    "multi_modo": {
+      "familia": "multi_modo",
+      "calibracion": {
+        "tiempos": [
+          1350,
+          1350,
+          1350,
+          1350
+        ],
+        "mediana": 1350,
+        "pasos": 1553,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 1553,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 1553
+        },
+        {
+          "eps": 0.001,
+          "D": 0.0033470010470447865,
+          "pasos": 1553
+        },
+        {
+          "eps": 0.01,
+          "D": 0.0033470010470401726,
+          "pasos": 1553
+        },
+        {
+          "eps": 0.1,
+          "D": 0.003347001047039888,
+          "pasos": 1553
+        },
+        {
+          "eps": 1.0,
+          "D": 0.0033470010470397775,
+          "pasos": 1553
+        }
+      ],
+      "filas": [
+        {
+          "familia": "multi_modo",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 1553,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1553,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1553,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1553,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.003347,
+          "r": 0.0,
+          "pasos": 1553,
+          "P_real": 0.031782,
+          "P_null": 0.002043,
+          "P_real_std": 0.0,
+          "P_null_std": 0.001205,
+          "z": 0.119,
+          "std_ratio_real": 0.178451,
+          "std_ratio_null": 0.178451,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.003347,
+          "D": 0.003347,
+          "r": 1.0,
+          "pasos": 1553,
+          "P_real": 0.801104,
+          "P_null": 0.021936,
+          "P_real_std": 0.011579,
+          "P_null_std": 0.037995,
+          "z": 3.117,
+          "std_ratio_real": 0.907387,
+          "std_ratio_null": 0.907387,
+          "frac_exp_mean": 0.99,
+          "T_fin_K": 12756860040.123608,
+          "cuantos_k": {
+            "1": 392,
+            "2": 4
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 0.03347,
+          "D": 0.003347,
+          "r": 10.0,
+          "pasos": 1553,
+          "P_real": 0.937508,
+          "P_null": 0.029278,
+          "P_real_std": 0.008092,
+          "P_null_std": 0.05071,
+          "z": 3.633,
+          "std_ratio_real": 0.976936,
+          "std_ratio_null": 0.976936,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 0.3347,
+          "D": 0.003347,
+          "r": 100.0,
+          "pasos": 1553,
+          "P_real": 0.976058,
+          "P_null": 0.029088,
+          "P_real_std": 0.001874,
+          "P_null_std": 0.050381,
+          "z": 3.788,
+          "std_ratio_real": 0.993376,
+          "std_ratio_null": 0.993376,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.003347,
+          "r": 0.0,
+          "pasos": 1553,
+          "P_real": 0.031782,
+          "P_null": 0.002043,
+          "P_real_std": 0.0,
+          "P_null_std": 0.001205,
+          "z": 0.119,
+          "std_ratio_real": 0.178451,
+          "std_ratio_null": 0.178451,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.003347,
+          "D": 0.003347,
+          "r": 1.0,
+          "pasos": 1553,
+          "P_real": 0.801104,
+          "P_null": 0.021936,
+          "P_real_std": 0.011579,
+          "P_null_std": 0.037995,
+          "z": 3.117,
+          "std_ratio_real": 0.907387,
+          "std_ratio_null": 0.907387,
+          "frac_exp_mean": 0.99,
+          "T_fin_K": 12756860040.123608,
+          "cuantos_k": {
+            "1": 392,
+            "2": 4
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 0.03347,
+          "D": 0.003347,
+          "r": 10.0,
+          "pasos": 1553,
+          "P_real": 0.937508,
+          "P_null": 0.029278,
+          "P_real_std": 0.008092,
+          "P_null_std": 0.05071,
+          "z": 3.633,
+          "std_ratio_real": 0.976936,
+          "std_ratio_null": 0.976936,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 0.3347,
+          "D": 0.003347,
+          "r": 100.0,
+          "pasos": 1553,
+          "P_real": 0.976058,
+          "P_null": 0.029088,
+          "P_real_std": 0.001874,
+          "P_null_std": 0.050381,
+          "z": 3.788,
+          "std_ratio_real": 0.993376,
+          "std_ratio_null": 0.993376,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.003347,
+          "r": 0.0,
+          "pasos": 1553,
+          "P_real": 0.031782,
+          "P_null": 0.002043,
+          "P_real_std": 0.0,
+          "P_null_std": 0.001205,
+          "z": 0.119,
+          "std_ratio_real": 0.178451,
+          "std_ratio_null": 0.178451,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.003347,
+          "D": 0.003347,
+          "r": 1.0,
+          "pasos": 1553,
+          "P_real": 0.801104,
+          "P_null": 0.021936,
+          "P_real_std": 0.011579,
+          "P_null_std": 0.037995,
+          "z": 3.117,
+          "std_ratio_real": 0.907387,
+          "std_ratio_null": 0.907387,
+          "frac_exp_mean": 0.99,
+          "T_fin_K": 12756860040.123608,
+          "cuantos_k": {
+            "1": 392,
+            "2": 4
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 0.03347,
+          "D": 0.003347,
+          "r": 10.0,
+          "pasos": 1553,
+          "P_real": 0.937508,
+          "P_null": 0.029278,
+          "P_real_std": 0.008092,
+          "P_null_std": 0.05071,
+          "z": 3.633,
+          "std_ratio_real": 0.976936,
+          "std_ratio_null": 0.976936,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 0.3347,
+          "D": 0.003347,
+          "r": 100.0,
+          "pasos": 1553,
+          "P_real": 0.976058,
+          "P_null": 0.029088,
+          "P_real_std": 0.001874,
+          "P_null_std": 0.050381,
+          "z": 3.788,
+          "std_ratio_real": 0.993376,
+          "std_ratio_null": 0.993376,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.003347,
+          "r": 0.0,
+          "pasos": 1553,
+          "P_real": 0.031782,
+          "P_null": 0.002043,
+          "P_real_std": 0.0,
+          "P_null_std": 0.001205,
+          "z": 0.119,
+          "std_ratio_real": 0.178451,
+          "std_ratio_null": 0.178451,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.003347,
+          "D": 0.003347,
+          "r": 1.0,
+          "pasos": 1553,
+          "P_real": 0.801104,
+          "P_null": 0.021936,
+          "P_real_std": 0.011579,
+          "P_null_std": 0.037995,
+          "z": 3.117,
+          "std_ratio_real": 0.907387,
+          "std_ratio_null": 0.907387,
+          "frac_exp_mean": 0.99,
+          "T_fin_K": 12756860040.123608,
+          "cuantos_k": {
+            "1": 392,
+            "2": 4
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 0.03347,
+          "D": 0.003347,
+          "r": 10.0,
+          "pasos": 1553,
+          "P_real": 0.937508,
+          "P_null": 0.029278,
+          "P_real_std": 0.008092,
+          "P_null_std": 0.05071,
+          "z": 3.633,
+          "std_ratio_real": 0.976936,
+          "std_ratio_null": 0.976936,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "multi_modo",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 0.3347,
+          "D": 0.003347,
+          "r": 100.0,
+          "pasos": 1553,
+          "P_real": 0.976058,
+          "P_null": 0.029088,
+          "P_real_std": 0.001874,
+          "P_null_std": 0.050381,
+          "z": 3.788,
+          "std_ratio_real": 0.993376,
+          "std_ratio_null": 0.993376,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": true,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.03178183200685728,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 41.68160605430603
+    },
+    "modo_unico": {
+      "familia": "modo_unico",
+      "calibracion": {
+        "tiempos": [
+          50,
+          50,
+          100,
+          100
+        ],
+        "mediana": 75,
+        "pasos": 87,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 87,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 87
+        },
+        {
+          "eps": 0.001,
+          "D": 0.039616960184162275,
+          "pasos": 87
+        },
+        {
+          "eps": 0.01,
+          "D": 0.039616960184163864,
+          "pasos": 87
+        },
+        {
+          "eps": 0.1,
+          "D": 0.039616960184163906,
+          "pasos": 87
+        },
+        {
+          "eps": 1.0,
+          "D": 0.039616960184163774,
+          "pasos": 87
+        }
+      ],
+      "filas": [
+        {
+          "familia": "modo_unico",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 87,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 87,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 87,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 87,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.039617,
+          "r": 0.0,
+          "pasos": 87,
+          "P_real": 0.180159,
+          "P_null": 0.006285,
+          "P_real_std": 0.201814,
+          "P_null_std": 0.010007,
+          "z": 0.695,
+          "std_ratio_real": 0.322514,
+          "std_ratio_null": 0.322514,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "6": 12,
+            "7": 4,
+            "10": 10,
+            "16": 2,
+            "17": 4,
+            "25": 4
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.039617,
+          "D": 0.039617,
+          "r": 1.0,
+          "pasos": 87,
+          "P_real": 0.68328,
+          "P_null": 0.02777,
+          "P_real_std": 0.241894,
+          "P_null_std": 0.0481,
+          "z": 2.622,
+          "std_ratio_real": 0.862582,
+          "std_ratio_null": 0.862582,
+          "frac_exp_mean": 0.9875,
+          "T_fin_K": 13404173569.609024,
+          "cuantos_k": {
+            "1": 390,
+            "2": 5
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 0.39617,
+          "D": 0.039617,
+          "r": 10.0,
+          "pasos": 87,
+          "P_real": 0.858586,
+          "P_null": 0.020969,
+          "P_real_std": 0.120344,
+          "P_null_std": 0.036319,
+          "z": 3.35,
+          "std_ratio_real": 0.961059,
+          "std_ratio_null": 0.961059,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.039617,
+          "r": 25.241715,
+          "pasos": 87,
+          "P_real": 0.906404,
+          "P_null": 0.054827,
+          "P_real_std": 0.08331,
+          "P_null_std": 0.054829,
+          "z": 3.406,
+          "std_ratio_real": 0.975221,
+          "std_ratio_null": 0.975221,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.039617,
+          "r": 0.0,
+          "pasos": 87,
+          "P_real": 0.180159,
+          "P_null": 0.006285,
+          "P_real_std": 0.201814,
+          "P_null_std": 0.010007,
+          "z": 0.695,
+          "std_ratio_real": 0.322514,
+          "std_ratio_null": 0.322514,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "6": 12,
+            "7": 4,
+            "10": 10,
+            "16": 2,
+            "17": 4,
+            "25": 4
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.039617,
+          "D": 0.039617,
+          "r": 1.0,
+          "pasos": 87,
+          "P_real": 0.68328,
+          "P_null": 0.02777,
+          "P_real_std": 0.241894,
+          "P_null_std": 0.0481,
+          "z": 2.622,
+          "std_ratio_real": 0.862582,
+          "std_ratio_null": 0.862582,
+          "frac_exp_mean": 0.9875,
+          "T_fin_K": 13404173569.609024,
+          "cuantos_k": {
+            "1": 390,
+            "2": 5
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 0.39617,
+          "D": 0.039617,
+          "r": 10.0,
+          "pasos": 87,
+          "P_real": 0.858586,
+          "P_null": 0.020969,
+          "P_real_std": 0.120344,
+          "P_null_std": 0.036319,
+          "z": 3.35,
+          "std_ratio_real": 0.961059,
+          "std_ratio_null": 0.961059,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.039617,
+          "r": 25.241715,
+          "pasos": 87,
+          "P_real": 0.906404,
+          "P_null": 0.054827,
+          "P_real_std": 0.08331,
+          "P_null_std": 0.054829,
+          "z": 3.406,
+          "std_ratio_real": 0.975221,
+          "std_ratio_null": 0.975221,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.039617,
+          "r": 0.0,
+          "pasos": 87,
+          "P_real": 0.180159,
+          "P_null": 0.006285,
+          "P_real_std": 0.201814,
+          "P_null_std": 0.010007,
+          "z": 0.695,
+          "std_ratio_real": 0.322514,
+          "std_ratio_null": 0.322514,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "6": 12,
+            "7": 4,
+            "10": 10,
+            "16": 2,
+            "17": 4,
+            "25": 4
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.039617,
+          "D": 0.039617,
+          "r": 1.0,
+          "pasos": 87,
+          "P_real": 0.68328,
+          "P_null": 0.02777,
+          "P_real_std": 0.241894,
+          "P_null_std": 0.0481,
+          "z": 2.622,
+          "std_ratio_real": 0.862582,
+          "std_ratio_null": 0.862582,
+          "frac_exp_mean": 0.9875,
+          "T_fin_K": 13404173569.609024,
+          "cuantos_k": {
+            "1": 390,
+            "2": 5
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 0.39617,
+          "D": 0.039617,
+          "r": 10.0,
+          "pasos": 87,
+          "P_real": 0.858586,
+          "P_null": 0.020969,
+          "P_real_std": 0.120344,
+          "P_null_std": 0.036319,
+          "z": 3.35,
+          "std_ratio_real": 0.961059,
+          "std_ratio_null": 0.961059,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.039617,
+          "r": 25.241715,
+          "pasos": 87,
+          "P_real": 0.906404,
+          "P_null": 0.054827,
+          "P_real_std": 0.08331,
+          "P_null_std": 0.054829,
+          "z": 3.406,
+          "std_ratio_real": 0.975221,
+          "std_ratio_null": 0.975221,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.039617,
+          "r": 0.0,
+          "pasos": 87,
+          "P_real": 0.180159,
+          "P_null": 0.006285,
+          "P_real_std": 0.201814,
+          "P_null_std": 0.010007,
+          "z": 0.695,
+          "std_ratio_real": 0.322514,
+          "std_ratio_null": 0.322514,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "6": 12,
+            "7": 4,
+            "10": 10,
+            "16": 2,
+            "17": 4,
+            "25": 4
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.039617,
+          "D": 0.039617,
+          "r": 1.0,
+          "pasos": 87,
+          "P_real": 0.68328,
+          "P_null": 0.02777,
+          "P_real_std": 0.241894,
+          "P_null_std": 0.0481,
+          "z": 2.622,
+          "std_ratio_real": 0.862582,
+          "std_ratio_null": 0.862582,
+          "frac_exp_mean": 0.9875,
+          "T_fin_K": 13404173569.609024,
+          "cuantos_k": {
+            "1": 390,
+            "2": 5
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 0.39617,
+          "D": 0.039617,
+          "r": 10.0,
+          "pasos": 87,
+          "P_real": 0.858586,
+          "P_null": 0.020969,
+          "P_real_std": 0.120344,
+          "P_null_std": 0.036319,
+          "z": 3.35,
+          "std_ratio_real": 0.961059,
+          "std_ratio_null": 0.961059,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "modo_unico",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.039617,
+          "r": 25.241715,
+          "pasos": 87,
+          "P_real": 0.906404,
+          "P_null": 0.054827,
+          "P_real_std": 0.08331,
+          "P_null_std": 0.054829,
+          "z": 3.406,
+          "std_ratio_real": 0.975221,
+          "std_ratio_null": 0.975221,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": false,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.18015901591103411,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 2.0734267234802246
+    },
+    "bulto_gaussiano": {
+      "familia": "bulto_gaussiano",
+      "calibracion": {
+        "tiempos": [
+          1250,
+          1200,
+          650,
+          1000
+        ],
+        "mediana": 1100,
+        "pasos": 1265,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 1265,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 1265
+        },
+        {
+          "eps": 0.001,
+          "D": 0.008857981275651006,
+          "pasos": 1265
+        },
+        {
+          "eps": 0.01,
+          "D": 0.008857981275654967,
+          "pasos": 1265
+        },
+        {
+          "eps": 0.1,
+          "D": 0.008857981275655104,
+          "pasos": 1265
+        },
+        {
+          "eps": 1.0,
+          "D": 0.008857981275655125,
+          "pasos": 1265
+        }
+      ],
+      "filas": [
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 1265,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1265,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1265,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1265,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.008858,
+          "r": 0.0,
+          "pasos": 1265,
+          "P_real": 0.024487,
+          "P_null": 0.001715,
+          "P_real_std": 0.008308,
+          "P_null_std": 0.001717,
+          "z": 0.091,
+          "std_ratio_real": 0.154218,
+          "std_ratio_null": 0.154218,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "49": 4,
+            "51": 4
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.008858,
+          "D": 0.008858,
+          "r": 1.0,
+          "pasos": 1265,
+          "P_real": 0.7256,
+          "P_null": 0.026665,
+          "P_real_std": 0.084985,
+          "P_null_std": 0.02669,
+          "z": 2.796,
+          "std_ratio_real": 0.873943,
+          "std_ratio_null": 0.873943,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 0.08858,
+          "D": 0.008858,
+          "r": 10.0,
+          "pasos": 1265,
+          "P_real": 0.857251,
+          "P_null": 0.016594,
+          "P_real_std": 0.07747,
+          "P_null_std": 0.028742,
+          "z": 3.363,
+          "std_ratio_real": 0.952987,
+          "std_ratio_null": 0.952987,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 0.885798,
+          "D": 0.008858,
+          "r": 100.0,
+          "pasos": 1265,
+          "P_real": 0.945941,
+          "P_null": 0.021405,
+          "P_real_std": 0.038146,
+          "P_null_std": 0.037075,
+          "z": 3.698,
+          "std_ratio_real": 0.986102,
+          "std_ratio_null": 0.986102,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.008858,
+          "r": 0.0,
+          "pasos": 1265,
+          "P_real": 0.024487,
+          "P_null": 0.001715,
+          "P_real_std": 0.008308,
+          "P_null_std": 0.001717,
+          "z": 0.091,
+          "std_ratio_real": 0.154218,
+          "std_ratio_null": 0.154218,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "49": 4,
+            "51": 4
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.008858,
+          "D": 0.008858,
+          "r": 1.0,
+          "pasos": 1265,
+          "P_real": 0.7256,
+          "P_null": 0.026665,
+          "P_real_std": 0.084985,
+          "P_null_std": 0.02669,
+          "z": 2.796,
+          "std_ratio_real": 0.873943,
+          "std_ratio_null": 0.873943,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 0.08858,
+          "D": 0.008858,
+          "r": 10.0,
+          "pasos": 1265,
+          "P_real": 0.857251,
+          "P_null": 0.016594,
+          "P_real_std": 0.07747,
+          "P_null_std": 0.028742,
+          "z": 3.363,
+          "std_ratio_real": 0.952987,
+          "std_ratio_null": 0.952987,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 0.885798,
+          "D": 0.008858,
+          "r": 100.0,
+          "pasos": 1265,
+          "P_real": 0.945941,
+          "P_null": 0.021405,
+          "P_real_std": 0.038146,
+          "P_null_std": 0.037075,
+          "z": 3.698,
+          "std_ratio_real": 0.986102,
+          "std_ratio_null": 0.986102,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.008858,
+          "r": 0.0,
+          "pasos": 1265,
+          "P_real": 0.024487,
+          "P_null": 0.001715,
+          "P_real_std": 0.008308,
+          "P_null_std": 0.001717,
+          "z": 0.091,
+          "std_ratio_real": 0.154218,
+          "std_ratio_null": 0.154218,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "49": 4,
+            "51": 4
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.008858,
+          "D": 0.008858,
+          "r": 1.0,
+          "pasos": 1265,
+          "P_real": 0.7256,
+          "P_null": 0.026665,
+          "P_real_std": 0.084985,
+          "P_null_std": 0.02669,
+          "z": 2.796,
+          "std_ratio_real": 0.873943,
+          "std_ratio_null": 0.873943,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 0.08858,
+          "D": 0.008858,
+          "r": 10.0,
+          "pasos": 1265,
+          "P_real": 0.857251,
+          "P_null": 0.016594,
+          "P_real_std": 0.07747,
+          "P_null_std": 0.028742,
+          "z": 3.363,
+          "std_ratio_real": 0.952987,
+          "std_ratio_null": 0.952987,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 0.885798,
+          "D": 0.008858,
+          "r": 100.0,
+          "pasos": 1265,
+          "P_real": 0.945941,
+          "P_null": 0.021405,
+          "P_real_std": 0.038146,
+          "P_null_std": 0.037075,
+          "z": 3.698,
+          "std_ratio_real": 0.986102,
+          "std_ratio_null": 0.986102,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.008858,
+          "r": 0.0,
+          "pasos": 1265,
+          "P_real": 0.024487,
+          "P_null": 0.001715,
+          "P_real_std": 0.008308,
+          "P_null_std": 0.001717,
+          "z": 0.091,
+          "std_ratio_real": 0.154218,
+          "std_ratio_null": 0.154218,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "49": 4,
+            "51": 4
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.008858,
+          "D": 0.008858,
+          "r": 1.0,
+          "pasos": 1265,
+          "P_real": 0.7256,
+          "P_null": 0.026665,
+          "P_real_std": 0.084985,
+          "P_null_std": 0.02669,
+          "z": 2.796,
+          "std_ratio_real": 0.873943,
+          "std_ratio_null": 0.873943,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 0.08858,
+          "D": 0.008858,
+          "r": 10.0,
+          "pasos": 1265,
+          "P_real": 0.857251,
+          "P_null": 0.016594,
+          "P_real_std": 0.07747,
+          "P_null_std": 0.028742,
+          "z": 3.363,
+          "std_ratio_real": 0.952987,
+          "std_ratio_null": 0.952987,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "bulto_gaussiano",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 0.885798,
+          "D": 0.008858,
+          "r": 100.0,
+          "pasos": 1265,
+          "P_real": 0.945941,
+          "P_null": 0.021405,
+          "P_real_std": 0.038146,
+          "P_null_std": 0.037075,
+          "z": 3.698,
+          "std_ratio_real": 0.986102,
+          "std_ratio_null": 0.986102,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": true,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.024487333773565913,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 33.69395303726196
+    },
+    "ruido_blanco": {
+      "familia": "ruido_blanco",
+      "calibracion": {
+        "tiempos": [
+          50,
+          50,
+          50,
+          50
+        ],
+        "mediana": 50,
+        "pasos": 58,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 58,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 58
+        },
+        {
+          "eps": 0.001,
+          "D": 0.3907131894565144,
+          "pasos": 58
+        },
+        {
+          "eps": 0.01,
+          "D": 0.3907131894565158,
+          "pasos": 58
+        },
+        {
+          "eps": 0.1,
+          "D": 0.39071318945651606,
+          "pasos": 58
+        },
+        {
+          "eps": 1.0,
+          "D": 0.390713189456516,
+          "pasos": 58
+        }
+      ],
+      "filas": [
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.390713,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.042478,
+          "P_null": 0.0,
+          "P_real_std": 7.3e-05,
+          "P_null_std": 0.0,
+          "z": 0.17,
+          "std_ratio_real": 0.2072,
+          "std_ratio_null": 0.2072,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "4": 1,
+            "8": 2,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "17": 1,
+            "19": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "41": 1,
+            "46": 1,
+            "49": 1
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.390713,
+          "D": 0.390713,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.19031,
+          "P_null": 0.012983,
+          "P_real_std": 0.010292,
+          "P_null_std": 0.022488,
+          "z": 0.709,
+          "std_ratio_real": 0.541408,
+          "std_ratio_null": 0.541408,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.390713,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.042478,
+          "P_null": 0.0,
+          "P_real_std": 7.3e-05,
+          "P_null_std": 0.0,
+          "z": 0.17,
+          "std_ratio_real": 0.2072,
+          "std_ratio_null": 0.2072,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "4": 1,
+            "8": 2,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "17": 1,
+            "19": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "41": 1,
+            "46": 1,
+            "49": 1
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.390713,
+          "D": 0.390713,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.19031,
+          "P_null": 0.012983,
+          "P_real_std": 0.010292,
+          "P_null_std": 0.022488,
+          "z": 0.709,
+          "std_ratio_real": 0.541408,
+          "std_ratio_null": 0.541408,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.390713,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.042478,
+          "P_null": 0.0,
+          "P_real_std": 7.3e-05,
+          "P_null_std": 0.0,
+          "z": 0.17,
+          "std_ratio_real": 0.2072,
+          "std_ratio_null": 0.2072,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "4": 1,
+            "8": 2,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "17": 1,
+            "19": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "41": 1,
+            "46": 1,
+            "49": 1
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.390713,
+          "D": 0.390713,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.19031,
+          "P_null": 0.012983,
+          "P_real_std": 0.010292,
+          "P_null_std": 0.022488,
+          "z": 0.709,
+          "std_ratio_real": 0.541408,
+          "std_ratio_null": 0.541408,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.390713,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.042478,
+          "P_null": 0.0,
+          "P_real_std": 7.3e-05,
+          "P_null_std": 0.0,
+          "z": 0.17,
+          "std_ratio_real": 0.2072,
+          "std_ratio_null": 0.2072,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "4": 1,
+            "8": 2,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "17": 1,
+            "19": 1,
+            "23": 1,
+            "24": 1,
+            "25": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "41": 1,
+            "46": 1,
+            "49": 1
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.390713,
+          "D": 0.390713,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.19031,
+          "P_null": 0.012983,
+          "P_real_std": 0.010292,
+          "P_null_std": 0.022488,
+          "z": 0.709,
+          "std_ratio_real": 0.541408,
+          "std_ratio_null": 0.541408,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_blanco",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.390713,
+          "r": 2.559422,
+          "pasos": 58,
+          "P_real": 0.243428,
+          "P_null": 0.0,
+          "P_real_std": 0.000417,
+          "P_null_std": 0.0,
+          "z": 0.974,
+          "std_ratio_real": 0.608451,
+          "std_ratio_null": 0.608451,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": true,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.04247820167305547,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 1.490098237991333
+    },
+    "ruido_rojo": {
+      "familia": "ruido_rojo",
+      "calibracion": {
+        "tiempos": [
+          1300,
+          1300,
+          1300,
+          1300
+        ],
+        "mediana": 1300,
+        "pasos": 1495,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 1495,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 1495
+        },
+        {
+          "eps": 0.001,
+          "D": 0.018428342821309347,
+          "pasos": 1495
+        },
+        {
+          "eps": 0.01,
+          "D": 0.01842834282131111,
+          "pasos": 1495
+        },
+        {
+          "eps": 0.1,
+          "D": 0.018428342821311186,
+          "pasos": 1495
+        },
+        {
+          "eps": 1.0,
+          "D": 0.0184283428213112,
+          "pasos": 1495
+        }
+      ],
+      "filas": [
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 1495,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1495,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1495,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 1495,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.018428,
+          "r": 0.0,
+          "pasos": 1495,
+          "P_real": 0.032101,
+          "P_null": 0.000227,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.000394,
+          "z": 0.127,
+          "std_ratio_real": 0.179346,
+          "std_ratio_null": 0.179346,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.018428,
+          "D": 0.018428,
+          "r": 1.0,
+          "pasos": 1495,
+          "P_real": 0.817723,
+          "P_null": 0.011686,
+          "P_real_std": 0.014263,
+          "P_null_std": 0.011947,
+          "z": 3.224,
+          "std_ratio_real": 0.916422,
+          "std_ratio_null": 0.916422,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 0.184283,
+          "D": 0.018428,
+          "r": 10.0,
+          "pasos": 1495,
+          "P_real": 0.9026,
+          "P_null": 0.020243,
+          "P_real_std": 0.003958,
+          "P_null_std": 0.021204,
+          "z": 3.529,
+          "std_ratio_real": 0.963652,
+          "std_ratio_null": 0.963652,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.018428,
+          "r": 54.264239,
+          "pasos": 1495,
+          "P_real": 0.942682,
+          "P_null": 0.0,
+          "P_real_std": 2e-05,
+          "P_null_std": 0.0,
+          "z": 3.771,
+          "std_ratio_real": 0.981555,
+          "std_ratio_null": 0.981555,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.018428,
+          "r": 0.0,
+          "pasos": 1495,
+          "P_real": 0.032101,
+          "P_null": 0.000227,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.000394,
+          "z": 0.127,
+          "std_ratio_real": 0.179346,
+          "std_ratio_null": 0.179346,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.018428,
+          "D": 0.018428,
+          "r": 1.0,
+          "pasos": 1495,
+          "P_real": 0.817723,
+          "P_null": 0.011686,
+          "P_real_std": 0.014263,
+          "P_null_std": 0.011947,
+          "z": 3.224,
+          "std_ratio_real": 0.916422,
+          "std_ratio_null": 0.916422,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 0.184283,
+          "D": 0.018428,
+          "r": 10.0,
+          "pasos": 1495,
+          "P_real": 0.9026,
+          "P_null": 0.020243,
+          "P_real_std": 0.003958,
+          "P_null_std": 0.021204,
+          "z": 3.529,
+          "std_ratio_real": 0.963652,
+          "std_ratio_null": 0.963652,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.018428,
+          "r": 54.264239,
+          "pasos": 1495,
+          "P_real": 0.942682,
+          "P_null": 0.0,
+          "P_real_std": 2e-05,
+          "P_null_std": 0.0,
+          "z": 3.771,
+          "std_ratio_real": 0.981555,
+          "std_ratio_null": 0.981555,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.018428,
+          "r": 0.0,
+          "pasos": 1495,
+          "P_real": 0.032101,
+          "P_null": 0.000227,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.000394,
+          "z": 0.127,
+          "std_ratio_real": 0.179346,
+          "std_ratio_null": 0.179346,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.018428,
+          "D": 0.018428,
+          "r": 1.0,
+          "pasos": 1495,
+          "P_real": 0.817723,
+          "P_null": 0.011686,
+          "P_real_std": 0.014263,
+          "P_null_std": 0.011947,
+          "z": 3.224,
+          "std_ratio_real": 0.916422,
+          "std_ratio_null": 0.916422,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 0.184283,
+          "D": 0.018428,
+          "r": 10.0,
+          "pasos": 1495,
+          "P_real": 0.9026,
+          "P_null": 0.020243,
+          "P_real_std": 0.003958,
+          "P_null_std": 0.021204,
+          "z": 3.529,
+          "std_ratio_real": 0.963652,
+          "std_ratio_null": 0.963652,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.018428,
+          "r": 54.264239,
+          "pasos": 1495,
+          "P_real": 0.942682,
+          "P_null": 0.0,
+          "P_real_std": 2e-05,
+          "P_null_std": 0.0,
+          "z": 3.771,
+          "std_ratio_real": 0.981555,
+          "std_ratio_null": 0.981555,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.018428,
+          "r": 0.0,
+          "pasos": 1495,
+          "P_real": 0.032101,
+          "P_null": 0.000227,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.000394,
+          "z": 0.127,
+          "std_ratio_real": 0.179346,
+          "std_ratio_null": 0.179346,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "50": 8
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.018428,
+          "D": 0.018428,
+          "r": 1.0,
+          "pasos": 1495,
+          "P_real": 0.817723,
+          "P_null": 0.011686,
+          "P_real_std": 0.014263,
+          "P_null_std": 0.011947,
+          "z": 3.224,
+          "std_ratio_real": 0.916422,
+          "std_ratio_null": 0.916422,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 0.184283,
+          "D": 0.018428,
+          "r": 10.0,
+          "pasos": 1495,
+          "P_real": 0.9026,
+          "P_null": 0.020243,
+          "P_real_std": 0.003958,
+          "P_null_std": 0.021204,
+          "z": 3.529,
+          "std_ratio_real": 0.963652,
+          "std_ratio_null": 0.963652,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_rojo",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.018428,
+          "r": 54.264239,
+          "pasos": 1495,
+          "P_real": 0.942682,
+          "P_null": 0.0,
+          "P_real_std": 2e-05,
+          "P_null_std": 0.0,
+          "z": 3.771,
+          "std_ratio_real": 0.981555,
+          "std_ratio_null": 0.981555,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": true,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.03210147069400654,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 28.363332986831665
+    },
+    "ruido_azul": {
+      "familia": "ruido_azul",
+      "calibracion": {
+        "tiempos": [
+          50,
+          50,
+          50,
+          50
+        ],
+        "mediana": 50,
+        "pasos": 58,
+        "P_thr": 0.05,
+        "max_steps": 20000,
+        "lavo_todas": true
+      },
+      "pasos_fijo": 58,
+      "meta_por_eps": [
+        {
+          "eps": 0.0,
+          "D": 0.0,
+          "pasos": 58
+        },
+        {
+          "eps": 0.001,
+          "D": 0.6968632653461183,
+          "pasos": 58
+        },
+        {
+          "eps": 0.01,
+          "D": 0.6968632653461257,
+          "pasos": 58
+        },
+        {
+          "eps": 0.1,
+          "D": 0.6968632653461256,
+          "pasos": 58
+        },
+        {
+          "eps": 1.0,
+          "D": 0.6968632653461257,
+          "pasos": 58
+        }
+      ],
+      "filas": [
+        {
+          "familia": "ruido_azul",
+          "eps": 0.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.0,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "100": 4
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.0,
+          "r_target": 1.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.0,
+          "r": Infinity,
+          "pasos": 58,
+          "P_real": 0.0,
+          "P_null": 0.0,
+          "P_real_std": 0.0,
+          "P_null_std": 0.0,
+          "z": 0.0,
+          "std_ratio_real": 0.0,
+          "std_ratio_null": 0.0,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.001,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.696863,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.000269,
+          "P_null": 0.0,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.0,
+          "z": 0.001,
+          "std_ratio_real": 0.016625,
+          "std_ratio_null": 0.016625,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "3": 3,
+            "4": 1,
+            "6": 2,
+            "7": 1,
+            "8": 2,
+            "10": 2,
+            "11": 6,
+            "12": 4,
+            "14": 1,
+            "15": 2,
+            "16": 3,
+            "18": 1,
+            "23": 1,
+            "27": 1,
+            "29": 2
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.001,
+          "r_target": 1.0,
+          "H": 0.696863,
+          "D": 0.696863,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.01499,
+          "P_null": 0.006532,
+          "P_real_std": 0.002413,
+          "P_null_std": 0.005137,
+          "z": 0.034,
+          "std_ratio_real": 0.272723,
+          "std_ratio_null": 0.272723,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.001,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.001,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.01,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.696863,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.000269,
+          "P_null": 0.0,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.0,
+          "z": 0.001,
+          "std_ratio_real": 0.016625,
+          "std_ratio_null": 0.016625,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "3": 3,
+            "4": 1,
+            "6": 2,
+            "7": 1,
+            "8": 2,
+            "10": 2,
+            "11": 6,
+            "12": 4,
+            "14": 1,
+            "15": 2,
+            "16": 3,
+            "18": 1,
+            "23": 1,
+            "27": 1,
+            "29": 2
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.01,
+          "r_target": 1.0,
+          "H": 0.696863,
+          "D": 0.696863,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.01499,
+          "P_null": 0.006532,
+          "P_real_std": 0.002413,
+          "P_null_std": 0.005137,
+          "z": 0.034,
+          "std_ratio_real": 0.272723,
+          "std_ratio_null": 0.272723,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.01,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.01,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.1,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.696863,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.000269,
+          "P_null": 0.0,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.0,
+          "z": 0.001,
+          "std_ratio_real": 0.016625,
+          "std_ratio_null": 0.016625,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "3": 3,
+            "4": 1,
+            "6": 2,
+            "7": 1,
+            "8": 2,
+            "10": 2,
+            "11": 6,
+            "12": 4,
+            "14": 1,
+            "15": 2,
+            "16": 3,
+            "18": 1,
+            "23": 1,
+            "27": 1,
+            "29": 2
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.1,
+          "r_target": 1.0,
+          "H": 0.696863,
+          "D": 0.696863,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.01499,
+          "P_null": 0.006532,
+          "P_real_std": 0.002413,
+          "P_null_std": 0.005137,
+          "z": 0.034,
+          "std_ratio_real": 0.272723,
+          "std_ratio_null": 0.272723,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.1,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 0.1,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 1.0,
+          "r_target": 0.0,
+          "H": 0.0,
+          "D": 0.696863,
+          "r": 0.0,
+          "pasos": 58,
+          "P_real": 0.000269,
+          "P_null": 0.0,
+          "P_real_std": 1e-06,
+          "P_null_std": 0.0,
+          "z": 0.001,
+          "std_ratio_real": 0.016625,
+          "std_ratio_null": 0.016625,
+          "frac_exp_mean": 0.0,
+          "T_fin_K": 1e+20,
+          "cuantos_k": {
+            "3": 3,
+            "4": 1,
+            "6": 2,
+            "7": 1,
+            "8": 2,
+            "10": 2,
+            "11": 6,
+            "12": 4,
+            "14": 1,
+            "15": 2,
+            "16": 3,
+            "18": 1,
+            "23": 1,
+            "27": 1,
+            "29": 2
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 1.0,
+          "r_target": 1.0,
+          "H": 0.696863,
+          "D": 0.696863,
+          "r": 1.0,
+          "pasos": 58,
+          "P_real": 0.01499,
+          "P_null": 0.006532,
+          "P_real_std": 0.002413,
+          "P_null_std": 0.005137,
+          "z": 0.034,
+          "std_ratio_real": 0.272723,
+          "std_ratio_null": 0.272723,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 1.0,
+          "r_target": 10.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        },
+        {
+          "familia": "ruido_azul",
+          "eps": 1.0,
+          "r_target": 100.0,
+          "H": 1.0,
+          "D": 0.696863,
+          "r": 1.435002,
+          "pasos": 58,
+          "P_real": 0.018023,
+          "P_null": 0.000194,
+          "P_real_std": 9.2e-05,
+          "P_null_std": 0.000336,
+          "z": 0.071,
+          "std_ratio_real": 0.301882,
+          "std_ratio_null": 0.301882,
+          "frac_exp_mean": 1.0,
+          "T_fin_K": 10000000000.0,
+          "cuantos_k": {
+            "1": 400
+          }
+        }
+      ],
+      "control_r0_lava": true,
+      "control_r0_detail": {
+        "mean_P_r0_eps_gt0": 0.0002693429672747283,
+        "n": 4,
+        "P_max": 0.15
+      },
+      "control_eps0_ok": true,
+      "control_eps0_detail": {
+        "frac_ok": 1.0,
+        "n": 4,
+        "P_max": 0.05
+      },
+      "elapsed_s": 1.295898199081421
+    }
+  },
+  "elapsed_s": 108.60113191604614,
+  "timestamp_fin": "2026-07-24 05:37:11"
+}
