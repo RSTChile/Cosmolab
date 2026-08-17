@@ -1,0 +1,4 @@
+N,metodo,theta,t_eval_s,t_100_iters_s,err_rel_medio,nota
+4000,layout_resortes_N2_exacto,,33.28,3328.0,0.0,la suma partícula-a-partícula del protocolo original; es la referencia
+4000,barnes_hut,0.3,14.409,1440.9,0.003433,theta=0.3 es el unico validado (INFRA); theta>=0.5 no paso la validacion
+4000,barnes_hut,0.5,5.607,560.7,0.010184,theta>=0.5 NO validado -- se mide solo como referencia

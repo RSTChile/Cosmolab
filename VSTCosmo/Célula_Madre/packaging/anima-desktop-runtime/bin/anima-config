@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CONFIG_DIR="${ANIMA_CONFIG_DIR:-$HOME/.config/anima}"
+
+case "${1:-show}" in
+  show)
+    echo "$CONFIG_DIR/organismo.env"
+    sed -n '1,160p' "$CONFIG_DIR/organismo.env" 2>/dev/null || true
+    echo
+    echo "$CONFIG_DIR/organelos.yml"
+    sed -n '1,220p' "$CONFIG_DIR/organelos.yml" 2>/dev/null || true
+    echo
+    echo "$CONFIG_DIR/hardware.yml"
+    sed -n '1,220p' "$CONFIG_DIR/hardware.yml" 2>/dev/null || true
+    ;;
+  edit)
+    install -d -m 0755 "$CONFIG_DIR"
+    exec "${EDITOR:-nano}" "$CONFIG_DIR/organismo.env"
+    ;;
+  *)
+    echo "Uso: anima-config [show|edit]" >&2
+    exit 2
+    ;;
+esac

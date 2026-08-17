@@ -1,0 +1,588 @@
+{
+  "experimento": "F2-6",
+  "titulo": "NULL alternativo: barajar la historia de cortes, no el acople final",
+  "modo": "smoke",
+  "N": 60,
+  "eps_list": [
+    0.0,
+    0.001,
+    0.5
+  ],
+  "r_targets": [
+    0.0,
+    0.5,
+    1.0,
+    10.0
+  ],
+  "semillas_ids": [
+    1000,
+    1001,
+    1002,
+    1003
+  ],
+  "n_semillas": 4,
+  "pasos_fijo": 575,
+  "calibracion_ref": {
+    "tiempos": [
+      500,
+      500,
+      500,
+      500
+    ],
+    "mediana": 500,
+    "pasos": 575,
+    "P_thr": 0.05,
+    "lavo_todas": true
+  },
+  "meta_por_eps": [
+    {
+      "eps": 0.0,
+      "D": 0.0,
+      "pasos": 575
+    },
+    {
+      "eps": 0.001,
+      "D": 0.009177599012169715,
+      "pasos": 575
+    },
+    {
+      "eps": 0.5,
+      "D": 0.009177599012164805,
+      "pasos": 575
+    }
+  ],
+  "grafo_final_identico_global": true,
+  "evaluacion_pass": {
+    "n_puntos_banda": 2,
+    "frac_puntos_gana_null_clasico": 1.0,
+    "frac_puntos_gana_null_seq": 0.0,
+    "frac_puntos_robustos": 0.0,
+    "frac_puntos_fragiles": 1.0,
+    "pass_null_clasico_ge_50pct": true,
+    "pass_null_seq_ge_50pct": false,
+    "veredicto": "FRAGIL_GANA_SOLO_UN_NULO"
+  },
+  "controles": {
+    "control_eps0_ok": true,
+    "control_r0_null_seq_colapsa_ok": true,
+    "detalle_r0": [
+      {
+        "eps": 0.001,
+        "n_cortadas_medio": 0.0,
+        "P_real_mean": 0.028995545166347135,
+        "P_null_seq_mean": 0.028995545166347135,
+        "diff_real_vs_seq": 0.0
+      },
+      {
+        "eps": 0.5,
+        "n_cortadas_medio": 0.0,
+        "P_real_mean": 0.02899554516635954,
+        "P_null_seq_mean": 0.02899554516635954,
+        "diff_real_vs_seq": 0.0
+      }
+    ]
+  },
+  "filas": [
+    {
+      "eps": 0.0,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.0,
+      "r": 0.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.0,
+      "P_real_std": 0.0,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.0,
+      "P_null_seq_std": 0.0,
+      "z_clasico": 0.0,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 0.0,
+      "P_real_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eps": 0.0,
+      "r_target": 0.5,
+      "H": 1.0,
+      "D": 0.0,
+      "r": Infinity,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.0,
+      "P_real_std": 0.0,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.0,
+      "P_null_seq_std": 0.0,
+      "z_clasico": 0.0,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 60.0,
+      "P_real_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eps": 0.0,
+      "r_target": 1.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r": Infinity,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.0,
+      "P_real_std": 0.0,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.0,
+      "P_null_seq_std": 0.0,
+      "z_clasico": 0.0,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 60.0,
+      "P_real_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eps": 0.0,
+      "r_target": 10.0,
+      "H": 1.0,
+      "D": 0.0,
+      "r": Infinity,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.0,
+      "P_real_std": 0.0,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.0,
+      "P_null_seq_std": 0.0,
+      "z_clasico": 0.0,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 60.0,
+      "P_real_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eps": 0.001,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.009177599012169715,
+      "r": 0.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.028995545166347135,
+      "P_real_std": 3.513418285331604e-14,
+      "P_null_clasico_mean": 0.00026864132484840747,
+      "P_null_clasico_std": 0.0004653004236500573,
+      "P_null_seq_mean": 0.028995545166347135,
+      "P_null_seq_std": 3.513418285331604e-14,
+      "z_clasico": 0.1149,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 0.0,
+      "P_real_por_semilla": [
+        0.028995545166291273,
+        0.02899554516635015,
+        0.028995545166359202,
+        0.028995545166387908
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0010745652993936299,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.028995545166291273,
+        0.02899554516635015,
+        0.028995545166359202,
+        0.028995545166387908
+      ]
+    },
+    {
+      "eps": 0.001,
+      "r_target": 0.5,
+      "H": 0.004588799506084857,
+      "D": 0.009177599012169715,
+      "r": 0.5,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.6344088937417264,
+      "P_real_std": 0.0569904233939671,
+      "P_null_clasico_mean": 0.007623249445755699,
+      "P_null_clasico_std": 0.01261573383617391,
+      "P_null_seq_mean": 0.690389778604233,
+      "P_null_seq_std": 0.04616666142952602,
+      "z_clasico": 2.5071,
+      "z_seq": -0.2239,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 54.5,
+      "P_real_por_semilla": [
+        0.5401398040725199,
+        0.6590484131829575,
+        0.692394001728654,
+        0.6460533559827742
+      ],
+      "P_null_clasico_por_semilla": [
+        0.029462180944298644,
+        0.0,
+        0.0,
+        0.0010308168387241545
+      ],
+      "P_null_seq_por_semilla": [
+        0.6186002155759092,
+        0.6874542772105815,
+        0.7446515172393393,
+        0.710853104391102
+      ]
+    },
+    {
+      "eps": 0.001,
+      "r_target": 1.0,
+      "H": 0.009177599012169715,
+      "D": 0.009177599012169715,
+      "r": 1.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.7156353814672266,
+      "P_real_std": 0.015481692018150748,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.7428535347560373,
+      "P_null_seq_std": 0.01674656330004706,
+      "z_clasico": 2.8625,
+      "z_seq": -0.1089,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 59.75,
+      "P_real_por_semilla": [
+        0.6948033815531827,
+        0.722531140249006,
+        0.7363893286849595,
+        0.7088176753817583
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.7716928639923235,
+        0.7360778094873963,
+        0.7312009044085034,
+        0.7324425611359261
+      ]
+    },
+    {
+      "eps": 0.001,
+      "r_target": 10.0,
+      "H": 0.09177599012169715,
+      "D": 0.009177599012169715,
+      "r": 10.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.8990463206074899,
+      "P_real_std": 0.018251132172674815,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.8900077624833577,
+      "P_null_seq_std": 0.015258341815833427,
+      "z_clasico": 3.5962,
+      "z_seq": 0.0362,
+      "gana_clasico": true,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": true,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 60.0,
+      "P_real_por_semilla": [
+        0.8906578433811764,
+        0.8886757995479309,
+        0.8863062465541598,
+        0.9305453929466924
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.8934591589794617,
+        0.892829351205232,
+        0.9079866589000771,
+        0.86575588084866
+      ]
+    },
+    {
+      "eps": 0.5,
+      "r_target": 0.0,
+      "H": 0.0,
+      "D": 0.009177599012164805,
+      "r": 0.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.02899554516635954,
+      "P_real_std": 5.789923841855808e-17,
+      "P_null_clasico_mean": 0.00026864132484922886,
+      "P_null_clasico_std": 0.00046530042365148,
+      "P_null_seq_mean": 0.02899554516635954,
+      "P_null_seq_std": 5.789923841855808e-17,
+      "z_clasico": 0.1149,
+      "z_seq": 0.0,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 0.0,
+      "P_real_por_semilla": [
+        0.028995545166359608,
+        0.028995545166359583,
+        0.02899554516635948,
+        0.028995545166359483
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0010745652993969154,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.028995545166359608,
+        0.028995545166359583,
+        0.02899554516635948,
+        0.028995545166359483
+      ]
+    },
+    {
+      "eps": 0.5,
+      "r_target": 0.5,
+      "H": 0.004588799506082403,
+      "D": 0.009177599012164805,
+      "r": 0.5,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.6344088937416834,
+      "P_real_std": 0.0569904233938626,
+      "P_null_clasico_mean": 0.007623249445743471,
+      "P_null_clasico_std": 0.01261573383616687,
+      "P_null_seq_mean": 0.6903897786043383,
+      "P_null_seq_std": 0.046166661429651985,
+      "z_clasico": 2.5071,
+      "z_seq": -0.2239,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 54.5,
+      "P_real_por_semilla": [
+        0.5401398040726074,
+        0.6590484131828159,
+        0.6923940017284228,
+        0.6460533559828872
+      ],
+      "P_null_clasico_por_semilla": [
+        0.02946218094427481,
+        0.0,
+        0.0,
+        0.0010308168386990743
+      ],
+      "P_null_seq_por_semilla": [
+        0.6186002155758316,
+        0.6874542772106425,
+        0.7446515172396029,
+        0.7108531043912765
+      ]
+    },
+    {
+      "eps": 0.5,
+      "r_target": 1.0,
+      "H": 0.009177599012164805,
+      "D": 0.009177599012164805,
+      "r": 1.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.7156353814672307,
+      "P_real_std": 0.015481692018121834,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.7428535347560516,
+      "P_null_seq_std": 0.01674656330007713,
+      "z_clasico": 2.8625,
+      "z_seq": -0.1089,
+      "gana_clasico": false,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": false,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 59.75,
+      "P_real_por_semilla": [
+        0.694803381553218,
+        0.7225311402489725,
+        0.7363893286849333,
+        0.7088176753817994
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.771692863992374,
+        0.7360778094875295,
+        0.7312009044083868,
+        0.7324425611359163
+      ]
+    },
+    {
+      "eps": 0.5,
+      "r_target": 10.0,
+      "H": 0.09177599012164805,
+      "D": 0.009177599012164805,
+      "r": 10.0,
+      "pasos": 575,
+      "n_semillas": 4,
+      "P_real_mean": 0.8990463206075194,
+      "P_real_std": 0.018251132172685845,
+      "P_null_clasico_mean": 0.0,
+      "P_null_clasico_std": 0.0,
+      "P_null_seq_mean": 0.8900077624834063,
+      "P_null_seq_std": 0.015258341815828365,
+      "z_clasico": 3.5962,
+      "z_seq": 0.0362,
+      "gana_clasico": true,
+      "gana_seq": false,
+      "robusto": false,
+      "fragil": true,
+      "grafo_final_identico_todas": true,
+      "n_cortadas_medio": 60.0,
+      "P_real_por_semilla": [
+        0.8906578433812796,
+        0.8886757995478793,
+        0.8863062465541814,
+        0.9305453929467372
+      ],
+      "P_null_clasico_por_semilla": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "P_null_seq_por_semilla": [
+        0.8934591589795565,
+        0.8928293512053083,
+        0.9079866589000704,
+        0.86575588084869
+      ]
+    }
+  ],
+  "elapsed_s": 10.13656997680664,
+  "timestamp_fin": "2026-07-24 05:35:53",
+  "pre_registrado": {
+    "criterio_pass": "z_clasico>=3 y z_seq>=3 simultaneamente en >=50% de los puntos de la banda r>=10, eps>1e-6",
+    "veredicto_fragil_si": "gana a un NULL y no al otro en el mismo punto",
+    "banda_congelamiento_r": 10.0,
+    "eps_min_banda": 1e-06,
+    "z_pass": 3.0
+  }
+}

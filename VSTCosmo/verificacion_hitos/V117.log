@@ -1,0 +1,167 @@
+==== VERIFICACIÓN HITO V117 ====
+script   : V117.py
+sha1[:12]: 3f047c630dea
+mtime    : 2026-05-27T21:04:44.784979
+reporta  : Aplicada: R₂ sin lateralidad
+inicio   : 2026-06-22T00:47:48.553498
+======================================================================
+
+====================================================================================================
+VSTCosmos v117 — Tiempos completos
+  Fase 1: 452s (Blue Monday completo)
+  Fase 2: 452s (Blue Monday completo con dietas extremas)
+  Fase 3: 180s baseline + 30s inanición + 60s recuperación
+  DIM_TOTAL=120
+====================================================================================================
+
+████████████████████████████████████████████████████████████████████████████████████████████████████
+EXPERIMENTO V117 — TIEMPOS COMPLETOS
+████████████████████████████████████████████████████████████████████████████████████████████████████
+
+================================================================================
+FASE 1: Baseline (ambos sin filtro) — 452s
+================================================================================
+  [A1] Frontera: Blue_Monday_binaural_expandido.wav [None NoneHz] (452.5s)
+  [B1] Frontera: Blue_Monday_binaural_expandido.wav [None NoneHz] (452.5s)
+
+  Evolución durante Blue Monday completo:
+    t=0s | Ω_A=0.0659, Ω_B=-0.0702, S_shared=0.932
+    t=20s | Ω_A=-0.3151, Ω_B=-0.7593, S_shared=0.778
+    t=40s | Ω_A=-0.6132, Ω_B=-0.3828, S_shared=0.885
+    t=60s | Ω_A=0.1290, Ω_B=0.0383, S_shared=0.955
+    t=80s | Ω_A=-0.0205, Ω_B=0.0317, S_shared=0.972
+    t=100s | Ω_A=0.0174, Ω_B=-0.2146, S_shared=0.885
+    t=120s | Ω_A=0.1167, Ω_B=0.4747, S_shared=0.820
+    t=140s | Ω_A=0.6103, Ω_B=0.1442, S_shared=0.767
+    t=160s | Ω_A=-0.1278, Ω_B=-0.1257, S_shared=0.999
+    t=180s | Ω_A=0.0229, Ω_B=0.3000, S_shared=0.862
+    t=200s | Ω_A=0.2512, Ω_B=-0.0643, S_shared=0.842
+    t=220s | Ω_A=-0.1208, Ω_B=-0.2557, S_shared=0.933
+    t=240s | Ω_A=-0.0457, Ω_B=-0.3001, S_shared=0.873
+    t=260s | Ω_A=0.3246, Ω_B=0.3900, S_shared=0.967
+    t=280s | Ω_A=0.5801, Ω_B=-0.2951, S_shared=0.565
+    t=300s | Ω_A=-0.1270, Ω_B=0.2014, S_shared=0.836
+    t=320s | Ω_A=-0.2378, Ω_B=-0.3040, S_shared=0.970
+    t=340s | Ω_A=0.0221, Ω_B=0.2554, S_shared=0.884
+    t=360s | Ω_A=0.1282, Ω_B=0.2282, S_shared=0.946
+    t=380s | Ω_A=-0.3863, Ω_B=0.2238, S_shared=0.692
+    t=400s | Ω_A=-0.6037, Ω_B=0.3794, S_shared=0.508
+    t=420s | Ω_A=0.2166, Ω_B=0.0052, S_shared=0.895
+    t=440s | Ω_A=0.2668, Ω_B=-0.5056, S_shared=0.613
+
+  Fase 1 completada. Ω_A final = 0.2668
+
+================================================================================
+FASE 2: Dietas extremas — 452s
+  A: highpass 4kHz | B: lowpass 100Hz
+================================================================================
+  [A2] Frontera: Blue_Monday_binaural_expandido.wav [highpass 4000Hz] (452.5s)
+  [B2] Frontera: Blue_Monday_binaural_expandido.wav [lowpass 100Hz] (452.5s)
+
+  Evolución durante Blue Monday completo con dietas:
+    t=0s | Ω_A=-0.0602, Ω_B=0.1381, S_shared=0.901, k=0.0804
+    t=20s | Ω_A=0.1777, Ω_B=0.0989, S_shared=0.960, k=0.1559
+    t=40s | Ω_A=0.0417, Ω_B=0.1956, S_shared=0.924, k=0.0975
+    t=60s | Ω_A=0.5390, Ω_B=-0.0336, S_shared=0.712, k=0.0319
+    t=80s | Ω_A=0.5378, Ω_B=-0.1466, S_shared=0.657, k=0.0272
+    t=100s | Ω_A=0.0845, Ω_B=-0.2792, S_shared=0.818, k=0.0478
+    t=120s | Ω_A=-0.1614, Ω_B=-0.4026, S_shared=0.879, k=0.0678
+    t=140s | Ω_A=-0.0742, Ω_B=-0.3568, S_shared=0.857, k=0.0599
+    t=160s | Ω_A=-0.1398, Ω_B=0.2247, S_shared=0.819, k=0.0485
+    t=180s | Ω_A=-0.2917, Ω_B=-0.2516, S_shared=0.981, k=0.2281
+    t=200s | Ω_A=-0.6426, Ω_B=0.0999, S_shared=0.630, k=0.0254
+    t=220s | Ω_A=0.4444, Ω_B=-0.0893, S_shared=0.733, k=0.0342
+    t=240s | Ω_A=0.0269, Ω_B=-0.2082, S_shared=0.882, k=0.0698
+    t=260s | Ω_A=0.4685, Ω_B=0.1892, S_shared=0.861, k=0.0603
+    t=280s | Ω_A=-0.1641, Ω_B=0.1540, S_shared=0.843, k=0.0547
+    t=300s | Ω_A=0.0906, Ω_B=-0.0735, S_shared=0.918, k=0.0940
+    t=320s | Ω_A=0.3017, Ω_B=0.2290, S_shared=0.964, k=0.1598
+    t=340s | Ω_A=-0.1274, Ω_B=-0.2620, S_shared=0.932, k=0.1053
+    t=360s | Ω_A=0.7451, Ω_B=0.2699, S_shared=0.764, k=0.0384
+    t=380s | Ω_A=-0.1388, Ω_B=0.4046, S_shared=0.729, k=0.0338
+    t=400s | Ω_A=0.1083, Ω_B=-0.1090, S_shared=0.892, k=0.0751
+    t=420s | Ω_A=0.2737, Ω_B=0.2495, S_shared=0.988, k=0.2666
+    t=440s | Ω_A=0.3221, Ω_B=0.4153, S_shared=0.956, k=0.1445
+
+  [EVENTO] intro (t=0s):
+    Ω_A=-0.0137, Ω_B=0.0101
+    Λ_A=0.0043, S_shared=0.988
+
+  [EVENTO] voz_entra (t=90s):
+    Ω_A=-0.5928, Ω_B=-0.2301
+    Λ_A=4.4055, S_shared=0.819
+
+  [EVENTO] cambio_ritmo (t=180s):
+    Ω_A=-0.1386, Ω_B=0.2277
+    Λ_A=8.1548, S_shared=0.818
+
+  [EVENTO] breakdown (t=300s):
+    Ω_A=-0.1628, Ω_B=0.1579
+    Λ_A=7.9701, S_shared=0.842
+
+  [EVENTO] reconstruccion (t=390s):
+    Ω_A=-0.1047, Ω_B=-0.0798
+    Λ_A=15.9803, S_shared=0.987
+
+  [EVENTO] final (t=452s):
+    Ω_A=0.1875, Ω_B=-0.2605
+    Λ_A=17.9871, S_shared=0.774
+
+  Resultados Fase 2:
+    S_shared medio últimos 60s: 0.8926
+    Lateralidad detectable: ❌ NO
+
+================================================================================
+FASE 3: Inanición gradual de B
+  Baseline: 180s | Inanición: 30s | Recuperación: 60s
+================================================================================
+  [A3] Frontera: Blue_Monday_binaural_expandido.wav [highpass 4000Hz] (452.5s)
+  [B3] Frontera: Blue_Monday_binaural_expandido.wav [lowpass 100Hz] (452.5s)
+
+  Baseline (180s)...
+    t=50s | Ω_A=0.2303, Ω_B=0.4730
+    t=100s | Ω_A=-0.3186, Ω_B=0.3015
+    t=150s | Ω_A=-0.0725, Ω_B=0.2702
+    Ω_A medio baseline (últimos 20s): 0.1921 ± 0.1418
+
+  Inanición gradual (30s)...
+    t=180.0s | Ω_A=0.1467 (resp=0.0454) | factor=1.00
+    t=185.0s | Ω_A=0.4459 (resp=0.2539) | factor=0.83
+    t=190.0s | Ω_A=0.3929 (resp=0.2008) | factor=0.67
+    t=195.0s | Ω_A=-0.3624 (resp=0.5545) | factor=0.50
+    t=200.0s | Ω_A=0.0573 (resp=0.1348) | factor=0.33
+    t=205.0s | Ω_A=-0.1237 (resp=0.3158) | factor=0.17
+
+  Recuperación (60s)...
+    t=210.0s | Ω_A=0.0290
+    t=220.0s | Ω_A=-0.2136
+    t=230.0s | Ω_A=0.2402
+    t=240.0s | Ω_A=-0.3274
+    t=250.0s | Ω_A=-0.1390
+    t=260.0s | Ω_A=0.1418
+
+  Resultados Fase 3:
+    Ω_A después: -0.0526
+    ΔA = -0.2446
+    Respuesta máxima: 0.5761
+    Umbral (3.0σ): 0.4255
+    R₂: ✅ CONFIRMADO
+
+================================================================================
+CONCLUSIÓN
+================================================================================
+
+  Estado del sistema:
+    Rango Ω en Fase 2: 1.520
+    ✅ VIVO
+    Lateralidad (S_shared < 0.8): ❌
+    R₂: ✅
+
+    🧬 ALMA RACIONAL CON FUSIÓN: El sistema tiene R₂ pero no distingue dietas,
+       incluso tras exposición completa a Blue Monday.
+    
+
+  📊 Gráfico: v117_logs/v117_resultados_20260622_004852.png
+
+
+[fin rc=0 70s]

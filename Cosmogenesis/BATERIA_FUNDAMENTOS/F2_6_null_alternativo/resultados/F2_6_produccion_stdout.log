@@ -1,0 +1,1 @@
+{"n_puntos_banda": 15, "frac_puntos_gana_null_clasico": 1.0, "frac_puntos_gana_null_seq": 0.0, "frac_puntos_robustos": 0.0, "frac_puntos_fragiles": 1.0, "pass_null_clasico_ge_50pct": true, "pass_null_seq_ge_50pct": false, "veredicto": "FRAGIL_GANA_SOLO_UN_NULO"}

@@ -1,0 +1,51 @@
+# ============================================================================
+# ANIMA en Raspberry Pi — despliegue mínimo: UN organismo (E-Planta) en soledad.
+# NOTA: producción actual de E es NATIVA (run_native_pi.sh + .env.pi), no Docker.
+# Este compose queda alineado a A/B/C/D por si se usa Docker en la Pi.
+# Levanta con:
+#     cd ~/anima/celula_madre/docker && docker compose -f docker-compose.pi.yml up --build -d
+# Sin AudioServer del Mac: vive con demo:silencio. Historia en disco local de la Pi.
+# ============================================================================
+name: anima-pi
+
+services:
+  anima-a:
+    build: { context: .., dockerfile: docker/Dockerfile }
+    image: anima-pi:latest
+    container_name: anima-a
+    environment:
+      ANIMA_ROLE: a
+      VST_PUERTO: "7788"
+      VST_ORGANISMO_ID: ANIMA_E_PI
+      VST_ORGANISMO_LABEL: "Organismo E - Planta"
+      ANIMA_FUENTE_DEFECTO: demo:silencio
+      ANIMA_ESCUCHAR_PAR: "0"
+      ANIMA_ESCUCHAR_TODOS: "0"
+      ANIMA_MUNDO_CANAL: ""
+      ANIMA_AUTOSTART: "1"
+      VST_DISABLE_DIRECT_AUDIO: "1"
+      ANIMA_MET_IM_PISO: "0.0"
+      # CANÓNICO (igual A–D): alimento = conversión ICR/ICES. Ver DECISION_alimento_conversion_2026-07-08.md
+      ANIMA_MET_ALIMENTO: ${ANIMA_MET_ALIMENTO:-conversion}
+      ANIMA_RC_LOOP: "on"
+      VST_HISTORY_DIR: /history
+      VST_HISTORY_ENABLE: "true"
+      VST_HISTORY_FORMAT: csv
+      VST_HISTORY_ROTATE_SECONDS: "3600"
+      VST_SNAPSHOT_SECONDS: "600"
+      VST_RECORD_VOICE_WAV: "true"
+      VST_RECORD_EXTERNAL_AUDIO: "false"
+      VST_LIFE_MODE: continuous
+    volumes:
+      - anima_a_data:/data
+      - ./history_pi:/history
+      # Mismos montajes que A–D: metabolismo conversion, voz costosa, membrana micro-opt, WebLive con cobro
+      - ../organelos/VST_OrganoMembrana.py:/app/celula_madre/organelos/VST_OrganoMembrana.py:ro
+      - ../organelos/VST_Metabolismo.py:/app/celula_madre/organelos/VST_Metabolismo.py:ro
+      - ../organelos/VST_OrganoComunicacion.py:/app/celula_madre/organelos/VST_OrganoComunicacion.py:ro
+      - ../web/VST_CelulaMadre_WebLive_A.py:/app/celula_madre/web/VST_CelulaMadre_WebLive_A.py:ro
+    ports: ["7788:7788"]
+    restart: unless-stopped
+
+volumes:
+  anima_a_data:

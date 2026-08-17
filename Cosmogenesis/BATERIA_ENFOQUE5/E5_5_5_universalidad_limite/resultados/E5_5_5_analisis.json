@@ -1,0 +1,104 @@
+{
+  "experimento": "E5.5-5",
+  "dispersion_entre_familias_por_eps": [
+    {
+      "eps": 0.0,
+      "X_entre_familias_mean": 0.0,
+      "X_entre_familias_std": 0.0,
+      "X_entre_familias_rango": 0.0,
+      "S_ent_entre_familias_std": 0.0,
+      "S_ent_entre_familias_rango": 0.0,
+      "E_frac_entre_familias_std": 0.0
+    },
+    {
+      "eps": 1e-06,
+      "X_entre_familias_mean": 0.0025077670661641225,
+      "X_entre_familias_std": 0.005598177745079797,
+      "X_entre_familias_rango": 0.015025396367272405,
+      "S_ent_entre_familias_std": 5.457812425614245e-16,
+      "S_ent_entre_familias_rango": 1.4432899320127035e-15,
+      "E_frac_entre_familias_std": 1.1503896476929926e-14
+    },
+    {
+      "eps": 1e-05,
+      "X_entre_familias_mean": 0.0025077670818252715,
+      "X_entre_familias_std": 0.005598177736642996,
+      "X_entre_familias_rango": 0.015025396362792784,
+      "S_ent_entre_familias_std": 5.29111063919326e-14,
+      "S_ent_entre_familias_rango": 1.4199752484955752e-13,
+      "E_frac_entre_familias_std": 4.468561475845092e-15
+    },
+    {
+      "eps": 0.0001,
+      "X_entre_familias_mean": 0.0025077670816474073,
+      "X_entre_familias_std": 0.005598177736534684,
+      "X_entre_familias_rango": 0.01502539636240016,
+      "S_ent_entre_familias_std": 5.291796744998449e-12,
+      "S_ent_entre_familias_rango": 1.420319417633209e-11,
+      "E_frac_entre_familias_std": 4.2431246389247614e-15
+    },
+    {
+      "eps": 0.001,
+      "X_entre_familias_mean": 0.002507767081614407,
+      "X_entre_familias_std": 0.005598177736542672,
+      "X_entre_familias_rango": 0.015025396362392973,
+      "S_ent_entre_familias_std": 5.291744828932903e-10,
+      "S_ent_entre_familias_rango": 1.4202941045482476e-09,
+      "E_frac_entre_familias_std": 4.07418068009084e-15
+    },
+    {
+      "eps": 0.01,
+      "X_entre_familias_mean": 0.0025077670816095418,
+      "X_entre_familias_std": 0.005598177736546107,
+      "X_entre_familias_rango": 0.01502539636239669,
+      "S_ent_entre_familias_std": 5.291321627338812e-08,
+      "S_ent_entre_familias_rango": 1.420180604227994e-07,
+      "E_frac_entre_familias_std": 3.513173244556894e-15
+    },
+    {
+      "eps": 0.1,
+      "X_entre_familias_mean": 0.0025077670816095834,
+      "X_entre_familias_std": 0.005598177736546148,
+      "X_entre_familias_rango": 0.015025396362396816,
+      "S_ent_entre_familias_std": 5.2873614356059694e-06,
+      "S_ent_entre_familias_rango": 1.419117970935524e-05,
+      "E_frac_entre_familias_std": 3.2052582883972503e-15
+    },
+    {
+      "eps": 0.3,
+      "X_entre_familias_mean": 0.0025077670816095734,
+      "X_entre_familias_std": 0.005598177736546126,
+      "X_entre_familias_rango": 0.015025396362396758,
+      "S_ent_entre_familias_std": 4.7522842511321766e-05,
+      "S_ent_entre_familias_rango": 0.0001275504688397211,
+      "E_frac_entre_familias_std": 3.161375089747102e-15
+    }
+  ],
+  "nota": "Ver tambien verificacion suplementaria post-hoc de ruido_blanco (falso plateau de calibracion, reportada aparte, no incluida en este JSON del grid oficial)",
+  "verificacion_posthoc_ruido_blanco": {
+    "motivo": "grid oficial muestra ruido_blanco con X~0.015 (3 ordenes de magnitud sobre las otras 5 familias) pese a plateau declarado por calibracion adaptativa a pasos_muerte=400",
+    "metodo": "corrida diagnostica FUERA del grid congelado (no modifica E5_5_5_produccion_resultado.json), eps=1e-2, semillas 1000-1002, pasos crecientes",
+    "resultados_X_mean": {
+      "400_pasos_muerte_usado_en_grid": 0.0150294,
+      "1600": 0.00500687,
+      "6400": 0.0004279,
+      "25600_pasos_muerte_otras_4_familias_lentas": 3e-08,
+      "102400": 0.0
+    },
+    "conclusion": "FALSO PLATEAU de la calibracion adaptativa (hombro transitorio en la curva de decaimiento, no plateau real). A profundidad comparable (25600 pasos) ruido_blanco SI converge al mismo estado casi-nulo que las otras 5 familias. El grid oficial (X=0.015 congelado) se reporta tal cual fue producido por el protocolo, con esta nota de interpretacion adjunta (Addendum #3 del pre-registro). NO se sustituye el JSON de produccion."
+  },
+  "timestamps": {
+    "inicio": "2026-07-24 21:20:58",
+    "fin": "2026-07-24 23:16:22",
+    "elapsed_s": 6924.24169588089,
+    "elapsed_min": 115.4
+  },
+  "pasos_muerte_por_familia": {
+    "multi_modo": 25600,
+    "modo_unico": 25600,
+    "bulto_gaussiano": 25600,
+    "ruido_blanco": 400,
+    "ruido_rojo": 25600,
+    "ruido_azul": 400
+  }
+}

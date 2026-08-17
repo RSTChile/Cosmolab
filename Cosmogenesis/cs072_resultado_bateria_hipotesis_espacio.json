@@ -1,0 +1,97 @@
+{
+  "H1_corte_duro": {
+    "baseline": {
+      "bariones": 3,
+      "antibariones": 0,
+      "protones": 2,
+      "hidrogeno": 2,
+      "quarks_sueltos": 1
+    },
+    "con_corte": {
+      "bariones": 2,
+      "antibariones": 0,
+      "protones": 2,
+      "hidrogeno": 2,
+      "quarks_sueltos": 4
+    },
+    "bariones_baseline": [
+      [
+        "21",
+        "22",
+        "23"
+      ],
+      [
+        "24",
+        "25",
+        "26"
+      ],
+      [
+        "27",
+        "28",
+        "29"
+      ]
+    ],
+    "bariones_corte": [
+      [
+        "21",
+        "22",
+        "23"
+      ],
+      [
+        "24",
+        "25",
+        "29"
+      ]
+    ],
+    "cambio": true
+  },
+  "H2_umbral_local": {
+    "bariones": 3,
+    "hidrogeno": 2,
+    "bariones_indices": [
+      [
+        "21",
+        "22",
+        "23"
+      ],
+      [
+        "24",
+        "25",
+        "26"
+      ],
+      [
+        "27",
+        "28",
+        "29"
+      ]
+    ],
+    "cambio": false
+  },
+  "H2b_umbral_local_mas_corte": {
+    "bariones": 0,
+    "hidrogeno": 0,
+    "bariones_indices": [],
+    "cambio": true
+  },
+  "H3_diagnostico_distancia": {
+    "d_media_todos_los_pares": 7.799997034294072,
+    "d_media_trio_formado": 7.7141048228891
+  },
+  "H4_generalizacion_eps1": {
+    "baseline": {
+      "bariones": 7,
+      "antibariones": 0,
+      "protones": 4,
+      "hidrogeno": 4,
+      "quarks_sueltos": 0
+    },
+    "con_corte": {
+      "bariones": 0,
+      "antibariones": 0,
+      "protones": 0,
+      "hidrogeno": 0,
+      "quarks_sueltos": 21
+    },
+    "cambio": true
+  }
+}

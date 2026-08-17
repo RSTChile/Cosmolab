@@ -1,0 +1,30 @@
+[phantom] 16 corridas pendientes de 16 con IC
+[1/16] A2-B0-C2-f701-r1050: frac_masa=0.08750000000000002 n_sinks=8 kappa_v=0.39204545454545464 (16s, acumulado 0.3 min)
+[2/16] A2-B0-C2-f701-r1119: frac_masa=0.09050000000000001 n_sinks=8 kappa_v=0.41666666666666674 (17s, acumulado 0.5 min)
+[3/16] A2-B0-C2-f701-r1132: frac_masa=0.08600000000000003 n_sinks=8 kappa_v=0.46666666666666673 (16s, acumulado 0.8 min)
+[4/16] A2-B0-C2-f701-r1181: frac_masa=0.08500000000000003 n_sinks=8 kappa_v=0.46296296296296285 (16s, acumulado 1.1 min)
+[5/16] A2-B0-C2-f701-r12: frac_masa=0.07950000000000002 n_sinks=8 kappa_v=0.30357142857142866 (15s, acumulado 1.3 min)
+[6/16] A2-B0-C2-f701-r190: frac_masa=0.07100000000000001 n_sinks=8 kappa_v=0.4920634920634915 (14s, acumulado 1.6 min)
+[7/16] A2-B0-C2-f701-r203: frac_masa=0.08750000000000002 n_sinks=8 kappa_v=0.5294117647058822 (16s, acumulado 1.8 min)
+[8/16] A2-B0-C2-f701-r470: frac_masa=0.08050000000000002 n_sinks=8 kappa_v=0.4137931034482757 (16s, acumulado 2.1 min)
+[9/16] A2-B0-C2-f701-r48: frac_masa=0.07800000000000001 n_sinks=8 kappa_v=0.5294117647058822 (13s, acumulado 2.3 min)
+[10/16] A2-B0-C2-f701-r52: frac_masa=0.07400000000000001 n_sinks=8 kappa_v=0.3399999999999999 (13s, acumulado 2.5 min)
+[11/16] A2-B0-C2-f701-r598: frac_masa=0.08250000000000002 n_sinks=8 kappa_v=0.3975155279503098 (10s, acumulado 2.7 min)
+[12/16] A2-B0-C2-f701-r68: frac_masa=0.07800000000000001 n_sinks=8 kappa_v=0.4117647058823529 (10s, acumulado 2.9 min)
+[13/16] A2-B0-C2-f701-r73: frac_masa=0.07650000000000001 n_sinks=8 kappa_v=0.3673469387755103 (12s, acumulado 3.1 min)
+[14/16] A2-B0-C2-f701-r75: frac_masa=0.09000000000000004 n_sinks=8 kappa_v=0.44252873563218365 (14s, acumulado 3.3 min)
+[15/16] A2-B0-C2-f701-r822: frac_masa=0.07450000000000002 n_sinks=8 kappa_v=0.41176470588235287 (15s, acumulado 3.5 min)
+[16/16] A2-B0-C2-f701-r964: frac_masa=0.08400000000000003 n_sinks=8 kappa_v=0.44230769230769235 (15s, acumulado 3.8 min)
+[phantom] FIN — 16 corridas en 3.8 min
+== ronda 1:       16 resultados
+[phantom] 8 corridas pendientes de 24 con IC
+[1/8] A2-B0-C2-f701-r1179: frac_masa=0.07750000000000003 n_sinks=8 kappa_v=0.4285714285714286 (15s, acumulado 0.3 min)
+[2/8] A2-B0-C2-f701-r157: frac_masa=0.07600000000000003 n_sinks=8 kappa_v=0.45205479452054775 (16s, acumulado 0.5 min)
+[3/8] A2-B0-C2-f701-r336: frac_masa=0.07750000000000003 n_sinks=8 kappa_v=0.4583333333333334 (15s, acumulado 0.8 min)
+[4/8] A2-B0-C2-f701-r352: frac_masa=0.08100000000000002 n_sinks=8 kappa_v=0.40740740740740744 (14s, acumulado 1.0 min)
+[5/8] A2-B0-C2-f701-r454: frac_masa=0.07350000000000002 n_sinks=8 kappa_v=0.3018867924528302 (13s, acumulado 1.2 min)
+[6/8] A2-B0-C2-f701-r463: frac_masa=0.07850000000000003 n_sinks=8 kappa_v=0.3958333333333333 (15s, acumulado 1.5 min)
+[7/8] A2-B0-C2-f701-r894: frac_masa=0.07400000000000001 n_sinks=8 kappa_v=0.5390624999999997 (15s, acumulado 1.7 min)
+[8/8] A2-B0-C2-f701-r991: frac_masa=0.07150000000000001 n_sinks=8 kappa_v=0.36170212765957427 (15s, acumulado 2.0 min)
+[phantom] FIN — 8 corridas en 2.0 min
+== ronda 2:       24 resultados

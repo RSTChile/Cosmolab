@@ -1,0 +1,127 @@
+=== TAREA 1: huella vs acoplamiento, 2770 series (barridos) en total ===
+r(huella,acoplamiento): media=0.4576 desv=0.3167 min=-0.3918 max=0.9981
+  |r|<0.98: 2573/2770
+  |r|<0.90: 2386/2770
+  |r|<0.70: 2136/2770
+  |r|<0.50: 1676/2770
+
+r(huella, brecha=huella-8*(1-acoplamiento)): media=0.9593 desv=0.0389 min=0.8275 max=0.9998
+  |r|<0.98: 1590/2770
+  |r|<0.90: 284/2770
+  |r|<0.70: 0/2770
+  |r|<0.50: 0/2770
+
+20 series con |r(huella,acoplamiento)| MÁS BAJO (donde más se separan):
+  bateria3/Bprima clave=0.94|28|3|0.3|8 r=-0.0006 (pB=0.3 β=0.94 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.88|28|4.1|0.47|10 r=-0.0006 (pB=0.47 β=0.88 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.8|28|3|0.3|3 r=0.0010 (pB=0.3 β=0.8 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|4.1|0.47|9 r=-0.0016 (pB=0.47 β=0.98 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|3|0.3|7 r=0.0022 (pB=0.3 β=0.98 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.94|28|3|0.3|4 r=0.0023 (pB=0.3 β=0.94 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|4.1|0.47|1 r=0.0033 (pB=0.47 β=0.98 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.94|28|4.1|0.47|3 r=0.0033 (pB=0.47 β=0.94 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.94|28|3|0.3|7 r=-0.0043 (pB=0.3 β=0.94 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.94|28|4.1|0.47|1 r=-0.0043 (pB=0.47 β=0.94 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.88|28|3|0.3|9 r=0.0054 (pB=0.3 β=0.88 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.8|28|3|0.3|1 r=-0.0054 (pB=0.3 β=0.8 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.8|28|4.1|0.47|5 r=-0.0055 (pB=0.47 β=0.8 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|3|0.3|8 r=0.0067 (pB=0.3 β=0.98 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.8|28|3|0.3|10 r=0.0084 (pB=0.3 β=0.8 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|3|0.3|2 r=-0.0085 (pB=0.3 β=0.98 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.88|28|3|0.3|4 r=-0.0089 (pB=0.3 β=0.88 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.88|28|4.1|0.47|3 r=-0.0095 (pB=0.47 β=0.88 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.94|28|4.1|0.47|9 r=-0.0097 (pB=0.47 β=0.94 tOpt=28 sharp=4.1 sigma=6.8 modo=parada)
+  bateria3/Bprima clave=0.98|28|3|0.3|4 r=0.0101 (pB=0.3 β=0.98 tOpt=28 sharp=3 sigma=6.8 modo=parada)
+
+5 series con |r(huella,acoplamiento)| MÁS ALTO (casi-identidad):
+  bateria3/Bprima clave=0.8|22|4.1|0.65|1 r=0.9976
+  bateria3/Bprima clave=0.8|22|3|0.47|9 r=0.9977
+  bateria3/Bprima clave=0.8|22|4.1|0.65|7 r=0.9977
+  bateria3/Bprima clave=0.8|22|4.1|0.65|5 r=0.9977
+  bateria3/Bprima clave=0.8|22|4.1|0.65|9 r=0.9981
+
+
+=== TAREA 2: distribución de H_absLocal/H_rel/H_noiseLocal, vivo vs colapsado ===
+
+-- bateria/A --
+  VIVO (huella en el 50% superior de su serie, n=796):
+    H_absLocal: media=0.9180 mediana=0.9604 [0.3208, 1.0000]
+    H_rel:      media=4.1303 mediana=4.2287 [0.0000, 4.5047]
+    H_noiseLocal: media=4.3294 mediana=4.3339 [4.1934, 4.4357]
+  COLAPSADO (huella en el 10% inferior de su serie, n=30):
+    H_absLocal: media=1.5062 mediana=1.6556 [0.9007, 1.8980]
+    H_rel:      media=4.2180 mediana=4.2655 [3.9197, 4.4555]
+    H_noiseLocal: media=4.3290 mediana=4.3388 [4.2148, 4.3940]
+
+-- bateria/B --
+  VIVO (huella en el 50% superior de su serie, n=14948):
+    H_absLocal: media=0.9222 mediana=0.9544 [0.3843, 1.9507]
+    H_rel:      media=4.1267 mediana=4.2124 [0.0000, 4.5220]
+    H_noiseLocal: media=4.3292 mediana=4.3320 [4.1546, 4.4357]
+  COLAPSADO (huella en el 10% inferior de su serie, n=524):
+    H_absLocal: media=1.4344 mediana=1.6413 [0.7838, 1.9922]
+    H_rel:      media=4.2185 mediana=4.2660 [3.8863, 4.4576]
+    H_noiseLocal: media=4.3173 mediana=4.3388 [4.2660, 4.3825]
+
+-- bateria2/D --
+  VIVO (huella en el 50% superior de su serie, n=695):
+    H_absLocal: media=0.9549 mediana=0.9710 [0.4690, 1.9606]
+    H_rel:      media=4.2104 mediana=4.2332 [3.6123, 4.4966]
+    H_noiseLocal: media=4.3319 mediana=4.3361 [4.2084, 4.4197]
+  COLAPSADO (huella en el 10% inferior de su serie, n=70):
+    H_absLocal: media=0.9269 mediana=0.9413 [0.5886, 1.0000]
+    H_rel:      media=4.1855 mediana=4.2123 [3.5585, 4.4636]
+    H_noiseLocal: media=4.3390 mediana=4.3405 [4.2196, 4.4183]
+
+-- bateria2/Aprima --
+  VIVO (huella en el 50% superior de su serie, n=1160):
+    H_absLocal: media=0.9545 mediana=0.9710 [0.4690, 1.9606]
+    H_rel:      media=4.2198 mediana=4.2418 [3.5007, 4.4940]
+    H_noiseLocal: media=4.3300 mediana=4.3348 [4.1414, 4.4219]
+  COLAPSADO (huella en el 10% inferior de su serie, n=99):
+    H_absLocal: media=0.9253 mediana=0.9659 [0.4420, 1.0000]
+    H_rel:      media=4.1446 mediana=4.1608 [3.6162, 4.4572]
+    H_noiseLocal: media=4.3335 mediana=4.3343 [4.2196, 4.4125]
+
+-- bateria2/Bprima --
+  VIVO (huella en el 50% superior de su serie, n=33921):
+    H_absLocal: media=0.8463 mediana=0.9544 [0.0000, 2.2790]
+    H_rel:      media=3.7640 mediana=4.2122 [0.0000, 4.5204]
+    H_noiseLocal: media=4.3307 mediana=4.3351 [4.1701, 4.4309]
+  COLAPSADO (huella en el 10% inferior de su serie, n=3799):
+    H_absLocal: media=0.9432 mediana=0.9659 [0.0000, 1.9338]
+    H_rel:      media=4.1345 mediana=4.1709 [0.0000, 4.4732]
+    H_noiseLocal: media=4.3301 mediana=4.3337 [4.1922, 4.4170]
+
+-- bateria3/D --
+  VIVO (huella en el 50% superior de su serie, n=762):
+    H_absLocal: media=0.9308 mediana=0.9659 [0.4138, 1.0000]
+    H_rel:      media=4.2206 mediana=4.2504 [3.2526, 4.5015]
+    H_noiseLocal: media=4.3290 mediana=4.3320 [4.1612, 4.4057]
+  COLAPSADO (huella en el 10% inferior de su serie, n=101):
+    H_absLocal: media=0.9059 mediana=0.9341 [0.6098, 1.0284]
+    H_rel:      media=4.1745 mediana=4.2125 [3.5029, 4.4401]
+    H_noiseLocal: media=4.3360 mediana=4.3401 [4.2537, 4.4051]
+
+-- bateria3/Aprima --
+  VIVO (huella en el 50% superior de su serie, n=1125):
+    H_absLocal: media=0.9297 mediana=0.9659 [0.3843, 1.0000]
+    H_rel:      media=4.2140 mediana=4.2454 [3.2526, 4.5291]
+    H_noiseLocal: media=4.3307 mediana=4.3357 [4.1612, 4.4377]
+  COLAPSADO (huella en el 10% inferior de su serie, n=122):
+    H_absLocal: media=0.9244 mediana=0.9544 [0.4690, 1.0000]
+    H_rel:      media=4.1981 mediana=4.2225 [3.4901, 4.4669]
+    H_noiseLocal: media=4.3357 mediana=4.3391 [4.2313, 4.4110]
+
+-- bateria3/Bprima --
+  VIVO (huella en el 50% superior de su serie, n=39327):
+    H_absLocal: media=0.9234 mediana=0.9659 [0.0000, 1.0000]
+    H_rel:      media=4.1895 mediana=4.2412 [0.0000, 4.5259]
+    H_noiseLocal: media=4.3293 mediana=4.3340 [4.1612, 4.4258]
+  COLAPSADO (huella en el 10% inferior de su serie, n=5085):
+    H_absLocal: media=0.9446 mediana=0.9604 [0.5886, 1.9037]
+    H_rel:      media=4.2113 mediana=4.2318 [3.3217, 4.5268]
+    H_noiseLocal: media=4.3341 mediana=4.3382 [4.2235, 4.4258]
+
+
+Escrito: confound_huella_acoplamiento_por_serie.csv, distribucion_H_vivo_vs_colapsado.csv

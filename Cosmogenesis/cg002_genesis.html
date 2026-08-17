@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG002 — Génesis: persistencia de la diferencia → enredo → espacio-tiempo</title>
+<!--
+  CG002 GÉNESIS (Claude CC para Alexis) — ilustración del PRINCIPIO VALIDADO.
+  Se calculó la veracidad de la persistencia de la diferencia (§115, B PASS).
+  Aquí: lo que ese principio IMPLICA, sin métricas impuestas.
+
+   · Cada punto = una DIFERENCIA. color = ω (fase en ℤ₈) = su identidad.
+   · Persistencia S evoluciona por la REGLA VALIDADA de CG002 (acoplamiento dirigido):
+        a = 2π(ω_i−ω_j)/K ; g_{i←j}=cos(a+θ_CP) ; g_{j←i}=cos(−a+θ_CP)
+        f = α·η·g·√(S_i·S_j) ; S ← (1−μ)·S + Σ f
+     θ_CP = asimetría primordial (la flecha no es gratis: C-N2.5.6). α = intensidad del campo.
+   · Banda de viabilidad (C-N5.1): √S satura → persisten LAS POCAS que cooperan;
+     las que caen bajo κ_s SE APAGAN (C-N1.3, Ω_persistente ⊆ Ω_posible).
+   · SIN MÉTRICA IMPUESTA: la posición emerge SOLO de fuerzas dirigidas por el
+     acoplamiento W entre diferencias (fusión atrae, competencia repele). Nacen en
+     el foco (la singularidad); el espacio/tiempo se DESPLIEGA del enredo.
+   · La REJILLA es solo referencia para quien mira: escala con el despliegue (no
+     contiene ni posiciona nada) = el espacio-tiempo que las diferencias generan.
+-->
+<style>
+  html,body{margin:0;height:100%;background:#04050a;overflow:hidden;font-family:-apple-system,system-ui,sans-serif;color:#cfd6e4}
+  #c{display:block;width:100vw;height:100vh}
+  #hud{position:fixed;top:10px;left:12px;font-size:12px;line-height:1.55;text-shadow:0 0 6px #000;pointer-events:none}
+  #hud b{color:#fff}
+  #panel{position:fixed;top:10px;right:12px;background:rgba(9,12,20,.78);border:1px solid #1d2740;border-radius:10px;padding:10px 12px;font-size:12px;width:218px;backdrop-filter:blur(6px)}
+  #panel label{display:block;margin:8px 0 2px;color:#90a0c0}
+  #panel input[type=range]{width:100%}
+  #panel .val{color:#fff;float:right}
+  #panel .row{display:flex;gap:6px;margin-top:9px}
+  #panel button{flex:1;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:7px;padding:6px;cursor:pointer;font-size:11.5px}
+  #panel button:hover{background:#1f2c4d}
+  #panel .chk{margin-top:9px;color:#90a0c0}
+  #info{position:fixed;left:12px;bottom:12px;max-width:30vw;background:rgba(9,12,20,.82);border:1px solid #1d2740;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.5;display:none}
+  #info h3{margin:0 0 6px;font-size:13px;color:#fff}
+  #info .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  #info p{margin:5px 0}
+  #infoBtn{position:fixed;left:12px;bottom:12px;background:rgba(9,12,20,.8);border:1px solid #1d2740;border-radius:50%;width:30px;height:30px;color:#cfd6e4;cursor:pointer;font-size:15px}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud"></div>
+<button id="infoBtn" title="¿Qué estoy viendo?">?</button>
+<div id="info">
+  <h3>¿Qué estás viendo?</h3>
+  <p>Cada <b>punto es una diferencia</b> que intenta persistir. Nacen todas en el <b>foco</b> (la singularidad: antes del espacio y del tiempo).</p>
+  <p>El <b>color</b> es la <b>identidad</b> de la diferencia (su fase ω): 8 fases → 8 colores en la rueda. <b>Mismo color</b> ≈ cooperan (se atraen); <b>colores opuestos</b> ≈ compiten (se repelen y se apagan). El <b>tamaño/brillo</b> = cuánto persiste.</p>
+  <div id="legend" style="margin:5px 0"></div>
+  <p>Se <b>atraen</b> si cooperan, se <b>repelen</b> si compiten. <b>Persisten las pocas</b> que sostienen el acoplamiento; el resto <b>se apaga</b>.</p>
+  <p>De esa interacción <b>se despliega la extensión (espacio)</b> y la secuencia (<b>tiempo τ</b>). La <b>rejilla</b> es solo referencia: es el espacio-tiempo que ellas generan — crece con el despliegue, no las contiene.</p>
+  <p><b>θ_CP</b>: la asimetría primordial (la flecha del tiempo no es gratis). <b>α</b>: intensidad del campo de acoplamiento (α=0 ⇒ no pasa nada).</p>
+  <p style="color:#6b7795">Ilustración del principio validado (§115). Nada de geometría impuesta: todo emerge de la iteración.</p>
+  <button id="infoClose" style="margin-top:6px;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:6px;padding:4px 10px;cursor:pointer">cerrar</button>
+</div>
+<div id="panel">
+  <label>N diferencias <span class="val" id="vN">1000</span></label>
+  <input id="N" type="range" min="2" max="2000" step="1" value="1000">
+  <label>θ_CP · asimetría primordial <span class="val" id="vT">+0.30</span></label>
+  <input id="theta" type="range" min="-1" max="1" step="0.02" value="0.3">
+  <label>α · intensidad del acoplamiento <span class="val" id="vA">1.00</span></label>
+  <input id="alpha" type="range" min="0" max="1" step="0.02" value="1">
+  <label>Configuración inicial <span class="val" id="vS">3</span></label>
+  <input id="conf" type="range" min="1" max="120" step="1" value="3">
+  <label class="chk"><input type="checkbox" id="grid"> rejilla (espacio-tiempo emergente)</label>
+  <div class="row"><button id="play">⏸ pausa</button><button id="reset">↺ reset</button></div>
+  <div class="row"><button id="csvState">⬇ estado CSV</button><button id="csvSeries">⬇ serie CSV</button></div>
+  <div class="row"><button id="rec">⏺ grabar video</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ===== regla validada CG002 =====
+const K=8, ETA=0.05, MU=0.01, KAPPA_S=1e-6, S0=1.0, S_BAND=8.0;
+// ===== solo visualización (no tocan dinámica) =====
+const K_COUPLE=0.9, K_BASE=1.4, K_CENTER=0.015, DAMP=0.86, DT=0.18, W_MIN=0.05;
+
+let cfg={N:1000,theta:0.3,alpha:1,seed:3};
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+// estado (arrays planos para N grande)
+let N,omega,S,alive,px,py,pz,vx,vy,vz,W,dSs,axx,ayy,azz;
+let nAlive,tau,deltaStruct,wscaleEMA,series;
+
+function init(){
+  N=cfg.N;
+  const rnd=mulberry32((cfg.seed*2654435761)>>>0);
+  omega=new Int32Array(N); S=new Float64Array(N); alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  W=new Float64Array(N*N);
+  dSs=new Float64Array(N);axx=new Float64Array(N);ayy=new Float64Array(N);azz=new Float64Array(N);
+  for(let i=0;i<N;i++){
+    omega[i]=Math.floor(rnd()*K); S[i]=S0; alive[i]=1;
+    px[i]=(rnd()-.5)*0.05; py[i]=(rnd()-.5)*0.05; pz[i]=(rnd()-.5)*0.05; // todas en el foco
+  }
+  nAlive=N; tau=0; deltaStruct=0; wscaleEMA=1; series=[];
+  buildPoints(N);
+}
+function sat(s){return s/(1+s/S_BAND);}
+
+// un tick: física (regla validada) + layout (fuerzas del acoplamiento), un solo pase O(N²)
+function step(){
+  const th=cfg.theta, al=cfg.alpha, ws=wscaleEMA+1e-9;
+  dSs.fill(0); axx.fill(0); ayy.fill(0); azz.fill(0);
+  for(let i=0;i<N;i++) if(alive[i]) S[i]*=(1-MU);
+  let dstep=0, maxW=1e-9;
+  const twoPiK=2*Math.PI/K;
+  for(let i=0;i<N;i++){
+    if(!alive[i])continue;
+    const oi=omega[i], xi=px[i], yi=py[i], zi=pz[i], Si=S[i];
+    for(let j=i+1;j<N;j++){
+      if(!alive[j])continue;
+      const a=twoPiK*(oi-omega[j]);
+      const gi=Math.cos(a+th), gj=Math.cos(-a+th);
+      const mag=Math.sqrt(sat(Si)*sat(S[j]));
+      const fi=al*ETA*gi*mag, fj=al*ETA*gj*mag;
+      dSs[i]+=fi; dSs[j]+=fj;
+      const idx=i*N+j, wij=W[idx]+fi;
+      W[idx]=wij; W[j*N+i]+=fj;
+      dstep+=Math.abs(fi)+Math.abs(fj);
+      const aw=Math.abs(wij); if(aw>maxW)maxW=aw;
+      // layout: fuerza dirigida por el acoplamiento (ASIMÉTRICA = inyecta energía → se despliega, no colapsa)
+      let dx=xi-px[j], dy=yi-py[j], dz=zi-pz[j];
+      let dist=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-4, inv=1/dist;
+      const ux=dx*inv, uy=dy*inv, uz=dz*inv;
+      const w=Math.tanh(wij/ws);
+      const fc=-w*K_COUPLE, fb=K_BASE/(dist*dist);
+      const li=fc+fb, lj=fc-fb;
+      axx[i]+=ux*li; ayy[i]+=uy*li; azz[i]+=uz*li;
+      axx[j]+=ux*lj; ayy[j]+=uy*lj; azz[j]+=uz*lj;
+    }
+  }
+  wscaleEMA=0.9*wscaleEMA+0.1*maxW;
+  for(let i=0;i<N;i++){
+    if(!alive[i])continue;
+    S[i]+=dSs[i]; if(S[i]<0)S[i]=0;
+    if(S[i]<=KAPPA_S){alive[i]=0;continue;}
+    // contención suave al foco (no impone estructura)
+    let ax=axx[i]-K_CENTER*px[i], ay=ayy[i]-K_CENTER*py[i], az=azz[i]-K_CENTER*pz[i];
+    vx[i]=(vx[i]+ax*DT)*DAMP; vy[i]=(vy[i]+ay*DT)*DAMP; vz[i]=(vz[i]+az*DT)*DAMP;
+    let vm=Math.hypot(vx[i],vy[i],vz[i]); if(vm>3){const k=3/vm;vx[i]*=k;vy[i]*=k;vz[i]*=k;}
+    px[i]+=vx[i]*DT; py[i]+=vy[i]*DT; pz[i]+=vz[i]*DT;
+  }
+  deltaStruct+=dstep; if(dstep>1e-4)tau++;
+  nAlive=0; for(let i=0;i<N;i++) if(alive[i])nAlive++;
+}
+
+// métricas emergentes (outputs medidos): dimensión, anisotropía, clumping (grumosidad)
+function metrics(){
+  let n=0,cx=0,cy=0,cz=0;
+  for(let i=0;i<N;i++)if(alive[i]){cx+=px[i];cy+=py[i];cz+=pz[i];n++;}
+  if(n<5)return {dim:0,aniso:1,clump:0,n};
+  cx/=n;cy/=n;cz/=n;
+  let xx=0,yy=0,zz=0,xy=0,xz=0,yz=0,ext=0;
+  for(let i=0;i<N;i++)if(alive[i]){const x=px[i]-cx,y=py[i]-cy,z=pz[i]-cz;xx+=x*x;yy+=y*y;zz+=z*z;xy+=x*y;xz+=x*z;yz+=y*z;const e=Math.max(Math.abs(x),Math.abs(y),Math.abs(z));if(e>ext)ext=e;}
+  xx/=n;yy/=n;zz/=n;xy/=n;xz/=n;yz/=n;
+  const ev=eig3(xx,yy,zz,xy,xz,yz);
+  const s=ev[0]+ev[1]+ev[2], s2=ev[0]*ev[0]+ev[1]*ev[1]+ev[2]*ev[2];
+  const dim=s2>0?(s*s)/s2:0, aniso=ev[0]>1e-12?ev[2]/ev[0]:1;
+  const G=14, cells=new Int32Array(G*G*G), cc=v=>Math.min(G-1,Math.max(0,Math.floor((v+ext)/(2*ext+1e-9)*G)));
+  for(let i=0;i<N;i++)if(alive[i])cells[cc(px[i]-cx)*G*G+cc(py[i]-cy)*G+cc(pz[i]-cz)]++;
+  let mean=n/(G*G*G), v2=0; for(let k=0;k<cells.length;k++)v2+=(cells[k]-mean)*(cells[k]-mean); v2/=cells.length;
+  return {dim,aniso,clump:mean>0?v2/mean:0,n};
+}
+function eig3(a,b,c,d,e,f){
+  const p1=d*d+e*e+f*f;
+  if(p1<1e-12)return [a,b,c].sort((x,y)=>y-x);
+  const q=(a+b+c)/3, p2=(a-q)**2+(b-q)**2+(c-q)**2+2*p1, p=Math.sqrt(p2/6);
+  const detB=((a-q)/p)*(((b-q)/p)*((c-q)/p)-(f/p)**2)-(d/p)*((d/p)*((c-q)/p)-(f/p)*(e/p))+(e/p)*((d/p)*(f/p)-((b-q)/p)*(e/p));
+  let r=Math.max(-1,Math.min(1,detB/2)), phi=Math.acos(r)/3;
+  const e1=q+2*p*Math.cos(phi), e3=q+2*p*Math.cos(phi+2*Math.PI/3);
+  return [e1,3*q-e1-e3,e3];
+}
+function extent(){let m=0;for(let i=0;i<N;i++)if(alive[i]){const r=Math.max(Math.abs(px[i]),Math.abs(py[i]),Math.abs(pz[i]));if(r>m)m=r;}return m;}
+
+// ===== Three.js =====
+let scene,camera,renderer,controls,points,geom,mat,gridGroup;
+const cv=document.getElementById('c');
+function initGL(){
+  scene=new THREE.Scene(); scene.fog=new THREE.FogExp2(0x04050a,0.010);
+  camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,5000); camera.position.set(0,0,100);
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true}); renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  controls=new THREE.OrbitControls(camera,cv); controls.enableDamping=true; controls.autoRotate=true; controls.autoRotateSpeed=0.3;
+  gridGroup=new THREE.Group();
+  const mk=()=>{const g=new THREE.GridHelper(2,14,0xbcd8ff,0x88aadd);g.material.transparent=true;g.material.opacity=0.55;return g;};
+  const g1=mk(), g2=mk(), g3=mk(); g2.rotation.x=Math.PI/2; g3.rotation.z=Math.PI/2;
+  gridGroup.add(g1,g2,g3); scene.add(gridGroup);
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+}
+function buildPoints(n){
+  if(points){scene.remove(points);geom.dispose();mat.dispose();}
+  geom=new THREE.BufferGeometry();
+  geom.setAttribute('position',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('color',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('psize',new THREE.BufferAttribute(new Float32Array(n),1));
+  mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    vertexShader:`attribute float psize;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=psize*(420.0/-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`varying vec3 vC;void main(){vec2 d=gl_PointCoord-vec2(0.5);float r=length(d);if(r>0.5)discard;float g=smoothstep(0.5,0.0,r);gl_FragColor=vec4(vC*g*1.7,1.0);}`});
+  points=new THREE.Points(geom,mat); scene.add(points);
+}
+const _c=new THREE.Color();
+function updatePoints(){
+  const p=geom.attributes.position.array,col=geom.attributes.color.array,ps=geom.attributes.psize.array;
+  let maxS=1e-6; for(let i=0;i<N;i++)if(alive[i])maxS=Math.max(maxS,S[i]);
+  const lmax=Math.log(1+maxS)+1e-9;
+  for(let i=0;i<N;i++){
+    p[i*3]=px[i];p[i*3+1]=py[i];p[i*3+2]=pz[i];
+    if(alive[i]){
+      _c.setHSL(omega[i]/K,0.95,0.55);
+      const f=Math.log(1+S[i])/lmax, b=0.25+0.75*f;
+      col[i*3]=_c.r*b;col[i*3+1]=_c.g*b;col[i*3+2]=_c.b*b; ps[i]=2.0+9.0*f;
+    } else {col[i*3]=col[i*3+1]=col[i*3+2]=0;ps[i]=0;}
+  }
+  geom.attributes.position.needsUpdate=true;geom.attributes.color.needsUpdate=true;geom.attributes.psize.needsUpdate=true;
+  // rejilla escala con el despliegue
+  const ex=Math.max(extent()*1.15,2); gridGroup.scale.setScalar(ex); gridGroup.visible=document.getElementById('grid').checked;
+}
+
+let playing=true,frame=0;
+function loop(){
+  requestAnimationFrame(loop);
+  if(playing) step();
+  updatePoints(); controls.update(); renderer.render(scene,camera);
+  if(frame%4===0){
+    const m=metrics();
+    if(playing) series.push([tau,nAlive,deltaStruct,m.dim,m.aniso,m.clump]);
+    document.getElementById('hud').innerHTML=
+      `<b>τ</b> ${tau} &nbsp; <b>persisten</b> ${nAlive}/${cfg.N} &nbsp; <b>Δ_struct</b> ${deltaStruct.toExponential(2)}<br>`+
+      `<b>clumping</b> ${m.clump.toFixed(2)} &nbsp; <b>anisotropía λ₃/λ₁</b> ${m.aniso.toFixed(2)} &nbsp; <b>dim</b> ${m.dim.toFixed(2)}<br>`+
+      `<b>θ_CP</b> ${cfg.theta>=0?'+':''}${cfg.theta.toFixed(2)} ${cfg.theta===0?'· sin flecha':''} &nbsp; <b>α</b> ${cfg.alpha.toFixed(2)}`;
+  }
+  frame++;
+}
+
+// ===== CSV =====
+function dl(name,txt){const b=new Blob([txt],{type:'text/csv'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+function csvState(){
+  let g=new Int32Array(N);
+  for(let i=0;i<N;i++)if(alive[i])for(let j=0;j<N;j++)if(i!==j&&alive[j]&&Math.abs(W[i*N+j])>W_MIN)g[i]++;
+  const mm=metrics();
+  let s=`# CG002 genesis estado | tau=${tau} N=${cfg.N} theta_cp=${cfg.theta} alpha=${cfg.alpha} config=${cfg.seed} dim=${mm.dim.toFixed(3)} aniso=${mm.aniso.toFixed(3)} clumping=${mm.clump.toFixed(3)} persisten=${nAlive}\n`;
+  s+="id,omega,S,viva,grado,x,y,z\n";
+  for(let i=0;i<N;i++) s+=`${i},${omega[i]},${S[i].toExponential(4)},${alive[i]},${g[i]},${px[i].toFixed(4)},${py[i].toFixed(4)},${pz[i].toFixed(4)}\n`;
+  dl(`cg002_genesis_estado_tau${tau}.csv`,s);
+}
+function csvSeries(){
+  let s=`# CG002 genesis serie | N=${cfg.N} theta_cp=${cfg.theta} alpha=${cfg.alpha} config=${cfg.seed}\ntau,persisten,delta_struct,dim_emergente,anisotropia,clumping\n`;
+  for(const r of series) s+=`${r[0]},${r[1]},${r[2].toExponential(4)},${r[3].toFixed(3)},${r[4].toFixed(3)},${r[5].toFixed(3)}\n`;
+  dl(`cg002_genesis_serie_config${cfg.seed}.csv`,s);
+}
+
+// ===== UI =====
+const $=id=>document.getElementById(id);
+$('N').addEventListener('input',e=>{cfg.N=+e.target.value;vN.textContent=cfg.N;init();});
+$('theta').addEventListener('input',e=>{cfg.theta=+e.target.value;vT.textContent=(cfg.theta>=0?'+':'')+cfg.theta.toFixed(2);});
+$('alpha').addEventListener('input',e=>{cfg.alpha=+e.target.value;vA.textContent=cfg.alpha.toFixed(2);});
+$('conf').addEventListener('input',e=>{cfg.seed=+e.target.value;vS.textContent=cfg.seed;init();});
+$('play').addEventListener('click',e=>{playing=!playing;e.target.textContent=playing?'⏸ pausa':'▶ play';});
+$('reset').addEventListener('click',init);
+$('csvState').addEventListener('click',csvState);
+$('csvSeries').addEventListener('click',csvSeries);
+$('infoBtn').addEventListener('click',()=>{$('info').style.display='block';$('infoBtn').style.display='none';});
+$('infoClose').addEventListener('click',()=>{$('info').style.display='none';$('infoBtn').style.display='block';});
+
+// leyenda de color (rueda de fases ω)
+(function(){const L=$('legend');if(!L)return;for(let k=0;k<K;k++){const c=new THREE.Color();c.setHSL(k/K,0.95,0.55);const sp=document.createElement('span');sp.title='ω='+k;sp.style.cssText=`display:inline-block;width:20px;height:14px;background:${c.getStyle()};margin-right:2px;border-radius:3px`;L.appendChild(sp);}const t=document.createElement('div');t.style.cssText='font-size:11px;color:#90a0c0;margin-top:3px';t.textContent='↑ rueda de fases ω (0 … '+(K-1)+')';L.appendChild(t);})();
+
+// grabación de video del canvas → .webm descargable
+let rec=null,chunks=[];
+$('rec').addEventListener('click',e=>{
+  if(rec&&rec.state==='recording'){rec.stop();e.target.textContent='⏺ grabar video';return;}
+  const stream=cv.captureStream(30);
+  try{rec=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:1.2e7});}
+  catch(_){try{rec=new MediaRecorder(stream,{mimeType:'video/webm'});}catch(__){rec=new MediaRecorder(stream);}}
+  chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data);};
+  rec.onstop=()=>{const b=new Blob(chunks,{type:'video/webm'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`cg002_genesis_${cfg.N}p.webm`;a.click();URL.revokeObjectURL(u);};
+  rec.start();e.target.textContent='⏹ detener y guardar';
+});
+
+initGL(); init(); loop();
+</script>
+</body>
+</html>

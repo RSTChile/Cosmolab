@@ -1,0 +1,19 @@
+====================================================================================================
+CS069 SPOT-CHECK L=12 (vs L=8 de la tanda) -- brazo COMPLETO, N=1500, 8 semillas
+====================================================================================================
+  s=0: diam_q=25.28  n_ejes=0  pico_medio=0.722  certificado=False  (t=0.3min)
+  s=1: diam_q=25.47  n_ejes=0  pico_medio=0.685  certificado=False  (t=0.6min)
+  s=2: diam_q=27.54  n_ejes=0  pico_medio=0.727  certificado=False  (t=0.9min)
+  s=3: diam_q=24.08  n_ejes=0  pico_medio=0.713  certificado=False  (t=1.2min)
+  s=4: diam_q=22.03  n_ejes=0  pico_medio=0.701  certificado=False  (t=1.5min)
+  s=5: diam_q=23.59  n_ejes=0  pico_medio=0.699  certificado=False  (t=1.7min)
+  s=6: diam_q=26.02  n_ejes=0  pico_medio=0.732  certificado=False  (t=2.0min)
+  s=7: diam_q=23.71  n_ejes=0  pico_medio=0.750  certificado=False  (t=2.3min)
+
+diam_q media(L=12)=24.71  (referencia tanda, L=8, N=1500, completo: pendiente 0.132, ver INFORME_CS069_tanda_PARA_CS.md)
+n_ejes: todos=[0, 0, 0, 0, 0, 0, 0, 0]  frac_certificado(>0.85)=0.00
+pico_medio media=0.716
+
+tiempo total: 2.31 min
+
+CONFIRMA la predicción de CS: sigue 0% certificado a L=12. (B) CANÓNICO -- CS069 cierra.

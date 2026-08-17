@@ -1,0 +1,18 @@
+=== F0 SMOKE PREREGISTRO ===
+step 0 tg=0.00e+00 a=1.000000 T*a/T0=1.000000 rho*a^3/rho0=1.000000
+step 40 tg=4.00e-37 a=1.040811 T*a/T0=1.000000 rho*a^3/rho0=1.000000
+step 80 tg=8.00e-37 a=1.083287 T*a/T0=1.000000 rho*a^3/rho0=1.000000
+step 120 tg=1.20e-36 a=1.127497 T*a/T0=1.000000 rho*a^3/rho0=1.000000
+step 160 tg=1.60e-36 a=1.173511 T*a/T0=1.000000 rho*a^3/rho0=1.000000
+
+SMOKE RESULT: max|T*a/T0-1|=2.22e-16 max|rho*a^3/rho0-1|=2.22e-16
+PASS
+
+=== F0 TRIADA HOLISTICA V2 CORREGIDA ===
+step   0 a=1.0000 T=1.00e+15K rho=1.00e+30 H_fis=2.50e-03 lam_D_norm=1.00 K=0.368 k1=0 k2=0 k3=0 k6=0 mk1/mk3=0.0000
+step  40 a=1.0408 T=9.61e+14K rho=8.87e+29 H_fis=2.40e-03 lam_D_norm=1.04 K=0.383 k1=1 k2=0 k3=0 k6=0 mk1/mk3=0.0000
+step  80 a=1.0833 T=9.23e+14K rho=7.87e+29 H_fis=2.31e-03 lam_D_norm=1.08 K=0.397 k1=1 k2=0 k3=0 k6=0 mk1/mk3=0.0000
+step 120 a=1.1275 T=8.87e+14K rho=6.98e+29 H_fis=2.22e-03 lam_D_norm=1.13 K=0.412 k1=3 k2=0 k3=0 k6=0 mk1/mk3=0.0000
+step 160 a=1.1735 T=8.52e+14K rho=6.19e+29 H_fis=2.13e-03 lam_D_norm=1.17 K=0.426 k1=10 k2=0 k3=0 k6=0 mk1/mk3=0.0000
+
+F0 V2 CORREGIDA FINAL - contrato T*a/T0 y rho*a^3/rho0 respetado, k1/k3 ahora medibles

@@ -1,0 +1,20 @@
+[E5.3-5 parte-A eps=0] D=0 noise_amp=0 (13 r-puntos x 20 semillas listos) t=458.2s
+[E5.3-5 parte-A eps=1e-12] D=0.000841011 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=772.1s
+[E5.3-5 parte-A eps=1e-11] D=0.000841445 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=1058.4s
+[E5.3-5 parte-A eps=1e-10] D=0.000841389 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=1356.8s
+[E5.3-5 parte-A eps=1e-09] D=0.000841366 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=1680.5s
+[E5.3-5 parte-A eps=1e-08] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=2093.4s
+[E5.3-5 parte-A eps=1e-07] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=2670.7s
+[E5.3-5 parte-A eps=1e-06] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=3156.3s
+[E5.3-5 parte-A eps=1e-05] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=3479.9s
+[E5.3-5 parte-A eps=0.0001] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=3777.2s
+[E5.3-5 parte-A eps=0.001] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=4067.8s
+[E5.3-5 parte-A eps=0.01] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=4345.9s
+[E5.3-5 parte-A eps=0.1] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=4586.0s
+[E5.3-5 parte-A eps=1] D=0.000841367 noise_amp=0.00029 (13 r-puntos x 20 semillas listos) t=4832.7s
+[E5.3-5 parte-B] usando resultado en disco: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_2_eficiencia_vs_ligadura/E5_3_2_resultado_crudo.json
+
+[archivo A] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_5_falsacion_externa/E5_3_5_resultado_e531def_produccion.json
+[archivo B] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_5_falsacion_externa/E5_3_5_resultado_e532_produccion.json
+[archivo agregado] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_5_falsacion_externa/E5_3_5_agregado_distancias_produccion.json
+[elapsed total] 4832.9s

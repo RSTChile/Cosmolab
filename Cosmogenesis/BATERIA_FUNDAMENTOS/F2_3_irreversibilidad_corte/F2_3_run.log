@@ -1,0 +1,7 @@
+[F2-3] inicio 2026-07-24 05:36:10 -0400
+[calibracion] N=200 eps=0.1 mediana_lavado=5300 pasos=6095 lavo_todas=True
+[D medida] eps=0.1 D=0.0008413667864350799
+[grilla principal] 110 celdas en 1311.0s
+[control eps=0] 9 celdas en 12.5s
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F2_3_irreversibilidad_corte/F2_3_resultado_crudo.json
+[elapsed total] 1332.5s

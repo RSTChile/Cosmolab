@@ -1,0 +1,12 @@
+Package: anima-desktop-runtime
+Version: 0.1.0-dev
+Section: science
+Priority: optional
+Architecture: amd64
+Maintainer: VSTCosmo <anima@vstcosmo.local>
+Depends: python3, python3-venv, python3-pip, python3-cryptography, curl, ffmpeg, libportaudio2, avahi-daemon
+Recommends: pulseaudio-utils
+Description: ANIMA Desktop Runtime para organismos VSTCosmo
+ Runtime autocontenido para PC/Linux amd64.
+ Instala todos los organelos como potencialidades latentes y deja servicios
+ de arranque para un organismo ANIMA local con audio del sistema.

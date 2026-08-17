@@ -1,0 +1,19 @@
+CS059 (R7) — EL ESPÍN COMO MARCO: ¿selecciona el marco una dimensión? (juez=holonomía del marco)
+========================================================================================================
+G-NO-FORZAR-3D: éxito = seleccionar ALGUNA dim robusta a K que COLAPSE bajo NULL, NO 'salió 3D'.
+PREDICCIÓN CIEGA (pre-registrada): si el MARCO selecciona, una dimensión tendrá holonomía del marco
+  sistemáticamente MENOR (marcos más consistentes) que las otras, ROBUSTA a K∈{2,3,4,5}, y esa
+  separación COLAPSA bajo NULL (transportes al azar). K=2 (abeliano) debe dar holonomía ~trivial
+  (chequeo interno: el marco necesita K≥3 para ser no-trivial, como el espín real SU(2)/S²).
+K_sweep=[2, 3, 4, 5] · dims=d1/d2/d3/d4/curv · seeds=8 · exp_pasos=[0, 1, 2, 3] · ciclos≤400
+corridas = 160 · workers=14 · salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs059_marco.csv
+  20/160 · 0.0min · ETA 0.3min
+  40/160 · 0.1min · ETA 0.3min
+  60/160 · 0.1min · ETA 0.2min
+  80/160 · 0.3min · ETA 0.3min
+  100/160 · 0.4min · ETA 0.2min
+  120/160 · 0.5min · ETA 0.2min
+  140/160 · 0.5min · ETA 0.1min
+  160/160 · 0.6min · ETA 0.0min
+
+COMPLETO: 160 corridas en 0.6 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs059_marco.csv

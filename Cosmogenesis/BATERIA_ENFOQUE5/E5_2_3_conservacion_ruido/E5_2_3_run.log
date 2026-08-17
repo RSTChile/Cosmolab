@@ -1,0 +1,23 @@
+=== E5.2-3 motor iniciado 2026-07-25T00:45:49Z ===
+[fase 1/3] grid principal (H=0, aditivo + intercambio)...
+[principal] 40/480 corridas, 456.0s
+[principal] 80/480 corridas, 1062.3s
+[principal] 120/480 corridas, 1556.2s
+[principal] 160/480 corridas, 2000.7s
+[principal] 200/480 corridas, 2459.9s
+[principal] 240/480 corridas, 3051.8s
+[principal] 280/480 corridas, 4011.4s
+[principal] 320/480 corridas, 4614.1s
+[principal] 360/480 corridas, 5164.3s
+[principal] 400/480 corridas, 5628.3s
+[principal] 440/480 corridas, 6083.3s
+[principal] 480/480 corridas, 6572.4s
+[fase 2/3] grid suplementario (H=H(r=1), aditivo)...
+[suplementario] 20/84 corridas, 107.9s
+[suplementario] 40/84 corridas, 206.2s
+[suplementario] 60/84 corridas, 348.8s
+[suplementario] 80/84 corridas, 449.7s
+[fase 3/3] testigos de trayectoria fina...
+[testigo] amp=1e-06 listo
+[testigo] amp=1 listo
+[listo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_2_3_conservacion_ruido/E5_2_3_resultado.json elapsed=7077.5s

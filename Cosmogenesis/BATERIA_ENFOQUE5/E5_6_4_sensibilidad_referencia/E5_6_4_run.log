@@ -1,0 +1,26 @@
+[calibracion] N=200 eps=1e-3 mediana_lavado=5300 pasos_fijo=6095 alpha_dyn=0.00328138 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+[D] eps=0 D=0
+[D] eps=1e-09 D=0.000841368
+[D] eps=1e-06 D=0.000841367
+[D] eps=0.001 D=0.000841367
+[D] eps=0.01 D=0.000841367
+[D] eps=0.1 D=0.000841367
+[D] eps=0.3 D=0.000841367
+[D] eps=1 D=0.000841367
+[progreso] 10/112 eps=0 r=10 t=515.5s
+[progreso] 20/112 eps=1e-09 r=0.1 t=1042.2s
+[progreso] 30/112 eps=1e-06 r=0.001 t=1494.3s
+[progreso] 40/112 eps=1e-06 r=100 t=1907.3s
+[progreso] 50/112 eps=0.001 r=1 t=2367.1s
+[progreso] 60/112 eps=0.01 r=0.01 t=2981.4s
+[progreso] 70/112 eps=0.01 r=1000 t=3805.2s
+[progreso] 80/112 eps=0.1 r=10 t=4271.9s
+[progreso] 90/112 eps=0.3 r=0.1 t=4691.5s
+[progreso] 100/112 eps=1 r=0.001 t=5091.9s
+[progreso] 110/112 eps=1 r=100 t=5437.3s
+[progreso] 112/112 eps=1 r=1000 t=5514.3s
+
+[archivo crudo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_6_4_sensibilidad_referencia/E5_6_4_resultado_crudo.json
+[archivo invariancia] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_6_4_sensibilidad_referencia/E5_6_4_invariancia.json
+[invariancia] fraccion=0.3265 (32/98) PASS_90pct=False
+[elapsed] 5514.3s

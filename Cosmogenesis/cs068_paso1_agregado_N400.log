@@ -1,0 +1,12 @@
+============================================================================================================
+CS068 PASO 1 — AGREGADO (blindaje de semillas): media+IC95% del PRIMER checkpoint de la trayectoria
+N~400 · seeds=30 · frac_atajos=0.15
+============================================================================================================
+
+inflar_dist:      media=-0.0575  IC95%=[-0.0763,-0.0387]  (n=30)
+null_corte_azar:  media=+0.0079  IC95%=[-0.0117,+0.0275]  (n=30)
+
+tiempo total: 0.01 min
+SEPARA: inflar_dist es significativamente más NEGATIVO que null_corte_azar (IC95% sin solape,
+dirección predicha). El mecanismo de enfriamiento SÍ produce un gradiente espacial ordenado
+cuando la clasificación tejido/atajo es verdad de fondo. Paso 1 CONFIRMADO -> proceder a Paso 2.

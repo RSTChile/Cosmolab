@@ -1,0 +1,31 @@
+============================================================================================================
+CS068 PASO 2b — diagnóstico barato: ¿el tejido residual (blob real menos atajos) es MÉTRICO?
+Discriminante: PENDIENTE log-log de diám(N), no el valor de diám a un solo N.
+escalas N=[900, 1500, 2500]  umbral pre-inscrito: pendiente > 0.3
+============================================================================================================
+
+--- N=900 (seed=68300) ---
+  atajos_clasificados=294  enlaces_locales_residual=3843
+  frac_gigante(residual)=0.900  diam_residual=5.00
+  tiempo acumulado: 0.49 min
+
+--- N=1500 (seed=68397) ---
+  atajos_clasificados=453  enlaces_locales_residual=7423
+  frac_gigante(residual)=0.912  diam_residual=5.00
+  tiempo acumulado: 1.38 min
+
+--- N=2500 (seed=68494) ---
+  atajos_clasificados=218  enlaces_locales_residual=7849
+  frac_gigante(residual)=0.885  diam_residual=13.00
+  tiempo acumulado: 2.24 min
+
+============================================================================================================
+diám(N): [(900, 5.0), (1500, 5.0), (2500, 13.0)]
+frac_gigante(N): [(900, 0.9), (1500, 0.912), (2500, 0.885)]
+pendiente log-log = 0.935  (referencia CS: retícula2D=0.52, anillo=1.01, small-world=0.14)
+
+VEREDICTO: MUNDO A real. pendiente=0.935 > 0.3 -> diám ∝ N^(1/d)
+con d finito -- hay tejido MÉTRICO latente con 'lejos' real (no solo clustering). PROCEDE a
+Etapa 1 completa sobre este tejido residual: el enfriamiento tiene algo real que revelar.
+
+tiempo total: 2.24 min

@@ -1,0 +1,81 @@
+par,rule_id,clase,seed,K_total,kcap_total,fraccion_masa_en_sumideros,kappa_v_agregado,match_exacto_K_kcap,valido,razon,pendiente,fuente
+PAR_piloto_A_r9_r19,A2-B0-C2-r9,I,272702,5,7,0.0805,0.3859649122807018,True,True,OK,0.5562821419510406,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_piloto_A_r9_r19,A2-B0-C2-r19,III,273672,5,7,0.087,0.4363636363636363,True,True,OK,0.7198659721923727,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_piloto_B_r1_r17,A2-B0-C2-r1,I,271926,5,6,0.087,0.4137931034482758,False,True,OK,0.6651600933305303,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_piloto_B_r1_r17,A2-B0-C2-r17,III,273478,5,5,0.121,0.7971014492753623,False,True,OK,0.7340887838072675,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_piloto_C_r6_r14,A2-B0-C2-r6,I,272411,7,5,0.1005,0.5238095238095237,False,True,OK,0.6017022732300992,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_piloto_C_r6_r14,A2-B0-C2-r14,III,273187,8,5,0.099,0.5151515151515152,False,True,OK,0.7727847916834328,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_D_r2_r20,A2-B0-C2-r2,I,372023,5,6,0.076,0.5000000000000001,True,True,OK,0.5395267020843031,cs090_fase5b_candidatas_v2.csv
+PAR_v2_D_r2_r20,A2-B0-C2-r20,III,373769,5,6,0.0865,0.3978494623655912,True,True,OK,0.7745872074489137,cs090_fase5b_candidatas_v2.csv
+PAR_v2_E_r12_r28,A2-B0-C2-r12,I,372993,6,6,0.082,0.3703703703703704,True,True,OK,0.5795357212376513,cs090_fase5b_candidatas_v2.csv
+PAR_v2_E_r12_r28,A2-B0-C2-r28,III,374545,6,6,0.0895,0.4285714285714286,True,True,OK,0.7055880853285693,cs090_fase5b_candidatas_v2.csv
+PAR_v2_F_r6_r2v1fix,A2-B0-C2-r6,I,272411,7,5,0.1005,0.5238095238095237,True,True,OK,0.6017022732300992,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_F_r6_r2v1fix,A2-B0-C2-r2v1fix,III,272023,7,5,0.1215,0.8169014084507041,True,True,OK,0.8536460916512799,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_G_r12v1fix_r19,A2-B0-C2-r12v1fix,I,272993,5,7,0.062,0.3440860215053776,True,True,OK,0.4865241881338742,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_G_r12v1fix_r19,A2-B0-C2-r19,III,273672,5,7,0.087,0.4363636363636363,True,True,OK,0.7198659721923727,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_H_r9_r39,A2-B0-C2-r9,I,272702,5,7,0.0805,0.3859649122807018,False,True,OK,0.5562821419510406,cs090_fase5_profundizar_a2b0c2_resumen.csv (nueva_profundizar)
+PAR_v2_H_r9_r39,A2-B0-C2-r39,III,375612,5,6,0.0785,0.4722222222222217,False,True,OK,0.7271595357141946,cs090_fase5b_candidatas_v2.csv
+A2-B0-C2-r9v2fix_vs_A2-B0-C2-r39,A2-B0-C2-r9v2fix,I,372702,5,6,0.075,0.4255319148936167,True,True,OK,0.584004179281483,cs090_fase5b_candidatas_v2.csv
+A2-B0-C2-r9v2fix_vs_A2-B0-C2-r39,A2-B0-C2-r39,III,375612,5,6,0.0785,0.4722222222222217,True,True,OK,0.7271595357141946,cs090_fase5b_candidatas_v2.csv
+A2-B0-C2-batch3-r100_vs_A2-B0-C2-batch3-r0,A2-B0-C2-batch3-r100,I,481529,5,4,0.1499999999999999,1.3287671232876717,True,True,OK,-0.942349973342588,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r100_vs_A2-B0-C2-batch3-r0,A2-B0-C2-batch3-r0,III,471829,5,4,0.1504999999999999,1.2938596491228065,True,True,OK,1.0889055843285758,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r1_vs_A2-B0-C2-batch3-r69,A2-B0-C2-batch3-r1,I,471926,7,6,0.078,0.42,True,True,OK,0.5443072908377864,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r1_vs_A2-B0-C2-batch3-r69,A2-B0-C2-batch3-r69,III,478522,7,6,0.088,0.4311377245508982,True,True,OK,0.7189443036232793,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r5_vs_A2-B0-C2-batch3-r114,A2-B0-C2-batch3-r5,I,472314,6,6,0.081,0.3571428571428572,True,True,OK,0.6602354017251393,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r5_vs_A2-B0-C2-batch3-r114,A2-B0-C2-batch3-r114,III,482887,6,6,0.0915,0.4411764705882354,True,True,OK,0.7685330652018255,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r44_vs_A2-B0-C2-batch3-r10,A2-B0-C2-batch3-r44,I,476097,7,5,0.1015,0.5925925925925919,True,True,OK,0.6237508179211378,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r44_vs_A2-B0-C2-batch3-r10,A2-B0-C2-batch3-r10,III,472799,7,5,0.12,0.8823529411764706,True,True,OK,0.80676744249643,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r86_vs_A2-B0-C2-batch3-r12,A2-B0-C2-batch3-r86,I,480171,5,5,0.0945,0.5,True,True,OK,0.684698515725542,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r86_vs_A2-B0-C2-batch3-r12,A2-B0-C2-batch3-r12,III,472993,5,5,0.1015,0.5440414507772019,True,True,OK,0.7435032678648852,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r50_vs_A2-B0-C2-batch3-r21,A2-B0-C2-batch3-r50,I,476679,6,5,0.1,0.5340314136125656,True,True,OK,0.6185791830984309,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r50_vs_A2-B0-C2-batch3-r21,A2-B0-C2-batch3-r21,III,473866,6,5,0.0965,0.4838709677419354,True,True,OK,0.7248004383475681,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r48_vs_A2-B0-C2-batch3-r25,A2-B0-C2-batch3-r48,I,476485,8,5,0.099,0.4782608695652173,True,True,OK,0.6705155034604253,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r48_vs_A2-B0-C2-batch3-r25,A2-B0-C2-batch3-r25,III,474254,8,5,0.113,0.6865671641791045,True,True,OK,0.7951507684630401,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r35_vs_A2-B0-C2-batch3-r31,A2-B0-C2-batch3-r35,I,475224,4,5,0.0975,0.5312499999999999,True,True,OK,0.6334481872632117,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r35_vs_A2-B0-C2-batch3-r31,A2-B0-C2-batch3-r31,III,474836,4,5,0.117,0.8095238095238093,True,True,OK,0.8063707776237027,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r9_vs_A2-B0-C2-batch3-r83,A2-B0-C2-batch3-r9,I,472702,7,6,0.0765,0.4130434782608696,True,True,OK,0.4789609415912562,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r9_vs_A2-B0-C2-batch3-r83,A2-B0-C2-batch3-r83,III,479880,7,6,0.087,0.4193548387096775,True,True,OK,0.7218028381417341,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r53_vs_A2-B0-C2-batch3-r23,A2-B0-C2-batch3-r53,I,476970,7,5,0.096,0.4374999999999999,True,True,OK,0.6600094507902552,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r53_vs_A2-B0-C2-batch3-r23,A2-B0-C2-batch3-r23,III,474060,7,5,0.1175,0.7638888888888888,True,True,OK,0.7756156905187971,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60,A2-B0-C2-batch3-r104,I,481917,6,5,0.0985,0.5230769230769231,True,True,OK,0.6941227678174907,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60,A2-B0-C2-batch3-r60,III,477649,6,5,0.1254999999999999,0.91044776119403,True,True,OK,0.9283825080454772,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58,A2-B0-C2-batch3-r59,I,477552,7,5,0.1035,0.6063829787234043,True,True,OK,0.6979287978973431,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58,A2-B0-C2-batch3-r58,III,477455,7,5,0.1025,0.5737704918032787,True,True,OK,0.7764098545485963,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r107_vs_A2-B0-C2-batch3-r71,A2-B0-C2-batch3-r107,I,482208,6,5,0.1065,0.618556701030928,True,True,OK,0.6304170393073871,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r107_vs_A2-B0-C2-batch3-r71,A2-B0-C2-batch3-r71,III,478716,6,5,0.13,1.0046948356807506,True,True,OK,0.8975693187713398,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r112_vs_A2-B0-C2-batch3-r108,A2-B0-C2-batch3-r112,I,482693,6,5,0.1015,0.5606060606060604,True,True,OK,0.6484796743138357,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r112_vs_A2-B0-C2-batch3-r108,A2-B0-C2-batch3-r108,III,482305,6,5,0.098,0.4972375690607732,True,True,OK,0.7543239666190528,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111,A2-B0-C2-batch3-r120,I,483469,6,5,0.0925,0.4444444444444445,True,True,OK,0.5745851449620955,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111,A2-B0-C2-batch3-r111,III,482596,6,5,0.122,0.838235294117647,True,True,OK,0.9051550092250916,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r76_vs_A2-B0-C2-batch3-r26,A2-B0-C2-batch3-r76,I,479201,8,5,0.1065,0.6825396825396828,True,True,OK,0.5791822134585402,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r76_vs_A2-B0-C2-batch3-r26,A2-B0-C2-batch3-r26,III,474351,8,5,0.1115,0.7205882352941176,True,True,OK,0.73199955526079,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r143_vs_A2-B0-C2-batch3-r70,A2-B0-C2-batch3-r143,I,485700,4,5,0.1,0.393518518518518,True,True,OK,-0.6471381266137246,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch3-r143_vs_A2-B0-C2-batch3-r70,A2-B0-C2-batch3-r70,III,478619,4,5,0.095,0.4264705882352941,True,True,OK,0.794143572255329,cs090_fase5b_candidatas_v3.csv
+A2-B0-C2-batch4-r11_vs_A2-B0-C2-batch4-r0,A2-B0-C2-batch4-r11,I,572896,6,6,0.086,0.3068783068783062,True,True,OK,0.5873752918624702,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r11_vs_A2-B0-C2-batch4-r0,A2-B0-C2-batch4-r0,III,571829,6,6,0.09,0.4421052631578949,True,True,OK,0.749820839752026,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r31_vs_A2-B0-C2-batch4-r1,A2-B0-C2-batch4-r31,I,574836,6,5,0.0985,0.523076923076923,True,True,OK,0.662399840491685,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r31_vs_A2-B0-C2-batch4-r1,A2-B0-C2-batch4-r1,III,571926,6,5,0.1075,0.6307692307692309,True,True,OK,0.7579372902210593,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r3_vs_A2-B0-C2-batch4-r9,A2-B0-C2-batch4-r3,I,572120,5,6,0.0755,0.3265306122448979,True,True,OK,0.5490358470541344,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r3_vs_A2-B0-C2-batch4-r9,A2-B0-C2-batch4-r9,III,572702,5,6,0.0795,0.3518518518518518,True,True,OK,0.750656276796281,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10,A2-B0-C2-batch4-r23,I,574060,5,5,0.0955,0.5081967213114754,True,True,OK,0.6433027276036999,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10,A2-B0-C2-batch4-r10,III,572799,5,5,0.1279999999999999,0.9027777777777776,True,True,OK,0.967445266935248,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r15_vs_A2-B0-C2-batch4-r62,A2-B0-C2-batch4-r15,I,573284,8,5,0.1055,0.6307692307692307,True,True,OK,0.6403596942082215,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r15_vs_A2-B0-C2-batch4-r62,A2-B0-C2-batch4-r62,III,577843,8,5,0.1025,0.5671641791044775,True,True,OK,0.8791813251603611,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r51_vs_A2-B0-C2-batch4-r36,A2-B0-C2-batch4-r51,I,576776,8,4,0.1449999999999999,1.3424657534246576,True,True,OK,-0.8118138566051867,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r51_vs_A2-B0-C2-batch4-r36,A2-B0-C2-batch4-r36,III,575321,8,4,0.1534999999999999,1.407894736842105,True,True,OK,1.0121015869766783,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72,A2-B0-C2-batch4-r38,I,575515,4,5,0.0995,0.6439790575916231,True,True,OK,0.5931216513801264,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72,A2-B0-C2-batch4-r72,III,578813,4,5,0.1015,0.5148514851485143,True,True,OK,0.7720389176874827,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r57_vs_A2-B0-C2-batch4-r43,A2-B0-C2-batch4-r57,I,577358,7,5,0.0995,0.4927536231884055,True,True,OK,0.6374065773083789,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r57_vs_A2-B0-C2-batch4-r43,A2-B0-C2-batch4-r43,III,576000,7,5,0.0935,0.5052631578947369,True,True,OK,0.7452540925441434,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r13_vs_A2-B0-C2-batch4-r94,A2-B0-C2-batch4-r13,I,573090,6,6,0.0765,0.4680851063829786,True,True,OK,0.5911652970991822,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r13_vs_A2-B0-C2-batch4-r94,A2-B0-C2-batch4-r94,III,580947,6,6,0.089,0.398936170212766,True,True,OK,0.7202626515814937,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r41_vs_A2-B0-C2-batch4-r12,A2-B0-C2-batch4-r41,I,575806,6,5,0.0935,0.4833333333333333,True,True,OK,0.6796771214509663,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r41_vs_A2-B0-C2-batch4-r12,A2-B0-C2-batch4-r12,III,572993,6,5,0.1005,0.5384615384615384,True,True,OK,0.8174143496432545,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r18_vs_A2-B0-C2-batch4-r19,A2-B0-C2-batch4-r18,I,573575,5,6,0.082,0.5510204081632653,True,True,OK,0.5348611955256036,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r18_vs_A2-B0-C2-batch4-r19,A2-B0-C2-batch4-r19,III,573672,5,6,0.0905,0.4761904761904759,True,True,OK,0.7607797813332537,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26,A2-B0-C2-batch4-r39,I,575612,5,5,0.1015,0.5873015873015872,True,True,OK,0.6230488869263001,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26,A2-B0-C2-batch4-r26,III,574351,5,5,0.1025,0.5294117647058822,True,True,OK,0.7694520367154973,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r70_vs_A2-B0-C2-batch4-r47,A2-B0-C2-batch4-r70,I,578619,7,5,0.098,0.4581280788177341,True,True,OK,0.686161570810164,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r70_vs_A2-B0-C2-batch4-r47,A2-B0-C2-batch4-r47,III,576388,7,5,0.093,0.4,True,True,OK,0.8237120554098377,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r44_vs_A2-B0-C2-batch4-r28,A2-B0-C2-batch4-r44,I,576097,6,5,0.1,0.4999999999999999,True,True,OK,0.6614363579719142,cs090_fase5b_candidatas_v4.csv
+A2-B0-C2-batch4-r44_vs_A2-B0-C2-batch4-r28,A2-B0-C2-batch4-r28,III,574545,6,5,0.1065,0.5937499999999999,True,True,OK,0.7633609694507231,cs090_fase5b_candidatas_v4.csv

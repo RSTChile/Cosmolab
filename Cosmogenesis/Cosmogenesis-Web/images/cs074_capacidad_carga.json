@@ -1,0 +1,192 @@
+{
+  "N": 800,
+  "pasos": 2000,
+  "semillas": 6,
+  "H": 0.0025,
+  "A": 0.5,
+  "sigma": 0.015,
+  "filas": [
+    {
+      "n_entes": 2,
+      "surv_mean": 2.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 3,
+      "surv_mean": 3.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 4,
+      "surv_mean": 4.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 5,
+      "surv_mean": 5.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 6,
+      "surv_mean": 6.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 7,
+      "surv_mean": 7.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 8,
+      "surv_mean": 8.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 9,
+      "surv_mean": 9.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 10,
+      "surv_mean": 10.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 12,
+      "surv_mean": 12.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 15,
+      "surv_mean": 15.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 20,
+      "surv_mean": 20.0,
+      "surv_std": 0.0,
+      "surv_list": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "ratio": 1.0
+    },
+    {
+      "n_entes": 30,
+      "surv_mean": 28.833333333333332,
+      "surv_std": 1.343709624716425,
+      "surv_list": [
+        29,
+        26,
+        29,
+        30,
+        29,
+        30
+      ],
+      "ratio": 0.961111111111111
+    }
+  ]
+}

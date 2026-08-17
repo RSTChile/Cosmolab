@@ -1,0 +1,11 @@
+tipo,sitio,especie,latitud,longitud,distancia_km,desde_anio,hasta_anio,anios_cubiertos,enlace,investigadores
+PALEOCEANOGRAPHY,GeoB3302-1,,-33.2167,-72.1,115.1,12970,32680,19710,https://www.ncei.noaa.gov/access/paleo-search/study/11206,"Kim, J.-H.; Schneider, R.R.; Hebbeln, D.; Müller, P.J.; Wefer, G."
+PALEOCEANOGRAPHY,GIK17748-2,,-32.75,-72.0333,101.8,1080,16070,14990,https://www.ncei.noaa.gov/access/paleo-search/study/11206,"Kim, J.-H.; Schneider, R.R.; Hebbeln, D.; Müller, P.J.; Wefer, G."
+PALEOLIMNOLOGY,Laguna Chepical,,-32.26,-70.5,77.1,-1161,2005,3166,https://www.ncei.noaa.gov/access/paleo-search/study/20366,"de Jong, R.; von Gunten, L.; Maldonado, A.; Grosjean, M."
+PALEOLIMNOLOGY,Laguna Aculeo,,-33.83,-70.9,110.2,856,1997,1141,https://www.ncei.noaa.gov/access/paleo-search/study/1003957,"von Gunten, L."
+TREE RING,San Gabriel,AUCH,-33.78,-70.25,123.1,1131,1975,844,https://www.ncei.noaa.gov/access/paleo-search/study/3848,"Lamarche, V.C.; Holmes, R.L.; Dunwiddie, P.W.; Gutiérrez, J."
+TREE RING,El Asiento,AUCH,-31.97,-71.03,97.0,1526,1971,445,https://www.ncei.noaa.gov/access/paleo-search/study/3830,"Lamarche, V.C.; Harsha, J.B.; Harlan, T.P."
+TREE RING,Santa Isabel de las Cruces,AUCH,-34.78,-70.75,216.5,1568,1975,407,https://www.ncei.noaa.gov/access/paleo-search/study/3549,"Holmes, R.L."
+TREE RING,Alto Los Manantiales,,-32.72,-69.08,175.3,1768,1986,218,https://www.ncei.noaa.gov/access/paleo-search/study/4268,"Roig, F.A.; Boninsegna, J.A."
+TREE RING,Alto de las Mesas,AUCH,-34.92,-70.7,232.4,1796,1975,179,https://www.ncei.noaa.gov/access/paleo-search/study/3504,"Holmes, R.L.; Gallinato, J.M."
+TREE RING,Bonilla,,-32.68,-69.12,172.0,1831,1985,154,https://www.ncei.noaa.gov/access/paleo-search/study/4270,"Roig, F.A."

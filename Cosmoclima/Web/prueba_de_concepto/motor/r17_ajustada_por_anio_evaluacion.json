@@ -1,0 +1,80 @@
+{
+  "entrada": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmoclima/Web/prueba_de_concepto/motor/r17_ajustada_por_anio.csv",
+  "generado_en": "2026-08-13T06:34:18.806Z",
+  "metodo_lectura_lluvia": "node:sqlite",
+  "metricas": {
+    "diferenciacion": {
+      "anios_totales": 62,
+      "valores_distintos_totales": 39,
+      "valores_en_clusters_3mas": 5,
+      "anios_en_clusters_3mas": 16,
+      "tuplas_completas_distintas": 60,
+      "tuplas_en_clusters_3mas": 0,
+      "anios_en_clusters_tupla_3mas": 0
+    },
+    "floracion": {
+      "anios_floracion_n": 13,
+      "anios_control_n": 10,
+      "media_JARDIN_FERTIL_floracion": 38.18538461538461,
+      "media_JARDIN_FERTIL_control": 38.056000000000004,
+      "fraccion_floracion_sobre_media_control": 0.5384615384615384,
+      "anios_floracion": [
+        1983,
+        1991,
+        1997,
+        2000,
+        2002,
+        2005,
+        2011,
+        2012,
+        2015,
+        2017,
+        2021,
+        2022,
+        2024
+      ],
+      "anios_control": [
+        1989,
+        1990,
+        1996,
+        2003,
+        2008,
+        2013,
+        2016,
+        2018,
+        2019,
+        2020
+      ],
+      "solapan_floracion_y_megasequia": [
+        2021,
+        2022,
+        2024
+      ],
+      "solapan_control_y_megasequia": [
+        2019,
+        2020
+      ],
+      "sin_megasequia_n_floracion": 10,
+      "sin_megasequia_n_control": 8,
+      "sin_megasequia_media_floracion": 43.451,
+      "sin_megasequia_media_control": 44.212500000000006
+    },
+    "megasequia": {
+      "anios_megasequia_n": 7,
+      "media_JARDIN_FERTIL_megasequia": 20.390000000000004,
+      "media_JARDIN_FERTIL_global": 40.44177419354837,
+      "media_COLAPSO_megasequia": 22.740000000000002,
+      "media_COLAPSO_global": 11.175322580645163,
+      "media_CIERRE_megasequia": 45.63428571428572,
+      "media_CIERRE_global": 22.766935483870967,
+      "media_SELVA_megasequia": 11.232857142857144,
+      "media_SELVA_global": 25.61661290322581
+    },
+    "spearmanRes": {
+      "n_anios_con_dato_de_lluvia": 61,
+      "rho_spearman_JARDIN_FERTIL_vs_lluvia": 0.22350655413005233
+    }
+  },
+  "metricas_por_cobertura_temp_real": null,
+  "contexto_oni_disponible_anios": 61
+}

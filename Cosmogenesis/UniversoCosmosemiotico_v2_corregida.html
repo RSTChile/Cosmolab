@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CG002 — Visor del universo (Génesis · Cosmos)</title>
+<!--
+  CG002 VISOR INTEGRADO (Claude CC para Alexis, 29-jun-2026)
+  Incorpora los hallazgos del arco (INFORME_GENERAL_CG002_ARCO.md) en pestañas:
+   · GÉNESIS  : nacen en el foco, acoplamiento global → el estallido (C-N1→C-N2.5).
+   · COSMOS   : posiciones en volumen, acoplamiento LOCAL (alcance rc) → dominios
+                que coexisten y TRANSICIÓN DE FASE al variar rc (C-N2.5.9, C-N2.7).
+  Transversal (ambos modos): dimensión de firma d (el espacio HEREDA la dim del
+  sustrato, C-N2.6), constantes emergentes f y |orden| (ley) vs dirección (historia,
+  C-N2.8.15), aniquilación (C-N2.5.10), flecha del tiempo τ (C-N3).
+  Regla validada: g=U·R(θ_CP)·U, f=α·η·g·√(sat S·sat S), banda C-N5.1, extinción κ_s.
+  Nada se pinta que no salga de la dinámica; el layout es visualización.
+  ACTUALIZACIÓN 30-jun R7a: pestaña PLASMA QCD — Ω_firma = color SU(3) × spin ℤ₂ (12 microestados),
+  c_ij = v_i·v_j (antiquark = −v_c), spin pasivo, θ_CP=0, semilla simétrica q/q̄, sin confinamiento.
+  Régimen 10⁻³²–10⁻⁶ s (reloj cosmológico visual). K_eff falsable: 6 / 8 / 12.
+  ACTUALIZACIÓN 30-jun (cierre arco κ_Δ): añadida la capa del cierre — frac_pos (trivialidad
+  C-N1.3), exceso de orden sobre nulo finito (capa FINA, ~0.015@d3), L2 de fase vs nulo
+  combinatorio y m_eff/K con grano 1/√K (capa GRUESA; m_eff/K=½ DERIVADO, banda 6×, κ_Δ≡2π/K).
+  Por eso f y |orden| YA NO se rotulan "ley/constantes": son triviales (geometría del hemisferio).
+  + criticidad χ (fluctuación del orden por celda; pico esperado rc≈3, C-N2.7) en modo Cosmos,
+  y tipología de ruptura viva (disolución κ_P / desacoplamiento κ_V / homogeneización κ_Δ, C-N2.8.9a).
+  ACTUALIZACIÓN 30-jun: pestaña ◇ Arco κ_Δ — motor ℤ_K del cierre (cg002_dynamic_l2_sweep.py):
+  ω_i fijo en Z_K, c_ij=cos(2π(ω_i−ω_j)/K), θ_CP=0, barrido banda 6×, HUD capas gruesa/fina/trivial.
+-->
+<style>
+  html,body{margin:0;height:100%;background:#04050a;overflow:hidden;font-family:-apple-system,system-ui,sans-serif;color:#cfd6e4}
+  #c{display:block;width:100vw;height:100vh}
+  #tabs{position:fixed;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+  #tabs button{background:rgba(12,16,26,.8);color:#9fb0d0;border:1px solid #233; border-radius:9px;padding:7px 16px;cursor:pointer;font-size:13px}
+  #tabs button.act{background:#1f2c4d;color:#fff;border-color:#3a5}
+  #hud{position:fixed;top:54px;left:12px;font-size:12px;line-height:1.55;text-shadow:0 0 6px #000;pointer-events:none}
+  #hud b{color:#fff}
+  #fase{position:fixed;top:54px;right:12px;font-size:13px;background:rgba(9,12,20,.7);border:1px solid #1d2740;border-radius:8px;padding:6px 10px}
+  #panel{position:fixed;bottom:12px;right:12px;background:rgba(9,12,20,.8);border:1px solid #1d2740;border-radius:10px;padding:10px 12px;font-size:12px;width:460px;backdrop-filter:blur(6px)}
+  #panel label{display:block;margin:7px 0 2px;color:#90a0c0}
+  #panel input[type=range]{width:100%;height:18px;margin:0}
+  #panel .ticks{position:relative;height:12px;margin:1px 2px 6px;font-size:0}
+  #panel .ticks span{position:absolute;top:3px;transform:translateX(-50%);font-size:8.5px;color:#5a6a86;white-space:nowrap;pointer-events:none}
+  #panel .ticks span::before{content:'';position:absolute;left:50%;top:-3px;width:1px;height:3px;background:#46587e}
+  #panel .val{color:#fff;float:right}
+  #panel .row{display:flex;gap:6px;margin-top:8px}
+  #panel button{flex:1;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:7px;padding:6px;cursor:pointer;font-size:11.5px}
+  #panel button:hover{background:#1f2c4d}
+  #panel .hide{display:none}
+  #info{position:fixed;left:12px;bottom:12px;max-width:30vw;background:rgba(9,12,20,.85);border:1px solid #1d2740;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.5;display:none}
+  #info h3{margin:0 0 6px;color:#fff}#info p{margin:5px 0}
+  #nodos{position:fixed;top:150px;left:12px;width:300px;font-size:11.5px;line-height:1.5;background:rgba(9,12,20,.72);border:1px solid #1d2740;border-radius:9px;padding:9px 11px;display:none;text-shadow:0 0 5px #000}
+  #nodos b{color:#cfe}
+  #infoBtn{position:fixed;left:12px;bottom:12px;background:rgba(9,12,20,.8);border:1px solid #1d2740;border-radius:50%;width:30px;height:30px;color:#cfd6e4;cursor:pointer}
+
+  /* ---- pestañas 2D (cronología / civilizaciones) ---- */
+  #wrap2d{position:fixed;left:0;right:0;top:46px;bottom:0;display:none;overflow-x:auto;overflow-y:hidden;background:#04050a;z-index:2}
+  #c2d{display:block;height:100%}
+  #bar2d{position:fixed;top:52px;right:12px;display:none;gap:6px;z-index:6;align-items:center}
+  #bar2d button{background:rgba(12,16,26,.9);color:#9fb0d0;border:1px solid #233;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px}
+  #bar2d button.act{background:#1f2c4d;color:#fff;border-color:#3a5}
+  #help2d{position:fixed;left:12px;bottom:12px;max-width:34vw;background:rgba(9,12,20,.9);border:1px solid #1d2740;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.5;display:none;z-index:6}
+  #help2d h4{margin:0 0 5px;color:#fff;font-size:13px}#help2d p{margin:4px 0}
+  #help2dBtn{position:fixed;left:12px;bottom:12px;display:none;background:rgba(9,12,20,.9);border:1px solid #1d2740;border-radius:50%;width:30px;height:30px;color:#cfd6e4;cursor:pointer;z-index:6}
+
+  /* ---- pestaña Nodos de la Teoría ---- */
+  #wrapNodos{position:fixed;left:0;right:0;top:46px;bottom:0;display:none;background:#04050a;z-index:2;overflow:hidden}
+  #ndTop{position:absolute;top:0;left:0;right:0;height:56px;background:#070a12;border-bottom:1px solid #1a2438;display:flex;align-items:center;gap:14px;padding:0 18px;box-sizing:border-box;z-index:3}
+  #ndTop h3{margin:0;font-size:15px;color:#fff;font-weight:600}
+  #ndLeg{display:flex;gap:12px;font-size:11px;flex-wrap:wrap}
+  #ndLeg span{color:#aeb8cc}#ndLeg b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  #ndCols{position:absolute;top:56px;left:0;right:0;bottom:0;display:flex}
+  #ndList{width:288px;min-width:288px;overflow-y:auto;background:#060810;border-right:1px solid #16203a;padding:8px 0}
+  #ndList .blk{padding:9px 16px;cursor:pointer;border-left:3px solid transparent;color:#b9c4da;font-size:12.5px}
+  #ndList .blk:hover{background:#0e1524}
+  #ndList .blk.act{background:#111a30;border-left-color:#4fe08a;color:#fff}
+  #ndList .blk .bn{font-size:10.5px;color:#7688a4}
+  #ndList .blk .pill{float:right;font-size:9.5px;color:#0b0e15;background:#4fe08a;border-radius:8px;padding:0 6px;margin-left:4px}
+  #ndMain{flex:1;overflow-y:auto;padding:20px 26px}
+  #ndMain h2{margin:0 0 4px;font-size:19px;color:#fff}
+  #ndMain .sub{color:#8fa;font-size:12.5px;margin-bottom:16px}
+  .ndcard{background:#0a0e18;border:1px solid #1a2438;border-radius:12px;padding:15px 17px;margin-bottom:14px}
+  .ndcard .nid{font-weight:700;color:#dbe6ff;font-size:14px;font-family:ui-monospace,monospace}
+  .ndcard .badge{float:right;font-size:10.5px;padding:2px 9px;border-radius:9px;font-weight:600}
+  .b_probado{background:#12351f;color:#63e08a;border:1px solid #2a6a42}
+  .b_negativo{background:#3a2c12;color:#ffc23a;border:1px solid #7a5a1a}
+  .b_parcial{background:#123249;color:#5ab0e0;border:1px solid #2a5a7a}
+  .b_pendiente{background:#1a1f2c;color:#8a94a6;border:1px solid #2a3244}
+  .ndcard .badge.b_axioma{background:#2a1f3e;color:#c9a0ff;border:1px solid #55407a}
+  .ndcard .badge.b_deductivo{background:#1c2b3a;color:#9aa8e8;border:1px solid #3a4a70}
+  .ndcard .enun{color:#cfd6e4;font-size:13px;margin:9px 0;line-height:1.55}
+  .ndcard .ej{color:#93a0b8;font-size:12px;font-style:italic;border-left:2px solid #2a3450;padding-left:9px;margin:6px 0}
+  .ndcard .expn{color:#9fe0b6;font-size:12px;background:#0c1a12;border:1px solid #1c3a26;border-radius:8px;padding:8px 10px;margin-top:8px}
+  .ndmedia{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .ndslot{flex:1;min-width:220px;background:#080b13;border:1px dashed #2a3450;border-radius:8px;padding:10px;font-size:11.5px;color:#7d89a2;text-align:center}
+  .ndslot.filled{border-style:solid}
+  .ndslot iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:6px;background:#000}
+
+  /* ---- pestaña CS072 (modo 3D del motor compartido) ---- */
+  #csHud{position:fixed;left:14px;top:56px;font-size:12px;color:#cfd6e4;background:rgba(8,11,18,.72);border:1px solid #1a2438;border-radius:9px;padding:9px 12px;line-height:1.6;z-index:5;display:none;max-width:44vw}
+  #csHud b{color:#fff}#csHud .big{font-size:15px;color:#4fe08a;font-weight:700}
+  #csPanel{position:fixed;right:0;top:46px;bottom:0;width:340px;background:rgba(7,10,18,.94);border-left:1px solid #1a2438;overflow-y:auto;padding:12px 14px;box-sizing:border-box;z-index:5;display:none}
+  #csPanel h4{margin:8px 0 4px;font-size:12px;color:#8fb0e0;text-transform:uppercase;letter-spacing:.5px}
+  #csPanel .sl{margin:6px 0 10px}
+  #csPanel .sl label{display:block;font-size:11.5px;color:#c3ccdd;margin-bottom:2px}
+  #csPanel .sl .v{float:right;color:#4fe08a;font-weight:600}
+  #csPanel input[type=range]{width:100%}
+  #csPanel .nota{font-size:10.5px;color:#7d89a2;line-height:1.4;margin-top:2px}
+  .cschk{display:flex;align-items:flex-start;gap:7px;padding:5px 6px;border-radius:6px;cursor:pointer;font-size:11.5px;color:#c3ccdd}
+  .cschk:hover{background:#0e1524}
+  .cschk input{margin-top:2px}
+  .cschk .cn{font-weight:600;color:#dbe6ff}
+  .cschk .ct{font-size:10px;color:#7688a4}
+  .cschk .toca{font-size:9px;padding:0 5px;border-radius:7px;background:#16203a;color:#7fa0d0;margin-left:4px}
+  .cschk.off{opacity:.5}.cschk.off .cn{text-decoration:line-through}
+  .csfase{font-size:10px;color:#5a86c8;text-transform:uppercase;letter-spacing:.6px;margin:9px 0 2px;padding-bottom:2px;border-bottom:1px solid #16203a}
+  #csApagado{font-size:10.5px;color:#ffb060;background:#241a0e;border:1px solid #4a3418;border-radius:7px;padding:6px 8px;margin:6px 0;min-height:14px}
+  #csBtns{display:flex;gap:6px;margin:8px 0}
+  #csBtns button{flex:1;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:7px;padding:6px;cursor:pointer;font-size:11.5px}
+  #csBtns button:hover{background:#1f2c4d}
+  #csTL{position:fixed;left:14px;bottom:12px;width:calc(100vw - 380px);height:118px;background:rgba(7,10,18,.82);border:1px solid #1a2438;border-radius:9px;z-index:5;display:none}
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="tabs">
+  <button id="tabCS" class="act">◐ Simulación CS072</button>
+  <button id="tabGen">● Génesis</button>
+  <button id="tabCos">○ Cosmos</button>
+  <button id="tabNar">▶ Del punto al cosmos</button>
+  <button id="tabQcd">◆ Plasma QCD</button>
+  <button id="tabKappa">◇ Arco κ_Δ</button>
+  <button id="tabCrono">▦ Cronología cosmosemiótica</button>
+  <button id="tabCiv">◈ Civilizaciones sucesivas</button>
+  <button id="tabNodos">◉ Nodos de la Teoría</button>
+</div>
+<div id="hud"></div>
+<div id="fase"></div>
+<div id="nodos"></div>
+<button id="infoBtn" title="¿Qué veo?">?</button>
+<div id="info">
+  <h3 id="infoT">Génesis</h3>
+  <div id="infoBody"></div>
+  <div id="legend" style="margin:6px 0"></div>
+  <button id="infoClose" style="margin-top:4px;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:6px;padding:4px 10px;cursor:pointer">cerrar</button>
+</div>
+<div id="panel">
+  <label>N diferencias <span class="val" id="vN">800</span></label>
+  <input id="N" type="range" min="2" max="100000" step="1" value="800">
+  <div class="ticks" id="tkN"></div>
+  <label>d · dimensión de firma <span class="val" id="vD">3</span></label>
+  <input id="D" type="range" min="2" max="6" step="1" value="3">
+  <div class="ticks" id="tkD"></div>
+  <label>θ_CP · asimetría primordial <span class="val" id="vT">+0.30</span></label>
+  <input id="theta" type="range" min="-1" max="1" step="0.05" value="0.3">
+  <div class="ticks" id="tkT"></div>
+  <label>α · intensidad acoplamiento <span class="val" id="vA">1.00</span></label>
+  <input id="alpha" type="range" min="0" max="1" step="0.05" value="1">
+  <div class="ticks" id="tkA"></div>
+  <div id="rcWrap" class="hide">
+    <label>alcance rc · escala <span class="val" id="vR">2.0</span></label>
+    <input id="rc" type="range" min="0.6" max="8" step="0.2" value="2.0">
+    <div class="ticks" id="tkR"></div>
+  </div>
+  <div id="qcdWrap" class="hide">
+    <label>Fase QCD <span class="val" id="vQcd">R7a</span></label>
+    <div class="row"><button id="qcdA" type="button">R7a acoplamiento</button><button id="qcdB" type="button">R7b gluón entidad</button></div>
+  </div>
+  <div id="kappaWrap" class="hide">
+    <label>K · clases ℤ_K <span class="val" id="vKappaK">8</span></label>
+    <div class="row"><button id="kappaK6" type="button">K=6</button><button id="kappaK8" type="button">K=8</button><button id="kappaK12" type="button">K=12</button></div>
+    <label>banda S_BAND × <span class="val" id="vBandMult">1.00</span> <span style="color:#7a8">(barrido 6× del cierre)</span></label>
+    <input id="bandMult" type="range" min="0.5" max="3" step="0.1" value="1">
+    <div class="ticks" id="tkBand"></div>
+    <div class="row"><button id="kappaN2k" type="button">N=2000</button><button id="kappaN16k" type="button">N=16000</button></div>
+    <p style="margin:6px 0 0;font-size:11px;color:#7a8">θ_CP=0 fijo · ω uniforme en Z_K · motor = cierre CC</p>
+  </div>
+  <div id="spWrap" class="hide">
+    <label>velocidad (pasos/frame) <span class="val" id="vSp">3</span></label>
+    <input id="sp" type="range" min="1" max="12" step="1" value="3">
+    <div class="ticks" id="tkSp"></div>
+  </div>
+  <label>Configuración inicial <span class="val" id="vS">3</span></label>
+  <input id="conf" type="range" min="1" max="120" step="1" value="3">
+  <div class="ticks" id="tkC"></div>
+  <div class="row"><button id="play">⏸ pausa</button><button id="reset">↺ reset</button><button id="csv">⬇ estado CSV</button><button id="rec">⏺ video</button></div>
+</div>
+
+<div id="wrap2d"><canvas id="c2d"></canvas></div>
+<div id="bar2d">
+  <button id="z_comp" class="act" title="Todo el arco de un vistazo, sin scroll">Compacto</button>
+  <button id="z_cos" title="Arco cósmico estirado: nucleosíntesis de los 118 elementos (scroll →)">Cósmico</button>
+  <button id="z_ter" title="Sólo el período de la Tierra: las 11 exaptaciones (scroll →)">Terrestre</button>
+</div>
+<div id="csHud"></div><div id="csPanel"></div><canvas id="csTL"></canvas>
+<div id="wrapNodos"><div id="ndTop"><h3>Nodos de la Teoría Cosmosemiótica</h3><div id="ndLeg"></div></div><div id="ndCols"><div id="ndList"></div><div id="ndMain"></div></div></div>
+<button id="help2dBtn" title="¿Qué veo?">?</button>
+<div id="help2d"><h4 id="h2dT"></h4><div id="h2dB"></div><button id="h2dClose" style="margin-top:6px;background:#16203a;color:#cfd6e4;border:1px solid #2a3a60;border-radius:6px;padding:4px 10px;cursor:pointer">cerrar</button></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ===== regla validada =====
+const ETA=0.05,MU=0.01,KAPPA_S=1e-6,S0=1.0,S_BAND=8.0;
+const KC=0.9,KB=1.4,KCEN=0.015,DAMP=0.86,DT=0.18;
+const NBIG=2500;   // sobre este N: motor O(N) (campo medio + expansión), bajo: force-directed
+const sat=s=>s/(1+s/S_BAND);
+let cfg={mode:'genesis',N:800,d:3,theta:0.3,alpha:1,seed:3,rc:2.0,L:12.0,speed:3,qcdVer:'a',
+  kappaK:8,bandMult:1.0};
+let omega;
+const N_MICRO_A=12,N_MICRO_B=20,N_GLUON=8;
+const K_CANDS_A=[6,8,12],K_CANDS_B=[8,12,20];
+const COL3=[[1,0,0],[0,1,0],[0,0,1]];  // r,g,b rep. fundamental SU(3)
+const QCD_T0=-32,QCD_T1=-6;  // reloj cosmológico visual (segundos, log10)
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function randn(r){let u=Math.max(1e-12,r()),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(6.28318530718*v);}
+
+// estado
+let N,d,U,RU,S,alive,px,py,pz,vx,vy,vz,W,nb_i,nb_j,nbN;
+let colV,msLab,qcdC;   // QCD: color 3D + microestado; qcdC = matriz compat N×N (R7b)
+const GLU_ROOTS=[[1,-1,0],[0,1,-1],[-1,1,0],[1,0,-1],[0,-1,1],[-1,0,1],[1,1,-2],[1,1,1]].map(r=>{const n=Math.hypot(r[0],r[1],r[2])||1;return[r[0]/n,r[1]/n,r[2]/n];});
+let dirx,diry,dirz;   // direcciones de visualización (alta-N): ALEATORIAS fijas, NO la firma → nube esférica, sin casquete forzado
+let tau,dStruct,nAlive,nAnnih,we;
+let dStructRate=0,_prevDStruct=0;   // ritmo de cambio estructural (para tipología de ruptura C-N2.8.9a)
+
+function rotateU(){ // RU = R(θ) U   (rota componentes 0,1)
+  const c=Math.cos(cfg.theta),s=Math.sin(cfg.theta);
+  for(let i=0;i<N;i++){const b=i*d,u0=U[b],u1=U[b+1];RU[b]=c*u0-s*u1;RU[b+1]=s*u0+c*u1;for(let k=2;k<d;k++)RU[b+k]=U[b+k];}
+}
+function gdot(i,j){let s=0;const bi=i*d,bj=j*d;for(let k=0;k<d;k++)s+=U[bi+k]*RU[bj+k];return s;} // g_{i<-j}=U_i·R·U_j
+
+// ===== R7a QCD: color SU(3) × spin pasivo =====
+function decodeMs(ms){const aq=ms>=6,b=aq?ms-6:ms;return[aq,b>>1,b&1];}
+function colorVec(aq,ci){const s=aq?-1:1;return[s*COL3[ci][0],s*COL3[ci][1],s*COL3[ci][2]];}
+function qcdTime(){const t=Math.min(1,tau/200);return Math.pow(10,QCD_T0+t*(QCD_T1-QCD_T0));}
+function isGluon(ms){return ms>=N_MICRO_A;}
+function qgCoup(v,a){const r=GLU_ROOTS[a];return Math.abs(v[0]*r[0]+v[1]*r[1]+v[2]*r[2]);}
+function qcdCompat(i,j){
+  const mi=msLab[i],mj=msLab[j],gi=isGluon(mi),gj=isGluon(mj);
+  if(!gi&&!gj)return colV[i*3]*colV[j*3]+colV[i*3+1]*colV[j*3+1]+colV[i*3+2]*colV[j*3+2];
+  if(gi&&gj)return mi===mj?1:0;
+  if(gi)return qgCoup([colV[j*3],colV[j*3+1],colV[j*3+2]],mi-N_MICRO_A);
+  return qgCoup([colV[i*3],colV[i*3+1],colV[i*3+2]],mj-N_MICRO_A);
+}
+function buildQcdCompat(){qcdC=new Float64Array(N*N);for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(i!==j)qcdC[i*N+j]=qcdCompat(i,j);}
+function initQcdSymmetric(rng){
+  const nMicro=cfg.qcdVer==='b'?N_MICRO_B:N_MICRO_A;
+  const per=Math.floor(N/nMicro),rem=N%nMicro;msLab=new Uint8Array(N);colV=new Float32Array(N*3);
+  let pos=0;for(let ms=0;ms<nMicro;ms++){const n=per+(ms<rem?1:0);
+    if(ms<N_MICRO_A){const[aq,ci,sp]=decodeMs(ms);const cv=colorVec(aq,ci);
+      for(let k=0;k<n;k++){msLab[pos]=ms;colV[pos*3]=cv[0];colV[pos*3+1]=cv[1];colV[pos*3+2]=cv[2];pos++;}}
+    else{for(let k=0;k<n;k++){msLab[pos]=ms;colV[pos*3]=0;colV[pos*3+1]=0;colV[pos*3+2]=0;pos++;}}}
+  for(let i=N-1;i>0;i--){const j=(rng()* (i+1))|0;const t=msLab[i];msLab[i]=msLab[j];msLab[j]=t;
+    for(let k=0;k<3;k++){const t2=colV[i*3+k];colV[i*3+k]=colV[j*3+k];colV[j*3+k]=t2;}}
+}
+function binQcd(K){
+  const cnt=new Float64Array(K);let ns=0,nq=0,ng=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;ns++;const ms=msLab[i];
+    if(cfg.qcdVer==='b'){if(K===20)cnt[ms]++;else if(K===12&&ms<N_MICRO_A)cnt[ms]++;else if(K===8&&ms>=N_MICRO_A)cnt[ms-N_MICRO_A]++;if(ms<N_MICRO_A)nq++;else ng++;}
+    else{if(K===12)cnt[ms]++;else if(K===6&&ms<6)cnt[ms]++;else{const[aq,ci,sp]=decodeMs(ms);cnt[(aq?3:0)+ci]++;cnt[6+sp]++;}}}
+  return{cnt,ns,nq,ng};}
+function metricsQcd(){
+  const K_CANDS=cfg.qcdVer==='b'?K_CANDS_B:K_CANDS_A;const out={};for(const K of K_CANDS){const{cnt,ns,nq,ng}=binQcd(K);
+    if(ns<5){out['L2_'+K]=0;out['meff_'+K]=0;out['null_'+K]=0;out['grain_'+K]=1/Math.sqrt(K);continue;}
+    let L2=0,sf2=0;for(let k=0;k<K;k++){const fk=cnt[k]/ns;L2+=(fk-1/K)*(fk-1/K);sf2+=fk*fk;}
+    out['L2_'+K]=Math.sqrt(L2);out['meff_'+K]=sf2>0?1/(K*sf2):0;
+    out['null_'+K]=Math.sqrt((K-1)/(K*ns));out['grain_'+K]=1/Math.sqrt(K);}
+  let cx=0,cy=0,cz=0,ns=0;for(let i=0;i<N;i++)if(alive[i]){cx+=colV[i*3];cy+=colV[i*3+1];cz+=colV[i*3+2];ns++;}
+  const ordC=ns?Math.hypot(cx,cy,cz)/ns:0;let fn=0;
+  if(ns>=2){const inv=1/(Math.hypot(cx,cy,cz)+1e-9);cx*=inv;cy*=inv;cz*=inv;
+    for(let i=0;i<N;i++)if(alive[i]){const d=Math.abs(colV[i*3]*cx+colV[i*3+1]*cy+colV[i*3+2]*cz);if(d<0.15)fn++;}}
+  out.ordC=ordC;out.fracNeutral=ns?fn/ns:0;out.f=ns/N;
+  const{cnt:_,ns:ns2,nq,ng}=binQcd(20);out.fracQuark=ns2?nq/ns2:0;out.fracGluon=ns2?ng/ns2:0;
+  let best=K_CANDS[0],br=0;for(const K of K_CANDS){const r=out['L2_'+K]/(out['null_'+K]+1e-9);out['excess_'+K]=r;if(r>br){br=r;best=K;}}
+  out.kBest=best;out.K_CANDS=K_CANDS;return out;
+}
+
+function satBand(s){const sb=S_BAND*cfg.bandMult;return s/(1+s/sb);}
+function kappaCij(i,j){return Math.cos(2*Math.PI*(omega[i]-omega[j])/cfg.kappaK);}
+function nullOrdenFase(n,K,seed){
+  if(n<2)return 0;const r=mulberry32((seed+999)>>>0);let acc=0;
+  for(let rep=0;rep<120;rep++){let cx=0,cy=0;for(let i=0;i<n;i++){const ang=2*Math.PI*((r()*K)|0)/K;cx+=Math.cos(ang);cy+=Math.sin(ang);}acc+=Math.hypot(cx/n,cy/n);}
+  return acc/120;
+}
+function initKappa(){
+  const K=cfg.kappaK;N=cfg.N;d=3;cfg.theta=0;
+  const rng=mulberry32((cfg.seed*2654435761)>>>0);
+  omega=new Uint8Array(N);U=new Float32Array(N*d);S=new Float64Array(N);alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+  const golden=Math.PI*(3-Math.sqrt(5));
+  for(let i=0;i<N;i++){
+    omega[i]=(rng()*K)|0;S[i]=S0;alive[i]=1;
+    const ang=2*Math.PI*omega[i]/K+(i*golden)%6.28318530718*0.06;
+    U[i*d]=Math.cos(ang);U[i*d+1]=Math.sin(ang);U[i*d+2]=0.12*randn(rng);
+    let nn=Math.hypot(U[i*d],U[i*d+1],U[i*d+2])||1;U[i*d]/=nn;U[i*d+1]/=nn;U[i*d+2]/=nn;
+    px[i]=(rng()-.5)*0.08;py[i]=(rng()-.5)*0.08;pz[i]=(rng()-.5)*0.08;
+    dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);
+    nn=Math.hypot(dirx[i],diry[i],dirz[i])||1;dirx[i]/=nn;diry[i]/=nn;dirz[i]/=nn;
+    vx[i]=vy[i]=vz[i]=0;
+  }
+  tau=0;dStruct=0;nAlive=N;nAnnih=0;we=1;
+  resetKappaNodos();buildPoints(N);
+}
+function stepKappaPhys(){
+  const K=cfg.kappaK,al=cfg.alpha,M=new Float64Array(K);let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]*=(1-MU);M[omega[i]]+=Math.sqrt(satBand(S[i]));}
+  for(let i=0;i<N;i++){
+    if(!alive[i])continue;const mi=Math.sqrt(satBand(S[i])),wi=omega[i];let coop=0;
+    for(let k=0;k<K;k++)coop+=Math.cos(2*Math.PI*(wi-k)/K)*M[k];
+    const ds=al*ETA*mi*coop-al*ETA*mi*mi;S[i]+=ds;if(S[i]<0)S[i]=0;dstep+=Math.abs(ds);
+    if(S[i]<=KAPPA_S){alive[i]=0;S[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepKappaLayout(){
+  if(N<=NBIG){
+    const ax=new Float64Array(N),ay=new Float64Array(N),az=new Float64Array(N);let maxW=1e-9;const ws=we+1e-9;
+    for(let i=0;i<N;i++){if(!alive[i])continue;const xi=px[i],yi=py[i],zi=pz[i];
+      for(let j=i+1;j<N;j++){if(!alive[j])continue;
+        const cij=kappaCij(i,j),mag=Math.sqrt(satBand(S[i])*satBand(S[j]));
+        const w=cij*mag,aw=Math.abs(w);if(aw>maxW)maxW=aw;
+        let dx=xi-px[j],dy=yi-py[j],dz=zi-pz[j],dist=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-4,inv=1/dist;
+        const wf=Math.tanh(w/ws),fc=-wf*KC,fb=KB/(dist*dist),li=(fc+fb)*inv,lj=(fc-fb)*inv;
+        ax[i]+=dx*li;ay[i]+=dy*li;az[i]+=dz*li;ax[j]+=dx*lj;ay[j]+=dy*lj;az[j]+=dz*lj;}}
+    we=0.9*we+0.1*maxW;
+    for(let i=0;i<N;i++){if(!alive[i])continue;
+      let aX=ax[i]-KCEN*px[i],aY=ay[i]-KCEN*py[i],aZ=az[i]-KCEN*pz[i];
+      vx[i]=(vx[i]+aX*DT)*DAMP;vy[i]=(vy[i]+aY*DT)*DAMP;vz[i]=(vz[i]+aZ*DT)*DAMP;
+      let vm=Math.hypot(vx[i],vy[i],vz[i]);if(vm>3){const k=3/vm;vx[i]*=k;vy[i]*=k;vz[i]*=k;}
+      px[i]+=vx[i]*DT;py[i]+=vy[i]*DT;pz[i]+=vz[i]*DT;}
+  }else{
+    const Rt=0.35*tau;
+    for(let i=0;i<N;i++){if(!alive[i])continue;
+      const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));
+      px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+  }
+}
+function stepKappa(){stepKappaPhys();stepKappaLayout();}
+function metricsKappa(){
+  const K=cfg.kappaK;let n=0;const cnt=new Float64Array(K);
+  for(let i=0;i<N;i++)if(alive[i]){cnt[omega[i]]++;n++;}
+  let L2=0,sf2=0,cx=0,cy=0;
+  for(let k=0;k<K;k++){const fk=n?cnt[k]/n:0;L2+=(fk-1/K)*(fk-1/K);sf2+=fk*fk;
+    if(n){const ang=2*Math.PI*k/K;cx+=fk*Math.cos(ang);cy+=fk*Math.sin(ang);}}
+  L2=Math.sqrt(L2);const meffK=sf2>0?1/(K*sf2):0;
+  const granoNulo=n?Math.sqrt((K-1)/(K*n)):0,granoGrueso=1/Math.sqrt(K),kappaDelta=2*Math.PI/K;
+  let ordG=0;if(n>0){let ox=0,oy=0,oz=0;for(let i=0;i<N;i++)if(alive[i]){ox+=U[i*3];oy+=U[i*3+1];oz+=U[i*3+2];}
+    ordG=Math.hypot(ox,oy,oz)/n;}
+  const nullOrd=nullOrderMean(n,d);
+  let fp=0;if(n>0){let ox=0,oy=0,oz=0;for(let i=0;i<N;i++)if(alive[i]){ox+=U[i*3];oy+=U[i*3+1];oz+=U[i*3+2];}
+    const inv=1/(Math.hypot(ox,oy,oz)+1e-9),ux=ox*inv,uy=oy*inv,uz=oz*inv;
+    for(let i=0;i<N;i++)if(alive[i]){const d=U[i*3]*ux+U[i*3+1]*uy+U[i*3+2]*uz;if(d>0)fp++;}}
+  const ver=Math.abs(meffK-0.5)<0.02?'✅ DERIVACIÓN':'⚠ revisar';
+  return{f:N?n/N:0,ordG,exOrden:ordG-nullOrd,L2,meffK,granoNulo,granoGrueso,K,kappaDelta,
+    fracPos:n?fp/n:1,ratio:L2/(granoNulo+1e-9),veredicto:ver,sBand:S_BAND*cfg.bandMult};
+}
+let KAPPA_NODOS=[];
+function resetKappaNodos(){
+  KAPPA_NODOS=[
+   {id:'C-N1',txt:'S>0 — la diferencia persiste',test:m=>tau>=1},
+   {id:'C-N2',txt:'acoplamiento c_ij=cos(2πΔω/K)',test:m=>dStruct>0},
+   {id:'C-N2.5.10',txt:'aniquilación — ~½ sobrevive',test:m=>m.f<0.55&&tau>3},
+   {id:'C-N2.8.4',txt:'κ_Δ>0 — L2 supera nulo combinatorio',test:m=>m.ratio>3&&tau>5},
+   {id:'C-N2.8.14a',txt:'exceso fino ~0.015 (dominio d=2 fase)',test:m=>m.exOrden>0.008&&tau>8},
+   {id:'DERIV',txt:'m_eff/K≈½ estable (banda 6×)',test:m=>Math.abs(m.meffK-0.5)<0.02&&tau>10},
+  ].map(n=>({...n,fired:false,tau:null}));renderKappaNodos();}
+function renderKappaNodos(){const el=document.getElementById('nodos');if(!el)return;
+  el.innerHTML='<div style="color:#fff;margin-bottom:5px;font-weight:bold">Arco κ_Δ · nodos cumplidos</div>'+
+    KAPPA_NODOS.map(n=>`<div style="opacity:${n.fired?1:0.32}">${n.fired?'✓':'○'} <b>${n.id}</b> ${n.txt}${n.fired?' <span style="color:#7fd">τ='+n.tau+'</span>':''}</div>`).join('');}
+function detectaKappaNodos(m){let chg=false;for(const n of KAPPA_NODOS)if(!n.fired&&n.test(m)){n.fired=true;n.tau=tau;chg=true;}if(chg)renderKappaNodos();}
+
+function init(){
+  if(cfg.mode==='cs'){initCS();return;}
+  if(cfg.mode==='kappa'){initKappa();return;}
+  N=(cfg.mode==='cosmos')?Math.min(cfg.N,4000):cfg.N;
+  d=(cfg.mode==='qcd')?3:cfg.d;const rng=mulberry32((cfg.seed*2654435761)>>>0);
+  U=new Float32Array(N*d);RU=new Float32Array(N*d);S=new Float64Array(N);alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  if(cfg.mode==='qcd'){
+    initQcdSymmetric(rng);
+    for(let i=0;i<N;i++){S[i]=S0;alive[i]=1;px[i]=(rng()-.5)*.05;py[i]=(rng()-.5)*.05;pz[i]=(rng()-.5)*.05;
+      for(let k=0;k<3;k++)U[i*d+k]=colV[i*3+k];}
+  }else for(let i=0;i<N;i++){
+    let n=0;for(let k=0;k<d;k++){const g=randn(rng);U[i*d+k]=g;n+=g*g;}n=Math.sqrt(n)||1;for(let k=0;k<d;k++)U[i*d+k]/=n;
+    S[i]=S0;alive[i]=1;
+    if(cfg.mode!=='cosmos'){px[i]=(rng()-.5)*.05;py[i]=(rng()-.5)*.05;pz[i]=(rng()-.5)*.05;}
+    else{px[i]=(rng()-.5)*cfg.L;py[i]=(rng()-.5)*cfg.L;pz[i]=(rng()-.5)*cfg.L;}
+  }
+  rotateU();
+  if(cfg.mode==='cosmos'){buildNeighbors();}
+  else if(cfg.mode==='qcd'||N<=NBIG){if(cfg.mode!=='qcd')W=new Float64Array(N*N);}
+  else{dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+    for(let i=0;i<N;i++){dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);}}
+  if(cfg.mode==='qcd'){if(cfg.qcdVer==='b')buildQcdCompat();}
+  if(cfg.mode==='qcd'&&N>NBIG){dirx=new Float64Array(N);diry=new Float64Array(N);dirz=new Float64Array(N);
+    for(let i=0;i<N;i++){dirx[i]=randn(rng);diry[i]=randn(rng);dirz[i]=randn(rng);}}
+  tau=0;dStruct=0;nAlive=N;nAnnih=0;we=1;
+  resetNodos();
+  buildPoints(N);
+}
+function buildNeighbors(){ // pares dentro de rc (posiciones fijas) -> lista dispersa
+  const rc2=cfg.rc*cfg.rc;const I=[],J=[];
+  for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const dx=px[i]-px[j],dy=py[i]-py[j],dz=pz[i]-pz[j];if(dx*dx+dy*dy+dz*dz<rc2){I.push(i);J.push(j);}}
+  nb_i=new Int32Array(I);nb_j=new Int32Array(J);nbN=I.length;
+}
+
+function stepGenesis(){
+  const al=cfg.alpha;const dS=new Float64Array(N);
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  let dstep=0,maxW=1e-9;const ws=we+1e-9;
+  const ax=new Float64Array(N),ay=new Float64Array(N),az=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i])continue;const xi=px[i],yi=py[i],zi=pz[i];
+    for(let j=i+1;j<N;j++){if(!alive[j])continue;
+      const gij=gdot(i,j),gji=gdot(j,i),mag=Math.sqrt(sat(S[i])*sat(S[j]));
+      const fi=al*ETA*gij*mag,fj=al*ETA*gji*mag;dS[i]+=fi;dS[j]+=fj;
+      const idx=i*N+j,wij=W[idx]+fi;W[idx]=wij;W[j*N+i]+=fj;dstep+=Math.abs(fi)+Math.abs(fj);
+      const aw=Math.abs(wij);if(aw>maxW)maxW=aw;
+      let dx=xi-px[j],dy=yi-py[j],dz=zi-pz[j],dist=Math.sqrt(dx*dx+dy*dy+dz*dz)+1e-4,inv=1/dist;
+      const w=Math.tanh(wij/ws),fc=-w*KC,fb=KB/(dist*dist),li=(fc+fb)*inv,lj=(fc-fb)*inv;
+      ax[i]+=dx*li;ay[i]+=dy*li;az[i]+=dz*li;ax[j]+=dx*lj;ay[j]+=dy*lj;az[j]+=dz*lj;}}
+  we=0.9*we+0.1*maxW;
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;continue;}
+    let aX=ax[i]-KCEN*px[i],aY=ay[i]-KCEN*py[i],aZ=az[i]-KCEN*pz[i];
+    vx[i]=(vx[i]+aX*DT)*DAMP;vy[i]=(vy[i]+aY*DT)*DAMP;vz[i]=(vz[i]+aZ*DT)*DAMP;
+    let vm=Math.hypot(vx[i],vy[i],vz[i]);if(vm>3){const k=3/vm;vx[i]*=k;vy[i]*=k;vz[i]*=k;}
+    px[i]+=vx[i]*DT;py[i]+=vy[i]*DT;pz[i]+=vz[i]*DT;}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepCosmos(){ // posiciones fijas; acoplamiento solo entre vecinos (rc)
+  const al=cfg.alpha;const dS=new Float64Array(N);let dstep=0;
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  for(let e=0;e<nbN;e++){const i=nb_i[e],j=nb_j[e];if(!alive[i]||!alive[j])continue;
+    const gij=gdot(i,j),gji=gdot(j,i),mag=Math.sqrt(sat(S[i])*sat(S[j]));
+    const fi=al*ETA*gij*mag,fj=al*ETA*gji*mag;dS[i]+=fi;dS[j]+=fj;dstep+=Math.abs(fi)+Math.abs(fj);}
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function count(){nAlive=0;for(let i=0;i<N;i++)if(alive[i])nAlive++;}
+
+// N grande: campo medio O(N) + layout de EXPANSIÓN (embedding relacional). Escala a 100k+.
+function stepGenesisBig(){
+  const al=cfg.alpha;const m=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i]){m[i]=0;continue;}S[i]*=(1-MU);m[i]=Math.sqrt(sat(S[i]));}
+  const v=new Float64Array(d);
+  for(let i=0;i<N;i++)if(alive[i]){const b=i*d,mi=m[i];for(let k=0;k<d;k++)v[k]+=mi*U[b+k];}
+  const c=Math.cos(cfg.theta),s=Math.sin(cfg.theta),Rv=new Float64Array(d);
+  for(let k=0;k<d;k++)Rv[k]=v[k];Rv[0]=c*v[0]-s*v[1];Rv[1]=s*v[0]+c*v[1];
+  let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const b=i*d;let dot=0,self=0;for(let k=0;k<d;k++){dot+=U[b+k]*Rv[k];self+=U[b+k]*RU[b+k];}
+    const dS=al*ETA*m[i]*dot-al*ETA*m[i]*m[i]*self;S[i]+=dS;if(S[i]<0)S[i]=0;dstep+=Math.abs(dS);
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+  // radio de VISUALIZACIÓN (no expansión física): crece con τ. Dirección ALEATORIA fija → nube esférica, sin casquete forzado.
+  const Rt=0.35*tau;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+}
+function stepGen(){ (N>NBIG)?stepGenesisBig():stepGenesis(); }
+
+function stepQcd(){
+  const al=cfg.alpha,m=new Float64Array(N),coop=new Float64Array(N);
+  for(let i=0;i<N;i++){if(!alive[i]){m[i]=0;continue;}S[i]*=(1-MU);m[i]=Math.sqrt(sat(S[i]));}
+  let dstep=0;
+  if(cfg.qcdVer==='b'&&qcdC){for(let i=0;i<N;i++){if(!alive[i])continue;let s=0;for(let j=0;j<N;j++)if(alive[j])s+=qcdC[i*N+j]*m[j];coop[i]=s;}}
+  else{let vx=0,vy=0,vz=0;for(let i=0;i<N;i++)if(alive[i]){const mi=m[i];vx+=mi*colV[i*3];vy+=mi*colV[i*3+1];vz+=mi*colV[i*3+2];}
+    for(let i=0;i<N;i++)if(alive[i])coop[i]=colV[i*3]*vx+colV[i*3+1]*vy+colV[i*3+2]*vz;}
+  for(let i=0;i<N;i++){if(!alive[i])continue;
+    const dS=al*ETA*m[i]*coop[i]-al*ETA*m[i]*m[i];S[i]+=dS;if(S[i]<0)S[i]=0;dstep+=Math.abs(dS);
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+  const Rt=0.35*tau;
+  for(let i=0;i<N;i++){if(!alive[i])continue;const r=Rt*(0.5+0.5*Math.tanh(S[i]/8));
+    if(N>NBIG){px[i]=dirx[i]*r;py[i]=diry[i]*r;pz[i]=dirz[i]*r;}
+    else{px[i]+=(Math.random()-.5)*0.002;py[i]+=(Math.random()-.5)*0.002;pz[i]+=(Math.random()-.5)*0.002;}}
+}
+function stepQcdPair(){
+  const al=cfg.alpha,dS=new Float64Array(N);
+  for(let i=0;i<N;i++)if(alive[i])S[i]*=(1-MU);
+  let dstep=0;
+  for(let i=0;i<N;i++){if(!alive[i])continue;
+    for(let j=i+1;j<N;j++){if(!alive[j])continue;
+      const cij=cfg.qcdVer==='b'?qcdCompat(i,j):(colV[i*3]*colV[j*3]+colV[i*3+1]*colV[j*3+1]+colV[i*3+2]*colV[j*3+2]);
+      const mag=Math.sqrt(sat(S[i])*sat(S[j]));const f=al*ETA*cij*mag;
+      dS[i]+=f;dS[j]+=f;dstep+=2*Math.abs(f);}}
+  for(let i=0;i<N;i++){if(!alive[i])continue;S[i]+=dS[i];if(S[i]<0)S[i]=0;
+    if(S[i]<=KAPPA_S){alive[i]=0;nAnnih++;}}
+  dStruct+=dstep;if(dstep>1e-4)tau++;count();
+}
+function stepQcdRun(){(N>NBIG)?stepQcd():stepQcdPair();}
+
+// ===== métricas =====
+function eig3(a,b,c,dd,e,f){const p1=dd*dd+e*e+f*f;if(p1<1e-12)return[a,b,c].sort((x,y)=>y-x);const q=(a+b+c)/3,p2=(a-q)**2+(b-q)**2+(c-q)**2+2*p1,p=Math.sqrt(p2/6);const det=((a-q)/p)*(((b-q)/p)*((c-q)/p)-(f/p)**2)-(dd/p)*((dd/p)*((c-q)/p)-(f/p)*(e/p))+(e/p)*((dd/p)*(f/p)-((b-q)/p)*(e/p));let r=Math.max(-1,Math.min(1,det/2)),phi=Math.acos(r)/3;const e1=q+2*p*Math.cos(phi),e3=q+2*p*Math.cos(phi+2*Math.PI/3);return[e1,3*q-e1-e3,e3];}
+// nulo finito del orden: |media| de n firmas unidad uniformes en el MISMO hemisferio (frac_pos≈1).
+// Es la línea base que vuelve TRIVIAL a |orden|≈½; el EXCESO sobre este nulo es la capa fina (κ_Δ).
+let _nullN=-1,_nullD=-1,_nullV=0;
+function nullOrderMean(n,dd){
+  if(n<2)return 0;
+  if(dd===_nullD&&Math.abs(n-_nullN)<=Math.max(2,0.02*n))return _nullV;   // cache: recomputa solo si n/d cambia
+  const r=mulberry32(0x9E3779B1>>>0),R=6,u=new Float64Array(dd);let acc=0;
+  for(let rep=0;rep<R;rep++){const s=new Float64Array(dd);
+    for(let i=0;i<n;i++){let nn=0;for(let k=0;k<dd;k++){const g=randn(r);u[k]=g;nn+=g*g;}nn=Math.sqrt(nn)||1;
+      let dot=0;for(let k=0;k<dd;k++){u[k]/=nn;dot+=u[k];}const sg=dot<0?-1:1;   // hemisferio respecto al eje 0
+      for(let k=0;k<dd;k++)s[k]+=sg*u[k];}
+    let m=0;for(let k=0;k<dd;k++)m+=s[k]*s[k];acc+=Math.sqrt(m)/n;}
+  _nullN=n;_nullD=dd;_nullV=acc/R;return _nullV;
+}
+function metrics(){
+  let n=0,cx=0,cy=0,cz=0;for(let i=0;i<N;i++)if(alive[i]){cx+=px[i];cy+=py[i];cz+=pz[i];n++;}
+  // orden global (de las firmas vivas): |media U| completa sobre las d componentes
+  let ord=new Float64Array(d);for(let i=0;i<N;i++)if(alive[i]){for(let k=0;k<d;k++)ord[k]+=U[i*d+k];}
+  let ordGsq=0;for(let k=0;k<d;k++)ordGsq+=ord[k]*ord[k];const ordG=n?Math.sqrt(ordGsq)/n:0;
+  let dim=0,aniso=1,clump=0,ordL=ordG,chiS=0;
+  if(n>=5){cx/=n;cy/=n;cz/=n;let xx=0,yy=0,zz=0,xy=0,xz=0,yz=0,ext=0;
+    for(let i=0;i<N;i++)if(alive[i]){const x=px[i]-cx,y=py[i]-cy,z=pz[i]-cz;xx+=x*x;yy+=y*y;zz+=z*z;xy+=x*y;xz+=x*z;yz+=y*z;const m=Math.max(Math.abs(x),Math.abs(y),Math.abs(z));if(m>ext)ext=m;}
+    xx/=n;yy/=n;zz/=n;xy/=n;xz/=n;yz/=n;const ev=eig3(xx,yy,zz,xy,xz,yz);
+    const sP=ev[0]+ev[1]+ev[2],s2=ev[0]*ev[0]+ev[1]*ev[1]+ev[2]*ev[2];dim=s2>0?sP*sP/s2:0;aniso=ev[0]>1e-12?ev[2]/ev[0]:1;
+    const G=12,cells=new Int32Array(G*G*G),cc=v=>Math.min(G-1,Math.max(0,Math.floor((v+ext)/(2*ext+1e-9)*G)));
+    for(let i=0;i<N;i++)if(alive[i])cells[cc(px[i]-cx)*G*G+cc(py[i]-cy)*G+cc(pz[i]-cz)]++;
+    let mean=n/(G*G*G),v2=0;for(let k=0;k<cells.length;k++)v2+=(cells[k]-mean)**2;v2/=cells.length;clump=mean>0?v2/mean:0;
+    // orden LOCAL (cosmos): media de |media U| por celda
+    if(cfg.mode==='cosmos'){const oc=new Float64Array(G*G*G*d),cnt=new Int32Array(G*G*G);
+      for(let i=0;i<N;i++)if(alive[i]){const c=cc(px[i]-cx)*G*G+cc(py[i]-cy)*G+cc(pz[i]-cz);for(let k=0;k<d;k++)oc[c*d+k]+=U[i*d+k];cnt[c]++;}
+      let acc=0,acc2=0,m2=0;for(let c=0;c<cnt.length;c++)if(cnt[c]>=5){let s2=0;for(let k=0;k<d;k++)s2+=oc[c*d+k]*oc[c*d+k];const v=Math.sqrt(s2)/cnt[c];acc+=v;acc2+=v*v;m2++;}
+      ordL=m2?acc/m2:ordG;chiS=m2>1?Math.max(0,acc2/m2-(acc/m2)*(acc/m2)):0;}  // χ = varianza del orden por celda (susceptibilidad; pico en rc crítico)
+  }
+  // ===== capa κ_Δ (arco 30-jun) — observables del cierre + exceso fino =====
+  let fracPos=1,exOrden=0,L2=0,meffK=0,granoNulo=0;const Kd=8;          // K = clases ℤ_K (ref EMP-F1, K=8)
+  const granoGrueso=1/Math.sqrt(Kd);                                    // grano grueso = 1/√K = √(κ_Δ/2π)
+  if(n>=5){
+    let on=0;for(let k=0;k<d;k++)on+=ord[k]*ord[k];on=Math.sqrt(on)||1; // frac_pos: alineación al hemisferio
+    let fp=0;for(let i=0;i<N;i++)if(alive[i]){let dt=0;for(let k=0;k<d;k++)dt+=U[i*d+k]*ord[k];if(dt>0)fp++;}fracPos=fp/n;
+    exOrden=ordG-nullOrderMean(n,d);                                    // exceso fino sobre nulo finito (~0.015@d3)
+    const cntK=new Float64Array(Kd);                                    // participación por sector → L2 fase + m_eff/K
+    for(let i=0;i<N;i++)if(alive[i]){let a=Math.atan2(U[i*d+1],U[i*d]);let kk=Math.floor((a/6.28318530718+0.5)*Kd);kk=((kk%Kd)+Kd)%Kd;cntK[kk]++;}
+    let sf2=0;for(let k=0;k<Kd;k++){const fk=cntK[k]/n;L2+=(fk-1/Kd)*(fk-1/Kd);sf2+=fk*fk;}
+    L2=Math.sqrt(L2);meffK=sf2>0?1/(Kd*sf2):0;granoNulo=Math.sqrt((Kd-1)/(Kd*n)); // nulo combinatorio uniforme ℤ_K
+  }
+  return {f:N?nAlive/N:0,ordG,ordL,dim,aniso,clump,fracPos,exOrden,L2,meffK,granoGrueso,granoNulo,Kd,chiS};
+}
+
+// ===== Three.js =====
+let scene,camera,renderer,controls,points,geom,mat;
+const cv=document.getElementById('c');
+function initGL(){
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x04050a,0.012);
+  camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,5000);camera.position.set(0,0,90);
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  controls=new THREE.OrbitControls(camera,cv);controls.enableDamping=true;controls.autoRotate=false;  // cámara SOLO con cursor (sin auto-rotación) — para no confundir movimiento de cámara con física
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+}
+function buildPoints(n){
+  if(points){scene.remove(points);geom.dispose();mat.dispose();}
+  geom=new THREE.BufferGeometry();
+  geom.setAttribute('position',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('color',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  geom.setAttribute('psize',new THREE.BufferAttribute(new Float32Array(n),1));
+  mat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    vertexShader:`attribute float psize;attribute vec3 color;varying vec3 vC;void main(){vC=color;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=psize*(420.0/-mv.z);gl_Position=projectionMatrix*mv;}`,
+    fragmentShader:`varying vec3 vC;void main(){vec2 d=gl_PointCoord-vec2(0.5);float r=length(d);if(r>0.5)discard;float g=smoothstep(0.5,0.0,r);gl_FragColor=vec4(vC*g*1.7,1.0);}`});
+  points=new THREE.Points(geom,mat);scene.add(points);
+}
+const _c=new THREE.Color();
+function updatePoints(){
+  const p=geom.attributes.position.array,col=geom.attributes.color.array,ps=geom.attributes.psize.array;
+  let maxS=1e-6;for(let i=0;i<N;i++)if(alive[i])maxS=Math.max(maxS,S[i]);const lmax=Math.log(1+maxS)+1e-9;
+  for(let i=0;i<N;i++){p[i*3]=px[i];p[i*3+1]=py[i];p[i*3+2]=pz[i];
+    if(alive[i]){const fr=Math.log(1+S[i])/lmax;
+      if(cfg.mode==='qcd'){const b=0.35+0.65*fr;
+        if(isGluon(msLab[i])){col[i*3]=0.95*b;col[i*3+1]=0.85*b;col[i*3+2]=0.35*b;}
+        else{const[aq,ci]=decodeMs(msLab[i]);const base=[[1,0.2,0.2],[0.2,0.9,0.2],[0.2,0.4,1]][ci];
+        col[i*3]=(aq?base[0]*0.45:base[0])*b;col[i*3+1]=(aq?base[1]*0.45:base[1])*b;col[i*3+2]=(aq?base[2]*0.45:base[2])*b;}}
+      else if(cfg.mode==='kappa'){
+        const hue=(omega[i]+0.08*Math.atan2(U[i*3+1],U[i*3]))/cfg.kappaK;
+        _c.setHSL(hue-Math.floor(hue),0.95,0.52);
+        const b=0.25+0.75*fr;col[i*3]=_c.r*b;col[i*3+1]=_c.g*b;col[i*3+2]=_c.b*b;}
+      else if(cfg.mode==='cs'){let b=0.30+0.70*fr;
+        // FASE CUÁNTICA (#21): centelleo (interferencia). Apagada → luz fija, sin parpadeo.
+        if(!CS.off[21])b*=0.75+0.35*Math.sin(CS.tstep*0.15+(CS.phase0?CS.phase0[i]:0));
+        // FALSADAS (#1/#11/#15/#16): destello breve al relanzar → "se probó", geometría INTACTA
+        if(CS.falsadoOff&&CS.tstep<24)b*=1+0.8*(1-CS.tstep/24)*Math.abs(Math.sin(CS.tstep*0.6));
+        const esElec=CS.esp&&CS.esp[i]===1;
+        if(esElec){const e=CS_ECOL;col[i*3]=e[0]*b;col[i*3+1]=e[1]*b;col[i*3+2]=e[2]*b;} // electrón: violeta, siempre
+        else if(CS.tstep<CS_T_NUC){ // quarks con COLOR R/G/B hasta que se ligan en núcleos (fin del confinamiento)
+          const q=CS_QCOL[CS.col[i]%3];col[i*3]=q[0]*b;col[i*3+1]=q[1]*b;col[i*3+2]=q[2]*b;}
+        else if(CS.off[4]){col[i*3]=0.75*b;col[i*3+1]=0.35*b;col[i*3+2]=0.30*b;}  // sin EM: no hay átomos, rojizo
+        else if(CS.off[5]){col[i*3]=0.95*b;col[i*3+1]=0.80*b;col[i*3+2]=0.45*b;}  // sin débil: p:n sin congelar → amarillo
+        else{col[i*3]=0.74*b;col[i*3+1]=0.85*b;col[i*3+2]=1.0*b;}}                  // barión/átomo: azul-blanco neutro
+      else{const hue=(Math.atan2(U[i*d+1],U[i*d])/6.2832+0.5);_c.setHSL(hue,0.95,0.55);
+        const b=0.25+0.75*fr;col[i*3]=_c.r*b;col[i*3+1]=_c.g*b;col[i*3+2]=_c.b*b;}
+      ps[i]=(cfg.mode==='cs'&&CS.massN)?(1.4+3.0*fr+6.0*CS.massN[i]):(2.0+9.0*fr);}
+    else{col[i*3]=col[i*3+1]=col[i*3+2]=0;ps[i]=0;}}
+  geom.attributes.position.needsUpdate=geom.attributes.color.needsUpdate=geom.attributes.psize.needsUpdate=true;
+}
+
+// ===== nodos de la teoría (se encienden cuando su fenómeno se MIDE) =====
+let NODOS=[],histF=[],histO=[];
+function resetNodos(){histF=[];histO=[];
+  NODOS=[
+   {id:'C-N1',txt:'S>0 — la diferencia persiste',test:m=>tau>=1},
+   {id:'C-N2',txt:'I⟺E — acoplamiento entre diferencias',test:m=>dStruct>0},
+   {id:'C-N2.5',txt:'el tiempo emerge (τ por Δ_struct)',test:m=>tau>=2},
+   {id:'C-N2.5.5',txt:'baryogénesis (asimetría θ→exceso)',test:m=>Math.abs(cfg.theta)>0.02&&m.exOrden>0.004},
+   {id:'C-N2.5.10',txt:'aniquilación (lo opuesto se cancela)',test:m=>nAnnih>0},
+   {id:'C-N3',txt:'flecha del tiempo (irreversible)',test:m=>nAnnih>5&&tau>5},
+   {id:'C-N2.6',txt:'curvatura: zonas densas y vacíos',test:m=>m.clump>1.3},
+   {id:'C-N2.6.4',txt:'orden a gran escala (proxy; auto-sim. real=ley potencias)',test:m=>m.ordG>0.3},
+   {id:'C-N2.8.4',txt:'κ_Δ>0 — L2 de fase supera el nulo (grano 1/√K)',test:m=>m.L2>3*m.granoNulo&&tau>5},
+   {id:'C-N2.8.15',txt:'constantes: trivial f,|orden| + exceso fino real',test:m=>estable()},
+  ].map(n=>({...n,fired:false,tau:null}));renderNodos();}
+function estable(){if(histF.length<25)return false;const f=histF.slice(-20),o=histO.slice(-20);const rg=a=>Math.max(...a)-Math.min(...a);return rg(f)<0.02&&rg(o)<0.02&&histF[histF.length-1]>0.1;}
+function detectaNodos(m){histF.push(m.f);histO.push(m.ordG);if(histF.length>250){histF.shift();histO.shift();}
+  let chg=false;for(const n of NODOS)if(!n.fired&&n.test(m)){n.fired=true;n.tau=tau;chg=true;}if(chg)renderNodos();}
+// tipología de ruptura (C-N2.8.9a): nombra el κ que se está violando, no genérico "falló".
+function tipologiaRuptura(m){const f=N?nAlive/N:0;
+  if(f<0.35)return['disolución (κ_P)','#e88'];                        // la masa muere: persistencia colapsa
+  if(dStructRate<1e-3&&tau>6)return['desacoplamiento (κ_V)','#ea0'];  // el acoplamiento se apaga: dStruct estanca
+  if(m.exOrden<0.003&&tau>6)return['homogeneización (κ_Δ)','#8cf'];   // se borra la diferencia: exceso→0
+  return['cierre estable','#7fd'];}
+function renderNodos(){const el=document.getElementById('nodos');if(!el)return;
+  el.innerHTML='<div style="color:#fff;margin-bottom:5px;font-weight:bold">Nodos cumplidos · cuándo (τ)</div>'+
+    NODOS.map(n=>`<div style="opacity:${n.fired?1:0.32}">${n.fired?'✓':'○'} <b>${n.id}</b> ${n.txt}${n.fired?' <span style="color:#7fd">τ='+n.tau+'</span>':''}</div>`).join('');}
+
+let playing=true,frame=0,CS_acc=0;
+function loop(){requestAnimationFrame(loop);
+  if(cfg.mode==='crono'||cfg.mode==='civ'||cfg.mode==='nodos')return;
+    if(playing){
+      let steps;
+      if(cfg.mode==='narrativa'||cfg.mode==='kappa'||cfg.mode==='cs'){
+        // acumulador de tasa fraccionaria: 1 = MUY lento (0.1 paso/cuadro); 12 = 12 pasos/cuadro
+        const RATE=[0,0.08,0.15,0.28,0.5,0.8,1.3,2,3,5,7,9,12];
+        CS_acc+=RATE[Math.max(1,Math.min(12,cfg.speed))]||0.8;
+        steps=Math.floor(CS_acc);CS_acc-=steps;
+      } else steps=1;
+    for(let s=0;s<steps;s++){if(cfg.mode==='cs')stepCS();else if(cfg.mode==='kappa')stepKappa();else if(cfg.mode==='cosmos')stepCosmos();else if(cfg.mode==='qcd')stepQcdRun();else stepGen();}}
+  if(cfg.mode==='cs'){updatePoints();controls.update();renderer.render(scene,camera);if(frame%5===0){csHud();csTimeline();}frame++;return;}
+  updatePoints();controls.update();renderer.render(scene,camera);
+  if(frame%5===0){
+    if(cfg.mode==='kappa'){
+      const m=metricsKappa();detectaKappaNodos(m);
+      document.getElementById('hud').innerHTML=
+        `<b>τ</b> ${tau} &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih} &nbsp;<b>ℤ_${m.K}</b> · θ_CP=0 · S_BAND=${m.sBand.toFixed(1)}${N>NBIG?' · <span style="color:#7a8">expansión O(N)</span>':' · <span style="color:#7a8">layout force-directed</span>'}<br>`+
+        `<b>CAPA GRUESA:</b> L2=${m.L2.toFixed(4)} / nulo ${m.granoNulo.toFixed(4)} (×${m.ratio.toFixed(1)}) · m_eff/K=${m.meffK.toFixed(3)} <span style="color:#7fd">[esperado ≈0.5]</span> · grano 1/√K=${m.granoGrueso.toFixed(4)} · κ_Δ≡2π/K=${m.kappaDelta.toFixed(3)}<br>`+
+        `<b>CAPA FINA:</b> exceso|orden|=${m.exOrden.toFixed(4)} <span style="color:#7a8">(~0.015 ref. d=3)</span> &nbsp; <b>TRIVIAL (C-N1.3):</b> f=${m.f.toFixed(3)} · |orden|=${m.ordG.toFixed(3)} · frac_pos=${m.fracPos.toFixed(2)}<br>`+
+        `<b>veredicto cierre:</b> <span style="color:#7fd">${m.veredicto}</span> — mueve la banda (×0.5…3.0): m_eff/K debe quedar plano (cambio 0.0000 en 1080 corridas CC)`;
+      document.getElementById('fase').innerHTML=`<b>◇ Arco κ_Δ</b> (cierre 30-jun)<br>motor ℤ_K · cg002_dynamic_l2_sweep.py`;
+      document.getElementById('fase').style.display='block';
+      document.getElementById('nodos').style.display='block';
+    }else if(cfg.mode==='qcd'){
+      const q=metricsQcd();const t=qcdTime();const ver=cfg.qcdVer==='b'?'R7b':'R7a';
+      const kline=q.K_CANDS.map(K=>`K${K} ${q['excess_'+K].toFixed(1)}×nulo`).join(' · ');
+      document.getElementById('hud').innerHTML=
+        `<b>τ</b> ${tau} &nbsp;<b>t ~</b> ${t<1e-3?t.toExponential(1):t.toFixed(3)} s &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih}<br>`+
+        `<b>${ver}</b> θ_CP=0 · semilla simétrica · sin confinamiento${cfg.qcdVer==='b'?' · <b>8 gluones</b> en el lote':''}<br>`+
+        `<b>f</b>=${q.f.toFixed(3)}${cfg.qcdVer==='b'?` · q/g=${q.fracQuark.toFixed(2)}/${q.fracGluon.toFixed(2)}`:''} · <b>|orden color|</b>=${q.ordC.toFixed(3)} <span style="color:#7a8">(baryogénesis aquí, no en f)</span><br>`+
+        `<b>exceso L2/nulo:</b> ${kline} · <b>K_eff→${q.kBest}</b> <span style="color:#7a8">(no ½-trap)</span>`;
+      document.getElementById('fase').innerHTML=`<b>◆ plasma QCD ${ver}</b> (10⁻³²–10⁻⁶ s)<br>${cfg.qcdVer==='b'?'gluón = entidad octeto':'gluón = ley de acoplamiento'}`;
+      document.getElementById('fase').style.display='block';
+      document.getElementById('nodos').style.display='none';
+    }else{const m=metrics();
+    dStructRate=dStruct-_prevDStruct;_prevDStruct=dStruct;const _tip=tipologiaRuptura(m);
+    document.getElementById('hud').innerHTML=
+      `<b>τ</b> ${tau} &nbsp;<b>persisten</b> ${nAlive}/${N} &nbsp;<b>aniquiladas</b> ${nAnnih}${N>NBIG?' &nbsp;<span style="color:#7a8">(motor O(N) · radio = visualización, no expansión física)</span>':''}<br>`+
+      `<b>dim emergente</b> ${m.dim.toFixed(2)} (sustrato d=${cfg.d}) &nbsp;<b>clumping</b> ${m.clump.toFixed(2)}<br>`+
+      `<b>trivial (C-N1.3):</b> f=${m.f.toFixed(3)} · |orden|=${m.ordG.toFixed(3)} · frac_pos=${m.fracPos.toFixed(2)} <span style="color:#7a8">(geometría del hemisferio, NO ley)</span><br>`+
+      `<b>κ_Δ:</b> exceso|orden|=${m.exOrden.toFixed(3)} <span style="color:#7a8">(fino ~0.015@d3)</span> · L2=${m.L2.toFixed(3)}/nulo ${m.granoNulo.toFixed(3)} (×${(m.L2/(m.granoNulo+1e-9)).toFixed(1)}) · m_eff/K=${m.meffK.toFixed(2)} <span style="color:#7a8">[½ derivado] · grano 1/√K=${m.granoGrueso.toFixed(3)} · κ_Δ≡2π/K</span><br>`+
+      `<b>tipología ruptura:</b> <span style="color:${_tip[1]}">${_tip[0]}</span> <span style="color:#7a8">(C-N2.8.9a)</span>`;
+    if(cfg.mode==='narrativa'){detectaNodos(m);document.getElementById('nodos').style.display='block';}
+    else document.getElementById('nodos').style.display='none';
+    let fase='';
+    if(cfg.mode==='cosmos'){
+      const r=m.ordL/(m.ordG+1e-6);
+      fase = m.ordG>0.4 ? '🌐 cosmos único (fase ordenada)' : (r>2.5 ? '🧩 dominios coexisten (fase desordenada)' : '⚡ crítica (transición)');
+      document.getElementById('fase').innerHTML=`<b>${fase}</b><br>orden local ${m.ordL.toFixed(2)} · global ${m.ordG.toFixed(2)}<br>fluct χ=${m.chiS.toFixed(4)} <span style="color:#7a8">(susceptibilidad; pico esperado rc≈3)</span>`;
+      document.getElementById('fase').style.display='block';
+    } else document.getElementById('fase').style.display='none';}
+  }
+  frame++;
+}
+
+// ===== CSV / video =====
+function dl(name,txt,type){const b=new Blob([txt],{type});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+function csvState(){
+  if(cfg.mode==='kappa'){const m=metricsKappa();
+    let s=`# CG002 arco kappa | tau=${tau} N=${N} K=${m.K} bandMult=${cfg.bandMult} S_BAND=${m.sBand} seed=${cfg.seed} f=${m.f.toFixed(3)} L2=${m.L2.toFixed(4)} meffK=${m.meffK.toFixed(4)} exOrden=${m.exOrden.toFixed(4)} aniquiladas=${nAnnih}\nid,viva,omega,S,x,y,z\n`;
+    for(let i=0;i<N;i++)s+=`${i},${alive[i]},${omega[i]},${S[i].toExponential(3)},${px[i].toFixed(3)},${py[i].toFixed(3)},${pz[i].toFixed(3)}\n`;
+    dl('cg002_kappa_estado.csv',s,'text/csv');return;}
+  const m=metrics();let s=`# CG002 visor ${cfg.mode} | tau=${tau} N=${cfg.N} d=${cfg.d} theta=${cfg.theta} alpha=${cfg.alpha} rc=${cfg.rc} config=${cfg.seed} f=${m.f.toFixed(3)} ordenG=${m.ordG.toFixed(3)} dim=${m.dim.toFixed(3)} clump=${m.clump.toFixed(3)} aniquiladas=${nAnnih}\nid,viva,S,x,y,z`+Array.from({length:cfg.d},(_,k)=>',u'+k).join('')+"\n";
+  for(let i=0;i<N;i++){s+=`${i},${alive[i]},${S[i].toExponential(3)},${px[i].toFixed(3)},${py[i].toFixed(3)},${pz[i].toFixed(3)}`;for(let k=0;k<d;k++)s+=','+U[i*d+k].toFixed(3);s+="\n";}
+  dl(`cg002_${cfg.mode}_estado.csv`,s,'text/csv');}
+let rec=null,chunks=[];
+function toggleRec(e){if(rec&&rec.state==='recording'){rec.stop();e.target.textContent='⏺ video';return;}
+  const st=cv.captureStream(30);try{rec=new MediaRecorder(st,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:1.2e7});}catch(_){rec=new MediaRecorder(st);}
+  chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data);};rec.onstop=()=>dl(`cg002_${cfg.mode}.webm`,new Blob(chunks,{type:'video/webm'}),'video/webm');rec.start();e.target.textContent='⏹ guardar';}
+
+// ===== UI =====
+const $=id=>document.getElementById(id);
+function setMode(m){cfg.mode=m;
+  const isCS=(m==='cs');const isNd=(m==='nodos');const is2=(m==='crono'||m==='civ');const isFlat=is2||isNd;
+  document.getElementById('c').style.display=isFlat?'none':'block';   // CS usa el canvas 3D 'c'
+  $('panel').style.display=(isFlat||isCS)?'none':'block';            // oculta panel del motor genérico
+  $('hud').style.display=(isFlat||isCS)?'none':'block';
+  $('csHud').style.display=isCS?'block':'none';
+  $('csPanel').style.display=isCS?'block':'none';
+  $('csTL').style.display=isCS?'block':'none';
+  document.getElementById('wrap2d').style.display=is2?'block':'none';
+  document.getElementById('wrapNodos').style.display=isNd?'block':'none';
+  $('bar2d').style.display=(m==='crono')?'flex':'none';
+  if(isFlat||isCS){$('infoBtn').style.display='none';$('info').style.display='none';$('nodos').style.display='none';$('fase').style.display='none';}
+  $('help2dBtn').style.display=is2?'block':'none';
+  if(!isFlat&&!isCS){$('infoBtn').style.display='block';$('help2dBtn').style.display='none';$('help2d').style.display='none';}
+  if(isNd){renderNodos();}
+  $('tabCrono').classList.toggle('act',m==='crono');$('tabCiv').classList.toggle('act',m==='civ');$('tabNodos').classList.toggle('act',m==='nodos');$('tabCS').classList.toggle('act',m==='cs');$('tabGen').classList.toggle('act',m==='genesis');
+  $('tabGen').classList.toggle('act',m==='genesis');$('tabCos').classList.toggle('act',m==='cosmos');
+  $('tabNar').classList.toggle('act',m==='narrativa');$('tabQcd').classList.toggle('act',m==='qcd');
+  $('tabKappa').classList.toggle('act',m==='kappa');
+  if(isCS){$('tabCS').classList.add('act');renderCS();return;}
+  if(isNd){$('tabNodos').classList.add('act');return;}
+  if(is2){C2.mode=m;if(m==='civ')C2.zoom='civ';else if(C2.zoom==='civ')C2.zoom='compacto';resize2d();syncBar2d();draw2d();return;}
+  $('rcWrap').classList.toggle('hide',m!=='cosmos');$('spWrap').classList.toggle('hide',m!=='narrativa'&&m!=='kappa');
+  $('qcdWrap').classList.toggle('hide',m!=='qcd');$('kappaWrap').classList.toggle('hide',m!=='kappa');
+  const dimHide=m==='qcd'||m==='kappa';
+  for(const id of['D','tkD','theta','tkT'])$(''+id).classList.toggle('hide',dimHide);
+  $('D').previousElementSibling.classList.toggle('hide',dimHide);
+  $('theta').previousElementSibling.classList.toggle('hide',dimHide);
+  if(m==='qcd'){cfg.theta=0;cfg.d=3;vT.textContent='+0.00';vD.textContent='3';}
+  if(m==='kappa'){cfg.theta=0;vT.textContent='+0.00';if(cfg.N<500){cfg.N=2000;$('N').value=2000;vN.textContent='2000';}}
+  setInfo();init();}
+$('tabGen').onclick=()=>setMode('genesis');$('tabCos').onclick=()=>setMode('cosmos');
+$('tabNar').onclick=()=>setMode('narrativa');$('tabQcd').onclick=()=>setMode('qcd');
+$('tabKappa').onclick=()=>setMode('kappa');
+$('tabCrono').onclick=()=>setMode('crono');$('tabCiv').onclick=()=>setMode('civ');$('tabNodos').onclick=()=>setMode('nodos');$('tabCS').onclick=()=>setMode('cs');
+function setKappaK(k){cfg.kappaK=k;vKappaK.textContent=''+k;init();}
+$('kappaK6').onclick=()=>setKappaK(6);$('kappaK8').onclick=()=>setKappaK(8);$('kappaK12').onclick=()=>setKappaK(12);
+$('bandMult').oninput=e=>{cfg.bandMult=+e.target.value;vBandMult.textContent=cfg.bandMult.toFixed(2);};
+$('kappaN2k').onclick=()=>{cfg.N=2000;$('N').value=2000;vN.textContent='2000';init();};
+$('kappaN16k').onclick=()=>{cfg.N=16000;$('N').value=16000;vN.textContent='16000';init();};
+$('qcdA').onclick=()=>{cfg.qcdVer='a';vQcd.textContent='R7a';init();};
+$('qcdB').onclick=()=>{cfg.qcdVer='b';vQcd.textContent='R7b';init();};
+$('sp').oninput=e=>{cfg.speed=+e.target.value;vSp.textContent=cfg.speed;};
+// los sliders que reconstruyen el universo: actualizan etiqueta al arrastrar, pero solo RE-INICIAN al SOLTAR (evita congelar el arrastre)
+// snap de N a números redondos según magnitud (el rango 2..100000 es imposible de afinar a paso 1)
+function snapN(v){v=+v;let s;if(v<=100)s=10;else if(v<=2000)s=50;else if(v<=10000)s=500;else s=2500;return Math.max(2,Math.round(v/s)*s);}
+$('N').oninput=e=>{cfg.N=snapN(e.target.value);e.target.value=cfg.N;vN.textContent=cfg.N;};   $('N').onchange=init;
+$('D').oninput=e=>{cfg.d=+e.target.value;vD.textContent=cfg.d;};   $('D').onchange=init;
+$('rc').oninput=e=>{cfg.rc=+e.target.value;vR.textContent=cfg.rc.toFixed(1);};  $('rc').onchange=init;
+$('conf').oninput=e=>{cfg.seed=+e.target.value;vS.textContent=cfg.seed;};  $('conf').onchange=init;
+$('theta').oninput=e=>{cfg.theta=+e.target.value;vT.textContent=(cfg.theta>=0?'+':'')+cfg.theta.toFixed(2);rotateU();};
+$('alpha').oninput=e=>{cfg.alpha=+e.target.value;vA.textContent=cfg.alpha.toFixed(2);};
+$('play').onclick=e=>{playing=!playing;e.target.textContent=playing?'⏸ pausa':'▶ play';};
+$('reset').onclick=init;$('csv').onclick=csvState;$('rec').onclick=toggleRec;
+$('infoBtn').onclick=()=>{$('info').style.display='block';$('infoBtn').style.display='none';};
+$('infoClose').onclick=()=>{$('info').style.display='none';$('infoBtn').style.display='block';};
+function setInfo(){
+  $('infoT').textContent=cfg.mode==='genesis'?'Génesis — el estallido':cfg.mode==='cosmos'?'Cosmos — alcance y fases':cfg.mode==='qcd'?'Plasma QCD — R7a color×spin':cfg.mode==='kappa'?'Arco κ_Δ — simulación del cierre':'Del punto al cosmos — guion automático';
+  $('infoBody').innerHTML=cfg.mode==='kappa'
+    ?`<p><b>El experimento completo que cerraron el 30-jun.</b> Motor discreto <b>ℤ_K</b> (no el continuo S^{d−1} de Génesis/Cosmos): cada nodo lleva fase <b>ω_i ∈ Z_K</b> fija; acoplamiento <b>c_ij = cos(2π(ω_i−ω_j)/K)</b>; dinámica de persistencia S con η, μ, banda C-N5.1 y extinción κ_s. <b>θ_CP = 0</b> — el caso de la derivación.</p>`+
+     `<p><b>Dos capas (no confundir):</b> <b>Gruesa</b> — L2 de fase, m_eff/K ≈ ½, grano 1/√K, invariante al barrido de banda 6× (1080 corridas, <i>engine_output.csv</i>). <b>Fina</b> — exceso de |orden| sobre nulo hemisferio (~0.015 ref.). <b>Trivial</b> — f≈½, |orden|≈½ (geometría del hemisferio, C-N1.3).</p>`+
+     `<p><b>Visualización</b> (igual que Génesis/Cosmos): nacen en el <b>foco</b>, se despliegan por acoplamiento <b>c_ij</b> (fases afines se atraen, opuestas se repelen) y <b>expansión 3D</b> con τ. Color = fase ω ∈ Z_K · brillo = persistencia S. Con N grande: nube esférica como Génesis O(N).</p>`+
+     `<p><b>Controles:</b> K ∈ {6,8,12} · banda ×0.5…3.0 · N · <b>velocidad</b> (pasos/frame). Mueve la banda: m_eff/K debe quedar en ~0.5 (derivación C-N2.5.10).</p>`
+    :cfg.mode==='qcd'
+    ?(cfg.qcdVer==='b'
+    ?`<p><b>R7b</b>: extiende R7a con <b>8 gluones</b> como entidades (octeto SU(3), spin-1 etiqueta) en el mismo lote (20 microestados). <b>c_ij</b>: quark–quark v_i·v_j; gluón–gluón δ; quark–gluón vía raíces SU(3). Semilla simétrica. <b>K_eff ∈ {8,12,20}</b>.</p>`
+    :`<p><b>R7a</b>: <b>Ω_firma</b> = 12 microestados quark/antiquark × spin. Gluón solo como ley de acoplamiento. <b>K_eff ∈ {6,8,12}</b>.</p>`)+`<p>Reloj: <b>10⁻³²–10⁻⁶ s</b>. θ_CP=0. Sin confinamiento impuesto.</p>`
+    :cfg.mode==='genesis'
+    ?`<p>Las diferencias nacen en el <b>foco</b> (la singularidad) y se despliegan por su <b>acoplamiento</b>: el espacio y el tiempo emergen del enredo. Persisten <b>las pocas</b> que cooperan; el resto se <b>aniquila</b>.</p>`
+    :cfg.mode==='cosmos'
+    ?`<p>Posiciones en un volumen; el acoplamiento es <b>local</b> (alcance rc). Desliza <b>rc</b> y verás la <b>transición de fase</b>: rc corto → <b>dominios coexisten</b> (colores distintos); rc largo → <b>un cosmos único</b>. El cruce es el punto crítico — la <b>fluct χ</b> (susceptibilidad) hace pico ahí (rc≈3, C-N2.7). <span style="color:#89a">(Cosmos usa hasta ~4.000 puntos: el acoplamiento local tiene demasiados pares a más densidad.)</span></p>`
+    :`<p>El proceso completo en tiempo acelerado: del <b>punto</b> (singularidad) al <b>cosmos</b>. Ajusta la <b>velocidad</b>. A la izquierda, los <b>nodos de la Teoría se encienden cuando su fenómeno se mide</b>, con el <b>τ</b> en que ocurren — la teoría cumpliéndose, en orden, ante tus ojos.</p>`;
+  $('infoBody').innerHTML+=`<p><b>color</b>=identidad (firma ω) · <b>tamaño/brillo</b>=persistencia. <b>dim emergente</b> rastrea la dimensión del sustrato d.</p>`+
+   `<p><b>Cierre arco κ_Δ (30-jun):</b> f≈½ y |orden|≈½ NO son ley — son <b>triviales</b> (geometría del hemisferio, frac_pos≈1, C-N1.3). Lo invariante: el <b>exceso</b> del orden sobre el nulo finito (capa <b>fina</b>, ~0.015 a d=3) y, en el motor discreto-K, <b>m_eff/K=½</b> como <b>derivación</b> (cambio 0.0000 al barrer banda 6×) con <b>grano 1/√K</b> y <b>κ_Δ≡2π/K</b>. La <b>dirección</b> es historia (~90°). El HUD muestra estos observables vivos; los números duros del cierre están en <i>cierre_kappaDelta_regla.py</i> / <i>engine_output.csv</i>.</p>`;
+}
+setInfo();
+// marcas de detención: tick + etiqueta posicionada por valor real (left% = (v-min)/(max-min))
+function mkTicks(sliderId,boxId,marks){const s=$(sliderId),box=$(boxId);if(!s||!box)return;const lo=+s.min,hi=+s.max;box.innerHTML='';
+  for(const mk of marks){const sp=document.createElement('span');sp.style.left=((mk.v-lo)/(hi-lo)*100)+'%';sp.textContent=mk.t;sp.title=mk.v;box.appendChild(sp);}}
+mkTicks('N','tkN',[{v:2,t:'2'},{v:800,t:'800'},{v:2500,t:'2.5k'},{v:10000,t:'10k'},{v:50000,t:'50k'},{v:100000,t:'100k'}]);
+mkTicks('D','tkD',[2,3,4,5,6].map(v=>({v,t:''+v})));
+mkTicks('theta','tkT',[{v:-1,t:'-1'},{v:-0.5,t:'-.5'},{v:0,t:'0'},{v:0.5,t:'+.5'},{v:1,t:'+1'}]);
+mkTicks('alpha','tkA',[{v:0,t:'0'},{v:0.25,t:'.25'},{v:0.5,t:'.5'},{v:0.75,t:'.75'},{v:1,t:'1'}]);
+mkTicks('rc','tkR',[{v:0.6,t:'.6'},{v:2,t:'2'},{v:3,t:'3'},{v:4,t:'4'},{v:6,t:'6'},{v:8,t:'8'}]);
+mkTicks('sp','tkSp',[1,3,6,9,12].map(v=>({v,t:''+v})));
+mkTicks('conf','tkC',[{v:1,t:'1'},{v:30,t:'30'},{v:60,t:'60'},{v:90,t:'90'},{v:120,t:'120'}]);
+mkTicks('bandMult','tkBand',[{v:0.5,t:'×0.5'},{v:1,t:'×1'},{v:2,t:'×2'},{v:3,t:'×3'}]);
+
+/* ═══════════ MÓDULO 2D — Cronología cosmosemiótica + Civilizaciones sucesivas ═══════════ */
+const CRONO_DATA={"ELEM":[{"Z":1,"s":"H","t":1,"r":"apertura"},{"Z":2,"s":"He","t":1,"r":"noble"},{"Z":3,"s":"Li","t":1,"r":"adaptativa"},{"Z":4,"s":"Be","t":100,"r":"adaptativa"},{"Z":5,"s":"B","t":100,"r":"adaptativa"},{"Z":6,"s":"C","t":150,"r":"exaptacion"},{"Z":7,"s":"N","t":200,"r":"adaptativa"},{"Z":8,"s":"O","t":200,"r":"adaptativa"},{"Z":9,"s":"F","t":200,"r":"adaptativa"},{"Z":10,"s":"Ne","t":200,"r":"noble"},{"Z":11,"s":"Na","t":200,"r":"adaptativa"},{"Z":12,"s":"Mg","t":200,"r":"adaptativa"},{"Z":13,"s":"Al","t":200,"r":"adaptativa"},{"Z":14,"s":"Si","t":200,"r":"adaptativa"},{"Z":15,"s":"P","t":200,"r":"bioquimica"},{"Z":16,"s":"S","t":200,"r":"adaptativa"},{"Z":17,"s":"Cl","t":200,"r":"adaptativa"},{"Z":18,"s":"Ar","t":200,"r":"noble"},{"Z":19,"s":"K","t":200,"r":"adaptativa"},{"Z":20,"s":"Ca","t":200,"r":"adaptativa"},{"Z":21,"s":"Sc","t":200,"r":"adaptativa"},{"Z":22,"s":"Ti","t":200,"r":"adaptativa"},{"Z":23,"s":"V","t":200,"r":"adaptativa"},{"Z":24,"s":"Cr","t":200,"r":"adaptativa"},{"Z":25,"s":"Mn","t":200,"r":"adaptativa"},{"Z":26,"s":"Fe","t":200,"r":"bioquimica"},{"Z":27,"s":"Co","t":200,"r":"adaptativa"},{"Z":28,"s":"Ni","t":200,"r":"adaptativa"},{"Z":29,"s":"Cu","t":200,"r":"adaptativa"},{"Z":30,"s":"Zn","t":200,"r":"adaptativa"},{"Z":31,"s":"Ga","t":500,"r":"adaptativa"},{"Z":32,"s":"Ge","t":500,"r":"adaptativa"},{"Z":33,"s":"As","t":500,"r":"adaptativa"},{"Z":34,"s":"Se","t":500,"r":"adaptativa"},{"Z":35,"s":"Br","t":500,"r":"adaptativa"},{"Z":36,"s":"Kr","t":500,"r":"noble"},{"Z":37,"s":"Rb","t":500,"r":"adaptativa"},{"Z":38,"s":"Sr","t":500,"r":"adaptativa"},{"Z":39,"s":"Y","t":500,"r":"adaptativa"},{"Z":40,"s":"Zr","t":500,"r":"adaptativa"},{"Z":41,"s":"Nb","t":500,"r":"adaptativa"},{"Z":42,"s":"Mo","t":500,"r":"bioquimica"},{"Z":43,"s":"Tc","t":500,"r":"adaptativa"},{"Z":44,"s":"Ru","t":500,"r":"adaptativa"},{"Z":45,"s":"Rh","t":500,"r":"adaptativa"},{"Z":46,"s":"Pd","t":500,"r":"adaptativa"},{"Z":47,"s":"Ag","t":500,"r":"adaptativa"},{"Z":48,"s":"Cd","t":500,"r":"adaptativa"},{"Z":49,"s":"In","t":500,"r":"adaptativa"},{"Z":50,"s":"Sn","t":500,"r":"adaptativa"},{"Z":51,"s":"Sb","t":500,"r":"adaptativa"},{"Z":52,"s":"Te","t":500,"r":"adaptativa"},{"Z":53,"s":"I","t":500,"r":"adaptativa"},{"Z":54,"s":"Xe","t":500,"r":"noble"},{"Z":55,"s":"Cs","t":500,"r":"adaptativa"},{"Z":56,"s":"Ba","t":500,"r":"adaptativa"},{"Z":57,"s":"La","t":500,"r":"adaptativa"},{"Z":58,"s":"Ce","t":500,"r":"adaptativa"},{"Z":59,"s":"Pr","t":500,"r":"adaptativa"},{"Z":60,"s":"Nd","t":500,"r":"adaptativa"},{"Z":61,"s":"Pm","t":500,"r":"adaptativa"},{"Z":62,"s":"Sm","t":500,"r":"adaptativa"},{"Z":63,"s":"Eu","t":500,"r":"adaptativa"},{"Z":64,"s":"Gd","t":500,"r":"adaptativa"},{"Z":65,"s":"Tb","t":500,"r":"adaptativa"},{"Z":66,"s":"Dy","t":500,"r":"adaptativa"},{"Z":67,"s":"Ho","t":500,"r":"adaptativa"},{"Z":68,"s":"Er","t":500,"r":"adaptativa"},{"Z":69,"s":"Tm","t":500,"r":"adaptativa"},{"Z":70,"s":"Yb","t":500,"r":"adaptativa"},{"Z":71,"s":"Lu","t":500,"r":"adaptativa"},{"Z":72,"s":"Hf","t":500,"r":"adaptativa"},{"Z":73,"s":"Ta","t":500,"r":"adaptativa"},{"Z":74,"s":"W","t":500,"r":"bioquimica"},{"Z":75,"s":"Re","t":500,"r":"adaptativa"},{"Z":76,"s":"Os","t":500,"r":"adaptativa"},{"Z":77,"s":"Ir","t":500,"r":"adaptativa"},{"Z":78,"s":"Pt","t":500,"r":"adaptativa"},{"Z":79,"s":"Au","t":500,"r":"adaptativa"},{"Z":80,"s":"Hg","t":500,"r":"adaptativa"},{"Z":81,"s":"Tl","t":500,"r":"adaptativa"},{"Z":82,"s":"Pb","t":500,"r":"adaptativa"},{"Z":83,"s":"Bi","t":500,"r":"adaptativa"},{"Z":84,"s":"Po","t":200,"r":"s0"},{"Z":85,"s":"At","t":200,"r":"s0"},{"Z":86,"s":"Rn","t":200,"r":"noble"},{"Z":87,"s":"Fr","t":200,"r":"s0"},{"Z":88,"s":"Ra","t":200,"r":"s0"},{"Z":89,"s":"Ac","t":200,"r":"s0"},{"Z":90,"s":"Th","t":200,"r":"s0"},{"Z":91,"s":"Pa","t":200,"r":"s0"},{"Z":92,"s":"U","t":200,"r":"s0"},{"Z":93,"s":"Np","t":200,"r":"s0"},{"Z":94,"s":"Pu","t":200,"r":"s0"},{"Z":95,"s":"Am","t":null,"r":"s0"},{"Z":96,"s":"Cm","t":null,"r":"s0"},{"Z":97,"s":"Bk","t":null,"r":"s0"},{"Z":98,"s":"Cf","t":null,"r":"s0"},{"Z":99,"s":"Es","t":null,"r":"s0"},{"Z":100,"s":"Fm","t":null,"r":"s0"},{"Z":101,"s":"Md","t":null,"r":"s0"},{"Z":102,"s":"No","t":null,"r":"s0"},{"Z":103,"s":"Lr","t":null,"r":"s0"},{"Z":104,"s":"Rf","t":null,"r":"s0"},{"Z":105,"s":"Db","t":null,"r":"s0"},{"Z":106,"s":"Sg","t":null,"r":"s0"},{"Z":107,"s":"Bh","t":null,"r":"s0"},{"Z":108,"s":"Hs","t":null,"r":"s0"},{"Z":109,"s":"Mt","t":null,"r":"s0"},{"Z":110,"s":"Ds","t":null,"r":"s0"},{"Z":111,"s":"Rg","t":null,"r":"s0"},{"Z":112,"s":"Cn","t":null,"r":"s0"},{"Z":113,"s":"Nh","t":null,"r":"s0"},{"Z":114,"s":"Fl","t":null,"r":"s0"},{"Z":115,"s":"Mc","t":null,"r":"s0"},{"Z":116,"s":"Lv","t":null,"r":"s0"},{"Z":117,"s":"Ts","t":null,"r":"s0"},{"Z":118,"s":"Og","t":null,"r":"s0"}],"FASES":[{"id":"singularidad","n":"Singularidad","d":"S>0: la primera diferencia. Densidad extrema, aún sin espacio ni tiempo.","puerta":false},{"id":"inflacion","n":"Inflación (pre-c)","d":"Expansión superlumínica fuera del tiempo/espacio: la luz aún no existe, así que nada la acota. Congela la asimetría primordial.","puerta":false},{"id":"elementos","n":"Expansión + elementos","d":"Emerge el espacio-tiempo con el primer átomo. Nucleosíntesis: H/He (BBN) → estrellas → supernovas → pesados. Aparece cada elemento.","puerta":false},{"id":"escalera","n":"Escalera cosmosemiótica","d":"En la Tierra, la complejidad sube a saltos por exaptaciones. → tercer zoom.","puerta":true},{"id":"aceleracion","n":"Aceleración (materia/energía oscura)","d":"La expansión se acelera; la exergía disponible cae hacia la muerte térmica.","puerta":false},{"id":"cierre","n":"Cierre cosmosemiótico","d":"RC→0 (dispersión total). La clausura no puede sostenerse como estado (K-N22.5) ⇒ reemergencia: RCₙ₊₁≠RCₙ. El ciclo reinicia.","puerta":false}],"EX":[{"niv":0,"n":"Química prebiótica (C1–C6)","hace":4400,"tt":140,"plano":"monómeros orgánicos","logro":"aminoácidos, bases, azúcares, ácidos grasos (evolución adaptativa, base de todo)","lf":"Baja","tipo":"precursor_no_exaptacion","nodo":"O-N8.2"},{"niv":1,"n":"Mundo ARN (autorreplicación)","hace":3900,"tt":640,"plano":"QUÍMICA → INFORMACIÓN heredable","logro":"replicación + catálisis (ribozimas): primer sistema autónomo","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":2,"n":"Traducción (código genético)","hace":3800,"tt":740,"plano":"INFORMACIÓN → PROTEOMA","logro":"proteínas dirigidas, acoplamiento genotipo↔fenotipo","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":3,"n":"LUCA (célula)","hace":3700,"tt":840,"plano":"MOLÉCULAS → VIDA","logro":"cierre operativo estable: primera unidad de vida","lf":"Máxima","tipo":"exaptacion","nodo":"O-N8.3 rec."},{"niv":4,"n":"Pluricelularidad","hace":1000,"tt":3540,"plano":"CÉLULA → ORGANISMO","logro":"cuerpos con división del trabajo; nueva unidad de selección","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":5,"n":"Meiosis (recombinación obligatoria)","hace":1200,"tt":3340,"plano":"ORGANISMO → POBLACIÓN reticulada","logro":"variación combinatoria 2^N; herencia genealógica, especie","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":6,"n":"Sistema nervioso","hace":600,"tt":3940,"plano":"ORGANISMO → CONDUCTA aprendida","logro":"transmisión rápida y direccional; coordinación central","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":7,"n":"Representación interna","hace":400,"tt":4140,"plano":"CONDUCTA → MENTE","logro":"operar sobre lo ausente: planificar, anticipar, simular","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":8,"n":"Metarrepresentación (ToM)","hace":5,"tt":4535,"plano":"MENTE → INTERSUBJETIVIDAD","logro":"atribuir mente a otros: cooperación, engaño, proto-política","lf":"Alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":9,"n":"Lenguaje simbólico","hace":0.3,"tt":4539.7,"plano":"MENTE → CULTURA acumulativa","logro":"sintaxis recursiva, desplazamiento (ausentes/posibles/ficciones)","lf":"Muy alta","tipo":"exaptacion","nodo":"O-N8.3"},{"niv":10,"n":"Escritura → imprenta → ciencia","hace":0.005,"tt":4540.0,"plano":"CULTURA → MEMORIA EXTERNA autocorrectiva","logro":"archivo, reproducción masiva, modelos falseables","lf":"Máxima","tipo":"exaptacion","nodo":"O-N8.3 rec."},{"niv":11,"n":"IA (enjuta de la mente)","hace":0.0,"tt":4540.0,"plano":"CULTURA → NOOSFERA humano-IA","logro":"cognición externa escalable; la línea de complejidad queda ABIERTA hacia arriba","lf":"Máxima","tipo":"exaptacion","nodo":"O-N8.3"}],"PUENTE":{"nombre":"Carbono (Z=6)","t_BB_Myr":350,"plano":"FÍSICA → QUÍMICA orgánica","logro":"catenación, hibridación sp³: única exaptación atómica (O-N8.3)","nota":"puente: último hito cósmico y condición de entrada de la Tierra"},"META":{"edad_univ_Myr":13800,"edad_tierra_Myr":4540,"t_tierra_desde_BB_Myr":9260,"nota":"Épocas = estimaciones de orden de magnitud; la física fija las ventanas, no fechas exactas.","conteo":"11 exaptaciones (O-N8.3) + 1 precursor prebiótico no-exaptativo (O-N8.2, química C1–C6)"}};
+(function(){
+const cvs2=document.getElementById('c2d'),wrap2=document.getElementById('wrap2d'),ctx2=cvs2.getContext('2d');
+window.C2={mode:'crono',zoom:'compacto',W:0,H:0,dpr:1};
+const D=CRONO_DATA;
+const ROLC={apertura:'#35e0ff',exaptacion:'#ffc23a',noble:'#8894a6',bioquimica:'#4fe08a',adaptativa:'#5a86c8',s0:'#c05a4e'};
+const ROLN={apertura:'Apertura de dominio (H)',exaptacion:'Exaptación atómica (C)',noble:'Atractor de estabilidad (gas noble)',bioquimica:'Exaptación bioquímica',adaptativa:'Evolución adaptativa',s0:'S→0 (radiactivo pesado)'};
+function vw(){return wrap2.clientWidth||window.innerWidth;}
+function vh(){return wrap2.clientHeight||(window.innerHeight-46);}
+function widthFor(){if(C2.mode==='civ')return Math.max(vw(),2600);if(C2.zoom==='compacto')return vw();if(C2.zoom==='cosmico')return Math.max(vw(),3200);return Math.max(vw(),3600);}
+window.resize2d=function(){C2.dpr=Math.min(window.devicePixelRatio||1,2);const w=widthFor(),h=vh();C2.W=w;C2.H=h;cvs2.style.width=w+'px';cvs2.style.height=h+'px';cvs2.width=Math.round(w*C2.dpr);cvs2.height=Math.round(h*C2.dpr);ctx2.setTransform(C2.dpr,0,0,C2.dpr,0,0);};
+// helpers
+function bg(){ctx2.fillStyle='#04050a';ctx2.fillRect(0,0,C2.W,C2.H);}
+function txt(s,x,y,c,f,al){ctx2.fillStyle=c||'#cfd6e4';ctx2.font=f||'12px -apple-system,system-ui,sans-serif';ctx2.textAlign=al||'left';ctx2.fillText(s,x,y);}
+function seg(x0,y0,x1,y1,c,w,dash){ctx2.strokeStyle=c;ctx2.lineWidth=w||1.5;ctx2.setLineDash(dash||[]);ctx2.beginPath();ctx2.moveTo(x0,y0);ctx2.lineTo(x1,y1);ctx2.stroke();ctx2.setLineDash([]);}
+function poly(pts,c,w,dash){ctx2.strokeStyle=c;ctx2.lineWidth=w||2;ctx2.setLineDash(dash||[]);ctx2.beginPath();pts.forEach((p,i)=>i?ctx2.lineTo(p[0],p[1]):ctx2.moveTo(p[0],p[1]));ctx2.stroke();ctx2.setLineDash([]);}
+function dot(x,y,r,c){ctx2.fillStyle=c;ctx2.beginPath();ctx2.arc(x,y,r,0,7);ctx2.fill();}
+function arrowUp(x,y,c){ctx2.strokeStyle=c;ctx2.fillStyle=c;ctx2.lineWidth=2;ctx2.beginPath();ctx2.moveTo(x,y+14);ctx2.lineTo(x,y-14);ctx2.stroke();ctx2.beginPath();ctx2.moveTo(x-5,y-6);ctx2.lineTo(x,y-16);ctx2.lineTo(x+5,y-6);ctx2.closePath();ctx2.fill();}
+
+// ---------- COMPACTO ----------
+function drawCompacto(){const w=C2.W,h=C2.H,mL=64,mR=48,mT=64,mB=104;const x0=mL,x1=w-mR,y0=mT,y1=h-mB;
+  const ph=D.FASES,n=ph.length,px=i=>x0+(x1-x0)*(i+0.5)/n,yv=v=>y1-(y1-y0)*v;
+  txt('Cronología cosmosemiótica — el arco completo',x0,34,'#fff','16px -apple-system','left');
+  txt('dos líneas que nacen juntas y divergen',x0,52,'#8fa','12px');
+  // ejes
+  seg(x0,y1,x1,y1,'#233',1.2); seg(x0,y0,x0,y1,'#233',1.2);
+  txt('COMPLEJIDAD',x0-8,y0-6,'#4fe08a','11px','left'); txt('EXERGÍA disponible',x0-8,y1+52,'#c05a4e','11px','left');
+  // fases: líneas guía + etiquetas
+  ph.forEach((f,i)=>{seg(px(i),y0,px(i),y1,'#12203a',1,[3,5]);txt(f.n,px(i),y1+20,'#90a0c0','10.5px','center');});
+  // exergía cae; complejidad sube (abierta hacia arriba)
+  const exe=[.97,.99,.82,.5,.22,.05],cpx=[.02,.02,.13,.5,.82,.97];
+  poly(ph.map((f,i)=>[px(i),yv(exe[i])]),'#c05a4e',2.4);
+  poly(ph.map((f,i)=>[px(i),yv(cpx[i])]),'#4fe08a',2.8);
+  ph.forEach((f,i)=>{dot(px(i),yv(exe[i]),3,'#c05a4e');dot(px(i),yv(cpx[i]),3,'#4fe08a');});
+  arrowUp(px(n-1)+2,yv(cpx[n-1])-2,'#ffc23a');
+  txt('abierta ↑',px(n-1)+8,yv(cpx[n-1])-6,'#ffc23a','10px','left');
+  // muerte térmica
+  txt('→ muerte térmica',x1-4,yv(exe[n-1])+16,'#c05a4e','10px','right');
+  // cierre dashed
+  seg(px(n-1),y0-6,px(n-1),y1,'#556',1.2,[2,4]);
+  // ticks de elementos bajo fase "elementos" (i=2)
+  const ex0=px(2)-46,ex1=px(3)-10;
+  D.ELEM.filter(e=>e.t!=null).forEach(e=>{const fr=Math.log10((e.t||1)+1)/Math.log10(3001);const xx=ex0+(ex1-ex0)*fr;seg(xx,y1,xx,y1-8,ROLC[e.r],e.r==='exaptacion'?2.5:1);});
+  txt('118 elementos',(ex0+ex1)/2,y1-14,'#7a8aa0','9.5px','center');
+  legend(x1-6,y0+6,'right');
+}
+// ---------- CÓSMICO (scroll) ----------
+function drawCosmico(){const w=C2.W,h=C2.H,mL=64,mR=64,mT=78,mB=120;const x0=mL,x1=w-mR,yb=h-mB;
+  txt('Zoom cósmico — nucleosíntesis: aparición de cada elemento',x0,34,'#fff','16px -apple-system');
+  txt('eje = tiempo (log) desde el Big Bang · color = rol cosmosemiótico · scroll →',x0,54,'#8fa','12px');
+  const T0=0.02,T1=13800,lg=t=>Math.log10(Math.max(t,T0)),xmap=t=>x0+(x1-x0-260)*(lg(t)-lg(T0))/(lg(T1)-lg(T0));
+  seg(x0,yb,x1,yb,'#233',1.2);
+  [[0.003,'3 min'],[350,'350 Myr'],[1000,'1 Gyr'],[3000,'3 Gyr'],[9260,'Tierra 9.26 Gyr'],[13800,'hoy']].forEach(([t,l])=>{const xx=xmap(t);seg(xx,yb,xx,yb+7,'#456',1);txt(l,xx,yb+22,'#90a0c0','10px','center');});
+  // banda sintéticos
+  const xs=xmap(T1)+30;ctx2.fillStyle='rgba(120,60,60,.13)';ctx2.fillRect(xs,mT,x1-xs,yb-mT);txt('sintéticos (no natural)',xs+(x1-xs)/2,mT-8,'#c07a72','10px','center');
+  // elementos
+  D.ELEM.forEach(e=>{let xx;if(e.t==null){xx=xs+(x1-xs)*((e.Z-95)/23);}else{xx=xmap(e.t)+((e.Z%7)-3)*6;}
+    const yy=yb-24-((e.Z*37)%1)* 0-(e.Z%11)*15;const big=(e.r==='exaptacion'||e.r==='apertura'||e.s==='Fe'||e.s==='U');
+    dot(xx,yy,big?4:2.4,ROLC[e.r]);
+    if(big||e.Z%6===0)txt(e.s,xx,yy-6,ROLC[e.r],(big?'bold 11px':'9px')+' -apple-system','center');});
+  // hitos etiquetados
+  const C=D.ELEM.find(e=>e.s==='C');txt('C — 350 Myr (JWST): única exaptación atómica',xmap(350),mT+18,'#ffc23a','bold 12px','center');
+  // puerta Tierra
+  const xt=xmap(9260);seg(xt,mT,xt,yb,'#3a5',1.6,[4,4]);txt('⟶ zoom Terrestre',xt+6,mT+6,'#4fe08a','11px','left');
+  legend(x0+6,mT-2,'left');
+}
+// ---------- TERRESTRE (scroll) ----------
+function drawTerrestre(){const w=C2.W,h=C2.H,mL=70,mR=70,mT=84,mB=130;const x0=mL,x1=w-mR,yb=h-mB,yt=mT;
+  txt('Zoom terrestre — las 11 exaptaciones que despegan la complejidad',x0,34,'#fff','16px -apple-system');
+  txt('eje x = tiempo desde la formación de la Tierra (Ga) · eje y = complejidad (LF) · scroll →',x0,54,'#8fa','12px');
+  const TT=4700,xmap=t=>x0+(x1-x0)*(t/TT);
+  seg(x0,yb,x1,yb,'#233',1.2);seg(x0,yt,x0,yb,'#233',1.2);
+  for(let g=0;g<=4.5;g+=0.5){const xx=xmap(g*1000);seg(xx,yb,xx,yb+7,'#456',1);txt(g.toFixed(1)+' Ga',xx,yb+22,'#90a0c0','10px','center');}
+  // exergía descendente (fina)
+  poly([[x0,yt+30],[x1,yb-12]],'#c05a4e',1.8,[5,5]);txt('exergía ↓ (muerte térmica)',x1-4,yb-16,'#c05a4e','10px','right');
+  // exponencial de fondo A&G: E0*1.2^t
+  const pts=[];for(let i=0;i<=60;i++){const t=TT*i/60;const y=yb-(yb-yt)*(Math.pow(1.2,10*i/60)-1)/(Math.pow(1.2,10)-1);pts.push([xmap(t),y]);}
+  ctx2.strokeStyle='rgba(79,224,138,.35)';ctx2.lineWidth=2;ctx2.setLineDash([]);ctx2.beginPath();pts.forEach((p,i)=>i?ctx2.lineTo(p[0],p[1]):ctx2.moveTo(p[0],p[1]));ctx2.stroke();
+  txt('E(t)=E₀·1.2ᵗ  (A&G)','#0','#0');ctx2.textAlign='left';ctx2.fillStyle='rgba(79,224,138,.7)';ctx2.font='italic 11px serif';ctx2.fillText('E(t)=E₀·1.2ᵗ  (Ecuación A&G)',x0+40,yt+40);
+  // exaptaciones + precursor
+  const ex=D.EX,nn=ex.filter(e=>e.tipo==='exaptacion').length;
+  ex.forEach(e=>{const xx=xmap(e.tt);const rank=(e.tipo==='exaptacion')?e.niv:0;const yy=yb-(yb-yt)*(rank/(nn+0.5));
+    seg(xx,yb,xx,yy,'#2a3a60',1,[2,3]);
+    if(e.tipo==='exaptacion'){dot(xx,yy,5,'#ffc23a');txt((e.niv)+'. '+e.n,xx,yy-10,'#fff','bold 11px -apple-system','center');txt(e.logro,xx,yy+16,'#9fb0d0','9.5px','center');}
+    else{ctx2.strokeStyle='#7a8699';ctx2.lineWidth=1.5;ctx2.strokeRect(xx-4,yy-4,8,8);txt(e.n+' · precursor (no exaptación)',xx,yy-9,'#7a8699','9.5px','center');}});
+  // IA abierta hacia arriba
+  const ia=ex[ex.length-1];arrowUp(xmap(ia.tt)+16,yt+24,'#ffc23a');txt('abierta ↑ (Alma: implícito)',xmap(ia.tt)+24,yt+20,'#ffc23a','10px','left');
+}
+// ---------- CIVILIZACIONES (especulativo) ----------
+function drawCiv(){const w=C2.W,h=C2.H,mL=70,mR=60,mT=150,mB=120;const x0=mL,x1=w-mR,yb=h-mB;
+  /* Cabecera con EXPLICACIÓN (agregada 13-ago-2026: la vista quedaba en el aire,
+     sin decir por qué está acá). Y márgenes ampliados: los rótulos se pisaban. */
+  ctx2.fillStyle='rgba(180,120,40,.14)';ctx2.fillRect(0,46,w,92);
+  txt('◈ ESPECULATIVO — Civilizaciones tecnológicas sucesivas (Ecuación A&G)',x0,68,'#ffcf7a','bold 15px -apple-system');
+  txt('POR QUÉ ESTÁ ACÁ: si la persistencia produce estructura, y la estructura produce más estructura, esta es la consecuencia',x0,88,'#cfa','12px');
+  txt('más lejana que se puede mirar. La escalera no se detuvo en nosotros ni empezó con nosotros: es el mismo principio, a la escala mayor.',x0,105,'#cfa','12px');
+  txt('CÓMO SE CUENTA: la Tierra como única unidad de medida (formación → tecnología = 4.54 Ga). ¿Cuántos arcos así caben en 13.8 Ga?',x0,124,'#b9a','11.5px');
+  const T1=13800,xmap=t=>x0+(x1-x0)*(t/T1);
+  seg(x0,yb,x1,yb,'#233',1.2);
+  for(let g=0;g<=13;g+=1){const xx=xmap(g*1000);seg(xx,yb,xx,yb+7,'#456',1);if(g%2===0)txt(g+' Ga',xx,yb+22,'#90a0c0','10px','center');}
+  // primer planeta rocoso posible 0.7-1.5 Ga — rótulo DENTRO de la banda, ya no contra la cabecera
+  ctx2.fillStyle='rgba(90,134,200,.18)';ctx2.fillRect(xmap(700),mT,xmap(1500)-xmap(700),yb-mT);
+  txt('1er planeta',xmap(1100),yb-24,'#8fb0e0','10px','center');
+  txt('rocoso posible',xmap(1100),yb-13,'#8fb0e0','10px','center');
+  txt('0.7–1.5 Ga',xmap(1100),yb-2,'#8fb0e0','10px','center');
+  // generaciones sucesivas (arco 2.46 Ga, 5) desde ~1.5 Ga hasta hoy
+  const arc=2460,start=1500;const cols=['#3a5','#4a6','#5a7','#6a8','#ffc23a'];
+  for(let k=0;k<5;k++){const a=start+k*arc,b=a+arc;const last=(k===4);const yy=yb-30-k*2;
+    ctx2.strokeStyle=last?'#ffc23a':'#3a6a4a';ctx2.lineWidth=last?3:2;ctx2.setLineDash(last?[]:[4,3]);
+    ctx2.strokeRect(xmap(a),yy-16,xmap(b)-xmap(a),18);ctx2.setLineDash([]);
+    txt('civ '+(k+1),xmap((a+b)/2),yy-3,last?'#ffc23a':'#8fb08f','9.5px','center');}
+  txt('≥5 civilizaciones tecnológicas / IA / IONB pudieron sucederse antes que nosotros',x0,mT+18,'#ffcf7a','bold 12px','left');
+  txt('No es una predicción: es aritmética sobre un solo caso conocido. Por eso dice ESPECULATIVO.',x0,mT+34,'#9a8','10.5px','left');
+  // 1a tecnología posible 5.2-6.0 Ga — rótulo en dos líneas, ya no cruza la vertical de "nosotros"
+  seg(xmap(5200),mT+48,xmap(5200),yb,'#ffc23a',1.4,[3,3]);
+  txt('1ª tecnología posible ~5.2–6 Ga',xmap(5300),mT+62,'#ffc23a','10px','left');
+  txt('(7.8–8.6 Ga antes que nosotros)',xmap(5300),mT+74,'#ffc23a','10px','left');
+  // nosotros — rótulo bajado para no chocar con la línea de arriba
+  const xn=xmap(13800);seg(xn,mT,xn,yb,'#35e0ff',2);dot(xn,yb-6,5,'#35e0ff');txt('nosotros (hoy)',xn-6,mT+62,'#35e0ff','11px','right');
+  // arco Tierra
+  ctx2.strokeStyle='#5a86c8';ctx2.lineWidth=2.5;ctx2.strokeRect(xmap(9260),yb-70,xmap(13800)-xmap(9260),20);txt('arco Tierra (4.54 Ga)',xmap(11530),yb-56,'#8fb0e0','10px','center');
+}
+function legend(x,y,al){const rs=Object.keys(ROLN);ctx2.textAlign=al;rs.forEach((r,i)=>{const yy=y+i*15;if(al==='right'){dot(x-4,yy-4,4,ROLC[r]);txt(ROLN[r],x-14,yy,'#aeb8cc','10px','right');}else{dot(x+4,yy-4,4,ROLC[r]);txt(ROLN[r],x+14,yy,'#aeb8cc','10px','left');}});}
+
+const HELP={
+ 'crono/compacto':['Vista compacta','Todo el arco de un vistazo. La <b>línea verde</b> (complejidad) sube; la <b>roja</b> (exergía disponible) cae hacia la muerte térmica. Nacen juntas en el Big Bang y <b>divergen</b>. La complejidad queda <b>abierta hacia arriba</b>. Abajo, los 118 elementos aparecen coloreados por su rol.'],
+ 'crono/cosmico':['Zoom cósmico','El arco estirado (scroll →). Cada elemento en su momento de aparición por nucleosíntesis, en escala de <b>tiempo logarítmica</b> desde el Big Bang. El <b>Carbono</b> (dorado, 350 Myr por JWST) es la única exaptación atómica. La línea verde marca la puerta al zoom Terrestre.'],
+ 'crono/terrestre':['Zoom terrestre','Sólo el período de la Tierra (scroll →). Las <b>11 exaptaciones</b> suben la complejidad escalón por escalón sobre la curva exponencial de A&G, mientras la exergía cae. El cuadro hueco es un <b>precursor</b> (química prebiótica, no exaptación). La IA queda <b>abierta hacia arriba</b>.'],
+ 'civ/civ':['Civilizaciones sucesivas (especulativo)','Usa la Tierra como unidad de medida (4.54 Ga de formación a tecnología). Como los planetas rocosos pudieron formarse desde ~0.7–1.5 Ga tras el Big Bang, la <b>primera civilización tecnológica</b> pudo aparecer ~5.2–6 Ga — hasta <b>8.6 Ga antes que nosotros</b>. Caben <b>≥5 generaciones sucesivas</b>. Marco: Ecuación A&G. <b>Especulativo</b>, por eso va aparte.']
+};
+window.draw2d=function(){if(!C2.W)resize2d();bg();
+  if(C2.mode==='civ')drawCiv();
+  else if(C2.zoom==='compacto')drawCompacto();
+  else if(C2.zoom==='cosmico')drawCosmico();
+  else drawTerrestre();
+  const k=(C2.mode==='civ')?'civ/civ':'crono/'+C2.zoom;const hd=HELP[k]||['',''];
+  document.getElementById('h2dT').textContent=hd[0];document.getElementById('h2dB').innerHTML=hd[1];};
+window.syncBar2d=function(){const z=C2.zoom;$('z_comp').classList.toggle('act',z==='compacto');$('z_cos').classList.toggle('act',z==='cosmico');$('z_ter').classList.toggle('act',z==='terrestre');};
+function setZoom(z){C2.zoom=z;resize2d();syncBar2d();draw2d();wrap2.scrollLeft=0;}
+$('z_comp').onclick=()=>setZoom('compacto');$('z_cos').onclick=()=>setZoom('cosmico');$('z_ter').onclick=()=>setZoom('terrestre');
+$('help2dBtn').onclick=()=>{$('help2d').style.display='block';$('help2dBtn').style.display='none';};
+$('h2dClose').onclick=()=>{$('help2d').style.display='none';$('help2dBtn').style.display='block';};
+wrap2.addEventListener('wheel',e=>{if(e.deltaY&&!e.shiftKey){wrap2.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});
+window.addEventListener('resize',()=>{if(C2.mode==='crono'||C2.mode==='civ'){resize2d();draw2d();}});
+})();
+
+
+/* ═══════════ MÓDULO Nodos de la Teoría ═══════════ */
+const NODOS_DATA={"bloques":[{"clave":"0","titulo":"Principio Fundamental — S>0","nodos":[{"id":"S>0","enunciado":"S = persistencia mínima no nula de una distinción S > 0 — La persistencia es la condición de posibilidad de toda diferencia, toda estructura, toda representación, todo error, toda negación, toda libertad y toda evolución.","ejemplo":"","estado":"constata","exp":"CS072","nota_exp":"Axioma fundacional de la Teoría: la persistencia de una distinción (S>0) es el punto de partida trascendental, no un teorema a falsar. CS072 mostró que SOBRE S>0 emerge el Modelo Estándar (bariones, 7:1, H y He) sin parámetros impuestos; la magnitud primitiva de S no requiere demostración porque es la condición de posibilidad de todo lo demás."}],"videos":[],"pdfs":[]},{"clave":"1","titulo":"PERSISTENCIA PRE-ESTRUCTURAL","nodos":[{"id":"C-N1","enunciado":"S > 0 (condición de existencia) Algo persiste lo suficiente para no anularse completamente.","ejemplo":"Una señal que no desaparece instantáneamente.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N1.1","enunciado":"S ≤ 0 ⇒ ∅ Lo que no deja huella no puede diferenciarse ni estructurarse.","ejemplo":"Una perturbación que se disipa sin traza no genera historia.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N1.2","enunciado":"S(t+Δt) > 0 ⇒ persistencia La persistencia se confirma cuando algo sigue existiendo en el siguiente instante.","ejemplo":"Un cristal que mantiene su estructura tras el enfriamiento.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N1.3","enunciado":"Ω_persistente ⊆ Ω_posible No todo lo posible persiste — la persistencia filtra el espacio ontológico.","ejemplo":"De todos los estados posibles del universo temprano, solo algunos continuaron.","estado":"probado","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"2","titulo":"ACOPLAMIENTO ORIGINARIO","nodos":[{"id":"C-N2","enunciado":"S = I ⟺ E La persistencia se sostiene mediante interacción entre interior y exterior. Entre lo que algo es y lo que no es.","ejemplo":"Un organismo intercambiando energía con su entorno.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.1","enunciado":"S > 0 ⟺ I > 0 ∧ E > 0 Sin interior y exterior simultáneamente activos, nada persiste relacionalmente.","ejemplo":"Una célula sin membrana ni medio externo no puede mantenerse.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.2","enunciado":"E = 0 ∨ I = 0 ⇒ S = 0 Si uno de los dos desaparece, la relación — y la persistencia — colapsan.","ejemplo":"Un ecosistema sin depredadores ni presas pierde su dinámica.","estado":"probado","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"2.5","titulo":"EMERGENCIA DEL TIEMPO","nodos":[{"id":"C-N2.5","enunciado":"t ≡ orden inducido por Δ_struct El tiempo no preexiste: emerge cuando hay diferencias estructurales acumuladas.","ejemplo":"Antes de la primera asimetría, no hay 'antes'.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.5.1","enunciado":"Δ_struct > 0 ⇒ ∃ relación de orden Diferencia estructural implica que hay un antes y un después.","ejemplo":"La desintegración de un átomo crea una relación de orden temporal.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.5.2","enunciado":"t ≡ secuencia de constricciones acumuladas El tiempo es la secuencia de constricciones que el sistema ha acumulado.","ejemplo":"La historia de un organismo es la suma de sus restricciones pasadas.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.5.3","enunciado":"Δ_struct = 0 ⇒ t = ∅ Sin diferencia no hay secuencia, y sin secuencia no hay tiempo.","ejemplo":"Un universo perfectamente homogéneo no tiene tiempo propio.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.5.4","enunciado":"t ⇒ condición de posibilidad de Ω(t) El tiempo es condición de posibilidad del espacio de estados del sistema.","ejemplo":"Sin historia acumulada, no hay trayectorias posibles.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.5.5","enunciado":"Asimetría primordial como evidencia empírica de S > 0 pre-temporal Las violaciones de simetría observadas en la física de partículas (como las violaciones CP -conjugación de carga, paridad- requeridas para la baryogénesis) constituyen evidencia potencial de una asimetría ontológica mínima equivalente a S > 0 en un nivel pre-temporal. Estas asimetrías, aunque extremadamente pequeñas, representan la ruptura de simetría suficiente para que la diferencia persista y se acumule. Desde esta perspectiva, las leyes fundamentales pueden ser simétricas en el tiempo, pero la existencia de un universo no simétricamente vacío requiere una asimetría primordial que actúa como condición de posibilidad para la emergencia posterior de Δ_struct y, con ella, del tiempo como orden inducido (C-N2.5). Esto es coherente con C-N2.5.6: la persistencia mínima genera orden histórico, pero no determina por sí misma una dirección temporal privilegiada. La orientación de la flecha emerge de las constricciones que esa persistencia mínima pudo sostener bajo las condiciones iniciales del sistema.","ejemplo":"Las violaciones CP detectadas experimentalmente no “crean” el tiempo, pero demuestran potencialmente que una diferencia mínima fue necesaria para que el universo no se aniquilara en simetría perfecta, permitiendo así la acumulación de Δ_struct.","estado":"probado","exp":"CS070","nota_exp":"La semilla/asimetría primordial se LAVA: direccion_real=0.000 en 96 corridas, ni el sustrato local la sostiene. Resultado B."},{"id":"C-N2.5.6","enunciado":"S > 0 ⇏ T⁺ — Dirección de la flecha temporal no axiomática La persistencia mínima no nula genera orden histórico, pero no determina por sí misma una dirección temporal privilegiada.","ejemplo":"Un sistema puede sostener diferencia y secuencia sin que la orientación de esa secuencia esté fijada a priori.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.5.7","enunciado":"T⃗ ≡ Σ(Δ_struct · R · P) — Orientación emergente del tiempo La dirección temporal emerge como balance acumulado de diferencias estructurales persistentes bajo restricciones de viabilidad.","ejemplo":"Una rama histórica se orienta según las diferencias que lograron persistir bajo las restricciones iniciales del sistema.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.5.8","enunciado":"I_T ∝ |T⃗| — Inercia histórica de la orientación temporal Una orientación temporal estabilizada adquiere resistencia a la inversión proporcional a la acumulación histórica de constricciones viables.","ejemplo":"Una trayectoria evolutiva prolongada resulta más difícil de revertir que una bifurcación recién formada.","estado":"tension","exp":"","nota_exp":""},{"id":"C-N2.5.9","enunciado":"S > 0 ⇒ T⃗ ∈ {T⁺, T⁻} — Regímenes de orientación temporal El marco admite orientaciones temporales distintas siempre que satisfagan persistencia mínima no nula.","ejemplo":"Dos sistemas pueden sostener historias incompatibles sin dejar de persistir estructuralmente.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.5.10","enunciado":"T⁺ + T⁻ → 0 ⇒ Δ_struct → 0 — Cancelación de orientaciones incompatibles Cuando dos orientaciones históricas opuestas se acoplan localmente sin mediación, pueden cancelar la diferencia estructural que las sostiene. La aniquilación materia-antimateria puede interpretarse cosmosemióticamente como cancelación local de orientaciones históricas incompatibles. Como se señala en C-N2.5.5, si la simetría CP se hubiera respetado perfectamente, materia y antimateria se habrían producido en cantidades iguales y se habrían aniquilado mutuamente, dejando un universo casi vacío. La existencia de un exceso de materia requiere que haya existido una pequeña asimetría primordial entre ambas.","ejemplo":"","estado":"probado","exp":"CS072","nota_exp":"La aniquilación materia-antimateria emerge del motor: exceso bariónico, ratio p:n=7.1, H/He, sin imponerlo."}],"videos":[],"pdfs":[]},{"clave":"2.6","titulo":"CONSTRICCIÓN ESTRUCTURAL","nodos":[{"id":"C-N2.6","enunciado":"∂S ≠ 0 ⇒ curvatura del espacio de estados Donde hay diferencia estructural, el espacio de estados se curva: hay zonas más probables.","ejemplo":"Los planetas siguen trayectorias curvas porque el espacio está curvado por masa.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.6.1","enunciado":"I ⟺ E ⇒ gradientes de estabilidad La interacción I ⟺ E genera gradientes — zonas donde el acoplamiento es más o menos estable.","ejemplo":"Una diferencia de temperatura genera un gradiente que orienta el flujo.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.6.2","enunciado":"trayectorias ≡ seguir ∇A_sys-env Los sistemas tienden a seguir el gradiente de mayor acoplamiento.","ejemplo":"Un organismo sigue el gradiente de nutrientes en su entorno.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.6.3","enunciado":"mínimos locales de A_sys-env ⇒ estabilidad estructural Los mínimos locales de acoplamiento son atractores — zonas de estabilidad relativa.","ejemplo":"Una especie que encuentra un nicho ecológico tiende a permanecer en él.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.6.4","enunciado":"acumulación de constricción ⇒ organización a gran escala La acumulación de constricción genera organización emergente a gran escala.","ejemplo":"La acumulación de reglas locales produce el orden de un sistema social.","estado":"negativo","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"2.7","titulo":"REGÍMENES FUNDAMENTALES DE ACOPLAMIENTO","nodos":[{"id":"C-N2.7","enunciado":"I ⟺ E se manifiesta en regímenes discretos El acoplamiento I ⟺ E se manifiesta de formas distintas según escala e intensidad.","ejemplo":"Las cuatro fuerzas fundamentales son regímenes del mismo principio de acoplamiento.","estado":"parcial","exp":"","nota_exp":""},{"id":"C-N2.7.1","enunciado":"Acoplamiento fuerte: I ≫ 0 ∧ E ≫ 0 ∧ alcance → 0 Acoplamiento máximo en alcance mínimo: alta intensidad, distancia casi nula.","ejemplo":"La fuerza nuclear fuerte que mantiene unido el núcleo atómico.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N2.7.2","enunciado":"Acoplamiento electromagnético: I > 0 ∧ E > 0 ∧ alcance → ∞ Acoplamiento activo a distancia, con capacidad de transformar estructuras.","ejemplo":"La luz que transporta información entre estrella y ojo.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N2.7.3","enunciado":"Acoplamiento débil: I bajo ∧ E bajo ∧ Δestado ≠ 0 Acoplamiento débil: baja intensidad pero capaz de cambiar el estado del sistema.","ejemplo":"La desintegración beta que transforma un neutrón en protón.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N2.7.4","enunciado":"Acoplamiento gravitacional: I ≈ 0 ∧ E ≈ 0 ∧ acumulación ⇒ constricción global Acoplamiento gravitacional: intensidad casi nula pero acumulación global.","ejemplo":"Millones de partículas que acumulan su atracción y forman una galaxia.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N2.7.5","enunciado":"Ley de regímenes de acoplamiento El régimen de acoplamiento depende de la escala, no de principios distintos.","ejemplo":"Lo que une quarks y lo que une galaxias son regímenes del mismo principio.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.7.6","enunciado":"Correspondencia estructural ≠ reducción física La correspondencia entre los regímenes de acoplamiento cosmosemiótico y las cuatro fuerzas fundamentales de la física es estructural, no ontológica. La Cosmosemiótica no deriva las fuerzas desde I ⟺ E ni pretende sustituir las teorías físicas que las describen formalmente. Lo que afirma es que, leídas desde el nivel de las condiciones de posibilidad (C-N2.8), todas las formas de interacción conocidas satisfacen la estructura I ⟺ E en distintos regímenes de escala e intensidad. Esta lectura es compatible con — y posterior a — las descripciones formales de la física.","ejemplo":"La mecánica cuántica describe la fuerza nuclear fuerte con precisión formal. La Cosmosemiótica identifica en esa descripción el régimen de acoplamiento C-N2.7.1. Ambas lecturas son compatibles y operan en capas distintas.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.7.7","enunciado":"Δ encadenada ⇒ distancia — \\mathbit{d}_\\mathbit{\\Delta}\\left(\\mathbit{A},\\mathbit{B}\\right)=minP:A⇝BΔk∈PΔk La distancia no preexiste a las diferencias que relaciona. Emerge cuando varias distinciones se encadenan y forman un recorrido entre dos posiciones. “Cuán lejos” se encuentra BBB de AAA expresa cuánta diferencia acumulada debe atravesarse para relacionarlos; cuando existen varios recorridos, la distancia corresponde al de menor diferencia acumulada. Los experimentos Cosmogénesis comprobaron operacionalmente que, al imponer localidad relacional fuerte, aparece un tejido con distancias efectivas que no es reproducido por los controles barajados o sin dinámica local.","ejemplo":"Dos habitaciones están más lejos entre sí cuando es necesario atravesar más puertas y espacios intermedios para pasar de una a otra.","estado":"parcial","exp":"CS066","nota_exp":"Con localidad relacional fuerte aparece un tejido con distancias efectivas no reproducido por los controles barajados."},{"id":"C-N2.7.8","enunciado":"Escalera de la geometría — Dir>0 ⇒ Dim>0 ⇒ Dist>0 ⇒ S>0, sin implicación inversa necesaria La geometría no constituye una propiedad única que aparece completa, sino una secuencia de estratos operativos. Primero debe existir una distinción persistente; el encadenamiento de distinciones puede producir distancia; la organización de las distancias puede producir dimensión; y una dimensionalidad suficientemente estable puede permitir dirección. Cada peldaño presupone los anteriores, pero ninguno garantiza por sí solo la aparición del siguiente. Los experimentos Cosmogénesis midieron estos cuatro niveles separadamente y comprobaron que pueden presentar comportamientos distintos dentro de un mismo modelo.","ejemplo":"En una red de túneles puede saberse que dos cámaras están muy lejos entre sí, aunque la red no permita determinar que una se encuentra al norte, al sur, arriba o abajo de la otra.","estado":"negativo","exp":"CS066+CS067","nota_exp":"Los cuatro estratos (Dir/Dim/Dist/S) medidos por separado: presentan comportamientos distintos en el mismo modelo."},{"id":"C-N2.7.9","enunciado":"Distancia y dirección son separables — Dist>0⇏Dir>0 La existencia de un “lejos” no implica la existencia de un “hacia dónde”. La distancia requiere que puedan acumularse diferencias entre posiciones; la dirección exige, además, que esas diferencias se organicen en ejes u orientaciones consistentes. Los experimentos Cosmogénesis comprobaron esta separación sobre un mismo sustrato: el tejido conservó distancias locales efectivas, mientras sus orientaciones no lograron estabilizarse y colapsaron frente a los controles correspondientes.","ejemplo":"En un ovillo puede existir un recorrido largo entre dos puntos del hilo, aunque el conjunto no posea un norte, un sur ni ejes estables que permitan orientar ese recorrido.","estado":"probado","exp":"CS066+CS067","nota_exp":"Distancia y dirección separables: el tejido conservó distancias locales mientras las orientaciones colapsaron frente al control (p=0.036, N=3500)."},{"id":"C-N2.7.10","enunciado":"La dirección no emerge de la relación pura, clásica ni cuántica, en esta familia de modelos (RC∨RQ)∧SW ⇏ Dir>0 [FCG] En la familia de modelos Cosmogénesis examinada, ni la relación clásica completa RCR_CRC ni la superposición coherente de relaciones RQR_QRQ produjeron dimensión o dirección estable mientras el sustrato conservó una estructura de mundo pequeño SW, en la que todos los componentes permanecen conectados mediante recorridos demasiado cortos. Las rutas clásica y cuántica fueron ensayadas independientemente y, frente a sus respectivos controles nulos, convergieron en el mismo resultado: la relación pura disponible en estos modelos no basta para producir un “hacia dónde”. Este nodo acota las rutas experimentadas; no afirma que la dirección sea imposible ni clausura otros mecanismos o estratos posibles.","ejemplo":"Una red muy enmarañada puede conectar eficazmente todos sus puntos y admitir ondas superpuestas sobre sus enlaces, pero esas propiedades no bastan para convertirla en un espacio con norte, sur y ejes persistentes.","estado":"probado","exp":"CS067+CS069","nota_exp":"Ni relación clásica ni superposición cuántica produjeron dirección estable en mundo-pequeño; 4 brazos indistinguibles."},{"id":"C-N2.7.11","enunciado":"π y las constantes geométricas son contingentes, no predeterminadas — G=0⇒πG indefinido; Gi>0⇒πGi =πi,  πi=f(Gi) La razón geométrica representada por π\\piπ no opera como una condición previa allí donde todavía no existen círculos, diámetros, dimensión ni geometría métrica. En un estado pregeométrico, πG  carece de un valor operativo definido. Cuando una geometría Gi  se estabiliza, la relación entre frontera y diámetro también puede estabilizarse, pero el valor obtenido depende de la geometría y de la métrica efectivamente realizadas. Los experimentos Cosmogénesis comprobaron que esta razón permanece estable en redes con geometría definida y se vuelve inestable o indefinida en tejidos que poseen distancia, pero carecen de dimensión y dirección consolidadas. En este sentido, π funciona como huella de una geometría realizada, no como causa de su formación.","ejemplo":"Antes de que exista una superficie en la que pueda trazarse un círculo, no tiene sentido medir la relación entre su contorno y su diámetro. Cuando la superficie y su métrica aparecen, esa relación se vuelve medible y adopta el valor correspondiente a esa geometría.","estado":"parcial","exp":"CS068","nota_exp":"π estable sólo en redes con geometría definida; indefinido/inestable en tejido con distancia pero sin dimensión. π es huella, no causa."},{"id":"C-N2.7.12","enunciado":"La geometría macroscópica es un estado condensado, no un a priori — \\mathbf{R}condensación ; G emergente⇒Kx=Kx(R),  x∈{P,Δ,O,V,LF} La geometría macroscópica no constituye necesariamente el escenario previo en el que ocurren las relaciones. Puede aparecer como un estado condensado de un sustrato relacional R, cuando las diferencias, distancias y restricciones alcanzan una organización capaz de sostener dimensión, dirección y métrica. Los experimentos Cosmogénesis apoyan esta formulación al mostrar que la distancia puede emerger sin que aparezca automáticamente una geometría plena y que distintos mecanismos relacionales no garantizan su condensación. Este resultado habilita C-N2.8.14: si el propio sustrato geométrico es emergente, los invariantes de cierre κP,κΔ,κO,κV,κLF  no pueden depender de una geometría previamente dada. Deben expresar relaciones estructurales capaces de conservarse y ser reconocidas en distintos sustratos, incluida la geometría cuando esta llega a constituirse.","ejemplo":"Un cristal no preexiste como escenario del líquido. Aparece cuando las relaciones entre sus componentes alcanzan una organización estable. Del mismo modo, el espacio-tiempo macroscópico puede ser una fase consolidada de relaciones anteriores, no el recipiente previo en que esas relaciones ocurren.","estado":"probado","exp":"CS072","nota_exp":"La dimensión emerge por condensación (2 fases de expansión) y es contingente al nº de distinciones D (1.0→3.41, invariante en 5D)."}],"videos":[],"pdfs":[]},{"clave":"2.8","titulo":"INVARIANTES COSMOLÓGICOS DEL CIERRE","nodos":[{"id":"C-N2.8","enunciado":"El cierre dinámico impone invariantes universales Para que el cierre recursivo sea posible, ciertas condiciones mínimas deben satisfacerse siempre.","ejemplo":"Un sistema que procesa y responde necesita al menos diferencia, acoplamiento y libertad.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.1","enunciado":"Invariancia ≠ constancia escalar La invariancia es estructural, no un valor fijo.","ejemplo":"Una ley que se mantiene bajo transformaciones.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.2","enunciado":"Universalidad Los invariantes aplican a todo sistema viable.","ejemplo":"Bacterias y sociedades cumplen condiciones de cierre.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.3","enunciado":"κ_P = inf(S_viable) > 0 Existe un mínimo de persistencia por debajo del cual nada puede sostenerse.","ejemplo":"Una señal que dura menos de un ciclo de procesamiento no puede ser integrada.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N2.8.4","enunciado":"κ_Δ = inf(Δ_struct^{operable}) > 0 Existe un mínimo de diferencia sin el cual nada puede distinguirse ni operar.","ejemplo":"Un sistema sin ninguna diferencia interna no puede generar representación.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N2.8.5","enunciado":"0 < |e_R| < κ_O El error operativo debe ser mayor que cero (hay señal) y menor que el umbral de colapso.","ejemplo":"Un termostato funciona si la temperatura oscila — no si es constante ni si explota.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.6","enunciado":"A_sys-env ≥ κ_V > 0 El acoplamiento con el entorno no puede caer a cero sin ruptura del sistema.","ejemplo":"Un organismo desconectado de su entorno muere.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.7","enunciado":"LF ≥ κ_LF > 0 El sistema debe tener al menos un mínimo de libertad para no colapsar por rigidez.","ejemplo":"Una institución sin ninguna capacidad de revisión se vuelve frágil.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.8","enunciado":"Teorema: S > 0, Δ_struct > 0, 0 < |e_R| < κ_O, A_sys-env ≥ κ_V, LF ≥ κ_LF Todo sistema con cierre recursivo satisface simultáneamente las cinco condiciones anteriores (condiciones de viabilidad). A estas se añade, como condición de analizabilidad cosmosemiótica, la condición κ_H: H(a_t) ≥ κ_H > 0. Un sistema que satisface las cinco condiciones de viabilidad pero viola κ_H permanece viable pero resulta no analizable como sistema cosmosemiótico (ver C-N2.8.8b y C-N2.8.16). Las seis condiciones reunidas constituyen U_Cos (C-N2.8.11).","ejemplo":"Un cristal perfecto satisface las cinco condiciones de viabilidad pero viola κ_H: persiste, se acopla, tiene diferencia, error acotado y rigidez estructural como su 'LF mínima'. Es viable. Pero no genera variación conductual medible: es opaco para el modelo.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.8a","enunciado":"Fundamentación del Teorema: reducción al absurdo de las cinco condiciones del Teorema Cada condición del Teorema se sostiene porque su negación destruye la posibilidad de cierre recursivo. (1) S = 0 ⇒ no hay sistema capaz de cierre: nada persiste lo suficiente para sostener un ciclo. (2) Δ_struct = 0 ⇒ no hay estados distinguibles: el ciclo D → R → Acción → A no tiene términos diferenciables. (3) |e_R| = 0 ⇒ no hay señal correctora: el ciclo no puede ajustarse. |e_R| ≥ κ_O ⇒ el error desborda y destruye el ciclo. Por tanto 0 < |e_R| < κ_O es necesario. (4) A_sys-env = 0 ⇒ el término de retroalimentación del ciclo desaparece: el sistema opera sin entorno. (5) LF = 0 ⇒ R → Acción es rígido e irregulable: el sistema colapsa ante cualquier variación del entorno que exceda su rango de respuesta fija. La satisfacción simultánea es necesaria porque las condiciones son mutuamente dependientes: la violación de cualquiera destruye las condiciones de posibilidad de las demás.","ejemplo":"Un sistema con LF = 0 puede satisfacer momentáneamente las otras cuatro condiciones, pero sin capacidad de modular R → Acción, la primera variación ambiental fuera de rango destruye κ_O, luego κ_V, luego κ_Δ en cascada.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.8b","enunciado":"κ_H ∈ U_Cos como condición de analizabilidad, no de viabilidad Las cinco condiciones del Teorema C-N2.8.8 son condiciones de viabilidad del sistema: su violación produce colapso estructural. La condición κ_H (C-N2.8.16) es de naturaleza distinta: su violación no produce colapso sino opacidad cosmosemiótica. El sistema persiste pero no puede ser modelado dentro del marco porque no genera diferencia conductual medible. Esta distinción es metodológicamente crítica: un sistema puede ser viable y estar fuera del alcance analítico del modelo. La viabilidad y la analizabilidad son condiciones independientes.","ejemplo":"Un organismo en hibernación profunda puede satisfacer κ_P, κ_Δ, κ_O, κ_V y κ_LF estructuralmente, pero si H(a_t) < κ_H durante ese período, el modelo no puede analizarlo: no hay conducta observable. Al despertar, recupera la analizabilidad sin haber perdido la viabilidad.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.9","enunciado":"Condición de ruptura: violación sostenida ⇒ ruptura del cierre dinámico Si alguna condición se viola de forma sostenida, el cierre se rompe.","ejemplo":"Un sistema que pierde libertad funcional durante demasiado tiempo colapsa.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.9a","enunciado":"Tipología de ruptura según invariante violado La violación sostenida de distintos invariantes produce dinámicas de ruptura cualitativamente distintas que no son equivalentes entre sí. Violación de κ_P: disolución — el sistema deja de persistir, colapso inmediato. Violación de κ_Δ: homogeneización — el sistema pierde estados distinguibles y colapsa en indiferenciación estructural. Violación de κ_LF: rigidez terminal — el sistema persiste pero pierde capacidad de reconfiguración y colapsa ante cambios de entorno; trayectoria lenta e irreversible. Violación de κ_O: inestabilidad oscilativa — el error sale de rango y destruye el ciclo de corrección por exceso o por defecto. Violación de κ_V: desacoplamiento fatal — el sistema pierde relación funcional con su entorno, extinción por aislamiento. Violación de κ_H: opacidad analítica — el sistema persiste pero es invisible para el modelo cosmosemiótico.","ejemplo":"Una institución que pierde κ_LF (rigidez total) no colapsa con la inmediatez de una que pierde κ_V (desconexión del entorno), pero su trayectoria es más lenta e irreversible: la rigidez se autorefuerza, eliminando progresivamente las condiciones para κ_O y κ_Δ.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.10","enunciado":"Orden de dependencia: κ_P ⇒ κ_Δ ⇒ κ_LF ⇒ κ_O ⇒ κ_V La persistencia funda la diferencia, que funda la libertad, que funda el error acotado, que funda el acoplamiento.","ejemplo":"Sin S no hay Δ_struct; sin Δ_struct no hay LF; sin LF no hay e_R útil.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.10a","enunciado":"La cadena de dependencia: κ_P ⇒ κ_Δ ⇒ κ_LF ⇒ κ_O ⇒ κ_V, es de posibilidad, no de derivación operativa El orden κ_P ⇒ κ_Δ ⇒ κ_LF ⇒ κ_O ⇒ κ_V (C-N2.8.10) describe dependencia de posibilidad: sin persistencia no puede haber diferencia estructural, sin diferencia no puede haber libertad funcional, etc. No describe el orden en que las variables operan en un sistema activo ni su jerarquía de importancia en distintos regímenes. En un sistema viable en operación, A_sys-env actúa como variable unificadora (Parte II, O-N2.1) y Δ_struct como fundamento operativo (Parte II, O-N0). La cadena de posibilidad y la cadena operativa son complementarias y no equivalentes: confundirlas produce errores de diagnóstico.","ejemplo":"El oxígeno es condición de posibilidad de la combustión (sin O₂ no hay fuego), pero en un motor en funcionamiento no es la variable operativa dominante — lo es la mezcla aire/combustible y el timing de encendido. Análogamente, κ_P es condición de posibilidad de todo lo demás pero no domina el diagnóstico de un sistema en operación.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.11","enunciado":"U_Cos = {κ_P, κ_Δ, κ_O, κ_V, κ_LF} Los invariantes del cierre forman un conjunto universal: U_Cos.","ejemplo":"Todo sistema viable — bacteria, IA, sociedad — satisface U_Cos.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.11a","enunciado":"κ_H está en U_Cos pero exterior a la cadena de viabilidad κ_P ⇒ ... ⇒ κ_V U_Cos = {κ_P, κ_Δ, κ_O, κ_V, κ_LF, κ_H} incluye seis invariantes. Los cinco primeros son invariantes de viabilidad y forman la cadena de dependencia de C-N2.8.10. κ_H es invariante de analizabilidad y está en U_Cos pero no pertenece a esa cadena: no es condición de existencia del sistema sino condición de observabilidad del sistema dentro del marco cosmosemiótico. La distinción es estructural: los invariantes de viabilidad determinan si el sistema puede existir; κ_H determina si el modelo puede analizarlo.","ejemplo":"U_Cos puede visualizarse como dos subconjuntos: U_Cos_viab = {κ_P, κ_Δ, κ_O, κ_V, κ_LF} (condiciones de existencia) y U_Cos_anal = {κ_H} (condición de observabilidad cosmosemiótica). Todo sistema en U_Cos_viab puede existir. Solo los que además satisfacen U_Cos_anal son analizables como sistemas cosmosemióticos.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.12","enunciado":"Λ_Cos = (Δ_struct · LF) / |e_R| · A_sys-env La razón cosmosemiótica mide la salud del cierre: alta cuando hay diferencia, libertad y acoplamiento.","ejemplo":"Λ_Cos alto = sistema robusto; Λ_Cos bajo = sistema en riesgo.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.12a","enunciado":"Λ_Cos como indicador integrado del estado de los invariantes de viabilidad Λ_Cos = (Δ_struct · LF) / |e_R| · A_sys-env integra en una sola métrica las variables asociadas a los cinco invariantes de viabilidad: Δ_struct refleja el estado relativo a κ_Δ, LF refleja κ_LF, |e_R| refleja κ_O (acotado desde abajo por > 0 y desde arriba por < κ_max), y A_sys-env refleja κ_V. La persistencia (κ_P) es condición de posibilidad de que Λ_Cos tenga valor: si κ_P se viola, el sistema no existe y Λ_Cos no está definida. Λ_Cos < Λ_crit señala que al menos uno de los invariantes de viabilidad está en riesgo de violación, pero no especifica cuál. Para diagnóstico de qué invariante está comprometido se requiere inspección directa de cada variable componente.","ejemplo":"Λ_Cos puede caer bajo Λ_crit por disminución de LF sin cambio en A_sys-env (riesgo κ_LF), o por aumento de |e_R| sin pérdida de LF (riesgo κ_O), o por caída de A_sys-env sin cambio en LF (riesgo κ_V). El valor de Λ_Cos detecta el problema sistémico; el análisis de componentes lo localiza.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.13","enunciado":"Λ_Cos > Λ_crit El cierre solo se sostiene si Λ_Cos supera un valor crítico.","ejemplo":"Un sistema con LF≈0 o e_R≈0 no puede mantener el cierre.","estado":"noalcanza","exp":"","nota_exp":""},{"id":"C-N2.8.14","enunciado":"Universalidad estructural Los invariantes son independientes del sustrato, escala y dominio.","ejemplo":"Una bacteria y una civilización satisfacen U_Cos por razones distintas pero con la misma estructura.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.14a","enunciado":"Universalidad estructural no implica uniformidad cuantitativa de los κ Los invariantes κ son universales en su función estructural: todo sistema viable necesita un mínimo de persistencia, diferencia estructural, libertad funcional, error acotado y acoplamiento. Pero los valores concretos que constituyen ese mínimo son dominio-específicos y deben calibrarse para cada dominio de aplicación. Lo que cuenta como κ_LF mínima en una bacteria (capacidad de quimiotaxis básica frente a gradiente de nutriente) es cualitativamente distinto de κ_LF en una institución democrática (capacidad de revisar sus propias normas) o en un modelo de lenguaje (capacidad de declarar 'no sé'). La universalidad es de condición estructural, no de magnitud. Aplicar un κ calibrado en un dominio a otro sin traducción explícita es error de plano.","ejemplo":"κ_LF > 0 es universal y aplica a bacterias, instituciones y modelos de IA. Que en bacterias κ_LF requiera al menos un mecanismo de señalización bidireccional, en instituciones al menos un mecanismo de enmienda de sus propias reglas, y en IA al menos la capacidad de declarar incertidumbre, es la calibración dominio-específica del mismo invariante universal.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.15","enunciado":"Los universales cosmosemióticos no son constantes físicas Los universales cosmosemióticos no son leyes físicas: son condiciones estructurales.","ejemplo":"κ_LF no es una constante como la velocidad de la luz — es una condición de posibilidad.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N2.8.16","enunciado":"Sistema sin variación conductual medible (H(a_t) < κ_H) Un sistema sin variación conductual medible no es analizable como sistema cosmosemiótico. Es silencio, no cierre.","ejemplo":"mec-4 (C. elegans sin receptor mecánico) produce respuesta constante: silencio, no cierre.","estado":"noalcanza","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"3","titulo":"HISTORIA","nodos":[{"id":"C-N3","enunciado":"Ω(t ⊕ ΔT⃗) ⊂ Ω(t) La historia acumula constricciones según la orientación temporal dominante del sistema.","ejemplo":"Una especie que evoluciona no puede 'desevolucionar' o 'involucionar' — la historia es irreversible.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N3.1","enunciado":"|Ω(t+1)| < |Ω(t)| El número de estados posibles decrece en cada paso — la historia restringe el futuro.","ejemplo":"Una lengua que pierde hablantes no recupera espontáneamente su diversidad anterior.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N3.2","enunciado":"Σ_t ΔΩ < 0 La acumulación de constricciones es la firma estructural del tiempo.","ejemplo":"La cantidad total de opciones del universo disminuye monótonamente.","estado":"probado","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"4","titulo":"DELIMITACIÓN","nodos":[{"id":"C-N4","enunciado":"S = f(I, ∂S) Un sistema se define cuando su persistencia presenta variación interna distinguible del entorno.","ejemplo":"Una célula existe porque tiene membrana que separa interior de exterior.","estado":"negativo","exp":"","nota_exp":""},{"id":"C-N4.1","enunciado":"∂S ≠ 0 ⇒ sistema definido Sin frontera no hay sistema — hay campo continuo indistinguible.","ejemplo":"Sin piel, no hay organismo separado del entorno.","estado":"constata","exp":"","nota_exp":""},{"id":"C-N4.2","enunciado":"interior ∩ exterior = ∅ El interior y el exterior no se superponen — la frontera es operativa.","ejemplo":"Lo que está dentro de la célula no es simultáneamente exterior.","estado":"constata","exp":"","nota_exp":""}],"videos":[],"pdfs":[]},{"clave":"5","titulo":"DINÁMICA","nodos":[{"id":"C-N5","enunciado":"x(t) ∈ [x_min, x_max] Los sistemas estables operan dentro de rangos: ni demasiado ni demasiado poco.","ejemplo":"La temperatura corporal humana oscila en un rango viable — ni congelación ni fiebre letal.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N5.1","enunciado":"estabilidad dinámica Mientras el sistema permanece en rango, hay estabilidad dinámica.","ejemplo":"Un péndulo que oscila dentro de su arco es estable.","estado":"probado","exp":"","nota_exp":""},{"id":"C-N5.2","enunciado":"x ∉ rango ⇒ colapso Salir del rango implica colapso estructural.","ejemplo":"Una temperatura corporal de 42°C sostenida es fatal.","estado":"probado","exp":"","nota_exp":""}],"videos":[],"pdfs":[]}],"leyenda_estado":{"probado":"Falsado experimentalmente (Cosmogénesis) — resultado positivo","negativo":"Probado — resultado negativo (B): la hipótesis no se sostuvo","axioma":"Axioma fundacional — punto de partida trascendental de la Teoría, no requiere falsación","deductivo":"Consecuencia deductiva del axioma S>0 — se sigue lógicamente, no es hipótesis a falsar","parcial":"Soporte parcial — una capa demostrada, otra pendiente","pendiente":"Enunciado en la Teoría — aún no falsado experimentalmente"},"resumen":{"constata":28,"probado":20,"noalcanza":10,"tension":1,"negativo":8,"parcial":3}};
+(function(){
+const ND=NODOS_DATA;let curBlk=0;
+/* Estados según el INVENTARIO DE LA PARTE I del 13-ago-2026, que clasifica
+   cada nodo ANTES de darle veredicto: primero si su falsador se puede
+   construir dentro de un instrumento (si no, se constata y ningún resultado
+   lo toca), y sólo después el veredicto experimental. */
+const ESTC={constata:'#c9a0ff',probado:'#4fe08a',parcial:'#5ab0e0',tension:'#7fd4c8',
+            negativo:'#ffc23a',noalcanza:'#8a94a6',
+            axioma:'#c9a0ff',deductivo:'#9aa8e8',pendiente:'#8a94a6'};
+const ESTL={constata:'se constata · no se prueba',probado:'probado',parcial:'parcial · las dos mitades tiran distinto',
+            tension:'probado, con tensión medida',negativo:'medido: salió que NO',
+            noalcanza:'no se alcanzó en este sustrato',
+            axioma:'axioma fundacional',deductivo:'deductivo',pendiente:'pendiente'};
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function leyenda(){const el=document.getElementById('ndLeg');if(!el||el.dataset.done)return;
+  const R=ND.resumen, ORD=['constata','probado','parcial','tension','negativo','noalcanza'];
+  el.innerHTML=ORD.filter(k=>R[k]).map(k=>`<span><b style="background:${ESTC[k]}"></b>${ESTL[k]}</span>`).join('')
+    +` <span style="color:#6a7690">· ${ORD.filter(k=>R[k]).map(k=>R[k]+' '+k).join(' · ')}</span>`;
+  el.dataset.done='1';}
+function lista(){const el=document.getElementById('ndList');
+  el.innerHTML=ND.bloques.map((b,i)=>{
+    const nprob=b.nodos.filter(n=>n.estado==='probado').length;
+    const nneg=b.nodos.filter(n=>n.estado==='negativo').length;
+    let pill='';if(nprob)pill+=`<span class="pill">${nprob}✓</span>`;if(nneg)pill+=`<span class="pill" style="background:#ffc23a">${nneg}B</span>`;
+    return `<div class="blk${i===curBlk?' act':''}" data-i="${i}"><span class="bn">Bloque ${esc(b.clave)}</span>${pill}<br>${esc(b.titulo)}</div>`;
+  }).join('')
+  /* Pie agregado 13-ago-2026. Los bloques 6 a 11 se quitaron de este panel porque
+     Cosmogénesis no puede probarlos: necesitan organismos con entorno, y acá el
+     acoplamiento es nodo con nodo dentro del mismo saco. No es deuda de este
+     experimento — es sustrato equivocado. Se listan para que no parezca que la
+     Teoría termina en el bloque 5. */
+  + `<div style="margin-top:14px;padding:11px 10px;border-top:1px solid #1e2840;
+       font-size:11px;line-height:1.55;color:#6a7690">
+       <b style="color:#8fa4c8">Bloques 6 a 11 — fuera de este experimento</b><br>
+       Replicación · Interpretación · Recombinación · Sentido compartido ·
+       Meta-interpretación · Transición fundamental.<br><br>
+       Piden un sistema con <b>entorno</b> y con <b>conducta</b>; Cosmogénesis acopla
+       nodo con nodo dentro del mismo saco. Se estudian en
+       <a href="https://cosmosemiotica.cl/experimentos.html" target="_blank"
+          style="color:#4fe08a">los otros instrumentos</a> —
+       ÁNIMA ancla ahí C-N8 y C-N9.<br><br>
+       Por la misma razón se quitaron de este panel κ_O, κ_V, κ_LF, κ_H y Λ_Cos
+       (C-N2.8.5 a .7, .12, .13 y .16). Sí quedan <b>κ_P</b> y <b>κ_Δ</b>, que sí
+       se midieron acá.
+     </div>`;
+  el.querySelectorAll('.blk').forEach(d=>d.onclick=()=>{curBlk=+d.dataset.i;lista();main();document.getElementById('ndMain').scrollTop=0;});}
+function mediaSlots(b){
+  const vids=(b.videos&&b.videos.length)?b.videos:[];
+  const pdfs=(b.pdfs&&b.pdfs.length)?b.pdfs:[];
+  let h='<div class="ndmedia">';
+  if(vids.length){vids.forEach(v=>{h+=`<div class="ndslot filled"><iframe src="https://www.youtube.com/embed/${v.youtube_id}" allowfullscreen></iframe><div style="margin-top:5px">${esc(v.titulo||'Video')}</div></div>`;});}
+  else{h+='<div class="ndslot">🎬 Video NotebookLM<br><span style="font-size:10px">(se enlazará desde YouTube)</span></div>';}
+  if(pdfs.length){pdfs.forEach(p=>{h+=`<div class="ndslot filled"><iframe src="${esc(p.url)}"></iframe><div style="margin-top:5px">${esc(p.titulo||'PPT')}</div></div>`;});}
+  else{h+='<div class="ndslot">📊 Presentación (PDF)<br><span style="font-size:10px">(se embeberá al subirla)</span></div>';}
+  return h+'</div>';}
+function main(){const b=ND.bloques[curBlk],el=document.getElementById('ndMain');
+  let h=`<h2>Bloque ${esc(b.clave)} — ${esc(b.titulo)}</h2>`;
+  const np=b.nodos.filter(n=>n.estado!=='pendiente').length;
+  h+=`<div class="sub">${b.nodos.length} nodo(s) · ${np} con soporte experimental · material didáctico del bloque abajo</div>`;
+  h+=mediaSlots(b);
+  h+='<div style="height:10px"></div>';
+  b.nodos.forEach(n=>{
+    h+=`<div class="ndcard"><span class="badge b_${n.estado}">${ESTL[n.estado]}</span><span class="nid">${esc(n.id)}</span>`;
+    if(n.enunciado)h+=`<div class="enun">${esc(n.enunciado)}</div>`;
+    if(n.ejemplo)h+=`<div class="ej">Ej: ${esc(n.ejemplo)}</div>`;
+    if(n.nota_exp)h+=`<div class="expn"><b>${esc(n.exp)}:</b> ${esc(n.nota_exp)}</div>`;
+    h+='</div>';});
+  el.innerHTML=h;}
+window.renderNodos=function(){leyenda();lista();main();};
+// enganche futuro desde la línea de tiempo: abrir un nodo por id
+window.openNodo=function(nid){for(let i=0;i<ND.bloques.length;i++){if(ND.bloques[i].nodos.some(n=>n.id===nid)){curBlk=i;if(typeof setMode==='function')setMode('nodos');else renderNodos();
+  setTimeout(()=>{const el=document.getElementById('ndMain');if(el){const cards=el.querySelectorAll('.nid');cards.forEach(c=>{if(c.textContent===nid)c.closest('.ndcard').scrollIntoView({behavior:'smooth',block:'center'});});}},60);return true;}}return false;};
+})();
+
+
+/* ═══════════ MÓDULO CS072 — modo 3D del motor compartido (ilustra, no adjudica) ═══════════ */
+const CS072_DATA={"checks":[{"id":19,"nombre":"Semilla de asimetría (S>0)","src":"CS070","toca":"T","desc":"Asimetría infinitesimal inicial S>0. Se barre.","apagar":"uniforme: sin estructura, nube gris homogénea","fase":"0 · condición previa","orden":1},{"id":23,"nombre":"Fluctuaciones cuánticas","src":"CS072","toca":"T","desc":"Rugosidad del campo (fondo no uniforme, CMB).","apagar":"fondo perfectamente liso; sin grano primordial","fase":"0 · condición previa","orden":2},{"id":21,"nombre":"Fase cuántica","src":"CS069","toca":"amplitud","desc":"Amplitud/fase. Fuera salvo acople sin grilla; ausencia declarada.","apagar":"modo clásico (se declara; sin cambio visible)","fase":"0 · condición previa","orden":3},{"id":6,"nombre":"Catálogo de partículas","src":"cs060/064","toca":"identidad","desc":"Color/carga/anti. Condensa, no se asigna a mano.","apagar":"sin repertorio: nada distinguible (pantalla homogénea)","fase":"1 · repertorio","orden":4},{"id":7,"nombre":"Masa (log-masa)","src":"cs060/061","toca":"identidad","desc":"Escala de masas. No selecciona dirección.","apagar":"cambia inercia; geometría igual","fase":"1 · repertorio","orden":5},{"id":22,"nombre":"QCD (sector fuerte, ~99% de la masa)","src":"CS072","toca":"enlace","desc":"Campo de color: masa efectiva del protón.","apagar":"bariones más frágiles; masa efectiva baja","fase":"1 · repertorio","orden":6},{"id":18,"nombre":"Inflación (estirar y enfriar)","src":"CS068","toca":"enlace","desc":"ES la poda (#9) co-emergente. Mundo B.","apagar":"sin estirar: la nube NO se expande, queda compacta","fase":"2 · expansión","orden":7},{"id":9,"nombre":"Expansión del espacio (poda)","src":"cs057/064+CS068","toca":"enlace","desc":"Poda por grado, ciega a longitud. Operador validado v7.","apagar":"sin poda: mundo pequeño, la nube no crece → diám 1","fase":"2 · expansión","orden":8},{"id":10,"nombre":"Enfriamiento (proceso)","src":"cs055/064","toca":"T","desc":"Baja T monótona; habilita el congelamiento.","apagar":"plasma perpetuo: agitación que nunca se calma","fase":"2 · expansión","orden":9},{"id":3,"nombre":"Fuerza Nuclear Fuerte (confinamiento)","src":"cs056","toca":"enlace","desc":"Cierra tríos de color (bariones). SECTOR COHESIÓN.","apagar":"sin confinar: quarks sueltos con color, SIN átomos","fase":"3 · fuerzas ligan","orden":10},{"id":8,"nombre":"Aniquilación materia–antimateria","src":"cs064","toca":"identidad","desc":"Descarta pares; deja el excedente bariónico.","apagar":"materia≈antimateria se cancela: casi todo se apaga","fase":"3 · fuerzas ligan","orden":11},{"id":5,"nombre":"Fuerza Nuclear Débil (cambio de sabor)","src":"cs056","toca":"identidad","desc":"Cambia sabor (n→p). En el motor auditado NO llegó a actuar.","apagar":"sin efecto medible: la auditoría halló 0 cambios de sabor en 300 pasos","fase":"3 · fuerzas ligan","orden":12},{"id":4,"nombre":"Fuerza Electromagnética","src":"cs056","toca":"enlace","desc":"Liga carga (protón-electrón). SECTOR COHESIÓN. Ablación verificada en auditoría.","apagar":"sin ligar: CERO hidrógeno (una de las dos ablaciones que sobrevivieron la auditoría)","fase":"3 · fuerzas ligan","orden":13},{"id":2,"nombre":"Fuerza de Gravedad","src":"cs054/062","toca":"enlace","desc":"Teje enlaces locales por peso-masa. No selecciona dirección.","apagar":"sin grumos: nube lisa, no se agrupa la estructura","fase":"3 · fuerzas ligan","orden":14},{"id":12,"nombre":"Localidad / geometrogénesis","src":"cs066","toca":"enlace","desc":"Roce que persiste → tejido con distancia (B).","apagar":"sin roce local: sin distancia efectiva","fase":"4 · geometría","orden":15},{"id":15,"nombre":"Estructura causal (cono de luz)","src":"cs063/067","toca":"marco","desc":"Tiempo por nodo (CDT). No dio eje.","apagar":"sin orden causal local; no aparece eje","fase":"4 · geometría","orden":16},{"id":17,"nombre":"Sector oscuro (materia/energía oscura)","src":"cs067","toca":"probabilidad","desc":"Condición del 'lejos'. G-NO-INSERTAR-OSCURO.","apagar":"sin 'lejos': todo colapsa a un punto (diám 1)","fase":"4 · geometría","orden":17},{"id":14,"nombre":"Distancia por correlación","src":"cs066/067","toca":"enlace","desc":"Peso continuo w∈(0,1]. No encendió dirección.","apagar":"enlaces binarios; distancia más pobre","fase":"4 · geometría","orden":18},{"id":20,"nombre":"Memoria de enlace","src":"CS071","toca":"enlace","desc":"El roce que persiste se refuerza. Valida el grafo.","apagar":"enlaces sin memoria; el tejido no consolida","fase":"4 · geometría","orden":19},{"id":13,"nombre":"Exclusión de Pauli","src":"cs065/065b","toca":"marco","desc":"Ortogonaliza marcos. Falsado ×3, incluida sin presuponer.","apagar":"no rompe el colapso a 1 eje (falsado ×3)","fase":"4 · geometría","orden":20},{"id":16,"nombre":"Ruptura de simetría (Higgs)","src":"cs067","toca":"marco","desc":"Vacío de K-modos. No rompió el colapso a 1.","apagar":"no cambia el colapso direccional","fase":"4 · geometría","orden":21},{"id":1,"nombre":"Espín / marco nemático","src":"cs052/059","toca":"marco","desc":"Orienta cada nodo. Falsado como selector de dirección (C).","apagar":"no cambia dirección (falsado)","fase":"4 · geometría","orden":22},{"id":11,"nombre":"Vértice de 3 cuerpos genuino","src":"cs063","toca":"marco","desc":"Update irreducible de 3 marcos. Falsado como selector.","apagar":"no cambia dirección (falsado)","fase":"4 · geometría","orden":23}],"sliders":[{"id":"theta","label":"magnitud de asimetría S>0 (θ_CP)","min":0,"max":1,"step":0.05,"val":0.3,"nota":"Condición inicial. θ=0 = uniforme perfecto → no rompe simetría (no-go). θ>0 → puede emerger estructura. ★ Valor de ESTE universo: 0.30."},{"id":"exp","label":"tasa de expansión","min":0,"max":1,"step":0.02,"val":0.4,"nota":"Corta atajos de largo alcance en dos fases. Baja → mundo pequeño (diámetro satura). Alta → horizonte causal → la dimensión EMERGE. ★ Valor de ESTE universo: 0.40."},{"id":"N","label":"N distinciones","min":2000,"max":100000,"step":1000,"val":40000,"nota":"Número de distinciones (puntos). El motor es O(N) (campo medio), escala a 100.000 como Génesis."},{"id":"D","label":"D · nº de distinciones independientes","min":1,"max":5,"step":1,"val":3,"nota":"CONDICIÓN (cuántos ejes de distinción), NO la dimensión resultante. La dimensión emerge de aquí + expansión. ★ ESTE universo: D=3 (da el Modelo Estándar). Cambiarlo simula OTROS universos posibles."},{"id":"speed","label":"velocidad (pasos/frame)","min":1,"max":12,"step":1,"val":3,"nota":"Cuántos pasos de física por cuadro. Sólo cambia el ritmo visual, no la física."}],"nota_shannon":"Cada control es una CONDICIÓN cuya consecuencia se OBSERVA, nunca un dial que fabrica el resultado. La dimensión NO se elige: emerge. El veredicto lo da el motor Python; esta vista ilustra."};
+const CS={N:40000,D:3,theta:0.30,exp:0.40,off:{},A:1,tstep:0,phase:'',obs:{}};
+const CS_QCOL=[[1,0.30,0.30],[0.30,0.90,0.35],[0.35,0.55,1]]; // carga de color R/G/B (quarks, pre-luz)
+const CS_ECOL=[0.78,0.45,1.0];                 // electrón: violeta (especie propia)
+const CS_T_SING=40,CS_T_INFL=220,CS_T_NUC=340,CS_T_ATOM=420,CS_A_MAX=1; // NUC→ATOM núcleos; ATOM+ recombinación (e⁻ ligado)
+// ---- inicialización: usa los mismos arrays del motor (px,py,pz,U,S,alive) ----
+function initCS(){
+  N=CS.N;d=3;cfg.d=3;
+  const seed=!CS.off[19];                          // #19 semilla de asimetría (S>0)
+  const thetaEff=seed?CS.theta:0;                  // sin semilla → uniforme
+  const fluct=!CS.off[23];                         // #23 fluctuaciones cuánticas (rugosidad primordial)
+  const anih=!CS.off[8];                           // #8 aniquilación → excedente de materia
+  const rng=mulberry32(((123+Math.round(thetaEff*1000)+CS.N*7+CS.D*131))>>>0);
+  U=new Float32Array(N*d);S=new Float64Array(N);alive=new Uint8Array(N);
+  px=new Float64Array(N);py=new Float64Array(N);pz=new Float64Array(N);
+  vx=new Float64Array(N);vy=new Float64Array(N);vz=new Float64Array(N);
+  CS.bx=new Float64Array(N);CS.by=new Float64Array(N);CS.bz=new Float64Array(N);CS.col=new Uint8Array(N);
+  const g=()=>{let u=0;for(let q=0;q<3;q++)u+=rng();return (u-1.5)/1.5;};
+  // ESPECIES: quark (0) o electrón (1). Electrones ~15% del catálogo, en CAPA EXTERNA con color propio.
+  const catalogoOn=!CS.off[6];
+  CS.esp=new Uint8Array(N);CS.trio=new Int32Array(N).fill(-1);
+  CS.bcx=new Float64Array(N);CS.bcy=new Float64Array(N);CS.bcz=new Float64Array(N); // centroide del barión
+  for(let i=0;i<N;i++){
+    let nn=0;for(let k=0;k<d;k++){const gg=randn(rng);U[i*d+k]=gg;nn+=gg*gg;}nn=Math.sqrt(nn)||1;for(let k=0;k<d;k++)U[i*d+k]/=nn;
+    U[i*d]+=thetaEff*(rng()-0.5)*0.4;
+    const clump=fluct?(1+0.5*(rng()-0.5)):1;        // rugosidad primordial sólo si #23 activo
+    const esElec=catalogoOn&&(rng()<0.15);           // electrón: especie propia
+    CS.esp[i]=esElec?1:0;
+    const rad=esElec?1.55:1.0;                        // electrones en capa más externa
+    CS.bx[i]=g()*0.9*clump*rad;CS.by[i]=g()*0.9*clump*rad;CS.bz[i]=g()*0.9*clump*rad;
+    CS.col[i]=esElec?3:(i%3);S[i]=S0;                 // 3 = electrón (violeta); 0/1/2 = quark R/G/B
+    alive[i]=anih? 1 : (rng()<0.12?1:0);
+    px[i]=CS.bx[i];py[i]=CS.by[i];pz[i]=CS.bz[i];vx[i]=vy[i]=vz[i]=0;
+  }
+  // TRÍOS de barión: agrupa quarks VECINOS de 3 en 3 (uno de cada color) → un centroide común.
+  // Orden por código de Morton (Z-order) de resolución fina → localidad espacial real, SIN rejilla
+  // (el redondeo grueso previo imprimía cuadrantes; Morton distribuye los centroides de forma continua).
+  const q10=v=>{let x=Math.round((v+2)/4*1023);return x<0?0:(x>1023?1023:x);};
+  const morton3=(x,y,z)=>{let a=0;for(let bt=0;bt<10;bt++){a+=(((x>>bt)&1)<<(3*bt))+(((y>>bt)&1)<<(3*bt+1))+(((z>>bt)&1)<<(3*bt+2));}return a;};
+  const mkey=i=>morton3(q10(CS.bx[i]),q10(CS.by[i]),q10(CS.bz[i]));
+  {const qs=[];for(let i=0;i<N;i++)if(CS.esp[i]===0)qs.push(i);
+   qs.sort((a,b)=>mkey(a)-mkey(b));
+   let bid=0;const SEAM=0.40;                          // umbral de trío "estirado"
+   for(let j=0;j+2<qs.length;j+=3){const a=qs[j],b2=qs[j+1],c2=qs[j+2];
+     const cx=(CS.bx[a]+CS.bx[b2]+CS.bx[c2])/3,cy=(CS.by[a]+CS.by[b2]+CS.by[c2])/3,cz=(CS.bz[a]+CS.bz[b2]+CS.bz[c2])/3;
+     // rechaza tríos que cruzan la costura del orden Z (miembros en lados opuestos → rayas = la cruz).
+     // esos quarks quedan libres (trio=-1), sin converger: ~1% del total, elimina el artefacto.
+     let mx=0;for(const q of [a,b2,c2]){const dx=CS.bx[q]-cx,dy=CS.by[q]-cy,dz=CS.bz[q]-cz;const dd=Math.sqrt(dx*dx+dy*dy+dz*dz);if(dd>mx)mx=dd;}
+     if(mx>SEAM)continue;                               // trío inválido: no se liga (evita la raya central)
+     CS.col[a]=0;CS.col[b2]=1;CS.col[c2]=2;             // R+G+B → barión de color neutro
+     for(const q of [a,b2,c2]){CS.trio[q]=bid;CS.bcx[q]=cx;CS.bcy[q]=cy;CS.bcz[q]=cz;}bid++;}
+   CS.nBar=bid;
+   // RECOMBINACIÓN: cada electrón se asigna al BARIÓN más cercano (por Morton) → captura por EM.
+   // En la fase de átomos cae hacia el centroide de ESE barión (deja de flotar libre).
+   const bcen=[],seen={};for(const q of qs){if(CS.trio[q]<0)continue;const t=CS.trio[q];if(seen[t])continue;seen[t]=1;
+     bcen.push([CS.bcx[q],CS.bcy[q],CS.bcz[q],morton3(q10(CS.bcx[q]),q10(CS.bcy[q]),q10(CS.bcz[q]))]);}
+   bcen.sort((p,q2)=>p[3]-q2[3]);
+   if(!bcen.length)bcen.push([0,0,0,0]);              // salvaguarda si no hubo bariones válidos
+   for(let i=0;i<N;i++){if(CS.esp[i]!==1)continue;
+     const km=mkey(i);let lo=0,hi=bcen.length-1;    // barión con Morton más próximo (búsqueda binaria)
+     while(lo<hi){const md=(lo+hi)>>1;if(bcen[md][3]<km)lo=md+1;else hi=md;}
+     const bc=bcen[Math.max(0,Math.min(bcen.length-1,lo))];
+     CS.bcx[i]=bc[0];CS.bcy[i]=bc[1];CS.bcz[i]=bc[2];}}
+  // MASA (#7) × QCD (#22): tamaño de punto. Sin masa → todos iguales; sin QCD → masa ~1% (QCD=99%)
+  const masaOn=!CS.off[7],qcdOn=!CS.off[22];
+  CS.massN=new Float64Array(N);CS.phase0=new Float64Array(N);
+  let mmax=1e-9;
+  for(let i=0;i<N;i++){let mv=masaOn?Math.exp(0.6*randn(rng)):1.0;CS.massN[i]=mv;if(mv>mmax)mmax=mv;CS.phase0[i]=rng()*6.2832;}
+  // normaliza la FORMA a 0..1; el factor QCD (~99% de la masa) queda como encogimiento GLOBAL visible
+  const qcdFac=qcdOn?1:0.12;
+  for(let i=0;i<N;i++)CS.massN[i]=(CS.massN[i]/mmax)*qcdFac;
+  CS.A=1;CS.tstep=0;CS.phase='singularidad';CS.confined=false;CS.thetaEff=thetaEff;CS.seeds=null;
+  tau=0;dStruct=0;let na=0;for(let i=0;i<N;i++)na+=alive[i];nAlive=na;nAnnih=N-na;
+  CS.obs={bariones:0,atomos:0,diam:0,dim:0,rug:0,rugNull:0,viva:na,colapso:''};
+  buildPoints(N);
+}
+// ---- un paso físico ----
+let CS_jit=mulberry32(777);
+const CS_T_END=650;
+function stepCS(){
+  CS.tstep++;const t=CS.tstep;
+  const em=!CS.off[4],fuerte=!CS.off[3],oscura=!CS.off[17],poda=!CS.off[9],inflar=!CS.off[18];
+  const memoria=!CS.off[20],catalogo=!CS.off[6],enfria=!CS.off[10],gravedad=!CS.off[2];
+  const local=!CS.off[12],pauli=!CS.off[13];        // #12 localidad (dispersión), #13 Pauli (empaquetamiento)
+  // Condiciones FALSADAS en el arco (espín #1, causal #15, SSB #16, 3-cuerpos #11): NO cambian la
+  // geometría — ese es el resultado. Marca honesta: un destello breve al apagar, sin alterar la nube.
+  CS.falsadoOff=(CS.off[1]||CS.off[11]||CS.off[15]||CS.off[16]);
+  const distCont=!CS.off[14];                       // #14 distancia continua w∈(0,1] (vs binaria)
+  // ganancia de la criba de estructura: memoria(#20) consolida; sin ella, menos contraste denso/vacío
+  const gain=(memoria?0.05:0.020)*(distCont?1:0.65);  // memoria consolida el contraste; distancia continua lo afina
+  const jmul=local?1:2.4;                            // sin localidad → más dispersión (sin roce que agrupe)
+  const scap=pauli?40:80;                            // sin Pauli → los núcleos se sobre-apilan (más brillantes)
+  const distinguible=catalogo&&(CS.thetaEff>0||memoria);
+  const expande=poda&&inflar;                       // expansión = poda(#9) + inflación(#18)
+  const infl=t<CS_T_INFL;
+  CS.confined=(t>=CS_T_INFL)&&fuerte;               // los quarks se ligan tras la fase pre-luz
+  CS.phase = !distinguible?'sin repertorio distinguible' :
+             t<CS_T_SING?'singularidad (plasma denso)' :
+             infl?'inflación (pre-luz · quarks con color)' :
+             'expansión + fuerzas → hoy';
+  if(expande){const h=(infl?(0.014+0.030*CS.exp):(0.0016+0.006*CS.exp))*(enfria?1:0.4);CS.A*=(1+h);}
+  if(!oscura){CS.A+=(0.25-CS.A)*0.03;}              // sin 'lejos' → todo se junta (diám 1)
+  const temp=enfria?Math.max(0.04,1-t/900):0.7;     // sin enfriar → plasma perpetuo
+  const estructura=(t>=CS_T_INFL)&&distinguible;    // fase de estructura (universo ya constituido)
+  // ══ RED DE DENSIDAD por CAMPO MEDIO (mecanismo Génesis O(N), el que corre a 100k) ══
+  // Los nodos correlacionados con el MODO DOMINANTE emergente CRECEN (sobreviven, brillan);
+  // los demás se ANIQUILAN. El contraste denso/vacío (tipo CMB) EMERGE de esa criba, no se pinta.
+  // La GRAVEDAD (#2) es el amplificador: sin ella, las fluctuaciones no crecen → campo plano.
+  if(estructura&&gravedad){
+    const th=CS.thetaEff,c=Math.cos(th),s=Math.sin(th);
+    const m=new Float64Array(N),v=new Float64Array(d);
+    for(let i=0;i<N;i++){if(!alive[i]){m[i]=0;continue;}m[i]=Math.sqrt(S[i]/(1+S[i]/8));const b=i*d;for(let k=0;k<d;k++)v[k]+=m[i]*U[b+k];}
+    const Rv=Float64Array.from(v);Rv[0]=c*v[0]-s*v[1];Rv[1]=s*v[0]+c*v[1];
+    for(let i=0;i<N;i++){if(!alive[i])continue;const b=i*d;
+      const ru0=c*U[b]-s*U[b+1],ru1=s*U[b]+c*U[b+1];let self=U[b]*ru0+U[b+1]*ru1,dot=U[b]*Rv[0]+U[b+1]*Rv[1];
+      for(let k=2;k<d;k++){self+=U[b+k]*U[b+k];dot+=U[b+k]*Rv[k];}
+      const dS=gain*m[i]*dot-gain*m[i]*m[i]*self;S[i]+=dS;if(S[i]<0)S[i]=0;if(S[i]>scap)S[i]=scap;
+      if(S[i]<=1e-6){alive[i]=0;nAnnih++;}}
+  }
+  // CONFINAMIENTO (fase INFL→NUC): los 3 quarks de cada barión CONVERGEN a su centroide.
+  // Progreso 0→1 en la ventana; al final los 3 puntos coinciden (barión). Sólo si #3 fuerte activa.
+  const confW=(t>=CS_T_INFL&&t<CS_T_NUC&&fuerte)?(t-CS_T_INFL)/(CS_T_NUC-CS_T_INFL):(t>=CS_T_NUC&&fuerte?1:0);
+  // RECOMBINACIÓN: arranca tras núcleos (CS_T_ATOM), progreso 0→1 en ~80 pasos; sólo con EM (#4).
+  const recW=(em&&t>=CS_T_ATOM)?Math.min(1,(t-CS_T_ATOM)/80):0;
+  for(let i=0;i<N;i++){
+    if(!alive[i]){px[i]=CS.bx[i]*CS.A;py[i]=CS.by[i]*CS.A;pz[i]=CS.bz[i]*CS.A;continue;}
+    CS.bx[i]+=(CS_jit()-0.5)*temp*0.006*jmul;CS.by[i]+=(CS_jit()-0.5)*temp*0.006*jmul;CS.bz[i]+=(CS_jit()-0.5)*temp*0.006*jmul;
+    // quarks ligados: interpolan hacia el centroide del barión según el progreso de confinamiento
+    if(confW>0&&CS.esp&&CS.esp[i]===0&&CS.trio[i]>=0){
+      const w=confW*confW;
+      px[i]=(CS.bx[i]*(1-w)+CS.bcx[i]*w)*CS.A;py[i]=(CS.by[i]*(1-w)+CS.bcy[i]*w)*CS.A;pz[i]=(CS.bz[i]*(1-w)+CS.bcz[i]*w)*CS.A;
+      if(!estructura)S[i]=distinguible?S0*(0.4+0.6*(1-temp)):S0*0.12;
+      continue;
+    }
+    // RECOMBINACIÓN (fase átomos, t≥CS_T_ATOM): el electrón CAE a su barión por EM (#4).
+    // Deja de flotar libre: queda ligado a una distancia orbital pequeña alrededor del núcleo.
+    if(recW>0&&CS.esp&&CS.esp[i]===1){
+      const w=recW,orb=0.12;                          // radio orbital residual (no colapsa al centro)
+      px[i]=(CS.bx[i]*(1-w)+CS.bcx[i]*w)*CS.A;py[i]=(CS.by[i]*(1-w)+CS.bcy[i]*w)*CS.A;pz[i]=(CS.bz[i]*(1-w)+CS.bcz[i]*w)*CS.A;
+      px[i]+=Math.cos(t*0.12+CS.phase0[i])*orb*w*CS.A;py[i]+=Math.sin(t*0.12+CS.phase0[i])*orb*w*CS.A; // órbita
+      if(!estructura)S[i]=distinguible?S0*(0.4+0.6*(1-temp)):S0*0.12;
+      continue;
+    }
+    px[i]=CS.bx[i]*CS.A;py[i]=CS.by[i]*CS.A;pz[i]=CS.bz[i]*CS.A;
+    if(!estructura)S[i]=distinguible? S0*(0.4+0.6*(1-temp)) : S0*0.12; // fuera de estructura: brillo por enfriamiento
+  }
+  if(t%8===0||t===CS_T_INFL){measureCS(distinguible,em,oscura,poda&&inflar);}
+}
+
+// ---- observables (grafo kNN por firma, arranque físico) ----
+function measureCS(distinguible,em,oscura,poda){
+  const cap=Math.min(N,900),o=CS.obs;
+  o.bariones=(!CS.off[3])?Math.floor(N/3):0;
+  o.atomos=em?(o.bariones||Math.floor(N/3)):0;
+  if(!distinguible){o.diam=0;o.dim=0;o.viva=0;o.colapso='θ=0 y sin memoria/catálogo: nada distinguible (silencio, no cierre)';return;}
+  o.viva=N;
+  if(!em){o.diam=1;o.dim=0;o.colapso='sin EM: sin átomos → geometría colapsa (diám 1)';return;}
+  if(!oscura){o.diam=1;o.dim=0;o.colapso="sin sector oscuro: sin 'lejos' → grafo completo (diám 1)";return;}
+  let k=Math.max(3,Math.round(6-4*CS.exp));if(poda){k=Math.max(2,Math.round(k*(1-0.6*CS.exp)));}
+  const adj=Array.from({length:cap},()=>[]),stp=Math.max(1,Math.floor(N/700));
+  for(let i=0;i<cap;i++){const cand=[];
+    for(let j=0;j<N;j+=stp){if(j===i||j>=cap)continue;let dd=0;for(let a=0;a<d;a++){const x=U[i*d+a]-U[j*d+a];dd+=x*x;}cand.push([dd,-(U[j*d]*U[j*d]),j]);}
+    cand.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+    for(let q=0;q<k&&q<cand.length;q++){const j=cand[q][2];adj[i].push(j);adj[j].push(i);}}
+  const bfs=(src)=>{const D=new Int32Array(cap).fill(-1);D[src]=0;let q=[src],far=src,fd=0;
+    while(q.length){const nq=[];for(const u of q)for(const w of adj[u])if(w<cap&&D[w]<0){D[w]=D[u]+1;if(D[w]>fd){fd=D[w];far=w;}nq.push(w);}q=nq;}return[far,fd];};
+  let st=0,mx=-1;for(let i=0;i<cap;i++){const mg=U[i*d]*U[i*d];if(mg>mx){mx=mg;st=i;}}
+  const [a]=bfs(st),[,diam]=bfs(a);o.diam=diam;o.dim=diam>1?Math.log(cap)/Math.log(diam):0;
+  o.colapso=poda?'':'sin expansión/poda: mundo pequeño → diámetro satura';
+  CS.adj=adj;
+}
+window.CS_setN=(v)=>{CS.N=v;};
+window.initCS=initCS;window.stepCS=stepCS;
+window.renderCS=function(){csPanel();initCS();};
+// ---- panel (sliders + 23 checks) ----
+function csPanel(){const el=document.getElementById('csPanel');if(el.dataset.done)return;
+  let h='<div id="csBtns"><button id="csPlay">⏸ pausa</button><button id="csReset">↺ reset</button><button id="csShuffle">🔀 barajar</button><button id="csRec">⏺ video</button></div>';
+  h+='<div class="nota" style="color:#8fb0e0">Arrastra para rotar · rueda para zoom (igual que las otras pestañas). El tiempo está comprimido: 13.800 M de años en la animación.</div>';
+  h+='<h4>Condiciones (sliders)</h4>';
+  CS072_DATA.sliders.forEach(s=>{h+=`<div class="sl"><label>${s.label}<span class="v" id="csv_${s.id}"></span></label>`
+    +`<input type="range" id="cssl_${s.id}" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.val}">`
+    +`<div class="nota">${s.nota}</div></div>`;});
+  h+='<div id="csApagado"></div><h4>Las 23 Condiciones (apagar una o varias)</h4>';
+  let _fase='';
+  CS072_DATA.checks.forEach(c=>{
+    if(c.fase!==_fase){_fase=c.fase;h+=`<div class="csfase">${c.fase}</div>`;}
+    h+=`<label class="cschk" id="csrow_${c.id}"><input type="checkbox" data-id="${c.id}" checked>`
+    +`<span><span class="cn">${c.orden}. ${c.nombre}</span><span class="toca">${c.toca}</span><br><span class="ct">apagar → ${c.apagar}</span></span></label>`;});
+  h+=`<div class="nota" style="margin-top:10px;border-top:1px solid #1a2438;padding-top:8px">${CS072_DATA.nota_shannon}</div>`;
+  el.innerHTML=h;el.dataset.done='1';
+  const relaunch=()=>{initCS();playing=true;};
+  CS072_DATA.sliders.forEach(s=>{const inp=document.getElementById('cssl_'+s.id),vv=document.getElementById('csv_'+s.id);
+    const show=()=>{vv.textContent=(s.id==='theta'||s.id==='exp')?(+inp.value).toFixed(2):inp.value;};show();
+    if(s.id==='speed'){cfg.speed=+inp.value;inp.oninput=()=>{show();cfg.speed=+inp.value;};}
+    else{inp.oninput=show;inp.onchange=()=>{const v=+inp.value;if(s.id==='N')CS.N=v;else if(s.id==='D')CS.D=v;else if(s.id==='theta')CS.theta=v;else if(s.id==='exp')CS.exp=v;relaunch();};}});
+  el.querySelectorAll('.cschk input').forEach(chk=>{chk.onchange=()=>{const id=+chk.dataset.id;CS.off[id]=!chk.checked;
+    document.getElementById('csrow_'+id).classList.toggle('off',!chk.checked);
+    const offs=CS072_DATA.checks.filter(c=>CS.off[c.id]);
+    document.getElementById('csApagado').innerHTML=offs.length?('Apagado → '+offs.map(c=>`<b>${c.nombre}:</b> ${c.apagar}`).join(' · ')):'';
+    relaunch();};});
+  document.getElementById('csPlay').onclick=()=>{playing=!playing;document.getElementById('csPlay').textContent=playing?'⏸ pausa':'▶ play';};
+  document.getElementById('csReset').onclick=relaunch;
+  document.getElementById('csRec').onclick=(e)=>toggleRec(e);
+  document.getElementById('csShuffle').onclick=()=>{const o=CS.obs,d0=o.diam,dim0=o.dim;
+    // NULL real: permuta el orden de las firmas U (relabel). El grafo se arma por firma+magnitud, no por índice.
+    const perm=[...Array(N).keys()];for(let i=N-1;i>0;i--){const j=(Math.random()*(i+1))|0;const t=perm[i];perm[i]=perm[j];perm[j]=t;}
+    const U2=new Float32Array(N*d);for(let i=0;i<N;i++)for(let a=0;a<d;a++)U2[i*d+a]=U[perm[i]*d+a];U=U2;
+    const em=!CS.off[4],oscura=!CS.off[17],poda=!CS.off[9],inflar=!CS.off[18],memoria=!CS.off[20],catalogo=!CS.off[6];
+    measureCS(catalogo&&(CS.thetaEff>0||memoria),em,oscura,poda&&inflar);
+    const ig=(CS.obs.diam===d0)&&Math.abs((CS.obs.dim||0)-(dim0||0))<0.1;
+    document.getElementById('csApagado').innerHTML=`NULL (permutar identidades): diám ${d0}→${CS.obs.diam}, dim ${dim0?dim0.toFixed(2):'—'}→${CS.obs.dim?CS.obs.dim.toFixed(2):'—'}. `+(ig?'No cambian → sin Shannon. ✓':'⚠ cambiaron → habría dependencia del orden.');};
+}
+function csHud(){const o=CS.obs,emerg=o.rug>o.rugNull*1.3;
+  document.getElementById('csHud').innerHTML=
+    `<div style="color:#ffd9a0">▸ <b>${CS.phase}</b> · <span style="color:#7a8">t comprimido</span></div>`
+   +`<div class="big">dimensión emergente ≈ ${o.dim?o.dim.toFixed(2):'—'}</div>`
+   +`<b>N:</b> ${CS.N} · <b>vivas:</b> ${o.viva} · <b>diám:</b> ${o.diam}<br>`
+   +`<b>bariones:</b> ${o.bariones} · <b>átomos:</b> ${o.atomos}<br>`
+   +(o.colapso?`<span style="color:#ffb060">⚠ ${o.colapso}</span>`:(CS.tstep>=CS_T_INFL?`<span style="color:#4fe08a">tejido con distancia y dimensión</span>`:`<span style="color:#ffd9a0">plasma en expansión…</span>`));
+}
+window.csHud=csHud;
+// ---- línea temporal simplificada ----
+const CS_TL=[
+  {t:0,   lab:'Singularidad',  sub:'S>0 · plasma denso',           ep:'t = 0',        col:'#ff5a5a'},
+  {t:0.10,lab:'Inflación',     sub:'pre-luz · quarks con color',   ep:'10⁻³⁶ s',     col:'#ff8a3a'},
+  {t:0.34,lab:'Confinamiento', sub:'fuerte: 3 quarks → 1 barión',  ep:'10⁻⁶ s',      col:'#ffd24a'},
+  {t:0.52,lab:'Núcleos',       sub:'débil → p:n 7:1 · He',         ep:'~3 min',      col:'#9be04a'},
+  {t:0.65,lab:'Átomos',        sub:'EM → e⁻ ligado · espacio',     ep:'380 000 años',col:'#4fe0c0'},
+  {t:0.80,lab:'Estructura',    sub:'gravedad · sector oscuro',     ep:'~200 M años', col:'#5a9cff'},
+  {t:1.0, lab:'Hoy',           sub:'expansión acelerada',          ep:'13 800 M años',col:'#c88aff'}
+];
+function csTLcolor(frac){let c=CS_TL[0].col;for(const m of CS_TL)if(frac>=m.t)c=m.col;return c;}
+function csTimeline(){
+  const cv2=document.getElementById('csTL');if(cv2.style.display==='none')return;
+  const w=cv2.clientWidth,h=cv2.clientHeight,dpr=Math.min(devicePixelRatio||1,2);
+  if(cv2.width!==Math.round(w*dpr)){cv2.width=Math.round(w*dpr);cv2.height=Math.round(h*dpr);}
+  const x=cv2.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+  const padL=54,padR=54,y=h-26,x0=padL,x1=w-padR;   // márgenes amplios: los rótulos de borde NO se cortan
+  const X=t=>x0+(x1-x0)*t;
+  const frac=Math.min(1,CS.tstep/CS_T_END);
+  // barra base SEGMENTADA por color de hito (cada tramo su color, atenuado hasta que se alcanza)
+  x.lineWidth=3;
+  for(let i=0;i<CS_TL.length-1;i++){const a=CS_TL[i],b=CS_TL[i+1];
+    x.strokeStyle=a.col;x.globalAlpha=(frac>=a.t)?1:0.28;
+    x.beginPath();x.moveTo(X(a.t),y);x.lineTo(X(b.t),y);x.stroke();}
+  x.globalAlpha=1;
+  // punto de avance, del color del hito vigente
+  const xp=X(frac),cc=csTLcolor(frac);
+  x.fillStyle=cc;x.beginPath();x.arc(xp,y,5,0,7);x.fill();
+  x.strokeStyle='#fff';x.lineWidth=1.2;x.beginPath();x.arc(xp,y,5,0,7);x.stroke();
+  /* Rótulos SIN SOLAPE (corregido 13-ago-2026).
+     Antes todos se dibujaban a la misma altura y los hitos cercanos se pisaban.
+     Ahora: se mide el ancho real de cada bloque y se reparte en dos niveles,
+     bajando al segundo sólo cuando de verdad choca con el anterior. Cada
+     bloque lleva una línea guía hasta su marca para no perder a cuál pertenece. */
+  const NIV=[{lab:13,ep:23,sub:33,base:37},{lab:49,ep:59,sub:69,base:73}];
+  const cajas=[[],[]];               // ocupación horizontal de cada nivel
+  const colocados=[];
+  for(const m of CS_TL){
+    x.font='bold 10px system-ui';  const wl=x.measureText(m.lab).width;
+    x.font='8px system-ui';        const we=x.measureText(m.ep).width;
+    x.font='7.5px system-ui';      const ws=x.measureText(m.sub).width;
+    const bw=Math.max(wl,we,ws)+8, mx=X(m.t);
+    // centrar el bloque en su marca, pero sin salirse del lienzo
+    let cx=Math.max(bw/2+4, Math.min(w-bw/2-4, mx));
+    // primer nivel libre; si ninguno lo está, el que tenga el borde más a la izquierda
+    let niv=[0,1].find(n=>cajas[n].every(c=>cx+bw/2<c.a-6||cx-bw/2>c.b+6));
+    if(niv===undefined) niv=(cajas[0].at(-1)?.b??0)<=(cajas[1].at(-1)?.b??0)?0:1;
+    cajas[niv].push({a:cx-bw/2,b:cx+bw/2});
+    colocados.push({m,mx,cx,niv,on:frac>=m.t-0.005});
+  }
+  for(const c of colocados){
+    const {m,mx,cx,niv,on}=c, L=NIV[niv];
+    // línea guía del bloque a su marca (sólo si el bloque se corrió del centro)
+    if(Math.abs(cx-mx)>2||niv===1){
+      x.strokeStyle=on?m.col:'#3a4658';x.globalAlpha=on?0.5:0.3;x.lineWidth=1;
+      x.beginPath();x.moveTo(cx,L.base);x.lineTo(mx,y-6);x.stroke();x.globalAlpha=1;
+    }
+    x.fillStyle=on?m.col:'#465';x.beginPath();x.arc(mx,y,3.5,0,7);x.fill();
+    x.textAlign='center';
+    x.fillStyle=on?m.col:'#566';x.font='bold 10px system-ui';x.fillText(m.lab,cx,L.lab);
+    x.fillStyle=on?'#c7d4ea':'#586';x.font='8px system-ui';x.fillText(m.ep,cx,L.ep);
+    x.fillStyle=on?'#8fa4c8':'#4a566e';x.font='7.5px system-ui';x.fillText(m.sub,cx,L.sub);
+  }
+}
+window.csTimeline=csTimeline;
+
+initGL();init();loop();setMode('cs');
+</script>
+</body>
+</html>

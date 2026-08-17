@@ -1,0 +1,7 @@
+config: PTC=B LF_SIN_V=true KAPPA_CANONICOS=false kLFinf=0 kDinf=0
+0.0% · 4s
+22.1% · 447s
+44.2% · 731s
+66.3% · 1523s
+88.4% · 2526s
+Listo en 49.8 min. Escrito regimen_r13_C1_final_por_anio.csv

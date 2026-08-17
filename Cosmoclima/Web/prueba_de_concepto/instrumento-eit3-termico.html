@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>El instrumento EIT-3 Térmico — guía completa</title>
+<style>
+:root{
+  --paper:#f5f2ea; --paper2:#efeade; --ink:#232019; --ink-soft:#4a4335;
+  --muted:#7a7262; --line:#ddd4bf; --gold:#a97b1f; --gold-deep:#8a641a;
+  --nav-bg:#0c0f18; --nav-line:#242a37; --nav-gold:#e8c477; --nav-ink:#c9c3b4; --nav-dim:#767c87;
+  --chart-bio:#a97b1f; --chart-abio:#7a7262; --chart-grid:#ddd4bf;
+}
+:root[data-theme="dark"]{
+  --paper:#15130f; --paper2:#1b1912; --ink:#ece6d6; --ink-soft:#cdc3ab;
+  --muted:#948a74; --line:#3a3527; --gold:#e0b85c; --gold-deep:#f0cc7e;
+  --chart-bio:#e0b85c; --chart-abio:#948a74; --chart-grid:#3a3527;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#15130f; --paper2:#1b1912; --ink:#ece6d6; --ink-soft:#cdc3ab;
+    --muted:#948a74; --line:#3a3527; --gold:#e0b85c; --gold-deep:#f0cc7e;
+    --chart-bio:#e0b85c; --chart-abio:#948a74; --chart-grid:#3a3527;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif;-webkit-font-smoothing:antialiased}
+.sans{font-family:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif}
+.mono{font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+.cs-nav{
+  display:flex; align-items:center; flex-wrap:wrap; gap:16px;
+  margin:0; padding:16px clamp(16px,4vw,58px);
+  background:var(--nav-bg); border-bottom:1px solid var(--nav-line);
+  box-sizing:border-box;
+}
+.cs-nav .cs-brand{font:400 13px/1 'Public Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#e2d9c4;text-decoration:none;white-space:nowrap}
+.cs-nav .cs-brand:hover{color:#fff}
+.cs-nav ul{display:flex;flex-wrap:wrap;gap:clamp(11px,2vw,28px);list-style:none;margin:0 0 0 auto;padding:0}
+.cs-nav a{color:var(--nav-ink);text-decoration:none;font:300 13.5px 'Public Sans',sans-serif;padding:4px 0;border-bottom:1px solid transparent;transition:.22s}
+.cs-nav a:hover,.cs-nav a[aria-current]{color:#fff;border-bottom-color:var(--nav-gold)}
+.cs-nav .cs-ver{font:11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--nav-dim);border:1px solid var(--nav-line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.crumb{padding:14px clamp(16px,4vw,58px) 0;font:300 13px 'Public Sans',sans-serif;color:var(--muted)}
+.crumb a{color:var(--gold-deep);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+.wrap{max-width:760px;margin:0 auto;padding:28px clamp(18px,4vw,40px) 90px}
+h1.title{font:700 2.3rem/1.18 Georgia,serif;margin:18px 0 6px;text-wrap:balance}
+.deck{color:var(--ink-soft);font-size:1.1rem;margin:0 0 8px;text-wrap:balance}
+.meta-line{color:var(--muted);font:300 13px 'Public Sans',sans-serif;letter-spacing:.02em;margin:0 0 40px}
+.meta-line .mono{color:var(--muted)}
+
+.homage{
+  margin:0 0 36px;padding:20px 24px;border-left:3px solid var(--gold);
+  background:var(--paper2);border-radius:0 10px 10px 0;
+}
+.homage p{margin:0 0 10px;font-size:.96rem;color:var(--ink-soft)}
+.homage p:last-child{margin-bottom:0}
+.homage b{color:var(--ink)}
+.homage a{color:var(--gold-deep)}
+
+h2{font:700 1.5rem/1.3 Georgia,serif;margin:52px 0 8px;padding-top:22px;border-top:1px solid var(--line);text-wrap:balance}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:0}
+h2 .num{color:var(--gold-deep);font:400 1.05rem 'IBM Plex Mono',monospace;margin-right:10px}
+h3{font:700 1.08rem 'Public Sans',sans-serif;margin:34px 0 4px;color:var(--ink)}
+h4{font:700 .92rem 'Public Sans',sans-serif;margin:22px 0 6px;color:var(--gold-deep);text-transform:uppercase;letter-spacing:.04em}
+p{margin:0 0 16px}
+.cap{color:var(--muted);font:300 13.5px/1.5 'Public Sans',sans-serif}
+.intro-lead{font-size:1.02rem;color:var(--ink-soft)}
+
+.ctrl{margin:26px 0;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--paper2)}
+.ctrl .name{font:700 1.02rem Georgia,serif;color:var(--ink);margin:0 0 4px}
+.ctrl .role{display:inline-block;font:600 .68rem 'Public Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-bottom:10px}
+.ctrl .formula{margin:12px 0;padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:8px;font:400 .92rem 'IBM Plex Mono',monospace;color:var(--ink-soft);overflow-x:auto;white-space:pre}
+.ctrl .why{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.9rem;color:var(--muted)}
+.ctrl .why b{color:var(--ink-soft)}
+.ctrl .kappa{margin-top:8px;font:italic 400 .88rem Georgia,serif;color:var(--gold-deep)}
+
+figure{margin:24px 0 30px;padding:0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{margin-top:10px;font:300 13.5px/1.5 'Public Sans',sans-serif;color:var(--muted)}
+figcaption b{color:var(--ink-soft);font-weight:600}
+
+.chart-box{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;overflow-x:auto}
+
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin:18px 0 26px}
+caption{caption-side:top;text-align:left;font:600 .78rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;font-variant-numeric:tabular-nums;vertical-align:top}
+th{font:600 .74rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+td.num,th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
+td.mono{font-family:'IBM Plex Mono',monospace;font-size:.82rem}
+tr:last-child td{border-bottom:none}
+.table-wrap{overflow-x:auto}
+
+.callout{margin:24px 0;padding:18px 20px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;background:var(--paper2)}
+.callout .k{font:600 .74rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-deep);margin:0 0 6px}
+.callout p{margin:0;color:var(--ink-soft);font-size:.95rem}
+.callout p+p{margin-top:10px}
+
+.pill{display:inline-block;font:600 .72rem 'Public Sans',sans-serif;letter-spacing:.03em;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.pill.ok{color:#3d7a3d;border-color:#a8cfa8}
+.pill.warn{color:#a0621a;border-color:#e0b98a}
+.pill.bad{color:#a13030;border-color:#e0a3a3}
+:root[data-theme="dark"] .pill.ok,:root:not([data-theme="light"]) .pill.ok{color:#8fd18f}
+:root[data-theme="dark"] .pill.warn,:root:not([data-theme="light"]) .pill.warn{color:#e0a860}
+:root[data-theme="dark"] .pill.bad,:root:not([data-theme="light"]) .pill.bad{color:#e08a8a}
+
+.quote{margin:20px 0;padding:4px 0 4px 20px;border-left:2px solid var(--gold);font-style:italic;color:var(--ink-soft);font-size:.96rem;line-height:1.55}
+.quote-src{display:block;margin-top:8px;font-style:normal;font:400 .78rem 'Public Sans',sans-serif;letter-spacing:.02em;color:var(--muted)}
+
+.ficha{margin-top:56px;padding:22px 26px;background:var(--paper2);border:1px solid var(--line);border-radius:12px}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:0;font-size:.86rem}
+.ficha dt{color:var(--muted);font:600 .76rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-top:2px}
+.ficha dd{margin:0;color:var(--ink-soft)}
+
+.cta{margin:40px 0;text-align:center}
+.cta a{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font:600 .95rem 'Public Sans',sans-serif;padding:13px 28px;border-radius:8px;letter-spacing:.02em}
+:root[data-theme="dark"] .cta a,:root:not([data-theme="light"]) .cta a{color:#1a1508}
+
+.footer-links{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font:300 13px 'Public Sans',sans-serif;color:var(--muted)}
+.footer-links a{color:var(--gold-deep);text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+
+.footnote{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:300 13px/1.6 'Public Sans',sans-serif;color:var(--muted)}
+.footnote sup{color:var(--gold-deep);font-weight:600}
+
+.plate{background:#fbfaf6;border:1px solid #d8d2c0;border-radius:4px;padding:20px 22px 10px;box-shadow:0 1px 0 #fff inset,0 6px 18px rgba(0,0,0,.08)}
+.plate svg{width:100%;height:auto;display:block}
+.plate-cap{margin-top:12px;font:300 13.5px/1.55 'Public Sans',sans-serif;color:var(--muted)}
+.plate-cap b{color:var(--ink-soft);font-weight:600}
+.plate-src{margin-top:4px;font:italic 300 12px 'Public Sans',sans-serif;color:var(--muted)}
+
+.toc{margin:0 0 40px;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--paper2)}
+.toc .k{font:600 .74rem 'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-deep);margin:0 0 10px}
+.toc ol{margin:0;padding-left:1.2em;columns:2;column-gap:24px;font:300 .92rem 'Public Sans',sans-serif}
+.toc li{margin-bottom:6px;break-inside:avoid}
+.toc a{color:var(--ink-soft);text-decoration:none}
+.toc a:hover{color:var(--gold-deep);text-decoration:underline}
+@media (max-width:640px){.toc ol{columns:1}}
+
+@media (max-width:640px){h1.title{font-size:1.7rem}.ficha dl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav" aria-label="Navegación del sitio">
+  <a class="cs-brand" href="https://cosmosemiotica.cl/index.html">Cosmosemiótica</a>
+  <ul>
+    <li><a href="https://cosmosemiotica.cl/teoria.html">Teoría</a></li>
+    <li><a href="https://cosmosemiotica.cl/experimentos.html" aria-current="true">Experimentos</a></li>
+    <li><a href="https://cosmosemiotica.cl/observatorio.html">Observatorio</a></li>
+    <li><a href="https://cosmosemiotica.cl/publicaciones.html">Publicaciones</a></li>
+    <li><a href="https://cosmosemiotica.cl/autor.html">Autor</a></li>
+  </ul>
+  <span class="cs-ver">v7.12</span>
+</nav>
+<div class="crumb"><a href="https://cosmosemiotica.cl/experimentos.html">Experimentos</a> / EIT-3 Térmico / Guía del instrumento</div>
+
+<div class="wrap">
+
+<h1 class="title">El instrumento EIT-3 Térmico</h1>
+<p class="deck">Guía completa de cada control, cada fórmula y cada métrica del simulador — para entender exactamente qué mide, sin necesitar ser especialista en clima ni en ecología.</p>
+<p class="meta-line">Documentación del instrumento · <span class="mono">31-jul-2026</span> · v7.12 · complementa, no reemplaza, el <a href="https://cosmosemiotica.cl/informe-eit3-termico.html" style="color:var(--gold-deep)">informe de resultados</a></p>
+
+<div class="homage">
+<p><b>Qué es este documento, y qué no es.</b> El <a href="https://cosmosemiotica.cl/informe-eit3-termico.html">informe de resultados</a> cuenta qué encontramos al correr el experimento. Este documento es distinto: explica el instrumento mismo — cada perilla, cada número en pantalla, cada fórmula que hay detrás — para que cualquiera que lo abra pueda entender qué está viendo, sin tener que adivinar. No hace falta leer los dos en orden, pero se complementan.</p>
+<p>Está escrito para poder leerse sin fórmulas, si se quiere: cada control tiene primero una explicación en palabras simples, con una analogía cuando ayuda. La fórmula exacta va después, para quien la necesite — un ecologista, un físico, o simplemente alguien que quiera verificar que no le estamos mintiendo con las palabras.</p>
+</div>
+
+<div class="toc">
+<p class="k">Contenido</p>
+<ol>
+<li><a href="#s1">Qué es y para qué sirve</a></li>
+<li><a href="#s2">El planeta y sus dos relojes</a></li>
+<li><a href="#s3">Modo Operación</a></li>
+<li><a href="#s4">Parámetros del planeta y del sensor</a></li>
+<li><a href="#s5">Lo que se ve: el planeta literal</a></li>
+<li><a href="#s6">Las métricas en vivo</a></li>
+<li><a href="#s7">κ_H: el umbral que da nombre al instrumento</a></li>
+<li><a href="#s8">El Plano Cierre: Jardín Fértil, Cierre, Selva Hostil, Colapso</a></li>
+<li><a href="#s9">Los gráficos y la línea de tiempo</a></li>
+<li><a href="#s10">Acciones, historial y exportación</a></li>
+<li><a href="#s11">El barrido automático</a></li>
+<li><a href="#s12">Un límite real del modelo: no hay extinción verdadera</a></li>
+<li><a href="#s13">Anclaje con la Teoría Cosmosemiótica Canónica</a></li>
+<li><a href="#s14">Ficha técnica</a></li>
+</ol>
+</div>
+
+<h2 id="s1"><span class="num">1</span>Qué es y para qué sirve</h2>
+<p class="intro-lead">El instrumento es un planeta de laboratorio con vegetación encima: el modelo <b>Daisyworld</b>, de James Lovelock y Andrew Watson (1983). Margaritas oscuras y claras compiten por crecer donde la temperatura les conviene, y sin proponérselo terminan manteniendo el planeta habitable — ninguna "sabe" que está regulando nada. El detalle completo de por qué existe Daisyworld y qué demuestra está en el informe de resultados; acá nos concentramos en cómo está construido el instrumento que lo hace posible.</p>
+<p>La pregunta que este instrumento agrega, que el Daisyworld original no se hacía, es: <b>mirando desde afuera, ¿cómo se sabe si adentro hay alguien regulando, o si es un sistema que ya no hace nada y todavía no se cae?</b> Para responderla hace falta algo más que el termómetro del planeta — hace falta un sensor que reaccione a esa temperatura, y una manera de medir cuánto varía su reacción en el tiempo. Ese umbral de variación se llama <b>κ_H</b>, y es el nombre que le da título al instrumento.</p>
+<p>Todo lo que sigue —los controles, las métricas, el plano de cuatro zonas— existe para volver observable esa pregunta.</p>
+
+<h2 id="s2"><span class="num">2</span>El planeta y sus dos relojes</h2>
+<p>Antes de entrar a cada control, conviene tener clara la arquitectura general. El instrumento corre <b>dos relojes superpuestos</b>:</p>
+<p><b>El reloj físico</b> hace lo de siempre en Daisyworld: el sol brilla con una <b>Luminosidad</b> dada, las margaritas absorben o reflejan esa luz según su color, y de ahí sale una temperatura real del planeta (Tf) mediante la ley física de Stefan-Boltzmann — la misma que describe cómo irradia calor cualquier cuerpo caliente, de un horno a una estrella. No es una aproximación: es la fórmula real del paper de 1983.</p>
+<p><b>El reloj del sensor</b> es la capa que Daisyworld original no tenía: un sensor de temperatura tipo <b>PTC</b> (una tecnología real, la misma familia de sensores que se usa para censar temperatura en electrónica) que reacciona a Tf y produce una señal, <b>powerLive</b>. Esa señal es la <b>conducta medida</b> del sistema — lo único que este instrumento mira para calcular κ_H. El sensor <em>no calienta ni regula nada</em>: solo observa, como un termómetro pegado a la pared de una pieza cerrada. Quien de verdad regula la temperatura son las margaritas, no el sensor.</p>
+<div class="callout">
+<p class="k">Por qué separar los dos relojes</p>
+<p>Si el sensor empujara la temperatura además de medirla, estaríamos midiendo un lazo de control que se retroalimenta a sí mismo — y no podríamos distinguir "el sistema regula" de "el sensor fuerza el resultado". Hasta una versión anterior de este instrumento (hasta v7.7) el sensor sí empujaba la temperatura; se corrigió para que powerLive sea puramente lo que se observa, nunca lo que se impone.</p>
+</div>
+
+<h2 id="s3"><span class="num">3</span>Modo Operación</h2>
+<p>Esta sección decide si el entorno del planeta es fijo o si tiene ciclos — de día y noche, y de estaciones — como un planeta real.</p>
+
+<div class="ctrl">
+<div class="role">Interruptor</div>
+<div class="name">Día/Noche</div>
+<p>Con este interruptor apagado, el entorno externo del planeta se mantiene fijo — como si el sol nunca se moviera. Encendido (el default de fábrica), el planeta gira: hay una temperatura ambiente que sube y baja siguiendo una curva suave, imitando la rotación de un planeta real sobre su propio eje.</p>
+<div class="why"><b>Por qué importa:</b> sin este ciclo, el sistema vive en un entorno artificialmente estable. Con él, el instrumento tiene que regular de verdad frente a un entorno que cambia todo el tiempo — mucho más parecido a un planeta real, y una prueba más exigente de si la regulación es genuina.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Interruptor</div>
+<div class="name">Estaciones</div>
+<p>Un ciclo anual, más lento que el día/noche, montado encima de él: la luminosidad del sol y la temperatura ambiente se mueven juntas siguiendo la época del año — invierno, primavera, verano, otoño — igual que en la Tierra real, donde ambas cosas cambian con la estación. Solo actúa si Día/Noche también está encendido: sin días no hay "año" que contar.</p>
+<div class="formula">fase = (tick × velocidad_estación) mod 1
+factor = (sin(fase·2π − π/2) + 1) / 2   → 0 en pleno invierno, 1 en pleno verano</div>
+<div class="why"><b>Por qué importa:</b> un planeta con un solo tipo de estrés (solo día/noche) es más fácil de regular que uno con dos ciclos superpuestos de escalas de tiempo distintas. Las estaciones son la prueba de estrés más realista que el instrumento puede aplicarle a la vegetación.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 1 a 365</div>
+<div class="name">Días por año</div>
+<p>Cuántas vueltas de día/noche entran en un año simulado. Cada vuelta de día/noche dura exactamente <b>1 segundo real</b> — así que la duración de un año completo, en segundos de reloj de pared, es literalmente el número que pongas acá: con 1 día, el año entero (invierno→verano→invierno) pasa en 1 segundo; con 365, en 365 segundos, un año "de verdad" en duración de días.</p>
+<div class="why"><b>Por qué importa:</b> un año corto deja ver el ciclo completo de estaciones en segundos, útil para observar cómo las margaritas negras y blancas se van reemplazando. Un año largo es más realista pero más lento de observar en pantalla.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizadores · dos pares independientes</div>
+<div class="name">Invierno / Verano — Luminosidad y Temperatura</div>
+<p>Cuatro controles, no dos: <b>cuánto baja</b> la luminosidad en pleno invierno, <b>cuánto sube</b> en pleno verano (independientes entre sí — puede haber un invierno muy dañino con un verano templado, o al revés), y la <b>temperatura ambiente absoluta</b> (no un corrimiento, el número real en °C) que le corresponde a cada extremo. Entre esos cuatro puntos, el instrumento interpola suavemente con la misma curva de seno que define la fase estacional.</p>
+<div class="why"><b>Por qué importa:</b> separar invierno y verano en controles propios permite preguntar cosas que un solo control "amplitud de la estación" no puede responder — por ejemplo, si un invierno mucho más duro que lo habitual, con un verano sin cambios, alcanza para extinguir a las margaritas negras.</div>
+</div>
+
+<h2 id="s4"><span class="num">4</span>Parámetros del planeta y del sensor</h2>
+
+<div class="ctrl">
+<div class="role">Deslizador · 0 a 1</div>
+<div class="name">PowerBase</div>
+<p>La consigna base del sensor — el valor alrededor del cual se mueve todo lo que el sensor hace. No es un máximo ni un mínimo: es el <b>centro</b>. Pensarlo como el punto de ajuste de un termostato doméstico: uno no le pide "la temperatura más alta posible", le pide un número central y el sistema oscila alrededor de él.</p>
+<div class="why"><b>Por qué importa:</b> PowerBase no toca la física del planeta en absoluto — mover esta perilla no calienta ni enfría nada (verificado explícitamente en la batería de pruebas: variarlo de 0,01 a 0,99 no mueve Tf ni un centésimo de grado). Solo recalibra qué cuenta como "normal" para el sensor, y por lo tanto qué tan grande se ve su desviación (LF) cuando el entorno lo empuja.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 0,5 a 0,99</div>
+<div class="name">β (persistencia)</div>
+<p>Cuánto del estado anterior se conserva en cada paso — la <b>memoria</b> del sistema. Alto significa que el sistema cambia despacio, como una bañera grande que tarda en cambiar de temperatura aunque abras la llave del agua fría; bajo significa que reacciona casi de inmediato, como un vaso chico.</p>
+<div class="formula">amortiguación = 0,09 + (1 − β) × 0,65</div>
+<div class="why"><b>Por qué importa:</b> β sólo amortigua la temperatura instantánea — no cambia la velocidad de asentamiento ni el tiempo de recuperación de las margaritas (verificado en la batería). Son dos relojes distintos dentro del mismo sistema: uno rápido (la física térmica), uno lento (la ecología).</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 0 a 0,01</div>
+<div class="name">E — Ruido de fondo</div>
+<p>El temblor permanente e inevitable del sistema. Sin nada de ruido, el planeta queda perfectamente quieto y no hay nada que observar — como preguntarle a alguien que nunca se mueve si está regulando su postura. Cuidado con este control: además de agitar la temperatura, entra directamente en la tasa de muerte de las margaritas, así que moverlo también desplaza el borde donde la vegetación se extingue — exactamente el fenómeno que este instrumento existe para medir.</p>
+<div class="formula">tasa de muerte de las margaritas = 0,28 + E × 10</div>
+<div class="why"><b>Por qué importa:</b> κ_H (más abajo) necesita que exista variación real para poder medirla. Sin ruido, todo colapsa a silencio por definición, no porque el sistema esté fallando.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 0,6 a 1,4 · la perilla principal</div>
+<div class="name">Luminosidad</div>
+<p>El brillo del sol. Sube el brillo y el planeta se calienta; bájalo y se enfría. Es el eje que Watson &amp; Lovelock barrieron en el paper original de 1983, representando un sol que envejece y brilla cada vez más — la misma idea que la nuestra, propia y la del Sol real: cuando empezó la vida en la Tierra, el Sol era casi un 30% menos luminoso que hoy.</p>
+<div class="why"><b>Por qué importa:</b> fuera de cierto rango de luminosidad, ninguna margarita — negra ni blanca — aguanta, y el planeta colapsa a estéril. Ese margen (y sus dos bordes) es el corazón del experimento Daisyworld.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 20 a 30°C</div>
+<div class="name">T óptima (margaritas)</div>
+<p><b>Esto NO es la temperatura del planeta.</b> Es la preferencia biológica de las margaritas — la temperatura local donde a ellas más les gusta crecer. La temperatura real del planeta (Tf) la fija la Luminosidad más el albedo de lo que haya crecido: es un resultado del sistema, no algo que se ponga a mano. Mover esta perilla no calienta ni enfría el planeta — corre dónde a las margaritas les toca prosperar o morir, y por lo tanto en qué luminosidad ocurre cada cosa.</p>
+<div class="why"><b>Por qué importa:</b> es fácil confundirla con un termómetro. No lo es — es la preferencia de un organismo, tan real como que a un cactus le gusta el calor seco y a un helecho la sombra húmeda.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 1 a 100°C</div>
+<div class="name">Tc PTC — punto medio del sensor</div>
+<p>La temperatura en la que el sensor PTC está exactamente en el centro de su rango de lectura. Si este punto queda lejos de donde el planeta realmente vive, el sensor se pega en uno de sus dos extremos y deja de informar — aunque los gráficos sigan moviéndose, esa parte del instrumento se quedó ciega. Recalibrado a 16°C: con las Estaciones encendidas de fábrica, el planeta pasa buena parte del año más frío que el viejo default de 25°C, y el punto medio se corrió para cubrir invierno y verano sin quedar pegado en ninguno de los dos.</p>
+<div class="why"><b>Por qué importa:</b> un sensor saturado no avisa que dejó de servir — sigue produciendo un número, solo que ese número ya no refleja nada real. El instrumento muestra un aviso explícito en pantalla ("SENSOR CIEGO") cuando esto pasa más del 10% del tiempo.</div>
+</div>
+
+<div class="ctrl">
+<div class="role">Deslizador · 1 a 16</div>
+<div class="name">Exponente PTC — brusquedad del sensor</div>
+<p>Cuán abrupta es la respuesta del sensor. Alto reacciona de golpe y se satura fácil, como un interruptor de todo-o-nada; bajo responde suave a lo largo de un rango ancho, como un dimmer. Junto con el punto medio, decide si el instrumento está leyendo de verdad o está ciego. Bajado a 1 (antes era 4) para que el sensor no se quede pegado durante el vaivén amplio de las Estaciones.</p>
+<div class="formula">razón = temperatura / Tc PTC  (acotada entre 0,2 y 3)
+R_ptc = máx(0,15 ; razón^exponente)
+powerLive objetivo = PowerBase × clamp(1/R_ptc, 0,05 ; 1,2)</div>
+<div class="why"><b>Por qué importa:</b> con un exponente alto, ni el mejor punto medio evita que el sensor se sature en un rango de temperatura ancho — los dos controles trabajan juntos, no por separado.</div>
+</div>
+
+<h2 id="s5"><span class="num">5</span>Lo que se ve: el planeta literal</h2>
+<p>El dibujo del planeta — el sol orbitando, las 900 margaritas de colores — es una <b>vista</b>, no una medición. Cada uno de los 900 puntos fijos representa una "parcela" del planeta: se pinta negro o blanco según cuál color domina ahí en este instante, o queda como suelo desnudo (se ve el color de fondo) si ninguna margarita lo cubre. El fondo cambia de color con la temperatura real del planeta — de azul frío a rojo caliente.</p>
+<p>El Sol se dibuja recorriendo una órbita elíptica real, inclinada 23,5° — el ángulo real del eje de la Tierra — sincronizada con la fase estacional: se ve más cerca en pleno verano, más lejos en pleno invierno, igual que la relación real entre distancia solar y estación (aproximada; en la Tierra real el efecto dominante de las estaciones es la inclinación del eje, no la distancia, pero la excentricidad de la órbita sí varía la distancia real a lo largo del año).</p>
+<div class="callout">
+<p class="k">Esta vista no alimenta ninguna métrica</p>
+<p>A diferencia de una versión anterior del instrumento (que sí retroalimentaba una grilla térmica hacia la física), este dibujo es de un solo sentido: lee el estado del sistema para pintarlo, pero nunca escribe de vuelta hacia la física ni hacia la conducta medida. Es exactamente lo que dice su propia leyenda en pantalla: "no mide nada".</p>
+</div>
+
+<h2 id="s6"><span class="num">6</span>Las métricas en vivo</h2>
+<p>Ocho números aparecen permanentemente en pantalla mientras el instrumento corre. Cada uno mide algo distinto — vale la pena tenerlos separados en la cabeza, porque es fácil (y common) confundir "temperatura" con "regulación", o "acoplamiento" con "actividad".</p>
+
+<div class="ctrl">
+<div class="name">Tf — Temperatura efectiva</div>
+<p>La temperatura real del planeta en este instante, resultado de la física de Stefan-Boltzmann aplicada a la luminosidad y al albedo actual (qué tan claro u oscuro está el planeta en promedio). No se pone a mano en ningún control: es siempre un resultado.</p>
+<div class="formula">Tf = (K × absorbido)^0,25 − 273        donde K = S_solar / σ_Stefan-Boltzmann
+S_solar = 9,17×10⁵ erg·cm⁻²·s⁻¹ (la constante del paper de 1983)
+σ = 5,6704×10⁻⁵ erg·cm⁻²·s⁻¹·K⁻⁴ (constante física universal)</div>
+</div>
+
+<div class="ctrl">
+<div class="name">envTemp — Temperatura del entorno</div>
+<p>La temperatura de afuera — el ambiente externo, no el planeta. Con Día/Noche apagado, es un número fijo (el punto medio entre Invierno y Verano). Con Día/Noche encendido, sigue el vaivén diario y estacional descrito arriba.</p>
+</div>
+
+<div class="ctrl">
+<div class="name">stress — Desacople externo</div>
+<p>Cuánto se aparta la temperatura del planeta de lo que el entorno externo le está pidiendo en este instante, en una escala de cero a uno. No debe confundirse con A_sys_env (más abajo) — éste mira el entorno externo puro; A_sys_env mira una mezcla más completa.</p>
+</div>
+
+<h2 id="s7"><span class="num">7</span>κ_H: el umbral que da nombre al instrumento</h2>
+<p>Esta es la medición central de todo el experimento — el resto del instrumento existe, en gran parte, para poder calcular este único número con cuidado.</p>
+<div class="callout">
+<p class="k">La pregunta que κ_H responde</p>
+<p>¿Cuánta variación mínima tiene que mostrar la <b>conducta</b> de un sistema —no su estado, su conducta: lo que hace, no dónde está— para que se pueda decir algo interesante de él? Un sistema completamente quieto no está necesariamente "muerto": puede estar <b>callado</b>. κ_H es el piso de variación por debajo del cual no hay nada que interpretar, ni en un sentido ni en el otro.</p>
+</div>
+<p>La conducta que se mide es <b>powerLive</b> (a_t en la notación de la Teoría) — la señal del sensor PTC descrita arriba. Se junta una ventana móvil de sus últimos 120 valores y se calcula su <b>entropía de Shannon</b>: la misma medida que cuantifica cuánta información hay en un mensaje, aplicada acá a cuánta variedad hay en la señal del sensor.</p>
+<div class="formula">H(a_t) = − Σ p_i · log₂(p_i)     (suma sobre 24 casillas de la ventana de 120 valores)</div>
+<p>Tres versiones de este número conviven en pantalla, porque compararlas entre sí es lo que hace la medición honesta:</p>
+<table>
+<thead><tr><th>Métrica</th><th>Qué mide</th><th>Por qué existe</th></tr></thead>
+<tbody>
+<tr><td class="mono">H(a_t) abs</td><td>Entropía calibrada a la escala real que ESTE sistema mostró en la ventana — con un piso tomado del propio ruido de fondo del sistema, no puesto por nosotros.</td><td>Es κ_H propiamente dicho: el número que se compara contra el umbral.</td></tr>
+<tr><td class="mono">rel</td><td>Entropía de la <i>forma</i> pura de la señal, ciega al silencio — estira cualquier banda de valores, por chica que sea, hasta llenar las casillas.</td><td>Sirve para notar si algo se mueve con estructura, incluso cuando su amplitud absoluta es pequeña.</td></tr>
+<tr><td class="mono">piso</td><td>La entropía que tendría el propio ruido de fondo del sistema, si no hubiera ninguna regulación — el "silencio de referencia".</td><td>Sin este piso, no hay forma de saber si un H(a_t) alto es señal real o simplemente ruido puro, que también es "alto" en términos de Shannon.</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p class="k">Una trampa a evitar: "alto" no es "mejor"</p>
+<p>La entropía de Shannon premia el desorden. Una regulación bien estructurada (que repite un patrón reconocible) puede tener <b>menos</b> entropía que ruido puro sin ningún patrón. Por eso el orden correcto de lectura es: primero silencio, después regulación, después ruido — nunca "cuanto más alto, mejor".</p>
+</div>
+
+<h2 id="s8"><span class="num">8</span>El Plano Cierre: Jardín Fértil, Cierre, Selva Hostil, Colapso</h2>
+<p>Debajo de las métricas hay un plano de cuatro zonas con nombres poco técnicos a propósito — nacen de la Teoría Cosmosemiótica Canónica, y describen cuatro maneras cualitativas en que un sistema puede estar, más allá de un solo número.</p>
+<p>El plano combina <b>dos preguntas</b>, cada una respondida por dos variables a la vez (no una sola):</p>
+<table>
+<thead><tr><th>Pregunta</th><th class="num">Variables</th><th>Se cumple cuando…</th></tr></thead>
+<tbody>
+<tr><td><b>¿Está el sistema acoplado a su entorno?</b> (Viabilidad)</td><td class="mono">A_sys_env, e_R</td><td>El acoplamiento sistema-entorno es alto Y el error (pérdida de acoplamiento) es bajo</td></tr>
+<tr><td><b>¿Está el sistema explorando/cambiando?</b> (Activación)</td><td class="mono">LF, Δ_struct</td><td>La libertad funcional del sensor es alta Y la estructura del campo térmico es alta</td></tr>
+</tbody>
+</table>
+<p>Las cuatro combinaciones posibles de "sí/no" a esas dos preguntas dan los cuatro nombres:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Zona</th><th>Acoplado</th><th>Activo</th><th>Lectura en palabras simples</th></tr></thead>
+<tbody>
+<tr><td><b>Jardín Fértil</b></td><td>Sí</td><td>Sí</td><td>El sistema está pegado a su entorno Y explorando cambios — la combinación más sana.</td></tr>
+<tr><td><b>Cierre</b></td><td>Sí</td><td>No</td><td>Acoplado pero quieto — calma, no hay nada urgente que resolver.</td></tr>
+<tr><td><b>Selva Hostil</b></td><td>No</td><td>Sí</td><td>Está cambiando mucho pero sin estar acoplado — actividad sin rumbo, tensión.</td></tr>
+<tr><td><b>Colapso</b></td><td>No</td><td>No</td><td>Ni acoplado ni activo — el reposo real del sistema, de donde arranca todo.</td></tr>
+</tbody>
+</table></div>
+<h3>La fórmula exacta detrás de las cuatro zonas</h3>
+<div class="ctrl">
+<div class="formula">Viabilidad = (A_sys_env / κ_V ≥ 1)  Y  ((2 − e_R/κ_O) ≥ 1)
+Activación = (LF / κ_LF ≥ 1)  Y  (Δ_struct / κ_Δ ≥ 1)
+
+κ_V = 0,75   κ_O = 0,01   κ_LF = 0,05   κ_Δ = 0,3
+(umbrales calibrados a los rangos reales medidos en ESTE instrumento —
+no a la mitad de un rango teórico que el sistema nunca alcanza)</div>
+<div class="why"><b>Por qué los umbrales importan tanto como la fórmula:</b> un umbral puesto a la mitad de un rango que el sistema real nunca visita deja el plano permanentemente pegado a un lado, aunque la fórmula esté matemáticamente bien escrita. Estos cuatro números salen de correr el instrumento miles de pasos y medir dónde vive de verdad cada variable — el mismo método que ya usa un organismo hermano de este instrumento (Célula Madre, en otro proyecto de este mismo laboratorio) para su propia versión de este plano.</div>
+</div>
+<p>El punto en el plano parte exactamente en el centro cuando el instrumento arranca — porque las cuatro variables empiezan en cero, y un cero multiplicado por cualquier signo sigue siendo cero. A medida que el sistema se mueve, el punto se aleja del centro hacia la zona que le corresponde. Las cuatro cajas de fondo son siempre del mismo tamaño: lo que cambia de escala es cómo se reparten los datos dentro de cada mitad, no el tamaño de las mitades mismas.</p>
+<div class="callout">
+<p class="k">e_R sí importa — no es un adorno</p>
+<p>e_R (la pérdida de acoplamiento, definida como la caída de A_sys_env de un instante al siguiente) es la variable menos visible del plano —no tiene su propia cajita de métrica— pero se verificó midiendo miles de pasos reales que es, en promedio, la variable que decide la viabilidad (por encima de A_sys_env) alrededor de 1 de cada 12 pasos.</p>
+</div>
+
+<h2 id="s9"><span class="num">9</span>Los gráficos y la línea de tiempo</h2>
+<h3>Población de margaritas en vivo</h3>
+<p>Muestra la <b>cantidad real</b> de margaritas de cada color —negras, blancas y el total— no un porcentaje. La cantidad se cuenta sobre las 900 margaritas del planeta dibujado arriba: si el 62% del planeta está cubierto, son unas 558 margaritas vivas, no 900. Nunca llega a las 900 — ningún planeta real tiene el 100% de su superficie habitable, y en este instrumento la tasa de muerte de las margaritas le pone un techo real de entre 550 y 640, según cuánto ruido tenga el sistema en ese momento.</p>
+<h3>Evolución temporal</h3>
+<p>Cinco series a lo largo del tiempo: Tf, envTemp, el desacople (stress), H(a_t) y Λ (la variable unificada de la Teoría, descrita más abajo). Es la vista clásica de "cómo se movieron las cosas", útil para ver oscilaciones, tendencias y sobresaltos.</p>
+<h3>La línea de tiempo (retroceder el registro)</h3>
+<p>Debajo de cada uno de los dos gráficos hay un control deslizante que permite <b>retroceder</b> el registro y congelarlo en cualquier punto pasado, para analizarlo con calma después de correr el instrumento — sin tener que pausarlo. Al arrastrar hacia atrás, el gráfico se queda fijo en ese instante aunque la simulación siga corriendo de fondo; el botón "Volver a vivo" lo destraba. Los dos controles (uno por gráfico) están sincronizados entre sí.</p>
+<div class="callout">
+<p class="k">Detalle técnico honesto</p>
+<p>El registro guarda hasta 6.000 filas (unos 100 segundos de historia a la velocidad normal del instrumento). El control busca el instante por su marca de tiempo, no por su posición en la lista — así que sigue apuntando al mismo momento aunque el registro más viejo se vaya recortando mientras el instrumento sigue corriendo.</p>
+</div>
+
+<h2 id="s10"><span class="num">10</span>Acciones, historial y exportación</h2>
+<p><b>Iniciar / Pausa</b> arrancan y detienen el instrumento. <b>Reiniciar</b> vuelve todo a sus valores de fábrica (incluyendo Día/Noche y Estaciones encendidos). <b>Descargar CSV</b> exporta el historial completo acumulado hasta ese momento.</p>
+<h3>Qué contiene el CSV</h3>
+<p>Cada fila es un paso del instrumento, con todas las variables físicas (Tf, temperaturas, luminosidad), las de κ_H (H_at, H_rel, H_noise), las del plano Cierre (LF, Δ_struct, A_sys_env, e_R, la zona del plano), la fase estacional, y la población real de negras, blancas y total — para poder rehacer después, con una hoja de cálculo o un script propio, cualquier análisis que este instrumento no haya mostrado en pantalla.</p>
+<h3>La bitácora de parámetros</h3>
+<p>Un registro aparte, con marca de tiempo real, de <b>qué control se movió y cuándo</b> — separado del historial de datos. Sirve para reconstruir después si una corrida fue limpia (los parámetros no se tocaron a mitad de camino) o si alguien cambió algo mientras corría, lo cual cambia cómo hay que leer los resultados.</p>
+
+<h2 id="s11"><span class="num">11</span>El barrido automático</h2>
+<p>Una funcionalidad aparte, pensada para obtener datos comparables entre muchos puntos sin que nadie tenga que tocar nada: el instrumento recorre un eje (Luminosidad, o la posición del "sobre" térmico, o ambos) deteniéndose en paradas regulares a medir con cuidado.</p>
+<p>Tres decisiones metodológicas, expuestas como controles propios porque cambian lo que se mide, no sólo cómo se ve:</p>
+<div class="ctrl">
+<div class="name">Punto de partida (reinicio)</div>
+<p>Decide si cada parada del barrido es un punto <b>independiente</b> (se reinicia el sistema antes de cada uno — la opción correcta por default) o si <b>arrastra</b> el estado de la parada anterior. Arrastrar mide una trayectoria, no una propiedad del sistema en cada configuración — y puede dejar el resultado fijado por la inercia, sin que responda de verdad a los parámetros.</p>
+</div>
+<div class="ctrl">
+<div class="name">Semilla</div>
+<p>Fija el azar del sistema (usando un generador determinista, no el azar real de la computadora). Dos barridos con la misma semilla y los mismos parámetros dan exactamente el mismo resultado, número por número — cambiarla y repetir es la prueba mínima para saber si algo que apareció es un hallazgo real o una casualidad de esa corrida en particular.</p>
+</div>
+<div class="ctrl">
+<div class="name">Asentamiento y medición</div>
+<p>Antes de medir, el instrumento primero deja que el sistema se asiente en un equilibrio real (no un número fijo de pasos: se mide activamente cuándo dejó de moverse), después mide cuánto tarda en recuperarse de un golpe controlado a la población de margaritas — el fenómeno de <b>ralentización crítica</b> que anticipa una bifurcación cercana, descrito por Scheffer y otros como señal de alerta temprana en sistemas ecológicos reales — y sólo entonces empieza la ventana de medición de κ_H.</p>
+</div>
+
+<h2 id="s12"><span class="num">12</span>Un límite real del modelo: no hay extinción verdadera</h2>
+<div class="callout">
+<p class="k">Hallazgo, no defecto</p>
+<p>Se verificó directamente, forzando la luminosidad a cero absoluto durante 200.000 pasos (una eternidad en términos del instrumento, con el planeta congelado a −240°C): la población de margaritas <b>nunca llega a cero matemático</b>. Queda en un residuo de punto flotante (9×10⁻³²³ — literalmente menos que una billonésima de billonésima de una sola margarita) que, si la luminosidad vuelve a subir después, <b>recrece hasta una población real</b> sin importar cuánto tiempo haya estado "muerta".</p>
+</div>
+<p>Esto no es un error del instrumento: es una propiedad matemática del propio Daisyworld canónico. La ecuación de crecimiento es <b>multiplicativa en la propia población</b> — algo que en cada paso se multiplica por un número menor a uno se acerca a cero para siempre, pero nunca lo toca de manera exacta, ni en el paper original de 1983 ni en ningún Daisyworld fiel a él. En punto flotante, esa aproximación eterna eventualmente choca contra el límite de precisión de la máquina y se queda pegada ahí — ni viva de verdad ni muerta de verdad — y ese residuo fantasma es lo que permite la recuperación.</p>
+<p>Deliberadamente <b>no se corrigió</b> agregando un piso de extinción artificial (forzar la población a cero exacto y sin retorno bajo alguna condición): hacerlo alteraría el fundamento matemático del experimento original, y dejaría de ser fiel a cómo Watson y Lovelock construyeron el modelo. Se documenta como lo que es — un límite real y heredado del propio Daisyworld — no se disimula.</p>
+
+<h2 id="s13"><span class="num">13</span>Anclaje con la Teoría Cosmosemiótica Canónica</h2>
+<p>Varias de las variables de este instrumento no son invenciones sueltas — corresponden a invariantes formalmente definidos en la Teoría Cosmosemiótica Canónica, un marco más amplio que este experimento instancia en el dominio de un planeta con vegetación.</p>
+<div class="table-wrap"><table>
+<caption>U_Cos — Invariantes cosmológicos del cierre</caption>
+<thead><tr><th>Invariante</th><th>Nombre</th><th class="num">Condición formal</th><th>En este instrumento</th></tr></thead>
+<tbody>
+<tr><td class="mono">κ_P</td><td>Persistencia mínima</td><td class="mono num">inf(S_viable) &gt; 0</td><td>El planeta sigue existiendo paso a paso</td></tr>
+<tr><td class="mono">κ_Δ</td><td>Diferencia mínima</td><td class="mono num">inf(Δ_struct) &gt; 0</td><td>Δ_struct — estructura del campo térmico</td></tr>
+<tr><td class="mono">κ_O</td><td>Oscilación acotada</td><td class="mono num">0 &lt; |e_R| &lt; κ_max</td><td>e_R — pérdida de acoplamiento acotada</td></tr>
+<tr><td class="mono">κ_V</td><td>Acoplamiento viable</td><td class="mono num">A_sys-env ≥ κ_V &gt; 0</td><td>A_sys_env — acoplamiento sistema-entorno</td></tr>
+<tr><td class="mono">κ_LF</td><td>Libertad funcional mínima</td><td class="mono num">LF ≥ κ_LF &gt; 0</td><td>LF — proxy de libertad funcional del sensor</td></tr>
+<tr><td class="mono">κ_H</td><td>Entropía conductual mínima</td><td class="mono num">H(a_t) ≥ κ_H &gt; 0</td><td>H(a_t) — la medición central de este instrumento</td></tr>
+</tbody>
+</table></div>
+<p>Los cinco primeros forman una <b>cadena de viabilidad</b> (κ_P ⇒ … ⇒ κ_V: cada uno es condición del siguiente). κ_H es distinto en naturaleza — no es condición para que el sistema <i>exista</i>, sino para que se lo pueda <i>analizar</i> como sistema cosmosemiótico. La Teoría lo dice con un ejemplo directo: un cristal perfecto puede cumplir las cinco condiciones de viabilidad y aun así violar κ_H — persiste, está acoplado, tiene diferencia — pero no hay nada que interpretar en su conducta, porque no varía. Ese es exactamente el caso límite que este instrumento explora: no confundir "quieto" con "muerto".</p>
+<p>La variable Λ_Cos (mostrada en pantalla como <span class="mono">Λ</span>) unifica cuatro de estos invariantes en una sola métrica:</p>
+<div class="formula">Λ_Cos = (Δ_struct · LF) / |e_R| · A_sys-env</div>
+<div class="quote">«Δ_struct refleja el estado relativo a κ_Δ, LF refleja κ_LF, |e_R| refleja κ_O […]. Λ_Cos integra en una sola métrica las variables asociadas a los cinco invariantes de viabilidad.»<span class="quote-src">Teoría Cosmosemiótica Canónica, C-N2.8.12.</span></div>
+<p><b>Una honestidad importante</b>: el código del instrumento marca explícitamente que <span class="mono">LF</span> es un <i>proxy</i>, no la Libertad Funcional declarativa completa de la Teoría (que requiere un componente adicional, R3, no implementado en este instrumento). Lo que se mide acá es una versión operacional —la desviación amortiguada de la señal del sensor respecto a su consigna— suficiente para instanciar el invariante κ_LF en este dominio particular, pero no idéntica a la definición más rica de la Teoría en su forma general.</p>
+
+<h2 id="s14"><span class="num">14</span>Ficha técnica</h2>
+<div class="ficha">
+<dl>
+<dt>Versión</dt><dd>v7.12 (archivo: ET3-Termico_v7.7.html — el nombre de archivo quedó de una versión anterior)</dd>
+<dt>Física</dt><dd>Stefan-Boltzmann real, constante solar de Watson &amp; Lovelock 1983</dd>
+<dt>κ_H</dt><dd>Entropía de Shannon de powerLive (a_t) en ventana deslizante de 120 pasos, 24 casillas, escala calibrada localmente al propio sistema</dd>
+<dt>Plano Cierre</dt><dd>Viabilidad (A_sys_env, e_R) × Activación (LF, Δ_struct) — umbrales calibrados empíricamente, no teóricos</dd>
+<dt>Reloj</dt><dd>1 vuelta de día/noche = 1 segundo real; la órbita anual dura tantos segundos como "Días por año"</dd>
+<dt>Población</dt><dd>900 margaritas discretas en la vista del planeta; techo real de cobertura ~550-640 según el ruido del sistema</dd>
+<dt>Simulador</dt><dd><a href="ET3-Termico_v7.7.html">Abrir el instrumento</a></dd>
+<dt>Documento relacionado</dt><dd><a href="https://cosmosemiotica.cl/informe-eit3-termico.html">Informe de resultados</a></dd>
+<dt>Autor</dt><dd>Alexis López Tapia, con James Lovelock como punto de partida no negociable</dd>
+</dl>
+</div>
+
+<div class="footnote"><sup>*</sup> Este documento describe el instrumento en su estado v7.12 (31-jul-2026), tras una ronda de correcciones internas de consistencia (sincronía Sol/estación, unificación de fórmulas entre modos Día/Noche on/off, columnas de exportación) hecha específicamente para que esta documentación describiera un instrumento correcto, no uno con inconsistencias pendientes.</div>
+
+<div class="cta"><a href="ET3-Termico_v7.7.html">Abrir el instrumento →</a></div>
+
+<div class="footer-links">
+<a href="https://cosmosemiotica.cl/informe-eit3-termico.html">Ver el informe de resultados</a> &nbsp;·&nbsp; <a href="https://cosmosemiotica.cl/experimentos.html">Volver a experimentos</a> &nbsp;·&nbsp; <a href="https://cosmosemiotica.cl/index.html">cosmosemiotica.cl</a>
+</div>
+
+</div>
+</body>
+</html>

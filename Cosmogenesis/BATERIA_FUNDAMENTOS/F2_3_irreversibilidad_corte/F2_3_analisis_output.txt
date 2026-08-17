@@ -1,0 +1,142 @@
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F2_3_irreversibilidad_corte/F2_3_analisis.py:46: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, pval = stats.spearmanr(p_arr, Preal)
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F2_3_irreversibilidad_corte/F2_3_analisis.py:47: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho_frac, _ = stats.spearmanr(p_arr, frac)
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F2_3_irreversibilidad_corte/F2_3_analisis.py:48: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho_sr, _ = stats.spearmanr(p_arr, sr)
+====================================================================================================
+F2-3 — análisis | corrida 2026-07-24 05:36:10 -0400 -> 2026-07-24 05:58:22 -0400 (1332.5s)
+N=200 eps=0.1 semillas=12 pasos_fijo=6095 D=0.000841367
+====================================================================================================
+
+--- r_target=0.0 (r_eff=0, H=0) ---
+  Spearman(p_recon,P_real)  rho=+nan  p=nan  no-monotona-fuerte
+  Spearman(p_recon,frac_exp) rho=+nan   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=+nan   (observable secundario independiente)
+  P_real(0)=0.0337  P_real(1)=0.0337  P_null(0)=0.0015  P_null(1)=0.0015  |P(1)-N(1)|=0.0323 vs 2*sd_comb=0.0009 -> FUERA
+  curva P_real(p_recon): 0:0.0337 0.0001:0.0337 0.0003:0.0337 0.001:0.0337 0.003:0.0337 0.01:0.0337 0.03:0.0337 0.1:0.0337 0.3:0.0337 0.6:0.0337 1:0.0337
+  curva frac_exp(p_recon): 0:0.0000 0.0001:0.0000 0.0003:0.0000 0.001:0.0000 0.003:0.0000 0.01:0.0000 0.03:0.0000 0.1:0.0000 0.3:0.0000 0.6:0.0000 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+
+--- r_target=0.1 (r_eff=0.1, H=8.414e-05) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-0.9977   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.6294  P_real(1)=0.0337  P_null(0)=0.0056  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.6294 0.0001:0.6128 0.0003:0.5624 0.001:0.3305 0.003:0.0946 0.01:0.0418 0.03:0.0353 0.1:0.0340 0.3:0.0338 0.6:0.0337 1:0.0337
+  curva frac_exp(p_recon): 0:0.3946 0.0001:0.3183 0.0003:0.2087 0.001:0.0800 0.003:0.0317 0.01:0.0079 0.03:0.0038 0.1:0.0008 0.3:0.0004 0.6:0.0000 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0859 0.0755 0.0716 0.0740 0.0145 0.0018 0.0004 0.0001 0.0000 0.0000 0.0000
+
+--- r_target=0.3 (r_eff=0.3, H=0.0002524) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-0.9977   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.7544  P_real(1)=0.0337  P_null(0)=0.0086  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.7544 0.0001:0.7224 0.0003:0.6941 0.001:0.5567 0.003:0.2209 0.01:0.0629 0.03:0.0383 0.1:0.0344 0.3:0.0338 0.6:0.0337 1:0.0337
+  curva frac_exp(p_recon): 0:0.7842 0.0001:0.6171 0.0003:0.4271 0.001:0.1858 0.003:0.0708 0.01:0.0283 0.03:0.0063 0.1:0.0017 0.3:0.0008 0.6:0.0000 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0506 0.0471 0.0494 0.0565 0.0286 0.0041 0.0005 0.0002 0.0000 0.0000 0.0000
+
+--- r_target=0.5 (r_eff=0.5, H=0.0004207) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-0.9909   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.8186  P_real(1)=0.0337  P_null(0)=0.0134  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.8186 0.0001:0.7911 0.0003:0.7659 0.001:0.6635 0.003:0.3383 0.01:0.0830 0.03:0.0417 0.1:0.0348 0.3:0.0339 0.6:0.0338 1:0.0337
+  curva frac_exp(p_recon): 0:0.9163 0.0001:0.7704 0.0003:0.5758 0.001:0.2821 0.003:0.1179 0.01:0.0358 0.03:0.0179 0.1:0.0021 0.3:0.0000 0.6:0.0000 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0544 0.0351 0.0331 0.0399 0.0307 0.0055 0.0009 0.0002 0.0000 0.0000 0.0000
+
+--- r_target=1.0 (r_eff=1, H=0.0008414) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-0.9977   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.8681  P_real(1)=0.0337  P_null(0)=0.0157  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.8681 0.0001:0.8576 0.0003:0.8454 0.001:0.7742 0.003:0.5009 0.01:0.1451 0.03:0.0501 0.1:0.0360 0.3:0.0340 0.6:0.0338 1:0.0337
+  curva frac_exp(p_recon): 0:0.9917 0.0001:0.8779 0.0003:0.7225 0.001:0.4492 0.003:0.2242 0.01:0.0779 0.03:0.0267 0.1:0.0071 0.3:0.0025 0.6:0.0000 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0325 0.0219 0.0197 0.0236 0.0207 0.0091 0.0010 0.0003 0.0001 0.0000 0.0000
+
+--- r_target=2.0 (r_eff=2, H=0.001683) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-1.0000   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.9129  P_real(1)=0.0337  P_null(0)=0.0176  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.9129 0.0001:0.9067 0.0003:0.8999 0.001:0.8580 0.003:0.6669 0.01:0.2408 0.03:0.0677 0.1:0.0383 0.3:0.0343 0.6:0.0338 1:0.0337
+  curva frac_exp(p_recon): 0:1.0000 0.0001:0.9363 0.0003:0.8462 0.001:0.6225 0.003:0.3629 0.01:0.1467 0.03:0.0504 0.1:0.0129 0.3:0.0067 0.6:0.0013 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0168 0.0133 0.0121 0.0141 0.0292 0.0134 0.0016 0.0003 0.0001 0.0000 0.0000
+
+--- r_target=5.0 (r_eff=5, H=0.004207) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-1.0000   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.9448  P_real(1)=0.0337  P_null(0)=0.0115  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.9448 0.0001:0.9386 0.0003:0.9335 0.001:0.9109 0.003:0.8088 0.01:0.4465 0.03:0.1287 0.1:0.0451 0.3:0.0351 0.6:0.0339 1:0.0337
+  curva frac_exp(p_recon): 0:1.0000 0.0001:0.9742 0.0003:0.9325 0.001:0.8117 0.003:0.5917 0.01:0.3004 0.03:0.1217 0.1:0.0329 0.3:0.0075 0.6:0.0033 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0109 0.0097 0.0091 0.0104 0.0188 0.0183 0.0054 0.0006 0.0001 0.0000 0.0000
+
+--- r_target=10.0 (r_eff=10, H=0.008414) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-1.0000   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.9617  P_real(1)=0.0337  P_null(0)=0.0107  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.9617 0.0001:0.9578 0.0003:0.9530 0.001:0.9336 0.003:0.8648 0.01:0.5919 0.03:0.2169 0.1:0.0569 0.3:0.0363 0.6:0.0340 1:0.0337
+  curva frac_exp(p_recon): 0:1.0000 0.0001:0.9871 0.0003:0.9650 0.001:0.8933 0.003:0.7383 0.01:0.4542 0.03:0.2171 0.1:0.0663 0.3:0.0192 0.6:0.0075 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0046 0.0050 0.0053 0.0063 0.0135 0.0120 0.0068 0.0012 0.0002 0.0000 0.0000
+
+--- r_target=30.0 (r_eff=30, H=0.02524) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-1.0000   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.9768  P_real(1)=0.0337  P_null(0)=0.0105  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.9768 0.0001:0.9754 0.0003:0.9714 0.001:0.9564 0.003:0.9109 0.01:0.7442 0.03:0.4101 0.1:0.1040 0.3:0.0415 0.6:0.0347 1:0.0337
+  curva frac_exp(p_recon): 0:1.0000 0.0001:0.9958 0.0003:0.9883 0.001:0.9633 0.003:0.8929 0.01:0.7088 0.03:0.4433 0.1:0.1871 0.3:0.0646 0.6:0.0213 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0039 0.0039 0.0039 0.0048 0.0102 0.0101 0.0097 0.0022 0.0003 0.0001 0.0000
+
+--- r_target=100.0 (r_eff=100, H=0.08414) ---
+  Spearman(p_recon,P_real)  rho=-1.0000  p=0  MONOTONA
+  Spearman(p_recon,frac_exp) rho=-1.0000   (frac_exp = fracción de aristas cortadas, mecanismo literal)
+  Spearman(p_recon,std_ratio) rho=-1.0000   (observable secundario independiente)
+  P_real(0)=0.9884  P_real(1)=0.0337  P_null(0)=0.0108  P_null(1)=0.0006  |P(1)-N(1)|=0.0332 vs 2*sd_comb=0.0007 -> FUERA
+  curva P_real(p_recon): 0:0.9884 0.0001:0.9865 0.0003:0.9824 0.001:0.9691 0.003:0.9305 0.01:0.8134 0.03:0.5815 0.1:0.2165 0.3:0.0581 0.6:0.0365 1:0.0337
+  curva frac_exp(p_recon): 0:1.0000 0.0001:0.9987 0.0003:0.9975 0.001:0.9896 0.003:0.9708 0.01:0.8950 0.03:0.7383 0.1:0.4500 0.3:0.1846 0.6:0.0567 1:0.0000
+  dispersión entre semillas P_real_std por punto: 0.0015 0.0018 0.0021 0.0026 0.0051 0.0062 0.0114 0.0078 0.0009 0.0003 0.0000
+
+====================================================================================================
+VEREDICTO POR r (régimen r>=1, criterio pre-registrado §6):
+  r=   1.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+  r=   2.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+  r=   5.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+  r=  10.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+  r=  30.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+  r= 100.0: rho=-1.000 (p=0) monotona=True  P(1)~=NULL(1) dentro 2std=False  -> FAIL
+
+0/6 r>=1 cumplen PASS fuerte (umbral pre-registrado: >=4/6 para PASS global).
+VEREDICTO GLOBAL F2-3: FAIL DEL MECANISMO
+
+====================================================================================================
+CONTROL r=0 (nada que reconectar -> P debe ser plano en p_recon):
+  0:0.0337 0.0001:0.0337 0.0003:0.0337 0.001:0.0337 0.003:0.0337 0.01:0.0337 0.03:0.0337 0.1:0.0337 0.3:0.0337 0.6:0.0337 1:0.0337
+  rango P_real en r=0: [0.0337, 0.0337]  (esperado: plano/ruidoso alrededor de ~0.03, SIN tendencia)
+
+====================================================================================================
+CONTROL eps=0 (sanity, sin diferencia inicial):
+  r=   0.0 p_recon=0  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r=   0.0 p_recon=0.5  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r=   0.0 p_recon=1  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r=   1.0 p_recon=0  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r=   1.0 p_recon=0.5  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r=   1.0 p_recon=1  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r= 100.0 p_recon=0  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r= 100.0 p_recon=0.5  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+  r= 100.0 p_recon=1  P_real_mean=0.000e+00  P_real_max=0.000e+00  OK(=0)
+
+====================================================================================================
+Verificación identidad del mecanismo en p_recon=0 vs cs074_rcruz_produccion_resultado.json:
+  r=0.0: F2-3(p_recon=0) P_real=0.033734  vs  cs074_rcruz P_real=0.033734  |diff|=2.31e-07  DIFIERE
+  r=0.1: F2-3(p_recon=0) P_real=0.629376  vs  cs074_rcruz P_real=0.620576  |diff|=8.80e-03  DIFIERE
+  r=0.3: F2-3(p_recon=0) P_real=0.754408  vs  cs074_rcruz P_real=0.735473  |diff|=1.89e-02  DIFIERE
+  r=0.5: F2-3(p_recon=0) P_real=0.818574  vs  cs074_rcruz P_real=0.811961  |diff|=6.61e-03  DIFIERE
+  r=1.0: F2-3(p_recon=0) P_real=0.868143  vs  cs074_rcruz P_real=0.866525  |diff|=1.62e-03  DIFIERE
+  r=2.0: F2-3(p_recon=0) P_real=0.912888  vs  cs074_rcruz P_real=0.908314  |diff|=4.57e-03  DIFIERE
+  r=5.0: F2-3(p_recon=0) P_real=0.944804  vs  cs074_rcruz P_real=0.940554  |diff|=4.25e-03  DIFIERE
+  r=10.0: F2-3(p_recon=0) P_real=0.961668  vs  cs074_rcruz P_real=0.959686  |diff|=1.98e-03  DIFIERE
+  r=30.0: F2-3(p_recon=0) P_real=0.976801  vs  cs074_rcruz P_real=0.975387  |diff|=1.41e-03  DIFIERE
+  r=100.0: F2-3(p_recon=0) P_real=0.988382  vs  cs074_rcruz P_real=0.987580  |diff|=8.02e-04  DIFIERE

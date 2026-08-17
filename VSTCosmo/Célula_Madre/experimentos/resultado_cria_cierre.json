@@ -1,0 +1,34 @@
+{
+ "cria_Cierre_x0.7": {
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.4212
+ },
+ "cria_Cierre_x0.9": {
+  "regimen": "CERRADO",
+  "W": 0.6292
+ },
+ "cria_Cierre_x1.1": {
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.4138
+ },
+ "cria_Cierre_x1.25": {
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.3863
+ },
+ "cria_Cierre_x1.5": {
+  "regimen": "CERRADO",
+  "W": 0.5869
+ },
+ "cria_Cierre_x1.7": {
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.3769
+ },
+ "cria_Cierre_doble": {
+  "regimen": "CERRADO",
+  "W": 0.5547
+ },
+ "cria_Cierre_lento": {
+  "regimen": "CERRADO",
+  "W": 0.5522
+ }
+}

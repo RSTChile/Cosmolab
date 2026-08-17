@@ -1,0 +1,16 @@
+[
+  {"id": "atencion_social", "archivo": "atencion_social.js"},
+  {"id": "metabolismo", "archivo": "metabolismo.js"},
+  {"id": "memoria", "archivo": "memoria.js"},
+  {"id": "alteridad", "archivo": "alteridad.js"},
+  {"id": "balbuceo", "archivo": "balbuceo.js"},
+  {"id": "salud", "archivo": "salud.js"},
+  {"id": "campo", "archivo": "campo.js"},
+  {"id": "homeostasis", "archivo": "homeostasis.js"},
+  {"id": "voz", "archivo": "voz.js"},
+  {"id": "agencia", "archivo": "agencia.js"},
+  {"id": "vozeco", "archivo": "vozeco.js"},
+  {"id": "expectativa", "archivo": "expectativa.js"},
+  {"id": "expresion", "archivo": "expresion.js"},
+  {"id": "aprendizaje", "archivo": "aprendizaje.js"}
+]

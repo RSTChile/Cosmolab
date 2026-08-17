@@ -1,0 +1,5 @@
+  N=4000 layout_resortes_N2_exacto  theta=     1 eval= 33.280s  x100= 3328.0s  err_rel=0
+  N=4000 barnes_hut                 theta=0.3  1 eval= 14.409s  x100= 1440.9s  err_rel=0.003433
+  N=4000 barnes_hut                 theta=0.5  1 eval=  5.607s  x100=  560.7s  err_rel=0.01018
+[csv] cs090_fase8_f806_costo_layout.csv
+DECISION: se usa layout_resortes (N2) en LOS DOS BRAZOS — no por costo, por comparabilidad con los puntos de N=2000 (F7-03) y de N=4000 (O3-A), que son N2.

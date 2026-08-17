@@ -1,0 +1,15 @@
+[2026-07-24 22:10:58] ###### INICIO extension E5.1-2 (tier3 recortado + tier4) ######
+[2026-07-24 22:10:58] === TIER 3 (recortado): extension D — solo N=4000, 4 semillas ===
+[2026-07-24 22:14:38]     N=4000 semilla=0 tau=317250 censurado=False
+[2026-07-24 22:17:53]     N=4000 semilla=1 tau=317250 censurado=False
+[2026-07-24 22:21:15]     N=4000 semilla=2 tau=317250 censurado=False
+[2026-07-24 22:24:34]     N=4000 semilla=3 tau=317250 censurado=False
+[2026-07-24 22:24:34]   N=  4000 D=2.1073e-06 tau_med=317250.0±0.0 wall=815.6s
+[2026-07-24 22:24:34] === TIER 4: perturbacion dinamica — anclas N={16,130,524}, 2 niveles ruido, 8 semillas ===
+[2026-07-24 22:24:34]   N=    16 D=1.0210e-01 frac_ruido=0.01 tau_med=5.4±0.5 wall=0.1s
+[2026-07-24 22:24:34]   N=    16 D=1.0210e-01 frac_ruido=0.1 tau_med=5.8±1.1 wall=0.1s
+[2026-07-24 22:24:35]   N=   130 D=1.9864e-03 frac_ruido=0.01 tau_med=352.0±15.6 wall=1.4s
+[2026-07-24 22:24:38]   N=   130 D=1.9864e-03 frac_ruido=0.1 tau_med=620.5±324.2 wall=2.3s
+[2026-07-24 22:24:59]   N=   524 D=1.2276e-04 frac_ruido=0.01 tau_med=5468.8±585.7 wall=21.7s
+[2026-07-24 22:25:48]   N=   524 D=1.2276e-04 frac_ruido=0.1 tau_med=12203.2±6230.7 wall=48.7s
+[2026-07-24 22:25:48] ###### FIN extension. elapsed=890.1s ######

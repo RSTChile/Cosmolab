@@ -1,0 +1,79 @@
+[remedir] 430 reglas desde cs090_fase6_outliers_430_todas.csv
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r118 seed=583275 d_pend=7.42e-04 d_z=0.00e+00 clase_csv=intermedio (sin clase clara) clase_recon=intermedio (sin clase clara)
+   ...25/430  (29s, ETA 470s)
+   !! reconstrucción NO fiel: A2-B0-C2-r15 seed=273284 d_pend=3.00e-02 d_z=1.41e-01 clase_csv=II clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r68 seed=578425 d_pend=1.44e-03 d_z=0.00e+00 clase_csv=II clase_recon=II
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r123 seed=583760 d_pend=1.54e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...50/430  (58s, ETA 437s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r217 seed=592878 d_pend=1.13e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r61 seed=477746 d_pend=3.20e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r25 seed=574254 d_pend=2.42e-02 d_z=1.60e-01 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r191 seed=590356 d_pend=1.53e-03 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...75/430  (86s, ETA 407s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r134 seed=484827 d_pend=3.42e-03 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r112 seed=582693 d_pend=2.90e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-r4 seed=372217 d_pend=9.63e-05 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...100/430  (116s, ETA 382s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r200 seed=591229 d_pend=7.87e-05 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...125/430  (146s, ETA 357s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r32 seed=474933 d_pend=1.05e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-r35 seed=375224 d_pend=6.02e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r42 seed=475903 d_pend=3.00e-02 d_z=3.00e-10 clase_csv=I clase_recon=I
+   ...150/430  (181s, ETA 338s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r13 seed=573090 d_pend=2.71e-02 d_z=1.41e-01 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r24 seed=574157 d_pend=3.79e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r171 seed=588416 d_pend=1.70e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r174 seed=588707 d_pend=1.18e-03 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r132 seed=584633 d_pend=1.12e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...175/430  (211s, ETA 308s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r219 seed=593072 d_pend=1.31e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r32 seed=574933 d_pend=9.37e-03 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...200/430  (245s, ETA 282s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r148 seed=586185 d_pend=4.80e-03 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r112 seed=482693 d_pend=8.49e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r176 seed=588901 d_pend=5.78e-03 d_z=1.41e-01 clase_csv=I clase_recon=I
+   ...225/430  (281s, ETA 256s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r166 seed=587931 d_pend=3.28e-05 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-r30 seed=374739 d_pend=1.61e-05 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r147 seed=486088 d_pend=1.93e-05 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r214 seed=592587 d_pend=1.18e-02 d_z=0.00e+00 clase_csv=I clase_recon=I
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r128 seed=484245 d_pend=1.55e-04 d_z=0.00e+00 clase_csv=I clase_recon=I
+   ...250/430  (319s, ETA 230s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r99 seed=581432 d_pend=9.68e-02 d_z=4.24e-01 clase_csv=III clase_recon=III
+   ...275/430  (352s, ETA 199s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r96 seed=581141 d_pend=8.42e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r26 seed=474351 d_pend=1.40e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r162 seed=587543 d_pend=1.04e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   ...300/430  (389s, ETA 169s)
+   !! reconstrucción NO fiel: A2-B0-C2-r4 seed=272217 d_pend=4.94e-03 d_z=3.97e-01 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-r14 seed=273187 d_pend=1.15e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r58 seed=477455 d_pend=1.25e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-batch4-r146 seed=585991 d_pend=1.36e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   ...325/430  (421s, ETA 136s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r84 seed=479977 d_pend=1.39e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-r24 seed=374157 d_pend=8.69e-02 d_z=4.24e-01 clase_csv=III clase_recon=III
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r127 seed=484148 d_pend=1.04e-04 d_z=0.00e+00 clase_csv=III clase_recon=III
+   ...350/430  (456s, ETA 104s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r91 seed=480656 d_pend=6.64e-03 d_z=4.24e-01 clase_csv=III clase_recon=III
+   ...375/430  (492s, ETA 72s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r60 seed=477649 d_pend=1.57e-03 d_z=0.00e+00 clase_csv=III clase_recon=III
+   ...400/430  (525s, ETA 39s)
+   !! reconstrucción NO fiel: A2-B0-C2-batch3-r87 seed=480268 d_pend=3.15e-03 d_z=0.00e+00 clase_csv=III clase_recon=III
+   ...425/430  (552s, ETA 6s)
+
+[csv] cs090_fase6_remedicion_430.csv (430 filas)
+[verificación] reconstrucciones NO fieles: 44/430
+
+[clases] vieja:     {'intermedio (sin clase clara)': 11, 'I': 225, 'II': 24, 'III': 164, 'IV': 6}
+[clases] corregida: {'III': 176, 'IV': 8, 'I': 222, 'II': 24}
+
+[cambian de clase] 15/430 (3.5%)
+   intermedio (sin clase clara)  ->  III   : 9
+   I  ->  III   : 3
+   I  ->  IV   : 1
+   intermedio (sin clase clara)  ->  I   : 1
+   intermedio (sin clase clara)  ->  IV   : 1
+
+[descarrilan en b=1] 15/430
+[pendiente vieja < 0] 15   de ellas cambian de clase: 15
+[pendiente vieja >= 0 que IGUAL cambian de clase] 0

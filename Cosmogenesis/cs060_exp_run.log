@@ -1,0 +1,23 @@
+CS060-B — GRAVEDAD CON MASA REAL vs PROXY DE GRADO (¿el negativo de CS057 era del proxy?)
+====================================================================================================
+PREDICCIÓN CIEGA: si el negativo de CS057 (gravedad→2D/colapso) era por el PROXY (grado), la gravedad
+  ∝MASA (intrínseca, independiente del grado) debería seleccionar geometría DISTINTA. Si da lo mismo,
+  el negativo era de la gravedad, no del proxy. NULL (masa barajada) debe parecerse a... ver.
+G_LEVELS=[0.3, 0.6, 1.0] · acoples=masa/grado/null · seeds=30 · masa log-uniforme [1.0,3477.0]
+corridas = 270 (×5 dims) · workers=14 · salida cs060_gravmasa_exp.csv
+  20/270 · 0.4min · ETA 5.3min
+  40/270 · 0.6min · ETA 3.5min
+  60/270 · 1.0min · ETA 3.4min
+  80/270 · 1.2min · ETA 2.7min
+  100/270 · 1.7min · ETA 2.9min
+  120/270 · 2.2min · ETA 2.7min
+  140/270 · 2.5min · ETA 2.3min
+  160/270 · 2.8min · ETA 1.9min
+  180/270 · 3.3min · ETA 1.6min
+  200/270 · 4.5min · ETA 1.6min
+  220/270 · 5.4min · ETA 1.2min
+  240/270 · 6.7min · ETA 0.8min
+  260/270 · 7.7min · ETA 0.3min
+  270/270 · 8.1min · ETA 0.0min
+
+COMPLETO: 270 corridas en 8.1 min → cs060_gravmasa_exp.csv

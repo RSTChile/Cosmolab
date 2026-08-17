@@ -1,0 +1,152 @@
+{
+ "complejo_00": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3852,
+  "gusto": 0.4965923467597527
+ },
+ "complejo_01": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3945,
+  "gusto": 0.48835709942863104
+ },
+ "complejo_02": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3772,
+  "gusto": 0.47504244641085186
+ },
+ "complejo_03": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.4026,
+  "gusto": 0.491517510601808
+ },
+ "complejo_04": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3714,
+  "gusto": 0.4699680441132692
+ },
+ "complejo_05": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.4184,
+  "gusto": 0.5027464363781408
+ },
+ "complejo_06": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3632,
+  "gusto": 0.46316902475940214
+ },
+ "complejo_07": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3671,
+  "gusto": 0.46171018006367576
+ },
+ "complejo_08": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3772,
+  "gusto": 0.46805651775087564
+ },
+ "complejo_09": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3534,
+  "gusto": 0.4509178211791678
+ },
+ "complejo_10": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3541,
+  "gusto": 0.45192301800076856
+ },
+ "complejo_11": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3639,
+  "gusto": 0.4586021011532771
+ },
+ "complejo_12": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3563,
+  "gusto": 0.4542045227672313
+ },
+ "complejo_13": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3589,
+  "gusto": 0.4531474275432144
+ },
+ "complejo_14": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.358,
+  "gusto": 0.45514803600341763
+ },
+ "complejo_15": {
+  "tipo": "complejo",
+  "regimen": "COLAPSO",
+  "W": 0.3549,
+  "gusto": 0.45418055522430634
+ },
+ "var_Espera_grave": {
+  "tipo": "variacion",
+  "regimen": "COLAPSO",
+  "W": 0.3867,
+  "gusto": 0.4569368226574966
+ },
+ "var_Espera_agudo": {
+  "tipo": "variacion",
+  "regimen": "CERRADO",
+  "W": 0.5812,
+  "gusto": 0.5280002595291269
+ },
+ "var_Retirada_grave": {
+  "tipo": "variacion",
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.3666,
+  "gusto": 0.42023785167337013
+ },
+ "var_Retirada_agudo": {
+  "tipo": "variacion",
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.3619,
+  "gusto": 0.4588029564538198
+ },
+ "var_Cierre_grave": {
+  "tipo": "variacion",
+  "regimen": "CERRADO",
+  "W": 0.5515,
+  "gusto": 0.5124203971554319
+ },
+ "var_Cierre_agudo": {
+  "tipo": "variacion",
+  "regimen": "CERRADO",
+  "W": 0.5545,
+  "gusto": 0.5154555014148541
+ },
+ "var_Dormir_grave": {
+  "tipo": "variacion",
+  "regimen": "CERRADO",
+  "W": 0.5878,
+  "gusto": 0.5298296801324629
+ },
+ "var_Dormir_agudo": {
+  "tipo": "variacion",
+  "regimen": "SELVA_HOSTIL",
+  "W": 0.447,
+  "gusto": 0.46536050584228045
+ },
+ "var_Cierre_Retirada": {
+  "tipo": "variacion",
+  "regimen": "CERRADO",
+  "W": 0.5517,
+  "gusto": 0.505852227584
+ }
+}

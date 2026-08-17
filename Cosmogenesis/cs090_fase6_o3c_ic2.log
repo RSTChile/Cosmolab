@@ -1,0 +1,22 @@
+[chequeo #1] 12 reglas x 4 condiciones: seed regenerado == seed archivado en cs090_fase6_remedicion_mecanismo.csv -- OK
+[lote] 12 reglas admitidas (descartadas por P1-P5 en el lote de 20: 0); seed_base=90211
+[IC] 48 celdas (regla x condicion); faltan 8; workers=8
+  AVISO chequeo #2: A2-B0-C2-mec-r6/c2-rigido-azar pendiente fresca 0.521409755 != archivada 0.522455599 (dif=1.05e-03) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r2/c2-rigido-azar pendiente fresca 0.515225851 != archivada 0.495041604 (dif=2.02e-02) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r7/c2-rigido-azar pendiente fresca 0.529778711 != archivada 0.536182018 (dif=6.40e-03) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r2/c4-elastico-azar pendiente fresca 0.570952181 != archivada 0.570845196 (dif=1.07e-04) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r6/c4-elastico-azar pendiente fresca 0.586357023 != archivada 0.584836782 (dif=1.52e-03) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r11/c2-rigido-azar pendiente fresca 0.524736615 != archivada 0.491036282 (dif=3.37e-02) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r7/c3-elastico-soporte pendiente fresca 0.578655151 != archivada 0.578492460 (dif=1.63e-04) -- se registra y se sigue
+  AVISO chequeo #2: A2-B0-C2-mec-r11/c3-elastico-soporte pendiente fresca 0.401042449 != archivada 0.400912045 (dif=1.30e-04) -- se registra y se sigue
+  [1/8] A2-B0-C2-mec-r6__c2-rigido-azar clase=I pend=0.521 aristas=4092 (geom 8.18s + grafo 5.45s + IC 156.73s) [t=177s]
+  [2/8] A2-B0-C2-mec-r7__c2-rigido-azar clase=I pend=0.530 aristas=4260 (geom 8.27s + grafo 5.66s + IC 156.43s) [t=177s]
+  [3/8] A2-B0-C2-mec-r2__c2-rigido-azar clase=I pend=0.515 aristas=4275 (geom 8.25s + grafo 5.83s + IC 156.76s) [t=177s]
+  [4/8] A2-B0-C2-mec-r7__c3-elastico-soporte clase=I pend=0.579 aristas=4303 (geom 9.03s + grafo 7.08s + IC 155.17s) [t=178s]
+  [5/8] A2-B0-C2-mec-r2__c4-elastico-azar clase=I pend=0.571 aristas=3867 (geom 8.89s + grafo 7.17s + IC 155.48s) [t=178s]
+  [6/8] A2-B0-C2-mec-r6__c4-elastico-azar clase=I pend=0.586 aristas=3751 (geom 8.9s + grafo 7.22s + IC 155.46s) [t=178s]
+  [7/8] A2-B0-C2-mec-r11__c2-rigido-azar clase=I pend=0.525 aristas=5252 (geom 8.72s + grafo 6.32s + IC 156.17s) [t=178s]
+  [8/8] A2-B0-C2-mec-r11__c3-elastico-soporte clase=II pend=0.401 aristas=5044 (geom 9.3s + grafo 7.43s + IC 154.43s) [t=178s]
+[IC] listo en 179s (8 nuevas)
+
+[FIN etapa=ic] 179s. Sin cierre ni veredicto: solo numeros.

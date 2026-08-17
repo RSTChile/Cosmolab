@@ -1,0 +1,191 @@
+{
+  "control": {
+    "eps": 0.5,
+    "N": 69,
+    "T_umbral_em": 0.9,
+    "radio_fuerte": 999,
+    "pasos": 300,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "sueltos": 1,
+    "B_max": 102.8515268799599
+  },
+  "barrido": [
+    {
+      "eps": 0.2,
+      "N": 61,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 2,
+      "pasos": 2000,
+      "bariones": 1,
+      "hidrogeno": 1,
+      "sueltos": 1,
+      "B_max": 178.0859626522824
+    },
+    {
+      "eps": 0.2,
+      "N": 61,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 3,
+      "pasos": 2000,
+      "bariones": 1,
+      "hidrogeno": 1,
+      "sueltos": 1,
+      "B_max": 178.0859626522824
+    },
+    {
+      "eps": 0.2,
+      "N": 61,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 5,
+      "pasos": 2000,
+      "bariones": 1,
+      "hidrogeno": 1,
+      "sueltos": 1,
+      "B_max": 178.0859626522824
+    },
+    {
+      "eps": 0.2,
+      "N": 61,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 8,
+      "pasos": 2000,
+      "bariones": 1,
+      "hidrogeno": 1,
+      "sueltos": 1,
+      "B_max": 178.0859626522824
+    },
+    {
+      "eps": 0.5,
+      "N": 69,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 2,
+      "pasos": 2000,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 526.0207255675532
+    },
+    {
+      "eps": 0.5,
+      "N": 69,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 3,
+      "pasos": 2000,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 526.0207255675532
+    },
+    {
+      "eps": 0.5,
+      "N": 69,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 5,
+      "pasos": 2000,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 526.0207255675532
+    },
+    {
+      "eps": 0.5,
+      "N": 69,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 8,
+      "pasos": 2000,
+      "bariones": 3,
+      "hidrogeno": 2,
+      "sueltos": 1,
+      "B_max": 526.0207255675532
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 2,
+      "pasos": 2000,
+      "bariones": 5,
+      "hidrogeno": 3,
+      "sueltos": 2,
+      "B_max": 9501.444270037495
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 3,
+      "pasos": 2000,
+      "bariones": 5,
+      "hidrogeno": 3,
+      "sueltos": 2,
+      "B_max": 9501.444270037495
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 5,
+      "pasos": 2000,
+      "bariones": 5,
+      "hidrogeno": 3,
+      "sueltos": 2,
+      "B_max": 9501.444270037495
+    },
+    {
+      "eps": 0.8,
+      "N": 79,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 8,
+      "pasos": 2000,
+      "bariones": 5,
+      "hidrogeno": 3,
+      "sueltos": 2,
+      "B_max": 9501.444270037495
+    },
+    {
+      "eps": 1.0,
+      "N": 84,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 2,
+      "pasos": 2000,
+      "bariones": 7,
+      "hidrogeno": 4,
+      "sueltos": 0,
+      "B_max": 57647.070190813974
+    },
+    {
+      "eps": 1.0,
+      "N": 84,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 3,
+      "pasos": 2000,
+      "bariones": 7,
+      "hidrogeno": 4,
+      "sueltos": 0,
+      "B_max": 57647.070190813974
+    },
+    {
+      "eps": 1.0,
+      "N": 84,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 5,
+      "pasos": 2000,
+      "bariones": 7,
+      "hidrogeno": 4,
+      "sueltos": 0,
+      "B_max": 57647.070190813974
+    },
+    {
+      "eps": 1.0,
+      "N": 84,
+      "T_umbral_em": 0.0158,
+      "radio_fuerte": 8,
+      "pasos": 2000,
+      "bariones": 7,
+      "hidrogeno": 4,
+      "sueltos": 0,
+      "B_max": 57647.070190813974
+    }
+  ]
+}

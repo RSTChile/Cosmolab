@@ -621,7 +621,10 @@ class OrganeloFatiga(Organelo):
             secreta=["historia", "fatiga_activa", "factor_gain"],
             depende_de=[],
             costo_base=1.0,
-            plast={"k_gain": 0.00015, "tau_recuperacion": 300.0, "techo": 20000.0},
+            # `gain_min` NO es constante nueva: es el 0,2 que ya estaba escrito en `metabolizar`
+            # (`max(0.2, …)`), el suelo declarado de la ganancia motora. Sube a la membrana porque
+            # de él sale el techo de fatiga, que antes era un número aparte (ver metabolizar).
+            plast={"k_gain": 0.00015, "tau_recuperacion": 300.0, "gain_min": 0.2},
             criterio="historia>0 monótona; fatiga_activa recupera en reposo",
             estado=Estado.PARCIAL,   # PARCIAL por el residuo de recuperación (V150)
         )
@@ -641,9 +644,43 @@ class OrganeloFatiga(Organelo):
         else:
             tau = self.plast["tau_recuperacion"] * tempo
             self.fatiga_activa *= math.exp(-dt / tau)
-        self.fatiga_activa = min(self.fatiga_activa, self.plast["techo"])
+        # ── EL TECHO DE FATIGA SE DERIVA, YA NO SE ELIGE (8-ago-2026) ───────────────────
+        # ERA `techo = 20000.0` y MEDIDO no ligaba nunca: sobre 157.421 pasos (108 CSV, 3–8 ago)
+        # `act_fatiga` llegó como máximo a 454,13 (mediana 330,87), o sea el techo estaba 44 veces
+        # por encima del peor cansancio jamás registrado. Un tope que no se toca en cinco días de
+        # vida no está topando nada: es un número que nadie midió sosteniendo la ilusión de que sí.
+        #
+        # DE DÓNDE SALE AHORA, sin inventar otra cifra: la fatiga tiene UN solo consumidor aquí,
+        # `factor_gain = exp(−k_gain·F)`, y ese consumidor YA declara su suelo (`gain_min`, el 0,2
+        # que estaba escrito ahí abajo, en el `max(...)`). Por encima de F* = ln(1/gain_min)/k_gain la
+        # ganancia está clavada en el suelo y toda fatiga adicional es INVISIBLE: acumularla sólo
+        # alarga la recuperación de algo que ya no se nota. Ése —y no otro— es el techo: el punto
+        # donde la fatiga deja de significar. Con los valores actuales, 10.729,6 en vez de 20.000.
+        # Es una relación entre dos cosas ya declaradas, así que si mañana se corrige `k_gain` el
+        # techo se corrige solo; antes había que acordarse de mover los dos.
+        #
+        # LO QUE ESTO NO ARREGLA, Y HAY QUE DECIRLO: `k_gain = 0.00015` SIGUE SIN ESCALA MEDIDA, y
+        # es la constante que de verdad apaga este organelo. Con la fatiga real del organismo,
+        # `factor_gain` vive entre 0,9341 (en el máximo histórico) y 1,0000, mediana 0,9516: el
+        # cansancio modula la ganancia motora un 4,8 % en la mediana y un 6,6 % en el peor momento
+        # de cinco días. No se toca aquí porque NO HAY SALIDA LEGÍTIMA HOY, y forzar una sería peor:
+        #   · Contra otra magnitud del organismo en las mismas unidades: `fatiga_activa` acumula
+        #     `costo_trabajo` = 0,5·|Δorientación| (Célula_Madre_Funcional_001.py:769), o sea son
+        #     GRADOS RECORRIDOS. La única referencia estructural en grados es el propio rango motor
+        #     (±90°), y la mediana de fatiga equivale a 662° = 3,7 barridos completos del rango sin
+        #     recuperar: con k = 1/(0,5·180°) = 0,01111 el `factor_gain` queda clavado en su suelo
+        #     de 0,2 el 93,58 % del tiempo. Cambiaría un organelo mudo por uno gritando; ni uno
+        #     ni otro mide nada.
+        #   · Contra su propia historia (`Escala`): prohibido aquí. La pérdida de ganancia por
+        #     cansancio es una consecuencia, no una percepción — advertencia 2 de escala.py: un
+        #     organismo crónicamente exhausto leería «fatiga normal» y dejaría de perder ganancia.
+        # Lo que falta para poder resolverlo es un dato que hoy no se graba: `costo_trabajo` no sale
+        # al CSV, así que no se puede medir cuánta fatiga cuesta UN ciclo de trabajo–recuperación,
+        # que es la única escala con sentido (la que el propio τ_recuperación puede deshacer).
+        techo = math.log(1.0 / max(1e-9, self.plast["gain_min"])) / max(1e-12, self.plast["k_gain"])
+        self.fatiga_activa = min(self.fatiga_activa, techo)
         # factor de ganancia: cae exponencialmente con la fatiga acumulada.
-        self._factor_gain = max(0.2, min(1.0, math.exp(-self.plast["k_gain"] * self.fatiga_activa)))
+        self._factor_gain = max(self.plast["gain_min"], min(1.0, math.exp(-self.plast["k_gain"] * self.fatiga_activa)))
 
     def secretar(self, milieu: "Milieu") -> None:
         milieu.secretar("historia", self.historia, guardar_historial=True)
@@ -718,6 +755,13 @@ class OrganeloAltruismo(Organelo):
     Membrana = la del locus reservado original + diagnósticos O-N22. Constantes CALIBRABLES."""
 
     def __init__(self, plast=None) -> None:
+        # ── ESTOS DOS UMBRALES NO SE TOCAN, Y HAY QUE EXPLICAR POR QUÉ (8-ago-2026) ──────
+        # Una revisión de constantes degeneradas los marcó a los dos: MEDIDO sobre 157.421 pasos
+        # (108 CSV, 3–8 ago) `altruismo_coopera` = 0 en 157.421 de 157.421, `altruismo_tau` > τ_min
+        # el 0,00 % y `altruismo_costo_desacople` > 0,30 el 0,00 % desde el 6-ago. Cero de cero.
+        # PERO NO SON UMBRALES MAL CALIBRADOS: son umbrales sobre mecanismos que hoy están MUERTOS,
+        # y bajarlos sería encender la cooperación desde el número en vez de desde la relación —
+        # exactamente la falta que este proyecto persigue. El detalle, medido, en `metabolizar`.
         base = dict(
             tau_min=8.0,               # O-N9.9: mutualismo sostenido (s) mínimo antes de fusión
             costo_desacople_min=0.30,  # O-N9.9: separar debe costar >30% de A
@@ -773,8 +817,36 @@ class OrganeloAltruismo(Organelo):
         self.hamilton_ok = (q["A"] / eR) > (1.0 / S)
         otro_es_sujeto = (q["otro_Cb"] > 0.0) and (q["otro_valencia"] >= 0.0)
         self.psi_alma = (min(1.0, q["otro_Cb"]) if (otro_es_sujeto and LF >= KAPPA["kLF"]) else 0.0)
+        # ── PUNTO MUERTO DE RECIPROCIDAD: τ ≡ 0 POR CONSTRUCCIÓN (medido, 8-ago-2026) ────
+        # `otro.valencia` es la DISPOSICIÓN del otro (VST_DiadaAltruismo.py:358 la secreta desde
+        # `disposicion_cooperar` del par). Entonces τ —el reloj del mutualismo sostenido— sólo
+        # corre si el otro YA quiere, y se reinicia a 0 en cuanto deja de querer. Y la disposición
+        # propia sólo crece si `favorable`, que exige Ψ_alma sobre el otro. Los dos esperan al otro:
+        # nadie ofrece primero, así que τ no es «bajo», es CERO, y lo es por la regla, no por el
+        # mundo. MEDIDO en 157.421 pasos: `disposicion_cooperar` > 0 el 3,65 % del corpus entero y
+        # el 0,00 % desde el 5-ago; `altruismo_tau` > 0 el 4,86 % (0,80 % el 5-ago, 0,00 % el 6,
+        # 0,42 % el 7, 0,00 % el 8); la racha más larga jamás observada, en cinco días de vida y
+        # con par presente, es de 14,10 s contra los τ_min·tempo = 8,0·2,1226 = 16,98 s que
+        # se exigen. Nunca, ni una vez, en cinco días. Y aflojar τ_min a 0,5 s (se ha propuesto)
+        # cruzaría el reloj en el 3,55 % de los pasos —casi todos del 3 y 4 de agosto, cuando el
+        # contrafáctico todavía era un decreto—: encendería el número, no la cooperación.
+        # LO QUE FALTA NO ES UN UMBRAL, ES UN ROMPEDOR DE SIMETRÍA — alguien tiene que ofrecer
+        # primero PAGANDO (eso es una señal costosa) y sostenerlo sin garantía de respuesta. Es una
+        # decisión de diseño del organelo, no una calibración, y no se hace de contrabando dentro
+        # de una revisión de constantes. Hasta que exista, τ_min mide un reloj parado.
         mutualismo = (q["A"] > 0.0) and (q["otro_valencia"] > 0.0)
         self.tau = (self.tau + dt) if mutualismo else 0.0
+        # ── Y `costo_desacople` ≡ 0 PORQUE EL CONTRAFÁCTICO SE ABSTIENE ──────────────────
+        # Vale (A − A_solo)/A: cuánto peor estaría el acoplamiento SIN el otro. Desde que la díada
+        # dejó de inventarse `A_solo` (5-ago: si nunca se midió A en soledad, publica A_solo = A en
+        # vez de un decreto), `A_solo == A` siempre que no haya un par real ⇒ costo_desacople = 0.
+        # MEDIDO: 0,00000 exacto en el 100,00 % de los pasos del 6, 7 y 8 de agosto (39.813 al
+        # cierre de esta medición); el 3 y 4 de agosto, con el decreto, superaba 0,30 el 80,5 % y
+        # el 94,3 % del tiempo respectivamente. Aquello era el ARTEFACTO, no la cooperación.
+        # Que un umbral de 0,30 se cumpla el 0,0 % del tiempo aquí NO dice que 0,30 esté mal: dice
+        # que el organismo nunca ha vivido acompañado el tiempo suficiente para medir qué le cuesta
+        # separarse. El umbral está esperando un dato que aún no existe, y ésa es la respuesta
+        # honesta: se deja, y se deja escrito para que nadie lo «arregle» bajándolo.
         if q["A_solo"] is not None and q["A"] > 1e-9:
             self.costo_desacople = max(0.0, (q["A"] - q["A_solo"]) / q["A"])
         else:

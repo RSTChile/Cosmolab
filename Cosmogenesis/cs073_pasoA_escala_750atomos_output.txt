@@ -1,0 +1,13 @@
+tiempo total: 360.0s
+gate_ok: True
+nota: Paso A completo, NULL como distribución (n_null sorteos). Si a4_...=False, el REAL no se distingue de la distribución de barajados (|z|<umbral) -> dato para re-coordinar, Paso B NO procede sobre estas coordenadas.
+gate.dim_efectiva: 2.05  gate.pendiente: 0.487
+n_atomos: 750  n_null: 8  pares_desconectados: 0
+varianza_explicada (3 dims) REAL: 0.5742
+  NULL media: 0.5765  std: 0.0069
+  z: -0.338
+dims_para_90pct REAL: 72
+  NULL media: 69.5  std: 3.3
+  z: 0.759
+A.4 distinguible del NULL (|z|>=2.0): False
+EXIT:0

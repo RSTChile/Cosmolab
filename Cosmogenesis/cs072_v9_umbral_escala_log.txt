@@ -1,0 +1,89 @@
+====================================================================================================
+PUNTO 0 -- HALLANDO PASOS DE EQUILIBRIO POR N (régimen saturado, amplitud=1.0)
+====================================================================================================
+  N=68 (quarks=30, antiquarks=21, electrones=10, positrones=7)
+    [equilibrio] pasos=300 bariones(amp=1.0,saturado)=9
+    [equilibrio] pasos=400 bariones(amp=1.0,saturado)=9
+  -> pasos equilibrados para N=68: 300 (estabilizó: True)
+  N=136 (quarks=60, antiquarks=42, electrones=20, positrones=14)
+    [equilibrio] pasos=400 bariones(amp=1.0,saturado)=19
+    [equilibrio] pasos=600 bariones(amp=1.0,saturado)=19
+  -> pasos equilibrados para N=136: 400 (estabilizó: True)
+  N=272 (quarks=120, antiquarks=84, electrones=40, positrones=28)
+    [equilibrio] pasos=400 bariones(amp=1.0,saturado)=38
+    [equilibrio] pasos=600 bariones(amp=1.0,saturado)=39
+    [equilibrio] pasos=800 bariones(amp=1.0,saturado)=39
+  -> pasos equilibrados para N=272: 600 (estabilizó: True)
+  N=544 (quarks=240, antiquarks=168, electrones=80, positrones=56)
+    [equilibrio] pasos=400 bariones(amp=1.0,saturado)=77
+    [equilibrio] pasos=600 bariones(amp=1.0,saturado)=79
+    [equilibrio] pasos=800 bariones(amp=1.0,saturado)=79
+  -> pasos equilibrados para N=544: 600 (estabilizó: True)
+(t=5.82 min)
+
+====================================================================================================
+TAREA 1 -- amplitud_critica(N) y producto amplitud_critica x N
+====================================================================================================
+  N=68 (pasos=300):
+    amplitud=0.05 -> bariones=9
+    amplitud=0.10 -> bariones=9
+    amplitud=0.15 -> bariones=9
+    amplitud=0.20 -> bariones=9
+    amplitud=0.30 -> bariones=9
+    amplitud=0.50 -> bariones=9
+    amplitud=0.70 -> bariones=9
+    amplitud=1.00 -> bariones=9
+  -> amplitud_critica(N=68) = 0.05 | producto amplitud_critica*N = 3.4000000000000004
+  N=136 (pasos=400):
+    amplitud=0.05 -> bariones=18
+    amplitud=0.10 -> bariones=18
+    amplitud=0.15 -> bariones=18
+    amplitud=0.20 -> bariones=19
+    amplitud=0.30 -> bariones=19
+    amplitud=0.50 -> bariones=19
+    amplitud=0.70 -> bariones=19
+    amplitud=1.00 -> bariones=19
+  -> amplitud_critica(N=136) = 0.05 | producto amplitud_critica*N = 6.800000000000001
+  N=272 (pasos=600):
+    amplitud=0.05 -> bariones=39
+    amplitud=0.10 -> bariones=39
+    amplitud=0.15 -> bariones=39
+    amplitud=0.20 -> bariones=39
+    amplitud=0.30 -> bariones=39
+    amplitud=0.50 -> bariones=39
+    amplitud=0.70 -> bariones=39
+    amplitud=1.00 -> bariones=39
+  -> amplitud_critica(N=272) = 0.05 | producto amplitud_critica*N = 13.600000000000001
+  N=544 (pasos=600):
+    amplitud=0.05 -> bariones=78
+    amplitud=0.10 -> bariones=78
+    amplitud=0.15 -> bariones=79
+    amplitud=0.20 -> bariones=79
+    amplitud=0.30 -> bariones=79
+    amplitud=0.50 -> bariones=79
+    amplitud=0.70 -> bariones=79
+    amplitud=1.00 -> bariones=79
+  -> amplitud_critica(N=544) = 0.05 | producto amplitud_critica*N = 27.200000000000003
+(t=20.48 min)
+
+  TABLA RESUMEN amplitud_critica(N) x N:
+  ------------------------------------------------------------
+  N=  68  amplitud_critica=0.05  producto=3.4
+  N= 136  amplitud_critica=0.05  producto=6.8
+  N= 272  amplitud_critica=0.05  producto=13.6
+  N= 544  amplitud_critica=0.05  producto=27.2
+
+====================================================================================================
+TAREA 2 -- banda de memoria (N=68, pasos equilibrados, amplitud=1.0 saturada)
+====================================================================================================
+  alpha=0.50 -> bariones=9
+  alpha=0.70 -> bariones=9
+  alpha=0.80 -> bariones=9
+  alpha=0.90 -> bariones=9
+  alpha=0.95 -> bariones=9
+  alpha=0.99 -> bariones=9
+(t=20.86 min)
+
+====================================================================================================
+TIEMPO TOTAL: 20.86 min
+====================================================================================================

@@ -1,0 +1,85 @@
+CS053 — PERSISTENCIA de la geometría: ¿qué (dim,curvatura) SOBREVIVE al filtro ciego S=I·E?
+============================================================================================================
+θ_persist=0.45 (FIJO) · resiliencia rem 30% aristas · 6 repeticiones · G-NO-HORNEAR: el filtro NO ve dim/curv
+
+         geom      N   dim      δ   turn     I     E  S=I·E persiste?
+  ------------------------------------------------------------------------------
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.03  0.025     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.97  0.892      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.892      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.98  0.709      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.98  0.668      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  1.00  0.885      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.875      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.20  0.115     muere
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.02  0.017     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.98  0.904      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.891      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.98  0.710      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.99  0.672      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  1.00  0.883      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.875      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.08  0.046     muere
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.02  0.019     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.96  0.887      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.893      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.99  0.717      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.98  0.666      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  1.00  0.885      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.876      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.21  0.121     muere
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.01  0.014     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.99  0.911      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.894      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.98  0.709      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.99  0.670      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  0.99  0.881      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.876      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.08  0.048     muere
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.02  0.016     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.96  0.886      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.891      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.99  0.718      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.97  0.662      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  1.00  0.885      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.875      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.18  0.104     muere
+    cadena_d1   1000  0.94   0.00    nan  0.98  0.02  0.020     muere
+   cuadr_d2pl   1024  1.60   2.37   1.15  0.92  0.97  0.892      VIVE
+     tri_d2pl   1024  1.57   1.75   1.15  0.89  1.00  0.894      VIVE
+   hip37_d2cv   1000  2.13   0.25   1.65  0.73  0.97  0.705      VIVE
+   hip38_d2cv   1001  2.40   0.17   1.93  0.68  0.98  0.664      VIVE
+    cubo_d3pl   1000  2.02   1.27   1.47  0.89  1.00  0.884      VIVE
+   hcubo_d4pl   1296  2.29   1.05   1.74  0.88  1.00  0.876      VIVE
+     arbol_cv   1000  2.27   0.00   1.99  0.59  0.17  0.102     muere
+
+============================================================================================================
+DISTRIBUCIÓN de supervivientes (filtro S=I·E) — ¿qué geometría/dimensión queda POBLADA?
+     arbol_cv: sobrevive 0/6  (dim≈2.27, turn≈1.99, S≈0.089)
+    cadena_d1: sobrevive 0/6  (dim≈0.94, turn≈nan, S≈0.018)
+   cuadr_d2pl: sobrevive 6/6  (dim≈1.60, turn≈1.15, S≈0.895)
+    cubo_d3pl: sobrevive 6/6  (dim≈2.02, turn≈1.47, S≈0.883)
+   hcubo_d4pl: sobrevive 6/6  (dim≈2.29, turn≈1.74, S≈0.876)
+   hip37_d2cv: sobrevive 6/6  (dim≈2.13, turn≈1.65, S≈0.711)
+   hip38_d2cv: sobrevive 6/6  (dim≈2.40, turn≈1.93, S≈0.667)
+     tri_d2pl: sobrevive 6/6  (dim≈1.57, turn≈1.15, S≈0.893)
+
+G-NULL (filtro AL AZAR, misma tasa de muerte 75%): ¿deja la MISMA distribución?
+     arbol_cv: azar sobrevive 5/6
+    cadena_d1: azar sobrevive 5/6
+   cuadr_d2pl: azar sobrevive 5/6
+    cubo_d3pl: azar sobrevive 4/6
+   hcubo_d4pl: azar sobrevive 6/6
+   hip37_d2cv: azar sobrevive 6/6
+   hip38_d2cv: azar sobrevive 4/6
+     tri_d2pl: azar sobrevive 4/6
+
+============================================================================================================
+VEREDICTO (los tres desenlaces, honestos):
+  Supervivientes filtro: total=36, d≈3-plano=0, otros=36
+  → Sobrevive una MULTITUD sin preferencia clara por d=3-plano (o correlaciona con grado/
+    dimensión alta, no con d=3). La persistencia SOLA no fija 3D-plano → nuestro universo la
+    FALSA. Resultado real (falsación honesta), no fracaso: falta otro ingrediente aguas arriba.
+
+  (G-NO-HORNEAR: el filtro persiste_S sólo recibió (grados, aristas) — nunca dim/curv/‘3D’.)
+  (G-ENSEMBLE-SIMÉTRICO: el revuelto tiene d≈1,2,3,4 y plana/curva± por igual — ver tabla inicial.)

@@ -1,0 +1,13 @@
+[Unit]
+Description=ANIMA Organismo E - Planta (nativo)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/ubuntu/anima/celula_madre/docker/run_native_pi.sh start
+ExecStop=/home/ubuntu/anima/celula_madre/docker/run_native_pi.sh stop
+
+[Install]
+WantedBy=default.target

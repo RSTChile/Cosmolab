@@ -1,0 +1,208 @@
+{
+  "H_EXP": 3.0,
+  "DT_CF2": 0.25,
+  "R_UMBRAL_CF1": 0.1,
+  "filas": [
+    {
+      "asimetria": {
+        "D": 0.0,
+        "H_step": 0.75,
+        "r": Infinity,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.0,
+        "contraste_final": 0.0,
+        "std_ratio": 0.0,
+        "eps_campo": 0.0,
+        "eps_sobrevivido": 0.0,
+        "nq": 21,
+        "naq": 21,
+        "ne": 7,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413541121427095,
+        "H_step": 0.75,
+        "r": 891.4201394819901,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 9.999999986063658e-10,
+        "contraste_final": 9.988973691142374e-10,
+        "std_ratio": 0.998897370506335,
+        "eps_campo": 1e-09,
+        "eps_sobrevivido": 9.98897370506335e-10,
+        "nq": 21,
+        "naq": 21,
+        "ne": 7,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667816243556,
+        "H_step": 0.75,
+        "r": 891.4067162861345,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 1.0000000000045904e-06,
+        "contraste_final": 9.988973549625155e-07,
+        "std_ratio": 0.9988973549579302,
+        "eps_campo": 1e-06,
+        "eps_sobrevivido": 9.988973549579301e-07,
+        "nq": 21,
+        "naq": 21,
+        "ne": 7,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667864327323,
+        "H_step": 0.75,
+        "r": 891.4067111917816,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.0009999999999999966,
+        "contraste_final": 0.00099889735494981,
+        "std_ratio": 0.9988973549498136,
+        "eps_campo": 0.001,
+        "eps_sobrevivido": 0.0009988973549498136,
+        "nq": 21,
+        "naq": 21,
+        "ne": 7,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667864349411,
+        "H_step": 0.75,
+        "r": 891.4067111894415,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.01,
+        "contraste_final": 0.009988973549498136,
+        "std_ratio": 0.9988973549498136,
+        "eps_campo": 0.01,
+        "eps_sobrevivido": 0.009988973549498136,
+        "nq": 21,
+        "naq": 21,
+        "ne": 7,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 0
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667864350106,
+        "H_step": 0.75,
+        "r": 891.4067111893678,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.09999999999999999,
+        "contraste_final": 0.0998897354949814,
+        "std_ratio": 0.998897354949814,
+        "eps_campo": 0.1,
+        "eps_sobrevivido": 0.09988973549498141,
+        "nq": 23,
+        "naq": 21,
+        "ne": 8,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 0,
+        "antibariones": 0,
+        "protones": 0,
+        "hidrogeno": 0,
+        "quarks_sueltos": 2
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667864348719,
+        "H_step": 0.75,
+        "r": 891.4067111895147,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.4999999999999999,
+        "contraste_final": 0.49944867747490707,
+        "std_ratio": 0.9988973549498144,
+        "eps_campo": 0.5,
+        "eps_sobrevivido": 0.4994486774749072,
+        "nq": 31,
+        "naq": 21,
+        "ne": 10,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 3,
+        "antibariones": 0,
+        "protones": 2,
+        "hidrogeno": 2,
+        "quarks_sueltos": 1
+      }
+    },
+    {
+      "asimetria": {
+        "D": 0.0008413667864349829,
+        "H_step": 0.75,
+        "r": 891.4067111893972,
+        "r_cruza_umbral": true,
+        "pasos": 1000,
+        "contraste0": 0.9999999999999999,
+        "contraste_final": 0.998897354949814,
+        "std_ratio": 0.9988973549498141,
+        "eps_campo": 1.0,
+        "eps_sobrevivido": 0.9988973549498141,
+        "nq": 42,
+        "naq": 21,
+        "ne": 14,
+        "npos": 7
+      },
+      "conteo": {
+        "bariones": 7,
+        "antibariones": 0,
+        "protones": 4,
+        "hidrogeno": 4,
+        "quarks_sueltos": 0
+      }
+    }
+  ],
+  "coincide_baseline": true
+}

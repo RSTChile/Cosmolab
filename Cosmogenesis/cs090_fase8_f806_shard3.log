@@ -1,0 +1,12 @@
+[f806] N=4000 brazos=('solap', 'disj') layout=layout_resortes_N2_exacto theta=None
+[f806] 1 grafos: ['A2-B0-C2-r20']
+[1/1] A2-B0-C2-r20 seed=373769 lote=371828
+    piso: tri 7 -> 0  (37443 swaps, 12.7s)
+    solap: techo_conectado tri=676 (k=552/552) techo_libre=676 [144.9s]
+     disj: techo_conectado tri=1988 (k=1986/1986) techo_libre=1988 [245.7s]
+    T*=676  conseguidos={'solap': 676, 'disj': 676}  dif_max=0
+    solap  tri=676   C=0.06052 trans=0.07778 multi=0.896 gini=0.941 Q=0.0953 nodos=0.081 comp=37 gig=3865 pend=0.7627 ic=1562.01s
+     disj  tri=676   C=0.11682 trans=0.07778 multi=0.000 gini=0.576 Q=0.2679 nodos=0.462 comp=495 gig=3903 pend=0.6165 ic=794.1s
+    [grafo listo en 2799s]
+
+[f806] 2 filas -> cs090_fase8_f806_estructura_shard3.csv  (total 2799s)

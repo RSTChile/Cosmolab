@@ -1,0 +1,9 @@
+anima-desktop-runtime (0.1.0-dev) unstable; urgency=medium
+
+  * Primera versión del instalador PC/desktop.
+  * macOS: tarball + install_mac.sh + LaunchAgents + icono escritorio.
+  * Linux amd64: paquete .deb con systemd --user.
+  * Audio local por defecto; sin Rode ni ANIMA_OTROS_URLS.
+  * Identidad Ed25519 persistente en ~/.anima/identity.json.
+
+ -- VSTCosmo <anima@vstcosmo.local>  Tue, 07 Jul 2026 12:00:00 +0000

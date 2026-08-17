@@ -1,0 +1,9 @@
+baseline centro: 6 filas x 27 campos, diffs=0 IDENTICO
+borde frio (extincion): 4 filas x 27 campos, diffs=0 IDENTICO
+  DIFF fila1.pasos_recuperacion: 20000 vs 3000
+  DIFF fila1.rec_mediana: 20000 vs 3000
+  DIFF fila1.tasa_recuperacion: 0.00005 vs 0.0003333333333333333
+  DIFF fila2.Lambda: 5.798237517866827 vs 5.799363303314183
+  DIFF fila3.Lambda: 1.6349525101899218 vs 1.6341913848267215
+  DIFF fila4.Lambda: 10.282600292782687 vs 10.285761289350026
+modo inicio: 5 filas x 27 campos, diffs=6 DIFIERE

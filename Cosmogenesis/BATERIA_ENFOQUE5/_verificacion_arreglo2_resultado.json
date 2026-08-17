@@ -1,0 +1,440 @@
+{
+  "experimento": "verificacion_arreglo2_N_sweep",
+  "N_LIST": [
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "N_CALIB_BRUTE": [
+    64,
+    128,
+    256
+  ],
+  "K_ref": 4.470908254639334,
+  "detalle_K_ref": [
+    {
+      "N": 64,
+      "D": 0.008085957974448214,
+      "t_hit_mediana": 550,
+      "K": 4.4472768859465175
+    },
+    {
+      "N": 128,
+      "D": 0.002048689294152156,
+      "t_hit_mediana": 2200,
+      "K": 4.507116447134743
+    },
+    {
+      "N": 256,
+      "D": 0.0005138975005332568,
+      "t_hit_mediana": 8700,
+      "K": 4.470908254639334
+    }
+  ],
+  "NOISE_REL": 0.02,
+  "filas": [
+    {
+      "celda": "senal",
+      "N": 64,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.9009486754988959,
+      "X_null_mean": 0.11029872299768112,
+      "z": 14.404933943555744,
+      "deriva_E_max": 0.08392798743068752,
+      "deriva_E_mean": 0.05377705998699486
+    },
+    {
+      "celda": "lavado",
+      "N": 64,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.036154770834767896,
+      "X_null_mean": 0.0,
+      "z": 5.040498228582902,
+      "deriva_E_max": 0.12358930096753507,
+      "deriva_E_mean": 0.08174999337976585
+    },
+    {
+      "celda": "cero",
+      "N": 64,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 64,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.9682878312720811,
+      "X_null_mean": 0.061971993585325055,
+      "z": 30.599874975732163,
+      "deriva_E_max": 0.0034561905792664938,
+      "deriva_E_mean": 0.0020455117497248376
+    },
+    {
+      "celda": "lavado",
+      "N": 64,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03177638126753947,
+      "X_null_mean": 0.0,
+      "z": 302.6891999448805,
+      "deriva_E_max": 0.001979860446468251,
+      "deriva_E_mean": 0.001356216654585296
+    },
+    {
+      "celda": "cero",
+      "N": 64,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 128,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.9193636285371232,
+      "X_null_mean": 0.09560478812862436,
+      "z": 9.085884034739138,
+      "deriva_E_max": 0.11123931887499684,
+      "deriva_E_mean": 0.06884381460677808
+    },
+    {
+      "celda": "lavado",
+      "N": 128,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.031125574247445942,
+      "X_null_mean": 0.0013878238464778581,
+      "z": 3.8005380290432305,
+      "deriva_E_max": 0.16541893088406967,
+      "deriva_E_mean": 0.08542828477880593
+    },
+    {
+      "celda": "cero",
+      "N": 128,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 128,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.9829416280217635,
+      "X_null_mean": 0.014791105189461695,
+      "z": 117.64691561331293,
+      "deriva_E_max": 0.0017963936146381254,
+      "deriva_E_mean": 0.0010851734050143225
+    },
+    {
+      "celda": "lavado",
+      "N": 128,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03313079625186083,
+      "X_null_mean": 0.0015034780335771074,
+      "z": 29.740552927737568,
+      "deriva_E_max": 0.001796061702335483,
+      "deriva_E_mean": 0.0009136311978547584
+    },
+    {
+      "celda": "cero",
+      "N": 128,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 256,
+      "modo_ruido": "viejo",
+      "X_real_mean": 1.1408061796425621,
+      "X_null_mean": 0.06482424490717861,
+      "z": 5.047845529151545,
+      "deriva_E_max": 0.11699285560399231,
+      "deriva_E_mean": 0.05368676211768808
+    },
+    {
+      "celda": "lavado",
+      "N": 256,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.022053689002827365,
+      "X_null_mean": 0.0006579729828139377,
+      "z": 8.247603379756072,
+      "deriva_E_max": 0.21087160634833513,
+      "deriva_E_mean": 0.14301440817083028
+    },
+    {
+      "celda": "cero",
+      "N": 256,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 256,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.9906143644345111,
+      "X_null_mean": 0.01414222229471642,
+      "z": 71.45501655544295,
+      "deriva_E_max": 0.0019003735464411253,
+      "deriva_E_mean": 0.0010955552845853256
+    },
+    {
+      "celda": "lavado",
+      "N": 256,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03355070740285597,
+      "X_null_mean": 0.002947203180604882,
+      "z": 28.045806580664937,
+      "deriva_E_max": 0.0018903639072835876,
+      "deriva_E_mean": 0.0010344165417958129
+    },
+    {
+      "celda": "cero",
+      "N": 256,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 512,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.8961936469198436,
+      "X_null_mean": 0.36117235904885414,
+      "z": 0.724450850711267,
+      "deriva_E_max": 0.3913965631717363,
+      "deriva_E_mean": 0.19912032026308413
+    },
+    {
+      "celda": "lavado",
+      "N": 512,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.05712177715759257,
+      "X_null_mean": 0.0,
+      "z": 1.9760028084725778,
+      "deriva_E_max": 0.23974144235030526,
+      "deriva_E_mean": 0.12671004335729907
+    },
+    {
+      "celda": "cero",
+      "N": 512,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 512,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.9937602359746455,
+      "X_null_mean": 0.01712182228381757,
+      "z": 85.65056977894652,
+      "deriva_E_max": 0.0009443691579068547,
+      "deriva_E_mean": 0.0005851071078925019
+    },
+    {
+      "celda": "lavado",
+      "N": 512,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03372605139092551,
+      "X_null_mean": 0.00042729542939769514,
+      "z": 109.64057747230336,
+      "deriva_E_max": 0.0002766954312374281,
+      "deriva_E_mean": 0.00021695642454122588
+    },
+    {
+      "celda": "cero",
+      "N": 512,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 1024,
+      "modo_ruido": "viejo",
+      "X_real_mean": 1.0697816004928922,
+      "X_null_mean": 1.3178083465456811,
+      "z": -0.19203981012989718,
+      "deriva_E_max": 0.18571309724302398,
+      "deriva_E_mean": 0.08876930404069502
+    },
+    {
+      "celda": "lavado",
+      "N": 1024,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.02563327658213945,
+      "X_null_mean": 0.000573171377794688,
+      "z": 59.09260769508007,
+      "deriva_E_max": 0.4950323305391781,
+      "deriva_E_mean": 0.47995367358409086
+    },
+    {
+      "celda": "cero",
+      "N": 1024,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 1024,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.996226499001409,
+      "X_null_mean": 0.026236240350122262,
+      "z": 68.1659825328708,
+      "deriva_E_max": 0.0006905562739195626,
+      "deriva_E_mean": 0.0004374698672332811
+    },
+    {
+      "celda": "lavado",
+      "N": 1024,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03368450372692858,
+      "X_null_mean": 0.0,
+      "z": 492.37714072573993,
+      "deriva_E_max": 0.0005425126542546456,
+      "deriva_E_mean": 0.00029609702615629457
+    },
+    {
+      "celda": "cero",
+      "N": 1024,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 2048,
+      "modo_ruido": "viejo",
+      "X_real_mean": 2.8607673685233657,
+      "X_null_mean": 2.7458273721454622,
+      "z": 0.036483133853800254,
+      "deriva_E_max": 0.4428511153342598,
+      "deriva_E_mean": 0.2033527578768104
+    },
+    {
+      "celda": "lavado",
+      "N": 2048,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.1576095893234955,
+      "X_null_mean": 0.0,
+      "z": 7.311487880882842,
+      "deriva_E_max": 0.25207699990777543,
+      "deriva_E_mean": 0.24831848104666737
+    },
+    {
+      "celda": "cero",
+      "N": 2048,
+      "modo_ruido": "viejo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    },
+    {
+      "celda": "senal",
+      "N": 2048,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.9975708627179702,
+      "X_null_mean": 0.013721407505561872,
+      "z": 98.5136211721825,
+      "deriva_E_max": 0.000344577696094861,
+      "deriva_E_mean": 0.0001569403654846646
+    },
+    {
+      "celda": "lavado",
+      "N": 2048,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.03373428860704243,
+      "X_null_mean": 6.0024568361439117e-05,
+      "z": 774.2045345717287,
+      "deriva_E_max": 0.0008178142660587584,
+      "deriva_E_mean": 0.0004476516821503851
+    },
+    {
+      "celda": "cero",
+      "N": 2048,
+      "modo_ruido": "nuevo",
+      "X_real_mean": 0.0,
+      "X_null_mean": 0.0,
+      "z": 0.0,
+      "deriva_E_max": 0.0,
+      "deriva_E_mean": 0.0
+    }
+  ],
+  "veredicto": {
+    "deriva_E_max_ruido_VIEJO_en_N_mas_grande": 0.4428511153342598,
+    "deriva_E_max_ruido_NUEVO_en_N_mas_chico": 0.0034561905792664938,
+    "deriva_E_max_ruido_NUEVO_en_N_mas_grande": 0.000344577696094861,
+    "z_ruido_NUEVO_en_N_mas_chico": 30.599874975732163,
+    "z_ruido_NUEVO_en_N_mas_grande": 98.5136211721825,
+    "deriva_NUEVO_crece_mas_de_10x_entre_N_extremos": false,
+    "NULL_sigue_discriminando_en_N_grande_nuevo_ruido": true,
+    "ARREGLO_2_VERIFICADO": true
+  },
+  "elapsed_s": 1450.8263940811157,
+  "log": [
+    "[2026-07-25 06:26:00] [verificacion Arreglo 2] inicio",
+    "[2026-07-25 06:26:05] [calibracion K_ref] N_calib=[64, 128, 256] K_ref=4.4709",
+    "[2026-07-25 06:26:05] [N=64] D=8.085958e-03 pasos_fijo=636 H_senal=8.085958e-01",
+    "[2026-07-25 06:26:06]   [viejo] senal: z=14.405 deriva_E_max=8.3928e-02 | lavado deriva_E_max=1.2359e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:06]   [nuevo] senal: z=30.600 deriva_E_max=3.4562e-03 | lavado deriva_E_max=1.9799e-03 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:06] [N=64] completado en 0.6s",
+    "[2026-07-25 06:26:06] [N=128] D=2.048689e-03 pasos_fijo=2510 H_senal=2.048689e-01",
+    "[2026-07-25 06:26:07]   [viejo] senal: z=9.086 deriva_E_max=1.1124e-01 | lavado deriva_E_max=1.6542e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:09]   [nuevo] senal: z=117.647 deriva_E_max=1.7964e-03 | lavado deriva_E_max=1.7961e-03 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:09] [N=128] completado en 2.7s",
+    "[2026-07-25 06:26:09] [N=256] D=5.138975e-04 pasos_fijo=10005 H_senal=5.138975e-02",
+    "[2026-07-25 06:26:14]   [viejo] senal: z=5.048 deriva_E_max=1.1699e-01 | lavado deriva_E_max=2.1087e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:18]   [nuevo] senal: z=71.455 deriva_E_max=1.9004e-03 | lavado deriva_E_max=1.8904e-03 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:26:18] [N=256] completado en 9.9s",
+    "[2026-07-25 06:26:18] [N=512] D=1.285826e-04 pasos_fijo=39987 H_senal=1.285826e-02",
+    "[2026-07-25 06:26:42]   [viejo] senal: z=0.724 deriva_E_max=3.9140e-01 | lavado deriva_E_max=2.3974e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:27:07]   [nuevo] senal: z=85.651 deriva_E_max=9.4437e-04 | lavado deriva_E_max=2.7670e-04 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:27:07] [N=512] completado en 48.7s",
+    "[2026-07-25 06:27:07] [N=1024] D=3.215242e-05 pasos_fijo=159912 H_senal=3.215242e-03",
+    "[2026-07-25 06:29:04]   [viejo] senal: z=-0.192 deriva_E_max=1.8571e-01 | lavado deriva_E_max=4.9503e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:31:08]   [nuevo] senal: z=68.166 deriva_E_max=6.9056e-04 | lavado deriva_E_max=5.4251e-04 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:31:08] [N=1024] completado en 240.7s",
+    "[2026-07-25 06:31:08] [N=2048] D=8.038528e-06 pasos_fijo=639613 H_senal=8.038528e-04",
+    "[2026-07-25 06:40:44]   [viejo] senal: z=0.036 deriva_E_max=4.4285e-01 | lavado deriva_E_max=2.5208e-01 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:50:11]   [nuevo] senal: z=98.514 deriva_E_max=3.4458e-04 | lavado deriva_E_max=8.1781e-04 | cero deriva_E_max=0.0000e+00",
+    "[2026-07-25 06:50:11] [N=2048] completado en 1142.8s",
+    "[2026-07-25 06:50:11] [fin] elapsed=1450.8s"
+  ]
+}

@@ -74,7 +74,7 @@ CORRELACION_MIN = 0.50
 SETPOINTS_POSIBLES = [-60, 0, 60]
 
 # Ruta de audios
-AUDIO_DIR = "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural"
+AUDIO_DIR = "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural"
 
 # Audios a probar
 AUDIOS_PRUEBA = [

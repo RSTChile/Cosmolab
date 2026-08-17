@@ -1,0 +1,8 @@
+08 MF6 Q topologico
+step   0 a=  1.0 K=0.368 Q_k1=0.000 Q_k3_perim8=0.353 k1=28 k3=7
+step 100 a=  3.3 K=0.740 Q_k1=0.000 Q_k3_perim8=0.000 k1=0 k3=0
+step 200 a= 11.0 K=0.913 Q_k1=0.000 Q_k3_perim8=0.095 k1=0 k3=1
+step 300 a= 36.6 K=0.973 Q_k1=0.000 Q_k3_perim8=0.000 k1=0 k3=0
+step 400 a=121.5 K=0.992 Q_k1=0.000 Q_k3_perim8=0.000 k1=0 k3=0
+FIN 08: Q topologico discrimina k3 coherente vs k1 trivial?
+EXIT:0

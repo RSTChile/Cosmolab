@@ -1,0 +1,68 @@
+=== SUITE ÉPOCAS MASA v2 (E3 estricto + E4 nulos) ===
+
+--- E3 strict atoms ---
+  E3_strict rate=1.00 n=48
+--- E4 causal controls (real/off/shuffle/invert) ---
+  seed=    7 E3=True causal_mass=False dens_causal=False mR=58.90 mO=0.00 mS=0.00 dR=7.67 dS=7.61
+  seed=   42 E3=True causal_mass=False dens_causal=False mR=61.10 mO=0.00 mS=0.00 dR=7.82 dS=7.40
+  seed=   99 E3=True causal_mass=False dens_causal=True mR=82.86 mO=0.00 mS=0.00 dR=9.10 dS=8.60
+  seed=  777 E3=True causal_mass=False dens_causal=False mR=39.74 mO=0.00 mS=0.00 dR=6.30 dS=6.39
+  seed= 2025 E3=True causal_mass=False dens_causal=False mR=67.70 mO=0.00 mS=0.00 dR=8.23 dS=8.97
+  seed= 3141 E3=True causal_mass=False dens_causal=False mR=60.91 mO=0.00 mS=0.00 dR=7.80 dS=8.50
+  seed= 8191 E3=True causal_mass=True dens_causal=True mR=103.05 mO=0.00 mS=0.00 dR=10.15 dS=7.38
+  seed=99991 E3=True causal_mass=False dens_causal=False mR=84.56 mO=0.00 mS=0.00 dR=9.20 dS=9.14
+  seed=12345 E3=True causal_mass=False dens_causal=False mR=46.06 mO=0.00 mS=0.00 dR=6.79 dS=7.68
+  seed=54321 E3=True causal_mass=False dens_causal=False mR=43.62 mO=0.00 mS=0.00 dR=6.60 dS=7.39
+--- E4 sweep G ---
+  G=0.00 causal=0.00 mR=0.00 dR/dS=1.00
+  G=0.05 causal=0.00 mR=54.50 dR/dS=0.97
+  G=0.10 causal=0.00 mR=54.39 dR/dS=0.97
+  G=0.15 causal=0.00 mR=56.18 dR/dS=0.99
+  G=0.20 causal=0.00 mR=54.78 dR/dS=0.98
+  G=0.25 causal=0.00 mR=54.30 dR/dS=0.97
+  G=0.30 causal=0.00 mR=63.16 dR/dS=1.03
+  G=0.35 causal=0.33 mR=64.33 dR/dS=1.07
+  G=0.40 causal=0.33 mR=72.99 dR/dS=1.14
+
+JSON → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v2/suite_epocas_masa_v2_result.json
+MD  → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v2/RESUMEN_SUITE_EPOCAS_MASA_v2.md
+
+=== GLOBAL === E3_OK_E4_CAUSAL_WEAK
+{
+  "global_verdict": "E3_OK_E4_CAUSAL_WEAK",
+  "E3_strict_rate": 1.0,
+  "E4_causal_mass_rate": 0.1,
+  "E4_dens_causal_rate": 0.2,
+  "mass_nulls_clean": true,
+  "zero_mass_pre_rate": 1.0,
+  "mean_mass_real": 64.84907124543108,
+  "mean_mass_off": 0.0,
+  "mean_mass_shuffle": 0.0,
+  "mean_mass_invert": 0.0,
+  "mean_dens_real": 7.966808432066958,
+  "mean_dens_shuffle": 7.9045342543295565,
+  "mean_dens_off": 1.0,
+  "mean_leak_v3_not_mass": 0.19001919298717102,
+  "thresholds_E3": {
+    "K": [
+      4,
+      14
+    ],
+    "f_core": [
+      0.15,
+      0.75
+    ],
+    "cohesion": [
+      1.2,
+      6.5
+    ],
+    "PERSIST_STEPS": 4
+  },
+  "thresholds_E4": {
+    "DENS_ENHANCE_MIN": 1.25,
+    "MASS_REAL_MIN": 0.5,
+    "DENS_VS_SHUFFLE_MIN": 1.15
+  },
+  "elapsed_s": 1191.250569820404,
+  "note": "mass_obs solo en grav_mode=real; shuffle/invert/off \u2192 mass=0. leak_sep = instrumento v3 ilegal como masa (solo monitoreo)."
+}

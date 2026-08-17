@@ -1,0 +1,20 @@
+[verificacion] comparando física vectorizada vs escalar (cs074_rcruz)...
+[verificacion] OK max_diff_phi=0.00e+00 max_diff_X=0.00e+00
+[verificacion ARREGLO 3] OK max_diff_Xcanonica=0.00e+00
+[calibracion] midiendo t_muerte (pasos a H=0 para X<THR_MUERTE sostenido)...
+[calibracion] t_muerte_cal(mediana)=7200 tiempos=[7200, 7200, 7200, 7200, 7200, 7200] todas_murieron=True
+[grid] post_pasos=14400 momento_steps={0.0: 0, 0.5: 3600, 1.0: 7200, 2.0: 14400, 4.0: 28800, 8.0: 57600, 16.0: 115200, 32.0: 230400}
+[fase A] evolucionando 16 semillas en lote hasta T_MAX...
+[fase A] hecha en 10.1s
+[momento 0.0 (step 0)] hecho en 3.0s (1/8)
+[momento 0.5 (step 3600)] hecho en 2.9s (2/8)
+[momento 1.0 (step 7200)] hecho en 3.2s (3/8)
+[momento 2.0 (step 14400)] hecho en 3.5s (4/8)
+[momento 4.0 (step 28800)] hecho en 3.3s (5/8)
+[momento 8.0 (step 57600)] hecho en 3.2s (6/8)
+[momento 16.0 (step 115200)] hecho en 3.9s (7/8)
+[momento 32.0 (step 230400)] hecho en 3.5s (8/8)
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_3_reversibilidad_muerte/E5_5_3_resultado_crudo.json
+[filas_real] 1664 [filas_null] 128
+[elapsed] 37.0s

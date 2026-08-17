@@ -1,0 +1,99 @@
+==== VERIFICACIÓN HITO V176 ====
+script   : V176.py
+sha1[:12]: 02451b2a7d65
+mtime    : 2026-06-04T02:13:45.603959
+reporta  : V176: R_op, primer 'No' operativo
+inicio   : 2026-06-22T01:26:09.693790
+======================================================================
+
+====================================================================================================
+EXPERIMENTO V176 — ANIMA-2: DELIBERACIÓN CON MEMORIA DE TRABAJO
+====================================================================================================
+  BASE: V175 (valencia local funciona)
+  NUEVO: Memoria de trabajo + deliberación
+  DISEÑO:
+    1. Consolidación de hábito (-60°) por 30 ciclos
+    2. Trauma específico en +60° (costo 2x, 15s)
+    3. Test de elección con DELIBERACIÓN (simula opciones antes de actuar)
+
+  CRITERIOS DE ÉXITO:
+    - Prefiere -60°: P(elegir -60°) > 60%
+    - Rechaza +60°: P(elegir +60°) < 10%
+    - Tiempo deliberación > 0.5s
+    - Valencia diferencial: val(-60°) - val(+60°) > 0.5
+====================================================================================================
+
+  Creando organismo...
+
+  Entrenando lateralidad (10 repeticiones)...
+  Entrenamiento completado.
+
+============================================================
+FASE 1: Consolidación del hábito (30 ciclos a -60°)
+============================================================
+    Ciclo 10/30, valencia(-60°) ≈ 7.42
+    Ciclo 20/30, valencia(-60°) ≈ 16.20
+    Ciclo 30/30, valencia(-60°) ≈ 25.00
+  Valencia final -60°: 25.00
+
+============================================================
+FASE 2: Trauma específico (15.0s a +60°, costo 2.0x)
+============================================================
+  Valencia final +60°: -0.97
+
+============================================================
+FASE 3: Test de elección con DELIBERACIÓN (30.0s)
+  (El organismo simula opciones antes de decidir)
+============================================================
+
+================================================================================
+RESULTADOS V176 — Deliberación con memoria de trabajo
+================================================================================
+
+  📊 PREFERENCIAS (sobre 2994 elecciones):
+    -60°: 64.80% ✅ HÁBITO
+    -30°: 5.01%
+    +0°: 17.23%
+    +30°: 12.96%
+    +60°: 0.00% ⚠️ TRAUMA
+
+  📊 VALENCIA LOCAL (memoria largo plazo):
+    -60°: Valencia = 24.29 ✅ HÁBITO
+    -30°: Valencia = -0.03
+    +0°: Valencia = -0.03
+    +30°: Valencia = -0.03
+    +60°: Valencia = -0.98 ⚠️ TRAUMA
+
+  📊 MÉTRICAS DE DELIBERACIÓN:
+    Tiempo deliberación promedio: 1.677s
+    Desacople medio en F3: 0.352
+
+  📊 CRITERIOS DE ÉXITO:
+    Prefiere -60°: 64.80% > 60% -> ✅
+    Rechaza +60°: 0.00% < 10% -> ✅
+    Tiempo deliberación: 1.677s > 0.5s -> ✅
+    Valencia diferencial: ΔVal = 25.27 > 0.5 -> ✅
+
+================================================================================
+  ✅ PRIMER 'NO' OPERATIVO (R_op) DEMOSTRADO
+
+     ANIMA-2 demuestra:
+     ✓ Preferencia clara por el hábito seguro (-60°)
+     ✓ Rechazo específico del trauma (+60°)
+     ✓ Tiempo de deliberación medible (simulación interna)
+     ✓ Valencia local diferencial
+
+  ANIMA-2 completa el ciclo cosmosemiótico:
+     Memoria → Cb → Juego → Ritual → Rᴿ → R_op
+================================================================================
+
+  📁 Datos crudos guardados: V176_logs/v176_raw_20260622_012610.json
+
+  📊 Gráficos guardados: V176_logs/v176_deliberacion_20260622_012610.png
+
+  ⏱️ Tiempo de ejecución: 13.9 minutos
+
+  V176 completado. Éxito: True
+
+
+[fin rc=0 840s]

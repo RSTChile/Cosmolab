@@ -1,0 +1,145 @@
+============================================================================================================
+CS071 TANDA BLINDADA
+brazos=['histeresis', 'null_barajado', 'sin_proceso', 'histeresis_sobre_reticula']  N=[400, 900, 1600]  semillas/brazo=8
+cronograma: REFUERZO=0.04 DECAY=0.99 PRUNE_FRAC=0.15 PASOS=30 WS_K=6 WS_P=0.1
+============================================================================================================
+  [histeresis                 N=  400 s=0] diam=9.0 frac_gig=0.995 delta_g=0.500 grado_max=8 grado_medio=5.46 (t=0.0min)
+  [histeresis                 N=  400 s=1] diam=8.0 frac_gig=0.990 delta_g=0.500 grado_max=9 grado_medio=5.46 (t=0.0min)
+  [histeresis                 N=  400 s=2] diam=9.5 frac_gig=0.995 delta_g=0.500 grado_max=10 grado_medio=5.29 (t=0.0min)
+  [histeresis                 N=  400 s=3] diam=8.0 frac_gig=0.995 delta_g=0.500 grado_max=9 grado_medio=5.57 (t=0.0min)
+  [histeresis                 N=  400 s=4] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=5.50 (t=0.1min)
+  [histeresis                 N=  400 s=5] diam=9.0 frac_gig=0.995 delta_g=0.500 grado_max=8 grado_medio=5.43 (t=0.1min)
+  [histeresis                 N=  400 s=6] diam=9.0 frac_gig=0.995 delta_g=0.500 grado_max=8 grado_medio=5.50 (t=0.1min)
+  [histeresis                 N=  400 s=7] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=5.55 (t=0.1min)
+  [histeresis                 N=  900 s=0] diam=10.0 frac_gig=0.996 delta_g=0.500 grado_max=8 grado_medio=5.52 (t=0.1min)
+  [histeresis                 N=  900 s=1] diam=10.0 frac_gig=0.998 delta_g=0.500 grado_max=9 grado_medio=5.49 (t=0.1min)
+  [histeresis                 N=  900 s=2] diam=10.0 frac_gig=0.996 delta_g=0.500 grado_max=9 grado_medio=5.51 (t=0.2min)
+  [histeresis                 N=  900 s=3] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=5.60 (t=0.2min)
+  [histeresis                 N=  900 s=4] diam=11.0 frac_gig=0.996 delta_g=0.500 grado_max=8 grado_medio=5.42 (t=0.2min)
+  [histeresis                 N=  900 s=5] diam=10.0 frac_gig=0.987 delta_g=0.500 grado_max=9 grado_medio=5.48 (t=0.3min)
+  [histeresis                 N=  900 s=6] diam=10.0 frac_gig=0.998 delta_g=0.500 grado_max=9 grado_medio=5.46 (t=0.3min)
+  [histeresis                 N=  900 s=7] diam=10.0 frac_gig=0.998 delta_g=0.500 grado_max=9 grado_medio=5.54 (t=0.3min)
+  [histeresis                 N= 1600 s=0] diam=11.5 frac_gig=0.995 delta_g=0.500 grado_max=9 grado_medio=5.39 (t=0.4min)
+  [histeresis                 N= 1600 s=1] diam=11.0 frac_gig=0.998 delta_g=0.500 grado_max=10 grado_medio=5.55 (t=0.4min)
+  [histeresis                 N= 1600 s=2] diam=11.0 frac_gig=0.995 delta_g=0.500 grado_max=10 grado_medio=5.44 (t=0.5min)
+  [histeresis                 N= 1600 s=3] diam=10.0 frac_gig=0.994 delta_g=0.500 grado_max=9 grado_medio=5.50 (t=0.5min)
+  [histeresis                 N= 1600 s=4] diam=11.0 frac_gig=0.995 delta_g=0.500 grado_max=9 grado_medio=5.54 (t=0.6min)
+  [histeresis                 N= 1600 s=5] diam=11.0 frac_gig=0.998 delta_g=0.500 grado_max=9 grado_medio=5.48 (t=0.6min)
+  [histeresis                 N= 1600 s=6] diam=12.0 frac_gig=0.994 delta_g=0.500 grado_max=10 grado_medio=5.44 (t=0.7min)
+  [histeresis                 N= 1600 s=7] diam=11.0 frac_gig=0.991 delta_g=0.500 grado_max=9 grado_medio=5.51 (t=0.7min)
+  [null_barajado              N=  400 s=0] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=8 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=1] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=2] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=3] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=4] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=8 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=5] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=8 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=6] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  400 s=7] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=8 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  900 s=0] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  900 s=1] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.7min)
+  [null_barajado              N=  900 s=2] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N=  900 s=3] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N=  900 s=4] diam=9.5 frac_gig=1.000 delta_g=0.500 grado_max=11 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N=  900 s=5] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N=  900 s=6] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N=  900 s=7] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=0] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=1] diam=9.5 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=2] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=3] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=4] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=5] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.8min)
+  [null_barajado              N= 1600 s=6] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=10 grado_medio=6.00 (t=0.9min)
+  [null_barajado              N= 1600 s=7] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=0] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=1] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=2] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=8 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=3] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=4] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=5] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=6] diam=7.5 frac_gig=1.000 delta_g=0.500 grado_max=10 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  400 s=7] diam=8.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=0] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=1] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=2] diam=9.5 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=3] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=4] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=5] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=6] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N=  900 s=7] diam=9.5 frac_gig=1.000 delta_g=0.500 grado_max=10 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=0] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=1] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=2] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=10 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=3] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=4] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=5] diam=10.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=6] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=9 grado_medio=6.00 (t=0.9min)
+  [sin_proceso                N= 1600 s=7] diam=9.0 frac_gig=1.000 delta_g=0.500 grado_max=10 grado_medio=6.00 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=0] diam=31.0 frac_gig=0.820 delta_g=0.000 grado_max=4 grado_medio=2.40 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=1] diam=44.5 frac_gig=0.785 delta_g=0.000 grado_max=4 grado_medio=2.15 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=2] diam=31.0 frac_gig=0.705 delta_g=0.000 grado_max=4 grado_medio=2.07 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=3] diam=31.5 frac_gig=0.850 delta_g=1.000 grado_max=4 grado_medio=2.31 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=4] diam=36.0 frac_gig=0.830 delta_g=1.000 grado_max=4 grado_medio=2.25 (t=0.9min)
+  [histeresis_sobre_reticula  N=  400 s=5] diam=36.0 frac_gig=0.818 delta_g=1.000 grado_max=4 grado_medio=2.22 (t=1.0min)
+  [histeresis_sobre_reticula  N=  400 s=6] diam=29.5 frac_gig=0.575 delta_g=0.000 grado_max=4 grado_medio=2.19 (t=1.0min)
+  [histeresis_sobre_reticula  N=  400 s=7] diam=32.0 frac_gig=0.762 delta_g=0.000 grado_max=4 grado_medio=2.19 (t=1.0min)
+  [histeresis_sobre_reticula  N=  900 s=0] diam=56.0 frac_gig=0.809 delta_g=1.000 grado_max=4 grado_medio=2.29 (t=1.0min)
+  [histeresis_sobre_reticula  N=  900 s=1] diam=64.5 frac_gig=0.837 delta_g=1.000 grado_max=4 grado_medio=2.29 (t=1.0min)
+  [histeresis_sobre_reticula  N=  900 s=2] diam=50.0 frac_gig=0.801 delta_g=2.000 grado_max=4 grado_medio=2.30 (t=1.1min)
+  [histeresis_sobre_reticula  N=  900 s=3] diam=68.0 frac_gig=0.746 delta_g=0.000 grado_max=4 grado_medio=2.24 (t=1.1min)
+  [histeresis_sobre_reticula  N=  900 s=4] diam=57.0 frac_gig=0.813 delta_g=1.000 grado_max=4 grado_medio=2.26 (t=1.1min)
+  [histeresis_sobre_reticula  N=  900 s=5] diam=47.0 frac_gig=0.708 delta_g=1.000 grado_max=4 grado_medio=2.21 (t=1.1min)
+  [histeresis_sobre_reticula  N=  900 s=6] diam=43.0 frac_gig=0.623 delta_g=1.000 grado_max=4 grado_medio=2.18 (t=1.2min)
+  [histeresis_sobre_reticula  N=  900 s=7] diam=56.0 frac_gig=0.769 delta_g=1.000 grado_max=4 grado_medio=2.22 (t=1.2min)
+  [histeresis_sobre_reticula  N= 1600 s=0] diam=59.0 frac_gig=0.809 delta_g=2.000 grado_max=4 grado_medio=2.28 (t=1.2min)
+  [histeresis_sobre_reticula  N= 1600 s=1] diam=64.0 frac_gig=0.809 delta_g=2.000 grado_max=4 grado_medio=2.31 (t=1.3min)
+  [histeresis_sobre_reticula  N= 1600 s=2] diam=66.0 frac_gig=0.776 delta_g=2.000 grado_max=4 grado_medio=2.31 (t=1.3min)
+  [histeresis_sobre_reticula  N= 1600 s=3] diam=64.5 frac_gig=0.798 delta_g=1.000 grado_max=4 grado_medio=2.32 (t=1.4min)
+  [histeresis_sobre_reticula  N= 1600 s=4] diam=69.0 frac_gig=0.776 delta_g=2.000 grado_max=4 grado_medio=2.35 (t=1.4min)
+  [histeresis_sobre_reticula  N= 1600 s=5] diam=67.0 frac_gig=0.834 delta_g=2.000 grado_max=4 grado_medio=2.36 (t=1.4min)
+  [histeresis_sobre_reticula  N= 1600 s=6] diam=71.5 frac_gig=0.810 delta_g=2.000 grado_max=4 grado_medio=2.24 (t=1.5min)
+  [histeresis_sobre_reticula  N= 1600 s=7] diam=62.5 frac_gig=0.855 delta_g=1.000 grado_max=4 grado_medio=2.45 (t=1.5min)
+
+tiempo total: 1.53 min -- resultados en cs071_tanda_resultados.json
+
+============================================================================================================
+AGREGADO por brazo (blindaje de semillas)
+============================================================================================================
+
+  histeresis:
+    diam(N): [(400, 8.94), (900, 10.12), (1600, 11.06)]
+    β (pendiente log-log) = 0.154  (0.5=métrico, 0=mundo-pequeño)
+    frac_gigante media=0.995 IC95%=[0.994,0.997]
+    δ-Gromov media=0.500  grado_max medio=8.96  grado_medio medio=5.48  HUB=no
+
+  null_barajado:
+    diam(N): [(400, 8.25), (900, 8.94), (1600, 9.94)]
+    β (pendiente log-log) = 0.132  (0.5=métrico, 0=mundo-pequeño)
+    frac_gigante media=1.000 IC95%=[1.000,1.000]
+    δ-Gromov media=0.500  grado_max medio=8.96  grado_medio medio=6.00  HUB=no
+
+  sin_proceso:
+    diam(N): [(400, 7.94), (900, 9.12), (1600, 9.62)]
+    β (pendiente log-log) = 0.141  (0.5=métrico, 0=mundo-pequeño)
+    frac_gigante media=1.000 IC95%=[1.000,1.000]
+    δ-Gromov media=0.500  grado_max medio=9.12  grado_medio medio=6.00  HUB=no
+
+  histeresis_sobre_reticula:
+    diam(N): [(400, 33.94), (900, 55.19), (1600, 65.44)]
+    β (pendiente log-log) = 0.482  (0.5=métrico, 0=mundo-pequeño)
+    frac_gigante media=0.780 IC95%=[0.753,0.807]
+    δ-Gromov media=1.042  grado_max medio=4.00  grado_medio medio=2.27  HUB=no
+
+============================================================================================================
+VEREDICTO
+============================================================================================================
+  histeresis: β=0.154 hub=False frac_gigante=0.995 -> no métrico
+  null_barajado: β=0.132 hub=False -> no métrico
+  sin_proceso: β=0.141
+  histeresis_sobre_reticula (control positivo): β=0.482 frac_gigante=0.780 hub=False
+
+(B) HISTERESIS ≈ NULL_BARAJADO ≈ SIN_PROCESO en log N -> la memoria NO metriciza. Cuarta
+ruta al mismo muro. Consistente con la predicción pre-registrada de CS y con el mecanismo
+medido (el tránsito ciego carga los atajos).
+
+tiempo total: 1.53 min

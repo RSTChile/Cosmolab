@@ -1,0 +1,24 @@
+=== 1) MOTOR COMPLETO D=3 (este universo) ===
+  bariones          = 100  (esperado 100)
+  ratio p:n         = 7.1  (esperado 7.1)
+  hidrogeno         = 50  (esperado 50)
+  helio             = 25  (esperado 25)
+  tiempo            = 75  (esperado 75 = H+He)
+  dim ACOPLADA      = 2.05  (esperado ~2.0-2.4, átomos reales)
+  dim ENSEMBLE      = 2.77  (esperado ~2.77, ley del régimen)
+  oscura_necesaria  = True  (esperado True)
+  invariante        = True  (esperado True)
+
+=== 2) BARRIDO DE BANDA: dimensión vs nº de distinciones (otros universos posibles) ===
+  D | dim_ensemble | invariante   (esperado: crece con D, invariante en las 5)
+  1 |    1.0       | True
+  2 |    2.24      | True
+  3 |    2.77      | True
+  4 |    3.33      | True
+  5 |    3.41      | True
+
+=== 3) GUARDIÁN anti-Shannon: apagar una fuerza destruye su estructura ===
+  (nombres-clave EXACTOS: 3_fuerte, 4_em, 8_aniquilacion, 2_gravedad, 23_fluctuaciones)
+  apagar 3_fuerte    : H=50 He=0   (esperado He=0: sin fuerza fuerte no hay fusión)
+  apagar 4_em        : H=0 He=25   (esperado H=0: sin EM no se liga protón+electrón)
+  apagar 4_em dim_acoplada = None  (esperado None: sin átomos, la geometría COLAPSA)

@@ -1,0 +1,13 @@
+====================================================================================================
+O1-B — ¿las 2 no-monotonías del CSV histórico de cs080 son el bug o azar de recubrimiento?
+sustrato: arm=local_barajado seed=80100 N=8000 · 40 recubrimientos por escala (8, 16)
+====================================================================================================
+  sustrato construido (48s, aristas=29951)
+
+  b=8   diám viejo: min=3 max=5 media=3.70  valores=[3, 4, 5]   descarrilamientos=0/40   viejo!=corregido=0/40
+  b=16  diám viejo: min=3 max=4 media=3.58  valores=[3, 4]   descarrilamientos=0/40   viejo!=corregido=0/40
+
+  pares (b=8, b=16) cruzados: 1600   con diám(16) > diám(8): 345 (21.6%)
+  descarrilamientos TOTALES en las 80 réplicas: 0
+
+[csv] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o1b_monotonia_cs080.csv (80 filas, 61s)

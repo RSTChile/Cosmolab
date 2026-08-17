@@ -1,0 +1,7 @@
+=== CS072 v5 -- gradiente termico + expansion, motor completo (21 piezas) ===
+
+--- 4 BRAZOS DE CONTROL (N moderado: 30q/21aq/10e/7p) ---
+
+--- INVARIANCIA DURA (brazo D, mismo catalogo) ---
+
+--- BARRIDO DE N (solo brazo D) ---

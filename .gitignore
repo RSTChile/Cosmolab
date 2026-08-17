@@ -1,0 +1,129 @@
+# Exclusiones solicitadas para la publicacion de Cosmolab
+/Teor*a Cosmosemi*tica/
+/SDRunoPlugin_Cosmo/
+/marcha-motor/
+/Fondo de Microondas/
+/Falsacion-S/
+/Cosmotesla/
+/Cosmolab_audio_preserved/
+/Cosmoclima/infraestructura/
+/results/
+
+# Estado local de herramientas y editores
+**/.DS_Store
+**/._*
+**/.claude/
+**/.codex/
+**/.grok/
+**/.cursor/
+**/.cursorignore
+**/.idea/
+**/.vscode/
+**/*.swp
+**/*~
+**/~$*
+
+# Entornos, caches y productos de construccion
+**/__pycache__/
+**/*.py[cod]
+**/.venv*/
+**/venv/
+**/venv
+**/venv */
+**/venv_*/
+**/node_modules/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/build/
+**/dist/
+**/*_cache/
+**/*_cache.bin
+**/*.exe
+**/*.deb
+**/*.dmg
+**/*.pid
+**/*.tmp
+**/.!*
+**/*.antes-*
+**/*.pre-*
+**/*.loop
+
+# Configuracion privada o especifica de una maquina
+**/.env
+**/.env.*
+**/*.env
+!**/.env.example
+**/settings.local.json
+**/Agents.md
+**/*.code-workspace
+**/ESTADO_SESION_*.md
+**/wifi_config.h
+**/*private*.pem
+**/*private*.key
+**/*credentials*
+**/*secret*
+**/certificado-titularidad_*.pdf
+
+# Respaldos y memoria operacional local
+**/*.bak
+**/*.bak-*
+**/*.backup
+**/*.backup-*
+**/*_BACKUP_*/
+**/*BACKUP*.zip
+**/_backup*/
+**/sd_backup_*/
+**/MEMORY.md
+**/MEMORY *.md
+**/.codex_permission_probe
+
+# Datos y paquetes locales demasiado grandes o regenerables
+/Cosmoclima/datos/
+/Cosmoclima/investigacion/fuentes/
+/Cosmoclima/cr2_prDaily_2018/
+/Cosmoclima/cr2_prAmon_2019/
+/Cosmoclima/Database Gyriosomus phylogeny/
+/Cosmoclima/Database_Gyriosomus_Phylogeny.rar
+/Cosmoclima/Web/prueba_de_concepto/imagenes/*.tif
+/Cosmoclima/investigacion/*.pdf
+/Cosmoclima/investigacion/*.docx
+/Cosmoclima/investigacion/*.xlsx
+/EIT3-Termico/Old/
+/EIT3-Termico/1979, Lovelock, James; Las edades de Gaia.docx
+/VSTCosmo/Célula_Madre/hardware/mayhem_firmware/
+/VSTCosmo/Docker_Historia
+/VSTCosmo/venv 2
+/VSTCosmo/CelulaMadre_logs/
+/VSTCosmo/Célula_Madre/conversacion/registro/
+/VSTCosmo/Célula_Madre/docker/*.log
+/VSTCosmo/Célula_Madre/docker/cabeza-e-fb1.env
+/VSTCosmo/Célula_Madre/experimentos/log_*.txt
+/VSTCosmo/Célula_Madre/ANIMA_PI_ESTADO.md
+/VSTCosmo/_docscan/
+/VSTCosmo/_run*/
+/VSTCosmo/vstcosmo.db
+/VSTCosmo/Lego Mindstorm NXT 2006.pdf
+/VSTCosmo/Lego Mindstorm NXT.pdf
+/Cosmogenesis/papers/
+
+# Material operativo local con rutas o credenciales de dispositivos
+/Cosmogenesis/Cosmogenesis-Web/raw/
+/Cosmogenesis/INSTRUCCION_SSH_RPI_PARA_CS.md
+/VSTCosmo/Célula_Madre/Experimentos de Estres/_PLAN_AUTONOMO.md
+/VSTCosmo/Célula_Madre/INFORME_CIERRE_HW_CLOROPLASTO_E_WIFI_2026-07-05.md
+/VSTCosmo/Célula_Madre/INFORME_RADIO_TX_RX_2026-07-04.md
+/VSTCosmo/Célula_Madre/INFORME_SESION_HARDWARE_2026-07.html
+/VSTCosmo/Célula_Madre/INFORME_SESION_HARDWARE_2026-07.md
+/VSTCosmo/Célula_Madre/INFORME_SESION_HARDWARE_2026-07.pdf
+/VSTCosmo/Célula_Madre/RADIO_RESILIENCIA_A_y_E_2026-07-05.md
+/VSTCosmo/Célula_Madre/RADIO_RESILIENCIA_A_y_E_2026-07-05.pdf
+/VSTCosmo/Célula_Madre/docker/configurar-cabeza-e-fb1.sh
+/VSTCosmo/Célula_Madre/docker/ejecutar-cabeza-e-fb1-vnc.sh
+/VSTCosmo/Célula_Madre/docker/setup-pi-sudo.sh
+/VSTCosmo/Célula_Madre/experimentos/atmega_wifi/README_ATMEGA_WIFI.md
+/VSTCosmo/Célula_Madre/experimentos/ptz_camara/
+/VSTCosmo/Célula_Madre/organelos/VST_IntegracionE.py
+/VSTCosmo/Célula_Madre/organelos/VST_OrganoVisionPTZ.py
+/VSTCosmo/Célula_Madre/packaging/anima-pi-runtime/bin/anima
+/VSTCosmo/Célula_Madre/web/VST_CelulaMadre_WebLive_[A-D].py

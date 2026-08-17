@@ -1,0 +1,111 @@
+=== amp_asimetria=0.01 ===
+  T_final=31.4103  hitos={'expansion_supraluminica': False, 'T_bajo_electrodebil': True, 'T_bajo_confinamiento': False, 'hay_sobredensidad': False, 'hay_nucleos': False, 'hay_atomos': False, 'hay_red': False, 'n_celdas_sobredensas': 0, 'n_celdas_nucleo': 0, 'n_celdas_atomo': 0, 'n_regiones_atomo': 0, 'T_media': 31.410266046479677}
+  despiertos: 10/23  dormidos: 13/23
+    paso      0  23_campo
+    paso      0  22_qcd
+    paso      0  9_expansion
+    paso      0  10_enfriamiento
+    paso      0  M1_semilla
+    paso      0  M3_fase_cuantica
+    paso      1  5_debil
+    paso      1  7_masa
+    paso      1  6_catalogo
+    paso      1  16_ssb
+  DORMIDOS (hito que falta):
+    3_fuerte             requiere ['T_bajo_confinamiento']
+    8_aniquilacion       requiere ['T_bajo_confinamiento']
+    1_espin              requiere ['T_bajo_confinamiento']
+    11_tres_cuerpos      requiere ['T_bajo_confinamiento']
+    13_pauli             requiere ['T_bajo_confinamiento']
+    2_gravedad           requiere ['hay_sobredensidad']
+    12_localidad         requiere ['hay_sobredensidad']
+    4_em                 requiere ['hay_nucleos']
+    14_correlacion       requiere ['hay_atomos']
+    M2_memoria           requiere ['hay_atomos']
+    17_oscuro            requiere ['hay_atomos']
+    18_poda              requiere ['hay_red']
+    15_causal            requiere ['hay_red']
+=== amp_asimetria=0.1 ===
+  T_final=31.4103  hitos={'expansion_supraluminica': False, 'T_bajo_electrodebil': True, 'T_bajo_confinamiento': False, 'hay_sobredensidad': False, 'hay_nucleos': False, 'hay_atomos': False, 'hay_red': False, 'n_celdas_sobredensas': 0, 'n_celdas_nucleo': 0, 'n_celdas_atomo': 0, 'n_regiones_atomo': 0, 'T_media': 31.410266046479677}
+  despiertos: 10/23  dormidos: 13/23
+    paso      0  23_campo
+    paso      0  22_qcd
+    paso      0  9_expansion
+    paso      0  10_enfriamiento
+    paso      0  M1_semilla
+    paso      0  M3_fase_cuantica
+    paso      1  5_debil
+    paso      1  7_masa
+    paso      1  6_catalogo
+    paso      1  16_ssb
+  DORMIDOS (hito que falta):
+    3_fuerte             requiere ['T_bajo_confinamiento']
+    8_aniquilacion       requiere ['T_bajo_confinamiento']
+    1_espin              requiere ['T_bajo_confinamiento']
+    11_tres_cuerpos      requiere ['T_bajo_confinamiento']
+    13_pauli             requiere ['T_bajo_confinamiento']
+    2_gravedad           requiere ['hay_sobredensidad']
+    12_localidad         requiere ['hay_sobredensidad']
+    4_em                 requiere ['hay_nucleos']
+    14_correlacion       requiere ['hay_atomos']
+    M2_memoria           requiere ['hay_atomos']
+    17_oscuro            requiere ['hay_atomos']
+    18_poda              requiere ['hay_red']
+    15_causal            requiere ['hay_red']
+=== amp_asimetria=0.5 ===
+  T_final=31.4103  hitos={'expansion_supraluminica': False, 'T_bajo_electrodebil': True, 'T_bajo_confinamiento': False, 'hay_sobredensidad': False, 'hay_nucleos': False, 'hay_atomos': False, 'hay_red': False, 'n_celdas_sobredensas': 0, 'n_celdas_nucleo': 0, 'n_celdas_atomo': 0, 'n_regiones_atomo': 0, 'T_media': 31.41026604647967}
+  despiertos: 12/23  dormidos: 11/23
+    paso      0  23_campo
+    paso      0  22_qcd
+    paso      0  9_expansion
+    paso      0  10_enfriamiento
+    paso      0  M1_semilla
+    paso      0  M3_fase_cuantica
+    paso      0  2_gravedad
+    paso      0  12_localidad
+    paso      1  5_debil
+    paso      1  7_masa
+    paso      1  6_catalogo
+    paso      1  16_ssb
+  DORMIDOS (hito que falta):
+    3_fuerte             requiere ['T_bajo_confinamiento']
+    8_aniquilacion       requiere ['T_bajo_confinamiento']
+    1_espin              requiere ['T_bajo_confinamiento']
+    11_tres_cuerpos      requiere ['T_bajo_confinamiento']
+    13_pauli             requiere ['T_bajo_confinamiento']
+    4_em                 requiere ['hay_nucleos']
+    14_correlacion       requiere ['hay_atomos']
+    M2_memoria           requiere ['hay_atomos']
+    17_oscuro            requiere ['hay_atomos']
+    18_poda              requiere ['hay_red']
+    15_causal            requiere ['hay_red']
+=== amp_asimetria=2.0 ===
+  T_final=31.4103  hitos={'expansion_supraluminica': False, 'T_bajo_electrodebil': True, 'T_bajo_confinamiento': False, 'hay_sobredensidad': True, 'hay_nucleos': False, 'hay_atomos': False, 'hay_red': False, 'n_celdas_sobredensas': 806, 'n_celdas_nucleo': 806, 'n_celdas_atomo': 806, 'n_regiones_atomo': 0, 'T_media': 31.41026604647965}
+  despiertos: 12/23  dormidos: 11/23
+    paso      0  23_campo
+    paso      0  22_qcd
+    paso      0  9_expansion
+    paso      0  10_enfriamiento
+    paso      0  M1_semilla
+    paso      0  M3_fase_cuantica
+    paso      0  2_gravedad
+    paso      0  12_localidad
+    paso      1  5_debil
+    paso      1  7_masa
+    paso      1  6_catalogo
+    paso      1  16_ssb
+  DORMIDOS (hito que falta):
+    3_fuerte             requiere ['T_bajo_confinamiento']
+    8_aniquilacion       requiere ['T_bajo_confinamiento']
+    1_espin              requiere ['T_bajo_confinamiento']
+    11_tres_cuerpos      requiere ['T_bajo_confinamiento']
+    13_pauli             requiere ['T_bajo_confinamiento']
+    4_em                 requiere ['hay_nucleos']
+    14_correlacion       requiere ['hay_atomos']
+    M2_memoria           requiere ['hay_atomos']
+    17_oscuro            requiere ['hay_atomos']
+    18_poda              requiere ['hay_red']
+    15_causal            requiere ['hay_red']
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/Campo_Continuo_Estigmergico/cs075_resultado_23_sobre_fisica.json
+[elapsed] 228.0s

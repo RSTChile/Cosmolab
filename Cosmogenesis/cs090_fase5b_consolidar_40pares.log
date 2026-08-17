@@ -1,0 +1,51 @@
+[consolidado] 80 filas (40 ya consolidadas de la tarea de 20 pares + 40 nuevas de esta tarea) -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase5b_TOTAL_40pares.csv
+
+[pares completos I+III] 40
+
+=== RESULTADO AGREGADO FINAL ===
+  TODOS los pares (n total): n=40  media_Δfraccion(III-I)=+0.0092  III>I_fraccion=31/40  media_Δkappa_V(III-I)=+0.0910  III>I_kappaV=28/40
+  SOLO match exacto K=kcap: n=37  media_Δfraccion(III-I)=+0.0092  III>I_fraccion=30/37  media_Δkappa_V(III-I)=+0.0860  III>I_kappaV=26/37
+  SOLO pares nuevos de esta tarea: n=20  media_Δfraccion(III-I)=+0.0065  III>I_fraccion=14/20  media_Δkappa_V(III-I)=+0.0596  III>I_kappaV=12/20
+  SOLO los 20 pares anteriores (referencia): n=20  media_Δfraccion(III-I)=+0.0120  III>I_fraccion=17/20  media_Δkappa_V(III-I)=+0.1225  III>I_kappaV=16/20
+
+par-por-par (todos):
+  PAR_piloto_A_r9_r19                           K=5 kcap=7 exacto= True Δfrac=+0.0065  Δkv=+0.0504
+  PAR_piloto_B_r1_r17                           K=5 kcap=6 exacto=False Δfrac=+0.0340  Δkv=+0.3833
+  PAR_piloto_C_r6_r14                           K=7 kcap=5 exacto=False Δfrac=-0.0015  Δkv=-0.0087
+  PAR_v2_D_r2_r20                               K=5 kcap=6 exacto= True Δfrac=+0.0105  Δkv=-0.1022
+  PAR_v2_E_r12_r28                              K=6 kcap=6 exacto= True Δfrac=+0.0075  Δkv=+0.0582
+  PAR_v2_F_r6_r2v1fix                           K=7 kcap=5 exacto= True Δfrac=+0.0210  Δkv=+0.2931
+  PAR_v2_G_r12v1fix_r19                         K=5 kcap=7 exacto= True Δfrac=+0.0250  Δkv=+0.0923
+  PAR_v2_H_r9_r39                               K=5 kcap=7 exacto=False Δfrac=-0.0020  Δkv=+0.0863
+  A2-B0-C2-r9v2fix_vs_A2-B0-C2-r39              K=5 kcap=6 exacto= True Δfrac=+0.0035  Δkv=+0.0467
+  A2-B0-C2-batch3-r100_vs_A2-B0-C2-batch3-r0    K=5 kcap=4 exacto= True Δfrac=+0.0005  Δkv=-0.0349
+  A2-B0-C2-batch3-r1_vs_A2-B0-C2-batch3-r69     K=7 kcap=6 exacto= True Δfrac=+0.0100  Δkv=+0.0111
+  A2-B0-C2-batch3-r5_vs_A2-B0-C2-batch3-r114    K=6 kcap=6 exacto= True Δfrac=+0.0105  Δkv=+0.0840
+  A2-B0-C2-batch3-r44_vs_A2-B0-C2-batch3-r10    K=7 kcap=5 exacto= True Δfrac=+0.0185  Δkv=+0.2898
+  A2-B0-C2-batch3-r86_vs_A2-B0-C2-batch3-r12    K=5 kcap=5 exacto= True Δfrac=+0.0070  Δkv=+0.0440
+  A2-B0-C2-batch3-r50_vs_A2-B0-C2-batch3-r21    K=6 kcap=5 exacto= True Δfrac=-0.0035  Δkv=-0.0502
+  A2-B0-C2-batch3-r48_vs_A2-B0-C2-batch3-r25    K=8 kcap=5 exacto= True Δfrac=+0.0140  Δkv=+0.2083
+  A2-B0-C2-batch3-r35_vs_A2-B0-C2-batch3-r31    K=4 kcap=5 exacto= True Δfrac=+0.0195  Δkv=+0.2783
+  A2-B0-C2-batch3-r9_vs_A2-B0-C2-batch3-r83     K=7 kcap=6 exacto= True Δfrac=+0.0105  Δkv=+0.0063
+  A2-B0-C2-batch3-r53_vs_A2-B0-C2-batch3-r23    K=7 kcap=5 exacto= True Δfrac=+0.0215  Δkv=+0.3264
+  A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60   K=6 kcap=5 exacto= True Δfrac=+0.0270  Δkv=+0.3874
+  A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58    K=7 kcap=5 exacto= True Δfrac=-0.0010  Δkv=-0.0326
+  A2-B0-C2-batch3-r107_vs_A2-B0-C2-batch3-r71   K=6 kcap=5 exacto= True Δfrac=+0.0235  Δkv=+0.3861
+  A2-B0-C2-batch3-r112_vs_A2-B0-C2-batch3-r108  K=6 kcap=5 exacto= True Δfrac=-0.0035  Δkv=-0.0634
+  A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111  K=6 kcap=5 exacto= True Δfrac=+0.0295  Δkv=+0.3938
+  A2-B0-C2-batch3-r76_vs_A2-B0-C2-batch3-r26    K=8 kcap=5 exacto= True Δfrac=+0.0050  Δkv=+0.0380
+  A2-B0-C2-batch3-r143_vs_A2-B0-C2-batch3-r70   K=4 kcap=5 exacto= True Δfrac=-0.0050  Δkv=+0.0330
+  A2-B0-C2-batch4-r11_vs_A2-B0-C2-batch4-r0     K=6 kcap=6 exacto= True Δfrac=+0.0040  Δkv=+0.1352
+  A2-B0-C2-batch4-r31_vs_A2-B0-C2-batch4-r1     K=6 kcap=5 exacto= True Δfrac=+0.0090  Δkv=+0.1077
+  A2-B0-C2-batch4-r3_vs_A2-B0-C2-batch4-r9      K=5 kcap=6 exacto= True Δfrac=+0.0040  Δkv=+0.0253
+  A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10    K=5 kcap=5 exacto= True Δfrac=+0.0325  Δkv=+0.3946
+  A2-B0-C2-batch4-r15_vs_A2-B0-C2-batch4-r62    K=8 kcap=5 exacto= True Δfrac=-0.0030  Δkv=-0.0636
+  A2-B0-C2-batch4-r51_vs_A2-B0-C2-batch4-r36    K=8 kcap=4 exacto= True Δfrac=+0.0085  Δkv=+0.0654
+  A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72    K=4 kcap=5 exacto= True Δfrac=+0.0020  Δkv=-0.1291
+  A2-B0-C2-batch4-r57_vs_A2-B0-C2-batch4-r43    K=7 kcap=5 exacto= True Δfrac=-0.0060  Δkv=+0.0125
+  A2-B0-C2-batch4-r13_vs_A2-B0-C2-batch4-r94    K=6 kcap=6 exacto= True Δfrac=+0.0125  Δkv=-0.0691
+  A2-B0-C2-batch4-r41_vs_A2-B0-C2-batch4-r12    K=6 kcap=5 exacto= True Δfrac=+0.0070  Δkv=+0.0551
+  A2-B0-C2-batch4-r18_vs_A2-B0-C2-batch4-r19    K=5 kcap=6 exacto= True Δfrac=+0.0085  Δkv=-0.0748
+  A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26    K=5 kcap=5 exacto= True Δfrac=+0.0010  Δkv=-0.0579
+  A2-B0-C2-batch4-r70_vs_A2-B0-C2-batch4-r47    K=7 kcap=5 exacto= True Δfrac=-0.0050  Δkv=-0.0581
+  A2-B0-C2-batch4-r44_vs_A2-B0-C2-batch4-r28    K=6 kcap=5 exacto= True Δfrac=+0.0065  Δkv=+0.0938

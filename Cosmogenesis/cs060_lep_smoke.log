@@ -1,0 +1,21 @@
+CS060-A — LOS TRES LEPTONES: ¿la MASA (inercia+persistencia del marco) cambia la selección de dim?
+========================================================================================================
+PREDICCIÓN CIEGA: si la masa toca la geometría (G1), la dim con marcos más consistentes cambiará
+  entre electron/muon/tauon, CONTROLADO por long. de ciclo, y colapsará bajo NULL. Si no (G2), la
+  masa no toca la geometría: los tres seleccionan igual (o nada, controlando el confound de CS059).
+dims=['d2', 'd3', 'd4', 'curv'] K=[3, 4] brazos=['marco', 'electron', 'muon', 'tauon', 'alineado', 'null'] seeds=10 · corridas=12 · workers=14
+CONTROL de long. de ciclo en bins [3, 4, 5, 6, 8] (la lección de CS059). Salida cs060_lep_smoke.csv
+  1/12 · 0.5s
+  2/12 · 1.4s
+  3/12 · 1.9s
+  4/12 · 2.6s
+  5/12 · 3.3s
+  6/12 · 3.6s
+  7/12 · 3.9s
+  8/12 · 4.6s
+  9/12 · 5.3s
+  10/12 · 6.1s
+  11/12 · 6.7s
+  12/12 · 7.0s
+
+COMPLETO: 12 corridas en 0.1 min → cs060_lep_smoke.csv

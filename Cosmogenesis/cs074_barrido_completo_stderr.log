@@ -1,0 +1,94 @@
+[2026-07-25 21:02:51] [protocolo] barrido: 5 eps x 7 E_reserva x 8 semillas = 280 corridas finitas + 40 infinitas + 4x8 controles de pieza
+[2026-07-25 21:04:42] [protocolo] brazo infinito: 40 corridas, 40 ok, t=111s
+[2026-07-25 21:07:30] [protocolo] eps=0.5 listo (56/280) t=279s
+[2026-07-25 21:10:27] [protocolo] eps=1.0 listo (112/280) t=457s
+[2026-07-25 21:13:21] [protocolo] eps=1.5 listo (168/280) t=631s
+[2026-07-25 21:16:03] [protocolo] eps=2.5 listo (224/280) t=792s
+[2026-07-25 21:18:15] [protocolo] eps=4.0 listo (280/280) t=924s
+[2026-07-25 21:18:28] [protocolo] control cdm_on=False: 8/8 ok, t=937s
+[2026-07-25 21:18:46] [protocolo] control cooling_on=False: 8/8 ok, t=956s
+[2026-07-25 21:19:05] [protocolo] control expansion_on=False: 8/8 ok, t=974s
+[2026-07-25 21:19:14] [protocolo] control gravedad_on=False: 8/8 ok, t=984s
+[2026-07-25 21:19:14] [protocolo] TOTAL elapsed=984s
+[2026-07-25 21:19:14] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/resultados_cs074_energia_holistica/cs074_barrido_completo_result.json
+[2026-07-25 21:19:14] [balance] {
+  "n_ok": 280,
+  "n_total": 280,
+  "frac_masa_ligada_media": 0.3753079549550933,
+  "frac_masa_ligada_std": 0.2868547372945197,
+  "frac_masa_ligada_min": 0.012525195613351026,
+  "frac_masa_ligada_max": 0.8910182518568384,
+  "fallos_conservacion_control": 0,
+  "fraccion_admisibilidad_difieren": 0.29285714285714287,
+  "n_celdas_cerca_4_9pct": 12,
+  "celdas_cerca_4_9pct": [
+    [
+      0.5,
+      0.001,
+      0.04836279963857685
+    ],
+    [
+      0.5,
+      0.001,
+      0.05671111046528211
+    ],
+    [
+      1.0,
+      0.001,
+      0.0393393826887733
+    ],
+    [
+      1.0,
+      0.001,
+      0.05041740847364523
+    ],
+    [
+      1.0,
+      0.001,
+      0.05249788703006865
+    ],
+    [
+      1.5,
+      0.001,
+      0.05526117497101957
+    ],
+    [
+      1.5,
+      0.001,
+      0.05131870899054515
+    ],
+    [
+      1.5,
+      0.001,
+      0.048602101519977216
+    ],
+    [
+      1.5,
+      0.001,
+      0.049451131679204945
+    ],
+    [
+      2.5,
+      0.001,
+      0.05494643004691251
+    ],
+    [
+      4.0,
+      0.001,
+      0.04327724161301266
+    ],
+    [
+      4.0,
+      0.001,
+      0.05059330830421478
+    ]
+  ],
+  "n_celdas_cerca_31_5pct": 1,
+  "celdas_cerca_31_5pct": [
+    [
+      2.5,
+      0.1,
+      0.3168866024943075
+    ]
+  ]
+}

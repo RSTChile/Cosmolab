@@ -1,0 +1,7 @@
+[E5.1-1] inicio 2026-07-24 20:41:03
+[calibracion] N=200 eps_ref=0.001 mediana_lavado=5300 pasos=6095 lavo_todas=True
+[grid] r_targets=26 eps=9 semillas=16 celdas=234 corridas=3744
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_1_supervivencia_exergia/E5_1_1_resultado_crudo.json
+[control_r0_lava] True {'mean_X_r0_eps_gt0': 0.040882899163112385, 'n': 8, 'X_max': 0.15}
+[control_eps0_nulo] True {'mean_X_eps0': 0.0, 'max_X_eps0': 0.0, 'n': 26}
+[elapsed] 9363.2s

@@ -1,0 +1,22 @@
+   [selección] A2-B0-C2-r2v1fix (seed 272023) no está en la remedición corregida -- queda fuera
+   [selección] A2-B0-C2-r12v1fix (seed 272993) no está en la remedición corregida -- queda fuera
+   [selección] A2-B0-C2-r9v2fix (seed 372702) no está en la remedición corregida -- queda fuera
+   [selección] lote 271828: 6 disponibles -> [('A2-B0-C2-r9', 0.556), ('A2-B0-C2-r19', 0.72), ('A2-B0-C2-r14', 0.773)]
+   [selección] lote 371828: 5 disponibles -> [('A2-B0-C2-r2', 0.54), ('A2-B0-C2-r28', 0.706), ('A2-B0-C2-r20', 0.775)]
+   [selección] lote 471828: 34 disponibles -> [('A2-B0-C2-batch3-r9', 0.479), ('A2-B0-C2-batch3-r21', 0.725), ('A2-B0-C2-batch3-r100', 1.255)]
+   [selección] lote 571828: 28 disponibles -> [('A2-B0-C2-batch4-r18', 0.535), ('A2-B0-C2-batch4-r43', 0.745), ('A2-B0-C2-batch4-r51', 1.081)]
+   [selección] 12 grafos -> cs090_fase7_f704_seleccion.csv
+
+[f704] procesando 2 grafos base x 5 brazos (generar_ic=True, verificar_motor=True)
+[1/2] A2-B0-C2-r19 (lote 271828, mediana_pendiente_lote_271828)...
+    M_pre=3835 n_cut=156 M_final={c2:3679, azar:3679, anticosto:3679, soporte:3679, antisoporte:3679} [identico=True] c2==motor:True meta5b_ok:True
+    clustering c2=0.00100 azar=0.00155 anticosto=0.00111 soporte=0.00199 antisoporte=0.00000
+    pendiente  c2=0.6730652317833353 azar=0.6582689913862282 anticosto=0.7405283731594052 soporte=0.6991179853957847 antisoporte=0.7142348481979849
+    374.99s  cron={'t_dinamica_s': 1.61, 't_costos_s': 0.03, 't_verif_motor_s': 2.04, 't_clustering_s': 0.1, 't_pendiente_s': 2.48, 't_ic_s': 368.63, 't_total_s': 374.99}
+[2/2] A2-B0-C2-r14 (lote 271828, max_pendiente_lote_271828)...
+    M_pre=3418 n_cut=122 M_final={c2:3296, azar:3296, anticosto:3296, soporte:3296, antisoporte:3296} [identico=True] c2==motor:True meta5b_ok:True
+    clustering c2=0.00497 azar=0.01012 anticosto=0.00442 soporte=0.00988 antisoporte=0.00000
+    pendiente  c2=0.7893306509717354 azar=0.6963511795654602 anticosto=0.7125942848853738 soporte=0.7409624642244185 antisoporte=0.8031233278768639
+    316.11s  cron={'t_dinamica_s': 1.16, 't_costos_s': 0.02, 't_verif_motor_s': 1.3, 't_clustering_s': 0.09, 't_pendiente_s': 1.58, 't_ic_s': 311.88, 't_total_s': 316.11}
+
+[f704] 2 filas -> cs090_fase7_f704_estructura_shard0.csv  (total 691s)

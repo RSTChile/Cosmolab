@@ -1,0 +1,108 @@
+CS062 — PAISAJE con GRAVEDAD ∝ PESO-INTRÍNSECO (Newton m·m/d²) vs GRADO (=CS057) vs NULL-PESO
+====================================================================================================
+PREDICCIÓN CIEGA: si el proxy de grado sesgaba contra el 3D (CS060-B), el brazo PESO dará 3D/4D más
+  viable que GRADO en TODO el mapa; y NULL-PESO dirá si es la masa o solo la independencia-del-grado.
+puntos=2177 · seeds=8 · acoples=['peso', 'grado', 'null_peso'] · corridas≈52248 · workers=14
+salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs062_paisaje_peso.csv
+  25/2177 · 23.8min · 1.1pt/min · ETA 34.09h
+  50/2177 · 41.9min · 1.2pt/min · ETA 29.72h
+  75/2177 · 57.4min · 1.3pt/min · ETA 26.83h
+  100/2177 · 72.2min · 1.4pt/min · ETA 24.99h
+  125/2177 · 87.0min · 1.4pt/min · ETA 23.79h
+  150/2177 · 103.3min · 1.5pt/min · ETA 23.27h
+  175/2177 · 115.0min · 1.5pt/min · ETA 21.93h
+  200/2177 · 129.8min · 1.5pt/min · ETA 21.38h
+  225/2177 · 143.5min · 1.6pt/min · ETA 20.74h
+  250/2177 · 155.8min · 1.6pt/min · ETA 20.02h
+  275/2177 · 172.2min · 1.6pt/min · ETA 19.85h
+  300/2177 · 191.4min · 1.6pt/min · ETA 19.96h
+  325/2177 · 202.3min · 1.6pt/min · ETA 19.21h
+  350/2177 · 213.1min · 1.6pt/min · ETA 18.54h
+  375/2177 · 224.1min · 1.7pt/min · ETA 17.95h
+  400/2177 · 233.8min · 1.7pt/min · ETA 17.31h
+  425/2177 · 243.4min · 1.7pt/min · ETA 16.72h
+  450/2177 · 252.7min · 1.8pt/min · ETA 16.16h
+  475/2177 · 261.3min · 1.8pt/min · ETA 15.60h
+  500/2177 · 272.0min · 1.8pt/min · ETA 15.20h
+  525/2177 · 286.1min · 1.8pt/min · ETA 15.01h
+  550/2177 · 294.5min · 1.9pt/min · ETA 14.52h
+  575/2177 · 302.3min · 1.9pt/min · ETA 14.04h
+  600/2177 · 316.8min · 1.9pt/min · ETA 13.88h
+  625/2177 · 323.3min · 1.9pt/min · ETA 13.38h
+  650/2177 · 332.2min · 2.0pt/min · ETA 13.01h
+  675/2177 · 340.0min · 2.0pt/min · ETA 12.61h
+  700/2177 · 350.1min · 2.0pt/min · ETA 12.31h
+  725/2177 · 359.0min · 2.0pt/min · ETA 11.98h
+  750/2177 · 368.0min · 2.0pt/min · ETA 11.67h
+  775/2177 · 375.4min · 2.1pt/min · ETA 11.32h
+  800/2177 · 381.3min · 2.1pt/min · ETA 10.94h
+  825/2177 · 392.9min · 2.1pt/min · ETA 10.73h
+  850/2177 · 406.1min · 2.1pt/min · ETA 10.57h
+  875/2177 · 411.9min · 2.1pt/min · ETA 10.22h
+  900/2177 · 420.2min · 2.1pt/min · ETA 9.94h
+  925/2177 · 427.8min · 2.2pt/min · ETA 9.65h
+  950/2177 · 440.8min · 2.2pt/min · ETA 9.49h
+  975/2177 · 451.3min · 2.2pt/min · ETA 9.27h
+  1000/2177 · 464.5min · 2.2pt/min · ETA 9.11h
+  1025/2177 · 472.3min · 2.2pt/min · ETA 8.85h
+  1050/2177 · 484.2min · 2.2pt/min · ETA 8.66h
+  1075/2177 · 498.9min · 2.2pt/min · ETA 8.52h
+  1100/2177 · 510.0min · 2.2pt/min · ETA 8.32h
+  1125/2177 · 520.3min · 2.2pt/min · ETA 8.11h
+  1150/2177 · 531.4min · 2.2pt/min · ETA 7.91h
+  1175/2177 · 541.5min · 2.2pt/min · ETA 7.70h
+  1200/2177 · 554.0min · 2.2pt/min · ETA 7.52h
+  1225/2177 · 565.5min · 2.2pt/min · ETA 7.32h
+  1250/2177 · 576.5min · 2.2pt/min · ETA 7.13h
+CS062 — PAISAJE con GRAVEDAD ∝ PESO-INTRÍNSECO (Newton m·m/d²) vs GRADO (=CS057) vs NULL-PESO
+====================================================================================================
+PREDICCIÓN CIEGA: si el proxy de grado sesgaba contra el 3D (CS060-B), el brazo PESO dará 3D/4D más
+  viable que GRADO en TODO el mapa; y NULL-PESO dirá si es la masa o solo la independencia-del-grado.
+puntos=2177 · seeds=8 · acoples=['peso', 'grado', 'null_peso'] · corridas≈52248 · workers=14
+salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs062_paisaje_peso.csv
+REANUDANDO: 1261 puntos ya hechos
+  25/916 · 19.4min · 1.3pt/min · ETA 11.53h
+  50/916 · 34.1min · 1.5pt/min · ETA 9.85h
+  75/916 · 45.7min · 1.6pt/min · ETA 8.53h
+  100/916 · 65.8min · 1.5pt/min · ETA 8.95h
+  125/916 · 80.9min · 1.5pt/min · ETA 8.54h
+  150/916 · 103.9min · 1.4pt/min · ETA 8.84h
+  175/916 · 120.9min · 1.4pt/min · ETA 8.53h
+  200/916 · 137.6min · 1.5pt/min · ETA 8.21h
+  225/916 · 147.8min · 1.5pt/min · ETA 7.57h
+  250/916 · 169.5min · 1.5pt/min · ETA 7.52h
+  275/916 · 184.1min · 1.5pt/min · ETA 7.15h
+  300/916 · 203.5min · 1.5pt/min · ETA 6.96h
+  325/916 · 213.0min · 1.5pt/min · ETA 6.45h
+  350/916 · 219.3min · 1.6pt/min · ETA 5.91h
+  375/916 · 230.0min · 1.6pt/min · ETA 5.53h
+  400/916 · 248.0min · 1.6pt/min · ETA 5.33h
+  425/916 · 265.4min · 1.6pt/min · ETA 5.11h
+  450/916 · 280.5min · 1.6pt/min · ETA 4.84h
+  475/916 · 291.3min · 1.6pt/min · ETA 4.51h
+  500/916 · 299.2min · 1.7pt/min · ETA 4.15h
+  525/916 · 309.2min · 1.7pt/min · ETA 3.84h
+  550/916 · 319.2min · 1.7pt/min · ETA 3.54h
+  575/916 · 328.4min · 1.8pt/min · ETA 3.25h
+CS062 — PAISAJE con GRAVEDAD ∝ PESO-INTRÍNSECO (Newton m·m/d²) vs GRADO (=CS057) vs NULL-PESO
+====================================================================================================
+PREDICCIÓN CIEGA: si el proxy de grado sesgaba contra el 3D (CS060-B), el brazo PESO dará 3D/4D más
+  viable que GRADO en TODO el mapa; y NULL-PESO dirá si es la masa o solo la independencia-del-grado.
+puntos=2177 · seeds=8 · acoples=['peso', 'grado', 'null_peso'] · corridas≈52248 · workers=14
+salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs062_paisaje_peso.csv
+REANUDANDO: 1860 puntos ya hechos
+  25/317 · 9.2min · 2.7pt/min · ETA 1.79h
+  50/317 · 18.7min · 2.7pt/min · ETA 1.67h
+  75/317 · 25.3min · 3.0pt/min · ETA 1.36h
+  100/317 · 31.6min · 3.2pt/min · ETA 1.14h
+  125/317 · 38.1min · 3.3pt/min · ETA 0.98h
+  150/317 · 45.4min · 3.3pt/min · ETA 0.84h
+  175/317 · 52.0min · 3.4pt/min · ETA 0.70h
+  200/317 · 53.5min · 3.7pt/min · ETA 0.52h
+  225/317 · 54.6min · 4.1pt/min · ETA 0.37h
+  250/317 · 55.4min · 4.5pt/min · ETA 0.25h
+  275/317 · 55.9min · 4.9pt/min · ETA 0.14h
+  300/317 · 56.5min · 5.3pt/min · ETA 0.05h
+  317/317 · 59.2min · 5.4pt/min · ETA 0.00h
+
+COMPLETO: 317 puntos en 59.2 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs062_paisaje_peso.csv

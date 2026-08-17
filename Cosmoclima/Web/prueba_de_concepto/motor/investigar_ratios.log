@@ -1,0 +1,29 @@
+0.0% · 0s
+22.1% · 158s
+44.2% · 314s
+66.3% · 466s
+88.4% · 625s
+
+Ratios promedio (>=1 significa que esa condición SE CUMPLE):
+
+  ratio          global  megasequía  floración
+  rLF             1.524       3.512      1.836
+  rD              0.946       1.043      1.022
+  rA              1.051       0.979      0.979
+  rE              1.605       1.474      1.426
+
+¿Quién MANDA en cada min()? (fracción de ticks en que ese término es el menor)
+
+  quién          global  megasequía  floración
+  mandaLF         48.0%       11.8%      42.4%
+  mandaD          52.0%       88.2%      57.6%
+  mandaA          91.2%       87.9%      87.1%
+  mandaE           8.8%       12.1%      12.9%
+
+Crudos:
+
+  LF             0.1261      0.2626     0.1558
+  dStruct        0.6822      0.7525     0.7375
+  floracion      0.1419      0.0345     0.1480
+
+Escrito investigacion_ratios_cuadrante.json

@@ -1,0 +1,856 @@
+{
+  "experimento": "F3-2 T emergente (enfriamiento como consecuencia medida)",
+  "tag": "smoke",
+  "sello_heredado_CF2": {
+    "L": 64,
+    "H_EXP": 6.0,
+    "RHO0": 1.0,
+    "D0": 0.12,
+    "DT": 0.25,
+    "N_SUB": 2,
+    "ORIGINAL_STEPS_PER_TG": 399
+  },
+  "parametros_propios_F3_2": {
+    "DYN_FRAC": 0.1,
+    "clipping": false,
+    "campo_inicial": "ruido gaussiano blanco puro N(0, sigma_ruido^2), sin estructura macroscopica"
+  },
+  "barrido": {
+    "a_grid": [
+      1.0,
+      3.1622776601683795,
+      10.0,
+      31.622776601683793,
+      100.0
+    ],
+    "sigma_ruido_grid": [
+      0.0001,
+      0.0019306977288832496,
+      0.03727593720314938
+    ],
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "n_seeds": 3,
+    "n_sigma": 3,
+    "n_total_combinaciones": 9
+  },
+  "criterio_preregistrado": {
+    "MONO_TOL": 1e-09,
+    "SLOPE_DIFF_MIN": 0.05,
+    "R2_MIN": 0.7,
+    "PASS_RATE_MIN": 0.55,
+    "descripcion": "punto_pass = mono_REAL AND (R2_REAL >= R2_MIN) AND (NOT mono_NULL OR abs(slope_NULL - slope_REAL) >= SLOPE_DIFF_MIN); veredicto principal basado en T_energy; PASS_F3-2 si rate_T_energy>=PASS_RATE_MIN Y rate_null_muerde>=PASS_RATE_MIN"
+  },
+  "resultados_por_sigma_y_semilla": {
+    "1.000000e-04": {
+      "7": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 7,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.818436704332426e-09,
+            5.7650188879306104e-11,
+            5.533062977656992e-12,
+            5.524210913354034e-13,
+            5.522299966479556e-14
+          ],
+          "T_var": [
+            9.804114158689958e-09,
+            8.618062735936579e-10,
+            8.391345120459163e-10,
+            8.382823174434065e-10,
+            8.381555321939523e-10
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 7,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.818436704332426e-09,
+            1.833746929002727e-11,
+            1.6480431742413965e-12,
+            1.551726037426069e-13,
+            1.5051928103040768e-14
+          ],
+          "T_var": [
+            9.804114158689958e-09,
+            3.4061106886884776e-10,
+            2.8947811280340177e-10,
+            2.5478229176813174e-10,
+            2.4646832469383255e-10
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.503675037121425,
+          "slope_NULL_RHO_FIXED": -2.740284954219992,
+          "R2_REAL": 0.9627660612399394,
+          "R2_NULL_RHO_FIXED": 0.9414000249319069,
+          "slope_diff_abs": 0.23660991709856694,
+          "slope_REAL_asintotico_diagnostico": -2.000845619969861,
+          "R2_REAL_asintotico_diagnostico": 0.9999999752594103,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.42963736663173663,
+          "slope_NULL_RHO_FIXED": -0.6650768020489783,
+          "R2_REAL": 0.5085923691643928,
+          "R2_NULL_RHO_FIXED": 0.5765457248166832,
+          "slope_diff_abs": 0.23543943541724172,
+          "slope_REAL_asintotico_diagnostico": -0.0005069672920823382,
+          "R2_REAL_asintotico_diagnostico": 0.845341013834882,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "42": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 42,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.911449201393713e-09,
+            5.870707744944711e-11,
+            5.578497037497745e-12,
+            5.5671019981391e-13,
+            5.567534741423337e-14
+          ],
+          "T_var": [
+            9.948937063988508e-09,
+            9.047340680925075e-10,
+            8.748681247818986e-10,
+            8.729729304228122e-10,
+            8.730258026946742e-10
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 42,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.911449201393713e-09,
+            1.7989362157700747e-11,
+            1.6260512199273793e-12,
+            1.5727775341162997e-13,
+            1.5315343388017487e-14
+          ],
+          "T_var": [
+            9.948937063988508e-09,
+            3.8242711133740065e-10,
+            3.060845725585484e-10,
+            2.722112003226851e-10,
+            2.588163137081926e-10
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.5048019460055913,
+          "slope_NULL_RHO_FIXED": -2.7360738619235914,
+          "R2_REAL": 0.9630160293250836,
+          "R2_NULL_RHO_FIXED": 0.9399876133422895,
+          "slope_diff_abs": 0.23127191591800011,
+          "slope_REAL_asintotico_diagnostico": -2.000854271066797,
+          "R2_REAL_asintotico_diagnostico": 0.9999999292530325,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4258038749666238,
+          "slope_NULL_RHO_FIXED": -0.6634425509988655,
+          "R2_REAL": 0.5112260179068517,
+          "R2_NULL_RHO_FIXED": 0.5908953702298652,
+          "slope_diff_abs": 0.2376386760322417,
+          "slope_REAL_asintotico_diagnostico": -0.0009155139223145232,
+          "R2_REAL_asintotico_diagnostico": 0.7284698851059562,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "99": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 99,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.94869463784606e-09,
+            5.4629955396018266e-11,
+            5.2703469268214015e-12,
+            5.259547651852967e-13,
+            5.2592963996123464e-14
+          ],
+          "T_var": [
+            9.939209702627446e-09,
+            7.968130738553023e-10,
+            7.741239061596029e-10,
+            7.732479558534573e-10,
+            7.731222172301228e-10
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 99,
+          "sigma_ruido": 0.0001,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            9.94869463784606e-09,
+            1.7113524093551786e-11,
+            1.6427569427218153e-12,
+            1.5106587790775912e-13,
+            1.5060382902196888e-14
+          ],
+          "T_var": [
+            9.939209702627446e-09,
+            3.234723280074018e-10,
+            2.8138290221827094e-10,
+            2.794898913686656e-10,
+            2.776037254619115e-10
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.514031871869919,
+          "slope_NULL_RHO_FIXED": -2.738806649246951,
+          "R2_REAL": 0.9613656998065123,
+          "R2_NULL_RHO_FIXED": 0.9389634523587816,
+          "slope_diff_abs": 0.2247747773770321,
+          "slope_REAL_asintotico_diagnostico": -2.0009115569449327,
+          "R2_REAL_asintotico_diagnostico": 0.999999936973355,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.44624901408734097,
+          "slope_NULL_RHO_FIXED": -0.6342648312839987,
+          "R2_REAL": 0.5089783346925393,
+          "R2_NULL_RHO_FIXED": 0.5326071122712356,
+          "slope_diff_abs": 0.18801581719665772,
+          "slope_REAL_asintotico_diagnostico": -0.0005623255781470251,
+          "R2_REAL_asintotico_diagnostico": 0.8425289962843526,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      }
+    },
+    "1.930698e-03": {
+      "7": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 7,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.659914300237924e-06,
+            2.1489648204147152e-08,
+            2.0625010809621282e-09,
+            2.059201391031374e-10,
+            2.0584890676744577e-11
+          ],
+          "T_var": [
+            3.654575437118345e-06,
+            3.212463653575736e-07,
+            3.127952537601897e-07,
+            3.124775902353095e-07,
+            3.1243032984534e-07
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 7,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.659914300237924e-06,
+            6.835463537197368e-09,
+            6.143235387110127e-10,
+            5.784204232758597e-11,
+            5.6107472675526705e-12
+          ],
+          "T_var": [
+            3.654575437118345e-06,
+            1.2696596813852757e-07,
+            1.0790567954545797e-07,
+            9.497248708423362e-08,
+            9.187337793852735e-08
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.503675037121425,
+          "slope_NULL_RHO_FIXED": -2.7402849542199914,
+          "R2_REAL": 0.9627660612399392,
+          "R2_NULL_RHO_FIXED": 0.9414000249319069,
+          "slope_diff_abs": 0.2366099170985665,
+          "slope_REAL_asintotico_diagnostico": -2.000845619969863,
+          "R2_REAL_asintotico_diagnostico": 0.9999999752594103,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4296373666317372,
+          "slope_NULL_RHO_FIXED": -0.6650768020489783,
+          "R2_REAL": 0.5085923691643942,
+          "R2_NULL_RHO_FIXED": 0.5765457248166829,
+          "slope_diff_abs": 0.23543943541724116,
+          "slope_REAL_asintotico_diagnostico": -0.0005069672920840573,
+          "R2_REAL_asintotico_diagnostico": 0.8453410138336687,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "42": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 42,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.694585580233571e-06,
+            2.1883613323860174e-08,
+            2.079437052577208e-09,
+            2.0751894448616058e-10,
+            2.0753507539764884e-11
+          ],
+          "T_var": [
+            3.70855953235321e-06,
+            3.3724810307766184e-07,
+            3.2611529280407105e-07,
+            3.2540884134490047e-07,
+            3.2542854997975756e-07
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 42,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.694585580233571e-06,
+            6.7057033411516485e-09,
+            6.061258316311743e-10,
+            5.862675659624332e-11,
+            5.70893778376409e-12
+          ],
+          "T_var": [
+            3.70855953235321e-06,
+            1.4255328986994766e-07,
+            1.140958930554527e-07,
+            1.0146927609222326e-07,
+            9.647620656937199e-08
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.5048019460055895,
+          "slope_NULL_RHO_FIXED": -2.73607386192359,
+          "R2_REAL": 0.9630160293250836,
+          "R2_NULL_RHO_FIXED": 0.9399876133422896,
+          "slope_diff_abs": 0.23127191591800056,
+          "slope_REAL_asintotico_diagnostico": -2.000854271066798,
+          "R2_REAL_asintotico_diagnostico": 0.9999999292530325,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.42580387496662436,
+          "slope_NULL_RHO_FIXED": -0.663442550998865,
+          "R2_REAL": 0.5112260179068533,
+          "R2_NULL_RHO_FIXED": 0.5908953702298647,
+          "slope_diff_abs": 0.2376386760322406,
+          "slope_REAL_asintotico_diagnostico": -0.0009155139223168153,
+          "R2_REAL_asintotico_diagnostico": 0.7284698851076681,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "99": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 99,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.7084691657365866e-06,
+            2.0363827867528283e-08,
+            1.9645712108300586e-09,
+            1.9605456798744297e-10,
+            1.9604520232469945e-11
+          ],
+          "T_var": [
+            3.7049335672407367e-06,
+            2.9701954103678677e-07,
+            2.8856194113462057e-07,
+            2.8823542244857103e-07,
+            2.8818855219829674e-07
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 99,
+          "sigma_ruido": 0.0019306977288832496,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            3.7084691657365866e-06,
+            6.379226494358202e-09,
+            6.123530463693605e-10,
+            5.6311221784282604e-11,
+            5.613898873176758e-12
+          ],
+          "T_var": [
+            3.7049335672407367e-06,
+            1.2057734185760448e-07,
+            1.0488811393128191e-07,
+            1.0418247639573421e-07,
+            1.0347939037678536e-07
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.514031871869919,
+          "slope_NULL_RHO_FIXED": -2.738806649246951,
+          "R2_REAL": 0.9613656998065123,
+          "R2_NULL_RHO_FIXED": 0.9389634523587816,
+          "slope_diff_abs": 0.2247747773770321,
+          "slope_REAL_asintotico_diagnostico": -2.000911556944933,
+          "R2_REAL_asintotico_diagnostico": 0.999999936973355,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4462490140873404,
+          "slope_NULL_RHO_FIXED": -0.6342648312839975,
+          "R2_REAL": 0.5089783346925392,
+          "R2_NULL_RHO_FIXED": 0.5326071122712359,
+          "slope_diff_abs": 0.18801581719665705,
+          "slope_REAL_asintotico_diagnostico": -0.0005623255781458791,
+          "R2_REAL_asintotico_diagnostico": 0.8425289962826216,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      }
+    },
+    "3.727594e-02": {
+      "7": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 7,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013642673562457726,
+            8.01046776975561e-06,
+            7.688166077537198e-07,
+            7.675866174072334e-08,
+            7.673210922000258e-09
+          ],
+          "T_var": [
+            0.0013622772449819564,
+            0.00011974759341808896,
+            0.00011659736236608006,
+            0.0001164789503100284,
+            0.00011646133355674141
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 7,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013642673562457726,
+            2.547983095669864e-06,
+            2.2899485651408216e-07,
+            2.156116337505003e-08,
+            2.091458628080353e-09
+          ],
+          "T_var": [
+            0.0013622772449819564,
+            4.7327754552688184e-05,
+            4.0222853345996515e-05,
+            3.540188464578807e-05,
+            3.424666266677754e-05
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.503675037121425,
+          "slope_NULL_RHO_FIXED": -2.740284954219992,
+          "R2_REAL": 0.9627660612399392,
+          "R2_NULL_RHO_FIXED": 0.941400024931907,
+          "slope_diff_abs": 0.23660991709856694,
+          "slope_REAL_asintotico_diagnostico": -2.000845619969861,
+          "R2_REAL_asintotico_diagnostico": 0.9999999752594103,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4296373666317372,
+          "slope_NULL_RHO_FIXED": -0.6650768020489778,
+          "R2_REAL": 0.5085923691643934,
+          "R2_NULL_RHO_FIXED": 0.5765457248166828,
+          "slope_diff_abs": 0.2354394354172406,
+          "slope_REAL_asintotico_diagnostico": -0.0005069672920826248,
+          "R2_REAL_asintotico_diagnostico": 0.8453410138344432,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "42": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 42,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013771914008044782,
+            8.157321960382149e-06,
+            7.751296498977006e-07,
+            7.735463143129964e-08,
+            7.73606443797363e-09
+          ],
+          "T_var": [
+            0.0013824003224213927,
+            0.00012571239112204176,
+            0.00012156253175551226,
+            0.0001212991953532211,
+            0.00012130654193157402
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 42,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013771914008044782,
+            2.4996137664771785e-06,
+            2.2593908437090345e-07,
+            2.18536729730589e-08,
+            2.1280600632427697e-09
+          ],
+          "T_var": [
+            0.0013824003224213927,
+            5.313807481294519e-05,
+            4.253031344672302e-05,
+            3.7823623636627406e-05,
+            3.596241017677978e-05
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.504801946005591,
+          "slope_NULL_RHO_FIXED": -2.7360738619235905,
+          "R2_REAL": 0.9630160293250837,
+          "R2_NULL_RHO_FIXED": 0.9399876133422896,
+          "slope_diff_abs": 0.23127191591799967,
+          "slope_REAL_asintotico_diagnostico": -2.0008542710667996,
+          "R2_REAL_asintotico_diagnostico": 0.9999999292530325,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": false,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4258038749666249,
+          "slope_NULL_RHO_FIXED": -0.6634425509988638,
+          "R2_REAL": 0.5112260179068528,
+          "R2_NULL_RHO_FIXED": 0.5908953702298643,
+          "slope_diff_abs": 0.23763867603223893,
+          "slope_REAL_asintotico_diagnostico": -0.0009155139223165288,
+          "R2_REAL_asintotico_diagnostico": 0.7284698851068026,
+          "cond_mono_real": false,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      },
+      "99": {
+        "REAL": {
+          "mode": "REAL",
+          "seed": 99,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013823666374181277,
+            7.5908076880572765e-06,
+            7.323123308601641e-07,
+            7.308117764690505e-08,
+            7.307768650834211e-09
+          ],
+          "T_var": [
+            0.0013810487099430594,
+            0.00011071681759795513,
+            0.00010756416796953005,
+            0.00010744245506916165,
+            0.00010742498374410246
+          ]
+        },
+        "NULL_RHO_FIXED": {
+          "mode": "NULL_RHO_FIXED",
+          "seed": 99,
+          "sigma_ruido": 0.03727593720314938,
+          "a_grid": [
+            1.0,
+            3.1622776601683795,
+            10.000000000000002,
+            31.62277660168379,
+            100.00000000000004
+          ],
+          "T_energy": [
+            0.0013823666374181277,
+            2.3779164620836313e-06,
+            2.2826033702621497e-07,
+            2.0990535670635358e-08,
+            2.0926334186136784e-09
+          ],
+          "T_var": [
+            0.0013810487099430594,
+            4.494633423206739e-05,
+            3.909802748259242e-05,
+            3.883499447795981e-05,
+            3.857291257505231e-05
+          ]
+        },
+        "evaluation_T_energy": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -2.5140318718699186,
+          "slope_NULL_RHO_FIXED": -2.73880664924695,
+          "R2_REAL": 0.9613656998065123,
+          "R2_NULL_RHO_FIXED": 0.9389634523587816,
+          "slope_diff_abs": 0.22477477737703122,
+          "slope_REAL_asintotico_diagnostico": -2.0009115569449323,
+          "R2_REAL_asintotico_diagnostico": 0.999999936973355,
+          "cond_mono_real": true,
+          "cond_r2_real_min": true,
+          "cond_null_muerde": true,
+          "punto_pass": true
+        },
+        "evaluation_T_var": {
+          "mono_REAL": true,
+          "mono_NULL_RHO_FIXED": true,
+          "slope_REAL": -0.4462490140873396,
+          "slope_NULL_RHO_FIXED": -0.6342648312839989,
+          "R2_REAL": 0.5089783346925393,
+          "R2_NULL_RHO_FIXED": 0.5326071122712359,
+          "slope_diff_abs": 0.18801581719665933,
+          "slope_REAL_asintotico_diagnostico": -0.0005623255781453061,
+          "R2_REAL_asintotico_diagnostico": 0.8425289962831986,
+          "cond_mono_real": true,
+          "cond_r2_real_min": false,
+          "cond_null_muerde": true,
+          "punto_pass": false
+        }
+      }
+    }
+  },
+  "curva_robustez_P_sigma": {
+    "T_energy": {
+      "1.000000e-04": 1.0,
+      "1.930698e-03": 1.0,
+      "3.727594e-02": 1.0
+    },
+    "T_var": {
+      "1.000000e-04": 0.0,
+      "1.930698e-03": 0.0,
+      "3.727594e-02": 0.0
+    }
+  },
+  "resumen": {
+    "n_total_combinaciones": 9,
+    "n_pass_T_energy": 9,
+    "n_pass_T_var": 0,
+    "rate_T_energy": 1.0,
+    "rate_T_var": 0.0,
+    "rate_NULL_muerde": 1.0,
+    "rate_acuerdo_T_energy_vs_T_var": 0.0,
+    "exponente_T_energy_rango_completo": {
+      "media": -2.5075029516656446,
+      "std": 0.004639510044795465,
+      "min": -2.514031871869919,
+      "max": -2.503675037121425,
+      "n": 9
+    },
+    "exponente_T_energy_asintotico_diagnostico": {
+      "media": -2.0008704826605306,
+      "std": 2.9257853633889555e-05,
+      "min": -2.000911556944933,
+      "max": -2.000845619969861,
+      "n": 9
+    },
+    "exponente_T_var_rango_completo": {
+      "media": -0.4338967518952339,
+      "std": 0.008873469841181198,
+      "min": -0.44624901408734097,
+      "max": -0.4258038749666238,
+      "n": 9
+    },
+    "verdict": "F3_2_PASS"
+  },
+  "runtime_seconds": 4.512369871139526,
+  "generated_at_unix": 1784919385.793362
+}

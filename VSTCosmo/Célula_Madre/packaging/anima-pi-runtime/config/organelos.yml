@@ -1,0 +1,28 @@
+organelos:
+  cloroplasto:
+    estado: latente
+    hardware: atmega_usb_o_wifi
+  gps:
+    estado: latente
+    hardware: ublox_neo_m8n
+  wifi_cloroplasto:
+    estado: latente
+    hardware: rd_wifi_esp8266_at
+  radio_digital:
+    estado: latente
+    hardware: nrf24l01
+  sdr:
+    estado: latente
+    hardware: sdrplay_rsp
+  vision:
+    estado: latente
+    hardware: rtsp_onvif_o_esp32cam
+  cabeza_local:
+    estado: activable
+    hardware: pantalla_spi_fb1
+  audio:
+    estado: activo
+    hardware: entrada_local_o_servidor_opcional
+  presencia:
+    estado: activo
+    hardware: mdns_udp_plaza_opcional

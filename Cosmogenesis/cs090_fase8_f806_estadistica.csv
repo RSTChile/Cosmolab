@@ -1,0 +1,10 @@
+prueba,estadistico,p,n,detalle
+"solap − disj (N=4000), fracción de masa",0.0067954545454545325,0.353515625,11,"Δ=+0.00680 (+27.2 part. de 4000, +1.07 σ), signos 6/11, binomial p=1, % medio +5.4"
+t pareado solap vs disj,1.3212045354182476,0.21586488718067456,11,"sd(Δ)=0.01706, ee=0.00514"
+nº de sumideros (solap − disj),-2.909090909090909,0.18359375,11,"signos 4/11, medias 29.7273 vs 32.6364"
+κ_V agregado (solap − disj),0.011270397530579283,0.8310546875,11,"signos 6/11, medias 0.4070 vs 0.3958"
+t del primer sumidero (solap − disj),-0.0010000000000000002,0.2705078125,11,"signos 3/11, medias 0.0030 vs 0.0040"
+Spearman Δ vs T* (¿el efecto crece con los triángulos disponibles?),0.4965844318602437,0.12023534902406147,11,"T* de 60 a 1842 (F7-03 a N=2000: ρ=+0.818, p=0.0011)"
+concordancia de signo del Δ entre N=2000 y N=4000,6.0,nan,11,"6/11 grafos con el mismo signo; positivos a N=2000: 11/11, a N=4000: 6/11"
+Spearman Δ(N=2000) vs Δ(N=4000),0.5421426366180643,0.08491152760422818,11,"Pearson=+0.596 (p=0.0529); media Δ 2000=+0.01486 (+29.7 part.), 4000=+0.00680 (+27.2 part.)"
+σ del instrumento a N=4000,0.006362815152640102,nan,11,"σ MEDIDA a N=4000 con 6 réplicas de redondeo (media 0.14121, rango 0.01425)"

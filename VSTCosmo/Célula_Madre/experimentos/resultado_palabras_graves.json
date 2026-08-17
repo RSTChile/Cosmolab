@@ -1,0 +1,122 @@
+{
+ "sine_60Hz": {
+  "tipo": "tono",
+  "regimen": "COLAPSO",
+  "W": 0.4951,
+  "gusto": 0.562791162402601
+ },
+ "sine_70Hz": {
+  "tipo": "tono",
+  "regimen": "COLAPSO",
+  "W": 0.4871,
+  "gusto": 0.5424485906138448
+ },
+ "sine_82Hz": {
+  "tipo": "tono",
+  "regimen": "COLAPSO",
+  "W": 0.4768,
+  "gusto": 0.5352908765934609
+ },
+ "sine_92Hz": {
+  "tipo": "tono",
+  "regimen": "COLAPSO",
+  "W": 0.4648,
+  "gusto": 0.5266787150542788
+ },
+ "grave_swoop_sube": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4506,
+  "gusto": 0.5190389638182327
+ },
+ "grave_swoop_baja": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4356,
+  "gusto": 0.50848884361172
+ },
+ "grave_warble_lento": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4237,
+  "gusto": 0.49884261280567144
+ },
+ "grave_warble_hondo": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.3904,
+  "gusto": 0.47511584759418085
+ },
+ "grave_arm2_sube": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.3979,
+  "gusto": 0.48026222638558874
+ },
+ "grave_arm23": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4015,
+  "gusto": 0.4822197554189161
+ },
+ "grave_chirp_corto": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.3858,
+  "gusto": 0.47142640570526645
+ },
+ "grave_ulula": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4021,
+  "gusto": 0.48128943371351474
+ },
+ "grave_ronroneo": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4005,
+  "gusto": 0.4810511091087186
+ },
+ "grave_pregunta": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.3985,
+  "gusto": 0.480028298957721
+ },
+ "grave_updown": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.3999,
+  "gusto": 0.4795814884008526
+ },
+ "grave_muy_grave": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.402,
+  "gusto": 0.4815404913670504
+ },
+ "grave_lento_arm": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4002,
+  "gusto": 0.48092827428498575
+ },
+ "grave_trino": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4014,
+  "gusto": 0.4809610608034508
+ },
+ "grave_saludo": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4067,
+  "gusto": 0.4825598705485778
+ },
+ "grave_hondo_lento": {
+  "tipo": "palabra",
+  "regimen": "COLAPSO",
+  "W": 0.4019,
+  "gusto": 0.48122777474978384
+ }
+}

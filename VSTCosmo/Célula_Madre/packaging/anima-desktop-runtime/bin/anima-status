@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+detect_cm_dir() {
+  if [ -n "${ANIMA_CM_DIR:-}" ] && [ -d "$ANIMA_CM_DIR" ]; then
+    echo "$ANIMA_CM_DIR"
+    return
+  fi
+  if [ -d "/opt/anima/celula_madre" ]; then
+    echo "/opt/anima/celula_madre"
+    return
+  fi
+  case "$(uname -s)" in
+    Darwin)
+      echo "$HOME/Library/Application Support/ANIMA/celula_madre"
+      ;;
+    *)
+      echo "$HOME/.local/share/anima/celula_madre"
+      ;;
+  esac
+}
+
+CM_DIR="$(detect_cm_dir)"
+PUERTO="${VST_PUERTO:-7788}"
+
+echo "ANIMA Desktop Runtime"
+echo "Runtime: $CM_DIR"
+echo
+
+case "$(uname -s)" in
+  Darwin)
+    echo "LaunchAgents:"
+    launchctl print "gui/$(id -u)/com.vstcosmo.anima-organismo" 2>/dev/null | sed -n '1,40p' || echo "(organismo no cargado)"
+    echo
+    launchctl print "gui/$(id -u)/com.vstcosmo.anima-watchdog" 2>/dev/null | sed -n '1,40p' || echo "(watchdog no cargado)"
+    ;;
+  Linux)
+    echo "Servicios:"
+    systemctl --user --no-pager -l status anima-organismo.service anima-watchdog.service 2>/dev/null | sed -n '1,220p' || true
+    ;;
+esac
+
+echo
+echo "Proceso:"
+"$CM_DIR/docker/run_native_desktop.sh" status 2>/dev/null || echo "(no corre)"
+echo
+echo "Puerto :${PUERTO}"
+if command -v lsof >/dev/null 2>&1; then
+  lsof -nP -iTCP:"$PUERTO" -sTCP:LISTEN 2>/dev/null || true
+elif command -v ss >/dev/null 2>&1; then
+  ss -ltnp 2>/dev/null | grep ":${PUERTO}" || true
+fi
+echo
+echo "Estado organismo:"
+curl -fsS --max-time 3 "http://127.0.0.1:${PUERTO}/estado" 2>/dev/null | head -c 800 || echo "(sin respuesta en :${PUERTO})"
+echo

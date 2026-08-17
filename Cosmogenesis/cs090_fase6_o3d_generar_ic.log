@@ -1,0 +1,36 @@
+[A2-B0-C2-kbar-r0] ya tiene IC y meta — no se recomputa
+[A2-B0-C2-kbar-r2] kcap=4 K=5 clase=III pend=1.050 aristas=2303 diam=17.0 | motor 7s grafo 5s ic 261s
+[A2-B0-C2-kbar-r7] kcap=4 K=8 clase=III pend=1.219 aristas=2270 diam=23.0 | motor 7s grafo 4s ic 262s
+[A2-B0-C2-kbar-r19] kcap=4 K=5 clase=III pend=0.912 aristas=2479 diam=19.0 | motor 7s grafo 4s ic 262s
+[A2-B0-C2-kbar-r6] kcap=4 K=7 clase=III pend=0.858 aristas=2556 diam=18.0 | motor 7s grafo 4s ic 262s
+[A2-B0-C2-kbar-r32] kcap=4 K=5 clase=III pend=1.021 aristas=2340 diam=19.0 | motor 7s grafo 4s ic 262s
+[A2-B0-C2-kbar-r65] kcap=4 K=7 clase=III pend=1.012 aristas=2372 diam=20.0 | motor 7s grafo 4s ic 262s
+[A2-B0-C2-kbar-r74] kcap=4 K=8 clase=III pend=1.191 aristas=2224 diam=20.0 | motor 10s grafo 8s ic 455s
+[A2-B0-C2-kbar-r15] kcap=5 K=5 clase=III pend=0.866 aristas=3123 diam=14.0 | motor 12s grafo 9s ic 453s
+[A2-B0-C2-kbar-r20] kcap=5 K=5 clase=III pend=0.809 aristas=3188 diam=14.0 | motor 12s grafo 9s ic 454s
+[A2-B0-C2-kbar-r21] kcap=5 K=4 clase=I pend=0.693 aristas=3330 diam=13.0 | motor 12s grafo 9s ic 459s
+[A2-B0-C2-kbar-r26] kcap=5 K=5 clase=III pend=0.827 aristas=3159 diam=15.0 | motor 11s grafo 9s ic 459s
+[A2-B0-C2-kbar-r10] kcap=5 K=7 clase=III pend=0.838 aristas=3193 diam=15.0 | motor 12s grafo 9s ic 455s
+cs090_fase6_o3d_generar_ic.sh: line 21:  4849 Done                    awk '{print $1, $2, $3}' cs090_fase6_o3d_trabajos.txt
+      4850 Terminated: 15          | xargs -P "$NP" -n 3 sh -c 'python3.9 cs090_fase6_o3d_barrido_kcap.py worker "$0" "$1" "$2"'
+FIN_IC_O3D
+[A2-B0-C2-kbar-r11] kcap=5 K=7 clase=III pend=0.990 aristas=3086 diam=15.0 | motor 20s grafo 13s ic 597s
+[A2-B0-C2-kbar-r25] kcap=5 K=7 clase=III pend=0.823 aristas=3244 diam=15.0 | motor 20s grafo 13s ic 602s
+[A2-B0-C2-kbar-r36] kcap=5 K=7 clase=I pend=0.611 aristas=3316 diam=13.0 | motor 20s grafo 12s ic 602s
+[A2-B0-C2-kbar-r9] kcap=6 K=5 clase=I pend=0.609 aristas=3849 diam=12.0 | motor 21s grafo 12s ic 599s
+[A2-B0-C2-kbar-r14] kcap=6 K=4 clase=I pend=0.574 aristas=3865 diam=11.0 | motor 20s grafo 11s ic 602s
+[A2-B0-C2-kbar-r3] kcap=6 K=5 clase=I pend=0.586 aristas=3880 diam=12.0 | motor 21s grafo 12s ic 604s
+[A2-B0-C2-kbar-r31] kcap=7 K=5 clase=II pend=0.429 aristas=4403 diam=9.0 | motor 27s grafo 15s ic 556s
+[A2-B0-C2-kbar-r4] kcap=6 K=7 clase=I pend=0.633 aristas=3923 diam=12.0 | motor 27s grafo 16s ic 555s
+[A2-B0-C2-kbar-r28] kcap=6 K=5 clase=I pend=0.475 aristas=4089 diam=10.0 | motor 27s grafo 15s ic 557s
+[A2-B0-C2-kbar-r8] kcap=7 K=5 clase=II pend=0.420 aristas=4539 diam=9.0 | motor 28s grafo 15s ic 557s
+[A2-B0-C2-kbar-r12] kcap=7 K=7 clase=I pend=0.450 aristas=5036 diam=10.0 | motor 29s grafo 16s ic 556s
+[A2-B0-C2-kbar-r33] kcap=7 K=5 clase=I pend=0.568 aristas=4678 diam=11.0 | motor 27s grafo 15s ic 560s
+[A2-B0-C2-kbar-r22] kcap=7 K=5 clase=II pend=0.436 aristas=4767 diam=9.0 | motor 29s grafo 17s ic 556s
+[A2-B0-C2-kbar-r27] kcap=7 K=8 clase=I pend=0.472 aristas=4524 diam=10.0 | motor 17s grafo 10s ic 356s
+[A2-B0-C2-kbar-r132] kcap=7 K=7 clase=I pend=0.594 aristas=4204 diam=11.0 | motor 16s grafo 9s ic 355s
+[A2-B0-C2-kbar-r35] kcap=6 K=7 clase=I pend=0.603 aristas=4086 diam=11.0 | motor 15s grafo 9s ic 356s
+[A2-B0-C2-kbar-r18] kcap=6 K=8 clase=I pend=0.645 aristas=3835 diam=12.0 | motor 17s grafo 10s ic 358s
+[A2-B0-C2-kbar-r128] kcap=7 K=8 clase=I pend=0.471 aristas=4732 diam=10.0 | motor 17s grafo 10s ic 357s
+[A2-B0-C2-kbar-r54] kcap=6 K=7 clase=I pend=0.569 aristas=4093 diam=11.0 | motor 16s grafo 10s ic 358s
+FIN_IC_O3D

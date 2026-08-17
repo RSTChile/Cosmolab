@@ -1,0 +1,55 @@
+=== F4-5 rugosidad de densidad — modo=produccion (F4-5_RUGOSIDAD_DENSIDAD_2026-07-24) ===
+amplitud_grid=(0.0, 0.05, 0.15, 0.3, 0.6, 1.0, 1.8, 3.0)
+r_grid=(0.1, 0.3, 1.0, 3.0, 10.0, 30.0)
+seeds=(7, 42, 99, 777, 2025, 3141, 8191, 99991, 12345, 54321, 161803, 271828)
+  [produccion] amp= 0.000 r=  0.100  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00050  gap_NULL(mean)=-0.00050  elapsed=9.1s
+  [produccion] amp= 0.000 r=  0.300  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00050  gap_NULL(mean)=-0.00050  elapsed=18.1s
+  [produccion] amp= 0.000 r=  1.000  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00050  gap_NULL(mean)=-0.00050  elapsed=28.0s
+  [produccion] amp= 0.000 r=  3.000  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00056  gap_NULL(mean)=-0.00056  elapsed=38.7s
+  [produccion] amp= 0.000 r= 10.000  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00071  gap_NULL(mean)=-0.00071  elapsed=49.1s
+  [produccion] amp= 0.000 r= 30.000  bite_rate=0.000  corr_REAL(mean)=None  corr_NULL(mean)=None  gap_REAL(mean)=-0.00079  gap_NULL(mean)=-0.00079  elapsed=60.4s
+  [produccion] amp= 0.050 r=  0.100  bite_rate=0.000  corr_REAL(mean)=-0.04119734432234431  corr_NULL(mean)=-0.006368284493284494  gap_REAL(mean)=0.00056  gap_NULL(mean)=-0.00022  elapsed=72.6s
+  [produccion] amp= 0.050 r=  0.300  bite_rate=0.000  corr_REAL(mean)=-0.040853937728937716  corr_NULL(mean)=-0.006524725274725277  gap_REAL(mean)=0.00057  gap_NULL(mean)=-0.00022  elapsed=84.6s
+  [produccion] amp= 0.050 r=  1.000  bite_rate=0.000  corr_REAL(mean)=-0.041006562881562875  corr_NULL(mean)=-0.005315170940170941  gap_REAL(mean)=0.00059  gap_NULL(mean)=-0.00021  elapsed=97.4s
+  [produccion] amp= 0.050 r=  3.000  bite_rate=0.000  corr_REAL(mean)=-0.04534493284493284  corr_NULL(mean)=-0.001839133089133085  gap_REAL(mean)=0.00058  gap_NULL(mean)=-0.00021  elapsed=111.0s
+  [produccion] amp= 0.050 r= 10.000  bite_rate=0.000  corr_REAL(mean)=-0.026965048840048838  corr_NULL(mean)=0.012110805860805861  gap_REAL(mean)=0.00037  gap_NULL(mean)=-0.00022  elapsed=125.5s
+  [produccion] amp= 0.050 r= 30.000  bite_rate=0.000  corr_REAL(mean)=-0.029376526251526258  corr_NULL(mean)=0.022351953601953595  gap_REAL(mean)=0.00045  gap_NULL(mean)=-0.00025  elapsed=140.9s
+  [produccion] amp= 0.150 r=  0.100  bite_rate=0.000  corr_REAL(mean)=-0.18109355921855919  corr_NULL(mean)=-0.025545634920634924  gap_REAL(mean)=0.00178  gap_NULL(mean)=-0.00008  elapsed=159.3s
+  [produccion] amp= 0.150 r=  0.300  bite_rate=0.000  corr_REAL(mean)=-0.18279532967032966  corr_NULL(mean)=-0.026705586080586083  gap_REAL(mean)=0.00182  gap_NULL(mean)=-0.00007  elapsed=180.9s
+  [produccion] amp= 0.150 r=  1.000  bite_rate=0.000  corr_REAL(mean)=-0.18855692918192915  corr_NULL(mean)=-0.02631639194139193  gap_REAL(mean)=0.00192  gap_NULL(mean)=-0.00005  elapsed=203.2s
+  [produccion] amp= 0.150 r=  3.000  bite_rate=0.000  corr_REAL(mean)=-0.21519383394383387  corr_NULL(mean)=-0.02514499389499389  gap_REAL(mean)=0.00216  gap_NULL(mean)=-0.00001  elapsed=224.0s
+  [produccion] amp= 0.150 r= 10.000  bite_rate=0.000  corr_REAL(mean)=-0.18077686202686202  corr_NULL(mean)=-0.002815934065934061  gap_REAL(mean)=0.00194  gap_NULL(mean)=-0.00001  elapsed=244.0s
+  [produccion] amp= 0.150 r= 30.000  bite_rate=0.000  corr_REAL(mean)=-0.14055631868131868  corr_NULL(mean)=0.009497100122100118  gap_REAL(mean)=0.00193  gap_NULL(mean)=-0.00005  elapsed=263.3s
+  [produccion] amp= 0.300 r=  0.100  bite_rate=0.000  corr_REAL(mean)=-0.3902129120879121  corr_NULL(mean)=-0.053697344322344305  gap_REAL(mean)=0.00407  gap_NULL(mean)=0.00016  elapsed=280.1s
+  [produccion] amp= 0.300 r=  0.300  bite_rate=0.000  corr_REAL(mean)=-0.3944520757020757  corr_NULL(mean)=-0.05536477411477411  gap_REAL(mean)=0.00415  gap_NULL(mean)=0.00018  elapsed=295.1s
+  [produccion] amp= 0.300 r=  1.000  bite_rate=0.000  corr_REAL(mean)=-0.4118437118437119  corr_NULL(mean)=-0.05995879120879121  gap_REAL(mean)=0.00442  gap_NULL(mean)=0.00022  elapsed=309.2s
+  [produccion] amp= 0.300 r=  3.000  bite_rate=0.000  corr_REAL(mean)=-0.44635989010989  corr_NULL(mean)=-0.06549145299145298  gap_REAL(mean)=0.00512  gap_NULL(mean)=0.00031  elapsed=321.3s
+  [produccion] amp= 0.300 r= 10.000  bite_rate=0.000  corr_REAL(mean)=-0.38601190476190467  corr_NULL(mean)=-0.03262362637362637  gap_REAL(mean)=0.00483  gap_NULL(mean)=0.00031  elapsed=334.3s
+  [produccion] amp= 0.300 r= 30.000  bite_rate=0.000  corr_REAL(mean)=-0.3032928876678876  corr_NULL(mean)=-0.01633852258852259  gap_REAL(mean)=0.00439  gap_NULL(mean)=0.00025  elapsed=345.5s
+  [produccion] amp= 0.600 r=  0.100  bite_rate=1.000  corr_REAL(mean)=-0.726251526251526  corr_NULL(mean)=-0.11296932234432235  gap_REAL(mean)=0.01463  gap_NULL(mean)=0.00091  elapsed=356.5s
+  [produccion] amp= 0.600 r=  0.300  bite_rate=1.000  corr_REAL(mean)=-0.7295825702075702  corr_NULL(mean)=-0.11694139194139191  gap_REAL(mean)=0.01474  gap_NULL(mean)=0.00093  elapsed=368.3s
+  [produccion] amp= 0.600 r=  1.000  bite_rate=1.000  corr_REAL(mean)=-0.7387019230769228  corr_NULL(mean)=-0.11925747863247861  gap_REAL(mean)=0.01510  gap_NULL(mean)=0.00100  elapsed=379.6s
+  [produccion] amp= 0.600 r=  3.000  bite_rate=1.000  corr_REAL(mean)=-0.7582036019536019  corr_NULL(mean)=-0.1346573565323565  gap_REAL(mean)=0.01574  gap_NULL(mean)=0.00114  elapsed=390.2s
+  [produccion] amp= 0.600 r= 10.000  bite_rate=0.750  corr_REAL(mean)=-0.6902625152625151  corr_NULL(mean)=-0.097378663003663  gap_REAL(mean)=0.01242  gap_NULL(mean)=0.00101  elapsed=400.1s
+  [produccion] amp= 0.600 r= 30.000  bite_rate=0.333  corr_REAL(mean)=-0.5388049450549449  corr_NULL(mean)=-0.059008699633699625  gap_REAL(mean)=0.00914  gap_NULL(mean)=0.00075  elapsed=409.1s
+  [produccion] amp= 1.000 r=  0.100  bite_rate=1.000  corr_REAL(mean)=-0.8511942918192917  corr_NULL(mean)=-0.18042963980463977  gap_REAL(mean)=0.02429  gap_NULL(mean)=0.00162  elapsed=417.6s
+  [produccion] amp= 1.000 r=  0.300  bite_rate=1.000  corr_REAL(mean)=-0.8520070207570206  corr_NULL(mean)=-0.18277243589743586  gap_REAL(mean)=0.02430  gap_NULL(mean)=0.00165  elapsed=430.6s
+  [produccion] amp= 1.000 r=  1.000  bite_rate=1.000  corr_REAL(mean)=-0.8550442612942614  corr_NULL(mean)=-0.18858363858363855  gap_REAL(mean)=0.02429  gap_NULL(mean)=0.00175  elapsed=444.6s
+  [produccion] amp= 1.000 r=  3.000  bite_rate=1.000  corr_REAL(mean)=-0.8633775946275944  corr_NULL(mean)=-0.2125686813186813  gap_REAL(mean)=0.02385  gap_NULL(mean)=0.00200  elapsed=458.8s
+  [produccion] amp= 1.000 r= 10.000  bite_rate=1.000  corr_REAL(mean)=-0.8145184676434676  corr_NULL(mean)=-0.1604242979242979  gap_REAL(mean)=0.01768  gap_NULL(mean)=0.00195  elapsed=472.5s
+  [produccion] amp= 1.000 r= 30.000  bite_rate=0.583  corr_REAL(mean)=-0.6648084554334553  corr_NULL(mean)=-0.09217032967032966  gap_REAL(mean)=0.01206  gap_NULL(mean)=0.00161  elapsed=486.4s
+  [produccion] amp= 1.800 r=  0.100  bite_rate=1.000  corr_REAL(mean)=-0.8992788461538459  corr_NULL(mean)=-0.22257326007326003  gap_REAL(mean)=0.03128  gap_NULL(mean)=0.00195  elapsed=500.0s
+  [produccion] amp= 1.800 r=  0.300  bite_rate=1.000  corr_REAL(mean)=-0.9001373626373627  corr_NULL(mean)=-0.22396596459096454  gap_REAL(mean)=0.03122  gap_NULL(mean)=0.00198  elapsed=514.6s
+  [produccion] amp= 1.800 r=  1.000  bite_rate=1.000  corr_REAL(mean)=-0.9016292735042736  corr_NULL(mean)=-0.22950244200244196  gap_REAL(mean)=0.03096  gap_NULL(mean)=0.00208  elapsed=529.2s
+  [produccion] amp= 1.800 r=  3.000  bite_rate=1.000  corr_REAL(mean)=-0.9042925824175824  corr_NULL(mean)=-0.2403273809523809  gap_REAL(mean)=0.02982  gap_NULL(mean)=0.00233  elapsed=545.0s
+  [produccion] amp= 1.800 r= 10.000  bite_rate=1.000  corr_REAL(mean)=-0.8731265262515261  corr_NULL(mean)=-0.19376907814407815  gap_REAL(mean)=0.02209  gap_NULL(mean)=0.00228  elapsed=562.5s
+  [produccion] amp= 1.800 r= 30.000  bite_rate=0.917  corr_REAL(mean)=-0.7375648656898656  corr_NULL(mean)=-0.10976800976800975  gap_REAL(mean)=0.01430  gap_NULL(mean)=0.00164  elapsed=581.2s
+  [produccion] amp= 3.000 r=  0.100  bite_rate=1.000  corr_REAL(mean)=-0.9117750305250305  corr_NULL(mean)=-0.2566620879120879  gap_REAL(mean)=0.03454  gap_NULL(mean)=0.00227  elapsed=598.7s
+  [produccion] amp= 3.000 r=  0.300  bite_rate=1.000  corr_REAL(mean)=-0.9122863247863248  corr_NULL(mean)=-0.257657967032967  gap_REAL(mean)=0.03446  gap_NULL(mean)=0.00230  elapsed=613.1s
+  [produccion] amp= 3.000 r=  1.000  bite_rate=1.000  corr_REAL(mean)=-0.9130341880341882  corr_NULL(mean)=-0.26177121489621485  gap_REAL(mean)=0.03413  gap_NULL(mean)=0.00239  elapsed=627.7s
+  [produccion] amp= 3.000 r=  3.000  bite_rate=1.000  corr_REAL(mean)=-0.9153121184371185  corr_NULL(mean)=-0.27576694139194136  gap_REAL(mean)=0.03286  gap_NULL(mean)=0.00263  elapsed=643.4s
+  [produccion] amp= 3.000 r= 10.000  bite_rate=1.000  corr_REAL(mean)=-0.8921588827838828  corr_NULL(mean)=-0.22495802808302803  gap_REAL(mean)=0.02507  gap_NULL(mean)=0.00275  elapsed=658.7s
+  [produccion] amp= 3.000 r= 30.000  bite_rate=1.000  corr_REAL(mean)=-0.7741834554334552  corr_NULL(mean)=-0.1214514652014652  gap_REAL(mean)=0.01591  gap_NULL(mean)=0.00201  elapsed=674.8s
+
+JSON -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/BATERIA_FUNDAMENTOS/F4_5_rugosidad_densidad/F4_5_produccion_result.json
+runtime_seconds=674.8

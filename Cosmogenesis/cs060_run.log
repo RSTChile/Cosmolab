@@ -1,0 +1,14 @@
+CS060-B — GRAVEDAD CON MASA REAL vs PROXY DE GRADO (¿el negativo de CS057 era del proxy?)
+====================================================================================================
+PREDICCIÓN CIEGA: si el negativo de CS057 (gravedad→2D/colapso) era por el PROXY (grado), la gravedad
+  ∝MASA (intrínseca, independiente del grado) debería seleccionar geometría DISTINTA. Si da lo mismo,
+  el negativo era de la gravedad, no del proxy. NULL (masa barajada) debe parecerse a... ver.
+G_LEVELS=[0.3, 0.6, 1.0] · acoples=masa/grado/null · seeds=10 · masa log-uniforme [1.0,3477.0]
+corridas = 90 (×5 dims) · workers=14 · salida /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs060_gravmasa.csv
+  20/90 · 0.3min · ETA 1.0min
+  40/90 · 0.6min · ETA 0.8min
+  60/90 · 1.3min · ETA 0.7min
+  80/90 · 2.9min · ETA 0.4min
+  90/90 · 3.4min · ETA 0.0min
+
+COMPLETO: 90 corridas en 3.4 min → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs060_gravmasa.csv

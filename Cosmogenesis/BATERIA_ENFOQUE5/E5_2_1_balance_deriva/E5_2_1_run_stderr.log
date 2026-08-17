@@ -1,0 +1,12 @@
+[eps=0] filas=96 PASS_global=96/96 D=0 elapsed=368.4s
+[eps=1e-12] filas=96 PASS_global=96/96 D=0.000841606 elapsed=424.9s
+[eps=1e-09] filas=96 PASS_global=96/96 D=0.000841366 elapsed=365.2s
+[eps=1e-06] filas=96 PASS_global=96/96 D=0.000841367 elapsed=334.1s
+[eps=0.001] filas=96 PASS_global=47/96 D=0.000841367 elapsed=303.4s
+[eps=0.01] filas=96 PASS_global=25/96 D=0.000841367 elapsed=315.3s
+[eps=0.1] filas=96 PASS_global=16/96 D=0.000841367 elapsed=345.7s
+[eps=1] filas=96 PASS_global=13/96 D=0.000841367 elapsed=477.8s
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_2_1_balance_deriva/E5_2_1_resultado_crudo.json
+[elapsed total] 2934.8s
+[resumen] filas=768 PASS@100=584 PASS@100000=485

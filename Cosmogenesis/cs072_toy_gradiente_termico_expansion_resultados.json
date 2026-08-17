@@ -1,0 +1,18 @@
+{
+  "patron": [
+    1,
+    1,
+    4,
+    8
+  ],
+  "firmas_t0": 4,
+  "tol_sweep": {
+    "1e-2": 8,
+    "1e-3": 8,
+    "1e-5": 8,
+    "1e-8": 8,
+    "1e-10": 8
+  },
+  "invariancia_dura": true,
+  "max_dif": 0.0
+}

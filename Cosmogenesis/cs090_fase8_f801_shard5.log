@@ -1,0 +1,16 @@
+[f801] 1 grafos base (generar_ic=True) brazos=('abanico', 'disp', 'cola', 'malla', 'solap')
+[1/1] A2-B0-C2-batch3-r60 seed=477649 lote=471828
+    piso: tri 41 -> 0  (15190 swaps, 4.1s)
+    abanico: techo_conectado tri=677 (k=676/676) techo_libre=677 [55.7s]
+       disp: techo_conectado tri=1148 (k=1118/1118) techo_libre=1148 [31.5s]
+       cola: techo_conectado tri=766 (k=758/758) techo_libre=766 [29.9s]
+      malla: techo_conectado tri=164 (k=154/154) techo_libre=164 [84.1s]
+      solap: techo_conectado tri=212 (k=170/170) techo_libre=212 [44.1s]
+    T*=164  conseguidos={'abanico': 164, 'disp': 164, 'cola': 164, 'malla': 164, 'solap': 164}  dif_max=0
+    abanico  tri=164   A=1.000 D=0.1604 multi=0.000 max_e=1 gini_n=0.862 C=0.05757 nodos=0.166 gig=1849 pend=0.7621 ic=385.05s
+       disp  tri=164   A=1.000 D=0.1604 multi=0.000 max_e=1 gini_n=0.754 C=0.07053 nodos=0.246 gig=1847 pend=0.8003 ic=206.35s
+       cola  tri=164   A=1.006 D=0.1594 multi=0.002 max_e=4 gini_n=0.778 C=0.06540 nodos=0.234 gig=1851 pend=0.7344 ic=131.96s
+      malla  tri=164   A=1.613 D=0.0994 multi=0.613 max_e=2 gini_n=0.930 C=0.05055 nodos=0.088 gig=1849 pend=0.8869 ic=140.74s
+      solap  tri=164   A=2.436 D=0.0658 multi=0.832 max_e=4 gini_n=0.962 C=0.03747 nodos=0.051 gig=1835 pend=0.9612 ic=114.87s
+
+[f801] 5 filas -> cs090_fase8_f801_estructura_shard5.csv  (total 1246s)

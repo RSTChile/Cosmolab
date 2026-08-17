@@ -1,0 +1,13 @@
+# Chile public emergency / civil protection monitoring references.
+# Listening/awareness only. Do not transmit unless authorized.
+# Former ONEMI, now SENAPRED, public VHF reference found in DGAC document.
+f=151575000,d=CL SENAPRED ex-ONEMI VHF
+a=150000000,b=160000000,m=NFM,bw=16k,s=12.5kHz,d=CL VHF public safety range
+a=160000000,b=174000000,m=NFM,bw=16k,s=12.5kHz,d=CL VHF land mobile range
+a=406000000,b=430000000,m=NFM,bw=16k,s=12.5kHz,d=CL UHF public/mobile range
+a=450000000,b=470000000,m=NFM,bw=16k,s=12.5kHz,d=CL UHF public/mobile range
+a=118000000,b=137000000,m=AM,bw=DSB 9k,s=25kHz,d=CL aeronautical VHF AM
+a=156000000,b=163000000,m=NFM,bw=16k,s=25kHz,d=CL maritime VHF
+f=156800000,d=Maritime VHF Ch16 distress
+f=121500000,d=Aviation emergency guard
+f=406000000,d=EPIRB/SARSAT beacon band

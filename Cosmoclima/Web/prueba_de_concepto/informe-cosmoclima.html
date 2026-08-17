@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmoclima · El Desierto Florido y las vaquitas del desierto | Cosmosemiótica</title>
+  <link rel="canonical" href="https://cosmosemiotica.cl/informe-cosmoclima.html">
+<meta name="description" content="Un instrumento que mide si un ecosistema real está regulando o solo persiste. Daisyworld reescrito para un interglacial, con 60 años de lluvia y temperatura reales del Desierto Florido y las vaquitas del desierto.">
+<meta property="og:title" content="Cosmoclima · Desierto Florido y Gyriosomus">
+<meta property="og:description" content="Daisyworld reescrito para un interglacial: 60 años de datos reales del Desierto Florido y del género Gyriosomus, endémico de Chile.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cosmosemiotica.cl/informe-cosmoclima.html">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,200;9..144,0,300;9..144,1,200;9..144,1,300&family=IBM+Plex+Mono:wght@300;400;500&family=Public+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#0c0f18; --paper2:#0e1220; --ink:#f2efe8; --ink-soft:#c3c7ce;
+  --muted:#767c87; --line:#242a37; --gold:#e8c477; --gold-dim:#a8874a; --cold:#8fc4dd;
+  --nav-bg:#0c0f18; --nav-line:#242a37; --nav-gold:#e8c477; --nav-ink:#c9c3b4; --nav-dim:#767c87;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:300 16.5px/1.75 'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased}
+.amb{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 45% at 12% 8%, rgba(140,92,26,.16), transparent 70%),
+    radial-gradient(55% 45% at 88% 92%, rgba(21,74,102,.20), transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 22px 80px}
+
+/* ── navegación del sitio ─────────────────────────────────── */
+.cs-nav{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin:0;
+  padding:16px clamp(16px,4vw,58px);background:var(--nav-bg);
+  border-bottom:1px solid var(--nav-line);position:relative;z-index:2}
+.cs-nav .cs-brand{font:400 13px/1 'Public Sans',sans-serif;letter-spacing:.22em;
+  text-transform:uppercase;color:#e2d9c4;text-decoration:none;white-space:nowrap}
+.cs-nav .cs-brand:hover{color:#fff}
+.cs-nav ul{display:flex;flex-wrap:wrap;gap:clamp(11px,2vw,28px);list-style:none;margin:0 0 0 auto;padding:0}
+.cs-nav a{color:var(--nav-ink);text-decoration:none;font:300 13.5px 'Public Sans',sans-serif;
+  padding:4px 0;border-bottom:1px solid transparent;transition:.22s}
+.cs-nav a:hover,.cs-nav a[aria-current]{color:#fff;border-bottom-color:var(--nav-gold)}
+.cs-nav .cs-ver{font:11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--nav-dim);
+  border:1px solid var(--nav-line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.crumb{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:20px 22px 0;
+  font:300 12.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--muted)}
+.crumb a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.crumb a:hover{color:var(--gold)}
+
+/* ── cabecera ─────────────────────────────────────────────── */
+.eyebrow{font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-dim);margin:34px 0 10px}
+h1{font:200 clamp(2.1rem,5.6vw,3.1rem)/1.16 'Fraunces',Georgia,serif;margin:0 0 14px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--gold)}
+.deck{font:200 1.22rem/1.62 'Fraunces',Georgia,serif;color:var(--ink-soft);margin:0 0 20px;text-wrap:balance}
+.meta-line{font:300 12.5px/1.7 'IBM Plex Mono',monospace;color:var(--muted);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:0 0 28px}
+.meta-line b{color:var(--ink-soft);font-weight:400}
+
+/* foto de apertura — al ancho exacto de la columna de texto */
+figure.hero{margin:0 0 40px;padding:0}
+figure.hero img{display:block;width:100%;height:auto;border:1px solid var(--line)}
+figure.hero figcaption{margin-top:9px;font:300 12px/1.6 'Public Sans',sans-serif;color:var(--muted)}
+figure.hero figcaption b{color:var(--ink-soft);font-weight:400}
+
+/* ── secciones ────────────────────────────────────────────── */
+h2{font:300 1.58rem/1.3 'Fraunces',Georgia,serif;margin:56px 0 10px;padding-top:24px;
+  border-top:1px solid var(--line);text-wrap:balance}
+h2 .num{color:var(--gold);font:400 1rem 'IBM Plex Mono',monospace;margin-right:12px}
+h3{font:300 1.12rem/1.4 'Fraunces',Georgia,serif;margin:30px 0 8px;color:var(--ink-soft)}
+p{margin:0 0 16px}
+strong{font-weight:500;color:#fff}
+em{font-style:italic}
+a{color:var(--gold)}
+.lede{font:200 1.1rem/1.68 'Fraunces',Georgia,serif;color:var(--ink-soft)}
+
+.callout{background:var(--paper2);border:1px solid var(--line);border-left:2px solid var(--cold);
+  padding:16px 18px;margin:22px 0;font-size:.95rem}
+.callout .k{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cold);margin:0 0 6px}
+.warnbox{background:var(--paper2);border:1px solid var(--line);border-left:2px solid var(--gold);
+  padding:16px 18px;margin:22px 0;font-size:.95rem}
+.warnbox .k{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 6px}
+.quote{font:200 italic 1.18rem/1.6 'Fraunces',Georgia,serif;color:var(--gold);
+  border-left:2px solid var(--gold-dim);padding:4px 0 4px 20px;margin:26px 0}
+
+.table-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:460px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:#111622;font:400 11.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.mono,th.mono{font:400 .86rem 'IBM Plex Mono',monospace;white-space:nowrap}
+.ok{color:#8fd4a8}.bad{color:#e4a09a}
+
+/* ── arquitectura ─────────────────────────────────────────── */
+.arq{margin:26px 0;border:1px solid var(--line);background:var(--paper2);padding:20px 18px}
+.arq-fila{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-bottom:10px}
+.arq-caja{flex:1 1 150px;border:1px solid var(--line);padding:10px 12px;background:#0c1018}
+.arq-caja .t{font:400 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-dim);margin:0 0 4px}
+.arq-caja .d{font-size:.84rem;line-height:1.5;color:var(--ink-soft);margin:0}
+.arq-flecha{text-align:center;color:var(--muted);font:300 15px 'IBM Plex Mono',monospace;margin:2px 0 8px}
+
+/* ── galería ──────────────────────────────────────────────── */
+.gal-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 18px}
+.gal-tab{background:transparent;border:1px solid var(--line);color:var(--ink-soft);
+  font:300 13px 'Public Sans',sans-serif;padding:7px 15px;cursor:pointer;transition:.2s}
+.gal-tab:hover{border-color:var(--gold-dim);color:#fff}
+.gal-tab[aria-selected="true"]{border-color:var(--gold);color:#fff;background:rgba(232,196,119,.09)}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.gal-item{border:1px solid var(--line);background:var(--paper2);padding:8px;cursor:pointer;
+  transition:.2s;text-align:center}
+.gal-item:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
+.gal-item img{width:100%;height:130px;object-fit:contain;display:block}
+.gal-item .n{font:300 italic 12.5px/1.35 'Fraunces',Georgia,serif;color:var(--ink-soft);
+  margin:7px 0 0;word-break:break-word}
+.gal-item .n span{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--muted);display:block;letter-spacing:.05em}
+.gal-nota{font-size:.86rem;color:var(--muted);margin:14px 0 0}
+
+/* visor */
+.visor{position:fixed;inset:0;background:rgba(6,8,14,.94);z-index:50;display:none;
+  align-items:center;justify-content:center;padding:26px}
+.visor[open]{display:flex}
+.visor figure{margin:0;max-width:900px;width:100%;text-align:center}
+.visor img{max-width:100%;max-height:74vh;object-fit:contain}
+.visor figcaption{margin-top:14px;font:300 italic 1.05rem 'Fraunces',Georgia,serif;color:var(--ink)}
+.visor figcaption small{display:block;font:300 12.5px 'Public Sans',sans-serif;font-style:normal;
+  color:var(--muted);margin-top:6px}
+.visor-x{position:absolute;top:18px;right:22px;background:transparent;border:1px solid var(--line);
+  color:var(--ink-soft);font:300 20px/1 'Public Sans',sans-serif;width:38px;height:38px;cursor:pointer}
+.visor-x:hover{border-color:var(--gold);color:#fff}
+
+/* ── bibliografía / fuentes ───────────────────────────────── */
+ol.bib{padding-left:22px;font-size:.92rem;line-height:1.7}
+ol.bib li{margin-bottom:11px;color:var(--ink-soft)}
+ol.bib i{color:var(--ink)}
+.doi{font:400 .8rem 'IBM Plex Mono',monospace;color:var(--muted)}
+
+/* ── ficha ────────────────────────────────────────────────── */
+.ficha{border:1px solid var(--line);background:var(--paper2);padding:22px;margin:26px 0}
+.ficha dl{display:grid;grid-template-columns:minmax(130px,auto) 1fr;gap:9px 20px;margin:0}
+.ficha dt{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-dim);padding-top:3px}
+.ficha dd{margin:0;color:var(--ink-soft);font-size:.94rem}
+.cta{margin:44px 0 0;text-align:center}
+.cta a{display:inline-block;border:1px solid var(--gold-dim);color:var(--gold);text-decoration:none;
+  padding:12px 26px;font:300 14.5px 'Public Sans',sans-serif;transition:.22s}
+.cta a:hover{background:rgba(232,196,119,.1);border-color:var(--gold)}
+.footer-links{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);text-align:center;
+  font:300 13px 'Public Sans',sans-serif;color:var(--muted)}
+.footer-links a{color:var(--gold);text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+footer.cred{padding:30px 0 10px;font:300 10.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;
+  color:#4b515c;text-align:center}
+
+@media (max-width:560px){
+  .ficha dl{grid-template-columns:1fr;gap:2px 0}
+  .ficha dt{margin-top:10px}
+  .gal-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+}
+</style>
+</head>
+<body>
+<div class="amb" aria-hidden="true"></div>
+
+<nav class="cs-nav" aria-label="Navegación del sitio">
+  <a class="cs-brand" href="https://cosmosemiotica.cl/index.html">Cosmosemiótica</a>
+  <ul>
+    <li><a href="https://cosmosemiotica.cl/teoria.html">Teoría</a></li>
+    <li><a href="https://cosmosemiotica.cl/experimentos.html" aria-current="true">Experimentos</a></li><li><a href="https://cosmosemiotica.cl/descargas/anima.html">Descargas</a></li>
+    <li><a href="https://cosmosemiotica.cl/observatorio.html">Observatorio</a></li>
+    <li><a href="https://bitacora.cosmosemiotica.cl">Bitácora</a></li>
+    <li><a href="https://cosmosemiotica.cl/publicaciones.html">Publicaciones</a></li>
+    <li><a href="https://cosmosemiotica.cl/autor.html">Autor</a></li>
+  </ul>
+  <span class="cs-ver">Cosmoclima v1.0</span>
+</nav>
+
+<div class="crumb"><a href="https://cosmosemiotica.cl/experimentos.html">Experimentos</a> &nbsp;/&nbsp; Cosmoclima</div>
+
+<div class="wrap">
+<main>
+
+<p class="eyebrow">Cosmoclima · Experimento</p>
+<h1>El Desierto Florido y las <em>vaquitas del desierto</em></h1>
+<p class="deck">Un desierto que florece, un escarabajo que no vuela, y una pregunta que el
+modelo original no se hacía: mirando desde afuera, ¿cómo se sabe si adentro hay alguien
+regulando, o si es un sistema que ya no hace nada y todavía no se cae?</p>
+<p class="meta-line"><b>Período</b> 1966–2026 · 60 años · <b>Motor</b> Daisyworld reescrito
+para un interglacial · <b>Validación</b> doble motor independiente</p>
+
+<figure class="hero">
+  <img src="imagenes/web/desierto-florido.jpg" width="1410" height="793"
+       alt="El Desierto Florido: una llanura del desierto de Atacama cubierta por completo de flores rosadas, con un cerro de roca desnuda al fondo bajo un cielo despejado.">
+  <figcaption>El Desierto Florido en plena floración: el mismo suelo que el resto de los
+  años es piedra y polvo. <b>Fotografía: Cedida.</b></figcaption>
+</figure>
+
+<!-- ══════════════ 01 ══════════════ -->
+<h2><span class="num">01</span>Un desierto que florece</h2>
+
+<p class="lede">Hay un desierto en Chile que, algunos años, se cubre de flores. No es una
+metáfora: el suelo más árido del planeta se llena de <em>Cistanthe</em>, <em>Rhodophiala</em>
+y decenas de especies más, durante unas semanas, y después vuelve a ser piedra y polvo.</p>
+
+<p>El fenómeno se llama <strong>Desierto Florido</strong> y ocurre en el norte de Chile
+cuando cae lluvia suficiente sobre un banco de semillas que llevaba años esperando bajo
+tierra. No basta con que llueva: hace falta un <strong>pulso</strong> —una cantidad
+concentrada en poco tiempo— por encima de un umbral de germinación que la literatura sitúa
+en torno a los <strong>15 mm</strong>. Por debajo de eso, la semilla no arriesga: se queda
+donde está.</p>
+
+<p>Esa espera es la parte interesante. Un banco de semillas latente no está muerto ni está
+vivo en el sentido corriente: está <em>disponible</em>. Puede pasar cinco años sin hacer
+nada visible y germinar la semana siguiente a una lluvia. Cualquier instrumento que mire
+ese suelo en un año seco y concluya «aquí no hay nada» se estaría equivocando.</p>
+
+<div class="callout">
+<p class="k">El dato duro</p>
+<p>La floración no es instantánea. Tras el pulso de lluvia hay un <strong>rezago de unos
+tres meses</strong> hasta que la vegetación responde, y un evento dura en promedio
+<strong>166 días</strong>: tarda más en apagarse que en encenderse.</p>
+</div>
+
+<!-- ══════════════ 02 ══════════════ -->
+<h2><span class="num">02</span><em>Gyriosomus</em>, las vaquitas del desierto</h2>
+
+<p>En ese mismo desierto vive un escarabajo que la gente del norte llama
+<strong>vaquita del desierto</strong>. Su nombre científico es <em>Gyriosomus</em>, un género
+de la familia Tenebrionidae <strong>endémico de Chile</strong>: no existe en ningún otro
+lugar del mundo.</p>
+
+<p>Son animales <strong>ápteros</strong> —no vuelan, no pueden— y eso los vuelve
+especialmente interesantes. Un insecto que no vuela no puede escapar de un mal año ni
+colonizar el valle de al lado: queda atrapado en su pedazo de desierto. El resultado es un
+género fragmentado en decenas de especies, cada una encerrada en su quebrada, su duna o su
+ladera. El río Huasco, por ejemplo, funciona como una barrera que separa dos linajes que ya
+no se mezclan.</p>
+
+<p>La revisión sistemática más reciente reconoce <strong>44 especies descritas</strong>
+agrupadas en nueve clados. Este instrumento trabaja con <strong>42 especies</strong> y
+<strong>222 puntos de colecta</strong> georreferenciados, reunidos de museos, publicaciones,
+observaciones ciudadanas y campañas de campo.</p>
+
+<p>Algunas están en problemas. <em>G. camanchaca</em> —bautizada así por la niebla costera
+que la sostiene— entró en 2025 al proceso oficial de clasificación de especies del
+Ministerio del Medio Ambiente. Y en 2022 una de ellas, la vaquita de Paposo, fue nombrada
+embajadora de la fauna chilena.</p>
+
+<div class="callout">
+<p class="k">Por qué importan para este experimento</p>
+<p>Las vaquitas aparecen <strong>después</strong> de la floración, con un rezago de
+alrededor de un mes: primero llueve, después florece, después llegan ellas. Esa cadena
+—lluvia, planta, animal— es lo que el instrumento intenta seguir con datos reales, sin
+inventar ningún eslabón.</p>
+</div>
+
+<!-- ══════════════ 03 ══════════════ -->
+<h2><span class="num">03</span>La pregunta</h2>
+
+<p>En 1983 James Lovelock y Andrew Watson publicaron <strong>Daisyworld</strong>, una parábola
+en forma de modelo: un planeta imaginario con margaritas blancas y negras que, sin
+proponérselo ni coordinarse, mantienen la temperatura del planeta habitable. Las negras
+absorben calor y prosperan cuando hace frío; las blancas lo reflejan y ganan cuando hace
+calor. Nadie regula nada a propósito, y sin embargo el planeta queda regulado.</p>
+
+<p>Daisyworld responde a una pregunta: <em>¿puede haber regulación sin intención?</em>
+Nosotros agregamos otra, que el modelo original no se hacía:</p>
+
+<p class="quote">Mirando desde afuera, ¿cómo se distingue un sistema que está regulando de
+uno que ya no hace nada y todavía no se cae?</p>
+
+<p>La diferencia importa. Un desierto en sequía profunda y un desierto muerto se ven igual
+desde arriba: los dos están quietos. Pero uno tiene un banco de semillas esperando y el otro
+no. Si un instrumento no puede distinguirlos, no está midiendo la vida del sistema, está
+midiendo su fotografía.</p>
+
+<p>Lo que buscamos es un <strong>umbral mínimo de variación</strong> —lo llamamos
+κ_H— por debajo del cual no se puede decir nada de un sistema. No porque esté muerto: porque
+está <strong>callado</strong>. La distinción entre silencio y muerte es el objeto de este
+experimento.</p>
+
+<!-- ══════════════ 04 ══════════════ -->
+<h2><span class="num">04</span>Daisyworld reescrito para un interglacial</h2>
+
+<p>El motor parte de Daisyworld, pero ya no son margaritas. Es lluvia real, floración real y
+<em>Gyriosomus</em> real. Y en el camino hubo que corregir un supuesto de fondo del modelo
+original.</p>
+
+<p>En Daisyworld clásico la vida <strong>calienta</strong> el planeta: las margaritas oscuras
+bajan el albedo, absorben más sol y empujan la temperatura hacia arriba. Ese es el mecanismo
+correcto para un planeta <strong>glacial</strong>, donde el problema es el frío.</p>
+
+<p>Pero la Tierra de hoy es un <strong>interglacial</strong>. El problema no es el frío: es
+el exceso de energía solar. Y la vida regula <strong>enfriando</strong> —evapotranspiración,
+nubosidad, el ciclo del carbono—, no calentando. Medido en este mismo desierto: los años de
+floración documentada son <em>más fríos</em>, no más cálidos.</p>
+
+<p>El efecto de albedo del modelo original sigue ahí, porque es real y está medido: la
+floración plena baja el albedo un <strong>2,1 %</strong>. Pero es un efecto pequeño y, por sí
+solo, calentaría. Lo que de verdad enfría es la regulación que la propia lluvia trae consigo.
+Ese término no se inventó ni se ajustó a ojo: se midió por regresión contra la temperatura
+real, y dio <strong>−9,4 °C por unidad de floración</strong>.</p>
+
+<div class="warnbox">
+<p class="k">Un hallazgo incómodo del camino</p>
+<p>Durante la construcción se descubrió que la «libertad funcional» del instrumento no medía
+libertad: medía la <em>distancia a la posición de un control deslizante de la interfaz</em>.
+Como era un valor absoluto, formaba una V —alejarse hacia arriba y hacia abajo puntuaba
+igual— y el resultado era que <strong>el desierto muerto puntuaba casi el doble que el
+desierto florido</strong>. Se corrigió midiendo la amplitud real de estados disponibles.
+Queda documentado porque un error así puede sobrevivir años sin que nadie lo note.</p>
+</div>
+
+<!-- ══════════════ 05 ══════════════ -->
+<h2><span class="num">05</span>Arquitectura del experimento</h2>
+
+<p>El instrumento encadena datos reales hasta una clasificación en cuatro estados. Ningún
+eslabón usa números inventados: cada constante viene de literatura publicada o de una
+regresión contra datos medidos.</p>
+
+<div class="arq">
+  <div class="arq-fila">
+    <div class="arq-caja"><p class="t">Entrada · lluvia</p><p class="d">Serie mensual del punto-reloj, 1966–2026, enteramente de estaciones reales: pluviómetro en el punto hasta 2018, y desde 2019 doce estaciones vecinas reescaladas al punto.</p></div>
+    <div class="arq-caja"><p class="t">Entrada · temperatura</p><p class="d">Máxima y mínima diaria, 22.139 días sin huecos, fuente única.</p></div>
+  </div>
+  <p class="arq-flecha">↓</p>
+  <div class="arq-fila">
+    <div class="arq-caja"><p class="t">Floración</p><p class="d">Umbral de germinación 15 mm · rezago 90 días · duración 166 días. Curva ajustada contra eventos documentados.</p></div>
+    <div class="arq-caja"><p class="t">Gyriosomus</p><p class="d">Sigue a la floración con ~1 mes de rezago. No alimenta la física: es la salida observable.</p></div>
+  </div>
+  <p class="arq-flecha">↓</p>
+  <div class="arq-fila">
+    <div class="arq-caja"><p class="t">Temperatura del planeta</p><p class="d">Stefan-Boltzmann real sobre el albedo, menos la regulación interglacial (−9,4 °C por unidad de floración).</p></div>
+  </div>
+  <p class="arq-flecha">↓</p>
+  <div class="arq-fila">
+    <div class="arq-caja"><p class="t">Cuatro invariantes</p><p class="d">Libertad funcional · diferencia estructural · acoplamiento con el entorno · error operativo. En esta ventana de 62 años la clasificación la deciden los dos primeros de cada par; los otros dos se cumplen siempre.</p></div>
+  </div>
+  <p class="arq-flecha">↓</p>
+  <div class="arq-fila">
+    <div class="arq-caja"><p class="t">Clasificación</p><p class="d">Jardín Fértil · Cierre · Selva Hostil · Colapso, contra umbrales que la teoría define como condiciones de posibilidad.</p></div>
+  </div>
+</div>
+
+<h3>Las cuatro zonas</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Zona</th><th>Viable</th><th>Activo</th><th>Qué significa</th></tr></thead>
+<tbody>
+<tr><td><strong>Jardín Fértil</strong></td><td class="mono ok">sí</td><td class="mono ok">sí</td><td>El desierto florece: se sostiene y se mueve.</td></tr>
+<tr><td><strong>Cierre</strong></td><td class="mono ok">sí</td><td class="mono">no</td><td>Equilibrio sin cambios. El desierto en sequía está aquí: quieto, pero con sus semillas vivas. <em>No es lo mismo que morirse.</em></td></tr>
+<tr><td><strong>Selva Hostil</strong></td><td class="mono bad">no</td><td class="mono ok">sí</td><td>Se agita sin poder sostenerse.</td></tr>
+<tr><td><strong>Colapso</strong></td><td class="mono bad">no</td><td class="mono">no</td><td>Ni activo ni viable.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout">
+<p class="k">Doble motor, verificación cruzada</p>
+<p>La física corre en dos implementaciones independientes: una en el navegador y otra en
+Node.js, generada automáticamente desde el mismo código fuente. Las dos se comparan sobre los
+60 años completos y deben coincidir <strong>en los cuatro valores de cada año</strong>. Es una
+garantía poco común: un error de transcripción o una constante desincronizada aparecen de
+inmediato.</p>
+</div>
+
+<!-- ══════════════ 06 ══════════════ -->
+<h2><span class="num">06</span>Resultados</h2>
+
+<p>El instrumento corre los 60 años completos, día a día, y clasifica cada momento en una de
+las cuatro zonas. El resultado se somete a <strong>cinco criterios que no participan del
+modelo</strong>: se construyeron con datos externos —eventos de floración documentados en la
+literatura, lluvia medida por estaciones meteorológicas, el período de megasequía— y ninguno
+puede ajustarse desde dentro del instrumento.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Criterio</th><th>Resultado</th><th class="mono">Medida</th></tr></thead>
+<tbody>
+<tr><td>Cada año produce una trayectoria propia, sin moldes repetidos</td><td class="ok">cumple</td><td class="mono">61 de 62 únicas</td></tr>
+<tr><td>Los años de floración documentada superan a los años control</td><td class="bad">no cumple</td><td class="mono">38,19 vs 38,25</td></tr>
+<tr><td>La megasequía queda por debajo del promedio</td><td class="ok">cumple</td><td class="mono">23,1 vs 40,9 %</td></tr>
+<tr><td>Correlación con la lluvia real medida</td><td class="ok">cumple</td><td class="mono">ρ = +0,217</td></tr>
+<tr><td>En megasequía domina Cierre, no agitación</td><td class="ok">cumple</td><td class="mono">42,9 vs 22,3 %</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Cuatro de cinco.</strong> El más exigente es el primero: en 62 años, 61 producen una
+combinación distinta de las cuatro zonas y <em>ninguna</em> se repite tres veces o más. El
+instrumento no está devolviendo plantillas de año: cada año tiene su forma.</p>
+
+<p>El quinto criterio —que los años de floración superen a los control— <strong>no se
+cumple</strong>, y falla por seis centésimas de punto: 38,19 contra 38,25. Es un empate, pero
+un empate no es un cumplimiento y así queda anotado.</p>
+
+<div class="warnbox">
+<p class="k">Por qué ese criterio no puede cumplirse tal como está construido</p>
+<p>Tres de los trece años de floración documentada —2021, 2022 y 2024— caen <strong>dentro de
+la megasequía</strong>. Al instrumento se le está pidiendo dos cosas contradictorias al mismo
+tiempo: que la megasequía quede baja y que esos mismos años queden altos. Además, varias de
+esas floraciones fueron <strong>en parches localizados</strong>, a decenas de kilómetros del
+punto de referencia: un promedio regional no puede ver una mancha local. Es un límite del
+dato de contraste, no del modelo.</p>
+</div>
+
+<h3>Cómo se reparten los 60 años</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Zona</th><th class="mono">% del tiempo</th><th>Lectura</th></tr></thead>
+<tbody>
+<tr><td>Jardín Fértil</td><td class="mono">40,9 %</td><td>El desierto se sostiene y se mueve</td></tr>
+<tr><td>Selva Hostil</td><td class="mono">25,7 %</td><td>Se agita sin poder sostenerse</td></tr>
+<tr><td>Cierre</td><td class="mono">22,3 %</td><td>Equilibrio sin cambios: quieto, pero vivo</td></tr>
+<tr><td>Colapso</td><td class="mono">11,1 %</td><td>Ni activo ni viable</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout">
+<p class="k">Un episodio que vale la pena mirar</p>
+<p>En la megasequía de 2019-2025, el estado dominante es <strong>Cierre</strong>: 42,9 % del
+tiempo, contra 22,3 % del promedio de los 60 años. El instrumento no dice que el desierto
+murió; dice que <strong>se detuvo</strong>. Es exactamente la distinción que este experimento
+buscaba poder hacer desde afuera, y es la que un promedio de vegetación no permite: en la
+foto satelital, un desierto detenido y un desierto muerto son el mismo píxel.</p>
+</div>
+
+<p>Los cinco criterios se calcularon sobre la corrida verificada con los dos motores
+independientes. Ambos coinciden en los cuatro valores de cada uno de los 62 años.</p>
+
+<!-- ══════════════ 07 ══════════════ -->
+<h2><span class="num">07</span>Lo que este instrumento no puede decir</h2>
+
+<p>Un instrumento honesto declara sus límites con la misma claridad que sus resultados. Estos
+son los de éste, todos verificados:</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Límite</th><th>Detalle</th></tr></thead>
+<tbody>
+<tr><td>Albedo extrapolado</td><td>El 2,1 % de caída de albedo se midió entre los 17,5° y 29,7° de latitud sur. La zona de este experimento está en torno a los 31° S: el dato se extrapola cerca de un grado hacia el sur.</td></tr>
+<tr><td>Umbral de germinación</td><td>Los 15 mm y los 166 días provienen del resumen público de la fuente; la tabla completa está tras un muro de pago.</td></tr>
+<tr><td>La temperatura es reanálisis</td><td>La temperatura es reanálisis: un modelo que asimila observaciones, no un termómetro en el suelo. La lluvia, en cambio, ya no lo es en ningún tramo (ver abajo). Se declara, no se disfraza.</td></tr>
+<tr><td>La lluvia de 2019 en adelante se estima, no se mide en el punto</td><td>Hasta 2018 hay pluviómetro en el punto de referencia. Desde 2019 no existe ninguno, así que la lluvia se deriva de doce estaciones reales vecinas —la más cercana a 17,7 km— reescaladas al punto con razones calibradas sobre décadas de registro conjunto. Es medición, pero trasladada. Su error propio, medido dejando un año fuera, es de unos 9 mm por mes de lluvia.</td></tr>
+<tr><td>Nadie cruza el corte de 2018</td><td>Ninguna estación funcionó a ambos lados del corte, así que no hay forma de comprobar que las estaciones nuevas midan igual que las antiguas del mismo sitio. Comparadas contra una referencia común aparece un escalón de entre 1,00 y 1,44. El instrumento se corrió en los dos extremos de ese rango: los 62 años conservan su zona dominante en ambos, y cuatro de los cinco criterios se cumplen en ambos.</td></tr>
+<tr><td>Dos invariantes deciden, no cuatro</td><td>De los cuatro invariantes, en esta ventana de 62 años la activación la decide la libertad funcional y la viabilidad el acoplamiento con el entorno. La diferencia estructural se cumple siempre —el sistema nunca se homogeneiza— y el error operativo se mantiene bajo su umbral de colapso salvo en un 0,1 % del tiempo. Que no discriminen aquí no significa que sobren: significa que este sistema, en este período, nunca los violó.</td></tr>
+<tr><td>Sin satélite antes de 2000</td><td>Los eventos de 1983, 1991 y 1997 no tienen imagen satelital de vegetación: son anteriores a MODIS. Ese hueco no lo arregla ningún cálculo.</td></tr>
+<tr><td>Un punto, no una región</td><td>El instrumento lee la lluvia en un punto de referencia. Una floración en parches, a decenas de kilómetros, puede no verse desde ahí.</td></tr>
+<tr><td>Años en conflicto</td><td>Tres años son a la vez floración documentada y megasequía. Ningún resultado puede satisfacer los dos criterios al mismo tiempo.</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ══════════════ 08 ══════════════ -->
+<h2><span class="num">08</span>Galería de especies</h2>
+
+<p>Las láminas de estudio y las fotografías de campo son obra del entomólogo
+<strong>Marcelo Guerrero</strong>. Las láminas se recortaron sobre fondo transparente para
+esta publicación; las fotografías de campo se muestran tal como fueron tomadas.</p>
+
+<div class="gal-tabs" role="tablist">
+  <button class="gal-tab" role="tab" aria-selected="true" data-grupo="especie">Especies determinadas</button>
+  <button class="gal-tab" role="tab" aria-selected="false" data-grupo="sinid">En identificación</button>
+  <button class="gal-tab" role="tab" aria-selected="false" data-grupo="campo">En terreno</button>
+</div>
+<div class="gal-grid" id="galeria"></div>
+<p class="gal-nota">Las imágenes rotuladas <em>Gyriosomus sp.</em> corresponden a ejemplares
+cuya determinación taxonómica está en curso. Se publican porque el trabajo sigue abierto.</p>
+
+<!-- ══════════════ 09 ══════════════ -->
+<h2><span class="num">09</span>Fuentes de datos</h2>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Fuente</th><th>Aporta</th><th>Período</th><th>Tipo</th></tr></thead>
+<tbody>
+<tr><td>CR2 · Centro de Ciencia del Clima y la Resiliencia</td><td>Lluvia diaria y mensual, 874 estaciones chilenas</td><td class="mono">1900–2018</td><td>Estación real</td></tr>
+<tr><td>DMC / FDF / INIA · Informes Anuales de Agua Caída</td><td>Lluvia diaria, 55 estaciones de Atacama y Coquimbo; doce de ellas dentro de 60 km del punto de referencia</td><td class="mono">2019–2026</td><td>Estación real</td></tr>
+<tr><td>Open-Meteo / ERA5 · ECMWF</td><td>Temperatura diaria del punto de referencia (la lluvia ya no se toma de aquí)</td><td class="mono">1966–2026</td><td>Reanálisis</td></tr>
+<tr><td>Dirección Meteorológica de Chile</td><td>Anuarios climatológicos y series de estación</td><td class="mono">1979–2026</td><td>Estación real</td></tr>
+<tr><td>NASA GIBS · MODIS Terra</td><td>Índice de vegetación como testigo independiente</td><td class="mono">2000–2026</td><td>Satelital</td></tr>
+<tr><td>NOAA CPC · ONI v5</td><td>Índice oceánico de El Niño y La Niña</td><td class="mono">1966–2026</td><td>Índice oficial</td></tr>
+<tr><td>Anguita-Salinas et al. · Tabla S1</td><td>153 especímenes georreferenciados</td><td class="mono">—</td><td>Colecta de museo</td></tr>
+<tr><td>GBIF · iNaturalist</td><td>Ocurrencias y fotografías con licencia abierta</td><td class="mono">—</td><td>Ciencia ciudadana</td></tr>
+<tr><td>Marcelo Guerrero</td><td>Campañas de campo, localidades y láminas fotográficas</td><td class="mono">1997–2026</td><td>Comunicación personal</td></tr>
+<tr><td>Solange Varela</td><td>Datos climáticos</td><td class="mono">—</td><td>Comunicación personal</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ══════════════ 10 ══════════════ -->
+<h2><span class="num">10</span>Bibliografía</h2>
+
+<ol class="bib">
+<li>Watson, A.J. &amp; Lovelock, J.E. (1983). Biological homeostasis of the global environment: the parable of Daisyworld. <i>Tellus B</i> 35(4): 284–289.</li>
+<li>Chávez, R.O., Moreira-Muñoz, A., Galleguillos, M., Olea, M., Aguayo, J., Latín, A., Aguilera-Betti, I., Muñoz, A.A. &amp; Manríquez, H. (2019). GIMMS NDVI time series reveal the extent, duration, and intensity of «blooming desert» events in the hyper-arid Atacama Desert, Northern Chile. <i>International Journal of Applied Earth Observation and Geoinformation</i> 76: 193–203. <span class="doi">doi:10.1016/j.jag.2018.11.013</span></li>
+<li>He, B., Huang, L., Liu, J., Wang, H., Lű, A., Jiang, W. &amp; Chen, Z. (2017). The observed cooling effect of desert blooms based on high-resolution MODIS products. <i>Earth and Space Science</i> 4(5): 247–256. <span class="doi">doi:10.1002/2016EA000238</span></li>
+<li>Anguita-Salinas, S. <i>et al.</i> (2026). Systematics and phylogeny of <i>Gyriosomus</i> Guérin-Méneville. <i>Systematic Entomology</i> 51(1): e70011. <span class="doi">doi:10.1111/syen.70011</span></li>
+<li>Pizarro-Araya, J. &amp; Jerez, V. (2004). Distribución geográfica del género <i>Gyriosomus</i> Guérin-Méneville, 1834: una aproximación biogeográfica. <i>Revista Chilena de Historia Natural</i> 77: 491–500.</li>
+<li>Pizarro-Araya, J. (2010). Hábitos alimenticios del género <i>Gyriosomus</i>. <i>IDESIA</i> 28(3): 115–119.</li>
+<li>Guerrero, M. &amp; Aceituno, G. (2020). Nuevas especies del género <i>Gyriosomus</i> y nuevo estatus para <i>G. foveopunctatus laevis</i> Kulzer. <i>Revista Chilena de Entomología</i> 46(2).</li>
+<li>Guerrero, M., Diéguez, V., Anguita-Salinas, S. &amp; Zúñiga-Reinoso, Á. (2023). <i>Zootaxa</i> 5319(2): 283–291.</li>
+<li>Zúñiga-Reinoso, Á., Pinto, C. &amp; Predel, R. (2019). Nueva especie asociada al desierto florido de 2017. <i>Annales Zoologici</i> 69(1): 105–112.</li>
+<li>Cepeda-Pizarro, J.G., Pizarro-Araya, J. &amp; Vásquez, H. (2005). Impacto del ENOS de 1997 sobre la fauna epígea. <i>Revista Chilena de Historia Natural</i> 78: 635–650.</li>
+<li>Armesto, J.J. <i>et al.</i> (1993). Umbral mínimo de precipitación para la germinación en el desierto costero. <i>(citado en Chávez et al. 2019)</i></li>
+<li>Vidiella, P.E., Armesto, J.J. &amp; Gutiérrez, J.R. (1999). Vegetation changes and sequential flowering after rain in the southern Atacama Desert. <i>Journal of Arid Environments</i> 43: 449–458.</li>
+<li>Ortlieb, L. (1994). Las mayores precipitaciones históricas en Chile central y la cronología de eventos ENOS en los siglos XVI–XIX. <i>Revista Chilena de Historia Natural</i> 67: 463–485.</li>
+<li>Lovelock, J.E. <i>La Hipótesis Gaia</i>. Referencia del valor de temperatura media planetaria usado como ancla de relajación térmica del motor.</li>
+</ol>
+
+<!-- ══════════════ 11 ══════════════ -->
+<h2><span class="num">11</span>Ficha</h2>
+
+<div class="ficha">
+<dl>
+  <dt>Experimento</dt><dd><strong>Cosmoclima</strong> — Desierto Florido y <i>Gyriosomus</i></dd>
+  <dt>Dirección científica</dt><dd>Alexis López Tapia</dd>
+  <dt>Desarrollo</dt><dd>Claude (Anthropic)</dd>
+  <dt>Equipo</dt><dd>Trabajo realizado dentro del equipo transinteligente RMD 2.0</dd>
+  <dt>Período simulado</dt><dd>1966–2026 · 60 años, resolución diaria</dd>
+  <dt>Verificación</dt><dd>Doble motor independiente (navegador y Node.js), comparado año por año</dd>
+  <dt>Repositorio</dt><dd><a href="https://github.com/RSTChile/Cosmolab">github.com/RSTChile/Cosmolab</a></dd>
+</dl>
+</div>
+
+<div class="ficha">
+<dl>
+  <dt>Agradecimientos</dt>
+  <dd>Al entomólogo <strong>Marcelo Guerrero</strong>, por los datos de las especies de
+  <i>Gyriosomus</i>, las localidades de sus campañas de campo y las láminas fotográficas que
+  ilustran este trabajo.<br><br>
+  A la meteoróloga <strong>Solange Varela</strong>, por los datos climáticos.</dd>
+</dl>
+</div>
+
+<div class="cta"><a href="sim-cosmoclima.html">Abrir el instrumento →</a></div>
+
+<div class="footer-links">
+<a href="https://cosmosemiotica.cl/experimentos.html">Volver a experimentos</a> &nbsp;·&nbsp;
+<a href="https://cosmosemiotica.cl/teoria.html">Leer la teoría</a> &nbsp;·&nbsp;
+<a href="https://cosmosemiotica.cl/index.html">cosmosemiotica.cl</a>
+</div>
+
+<footer class="cred">Alexis López Tapia · Investigador principal · Con el equipo transinteligente RMD 2.0</footer>
+
+</main>
+</div>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="visor-x" id="visorX" aria-label="Cerrar">×</button>
+  <figure><img id="visorImg" src="" alt=""><figcaption id="visorCap"></figcaption></figure>
+</div>
+
+<script>
+// ── Galería ────────────────────────────────────────────────────────────────
+// Las láminas viven en imagenes/web/ (fondo transparente, ya recortadas) con
+// miniatura en imagenes/web/mini/. Las fotos de campo, en imagenes/web/campo/.
+var ESPECIES = [
+  'batesi','bridgesi','crispaticollis','foveopunctatus','hoppei','kingi','laevis',
+  'luczotii','marmoratus','melcheri','multigranulosus','nigrociliatus','paulseni',
+  'resplendens','subrugatus'
+];
+var CAMPO = [
+  ['freyi','Gyriosomus freyi'],
+  ['parvus','Gyriosomus parvus'],
+  ['resplendens-1','Gyriosomus resplendens'],
+  ['resplendens-2','Gyriosomus resplendens'],
+  ['campo-01','Gyriosomus sp.'],
+  ['campo-02','Gyriosomus sp.'],
+  ['campo-03','Gyriosomus sp.'],
+  ['campo-04','Gyriosomus sp.']
+];
+
+function item(src, mini, titulo, sub, alt, credito){
+  var d = document.createElement('div');
+  d.className = 'gal-item';
+  d.tabIndex = 0;
+  d.setAttribute('role','button');
+  var im = document.createElement('img');
+  im.src = mini; im.alt = alt; im.loading = 'lazy';
+  var p = document.createElement('p');
+  p.className = 'n';
+  p.textContent = titulo;
+  if (sub) { var sp = document.createElement('span'); sp.textContent = sub; p.appendChild(sp); }
+  d.appendChild(im); d.appendChild(p);
+  function abrir(){
+    document.getElementById('visorImg').src = src;
+    document.getElementById('visorImg').alt = alt;
+    document.getElementById('visorCap').innerHTML =
+      '<em>' + titulo + '</em>' + (sub ? ' <small>' + sub + '</small>' : '') +
+      '<small>' + (credito || 'Lámina') + ': Marcelo Guerrero</small>';
+    document.getElementById('visor').setAttribute('open','');
+  }
+  d.addEventListener('click', abrir);
+  d.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); abrir(); } });
+  return d;
+}
+
+function pintar(grupo){
+  var g = document.getElementById('galeria');
+  g.innerHTML = '';
+  if (grupo === 'especie') {
+    ESPECIES.forEach(function(sp){
+      g.appendChild(item('imagenes/web/'+sp+'.png', 'imagenes/web/mini/'+sp+'.png',
+        'G. '+sp, '', 'Gyriosomus '+sp, 'Lámina'));
+    });
+  } else if (grupo === 'sinid') {
+    for (var i=1; i<=8; i++){
+      var n = (i<10?'0':'')+i;
+      g.appendChild(item('imagenes/web/sin-identificar-'+n+'.png',
+        'imagenes/web/mini/sin-identificar-'+n+'.png',
+        'Gyriosomus sp.', 'en identificación', 'Gyriosomus sp. sin determinar', 'Lámina'));
+    }
+  } else {
+    CAMPO.forEach(function(par){
+      g.appendChild(item('imagenes/web/campo/'+par[0]+'.jpg',
+        'imagenes/web/campo/'+par[0]+'-mini.jpg', par[1], 'en terreno', par[1], 'Fotografía'));
+    });
+  }
+}
+
+document.querySelectorAll('.gal-tab').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.gal-tab').forEach(function(x){ x.setAttribute('aria-selected','false'); });
+    b.setAttribute('aria-selected','true');
+    pintar(b.dataset.grupo);
+  });
+});
+pintar('especie');
+
+// visor
+function cerrar(){ document.getElementById('visor').removeAttribute('open'); }
+document.getElementById('visorX').addEventListener('click', cerrar);
+document.getElementById('visor').addEventListener('click', function(e){ if(e.target===this) cerrar(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') cerrar(); });
+</script>
+</body>
+</html>

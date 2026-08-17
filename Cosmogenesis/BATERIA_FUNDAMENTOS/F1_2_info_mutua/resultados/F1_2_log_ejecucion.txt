@@ -1,0 +1,28 @@
+[2026-07-24T14:59:55-04:00] [VALIDACION KERNEL] ok=True detalle=kernel batched == kernel base en 40 pasos, N=64, H=0.03
+[2026-07-24T15:00:02-04:00] === F1-2 SMOKE: inicio ===
+[2026-07-24T15:00:03-04:00] [VALIDACION KERNEL] ok=True detalle=kernel batched == kernel base en 40 pasos, N=64, H=0.03
+[2026-07-24T15:00:06-04:00] [N=100] calibracion lavado: eps_cal=0.001 pasos=1553 mediana=1350 lavo_todas=True
+[2026-07-24T15:00:06-04:00] [N=100] D medido por eps: 0.00e+00:0.00000, 1.00e-09:0.00335, 1.00e-03:0.00335, 1.00e+00:0.00335
+[2026-07-24T15:00:06-04:00] [N=100] total canales (eps×r×semilla) = 128, pasos calibrados = 1553
+[2026-07-24T15:00:06-04:00] [N=100] iniciando evolución batched (1553 pasos, arreglo 128x100)...
+[2026-07-24T15:00:11-04:00] [N=100] evolución batched terminada en 4.5s
+[2026-07-24T15:00:12-04:00] [N=100] observables (MI real/null) calculados sobre 128 canales
+[2026-07-24T15:00:12-04:00] === F1-2 SMOKE: fin. elapsed=9.2s -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_2_info_mutua/resultados/F1_2_smoke_resultado.json ===
+[2026-07-24T15:00:12-04:00] [SMOKE] criterio: {'frac_eps0_no_distinguible_de_null': 1.0, 'control_eps0_pass': True, 'mean_diff_P_mi_real_menos_null_r0_eps_gt0': 0.7186249875006044, 'control_r0_pass': False, 'frac_null_cae_z_ge_3_en_r_ge_10_eps_gt_1e-6': 0.0, 'null_cae_pass': False, 'veredicto_mecanico_PASS_FAIL': 'FAIL_o_NEGATIVO_mecanico', 'nota': 'Evaluación mecánica del gate interno pre-registrado de F1-2. El veredicto de comparación con F1-1 (T2, la verificación cruzada real de esta pareja) lo da CS cruzando ambos JSON crudos; CC no adjudica.'}
+[2026-07-24T15:00:12-04:00] === F1-2 SMOKE total wall time: 9.6s ===
+[2026-07-24T15:02:20-04:00] === F1-2 PRODUCCION N=200: inicio ===
+[2026-07-24T15:02:20-04:00] [VALIDACION KERNEL] ok=True detalle=kernel batched == kernel base en 40 pasos, N=64, H=0.03
+[2026-07-24T15:02:44-04:00] [N=200] calibracion lavado: eps_cal=0.001 pasos=6095 mediana=5300 lavo_todas=True
+[2026-07-24T15:02:44-04:00] [N=200] D medido por eps: 0.00e+00:0.00000, 1.00e-12:0.00084, 1.23e-11:0.00084, 1.52e-10:0.00084, 1.87e-09:0.00084, 2.31e-08:0.00084, 2.85e-07:0.00084, 3.51e-06:0.00084, 4.33e-05:0.00084, 5.34e-04:0.00084, 6.58e-03:0.00084, 8.11e-02:0.00084, 1.00e+00:0.00084
+[2026-07-24T15:02:44-04:00] [N=200] total canales (eps×r×semilla) = 5304, pasos calibrados = 6095
+[2026-07-24T15:02:49-04:00] [N=200] iniciando evolución batched (6095 pasos, arreglo 5304x200)...
+[2026-07-24T15:13:49-04:00] [N=200] evolución batched terminada en 659.9s
+[2026-07-24T15:14:29-04:00] [N=200] observables (MI real/null) calculados sobre 5304 canales
+[2026-07-24T15:14:30-04:00] === F1-2 PRODUCCION N=200: fin. elapsed=729.9s (12.2min) -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_2_info_mutua/resultados/F1_2_produccion_N200_resultado.json ===
+[2026-07-24T15:14:30-04:00] [N=200] criterio: {'frac_eps0_no_distinguible_de_null': 1.0, 'control_eps0_pass': True, 'mean_diff_P_mi_real_menos_null_r0_eps_gt0': 0.81283594956134, 'control_r0_pass': False, 'frac_null_cae_z_ge_3_en_r_ge_10_eps_gt_1e-6': 0.3611111111111111, 'null_cae_pass': False, 'veredicto_mecanico_PASS_FAIL': 'FAIL_o_NEGATIVO_mecanico', 'nota': 'Evaluación mecánica del gate interno pre-registrado de F1-2. El veredicto de comparación con F1-1 (T2, la verificación cruzada real de esta pareja) lo da CS cruzando ambos JSON crudos; CC no adjudica.'}
+[2026-07-24T15:14:30-04:00] === F1-2 PRODUCCION N=400: inicio ===
+[2026-07-24T15:14:30-04:00] [VALIDACION KERNEL] ok=True detalle=kernel batched == kernel base en 40 pasos, N=64, H=0.03
+[2026-07-24T15:16:42-04:00] [N=400] calibracion lavado: eps_cal=0.001 pasos=24380 mediana=21200 lavo_todas=True
+[2026-07-24T15:16:43-04:00] [N=400] D medido por eps: 0.00e+00:0.00000, 1.00e-12:0.00021, 1.23e-11:0.00021, 1.52e-10:0.00021, 1.87e-09:0.00021, 2.31e-08:0.00021, 2.85e-07:0.00021, 3.51e-06:0.00021, 4.33e-05:0.00021, 5.34e-04:0.00021, 6.58e-03:0.00021, 8.11e-02:0.00021, 1.00e+00:0.00021
+[2026-07-24T15:16:43-04:00] [N=400] total canales (eps×r×semilla) = 5304, pasos calibrados = 24380
+[2026-07-24T15:16:49-04:00] [N=400] iniciando evolución batched (24380 pasos, arreglo 5304x400)...

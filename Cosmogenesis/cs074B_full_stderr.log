@@ -1,0 +1,61 @@
+[2026-07-25 23:47:43] [B] barrido: 11 tasa_enf x 5 eps x 3 E_reserva x 12 semillas = 1980 REAL + 1980 NULL = 3960 corridas
+[2026-07-25 23:53:31] [B] tasa_enf=0.0 eps=0.5 listo (celda) (36/1980) t=349s
+[2026-07-25 23:58:04] [B] tasa_enf=0.0 eps=1.0 listo (celda) (72/1980) t=621s
+[2026-07-26 00:03:11] [B] tasa_enf=0.0 eps=1.5 listo (celda) (108/1980) t=929s
+[2026-07-26 00:12:37] [B] tasa_enf=0.0 eps=2.5 listo (celda) (144/1980) t=1494s
+[2026-07-26 00:17:31] [B] tasa_enf=0.0 eps=4.0 listo (celda) (180/1980) t=1789s
+[2026-07-26 00:24:08] [B] tasa_enf=0.05 eps=0.5 listo (celda) (216/1980) t=2185s
+[2026-07-26 00:27:55] [B] tasa_enf=0.05 eps=1.0 listo (celda) (252/1980) t=2412s
+[2026-07-26 00:31:32] [B] tasa_enf=0.05 eps=1.5 listo (celda) (288/1980) t=2629s
+[2026-07-26 00:35:34] [B] tasa_enf=0.05 eps=2.5 listo (celda) (324/1980) t=2871s
+[2026-07-26 00:39:20] [B] tasa_enf=0.05 eps=4.0 listo (celda) (360/1980) t=3097s
+[2026-07-26 00:46:06] [B] tasa_enf=0.1 eps=0.5 listo (celda) (396/1980) t=3503s
+[2026-07-26 01:00:01] [B] tasa_enf=0.1 eps=1.0 listo (celda) (432/1980) t=4338s
+[2026-07-26 01:14:59] [B] tasa_enf=0.1 eps=1.5 listo (celda) (468/1980) t=5236s
+[2026-07-26 01:29:30] [B] tasa_enf=0.1 eps=2.5 listo (celda) (504/1980) t=6107s
+[2026-07-26 01:41:02] [B] tasa_enf=0.1 eps=4.0 listo (celda) (540/1980) t=6800s
+[2026-07-26 01:56:33] [B] tasa_enf=0.2 eps=0.5 listo (celda) (576/1980) t=7730s
+[2026-07-26 02:07:54] [B] tasa_enf=0.2 eps=1.0 listo (celda) (612/1980) t=8411s
+[2026-07-26 02:19:12] [B] tasa_enf=0.2 eps=1.5 listo (celda) (648/1980) t=9089s
+[2026-07-26 02:29:41] [B] tasa_enf=0.2 eps=2.5 listo (celda) (684/1980) t=9718s
+[2026-07-26 02:39:45] [B] tasa_enf=0.2 eps=4.0 listo (celda) (720/1980) t=10322s
+[2026-07-26 02:50:58] [B] tasa_enf=0.3 eps=0.5 listo (celda) (756/1980) t=10995s
+[2026-07-26 03:07:02] [B] tasa_enf=0.3 eps=1.0 listo (celda) (792/1980) t=11960s
+[2026-07-26 03:19:39] [B] tasa_enf=0.3 eps=1.5 listo (celda) (828/1980) t=12717s
+[2026-07-26 03:30:43] [B] tasa_enf=0.3 eps=2.5 listo (celda) (864/1980) t=13380s
+[2026-07-26 03:43:03] [B] tasa_enf=0.3 eps=4.0 listo (celda) (900/1980) t=14121s
+[2026-07-26 03:55:07] [B] tasa_enf=0.5 eps=0.5 listo (celda) (936/1980) t=14844s
+[2026-07-26 04:05:27] [B] tasa_enf=0.5 eps=1.0 listo (celda) (972/1980) t=15464s
+[2026-07-26 04:15:43] [B] tasa_enf=0.5 eps=1.5 listo (celda) (1008/1980) t=16080s
+[2026-07-26 04:25:34] [B] tasa_enf=0.5 eps=2.5 listo (celda) (1044/1980) t=16671s
+[2026-07-26 04:34:34] [B] tasa_enf=0.5 eps=4.0 listo (celda) (1080/1980) t=17212s
+[2026-07-26 04:45:53] [B] tasa_enf=0.75 eps=0.5 listo (celda) (1116/1980) t=17890s
+[2026-07-26 04:57:46] [B] tasa_enf=0.75 eps=1.0 listo (celda) (1152/1980) t=18603s
+[2026-07-26 05:07:35] [B] tasa_enf=0.75 eps=1.5 listo (celda) (1188/1980) t=19192s
+[2026-07-26 05:16:07] [B] tasa_enf=0.75 eps=2.5 listo (celda) (1224/1980) t=19704s
+[2026-07-26 05:25:07] [B] tasa_enf=0.75 eps=4.0 listo (celda) (1260/1980) t=20244s
+[2026-07-26 05:33:53] [B] tasa_enf=1.0 eps=0.5 listo (celda) (1296/1980) t=20770s
+[2026-07-26 05:42:36] [B] tasa_enf=1.0 eps=1.0 listo (celda) (1332/1980) t=21293s
+[2026-07-26 05:52:08] [B] tasa_enf=1.0 eps=1.5 listo (celda) (1368/1980) t=21865s
+[2026-07-26 06:00:55] [B] tasa_enf=1.0 eps=2.5 listo (celda) (1404/1980) t=22393s
+[2026-07-26 06:07:43] [B] tasa_enf=1.0 eps=4.0 listo (celda) (1440/1980) t=22801s
+[2026-07-26 06:13:26] [B] tasa_enf=1.5 eps=0.5 listo (celda) (1476/1980) t=23143s
+[2026-07-26 06:18:50] [B] tasa_enf=1.5 eps=1.0 listo (celda) (1512/1980) t=23468s
+[2026-07-26 06:24:04] [B] tasa_enf=1.5 eps=1.5 listo (celda) (1548/1980) t=23781s
+[2026-07-26 06:29:03] [B] tasa_enf=1.5 eps=2.5 listo (celda) (1584/1980) t=24081s
+[2026-07-26 06:33:54] [B] tasa_enf=1.5 eps=4.0 listo (celda) (1620/1980) t=24371s
+[2026-07-26 06:39:00] [B] tasa_enf=2.0 eps=0.5 listo (celda) (1656/1980) t=24677s
+[2026-07-26 06:44:04] [B] tasa_enf=2.0 eps=1.0 listo (celda) (1692/1980) t=24981s
+[2026-07-26 06:49:02] [B] tasa_enf=2.0 eps=1.5 listo (celda) (1728/1980) t=25280s
+[2026-07-26 06:53:53] [B] tasa_enf=2.0 eps=2.5 listo (celda) (1764/1980) t=25571s
+[2026-07-26 06:58:41] [B] tasa_enf=2.0 eps=4.0 listo (celda) (1800/1980) t=25858s
+[2026-07-26 07:03:37] [B] tasa_enf=3.0 eps=0.5 listo (celda) (1836/1980) t=26154s
+[2026-07-26 07:08:31] [B] tasa_enf=3.0 eps=1.0 listo (celda) (1872/1980) t=26449s
+[2026-07-26 07:13:22] [B] tasa_enf=3.0 eps=1.5 listo (celda) (1908/1980) t=26739s
+[2026-07-26 07:18:01] [B] tasa_enf=3.0 eps=2.5 listo (celda) (1944/1980) t=27018s
+[2026-07-26 07:22:41] [B] tasa_enf=3.0 eps=4.0 listo (celda) (1980/1980) t=27298s
+[2026-07-26 07:22:41] [B] TOTAL elapsed=27298s
+[2026-07-26 07:22:41] [B] PASS_cs074B = False
+[2026-07-26 07:22:41] [B] corr(tasa_enfriamiento, n_clusters) = 0.02350529630915457
+[2026-07-26 07:22:41] [B] celdas con |z|>2: 0/11
+[2026-07-26 07:22:41] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/resultados_cs074B_fragmentacion_enfriamiento/cs074B_result_FULL.json

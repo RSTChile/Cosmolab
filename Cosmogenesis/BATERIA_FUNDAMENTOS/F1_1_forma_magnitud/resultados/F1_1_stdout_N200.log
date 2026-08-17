@@ -1,0 +1,17 @@
+[2026-07-24T15:08:38-04:00] === F1-1 PRODUCCION N=200 (grid COMPLETO): inicio. eps=13pts r=34pts semillas=12 ===
+[2026-07-24T15:09:14-04:00] [N=200] calibracion lavado: eps_cal=0.001 pasos=6095 mediana=5300 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+[2026-07-24T15:09:55-04:00] [N=200] eps 1/13 (eps=0.000e+00, D=0.000000e+00) completado. t=76.5s (1.3min)
+[2026-07-24T15:12:15-04:00] [N=200] eps 2/13 (eps=1.000e-12, D=8.407086e-04) completado. t=216.7s (3.6min)
+[2026-07-24T15:14:28-04:00] [N=200] eps 3/13 (eps=1.233e-11, D=8.415945e-04) completado. t=349.6s (5.8min)
+[2026-07-24T15:16:32-04:00] [N=200] eps 4/13 (eps=1.520e-10, D=8.413655e-04) completado. t=473.3s (7.9min)
+[2026-07-24T15:18:39-04:00] [N=200] eps 5/13 (eps=1.874e-09, D=8.413663e-04) completado. t=601.2s (10.0min)
+[2026-07-24T15:20:52-04:00] [N=200] eps 6/13 (eps=2.310e-08, D=8.413667e-04) completado. t=733.9s (12.2min)
+[2026-07-24T15:23:08-04:00] [N=200] eps 7/13 (eps=2.848e-07, D=8.413668e-04) completado. t=869.9s (14.5min)
+[2026-07-24T15:25:23-04:00] [N=200] eps 8/13 (eps=3.511e-06, D=8.413668e-04) completado. t=1004.8s (16.7min)
+[2026-07-24T15:27:39-04:00] [N=200] eps 9/13 (eps=4.329e-05, D=8.413668e-04) completado. t=1141.2s (19.0min)
+[2026-07-24T15:29:45-04:00] [N=200] eps 10/13 (eps=5.337e-04, D=8.413668e-04) completado. t=1267.0s (21.1min)
+[2026-07-24T15:31:52-04:00] [N=200] eps 11/13 (eps=6.579e-03, D=8.413668e-04) completado. t=1393.3s (23.2min)
+[2026-07-24T15:33:43-04:00] [N=200] eps 12/13 (eps=8.111e-02, D=8.413668e-04) completado. t=1504.9s (25.1min)
+[2026-07-24T15:35:35-04:00] [N=200] eps 13/13 (eps=1.000e+00, D=8.413668e-04) completado. t=1616.7s (26.9min)
+[2026-07-24T15:35:35-04:00] === F1-1 PRODUCCION N=200: fin. elapsed=1617.1s (27.0min) -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_1_forma_magnitud/resultados/F1_1_produccion_N200_resultado.json ===
+[2026-07-24T15:35:35-04:00] [N=200] criterio: {'frac_eps0_P_bajo_0.05': 1.0, 'control_eps0_pass': True, 'mean_P_real_r0_eps_gt0': 0.030972100776470297, 'control_r0_pass': True, 'frac_null_cae_z_ge_3_en_r_ge_10_eps_gt_1e-6': 1.0, 'null_cae_pass': True, 'veredicto_mecanico_PASS_FAIL': 'PASS_mecanico', 'nota': 'Evaluación mecánica del gate pre-registrado. El veredicto de LECTURA final (qué significa) lo da CS con la curva cruda; CC no adjudica.'}

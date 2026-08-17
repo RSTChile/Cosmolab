@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dron Cosmosemiótico v1.3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap');
+  :root{
+    --bg:#06080b;--panel:#0b0f14;--border:#18232e;
+    --teal:#00f0c8;--gold:#ffc000;--red:#ff3050;
+    --blue:#4080ff;--purple:#b060ff;--text:#d8e8f8;--sub:#607080;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;overflow:hidden;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--panel);}
+  header h1{font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);}
+.sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);letter-spacing:1px;}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.wrap{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 45px);}
+.panel{background:var(--panel);border-right:1px solid var(--border);overflow-y:auto;padding:12px;}
+.ptitle{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.cgrp{margin-bottom:12px;}
+.clbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);margin-bottom:4px;display:flex;justify-content:space-between;}
+.clbl span{color:var(--gold);font-family:'Share Tech Mono',monospace;}
+  input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--border);border-radius:2px;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 4px var(--teal);}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;border-radius:3px;transition:all.2s;}
+.btn:hover{border-color:var(--teal);color:var(--teal);}
+.btn.active{background:var(--teal);color:var(--bg);}
+.btn.danger{border-color:var(--red);color:var(--red);}
+.btn.csv{border-color:var(--gold);color:var(--gold);}
+.brow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.sep{height:1px;background:var(--border);margin:10px 0;}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px;}
+.metric{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:6px;}
+.mname{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);margin-bottom:2px;}
+.mval{font-family:'Share Tech Mono',monospace;font-size:14px;}
+.mval.good{color:var(--teal)}.mval.warn{color:var(--gold)}.mval.bad{color:var(--red)}.mval.blue{color:var(--blue)}.mval.purple{color:var(--purple)}
+.cvar{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:7px;margin-bottom:5px;}
+.cvname{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:2px;}
+.cvdesc{font-size:9px;color:var(--sub);margin-bottom:3px;line-height:1.3;}
+.btrack{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.bfill{height:100%;border-radius:2px;transition:width.08s;}
+.cval{font-family:'Share Tech Mono',monospace;font-size:12px;margin-top:2px;}
+.views{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;height:100%;gap:1px;background:var(--border);}
+.view{position:relative;background:var(--bg);overflow:hidden;}
+.vlabel{position:absolute;top:6px;left:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);letter-spacing:2px;text-transform:uppercase;z-index:10;}
+.wind-arrow{position:absolute;top:6px;right:8px;z-index:10;font-family:'Share Tech Mono',monospace;font-size:9px;color:#4080ff;}
+  canvas{display:block;width:100%;height:100%;}
+  ::-webkit-scrollbar{width:3px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.signo-list{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:5px;max-height:60px;overflow-y:auto;}
+.signo-item{color:var(--purple);margin:1px 0;}
+.log{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--sub);height:80px;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:5px;line-height:1.4;}
+.log.eg{color:var(--teal)}.log.ew{color:var(--gold)}.log.eb{color:var(--red)}
+  select{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:4px;font-family:'Share Tech Mono',monospace;font-size:10px;}
+.toggle{display:flex;align-items:center;gap:6px;font-size:10px;margin-top:6px;}
+.toggle input{width:16px;height:16px;}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Dron Cosmosemiótico v1.3</h1>
+    <div class="sub">Física + Viabilidad + Semiótica · 100Hz · 4 Vistas</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:9px;color:var(--sub);font-family:'Share Tech Mono',monospace;" id="sim-time">t = 0.000 s</span>
+    <div class="sdot" id="sdot"></div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="panel">
+  <div class="ptitle">Entorno Físico</div>
+  <div class="cgrp"><div class="clbl">Viento X (m/s) <span id="v-wind">0.0</span></div><input type="range" id="wind" min="-8" max="8" step="0.1" value="0"></div>
+  <div class="cgrp"><div class="clbl">Distancia Home (m) <span id="v-dist">50</span></div><input type="range" id="dist" min="10" max="200" step="5" value="50"></div>
+  <div class="cgrp"><div class="clbl">Techo (m) <span id="v-ceil">2.5</span></div><input type="range" id="ceil" min="1.0" max="10" step="0.1" value="2.5"></div>
+  <div class="cgrp"><div class="clbl">Batería inicial (%) <span id="v-batt">15</span></div><input type="range" id="batt" min="5" max="100" step="1" value="15"></div>
+  <div class="cgrp"><div class="clbl">Obstáculo Y (m) <span id="v-obst">30</span></div><input type="range" id="obst" min="-80" max="80" step="2" value="30"></div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Control Manual</div>
+  <div class="toggle"><input type="checkbox" id="manual"><label for="manual">MANUAL ON/OFF</label></div>
+  <div class="cgrp"><div class="clbl">Target Z (m) <span id="v-tz">2.0</span></div><input type="range" id="tz" min="0" max="10" step="0.1" value="2.0"></div>
+  <div class="cgrp"><div class="clbl">Target Y (m) <span id="v-ty">50</span></div><input type="range" id="ty" min="-80" max="80" step="1" value="50"></div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Mundo Semiótico</div>
+  <div class="cgrp">
+    <div class="clbl">Signo activo</div>
+    <select id="signo">
+      <option value="none">Ninguno</option>
+      <option value="no_land">NO_LAND @ y=50</option>
+      <option value="evacuar">EVACUAR→</option>
+      <option value="peligro">PELIGRO @ y=0</option>
+    </select>
+  </div>
+  <div class="cgrp"><div class="clbl">α (V vs C) <span id="v-alpha">0.50</span></div><input type="range" id="alpha" min="0" max="1" step="0.05" value="0.5"></div>
+  <div class="signo-list" id="signos-activos">Signos activos: ninguno</div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Control</div>
+  <div class="brow">
+    <button class="btn active" id="btn-run">▶ RUN</button>
+    <button class="btn" id="btn-pause">⏸ PAUSE</button>
+    <button class="btn danger" id="btn-reset">↺ RESET</button>
+  </div>
+  <div class="brow"><button class="btn" id="btn-pert">⚡ PERTURBAR</button></div>
+  <div class="brow"><button class="btn csv" id="btn-csv">⬇ CSV</button></div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Estado</div>
+  <div class="mgrid">
+    <div class="metric"><div class="mname">Pos Y</div><div class="mval" id="m-y">50.0</div></div>
+    <div class="metric"><div class="mname">Pos Z</div><div class="mval" id="m-z">2.0</div></div>
+    <div class="metric"><div class="mname">Batt</div><div class="mval warn" id="m-b">15.0%</div></div>
+    <div class="metric"><div class="mname">Decisión</div><div class="mval blue" id="m-dec">NONE</div></div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Variables Cosmo</div>
+  <div class="cvar">
+    <div class="cvname">V (Viabilidad)</div>
+    <div class="cvdesc">Energía + espacio físico</div>
+    <div class="btrack"><div class="bfill" id="b-v" style="width:50%;background:var(--teal)"></div></div>
+    <div class="cval" style="color:var(--teal)" id="v-v">0.50</div>
+  </div>
+  <div class="cvar">
+    <div class="cvname">C (Coherencia)</div>
+    <div class="cvdesc">Respeta signos del entorno</div>
+    <div class="btrack"><div class="bfill" id="b-c" style="width:100%;background:var(--purple)"></div></div>
+    <div class="cval" style="color:var(--purple)" id="v-c">1.00</div>
+  </div>
+  <div class="cvar">
+    <div class="cvname">J = αV+(1-α)C</div>
+    <div class="cvdesc">Función objetivo</div>
+    <div class="btrack"><div class="bfill" id="b-j" style="width:75%;background:var(--gold)"></div></div>
+    <div class="cval" style="color:var(--gold)" id="v-j">0.75</div>
+  </div>
+
+  <div class="sep"></div>
+  <div class="ptitle">Log</div>
+  <div class="log" id="log"></div>
+</div>
+
+<div class="views">
+  <div class="view">
+    <div class="vlabel">Vista Lateral Y-Z</div>
+    <div class="wind-arrow" id="wind-lat">Viento: 0.0m/s →</div>
+    <canvas id="cv-lat"></canvas>
+  </div>
+  <div class="view">
+    <div class="vlabel">Vista Aérea X-Y</div>
+    <div class="wind-arrow" id="wind-aer">Viento: 0.0m/s →</div>
+    <canvas id="cv-aer"></canvas>
+  </div>
+  <div class="view">
+    <div class="vlabel">Vista 3D Isométrica</div>
+    <canvas id="cv-3d"></canvas>
+  </div>
+  <div class="view">
+    <div class="vlabel">Gráficas V/C/J</div>
+    <canvas id="cv-chart"></canvas>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════════════
+const P = {
+  x_init:0, y_init:50, z_init:2.0, battery_init:0.15,
+  x:0, y:50, z:2.0, vx:0, vy:0, vz:0,
+  t:0, running:true, crashed:false, landed:false, manual:false,
+  battery:0.15, wind:0, ceil:2.5, dist_home:50, obst_y:30,
+  signo_activo:"none", alpha:0.5,
+  target_z:2.0, target_y:50,
+  decision:0, V:0.5, C:1.0, J:0.75,
+  dt:0.01, g:9.81, mass:1.2, hover:11.77, max_thrust:20,
+  batt_hover:5.0, batt_cap:15.0, volt:12.0, vel_cruise:2.5,
+  hist:[], csv:[], rth_phase:0
+};
+
+const SIGNOS_DEF = {
+  none: [],
+  no_land: [{t:0, tipo:"prohibicion", valor:"NO_LAND", y:50, radio:10, fuerza:1.0}],
+  evacuar: [{t:0, tipo:"directiva", valor:"EVACUAR", dir:1, fuerza:0.9}],
+  peligro: [{t:0, tipo:"peligro", valor:"PELIGRO", y:0, radio:15, fuerza:1.0}]
+};
+
+// ═══════════════════════════════════════════════════════════════
+// FÍSICA + COSMO
+// ═══════════════════════════════
+function step() {
+  if(!P.running || P.crashed || P.landed) return;
+
+  const s = {x:P.x, y:P.y, z:P.z, vx:P.vx, vy:P.vy, vz:P.vz, battery:P.battery};
+  const S = leerSignos(s);
+
+  const wh_rth = estimarEnergia(s, "rth");
+  const wh_land = estimarEnergia(s, "land");
+  const batt_wh = s.battery * P.batt_cap;
+
+  // FIX 5: V_land ya no es 1.0 gratis. Cuesta energía y riesgo
+  const riesgo_impacto = s.vz < -2? 0.3 : 0;
+  const tiempo_exp = P.t * 0.001; // tiempo expuesto
+  const V_land = Math.max(0, 1.0 - wh_land/batt_wh - riesgo_impacto - tiempo_exp);
+  const V_rth = batt_wh > wh_rth * 1.5? 1.0 : Math.max(0, batt_wh / (wh_rth * 1.5));
+
+  const C_land = evaluarCoherencia(1, S, s);
+  const C_rth = evaluarCoherencia(2, S, s);
+
+  const J_land = P.alpha * V_land + (1-P.alpha) * C_land;
+  const J_rth = P.alpha * V_rth + (1-P.alpha) * C_rth;
+
+  if(!P.manual) {
+    if(s.battery < 0.08) P.decision = 1;
+    else P.decision = J_land > J_rth? 1 : 2;
+  }
+
+  P.V = P.decision == 1? V_land : V_rth;
+  P.C = P.decision == 1? C_land : C_rth;
+  P.J = P.decision == 1? J_land : J_rth;
+
+  let thrust_z = P.hover, thrust_y = 0, thrust_x = 0;
+  if(P.manual) {
+    let err_z = P.target_z - s.z;
+    let err_y = P.target_y - s.y;
+    let err_x = 0 - s.x;
+    thrust_z += 8.0 * err_z - 3.0 * s.vz;
+    thrust_y += 8.0 * err_y - 3.0 * s.vy;
+    thrust_x += 8.0 * err_x - 3.0 * s.vx;
+  } else if(P.decision == 1) {
+    // FIX 6: LAND real con control de velocidad
+    let target_z = 0.1;
+    if(s.z < 0.5) target_z = 0.0;
+    let err_z = target_z - s.z;
+    thrust_z = P.hover + 12.0 * err_z - 8.0 * s.vz;
+    thrust_y = -2.0 * s.vy;
+    // FIX 8: Repulsión semiótica
+    if(S.no_land > 0.5) thrust_y += S.no_land * 5.0 * Math.sign(s.y - 50);
+  } else {
+    if(P.rth_phase == 0) {
+      if(Math.abs(s.y) > 0.5) {
+        let err_z = Math.min(2.0, P.ceil - 0.3) - s.z;
+        thrust_z += 8.0 * err_z - 3.0 * s.vz;
+        thrust_y = -Math.sign(s.y) * 12.0 - 2.0 * s.vy - P.wind * 0.8;
+      } else {
+        P.rth_phase = 1;
+      }
+    }
+    if(P.rth_phase == 1) {
+      thrust_z = P.hover * 0.6;
+      thrust_y = -2.0 * s.vy;
+      if(s.z < 0.3) thrust_z = P.hover * 0.95;
+    }
+  }
+
+  const thrust_mag = Math.sqrt(thrust_x**2 + thrust_y**2 + thrust_z**2);
+  const current = P.batt_hover * (thrust_mag / P.hover);
+  P.battery -= (current * P.volt * P.dt / 3600.0) / P.batt_cap;
+  P.battery = Math.max(0, P.battery);
+
+  const az = (thrust_z / P.mass) - P.g;
+  P.vz += az * P.dt; P.z += P.vz * P.dt;
+  const ay = thrust_y / P.mass;
+  P.vy += ay * P.dt; P.y += P.vy * P.dt;
+  const ax = thrust_x / P.mass;
+  P.vx += ax * P.dt; P.x += P.vx * P.dt;
+
+  if(P.z <= 0) { P.z = 0; P.vz = 0; P.landed = true; P.running = false; log(`Aterrizó en t=${P.t.toFixed(2)}s`,'eg'); }
+  if(P.z >= P.ceil) { P.z = P.ceil; P.vz = -Math.abs(P.vz)*0.3; }
+  if(P.battery <= 0 && P.z > 0.05) { P.crashed = true; P.running = false; log(`COLAPSO por batería en t=${P.t.toFixed(2)}s`,'eb'); }
+
+  P.t += P.dt;
+  P.hist.push({t:P.t, x:P.x, y:P.y, z:P.z, vx:P.vx, vy:P.vy, vz:P.vz, battery:P.battery, V:P.V, C:P.C, J:P.J, decision:P.decision, wind:P.wind});
+  if(P.hist.length > 3000) P.hist.shift();
+
+  // FIX 3: CSV
+  P.csv.push([P.t.toFixed(3),P.x.toFixed(3),P.y.toFixed(3),P.z.toFixed(3),P.vx.toFixed(3),P.vy.toFixed(3),P.vz.toFixed(3),P.battery.toFixed(5),P.V.toFixed(4),P.C.toFixed(4),P.J.toFixed(4),P.decision,P.wind.toFixed(2)]);
+}
+
+function leerSignos(s) {
+  const S = {no_land:0, peligro:0, mision:"NONE"};
+  const signos = SIGNOS_DEF[P.signo_activo] || [];
+  for(let sig of signos) {
+    if(sig.tipo == "prohibicion" && sig.valor == "NO_LAND") {
+      if(Math.abs(s.y - sig.y) < sig.radio) S.no_land = sig.fuerza;
+    }
+    if(sig.tipo == "peligro") {
+      if(Math.abs(s.y - sig.y) < sig.radio) S.peligro = sig.fuerza;
+    }
+    if(sig.tipo == "directiva") {
+      S.evacuar = sig.dir * sig.fuerza;
+    }
+  }
+  return S;
+}
+
+function estimarEnergia(s, plan) {
+  const dist = Math.abs(s.y);
+  if(plan == "rth") {
+    // FIX 7: Viento a favor ayuda, en contra penaliza
+    const wind_factor = 1 - P.wind * Math.sign(s.y) * 0.3;
+    const vel_eff = Math.max(0.5, P.vel_cruise * wind_factor);
+    const tiempo = dist / vel_eff + s.z / 2.0;
+    return (tiempo * P.batt_hover * 1.15 * P.volt) / 3600.0;
+  } else {
+    const tiempo = s.z / 2.0;
+    return (tiempo * P.batt_hover * 0.7 * P.volt) / 3600.0;
+  }
+}
+
+function evaluarCoherencia(dec, S, s) {
+  let C = 1.0;
+  if(dec == 1 && S.no_land > 0.8) C -= S.no_land;
+  if(dec == 1 && S.peligro > 0.8) C -= 0.9;
+  if(dec == 2 && S.evacuar) C += S.evacuar * 0.2; // Bonus por evacuar
+  return Math.max(0, Math.min(1, C));
+}
+
+// ═══════════════════════════════
+// DIBUJO DRON 4 MOTORES
+// ═══════════════════════════════
+function drawQuad(ctx, x, y, z, roll, pitch, thrust) {
+  const sz = 12;
+  const arm = sz * 1.8;
+  const motor = sz * 0.4;
+
+  // Sombra
+  ctx.save();
+  ctx.translate(x, y + z*0.3);
+  ctx.scale(1, 0.3);
+  ctx.globalAlpha = 0.2;
+  ctx.fillStyle = '#000';
+  ctx.beginPath();
+  ctx.arc(0, 0, arm*1.2, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(roll);
+
+  // Brazos
+  ctx.strokeStyle = '#304050';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(-arm, -arm); ctx.lineTo(arm, arm);
+  ctx.moveTo(arm, -arm); ctx.lineTo(-arm, arm);
+  ctx.stroke();
+
+  // Cuerpo central
+  ctx.fillStyle = '#182028';
+  ctx.fillRect(-sz/2, -sz/2, sz, sz);
+  ctx.strokeStyle = P.decision==1?'#ffc000':P.decision==2?'#4080ff':'#00e0b8';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(-sz/2, -sz/2, sz, sz);
+
+  // Motores + hélices
+  const motors = [[-arm,-arm], [arm,-arm], [arm,arm], [-arm,arm]];
+  motors.forEach((m,i) => {
+    ctx.save();
+    ctx.translate(m[0], m[1]);
+    ctx.fillStyle = '#202830';
+    ctx.beginPath();
+    ctx.arc(0, 0, motor, 0, Math.PI*2);
+    ctx.fill();
+
+    const spin = P.t * 50 + i * Math.PI/2;
+    const thrust_factor = Math.min(1, thrust / P.hover);
+    ctx.strokeStyle = `rgba(0,240,200,${0.3 + thrust_factor*0.7})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-motor*1.5*Math.cos(spin), -motor*1.5*Math.sin(spin));
+    ctx.lineTo(motor*1.5*Math.cos(spin), motor*1.5*Math.sin(spin));
+    ctx.moveTo(-motor*1.5*Math.cos(spin+Math.PI/2), -motor*1.5*Math.sin(spin+Math.PI/2));
+    ctx.lineTo(motor*1.5*Math.cos(spin+Math.PI/2), motor*1.5*Math.sin(spin+Math.PI/2));
+    ctx.stroke();
+
+    ctx.fillStyle = thrust_factor > 0.5? '#00f0c8' : '#4060ff';
+    ctx.beginPath();
+    ctx.arc(0, 0, motor*0.3, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  ctx.restore();
+}
+
+// ═══════════════════════════════
+// RENDER VISTAS
+// ═══════════════════════════════════════════════
+function drawLat(cv) {
+  const ctx = cv.getContext('2d'), W=cv.width, H=cv.height;
+  const cx=W*0.15, cy=H*0.5, sc=Math.min(W,H)/180;
+  ctx.clearRect(0,0,W,H);
+
+  ctx.fillStyle='#05070a'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#0a1018'; ctx.fillRect(0, cy, W, H-cy);
+  ctx.strokeStyle='#1a242e'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0,cy-P.ceil*sc); ctx.lineTo(W,cy-P.ceil*sc); ctx.stroke();
+  ctx.fillStyle='#304050'; ctx.font='8px Share Tech Mono';
+  ctx.fillText(`Techo ${P.ceil}m`, 5, cy-P.ceil*sc-3);
+
+  const obst_x = cx + P.obst_y*sc;
+  ctx.fillStyle='#ff6040'; ctx.fillRect(obst_x-2, cy-P.ceil*sc, 4, P.ceil*sc);
+
+  const signos = SIGNOS_DEF[P.signo_activo] || [];
+  for(let sig of signos) {
+    if(sig.y!== undefined) {
+      const sx = cx + sig.y*sc;
+      ctx.strokeStyle='#b060ff'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.arc(sx, cy-P.ceil*sc/2, sig.radio*sc, 0, Math.PI*2); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle='#b060ff'; ctx.font='9px Share Tech Mono'; ctx.textAlign='center';
+      ctx.fillText(sig.valor, sx, cy-P.ceil*sc-15);
+    }
+  }
+
+  ctx.strokeStyle='#4080ff'; ctx.lineWidth=2; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(cx, cy-P.ceil*sc); ctx.lineTo(cx, cy); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const dx = cx + P.y*sc, dy = cy - P.z*sc;
+  const roll = Math.atan2(P.vx, 10);
+  drawQuad(ctx, dx, dy, P.z, roll, 0, P.hover);
+
+  if(Math.abs(P.wind) > 0.1) {
+    ctx.strokeStyle='#4080ff'; ctx.lineWidth=2;
+    const wx = W-40, wy = 20, wl = Math.abs(P.wind)*5;
+    ctx.beginPath(); ctx.moveTo(wx,wy); ctx.lineTo(wx+wl*Math.sign(P.wind),wy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(wx+wl*Math.sign(P.wind),wy);
+    ctx.lineTo(wx+wl*Math.sign(P.wind)-5*Math.sign(P.wind),wy-3);
+    ctx.lineTo(wx+wl*Math.sign(P.wind)-5*Math.sign(P.wind),wy+3);
+    ctx.closePath(); ctx.fillStyle='#4080ff'; ctx.fill();
+  }
+}
+
+function drawAer(cv) {
+  const ctx = cv.getContext('2d'), W=cv.width, H=cv.height;
+  const cx=W/2, cy=H/2, sc=Math.min(W,H)/220;
+  ctx.clearRect(0,0,W,H);
+
+  ctx.strokeStyle='#0a1018'; ctx.lineWidth=1;
+  for(let i=-100;i<=100;i+=20) {
+    ctx.beginPath(); ctx.moveTo(cx+i*sc,0); ctx.lineTo(cx+i*sc,H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,cy+i*sc); ctx.lineTo(W,cy+i*sc); ctx.stroke();
+  }
+
+  ctx.strokeStyle='#4080ff'; ctx.lineWidth=2; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.arc(cx,cy,8,0,Math.PI*2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const obst_x = cx + P.obst_y*sc;
+  ctx.fillStyle='#ff6040'; ctx.fillRect(obst_x-8,cy-8,16,16);
+
+  const signos = SIGNOS_DEF[P.signo_activo] || [];
+  for(let sig of signos) {
+    if(sig.y!== undefined) {
+      const sx = cx + sig.y*sc;
+      ctx.strokeStyle='#b060ff'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.arc(sx, cy, sig.radio*sc, 0, Math.PI*2); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+
+  const dx = cx + P.y*sc, dy = cy + P.x*sc;
+  drawQuad(ctx, dx, dy, P.z, 0, 0, P.hover);
+
+  if(Math.abs(P.wind) > 0.1) {
+    ctx.strokeStyle='#4080ff'; ctx.lineWidth=2;
+    const wx = 20, wy = 20, wl = Math.abs(P.wind)*4;
+    ctx.beginPath(); ctx.moveTo(wx,wy); ctx.lineTo(wx+wl*Math.sign(P.wind),wy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(wx+wl*Math.sign(P.wind),wy);
+    ctx.lineTo(wx+wl*Math.sign(P.wind)-4*Math.sign(P.wind),wy-2);
+    ctx.lineTo(wx+wl*Math.sign(P.wind)-4*Math.sign(P.wind),wy+2);
+    ctx.closePath(); ctx.fillStyle='#4080ff'; ctx.fill();
+  }
+}
+
+function draw3D(cv) {
+  const ctx = cv.getContext('2d'), W=cv.width, H=cv.height;
+  ctx.clearRect(0,0,W,H);
+
+  const ox = W*0.5, oy = H*0.7, sc = Math.min(W,H)/200;
+  const ix = 0.866, iy = 0.5;
+  const jx = -0.866, jy = 0.5;
+  const kx = 0, ky = -1;
+
+  function proj(x,y,z) {
+    return {
+      x: ox + x*ix*sc + y*jx*sc + z*kx*sc,
+      y: oy + x*iy*sc + y*jy*sc + z*ky*sc
+    };
+  }
+
+  // Grid piso
+  ctx.strokeStyle='#182028'; ctx.lineWidth=1;
+  for(let i=-5;i<=5;i++) {
+    const p1 = proj(i*10,-50,0), p2 = proj(i*10,50,0);
+    ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+    const p3 = proj(-50,i*10,0), p4 = proj(50,i*10,0);
+    ctx.beginPath(); ctx.moveTo(p3.x,p3.y); ctx.lineTo(p4.x,p4.y); ctx.stroke();
+  }
+
+  // Ejes
+  ctx.strokeStyle='#304050'; ctx.lineWidth=2;
+  const o = proj(0,0,0);
+  const px = proj(30,0,0); ctx.beginPath(); ctx.moveTo(o.x,o.y); ctx.lineTo(px.x,px.y); ctx.stroke();
+  const py = proj(0,30,0); ctx.beginPath(); ctx.moveTo(o.x,o.y); ctx.lineTo(py.x,py.y); ctx.stroke();
+  const pz = proj(0,0,30); ctx.beginPath(); ctx.moveTo(o.x,o.y); ctx.lineTo(pz.x,pz.y); ctx.stroke();
+  ctx.fillStyle='#304050'; ctx.font='8px Share Tech Mono';
+  ctx.fillText('X',px.x+3,px.y); ctx.fillText('Y',py.x+3,py.y); ctx.fillText('Z',pz.x+3,pz.y);
+
+  // Obstáculo
+  const obst = proj(P.obst_y, 0, P.ceil*5);
+  const obst_b = proj(P.obst_y, 0, 0);
+  ctx.fillStyle='#ff604080'; ctx.fillRect(obst.x-3, obst.y, 6, obst_b.y-obst.y);
+
+  // Home
+  const home = proj(0,0,0);
+  ctx.strokeStyle='#4080ff'; ctx.lineWidth=2; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.arc(home.x,home.y,5,0,Math.PI*2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Dron
+  const dr = proj(P.y, P.x, P.z*10);
+  const sh = proj(P.y, P.x, 0);
+  ctx.fillStyle='rgba(0,0,0,0.3)';
+  ctx.beginPath(); ctx.ellipse(sh.x, sh.y, 8, 4, 0, 0, Math.PI*2); ctx.fill();
+
+  ctx.strokeStyle='#00e0b880'; ctx.setLineDash([2,2]); ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(dr.x, dr.y); ctx.lineTo(sh.x, sh.y); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const col = P.landed? '#00e0b8' : P.crashed? '#ff3048' : '#ffc000';
+  ctx.fillStyle=col; ctx.strokeStyle='#fff'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(dr.x,dr.y,6,0,Math.PI*2); ctx.fill(); ctx.stroke();
+
+  // Brazos
+  ctx.strokeStyle='#304050'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(dr.x-10,dr.y-10); ctx.lineTo(dr.x+10,dr.y+10); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(dr.x+10,dr.y-10); ctx.lineTo(dr.x-10,dr.y+10); ctx.stroke();
+}
+
+function drawChart(cv) {
+  const ctx = cv.getContext('2d'), W=cv.width, H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const n = P.hist.length;
+  if(n < 2) return;
+  const margin = {l:40,r:10,t:10,b:20};
+  const pw = W-margin.l-margin.r, ph = H-margin.t-margin.b;
+
+  const vars = [
+    {name:'V', col:'#00e0b8', key:'V'},
+    {name:'C', col:'#b060ff', key:'C'},
+    {name:'J', col:'#ffc000', key:'J'}
+  ];
+
+  vars.forEach((v,i) => {
+    const y0 = margin.t + i*ph/3;
+    const y1 = y0 + ph/3 - 5;
+    ctx.fillStyle='#0a0f14'; ctx.fillRect(margin.l,y0,pw,y1-y0);
+    ctx.strokeStyle='#1a242e'; ctx.strokeRect(margin.l,y0,pw,y1-y0);
+
+    ctx.strokeStyle='#1a242e'; ctx.lineWidth=1;
+    [0,0.5,1].forEach(t => {
+      const py = y1 - t*(y1-y0);
+      ctx.beginPath(); ctx.moveTo(margin.l,py); ctx.lineTo(margin.l+pw,py); ctx.stroke();
+    });
+
+    ctx.strokeStyle=v.col; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    for(let j=0;j<n;j++) {
+      const h = P.hist[j];
+      const px = margin.l + (j/(n-1))*pw;
+      const py = y1 - h[v.key]*(y1-y0);
+      j==0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    ctx.fillStyle=v.col; ctx.font='9px Share Tech Mono'; ctx.textAlign='left';
+    ctx.fillText(v.name, margin.l+3, y0+10);
+    ctx.fillStyle='rgba(255,255,0.6)'; ctx.font='8px Share Tech Mono'; ctx.textAlign='right';
+    ctx.fillText(P[v.key].toFixed(2), margin.l+pw-3, y0+10);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UI
+// ═══════════════════════════════════════════════════════════════
+function updateUI() {
+  document.getElementById('sim-time').textContent = `t = ${P.t.toFixed(3)} s`;
+  document.getElementById('m-y').textContent = P.y.toFixed(1);
+  document.getElementById('m-z').textContent = P.z.toFixed(2);
+  document.getElementById('m-b').textContent = (P.battery*100).toFixed(1)+'%';
+  document.getElementById('m-b').className = 'mval ' + (P.battery>0.15?'good':P.battery>0.08?'warn':'bad');
+  document.getElementById('m-dec').textContent = ['NONE','LAND','RTH'][P.decision];
+  document.getElementById('m-dec').className = 'mval ' + (P.decision==1?'warn':P.decision==2?'blue':'');
+
+  document.getElementById('v-v').textContent = P.V.toFixed(2);
+  document.getElementById('b-v').style.width = `${P.V*100}%`;
+  document.getElementById('v-c').textContent = P.C.toFixed(2);
+  document.getElementById('b-c').style.width = `${P.C*100}%`;
+  document.getElementById('v-j').textContent = P.J.toFixed(2);
+  document.getElementById('b-j').style.width = `${P.J*100}%`;
+
+  document.getElementById('wind-lat').textContent = `Viento: ${P.wind.toFixed(1)}m/s ${P.wind>=0?'→':'←'}`;
+  document.getElementById('wind-aer').textContent = `Viento: ${P.wind.toFixed(1)}m/s ${P.wind>=0?'→':'←'}`;
+
+  const signos = SIGNOS_DEF[P.signo_activo] || [];
+  document.getElementById('signos-activos').innerHTML = signos.length==0? 'Signos activos: ninguno' : 'Signos activos:<br>' + signos.map(s=>`<div class="signo-item">• ${s.valor} @ y=${s.y||'N/A'}</div>`).join('');
+
+  document.getElementById('sdot').style.background = P.crashed? 'var(--red)' : P.landed? 'var(--teal)' : 'var(--gold)';
+}
+
+function log(msg,cls='eg'){
+  const el = document.getElementById('log');
+  const d = document.createElement('div'); d.className=cls;
+  d.textContent=`[${P.t.toFixed(2)}s] ${msg}`;
+  el.appendChild(d);
+  if(el.children.length>100) el.removeChild(el.firstChild);
+  el.scrollTop=el.scrollHeight;
+}
+
+function downloadCSV(){
+  if(!P.csv.length){log('Sin datos.','ew');return;}
+  const hdr='t,x,y,z,vx,vy,vz,battery,V,C,J,decision,wind';
+  const blob=new Blob([hdr+'\n'+P.csv.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`dron_cosmosemiotico_${new Date().toISOString().slice(0,19).replace(/[:.]/g,'-')}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+  log(`CSV exportado: ${P.csv.length} filas.`,'eg');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOOP
+// ═══════════════════════════════════════════════════════════════
+function loop(){
+  step();
+  drawLat(document.getElementById('cv-lat'));
+  drawAer(document.getElementById('cv-aer'));
+  draw3D(document.getElementById('cv-3d'));
+  drawChart(document.getElementById('cv-chart'));
+  updateUI();
+  requestAnimationFrame(loop);
+}
+
+// Controles
+function bind(id, key, fmt, lid) {
+  document.getElementById(id).addEventListener('input', e => {
+    P[key] = parseFloat(e.target.value);
+    if(key=='battery_init') P.battery = P.battery_init;
+    if(key=='dist_home') P.y_init = P.dist_home;
+    document.getElementById(lid).textContent = fmt(P[key]);
+  });
+}
+bind('wind','wind',v=>v.toFixed(1),'v-wind');
+bind('dist','dist_home',v=>v.toFixed(0),'v-dist');
+bind('ceil','ceil',v=>v.toFixed(1),'v-ceil');
+bind('batt','battery_init',v=>{P.battery=v/100;return v.toFixed(0)},'v-batt');
+bind('obst','obst_y',v=>v.toFixed(0),'v-obst');
+bind('alpha','alpha',v=>v.toFixed(2),'v-alpha');
+bind('tz','target_z',v=>v.toFixed(1),'v-tz');
+bind('ty','target_y',v=>v.toFixed(0),'v-ty');
+document.getElementById('signo').addEventListener('change', e=>{P.signo_activo=e.target.value;});
+document.getElementById('manual').addEventListener('change', e=>{P.manual=e.target.checked;});
+
+document.getElementById('btn-run').onclick=()=>{P.running=true;};
+document.getElementById('btn-pause').onclick=()=>{P.running=false;};
+document.getElementById('btn-reset').onclick=()=>{
+  Object.assign(P,{x:P.x_init,y:P.y_init,z:P.z_init,vx:0,vy:0,vz:0,t:0,battery:P.battery_init,crashed:false,landed:false,running:true,decision:0,hist:[],csv:[]});
+  log('RESET completo','eg');
+};
+document.getElementById('btn-pert').onclick=()=>{
+  P.vy += (Math.random()-0.5)*4;
+  P.vz += (Math.random()-0.5)*2;
+  log('Perturbación aplicada','ew');
+};
+document.getElementById('btn-csv').onclick=downloadCSV;
+
+// Resize
+function resize() {
+  ['cv-lat','cv-aer','cv-3d','cv-chart'].forEach(id=>{
+    const cv=document.getElementById(id);
+    cv.width=cv.parentElement.clientWidth;
+    cv.height=cv.parentElement.clientHeight;
+  });
+}
+window.addEventListener('resize',resize);
+resize();
+log('v1.3 iniciado. RESET para aplicar parámetros.','eg');
+loop();
+</script>
+</body>
+</html>

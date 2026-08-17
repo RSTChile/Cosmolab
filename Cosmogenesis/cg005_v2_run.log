@@ -1,0 +1,36 @@
+CG005 v2 — orden temporal (cand 3) + RESIDUAL débil (cand 2): ¿se liga el medio hacia el PLANO?
+========================================================================================================
+N=450 · λ=6.0 τ=3.0 (confinamiento) · λ_res=2.0 CAP_RES=3 (residual, FIJO) · W=8 · 4 sem
+
+Anclas (éxito = ACERCARSE a lattice2D):
+   lattice2D: δ=2.18 turn=1.15 diam=57 dim=1.60 %gig=100
+    arbol_b3: δ=0.00 turn=1.97 diam=12 dim=2.28 %gig=100
+
+--------------------------------------------------------------------------------------------------------
+     brazo sd  %gig  g_med  tri/nod  %entri  diam   δ_med    dim   turn        ver
+  --------------------------------------------------------------------------------------------
+   REGLA_T  1    8   4.17     3.91    100    10     nan    nan   1.49 poco rango
+    NULL_T  1   86   3.27     1.71     86    13    0.76   1.99   1.68  AZAR(exp)
+   REGLA_T  2    7   4.20     3.87    100     6     nan    nan   1.77 poco rango
+    NULL_T  2   86   3.22     1.65     86    14    0.82   1.96   1.63  AZAR(exp)
+   REGLA_T  3    7   3.98     3.53     98    10     nan    nan   1.47 poco rango
+    NULL_T  3   86   3.28     1.78     86    14    0.75   1.97   1.61  AZAR(exp)
+   REGLA_T  4    3   4.05     3.76    100     6     nan    nan   1.91 poco rango
+    NULL_T  4   88   3.38     1.77     88    12    0.74   2.02   1.72  AZAR(exp)
+
+========================================================================================================
+RESUMEN (criterio: ¿REGLA_T se vuelve CONEXO Y se acerca al plano, y NULL_T no?):
+  ancla plana: δ=2.18 turn=1.15 diam=57 dim=1.60 %gig=100
+     REGLA_T: %gig=  6  δ=nan  turn=1.66  diam=8  dim=nan  tri/nodo=3.77  g_med=4.10
+      NULL_T: %gig= 87  δ=0.77  turn=1.66  diam=13  dim=1.99  tri/nodo=1.73  g_med=3.29
+
+VEREDICTO (3 guardianes pre-registrados):
+  G3 anti-disolución: tri/nodo REGLA_T=3.77 vs v1~3.3 → OK (hadrones intactos)
+  Conexión: %gig REGLA_T=6 → sigue gas/fragmentado
+  G2 hacia el plano (no blob): turn_R=1.66 δ_R=nan diam_R=8 → blob/no-plano o gas
+  G1 NULL-temporal: REGLA_T NO se separa de NULL_T
+
+  DESENLACE:
+    Sigue FRAGMENTANDO: el residual débil no ligó. Reportar sin subir λ_res (sería Shannon).
+
+Tiempo: 0.5 min

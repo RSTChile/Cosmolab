@@ -1,0 +1,51 @@
+========================================================================================================
+CS067 — RE-SMOKE bajo las 3 GUARDAS: barrido de gamma sobre 'completo' vs controles sin_correlacion/sin_causal
+N=1200 · steps=20 · seeds/gamma=4 · gammas=[0.5, 1.0, 1.5, 2.0, 2.5]
+========================================================================================================
+
+--- gamma=0.50 ---
+  completo (n=4): n_ejes=[np.int64(4), np.int64(7), np.int64(0), np.int64(7)] PR=[3.7, 6.39, 7.87, 6.21] pico_medio=[0.793, 0.7, 0.717, 0.758] frac_picados=[0.346, 0.194, 0.249, 0.299]
+    medias: n_ejes=4.50 PR=6.04 gap_interno=1.20 pico_medio=0.742 w_medio=0.251
+  control sin_correlacion: n_ejes=4 pico_medio=0.841 (colapsa)
+  control sin_causal:      n_ejes=5 pico_medio=0.632 (colapsa)
+
+--- gamma=1.00 ---
+  completo (n=4): n_ejes=[np.int64(0), np.int64(0), np.int64(6), np.int64(0)] PR=[7.62, 7.48, 5.02, 7.3] pico_medio=[0.735, 0.73, 0.734, 0.755] frac_picados=[0.31, 0.258, 0.311, 0.354]
+    medias: n_ejes=1.50 PR=6.86 gap_interno=0.44 pico_medio=0.738 w_medio=0.087
+  control sin_correlacion: n_ejes=4 pico_medio=0.873 (NO colapsa -> confunde)
+  control sin_causal:      n_ejes=6 pico_medio=0.633 (colapsa)
+
+--- gamma=1.50 ---
+  completo (n=4): n_ejes=[np.int64(1), np.int64(6), np.int64(6), np.int64(4)] PR=[2.19, 5.2, 4.05, 3.65] pico_medio=[0.832, 0.8, 0.736, 0.877] frac_picados=[0.504, 0.427, 0.29, 0.606]
+    medias: n_ejes=4.25 PR=3.77 gap_interno=2.42 pico_medio=0.811 w_medio=0.010
+  control sin_correlacion: n_ejes=5 pico_medio=0.797 (colapsa)
+  control sin_causal:      n_ejes=0 pico_medio=0.655 (colapsa)
+
+--- gamma=2.00 ---
+  completo (n=4): n_ejes=[np.int64(4), np.int64(1), np.int64(7), np.int64(1)] PR=[3.48, 1.61, 6.7, 2.7] pico_medio=[0.754, 0.882, 0.768, 0.816] frac_picados=[0.305, 0.66, 0.36, 0.49]
+    medias: n_ejes=3.25 PR=3.62 gap_interno=4.17 pico_medio=0.805 w_medio=0.006
+  control sin_correlacion: n_ejes=0 pico_medio=0.671 (colapsa)
+  control sin_causal:      n_ejes=5 pico_medio=0.764 (colapsa)
+
+--- gamma=2.50 ---
+  completo (n=4): n_ejes=[np.int64(5), np.int64(6), np.int64(7), np.int64(4)] PR=[4.13, 4.93, 6.78, 2.86] pico_medio=[0.81, 0.813, 0.66, 0.903] frac_picados=[0.453, 0.456, 0.128, 0.691]
+    medias: n_ejes=5.50 PR=4.67 gap_interno=1.89 pico_medio=0.796 w_medio=0.002
+  control sin_correlacion: n_ejes=5 pico_medio=0.764 (colapsa)
+  control sin_causal:      n_ejes=1 pico_medio=0.896 (colapsa)
+
+========================================================================================================
+RESUMEN por régimen de gamma (Guarda 3: (i) n_ejes>1 (ii) pico_medio>=0.85 (iii) controles colapsan):
+ gamma  n_ejes~  nej_max   pico~  %semillas  ctrl_ok  ENCIENDE  ctrlC_nej  ctrlC_pico  ctrlY_nej  ctrlY_pico
+  0.50     4.50        7   0.742       0.00     True     False          4       0.841          5       0.632
+  1.00     1.50        6   0.738       0.00    False     False          4       0.873          6       0.633
+  1.50     4.25        6   0.811       0.25     True     False          5       0.797          0       0.655
+  2.00     3.25        7   0.805       0.00     True     False          0       0.671          5       0.764
+  2.50     5.50        7   0.796       0.25     True     False          5       0.764          1       0.896
+
+VEREDICTO PRE-INSCRITO (ADDENDUM_CS067_pico_guarda_rango_CS.md, sin tunear tras ver los números):
+  NINGÚN régimen de gamma en [0.5, 2.5] cumple las tres condiciones juntas (colapso, smear,
+  o 'completo' no supera a los controles). Eso ES (B): el espacio emergente no es bastante
+  métrico para soportar direcciones. No tunear más. Reportar (B) a CS -> reorienta el arco a
+  cerrar el cabo de mundo-pequeño (candidato CS068: análogo de inflación).
+
+tiempo total: 1.85 min

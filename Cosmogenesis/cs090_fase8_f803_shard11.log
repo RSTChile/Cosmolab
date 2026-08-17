@@ -1,0 +1,18 @@
+[f803] 1 grafos base (generar_ic=True) brazos=('solap', 'disp') R=3
+[1/1] A2-B0-C2-batch4-r62 seed=577843 lote=571828
+    piso: tri 15 -> 0  (16495 swaps, 2.0s)
+     solap0: techo_conectado tri=259 (k=203/203) [19.3s]
+     solap1: techo_conectado tri=223 (k=183/183) [27.2s]
+     solap2: techo_conectado tri=220 (k=181/181) [20.7s]
+      disp0: techo_conectado tri=1218 (k=1184/1184) [17.9s]
+      disp1: techo_conectado tri=1238 (k=1199/1199) [20.6s]
+      disp2: techo_conectado tri=1282 (k=1244/1244) [21.2s]
+    T*=220  conseguidos={'solap0': 219, 'solap1': 220, 'solap2': 220, 'disp0': 220, 'disp1': 220, 'disp2': 220}  dif_max=1
+     solap0  tri=219   A=2.597 D=0.0767 multi=0.881 gini_n=0.952 gig=1891 pend=0.8252 PICO=12.7076 ic=235.13s
+     solap1  tri=220   A=2.558 D=0.0782 multi=0.872 gini_n=0.952 gig=1907 pend=0.7736 PICO=14.8149 ic=449.94s
+     solap2  tri=220   A=2.444 D=0.0818 multi=0.844 gini_n=0.949 gig=1869 pend=0.8271 PICO=13.9608 ic=463.98s
+      disp0  tri=220   A=1.000 D=0.2001 multi=0.000 gini_n=0.670 gig=1919 pend=0.6862 PICO=7.2989 ic=294.95s
+      disp1  tri=220   A=1.003 D=0.1995 multi=0.003 gini_n=0.675 gig=1921 pend=0.7886 PICO=9.2628 ic=323.98s
+      disp2  tri=220   A=1.002 D=0.1998 multi=0.002 gini_n=0.672 gig=1919 pend=0.7501 PICO=9.9196 ic=371.43s
+
+[f803] 6 filas -> cs090_fase8_f803_estructura_shard11.csv  (total 2293s)

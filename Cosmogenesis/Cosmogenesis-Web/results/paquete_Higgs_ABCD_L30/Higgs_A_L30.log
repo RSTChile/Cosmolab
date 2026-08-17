@@ -1,0 +1,13 @@
+HIGGS A L=30 SSB T<Tc
+step   0 a=   1.0 T=1.00e+15 r=9.000 <Phi>=0.062 k1=29 k3=6 ratio=0.361 ratio_NULL=0.000
+step  50 a=   1.8 T=5.49e+14 r=4.488 <Phi>=0.000 k1=16 k3=2 ratio=0.155 ratio_NULL=0.000
+step 100 a=   3.3 T=3.01e+14 r=2.012 <Phi>=0.000 k1=84 k3=8 ratio=0.272 ratio_NULL=0.000
+step 150 a=   6.0 T=1.65e+14 r=0.653 <Phi>=0.000 k1=154 k3=22 ratio=0.262 ratio_NULL=0.000
+step 200 a=  11.0 T=9.07e+13 r=-0.093 <Phi>=0.000 k1=214 k3=21 ratio=0.257 ratio_NULL=0.000
+step 250 a=  20.1 T=4.98e+13 r=-0.502 <Phi>=0.000 k1=266 k3=32 ratio=0.285 ratio_NULL=0.000
+step 300 a=  36.6 T=2.73e+13 r=-0.727 <Phi>=0.000 k1=313 k3=35 ratio=0.308 ratio_NULL=0.000
+step 350 a=  66.7 T=1.50e+13 r=-0.850 <Phi>=0.000 k1=348 k3=37 ratio=0.350 ratio_NULL=0.000
+step 400 a= 121.5 T=8.23e+12 r=-0.918 <Phi>=0.000 k1=348 k3=37 ratio=0.361 ratio_NULL=0.000
+step 450 a= 221.4 T=4.52e+12 r=-0.955 <Phi>=0.000 k1=348 k3=37 ratio=0.369 ratio_NULL=0.000
+FIN A: si <Phi>->0 ratio O(1), si <Phi>!=0 y avg_Phi_k1 != avg_Phi_k3 ratio <<1 test Higgs
+EXIT:0

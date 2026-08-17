@@ -1,0 +1,12 @@
+[Unit]
+Description=ANIMA - cabeza en pantalla SPI fb1
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/anima/celula_madre
+ExecStart=/opt/anima/celula_madre/docker/ejecutar-cabeza-e-fb1.sh
+Restart=always
+RestartSec=8
+
+[Install]
+WantedBy=default.target

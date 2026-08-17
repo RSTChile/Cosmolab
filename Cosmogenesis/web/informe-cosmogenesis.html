@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmogénesis — ¿Puede una diferencia mínima dar origen a un universo?</title>
+<meta name="description" content="Informe final del experimento Cosmogénesis: si una asimetría mínima puede sobrevivir a la expansión y dar origen al tiempo, la distancia y la forma.">
+<meta name="author" content="Alexis López Tapia">
+<meta property="og:title" content="Cosmogénesis — ¿Puede una diferencia mínima dar origen a un universo?">
+<meta property="og:description" content="Informe final del experimento. Qué se probó, qué no, y por qué la pregunta original se puede mirar.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cosmosemiotica.cl/informe-cosmogenesis.html">
+<link rel="canonical" href="https://cosmosemiotica.cl/informe-cosmogenesis.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,200;9..144,0,300;9..144,1,200;9..144,1,300&family=IBM+Plex+Mono:wght@300;400;500&family=Public+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* paleta tomada de cosmosemiotica.cl para que las paginas se vean
+     como una sola: mismos valores que informe-cosmoclima.html */
+  --bg:#0c0f18; --surface:#0e1220; --surface2:#161b2c;
+  --line:#242a37; --line2:#242a37;
+  --text:#c3c7ce; --text-strong:#f2efe8; --muted:#767c87; --muted2:#6e7684;
+  --nav-bg:#0c0f18; --nav-line:#242a37; --nav-gold:#e8c477; --nav-ink:#c9c3b4; --nav-dim:#767c87;
+  --gold:#e8c477; --gold-dim:#a8874a;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --measure:68ch;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--sans); font-weight:300; font-size:16.5px;
+  line-height:1.75; letter-spacing:.005em;
+}
+.wrap{max-width:var(--measure); margin:0 auto; padding:0 22px}
+
+
+/* ---------- navegacion del sitio (copiada literal de cosmosemiotica.cl) ---------- */
+.cs-nav{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin:0;
+  padding:16px clamp(16px,4vw,58px);background:var(--nav-bg);
+  border-bottom:1px solid var(--nav-line);position:relative;z-index:2}
+.cs-nav .cs-brand{font:400 13px/1 'Public Sans',sans-serif;letter-spacing:.22em;
+  text-transform:uppercase;color:#e2d9c4;text-decoration:none;white-space:nowrap;border:0}
+.cs-nav .cs-brand:hover{color:#fff}
+.cs-nav ul{display:flex;flex-wrap:wrap;gap:clamp(11px,2vw,28px);list-style:none;margin:0 0 0 auto;padding:0}
+.cs-nav li{margin:0}
+.cs-nav a{color:var(--nav-ink);text-decoration:none;font:300 13.5px 'Public Sans',sans-serif;
+  padding:4px 0;border-bottom:1px solid transparent;transition:.22s}
+.cs-nav a:hover,.cs-nav a[aria-current]{color:#fff;border-bottom-color:var(--nav-gold)}
+.cs-nav .cs-ver{font:11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--nav-dim);
+  border:1px solid var(--nav-line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.crumb{max-width:var(--measure);margin:0 auto;padding:20px 22px 0;
+  font:300 12.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--muted)}
+.crumb a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.crumb a:hover{color:var(--gold)}
+
+/* ---------- ilustraciones ---------- */
+figure.ilu{margin:40px 0;padding:0}
+figure.ilu img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:3px}
+figure.ilu figcaption{margin-top:11px;font-family:var(--sans);font-size:.86rem;line-height:1.62;color:var(--muted)}
+figure.ilu figcaption b{color:var(--text-strong);font-weight:500}
+@media print{ figure.ilu{break-inside:avoid} }
+
+/* ---------- portada ---------- */
+header.hero{
+  border-bottom:1px solid var(--line);
+  padding:clamp(56px,10vw,110px) 0 clamp(40px,6vw,64px);
+  background:linear-gradient(180deg,#11162a 0%,var(--bg) 100%);
+}
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--gold-dim); margin:0 0 20px;
+}
+h1{
+  font-family:var(--serif); font-weight:200; color:var(--text-strong);
+  font-size:clamp(2.1rem,5.6vw,3.1rem); line-height:1.16;
+  letter-spacing:-.015em; margin:0 0 8px; text-wrap:balance;
+}
+h1 .sub{display:block; color:var(--gold); font-size:.5em; margin-top:.55em; line-height:1.35; font-weight:400}
+.dateline{font-family:var(--mono); font-size:.78rem; color:var(--muted2); margin-top:28px; letter-spacing:.04em}
+
+/* ---------- tipografía ---------- */
+main{padding:clamp(44px,7vw,76px) 0 0}
+h2{
+  font-family:var(--serif); font-weight:300; color:var(--text-strong);
+  font-size:clamp(1.5rem,3.4vw,1.72rem); line-height:1.3; letter-spacing:-.01em; text-wrap:balance;
+  margin:clamp(52px,7vw,76px) 0 10px; padding-top:24px; border-top:1px solid var(--line2);
+}
+h2:first-of-type{border-top:0; padding-top:0; margin-top:0}
+h2 .num{
+  font-family:var(--mono); font-size:.92rem; font-weight:400;
+  letter-spacing:.1em; color:var(--gold); margin-right:12px; text-transform:uppercase;
+}
+h3{
+  font-family:var(--serif); font-weight:300; color:var(--text-strong);
+  font-size:1.16rem; line-height:1.4; margin:42px 0 9px; letter-spacing:0;
+}
+p{margin:0 0 1.15em}
+.lead{font:200 1.16rem/1.68 var(--serif); color:var(--text-strong)}
+strong{color:#fff; font-weight:500}
+em{color:var(--text-strong); font-style:italic}
+a{color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-dim)}
+a:hover{border-bottom-color:var(--gold)}
+hr{border:0; border-top:1px solid var(--line2); margin:52px 0}
+
+/* ---------- citas ---------- */
+blockquote{
+  margin:34px 0; padding:22px 0 22px 26px;
+  border-left:2px solid var(--gold-dim);
+  font-family:var(--serif); font-weight:200; font-size:1.18rem; line-height:1.6;
+  color:var(--gold); font-style:italic;
+}
+blockquote p:last-child{margin-bottom:0}
+blockquote strong{font-style:normal; color:var(--gold)}
+
+.pull{
+  margin:44px 0; padding:30px 28px; text-align:center;
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:3px;
+}
+.pull p{
+  margin:0; font-family:var(--serif); font-weight:200; font-size:1.22rem; line-height:1.5;
+  color:var(--gold); font-style:italic;
+}
+.pull p + p{margin-top:.6em; color:var(--text-strong); font-size:1.05em}
+
+/* ---------- tablas ---------- */
+.tw{overflow-x:auto; margin:30px 0; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:420px; font-size:.94rem}
+th,td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--line2); vertical-align:top}
+th{
+  font-family:var(--mono); font-size:.68rem; font-weight:500; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--gold-dim); border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+td:first-child{color:var(--text-strong); font-weight:400}
+tbody tr:last-child td{border-bottom:0}
+.num-cell{font-family:var(--mono); font-size:.9rem; color:var(--gold); white-space:nowrap}
+
+/* ---------- notas ---------- */
+.note{
+  margin:30px 0; padding:20px 22px; border-radius:3px;
+  background:var(--surface2); border-left:2px solid var(--line);
+  font-size:.94rem; color:var(--muted); line-height:1.66;
+}
+.note strong{color:var(--text)}
+.note .tag{
+  display:block; font-family:var(--mono); font-size:.64rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted2); margin-bottom:10px;
+}
+.note p:last-child{margin-bottom:0}
+
+/* ---------- cierre ---------- */
+.closing{
+  margin:clamp(64px,9vw,96px) 0 0; padding:clamp(40px,6vw,56px) 0;
+  border-top:1px solid var(--line); background:linear-gradient(180deg,var(--bg) 0%,#11162a 100%);
+}
+footer{
+  border-top:1px solid var(--line2); margin-top:0;
+  padding:38px 0 64px; font-size:.82rem; color:var(--muted2); line-height:1.7;
+}
+footer p{margin:0 0 .8em}
+
+ul{padding-left:1.15em; margin:0 0 1.15em}
+li{margin-bottom:.5em}
+li::marker{color:var(--gold-dim)}
+
+@media (max-width:600px){
+  body{line-height:1.66}
+  blockquote{padding-left:18px}
+  .pull{padding:24px 20px}
+  th,td{padding:10px 12px}
+}
+@media print{
+  body{background:#fff; color:#111}
+  .pull,.note,header.hero,.closing{background:none; border-color:#ccc}
+  h1,h2,h3,strong{color:#000}
+  .pull p,blockquote{color:#333}
+  a{color:#000}
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav" aria-label="Navegación del sitio">
+  <a class="cs-brand" href="https://cosmosemiotica.cl/index.html">Cosmosemiótica</a>
+  <ul>
+    <li><a href="https://cosmosemiotica.cl/teoria.html">Teoría</a></li>
+    <li><a href="https://cosmosemiotica.cl/experimentos.html" aria-current="true">Experimentos</a></li>
+    <li><a href="https://cosmosemiotica.cl/descargas/anima.html">Descargas</a></li>
+    <li><a href="https://cosmosemiotica.cl/observatorio.html">Observatorio</a></li>
+    <li><a href="https://bitacora.cosmosemiotica.cl">Bitácora</a></li>
+    <li><a href="https://cosmosemiotica.cl/publicaciones.html">Publicaciones</a></li>
+    <li><a href="https://cosmosemiotica.cl/autor.html">Autor</a></li>
+  </ul>
+  <span class="cs-ver">Cosmogénesis v1.0</span>
+</nav>
+
+<div class="crumb"><a href="https://cosmosemiotica.cl/experimentos.html">Experimentos</a> &nbsp;/&nbsp; Cosmogénesis</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Teoría Cosmosemiótica · Informe de experimento</p>
+    <h1>Cosmogénesis
+      <span class="sub">¿Puede una diferencia mínima dar origen a un universo?</span>
+    </h1>
+    <p class="dateline">Informe final · Agosto de 2026</p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<h2><span class="num">Introducción</span>Por qué esta pregunta, y por qué no hace falta un acelerador de partículas</h2>
+
+<p class="lead">La física describe muy bien cómo funciona el universo <em>una vez que ya existe</em>. Lo que no responde es la pregunta anterior: <strong>¿por qué hay algo en vez de nada?</strong></p>
+
+<p>Hay una respuesta clásica, y es más vieja que la física. Si en el origen todo hubiera sido perfectamente simétrico —tanta materia como antimateria, exactamente idénticas— todo se habría cancelado con todo. No quedaría nada. Ni siquiera vacío: no habría nadie para llamarlo vacío.</p>
+
+<p>Pero quedó algo. Nosotros somos parte de ese algo. <strong>Entonces hubo una asimetría.</strong> No hace falta que fuera grande: bastaba con que no fuera cero.</p>
+
+<p>Esa idea no es nuestra. La física de partículas la tiene planteada desde hace décadas, y hasta le puso nombre: para que hoy exista materia, tuvo que romperse una simetría en el origen. Lo que se mide en los laboratorios —las llamadas violaciones CP— es exactamente eso, y la propia física reconoce que lo medido <strong>no alcanza</strong> para explicar cuánta materia hay. El problema está abierto.</p>
+
+<p>Nuestra pregunta es un paso más atrás, y es más simple:</p>
+
+<blockquote><p>Una diferencia mínima, ¿puede sobrevivir? ¿Y si sobrevive, alcanza para que aparezcan el tiempo, la distancia y la forma?</p></blockquote>
+
+
+<figure class="ilu">
+  <img src="imagenes/cosmogenesis/01-origen-diferencia-minima.jpg" alt="Un punto luminoso del que se despliegan dos abanicos de filamentos, con una galaxia al fondo" loading="lazy" width="1168" height="784">
+  <figcaption><b>La pregunta, en una imagen.</b> Un punto mínimo del que se despliega todo lo demás. Si esa diferencia inicial alcanza a borrarse, no queda nada — ni siquiera vacío, porque no quedaría nadie para llamarlo así.</figcaption>
+</figure>
+
+<p>Para eso no hace falta un acelerador. Un acelerador sirve para estudiar partículas que ya existen. Nosotros preguntamos por algo previo: <strong>qué reglas mínimas permiten que algo persista y se organice</strong>, antes de que haya partículas de las que hablar.</p>
+
+<p>Así que en vez de energía, usamos relaciones. Construimos universos de juguete hechos sólo de puntos y vínculos entre puntos —nada más— y miramos qué aparece solo.</p>
+
+
+<h2><span class="num">Uno</span>La pregunta exacta</h2>
+
+<p>El experimento empezó con una pregunta formulada de una sola vez, y no cambió nunca:</p>
+
+<blockquote><p>De una asimetría ínfima de temperatura en un todo infinito —en el sentido de que es <strong>el todo</strong>—, ¿hay persistencia si ese todo se expande a una velocidad mayor a la de la luz?</p></blockquote>
+
+
+<figure class="ilu">
+  <img src="imagenes/cosmogenesis/02-todo-cerrado-asimetria.jpg" alt="Una esfera dividida en dos espirales entrelazadas, una azul y otra naranja" loading="lazy" width="1168" height="784">
+  <figcaption><b>Un todo sin afuera.</b> No hay hacia dónde enfriarse ni con qué compararse: lo que ocurra, ocurre adentro. La asimetría entre las dos mitades es la única textura disponible — y también lo único que la mezcla puede borrar.</figcaption>
+</figure>
+
+<p>Vale la pena desarmarla, porque cada palabra hace trabajo.</p>
+
+<p><strong>«Un todo infinito, en el sentido de que es el todo.»</strong> No hay afuera. Nada puede enfriarse hacia otro lado, porque no hay otro lado. Todo lo que pase, pasa adentro.</p>
+
+<p><strong>«Una asimetría ínfima.»</strong> Una diferencia mínima. Un lugar apenas distinto de otro.</p>
+
+<p><strong>«Que se expande más rápido que la luz.»</strong> Acá está la clave, y es menos exótica de lo que suena. Si dos regiones se separan más rápido de lo que puede viajar una señal entre ellas, dejan de poder hablarse. Y si dejan de hablarse, <strong>dejan de poder promediarse</strong>.</p>
+
+<p>Porque ése es el problema de una diferencia mínima en un todo cerrado: <strong>normalmente se borra</strong>. Las cosas se mezclan, se promedian, se emparejan. Es lo que hace un vaso de agua caliente en una pieza fría.</p>
+
+<div class="pull">
+  <p>La hipótesis es que la expansión salva la diferencia.</p>
+  <p>No porque la haga más grande, sino porque desconecta las partes antes de que alcancen a promediarse. La diferencia no se borra: se congela.</p>
+</div>
+
+<p>Es la carrera entre dos velocidades: la que borra y la que separa. Si gana la que separa, algo queda.</p>
+
+
+<h2><span class="num">Dos</span>Cómo se puso a prueba</h2>
+
+<p>En dos etapas, y la distinción entre ellas importa más que cualquier resultado.</p>
+
+<h3>Primera etapa — universos de pura relación</h3>
+
+<p>Construimos redes: puntos conectados entre sí, con reglas simples de cómo se conectan y cómo cambian. <strong>Sin física adentro.</strong> Sin masa, sin energía, sin gravedad. Sólo relación.</p>
+
+<p>Y miramos si aparecen solas cuatro cosas que damos por sentadas:</p>
+
+<ul>
+  <li><strong>Distancia</strong> — que se pueda decir que un punto está lejos de otro</li>
+  <li><strong>Dimensión</strong> — que el conjunto se comporte como un espacio de dos, tres o más dimensiones</li>
+  <li><strong>Dirección</strong> — que exista algo parecido a un norte</li>
+  <li><strong>Tiempo</strong> — que haya un antes y un después que no se puedan invertir</li>
+</ul>
+
+
+<figure class="ilu">
+  <img src="imagenes/cosmogenesis/03-red-relacional-y-galaxia.jpg" alt="Una esfera hecha de nodos y vínculos junto a una galaxia espiral real" loading="lazy" width="1168" height="784">
+  <figcaption><b>Las dos etapas, lado a lado.</b> A la izquierda, los universos de pura relación: puntos y vínculos, sin masa, sin energía y sin gravedad. A la derecha, aquello con lo que hay que compararlos. Confundir lo que sale de un lado con lo que sale del otro fue el error más caro del proyecto.</figcaption>
+</figure>
+
+<h3>Segunda etapa — agregar la física</h3>
+
+<p>Después le agregamos física de verdad: gravedad newtoniana, fuerzas nucleares, electromagnetismo. Y un simulador astrofísico profesional —Phantom, el mismo que usan los astrónomos— para ver si sobre esas estructuras se podía <strong>encender una estrella</strong>.</p>
+
+<div class="note">
+  <span class="tag">Por qué separarlas es esencial</span>
+  <p>Lo que sale en una red no prueba nada sobre el mundo físico, y lo que sale en física no prueba nada sobre la red. Son dos preguntas distintas. Confundirlas fue el error más caro del proyecto, y volveremos sobre eso.</p>
+</div>
+
+
+<h2><span class="num">Tres</span>Lo que encontramos</h2>
+
+<h3>La diferencia sobrevive, pero sólo si su estructura sobrevive</h3>
+
+<p>Éste es el resultado central, y es más específico de lo que esperábamos.</p>
+
+<p>Comparamos tres universos que arrancan <strong>exactamente iguales</strong> —la misma asimetría inicial, verificada punto por punto en las noventa configuraciones— y sólo se diferencian en lo que pasa después:</p>
+
+<div class="tw"><table>
+<thead><tr><th>Universo</th><th>Qué tiene</th><th>Qué pasa</th></tr></thead>
+<tbody>
+<tr><td>Real</td><td>Las relaciones se mantienen</td><td class="num-cell">Persiste 10 de 10</td></tr>
+<tr><td>Barajado</td><td>Las mismas relaciones, reordenadas a cada paso</td><td class="num-cell">Persiste 3 de 10</td></tr>
+<tr><td>Apagado</td><td>Sin relaciones</td><td class="num-cell">Nunca persiste</td></tr>
+</tbody></table></div>
+
+
+<figure class="ilu">
+  <img src="imagenes/cosmogenesis/04-tres-universos.jpg" alt="Tres trayectorias horizontales que parten del mismo origen: una florece, otra se dispersa, la tercera se apaga" loading="lazy" width="1168" height="784">
+  <figcaption><b>Los tres universos, con la misma asimetría de partida.</b> Arriba el real: las relaciones se mantienen y la estructura crece. Al medio el barajado: las mismas relaciones, reordenadas a cada paso — alcanza para grumos sueltos y no para más. Abajo el apagado: sin relaciones, no pasa nada.</figcaption>
+</figure>
+
+<p>Y en las que persisten, el universo real crece <strong>21 veces más rápido</strong> que el barajado.</p>
+
+<p>Lo interesante es el brazo del medio. Tiene <strong>la misma asimetría</strong> y <strong>la misma cantidad de acoplamiento</strong>. Lo único que le falta es que sus relaciones <em>sean las mismas</em> de un momento al otro.</p>
+
+<p>En criollo: una conversación donde te cambian de interlocutor cada segundo tiene la misma cantidad de conversación que una donde hablás siempre con la misma gente. Pero en una se construye algo y en la otra no.</p>
+
+<div class="pull"><p>No basta con que haya una diferencia. Hace falta que la diferencia tenga con qué sostenerse.</p></div>
+
+<h3>Una asimetría del 2% se convierte en 51%</h3>
+
+<p>En un modelo de aniquilación —donde cada elemento tiene su opuesto y ambos se cancelan al encontrarse— sembramos una asimetría del <strong>2%</strong>.</p>
+
+<p>Sobrevivió la mitad de todo, como corresponde. Pero entre lo que sobrevivió, esa asimetría del 2% se había convertido en <strong>51%</strong>. Se amplificó <strong>veinticinco veces</strong> sola.</p>
+
+<p>Y el control es la parte que importa: cuando hacemos que todos los elementos sean <strong>idénticos</strong> —sin ninguna diferencia— sobrevive el <strong>100%</strong>. Todo. Uniforme, y <em>sin ninguna estructura</em>.</p>
+
+<div class="pull">
+  <p>El universo simétrico no queda vacío. Queda lleno y muerto.</p>
+  <p>Todo sobrevive y no pasa nada, porque no hay ninguna diferencia que pueda ir a ningún lado.</p>
+</div>
+
+<h3>El número que podía moverse y no se movió</h3>
+
+<p>De todo el proyecto, el resultado más duro es también el menos vistoso.</p>
+
+<p>Cuando dos orientaciones opuestas se cancelan, sobrevive exactamente <strong>la mitad</strong>. Un factor de ½ limpio.</p>
+
+<p>Podría ser una casualidad de cómo montamos el experimento. Así que lo pusimos a prueba de la forma más exigente que se nos ocurrió: barrimos las condiciones en un rango de <strong>seis veces</strong>, con tres tamaños de sistema y treinta repeticiones cada uno. <strong>Mil ochenta simulaciones.</strong></p>
+
+<p>Si el ½ fuera un artefacto nuestro, se habría movido.</p>
+
+<div class="pull"><p>Cambió 0,0000.</p></div>
+
+<p>Y el detalle que lo vuelve serio: la regla para decidir estaba escrita <strong>antes de correr</strong>, y estaba diseñada para poder concluir <em>«esto es un número que pusimos nosotros sin darnos cuenta»</em>. Podía salir mal. No salió.</p>
+
+<h3>Distancia, dimensión y dirección son tres cosas distintas</h3>
+
+<p>Damos por sentado que el espacio viene en un solo paquete. Nuestros universos de juguete muestran que no.</p>
+
+<p><strong>La distancia aparece.</strong> Cuando obligamos a que las conexiones sean locales, se forma un tejido donde tiene sentido decir que un punto está lejos de otro. El tejido es cuatro veces más entramado que su versión al azar.</p>
+
+<p><strong>La dimensión no viene incluida.</strong> Que haya distancia no hace que el conjunto sea tridimensional. De hecho nunca lo fue: medimos que estaba <strong>trece veces del lado equivocado</strong> de lo que un espacio de verdad exigiría.</p>
+
+<p><strong>La dirección no aparece nunca.</strong> Éste es el resultado mejor sostenido de todo el proyecto. Lo intentamos por tres caminos independientes —uno clásico, uno cuántico y uno basado en memoria de las conexiones— con tres formas distintas de medir. Los tres dan lo mismo: <strong>hay lejos, no hay hacia dónde</strong>.</p>
+
+<p>La imagen es un ovillo de lana. Dos puntos del hilo pueden estar muy lejos siguiendo el hilo. Pero el ovillo no tiene norte.</p>
+
+<h3>π no es una verdad eterna: es la huella de una geometría</h3>
+
+<p>Éste es el resultado que más sorprende a quien lo escucha por primera vez.</p>
+
+<p>π —la relación entre el contorno de un círculo y su diámetro— parece una de esas verdades que existirían aunque no existiera el universo. Nuestros modelos dicen otra cosa.</p>
+
+<p>Medimos esa misma relación dentro de mundos con geometrías distintas:</p>
+
+<div class="tw"><table>
+<thead><tr><th>Mundo</th><th>Su π</th></tr></thead>
+<tbody>
+<tr><td>Cuadriculado</td><td class="num-cell">2,0</td></tr>
+<tr><td>Triangular</td><td class="num-cell">3,0</td></tr>
+<tr><td>Hexagonal</td><td class="num-cell">1,5</td></tr>
+</tbody></table></div>
+
+<p><strong>Constante dentro de cada mundo. Distinto entre mundos.</strong></p>
+
+<p>O sea: π <strong>no es una ley previa que el universo obedece</strong>. Es una consecuencia de la geometría que le tocó cuajar.</p>
+
+<div class="pull"><p>π no es metafísico: es simplemente la relación que sobrevivió al filtro.</p></div>
+
+<div class="note">
+  <span class="tag">Precisión encontrada al revisar</span>
+  <p>Esta medida sólo da un valor constante en mundos de <strong>dos</strong> dimensiones. Una retícula cúbica perfecta —geometría impecable, tres dimensiones— también daría un número que crece. Así que la mitad del resultado que decía «π es indefinido donde no cuajó geometría» <strong>no se sostiene</strong>: el instrumento sólo veía dimensión dos. La mitad que sí se sostiene, y es la importante, es que π cambia con la geometría.</p>
+</div>
+
+<h3>Hay flecha del tiempo, pero no donde la buscábamos</h3>
+
+<p>Acá hay una distinción que se nos escapó durante semanas y que vale la pena contar bien, porque es exactamente lo que pasa en la física real.</p>
+
+<p><strong>A escala grande, el tiempo tiene dirección.</strong> Lo medimos: el volumen de posibilidades del sistema <em>se contrae</em> de forma constante y medible, paso a paso. Las opciones disminuyen. La historia acumula restricciones y no las devuelve. Eso es una flecha del tiempo, y está.</p>
+
+<p><strong>A escala microscópica, no la hay.</strong> Cuando fuimos a mirar las ecuaciones de nuestro modelo, descubrimos que son <strong>reversibles</strong>: se puede recorrer la película hacia atrás y volver exactamente al punto de partida. Lo verificamos numéricamente, con un error de quince decimales.</p>
+
+<p>Esto no es un fallo. <strong>Es lo mismo que ocurre en la física conocida.</strong> Las leyes fundamentales no distinguen pasado de futuro; la irreversibilidad aparece cuando hay muchísimos elementos y el desorden gana por pura estadística. Un vaso que se rompe no viola ninguna ley al romperse: sólo hay muchas más maneras de estar roto que entero.</p>
+
+<p>Nuestro modelo reproduce esa misma estructura sin que se la hayamos puesto.</p>
+
+<h3>Se organiza de cerca, no de lejos</h3>
+
+<p>Las redes forman grumos, agrupaciones, vecindarios. Organización local: <strong>sí</strong>.</p>
+
+<p>Pero no aparece organización de gran escala —un eje, un flujo general, una jerarquía. Y esto lo verificamos con un cuidado especial, porque teníamos cuatro formas distintas de medirlo y quisimos saber si servían.</p>
+
+<p><strong>De las cuatro, sólo una pasó la prueba.</strong> Le dimos a cada medidor mundos donde el orden global existe de verdad —una cuadrícula, un cubo, un anillo— para ver si lo detectaba. Tres fallaron: uno declaraba desordenado a un cristal perfecto de tres dimensiones, otro sólo reconocía un tipo muy particular de orden, y el tercero, por cómo estaba construido, sólo podía ver mundos pequeños.</p>
+
+<p>Con el único medidor sano, el resultado se sostiene. Pero queda algo importante nombrado: <strong>hay tipos de orden global que nunca miramos</strong>, porque ninguno de los cuatro medidores los mira.</p>
+
+<h3>La estrella se enciende, y la gravedad hace el trabajo</h3>
+
+<p>En la segunda etapa llevamos las estructuras a Phantom, un simulador astrofísico de verdad, para ver si colapsaban en algo parecido a una estrella.</p>
+
+<p><strong>Se encienden.</strong> Se forman concentraciones de masa que crecen absorbiendo material a su alrededor.</p>
+
+<p>Y hay un detalle que importa mucho, porque responde a una objeción obvia —¿no estará todo ya decidido en las condiciones iniciales? Medimos la densidad de las condiciones de partida contra el umbral real que Phantom exige para encender, y el resultado fue nítido: <strong>ni una sola partícula, en veinticuatro simulaciones, llegaba a ese umbral al empezar.</strong></p>
+
+<p>Todo el encendido lo pone la gravedad.</p>
+
+<div class="pull">
+  <p>La estructura inicial decide cuánta materia queda en montoncitos.</p>
+  <p>Sólo la dinámica decide cuánta queda lo bastante apretada como para encenderse.</p>
+</div>
+
+
+<h2><span class="num">Cuatro</span>Lo que no logramos, dicho sin adornos</h2>
+
+<h3>El puente a la materia no se cruzó</h3>
+
+<p>La segunda etapa tenía un objetivo concreto: agregar las cuatro fuerzas fundamentales y ver si aparecía un espacio tridimensional con partículas dentro. <strong>No apareció.</strong></p>
+
+<p>Y la razón principal no es que la idea fallara: es que <strong>el motor que simulaba las fuerzas estaba mal construido</strong>. Cuando lo auditamos en detalle encontramos que el conteo de partículas era una división fija que no cambiaba ni apagando todas las fuerzas a la vez; que una proporción que celebrábamos como resultado la producía un número escrito a mano; que la dimensión que «emergía» era el dato de entrada copiado a la salida; y que una de las cuatro fuerzas directamente no estaba haciendo nada.</p>
+
+<p>De todo ese motor sobreviven exactamente dos resultados, y son limpios: <strong>apagar el electromagnetismo deja cero hidrógeno, y apagar la fuerza nuclear fuerte deja cero helio.</strong></p>
+
+<p>Es poco. Pero es honesto, y es lo que hay.</p>
+
+<h3>Lo que no se puede probar acá, y no por falta de esfuerzo</h3>
+
+<p>Varias afirmaciones de la teoría hablan de un sistema y su <strong>entorno</strong>: cómo se acopla con lo de afuera, cuánta libertad tiene, dónde está su frontera. Nuestros universos de juguete <strong>no tienen afuera</strong>. Todo se relaciona con todo dentro del mismo saco.</p>
+
+<p>Lo comprobamos con un número: de las 254 formas posibles de partir uno de estos sistemas en «adentro» y «afuera», en varias el acoplamiento entre las dos partes da <strong>exactamente cero</strong> y no pasa absolutamente nada. La frontera es arbitraria porque no hay ninguna real.</p>
+
+<p>Eso no es una deuda: es <strong>sustrato equivocado</strong>. Esas preguntas necesitan otro tipo de modelo, y ese modelo existe en otra rama del proyecto.</p>
+
+
+<h2><span class="num">Cinco</span>La parte incómoda, que también es un resultado</h2>
+
+<p>Un experimento honesto tiene que contar en qué se equivocó. En este caso las equivocaciones resultaron ser el hallazgo más transferible.</p>
+
+<p><strong>Ocho veces medimos algo que no era lo que su nombre decía.</strong></p>
+
+<ul>
+  <li>Lo que llamábamos «gravedad» en la primera etapa era, en el código, <strong>el número de conexiones de cada punto</strong>. No masa: popularidad.</li>
+  <li>Un indicador de «persistencia» resultó ser, al revisarlo, <strong>la hora a la que había nacido cada objeto</strong> — porque en ese modelo nada podía morir, y entonces «cuánto duró» era sólo «cuándo empezó».</li>
+  <li>Tres indicadores distintos de «cuánta diferencia hay» resultaron ser, los tres, <strong>la masa total</strong> medida de otra forma.</li>
+  <li>Un control que debía representar «el azar» resultaba ser <strong>el mismo universo con los puntos renumerados</strong>.</li>
+</ul>
+
+<p>¿Cómo se destaparon? Con una sola pregunta, y es gratis:</p>
+
+<div class="pull"><p>¿Este número podía salir distinto?</p></div>
+
+<p>Si la respuesta es no —si el resultado estaba garantizado por cómo está escrito el programa— entonces no hay experimento. Hay una definición ejecutada.</p>
+
+<p>Y hay un detalle que nos dejó pensando. En julio, este mismo equipo escribió una lista de seis preguntas de control para no engañarse. Cuando en agosto auditamos todo el proyecto, encontramos ocho errores de este tipo. <strong>Los ocho estaban previstos por esas seis preguntas.</strong></p>
+
+<p>No faltó método. <strong>El método estaba escrito y se dejó de usar.</strong></p>
+
+<p>Lo que sobrevivió, sobrevivió porque alguien intentó tumbarlo: el ½ que podía moverse y no se movió, la dirección que se buscó por tres caminos, el techo que resultó no ser energético, el universo barajado que podía sostenerse y no se sostuvo.</p>
+
+
+<h2><span class="num">Seis</span>Entonces, ¿se probó la teoría?</h2>
+
+<p>No. Y decirlo así, sin matizar, es parte del resultado.</p>
+
+<p>Pero tampoco es que no se haya probado nada, y esa distinción es la que importa.</p>
+
+<p><strong>Lo que quedó establecido en el dominio de las relaciones puras:</strong> la diferencia mínima persiste si su estructura persiste · la asimetría se amplifica sola · el ½ de la cancelación · distancia, dimensión y dirección son tres cosas separables · la dirección no emerge de la relación pura · π depende de la geometría que cuajó · el volumen de posibilidades se contrae con el tiempo · hay un rango de estabilidad fuera del cual todo colapsa.</p>
+
+<p><strong>Lo que no se cruzó:</strong> el puente hacia la materia, las partículas y el espacio tridimensional.</p>
+
+<p>Y la distinción de fondo, puesta por escrito en julio y que sigue siendo correcta:</p>
+
+<blockquote><p>Confundir <strong>el límite de un instrumento</strong> con <strong>la falsación de una teoría</strong> es un error de alcance.</p></blockquote>
+
+<p>Que un microscopio no alcance a ver un átomo no demuestra que los átomos no existan. Demuestra que hace falta otro microscopio.</p>
+
+<p>Hay una cosa más, y es la que sostiene todo lo demás. La afirmación de fondo —<em>sin una diferencia mínima no habría nada</em>— no es una hipótesis a la espera de confirmación. <strong>No se puede refutar, y eso no es un defecto: es lo que es.</strong> Para refutarla habría que exhibir un universo perfectamente simétrico, y en un universo perfectamente simétrico no hay nadie observando ni nada que observar.</p>
+
+<p>Lo intentamos igual, tres veces, con tres instrumentos independientes. Las tres el programa devolvió no un resultado sino un atajo: una división por cero, una regla de parada, un modelo que simplemente no tenía nada adentro. <strong>La afirmación no se prueba: se constata.</strong> Es el suelo sobre el que se para el experimento, no uno de sus resultados.</p>
+
+<p>Lo que sí se puede poner a prueba —y se puso— es lo que viene después: si esa diferencia <strong>se sostiene</strong>, si <strong>se amplifica</strong>, si <strong>basta</strong> para que algo se organice. Eso podía fallar. No falló.</p>
+
+</div>
+
+<section class="closing">
+<div class="wrap">
+<h2 style="border-top:0;padding-top:0;margin-top:0"><span class="num">Siete</span>Por qué hace falta la simulación</h2>
+
+<p>Todo lo anterior ocupa cientos de documentos, decenas de miles de simulaciones y un vocabulario que no le sirve a nadie que no haya estado adentro.</p>
+
+<p>Y la pregunta original —la que arrancó todo esto— <strong>se puede ver</strong>. No hay que creerla: se puede mirar.</p>
+
+<p>Es una carrera entre dos velocidades:</p>
+
+<p><strong>Sin expansión suficiente</strong>, las partes del universo alcanzan a hablarse, se promedian, y la diferencia inicial <em>se borra</em>. Queda todo igual a todo. Lleno, uniforme, y sin nada que pueda pasar.</p>
+
+<p><strong>Con expansión que gana</strong>, las partes se desconectan antes de alcanzar a promediarse. La diferencia <em>se congela</em>, y sobre ella empieza a construirse todo lo demás: grumos, tejido, distancia, estructura.</p>
+
+<p>Dos ventanas al lado de la otra, la misma semilla mínima en las dos, una sola perilla —cuán rápido se expande— y el espectador viendo con sus propios ojos dónde está la frontera entre un universo que se apaga y uno que arranca.</p>
+
+<div class="pull">
+  <p>Eso es la simulación.</p>
+  <p>No es una ilustración decorativa del experimento: es el experimento, en su forma más honesta. Es la única parte de todo esto que no necesita que nadie confíe en nuestros números.</p>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap">
+<p>Ningún resultado de este informe se declara cerrado. Los números reflejan el estado del proyecto al 13 de agosto de 2026, después de una auditoría del corpus completo que revisó los 370 documentos generados desde junio. Ocho resultados que circulaban como positivos fueron corregidos o retirados en esa auditoría, y están declarados como tales.</p>
+<p>Teoría Cosmosemiótica · Dirección: Alexis López Tapia</p>
+</div>
+</footer>
+
+</body>
+</html>

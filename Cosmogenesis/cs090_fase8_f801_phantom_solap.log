@@ -1,0 +1,74 @@
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_solap: 2 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_solap', 'A2-B0-C2-batch4-r36_s575321_f801_solap']
+[A2-B0-C2-batch3-r0_s471829_f801_solap] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_solap] exit_setup=0 t_setup=1.48s  exit_run=0 t_run=21.6s
+[A2-B0-C2-batch4-r36_s575321_f801_solap] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_solap] exit_setup=0 t_setup=1.31s  exit_run=0 t_run=19.87s
+
+[TOTAL] tiempo script=44.3s
+patron=*_f801_solap: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_solap', 'A2-B0-C2-batch3-r60_s477649_f801_solap', 'A2-B0-C2-batch4-r10_s572799_f801_solap', 'A2-B0-C2-batch4-r36_s575321_f801_solap', 'A2-B0-C2-r14_s273187_f801_solap', 'A2-B0-C2-r17_s273478_f801_solap', 'A2-B0-C2-r20_s373769_f801_solap', 'A2-B0-C2-r39_s375612_f801_solap']
+[A2-B0-C2-batch3-r0_s471829_f801_solap] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_solap] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_solap] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_solap] exit_setup=0 t_setup=0.61s  exit_run=0 t_run=9.65s
+[A2-B0-C2-batch4-r10_s572799_f801_solap] setup + run...
+[A2-B0-C2-batch4-r10_s572799_f801_solap] exit_setup=0 t_setup=0.81s  exit_run=0 t_run=9.9s
+[A2-B0-C2-batch4-r36_s575321_f801_solap] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_solap] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-r14_s273187_f801_solap] setup + run...
+[A2-B0-C2-r14_s273187_f801_solap] exit_setup=0 t_setup=0.75s  exit_run=0 t_run=9.35s
+[A2-B0-C2-r17_s273478_f801_solap] setup + run...
+[A2-B0-C2-r17_s273478_f801_solap] exit_setup=0 t_setup=0.75s  exit_run=0 t_run=9.55s
+[A2-B0-C2-r20_s373769_f801_solap] setup + run...
+[A2-B0-C2-r20_s373769_f801_solap] exit_setup=0 t_setup=0.88s  exit_run=0 t_run=9.34s
+[A2-B0-C2-r39_s375612_f801_solap] setup + run...
+[A2-B0-C2-r39_s375612_f801_solap] exit_setup=0 t_setup=0.74s  exit_run=0 t_run=9.31s
+
+[TOTAL] tiempo script=61.6s

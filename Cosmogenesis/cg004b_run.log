@@ -1,0 +1,54 @@
+CG004-b — ¿la ABUNDANCIA de CICLOS PLANOS BARATOS despliega lo plano?
+====================================================================================================
+CICLOS: λ_H=0 · m_cross=8 · primary_tries=60 · retry=6
+
+Pre-vuelo · no-degeneración de la métrica:
+  Dtan=2: std(24 dir)=8.875e-01 -> OK
+
+Sanidad medición (lattice2D: δ CRECE, clu>0 ; árbol: δ=0, clu=0):
+       ancla      N   clu   ev  %gig  diam   δ_med d_grow        ver
+   lattice2D   1024  0.00 1.94  100    57    2.18   1.60  GEOMETRIA
+    arbol_b3   1024  0.00 1.00  100    12    0.00   2.28  AZAR(exp)
+   lattice2D  16384  0.00 1.98  100   235    8.88   1.78  GEOMETRIA
+    arbol_b3  16384  0.00 1.00  100    17    0.00   3.18  AZAR(exp)
+
+Brazos: ARBOL · CICLOS · AZAR
+filas totales=18  ya hechas=0  faltan=18   LOG=cg004b_ciclos.csv
+
+   brazo Dt      N sd   clu    ev  %gig  diam   δ_med   δ_q95 d_grow        ver
+-------------------------------------------------------------------------------
+   ARBOL  2   1024  1  0.00  1.00   64    21    0.00    0.00   2.18  AZAR(exp)
+  CICLOS  2   1024  1  0.01  1.00  100   301    0.00    0.00   1.05  GEOMETRIA
+    AZAR  2   1024  1  0.00  1.15   79    18    0.79    2.00   2.29  AZAR(exp)
+   ARBOL  2   1024  2  0.00  1.00   61    22    0.00    0.00   2.10  AZAR(exp)
+  CICLOS  2   1024  2  0.01  1.00  100   307    0.00    0.00   1.05  GEOMETRIA
+    AZAR  2   1024  2  0.00  1.16   79    18    0.73    2.00   2.36  AZAR(exp)
+   ARBOL  2   4096  1  0.00  1.00   59    25    0.00    0.00   2.53  AZAR(exp)
+  CICLOS  2   4096  1  0.00  1.00  100  1194    0.00    0.00   0.99  GEOMETRIA
+    AZAR  2   4096  1  0.00  1.16   80    26    0.81    2.00   2.80  AZAR(exp)
+   ARBOL  2   4096  2  0.00  1.00   59    27    0.00    0.00   2.46  AZAR(exp)
+  CICLOS  2   4096  2  0.00  1.00  100  1236    0.00    0.00   1.00  GEOMETRIA
+    AZAR  2   4096  2  0.00  1.15   80    26    0.83    2.00   2.75  AZAR(exp)
+   ARBOL  2  16384  1  0.00  1.00   59    31    0.00    0.00   2.89  AZAR(exp)
+  CICLOS  2  16384  1  0.00  1.00  100  4763    0.00    0.00   1.00  GEOMETRIA
+    AZAR  2  16384  1  0.00  1.15   80    28    0.88    2.50   3.18  AZAR(exp)
+   ARBOL  2  16384  2  0.00  1.00   59    31    0.00    0.00   2.94  AZAR(exp)
+  CICLOS  2  16384  2  0.00  1.00  100  4873    0.00    0.00   1.00  GEOMETRIA
+    AZAR  2  16384  2  0.00  1.16   80    26    0.89    2.50   3.22  AZAR(exp)
+
+====================================================================================================
+RESUMEN — ¿CICLOS se SEPARA de ÁRBOL hacia lo plano? (objetivo diam-pend→0.5, δ CRECE)
+
+  ── Dtan=2 ──
+       ARBOL: clu=0.00 ev=1.00 diam-pend= 0.13  δ→ ACOTADA(hiperb)  %gig=  59  [N=1024:d=2.14  N=4096:d=2.50  N=16384:d=2.92]
+      CICLOS: clu=0.00 ev=1.00 diam-pend= 1.00  δ→ ACOTADA(hiperb)  %gig= 100  [N=1024:d=1.05  N=4096:d=0.99  N=16384:d=1.00]
+        AZAR: clu=0.00 ev=1.15 diam-pend= 0.15  δ→ ACOTADA(hiperb)  %gig=  80  [N=1024:d=2.33  N=4096:d=2.77  N=16384:d=3.20]
+
+LECTURA (pre-registrada):
+  · CICLOS con clu ALTO + δ CRECE + diam-pend→~0.5 + dim CONVERGE + shuffle destruye
+    => los ciclos planos baratos despliegan lo plano. El lever era la INANICIÓN DE CICLOS.
+  · CICLOS con clu alto pero δ~0 y dim trepa => ciclos locales NO bastan; la planitud
+    exige consistencia GLOBAL de marcos (la 'pared'): resultado, no fracaso.
+  · clu(CICLOS)~0 => no logramos formar ciclos (revisar gate angular): experimento inválido.
+
+Tiempo: 1.2 min · CSV: cg004b_ciclos.csv

@@ -1,0 +1,397 @@
+{
+  "D": {
+    "resumen": {
+      "parada": {
+        "n_semillas": 10,
+        "r_media": 0.044108275619658174,
+        "r_desv": 0.16556161950757783,
+        "frontera_media": 0.8169000000000002,
+        "frontera_desv": 2.220446049250313e-16,
+        "frontera_min": 0.8169,
+        "frontera_max": 0.8169
+      },
+      "inicio": {
+        "n_semillas": 10,
+        "r_media": 0.060899724771553046,
+        "r_desv": 0.16807988745590813,
+        "frontera_media": 0.8169000000000002,
+        "frontera_desv": 2.220446049250313e-16,
+        "frontera_min": 0.8169,
+        "frontera_max": 0.8169
+      }
+    },
+    "detalle": {
+      "parada": [
+        {
+          "semilla": 9,
+          "r": 0.1285560493884202,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0981
+        },
+        {
+          "semilla": 3,
+          "r": -0.2310195709686171,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0714
+        },
+        {
+          "semilla": 5,
+          "r": 0.155706536572502,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0992
+        },
+        {
+          "semilla": 7,
+          "r": 0.2675114471760938,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0566
+        },
+        {
+          "semilla": 4,
+          "r": -0.12988458544658374,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0923
+        },
+        {
+          "semilla": 1,
+          "r": -0.02575519560445106,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0564
+        },
+        {
+          "semilla": 10,
+          "r": 0.00024064193786096604,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0716
+        },
+        {
+          "semilla": 6,
+          "r": 0.14935899932871047,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0883
+        },
+        {
+          "semilla": 2,
+          "r": 0.2632245924010996,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0477
+        },
+        {
+          "semilla": 8,
+          "r": -0.1368561585884534,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0462
+        }
+      ],
+      "inicio": [
+        {
+          "semilla": 2,
+          "r": 0.3621734028117315,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0478
+        },
+        {
+          "semilla": 3,
+          "r": -0.08264881304758649,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0714
+        },
+        {
+          "semilla": 4,
+          "r": -0.097183783717379,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0924
+        },
+        {
+          "semilla": 1,
+          "r": -0.05966373784211251,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0565
+        },
+        {
+          "semilla": 5,
+          "r": 0.18834420830484722,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0993
+        },
+        {
+          "semilla": 7,
+          "r": 0.2483709112569265,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0566
+        },
+        {
+          "semilla": 8,
+          "r": -0.17007235874930052,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0462
+        },
+        {
+          "semilla": 6,
+          "r": 0.05511003167862424,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0884
+        },
+        {
+          "semilla": 9,
+          "r": 0.19614065511762316,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0981
+        },
+        {
+          "semilla": 10,
+          "r": -0.03157326809784366,
+          "xFrontera": 0.8169,
+          "huellaMinima": 0.0716
+        }
+      ]
+    }
+  },
+  "A": {
+    "resumen": {
+      "n_semillas": 30,
+      "r_media": 0.008217664974680353,
+      "r_desv": 0.1344739297212502,
+      "r_min": -0.23737759816519244,
+      "r_max": 0.2675114471760938,
+      "percentil_media": 51.59333333333334,
+      "fuera_de_95": 2,
+      "fuera_de_99": 0,
+      "frontera_media": 0.8169000000000003,
+      "frontera_desv": 3.3306690738754696e-16,
+      "frontera_min": 0.8169,
+      "frontera_max": 0.8169
+    }
+  },
+  "B": {
+    "tablaFronteraPorNivel": [
+      {
+        "parametro": "beta",
+        "nivel": 0.8,
+        "frontera_media": 0.8188074074074075,
+        "frontera_desv": 0.13507620281660476,
+        "n_combos": 27
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.88,
+        "frontera_media": 0.8200600000000001,
+        "frontera_desv": 0.13455124335690433,
+        "n_combos": 27
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.94,
+        "frontera_media": 0.8211625925925927,
+        "frontera_desv": 0.13441603681308908,
+        "n_combos": 27
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.98,
+        "frontera_media": 0.8217644444444446,
+        "frontera_desv": 0.13417674557955633,
+        "n_combos": 27
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 22,
+        "frontera_media": 0.6610544444444444,
+        "frontera_desv": 0.04209250721423283,
+        "n_combos": 36
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 25,
+        "frontera_media": 0.8187850000000001,
+        "frontera_desv": 0.02546767902656227,
+        "n_combos": 36
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 28,
+        "frontera_media": 0.9815063888888891,
+        "frontera_desv": 0.023453623879285353,
+        "n_combos": 36
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 3,
+        "frontera_media": 0.8482591666666668,
+        "frontera_desv": 0.13083669278861,
+        "n_combos": 36
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 4.1,
+        "frontera_media": 0.8185600000000002,
+        "frontera_desv": 0.13265214334240263,
+        "n_combos": 36
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 6,
+        "frontera_media": 0.7945266666666667,
+        "frontera_desv": 0.13474256081299793,
+        "n_combos": 36
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.3,
+        "frontera_media": 0.7988666666666668,
+        "frontera_desv": 0.1388737771223287,
+        "n_combos": 36
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.47,
+        "frontera_media": 0.8185252777777777,
+        "frontera_desv": 0.13465187801401288,
+        "n_combos": 36
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.65,
+        "frontera_media": 0.8439538888888889,
+        "frontera_desv": 0.12601705526717355,
+        "n_combos": 36
+      }
+    ],
+    "tablaFronteraPorNivelLimpio": [
+      {
+        "parametro": "beta",
+        "nivel": 0.8,
+        "frontera_media": 0.8188074074074075,
+        "frontera_desv": 0.13507620281660476,
+        "n_combos": 27
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.88,
+        "frontera_media": 0.8200600000000001,
+        "frontera_desv": 0.13455124335690433,
+        "n_combos": 27
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.94,
+        "frontera_media": 0.815588076923077,
+        "frontera_desv": 0.13387886427718126,
+        "n_combos": 26
+      },
+      {
+        "parametro": "beta",
+        "nivel": 0.98,
+        "frontera_media": 0.8162130769230771,
+        "frontera_desv": 0.13365537805430888,
+        "n_combos": 26
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 22,
+        "frontera_media": 0.6610544444444444,
+        "frontera_desv": 0.04209250721423283,
+        "n_combos": 36
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 25,
+        "frontera_media": 0.8187850000000001,
+        "frontera_desv": 0.02546767902656227,
+        "n_combos": 36
+      },
+      {
+        "parametro": "t_optima",
+        "nivel": 28,
+        "frontera_media": 0.9824126470588236,
+        "frontera_desv": 0.023825327021868105,
+        "n_combos": 34
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 3,
+        "frontera_media": 0.8482591666666668,
+        "frontera_desv": 0.13083669278861,
+        "n_combos": 36
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 4.1,
+        "frontera_media": 0.8185600000000002,
+        "frontera_desv": 0.13265214334240263,
+        "n_combos": 36
+      },
+      {
+        "parametro": "exponente_ptc",
+        "nivel": 6,
+        "frontera_media": 0.7844341176470588,
+        "frontera_desv": 0.13187137617251599,
+        "n_combos": 34
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.3,
+        "frontera_media": 0.7988666666666668,
+        "frontera_desv": 0.1388737771223287,
+        "n_combos": 36
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.47,
+        "frontera_media": 0.8185252777777777,
+        "frontera_desv": 0.13465187801401288,
+        "n_combos": 36
+      },
+      {
+        "parametro": "potencia_base",
+        "nivel": 0.65,
+        "frontera_media": 0.8367688235294118,
+        "frontera_desv": 0.1260364250982909,
+        "n_combos": 34
+      }
+    ],
+    "resumen": {
+      "n_combos_semilla": 1080,
+      "n_combos": 108,
+      "r_media": -0.01327132729370206,
+      "r_desv": 0.14903931895236572,
+      "percentil_media": 47.66814814814817,
+      "fuera_de_95": 108,
+      "fuera_de_99": 26,
+      "combos_con_mas_10pct_saturado": 2,
+      "combos_con_mas_10pct_saturado_detalle": [
+        {
+          "beta": 0.94,
+          "t_optima": 28,
+          "exponente_ptc": 6,
+          "potencia_base": 0.65,
+          "fraccion_saturada": 0.10666666666666667,
+          "frontera_media": 0.9661000000000002,
+          "frontera_desv": 2.220446049250313e-16,
+          "r_media": -0.029951310759464028,
+          "r_desv": 0.03800016439908268
+        },
+        {
+          "beta": 0.98,
+          "t_optima": 28,
+          "exponente_ptc": 6,
+          "potencia_base": 0.65,
+          "fraccion_saturada": 0.11166666666666666,
+          "frontera_media": 0.9661000000000002,
+          "frontera_desv": 2.220446049250313e-16,
+          "r_media": -0.03487703328954709,
+          "r_desv": 0.034593568195425
+        }
+      ],
+      "SIN_COMBOS_SATURADOS": {
+        "n_combos_semilla": 1060,
+        "n_combos": 106,
+        "r_media": -0.012910141544064255,
+        "r_desv": 0.1503321487369007,
+        "percentil_media": 47.78207547169815,
+        "fuera_de_95": 108,
+        "fuera_de_99": 26
+      }
+    }
+  }
+}

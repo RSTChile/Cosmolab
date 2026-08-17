@@ -1,0 +1,12 @@
+[f806] N=4000 brazos=('solap', 'disj') layout=layout_resortes_N2_exacto theta=None
+[f806] 1 grafos: ['A2-B0-C2-r14']
+[1/1] A2-B0-C2-r14 seed=273187 lote=271828
+    piso: tri 16 -> 0  (33109 swaps, 1.5s)
+    solap: techo_conectado tri=112 (k=86/86) techo_libre=112 [3.1s]
+     disj: techo_conectado tri=1659 (k=1658/1658) techo_libre=1659 [16.4s]
+    T*=112  conseguidos={'solap': 112, 'disj': 112}  dif_max=0
+    solap  tri=112   C=0.01220 trans=0.01696 multi=0.902 gini=0.989 Q=0.0182 nodos=0.015 comp=10 gig=3855 pend=0.7214 ic=878.88s
+     disj  tri=112   C=0.02127 trans=0.01696 multi=0.000 gini=0.916 Q=0.0501 nodos=0.084 comp=111 gig=3882 pend=0.6258 ic=1462.61s
+    [grafo listo en 2377s]
+
+[f806] 2 filas -> cs090_fase8_f806_estructura_costo.csv  (total 2377s)

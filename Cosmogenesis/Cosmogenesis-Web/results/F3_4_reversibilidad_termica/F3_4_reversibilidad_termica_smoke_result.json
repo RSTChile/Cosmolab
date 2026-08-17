@@ -1,0 +1,746 @@
+{
+  "experimento": "F3-4 reversibilidad t\u00e9rmica (\u00bfse re-homogeneiza al detener la expansi\u00f3n?)",
+  "tag": "smoke",
+  "sello_heredado_CF2": {
+    "L": 64,
+    "H_EXP": 6.0,
+    "RHO0": 1.0,
+    "D0": 0.12,
+    "W0": 1.2,
+    "DT": 0.25,
+    "N_SUB": 2,
+    "ORIGINAL_STEPS_PER_TG": 399
+  },
+  "barrido": {
+    "a_stop_grid": [
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "tg_stop_grid": [
+      0.0,
+      0.3837641821656743,
+      0.7675283643313486,
+      1.1512925464970227
+    ],
+    "post_stop_tg": 1.1512925464970227,
+    "seeds": [
+      7,
+      42,
+      99
+    ],
+    "n_seeds": 3,
+    "ruido_dinamico_grid": [
+      0.0,
+      0.001
+    ]
+  },
+  "criterio_preregistrado": {
+    "MONO_TOL": 0.05,
+    "REHOMOG_EARLY_MIN": 0.5,
+    "REHOMOG_LATE_MAX": 0.1,
+    "DIFF_MIN": 0.1,
+    "PASS_RATE_MIN": 0.55
+  },
+  "resultados_por_combo": {
+    "seed7_noise0.0": {
+      "seed": 7,
+      "noise_amp": 0.0,
+      "combo": {
+        "seed": 7,
+        "noise_amp": 0.0,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31077656175499335,
+            "Var_stop": 0.24059612730003638,
+            "STOP": {
+              "A_comov_final": 0.07390265703159013,
+              "Var_final": 0.15650398465947188,
+              "reaplan_grad": 0.7622000300979818,
+              "reaplan_var": 0.34951577809769585
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.23551937928543365,
+              "Var_final": 0.22668371199626244,
+              "reaplan_grad": 0.24215848854422342,
+              "reaplan_var": 0.05782476825333269
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.2355689636971823,
+            "Var_stop": 0.22669238797512642,
+            "STOP": {
+              "A_comov_final": 0.23452270181579152,
+              "Var_final": 0.2265090229013683,
+              "reaplan_grad": 0.004441424986424479,
+              "reaplan_var": 0.0008088717728724483
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.23551937923536376,
+              "Var_final": 0.2266837119875011,
+              "reaplan_grad": 0.00021048809249034415,
+              "reaplan_var": 3.8272073018527465e-05
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.235519429078287,
+            "Var_stop": 0.22668372070942328,
+            "STOP": {
+              "A_comov_final": 0.23551837106361823,
+              "Var_final": 0.2266835355690619,
+              "reaplan_grad": 4.492260672102526e-06,
+              "reaplan_var": 8.167342621501834e-07
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.23551937923531657,
+              "Var_final": 0.2266837119874929,
+              "reaplan_grad": 2.1162997300358354e-07,
+              "reaplan_var": 3.847620969465139e-08
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.23551937928543365,
+            "Var_stop": 0.22668371199626244,
+            "STOP": {
+              "A_comov_final": 0.23551937822160185,
+              "Var_final": 0.22668371181010022,
+              "reaplan_grad": 4.516960785381442e-09,
+              "reaplan_var": 8.212421743287463e-10
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.23551937923531657,
+              "Var_final": 0.2266837119874929,
+              "reaplan_grad": 2.1279385716377397e-10,
+              "reaplan_var": 3.868624071832846e-11
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5200415415537584,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7622000300979818,
+          0.004441424986424479,
+          4.492260672102526e-06,
+          4.516960785381442e-09
+        ],
+        "reaplan_null_grad_curve": [
+          0.24215848854422342,
+          0.00021048809249034415,
+          2.1162997300358354e-07,
+          2.1279385716377397e-10
+        ],
+        "reaplan_stop_var_curve": [
+          0.34951577809769585,
+          0.0008088717728724483,
+          8.167342621501834e-07,
+          8.212421743287463e-10
+        ]
+      }
+    },
+    "seed7_noise0.001": {
+      "seed": 7,
+      "noise_amp": 0.001,
+      "combo": {
+        "seed": 7,
+        "noise_amp": 0.001,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31077656175499335,
+            "Var_stop": 0.24059612730003638,
+            "STOP": {
+              "A_comov_final": 0.075367682830077,
+              "Var_final": 0.15496159097025292,
+              "reaplan_grad": 0.7574859493764058,
+              "reaplan_var": 0.35592649512181285
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.2518176418157586,
+              "Var_final": 0.22059407761073202,
+              "reaplan_grad": 0.18971482149839902,
+              "reaplan_var": 0.08313537675675353
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.2440174064381084,
+            "Var_stop": 0.22347496409668768,
+            "STOP": {
+              "A_comov_final": 0.2595546647721979,
+              "Var_final": 0.21944651197994058,
+              "reaplan_grad": -0.06367274597695682,
+              "reaplan_var": 0.018026413531513838
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.25745602741336165,
+              "Var_final": 0.21948938170100044,
+              "reaplan_grad": -0.05507238672607468,
+              "reaplan_var": 0.01783458121046107
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.25006069359039085,
+            "Var_stop": 0.22197606166601602,
+            "STOP": {
+              "A_comov_final": 0.26306908878157353,
+              "Var_final": 0.21858164185228945,
+              "reaplan_grad": -0.05202095141146391,
+              "reaplan_var": 0.01529182826404855
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.2570639213915092,
+              "Var_final": 0.21865769182735206,
+              "reaplan_grad": -0.028006112038503336,
+              "reaplan_var": 0.01494922386566512
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.2544426088890448,
+            "Var_stop": 0.22052748146417905,
+            "STOP": {
+              "A_comov_final": 0.25698950431040707,
+              "Var_final": 0.21779219338095954,
+              "reaplan_grad": -0.010009704870118277,
+              "reaplan_var": 0.01240338875254338
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.2584841506493573,
+              "Var_final": 0.21777138085927164,
+              "reaplan_grad": -0.015883903163698965,
+              "reaplan_var": 0.012497764843675934
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5677711278780068,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7574859493764058,
+          -0.06367274597695682,
+          -0.05202095141146391,
+          -0.010009704870118277
+        ],
+        "reaplan_null_grad_curve": [
+          0.18971482149839902,
+          -0.05507238672607468,
+          -0.028006112038503336,
+          -0.015883903163698965
+        ],
+        "reaplan_stop_var_curve": [
+          0.35592649512181285,
+          0.018026413531513838,
+          0.01529182826404855,
+          0.01240338875254338
+        ]
+      }
+    },
+    "seed42_noise0.0": {
+      "seed": 42,
+      "noise_amp": 0.0,
+      "combo": {
+        "seed": 42,
+        "noise_amp": 0.0,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31080669994555327,
+            "Var_stop": 0.24059512975979633,
+            "STOP": {
+              "A_comov_final": 0.07390170482413072,
+              "Var_final": 0.15650423401401997,
+              "reaplan_grad": 0.7622261526631288,
+              "reaplan_var": 0.3495120446940486
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.23550697082776975,
+              "Var_final": 0.22668304743662102,
+              "reaplan_grad": 0.24227189803493435,
+              "reaplan_var": 0.05782362401543522
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.23555654504775686,
+            "Var_stop": 0.2266917232190983,
+            "STOP": {
+              "A_comov_final": 0.23451049548936687,
+              "Var_final": 0.22650836229202245,
+              "reaplan_grad": 0.004440757772949665,
+              "reaplan_var": 0.0008088558526622302
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.2355069707777098,
+              "Var_final": 0.22668304742785983,
+              "reaplan_grad": 0.00021045592274676131,
+              "reaplan_var": 3.827131893162235e-05
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.2355070206103952,
+            "Var_stop": 0.22668305614958462,
+            "STOP": {
+              "A_comov_final": 0.2355059628130506,
+              "Var_final": 0.2266828710134139,
+              "reaplan_grad": 4.4915745689294895e-06,
+              "reaplan_var": 8.167181697297738e-07
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.23550697077766294,
+              "Var_final": 0.22668304742785164,
+              "reaplan_grad": 2.1159765053745462e-07,
+              "reaplan_var": 3.84754516851513e-08
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.23550697082776975,
+            "Var_stop": 0.22668304743662102,
+            "STOP": {
+              "A_comov_final": 0.23550696976410393,
+              "Var_final": 0.22668304725046312,
+              "reaplan_grad": 4.516494005883917e-09,
+              "reaplan_var": 8.212254809525369e-10
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.23550697077766294,
+              "Var_final": 0.22668304742785164,
+              "reaplan_grad": 2.1276146271114602e-10,
+              "reaplan_var": 3.8685619480256064e-11
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5199542546281944,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7622261526631288,
+          0.004440757772949665,
+          4.4915745689294895e-06,
+          4.516494005883917e-09
+        ],
+        "reaplan_null_grad_curve": [
+          0.24227189803493435,
+          0.00021045592274676131,
+          2.1159765053745462e-07,
+          2.1276146271114602e-10
+        ],
+        "reaplan_stop_var_curve": [
+          0.3495120446940486,
+          0.0008088558526622302,
+          8.167181697297738e-07,
+          8.212254809525369e-10
+        ]
+      }
+    },
+    "seed42_noise0.001": {
+      "seed": 42,
+      "noise_amp": 0.001,
+      "combo": {
+        "seed": 42,
+        "noise_amp": 0.001,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31080669994555327,
+            "Var_stop": 0.24059512975979633,
+            "STOP": {
+              "A_comov_final": 0.07573558803074437,
+              "Var_final": 0.15510261120909666,
+              "reaplan_grad": 0.7563257547407709,
+              "reaplan_var": 0.35533769380973373
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.24985013483646037,
+              "Var_final": 0.22067586892467336,
+              "reaplan_grad": 0.1961237165085926,
+              "reaplan_var": 0.08279162115629612
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.24374958932474178,
+            "Var_stop": 0.22345572700115424,
+            "STOP": {
+              "A_comov_final": 0.2587180640932566,
+              "Var_final": 0.21924168289641394,
+              "reaplan_grad": -0.06140923071904205,
+              "reaplan_var": 0.018858519140655245
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.25880298912341415,
+              "Var_final": 0.2195745362201943,
+              "reaplan_grad": -0.06175764168618593,
+              "reaplan_var": 0.017368947455707388
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.2516578261353662,
+            "Var_stop": 0.22169653153661123,
+            "STOP": {
+              "A_comov_final": 0.26393028720201706,
+              "Var_final": 0.21859096190262728,
+              "reaplan_grad": -0.04876645902539718,
+              "reaplan_var": 0.014008201267105046
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.2617846939281211,
+              "Var_final": 0.2186859440123891,
+              "reaplan_grad": -0.04024062334269581,
+              "reaplan_var": 0.013579768268611578
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.256423712497328,
+            "Var_stop": 0.22038143907713806,
+            "STOP": {
+              "A_comov_final": 0.25652579557484556,
+              "Var_final": 0.21774160306079396,
+              "reaplan_grad": -0.00039810311036910147,
+              "reaplan_var": 0.011978486152911009
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.2668990430910133,
+              "Var_final": 0.21763608342498558,
+              "reaplan_grad": -0.04085164547250865,
+              "reaplan_var": 0.01245729070310474
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5602020382321783,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7563257547407709,
+          -0.06140923071904205,
+          -0.04876645902539718,
+          -0.00039810311036910147
+        ],
+        "reaplan_null_grad_curve": [
+          0.1961237165085926,
+          -0.06175764168618593,
+          -0.04024062334269581,
+          -0.04085164547250865
+        ],
+        "reaplan_stop_var_curve": [
+          0.35533769380973373,
+          0.018858519140655245,
+          0.014008201267105046,
+          0.011978486152911009
+        ]
+      }
+    },
+    "seed99_noise0.0": {
+      "seed": 99,
+      "noise_amp": 0.0,
+      "combo": {
+        "seed": 99,
+        "noise_amp": 0.0,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31074915207625314,
+            "Var_stop": 0.24059623698945518,
+            "STOP": {
+              "A_comov_final": 0.07390236031206276,
+              "Var_final": 0.1565042322669965,
+              "reaplan_grad": 0.7621800097657926,
+              "reaplan_var": 0.34951504551646106
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.23551926550522012,
+              "Var_final": 0.22668394182632937,
+              "reaplan_grad": 0.24209200916040713,
+              "reaplan_var": 0.05782424254513821
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.23556884481660897,
+            "Var_stop": 0.22669261781066186,
+            "STOP": {
+              "A_comov_final": 0.23452268916659097,
+              "Var_final": 0.22650925261485896,
+              "reaplan_grad": 0.00444097627100239,
+              "reaplan_var": 0.000808871491157435
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.2355192654551556,
+              "Var_final": 0.22668394181756796,
+              "reaplan_grad": 0.00021046654744161502,
+              "reaplan_var": 3.8272058339124203e-05
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.23551931529295508,
+            "Var_stop": 0.2266839505394957,
+            "STOP": {
+              "A_comov_final": 0.23551825738704313,
+              "Var_final": 0.22668376539901766,
+              "reaplan_grad": 4.491801067948158e-06,
+              "reaplan_var": 8.167339487031566e-07
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.23551926545510876,
+              "Var_final": 0.2266839418175598,
+              "reaplan_grad": 2.1160831866411156e-07,
+              "reaplan_var": 3.847619505033932e-08
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.23551926550522012,
+            "Var_stop": 0.22668394182632937,
+            "STOP": {
+              "A_comov_final": 0.2355192644414777,
+              "Var_final": 0.22668394164016703,
+              "reaplan_grad": 4.516583495597827e-09,
+              "reaplan_var": 8.212418314555776e-10
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.23551926545510876,
+              "Var_final": 0.2266839418175598,
+              "reaplan_grad": 2.1276968318873163e-10,
+              "reaplan_var": 3.868632393690217e-11
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5200880006053854,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7621800097657926,
+          0.00444097627100239,
+          4.491801067948158e-06,
+          4.516583495597827e-09
+        ],
+        "reaplan_null_grad_curve": [
+          0.24209200916040713,
+          0.00021046654744161502,
+          2.1160831866411156e-07,
+          2.1276968318873163e-10
+        ],
+        "reaplan_stop_var_curve": [
+          0.34951504551646106,
+          0.000808871491157435,
+          8.167339487031566e-07,
+          8.212418314555776e-10
+        ]
+      }
+    },
+    "seed99_noise0.001": {
+      "seed": 99,
+      "noise_amp": 0.001,
+      "combo": {
+        "seed": 99,
+        "noise_amp": 0.001,
+        "per_point": [
+          {
+            "a_stop": 1.0,
+            "tg_stop": 0.0,
+            "A_comov_stop": 0.31074915207625314,
+            "Var_stop": 0.24059623698945518,
+            "STOP": {
+              "A_comov_final": 0.07604461754815331,
+              "Var_final": 0.15509233462491087,
+              "reaplan_grad": 0.7552861623593646,
+              "reaplan_var": 0.3553833735491539
+            },
+            "NULL_never_stop": {
+              "a_final": 1009.5835853455504,
+              "A_comov_final": 0.25763366143767297,
+              "Var_final": 0.22067637990010672,
+              "reaplan_grad": 0.17092722629713383,
+              "reaplan_var": 0.08279371838314123
+            }
+          },
+          {
+            "a_stop": 10.132919435046578,
+            "tg_stop": 0.38596491228070173,
+            "A_comov_stop": 0.24329185143060778,
+            "Var_stop": 0.22351228699402675,
+            "STOP": {
+              "A_comov_final": 0.2574136856553881,
+              "Var_final": 0.21941124518471739,
+              "reaplan_grad": -0.05804483027993301,
+              "reaplan_var": 0.01834817165742198
+            },
+            "NULL_never_stop": {
+              "a_final": 10230.029133251413,
+              "A_comov_final": 0.25528498394552895,
+              "Var_final": 0.21955228518085226,
+              "reaplan_grad": -0.04929524948903554,
+              "reaplan_var": 0.0177171549109527
+            }
+          },
+          {
+            "a_stop": 101.14360648727546,
+            "tg_stop": 0.7694235588972431,
+            "A_comov_stop": 0.2500368939482964,
+            "Var_stop": 0.22176997278369992,
+            "STOP": {
+              "A_comov_final": 0.2591900627003128,
+              "Var_final": 0.21865075835196168,
+              "reaplan_grad": -0.03660727266076626,
+              "reaplan_var": 0.014065089121783485
+            },
+            "NULL_never_stop": {
+              "a_final": 102112.92487219624,
+              "A_comov_final": 0.25891528915038137,
+              "Var_final": 0.2186275174520502,
+              "reaplan_grad": -0.03550834063680559,
+              "reaplan_var": 0.014169886446776414
+            }
+          },
+          {
+            "a_stop": 1009.5835853456374,
+            "tg_stop": 1.1528822055137844,
+            "A_comov_stop": 0.2528078585508867,
+            "Var_stop": 0.22056217662343172,
+            "STOP": {
+              "A_comov_final": 0.25713953785431043,
+              "Var_final": 0.21760164738346172,
+              "reaplan_grad": -0.017134274734390033,
+              "reaplan_var": 0.013422651541132324
+            },
+            "NULL_never_stop": {
+              "a_final": 1019259.015799198,
+              "A_comov_final": 0.26696128869079416,
+              "Var_final": 0.21790516724707393,
+              "reaplan_grad": -0.055984929507476335,
+              "reaplan_var": 0.012046532261486229
+            }
+          }
+        ]
+      },
+      "evaluation": {
+        "cond_a_monotonic": true,
+        "cond_b_early_rehomog": true,
+        "cond_c_late_frozen": true,
+        "cond_d_null_bites": true,
+        "diff_early_stop_minus_null": 0.5843589360622308,
+        "seed_pass": true,
+        "no_retorno_a_grad": 10.132919435046578,
+        "no_retorno_tg_grad": 0.3859649122807018,
+        "no_retorno_a_var": 10.132919435046578,
+        "reaplan_stop_grad_curve": [
+          0.7552861623593646,
+          -0.05804483027993301,
+          -0.03660727266076626,
+          -0.017134274734390033
+        ],
+        "reaplan_null_grad_curve": [
+          0.17092722629713383,
+          -0.04929524948903554,
+          -0.03550834063680559,
+          -0.055984929507476335
+        ],
+        "reaplan_stop_var_curve": [
+          0.3553833735491539,
+          0.01834817165742198,
+          0.014065089121783485,
+          0.013422651541132324
+        ]
+      }
+    }
+  },
+  "resumen": {
+    "n_combos_pass": 6,
+    "n_combos_total": 6,
+    "rate": 1.0,
+    "verdict": "F3_4_PASS"
+  },
+  "runtime_seconds": 8.343498945236206,
+  "generated_at_unix": 1784919275.6115708
+}

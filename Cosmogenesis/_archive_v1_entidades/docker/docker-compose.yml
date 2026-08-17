@@ -1,0 +1,53 @@
+# ============================================================================
+# CG001 Laboratorio — un solo servicio de observación en vivo.
+# El control experimental A/B (ε=0 vs ε>0) corre por batch sincronizado:
+#   docker compose run --rm cg001-batch
+# WebLive (3D browser): http://localhost:7888
+# Visor 3D nativo VisPy (Mac, fuera de Docker):
+#   ./tools/run_cg001_3d.sh
+# ============================================================================
+name: cosmogenesis-cg001
+
+services:
+  cg001-lab:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: cosmogenesis-cg001:latest
+    container_name: cg001-lab
+    environment:
+      CG_ROLE: lab
+      CG_PUERTO: "7888"
+      CG_EPSILON: ${CG_EPSILON:-0.00001}
+      CG_EXPERIMENT_ID: ${CG_EXPERIMENT_ID:-CG001-B}
+      CG_SEED: ${CG_SEED:-42}
+      CG_AUTOSTART: "1"
+      CG_TICK_HZ: "10"
+      CG_HISTORY_DIR: /data
+      CG_HISTORY_ENABLE: "true"
+    volumes:
+      - cg001_lab_data:/data
+      - ../CG001/logs:/app/CG001/logs
+    ports: ["7888:7888"]
+    restart: unless-stopped
+
+  cg001-batch:
+    image: cosmogenesis-cg001:latest
+    profiles: ["batch"]
+    entrypoint: ["python", "/app/CG001/experiments/CG001_control_ab.py"]
+    environment:
+      PYTHONPATH: /app
+      CG_STEPS: ${CG_STEPS:-2000}
+      CG_LOG_EVERY: ${CG_LOG_EVERY:-25}
+      CG_SEED: ${CG_SEED:-42}
+      CG_N_ENTITIES: ${CG_N_ENTITIES:-400}
+      CG_MAX_PAIRS: ${CG_MAX_PAIRS:-500}
+      CG_FAST_METRICS: "1"
+      CG_QUIET_EVENTS: "1"
+      CG_OUT_DIR: /app/CG001/logs
+    volumes:
+      - ../CG001/logs:/app/CG001/logs
+    restart: "no"
+
+volumes:
+  cg001_lab_data:

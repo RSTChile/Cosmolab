@@ -1,0 +1,7 @@
+13 Higgs B densidad phi dinamico lambda(rho)
+step   0 a=  1.0 rho=1.00e+30 lam=1.010e+00 <phi>=0.933 k1=0 k3=0 ratio=0.00000
+step 100 a=  4.5 rho=1.11e+28 lam=2.111e-02 <phi>=0.994 k1=0 k3=0 ratio=0.00000
+step 200 a= 20.1 rho=1.23e+26 lam=1.012e-02 <phi>=0.990 k1=0 k3=0 ratio=0.00000
+step 300 a= 90.0 rho=1.37e+24 lam=1.000e-02 <phi>=0.992 k1=0 k3=0 ratio=0.00000
+FIN B
+EXIT:0

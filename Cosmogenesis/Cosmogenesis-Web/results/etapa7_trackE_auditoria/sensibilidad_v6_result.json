@@ -1,0 +1,357 @@
+{
+  "seeds_smoke": [
+    54321,
+    99,
+    2025
+  ],
+  "baseline_params": {
+    "COMEM_VS_SHUFFLE_MIN": 1.15,
+    "MASS_REAL_MIN": 0.3,
+    "DENS_MIN": 1.2,
+    "MUTUAL_MIN_STEPS": 5,
+    "GROUP_LINK_R": 4.5,
+    "RATE_PASS": 0.55
+  },
+  "baseline": {
+    "rate_e4_lineage_pass": 0.3333333333333333,
+    "rate_lineage_ok": 0.3333333333333333,
+    "mass_real_per_seed": [
+      88.5695285291683,
+      130.29579044959877,
+      45.53176557571591
+    ],
+    "dens_real_per_seed": [
+      38.75123721602477,
+      59.80603797097041,
+      37.30484508061061
+    ],
+    "comem_vs_shuffle_per_seed": [
+      1.1831318381529448,
+      1.002543450614667,
+      1.0129536687214158
+    ],
+    "rows": [
+      {
+        "seed": 54321,
+        "e4_lineage_pass": true,
+        "lineage_ok": true,
+        "mass_real": 88.5695285291683,
+        "dens_real": 38.75123721602477,
+        "comem_vs_shuffle": 1.1831318381529448
+      },
+      {
+        "seed": 99,
+        "e4_lineage_pass": false,
+        "lineage_ok": false,
+        "mass_real": 130.29579044959877,
+        "dens_real": 59.80603797097041,
+        "comem_vs_shuffle": 1.002543450614667
+      },
+      {
+        "seed": 2025,
+        "e4_lineage_pass": false,
+        "lineage_ok": false,
+        "mass_real": 45.53176557571591,
+        "dens_real": 37.30484508061061,
+        "comem_vs_shuffle": 1.0129536687214158
+      }
+    ]
+  },
+  "perturbaciones": {
+    "COMEM_VS_SHUFFLE_MIN": [
+      {
+        "factor": 0.5,
+        "valor_base": 1.15,
+        "valor_nuevo": 0.575,
+        "rate_e4_lineage_pass": 1.0,
+        "rate_lineage_ok": 1.0,
+        "mass_real_per_seed": [
+          88.5695285291683,
+          130.29579044959877,
+          45.53176557571591
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 88.5695285291683,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 130.29579044959877,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 45.53176557571591,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      },
+      {
+        "factor": 1.5,
+        "valor_base": 1.15,
+        "valor_nuevo": 1.7249999999999999,
+        "rate_e4_lineage_pass": 0.0,
+        "rate_lineage_ok": 0.0,
+        "mass_real_per_seed": [
+          88.5695285291683,
+          130.29579044959877,
+          45.53176557571591
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 88.5695285291683,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 130.29579044959877,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 45.53176557571591,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      }
+    ],
+    "GROUP_LINK_R": [
+      {
+        "factor": 0.5,
+        "valor_base": 4.5,
+        "valor_nuevo": 2.25,
+        "rate_e4_lineage_pass": 0.3333333333333333,
+        "rate_lineage_ok": 0.3333333333333333,
+        "mass_real_per_seed": [
+          88.5695285291683,
+          130.29579044959877,
+          45.53176557571591
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 88.5695285291683,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 130.29579044959877,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 45.53176557571591,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      },
+      {
+        "factor": 1.5,
+        "valor_base": 4.5,
+        "valor_nuevo": 6.75,
+        "rate_e4_lineage_pass": 0.3333333333333333,
+        "rate_lineage_ok": 0.3333333333333333,
+        "mass_real_per_seed": [
+          88.5695285291683,
+          130.29579044959877,
+          45.53176557571591
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 88.5695285291683,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 130.29579044959877,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 45.53176557571591,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      }
+    ],
+    "MUTUAL_MIN_STEPS": [
+      {
+        "factor": 0.5,
+        "valor_base": 5,
+        "valor_nuevo": 2,
+        "rate_e4_lineage_pass": 0.6666666666666666,
+        "rate_lineage_ok": 0.6666666666666666,
+        "mass_real_per_seed": [
+          160.17893381222558,
+          138.11353779839723,
+          127.72547119689521
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 160.17893381222558,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 138.11353779839723,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 127.72547119689521,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      },
+      {
+        "factor": 1.5,
+        "valor_base": 5,
+        "valor_nuevo": 8,
+        "rate_e4_lineage_pass": 0.3333333333333333,
+        "rate_lineage_ok": 0.3333333333333333,
+        "mass_real_per_seed": [
+          57.4759709720513,
+          53.421274853080654,
+          26.018152010975502
+        ],
+        "dens_real_per_seed": [
+          38.75123721602477,
+          59.80603797097041,
+          37.30484508061061
+        ],
+        "comem_vs_shuffle_per_seed": [
+          1.1831318381529448,
+          1.002543450614667,
+          1.0129536687214158
+        ],
+        "rows": [
+          {
+            "seed": 54321,
+            "e4_lineage_pass": true,
+            "lineage_ok": true,
+            "mass_real": 57.4759709720513,
+            "dens_real": 38.75123721602477,
+            "comem_vs_shuffle": 1.1831318381529448
+          },
+          {
+            "seed": 99,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 53.421274853080654,
+            "dens_real": 59.80603797097041,
+            "comem_vs_shuffle": 1.002543450614667
+          },
+          {
+            "seed": 2025,
+            "e4_lineage_pass": false,
+            "lineage_ok": false,
+            "mass_real": 26.018152010975502,
+            "dens_real": 37.30484508061061,
+            "comem_vs_shuffle": 1.0129536687214158
+          }
+        ]
+      }
+    ]
+  },
+  "elapsed_s": 594.6005659103394
+}

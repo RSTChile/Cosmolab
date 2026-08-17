@@ -1,0 +1,962 @@
+[
+ {
+  "diam": 9.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 5.455,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71200
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 0.99,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.455,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71213
+ },
+ {
+  "diam": 9.5,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 5.295,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71226
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.565,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71239
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.5,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71252
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 5.435,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71265
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 5.505,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71278
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.555,
+  "arm": "histeresis",
+  "N": 400,
+  "seed": 71291
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9955555555555555,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 5.517777777777778,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71297
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9977777777777778,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.488888888888889,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71310
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9955555555555555,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.511111111111111,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71323
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.597777777777778,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71336
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.9955555555555555,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 5.42,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71349
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9866666666666667,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.48,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71362
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9977777777777778,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.455555555555556,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71375
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.9977777777777778,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.54,
+  "arm": "histeresis",
+  "N": 900,
+  "seed": 71388
+ },
+ {
+  "diam": 11.5,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.3925,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71394
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.9975,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 5.55,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71407
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 5.4425,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71420
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 0.99375,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.5025,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71433
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.995,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.54125,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71446
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.9975,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.4825,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71459
+ },
+ {
+  "diam": 12.0,
+  "frac_gigante": 0.99375,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 5.44125,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71472
+ },
+ {
+  "diam": 11.0,
+  "frac_gigante": 0.99125,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 5.51,
+  "arm": "histeresis",
+  "N": 1600,
+  "seed": 71485
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72200
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72213
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72226
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72239
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72252
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72265
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72278
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 400,
+  "seed": 72291
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72297
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72310
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72323
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72336
+ },
+ {
+  "diam": 9.5,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 11,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72349
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72362
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72375
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 900,
+  "seed": 72388
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72394
+ },
+ {
+  "diam": 9.5,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72407
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72420
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72433
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72446
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72459
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72472
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "null_barajado",
+  "N": 1600,
+  "seed": 72485
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73200
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73213
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 8,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73226
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73239
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73252
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73265
+ },
+ {
+  "diam": 7.5,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73278
+ },
+ {
+  "diam": 8.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 400,
+  "seed": 73291
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73297
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73310
+ },
+ {
+  "diam": 9.5,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73323
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73336
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73349
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73362
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73375
+ },
+ {
+  "diam": 9.5,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 900,
+  "seed": 73388
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73394
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73407
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73420
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73433
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73446
+ },
+ {
+  "diam": 10.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73459
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 9,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73472
+ },
+ {
+  "diam": 9.0,
+  "frac_gigante": 1.0,
+  "delta_gromov": 0.5,
+  "grado_max": 10,
+  "grado_medio": 6.0,
+  "arm": "sin_proceso",
+  "N": 1600,
+  "seed": 73485
+ },
+ {
+  "diam": 31.0,
+  "frac_gigante": 0.82,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.4,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74200
+ },
+ {
+  "diam": 44.5,
+  "frac_gigante": 0.785,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.145,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74213
+ },
+ {
+  "diam": 31.0,
+  "frac_gigante": 0.705,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.07,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74226
+ },
+ {
+  "diam": 31.5,
+  "frac_gigante": 0.85,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.315,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74239
+ },
+ {
+  "diam": 36.0,
+  "frac_gigante": 0.83,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.245,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74252
+ },
+ {
+  "diam": 36.0,
+  "frac_gigante": 0.8175,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.22,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74265
+ },
+ {
+  "diam": 29.5,
+  "frac_gigante": 0.575,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.19,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74278
+ },
+ {
+  "diam": 32.0,
+  "frac_gigante": 0.7625,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.19,
+  "arm": "histeresis_sobre_reticula",
+  "N": 400,
+  "seed": 74291
+ },
+ {
+  "diam": 56.0,
+  "frac_gigante": 0.8088888888888889,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.2888888888888888,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74297
+ },
+ {
+  "diam": 64.5,
+  "frac_gigante": 0.8366666666666667,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.2933333333333334,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74310
+ },
+ {
+  "diam": 50.0,
+  "frac_gigante": 0.8011111111111111,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.2977777777777777,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74323
+ },
+ {
+  "diam": 68.0,
+  "frac_gigante": 0.7455555555555555,
+  "delta_gromov": 0.0,
+  "grado_max": 4,
+  "grado_medio": 2.2422222222222223,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74336
+ },
+ {
+  "diam": 57.0,
+  "frac_gigante": 0.8133333333333334,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.2622222222222224,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74349
+ },
+ {
+  "diam": 47.0,
+  "frac_gigante": 0.7077777777777777,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.2111111111111112,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74362
+ },
+ {
+  "diam": 43.0,
+  "frac_gigante": 0.6233333333333333,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.1755555555555555,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74375
+ },
+ {
+  "diam": 56.0,
+  "frac_gigante": 0.7688888888888888,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.2244444444444444,
+  "arm": "histeresis_sobre_reticula",
+  "N": 900,
+  "seed": 74388
+ },
+ {
+  "diam": 59.0,
+  "frac_gigante": 0.809375,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.2825,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74394
+ },
+ {
+  "diam": 64.0,
+  "frac_gigante": 0.80875,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.3075,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74407
+ },
+ {
+  "diam": 66.0,
+  "frac_gigante": 0.775625,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.31,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74420
+ },
+ {
+  "diam": 64.5,
+  "frac_gigante": 0.798125,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.31625,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74433
+ },
+ {
+  "diam": 69.0,
+  "frac_gigante": 0.77625,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.3475,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74446
+ },
+ {
+  "diam": 67.0,
+  "frac_gigante": 0.83375,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.36,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74459
+ },
+ {
+  "diam": 71.5,
+  "frac_gigante": 0.81,
+  "delta_gromov": 2.0,
+  "grado_max": 4,
+  "grado_medio": 2.24125,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74472
+ },
+ {
+  "diam": 62.5,
+  "frac_gigante": 0.855,
+  "delta_gromov": 1.0,
+  "grado_max": 4,
+  "grado_medio": 2.44875,
+  "arm": "histeresis_sobre_reticula",
+  "N": 1600,
+  "seed": 74485
+ }
+]

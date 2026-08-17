@@ -1,0 +1,446 @@
+{
+  "synthesis": {
+    "global_verdict": "FAIL",
+    "protocol_id": "TRACKB_ANCLA_2026-07-23",
+    "smoke": false,
+    "started_at": "2026-07-23 05:16:36 -04",
+    "finished_at": "2026-07-23 05:17:13 -04",
+    "n_seeds": 10,
+    "n_seeds_valid": 10,
+    "rate_B": 0.0,
+    "frac_off_zero": 1.0,
+    "n_invert_sign_ok": 10,
+    "thresholds": {
+      "R2_MIN": 0.3,
+      "GAP_MIN": 0.15,
+      "RATE_PASS": 0.55,
+      "OFF_NULL_CLEAN_FRAC": 0.99,
+      "N_SHUFFLE_REPEATS": 8,
+      "MIN_ATOMS_SNAPSHOT": 3
+    },
+    "anchor_positions": [
+      [
+        14.0,
+        14.0
+      ],
+      [
+        7.0,
+        7.0
+      ],
+      [
+        7.0,
+        21.0
+      ],
+      [
+        21.0,
+        7.0
+      ],
+      [
+        21.0,
+        21.0
+      ]
+    ],
+    "m_anchor_sweep": [
+      5.0,
+      10.0,
+      20.0,
+      40.0,
+      80.0
+    ],
+    "elapsed_s": 36.46769905090332,
+    "no_lineage_ingredients": true,
+    "note": "co_member_score / n_long_co_pairs / fusion_events NO se calculan en este archivo."
+  },
+  "rows": [
+    {
+      "seed": 7,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 17,
+      "snapshot_step": 260,
+      "n_in_range_real": 135,
+      "n_in_range_shuffle_avg": 135,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 5.576596990369591,
+        "intercept": 48.72850654796475,
+        "r2": 0.015153016836023547,
+        "n": 135
+      },
+      "fit_shuffle": {
+        "slope": -6.104617396244149,
+        "intercept": 133.97317940544968,
+        "r2": 0.018236938405418956,
+        "n": 135
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.9960624345427395,
+        "beta_r": -1.8705006243604636,
+        "const": 1.1043504817665502,
+        "r2": 0.21548838208328747,
+        "n": 135
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": -0.04363020052280901,
+        "beta_r": -1.9243887962407127,
+        "const": -0.6441654550913471,
+        "r2": 0.22955276795023116,
+        "n": 135
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 42,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 20,
+      "snapshot_step": 260,
+      "n_in_range_real": 130,
+      "n_in_range_shuffle_avg": 130,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 14.959695993922747,
+        "intercept": -18.75939934453656,
+        "r2": 0.11710489061910523,
+        "n": 130
+      },
+      "fit_shuffle": {
+        "slope": -1.1103849049370809,
+        "intercept": 90.96537365697709,
+        "r2": 0.0010558727716305505,
+        "n": 130
+      },
+      "diag_loglog_real": {
+        "beta_mass": -1.0118977214671683,
+        "beta_r": -1.5203963536254275,
+        "const": 0.5306334528188097,
+        "r2": 0.4362993274876452,
+        "n": 130
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": -0.014735703615180224,
+        "beta_r": -1.4889911166136187,
+        "const": -1.376244169192105,
+        "r2": 0.4009851723348449,
+        "n": 130
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 99,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 17,
+      "snapshot_step": 260,
+      "n_in_range_real": 115,
+      "n_in_range_shuffle_avg": 115,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 9.542036878301106,
+        "intercept": 24.96846930793074,
+        "r2": 0.04477403058579088,
+        "n": 115
+      },
+      "fit_shuffle": {
+        "slope": -1.521184791408978,
+        "intercept": 92.36618364982232,
+        "r2": 0.0016743851404636967,
+        "n": 115
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.9938891111798032,
+        "beta_r": -1.598776220428371,
+        "const": 0.6145219712132834,
+        "r2": 0.5271430902248619,
+        "n": 115
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": -0.002302253590884291,
+        "beta_r": -1.6151084840048564,
+        "const": -1.1421697099445394,
+        "r2": 0.5200173607198804,
+        "n": 115
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 777,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 23,
+      "snapshot_step": 260,
+      "n_in_range_real": 165,
+      "n_in_range_shuffle_avg": 165,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 14.2569250462951,
+        "intercept": -3.6207356123374805,
+        "r2": 0.05078742118016377,
+        "n": 165
+      },
+      "fit_shuffle": {
+        "slope": 1.2673443602243215,
+        "intercept": 76.78045601748308,
+        "r2": 0.0005195039004027846,
+        "n": 165
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.9819055382826585,
+        "beta_r": -1.5560940471561162,
+        "const": 0.5210945470685547,
+        "r2": 0.4449792374238112,
+        "n": 165
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.0012057107295873424,
+        "beta_r": -1.5537963237828951,
+        "const": -1.287807437873595,
+        "r2": 0.41842554984012326,
+        "n": 165
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 2025,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 14,
+      "snapshot_step": 260,
+      "n_in_range_real": 95,
+      "n_in_range_shuffle_avg": 95,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 12.825562274163346,
+        "intercept": -1.2496345358881868,
+        "r2": 0.08100680875069033,
+        "n": 95
+      },
+      "fit_shuffle": {
+        "slope": 1.2257993560044675,
+        "intercept": 82.965849028696,
+        "r2": 0.001187335728586314,
+        "n": 95
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.9513119010299204,
+        "beta_r": -1.7329146876323138,
+        "const": 0.7679215080390499,
+        "r2": 0.49311186523625916,
+        "n": 95
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.03493464647900595,
+        "beta_r": -1.6939083330493574,
+        "const": -1.2729025012151987,
+        "r2": 0.38714241297888685,
+        "n": 95
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 3141,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 18,
+      "snapshot_step": 260,
+      "n_in_range_real": 105,
+      "n_in_range_shuffle_avg": 105,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 12.020615937427587,
+        "intercept": -9.678702477431505,
+        "r2": 0.08506237680798645,
+        "n": 105
+      },
+      "fit_shuffle": {
+        "slope": 0.8048027939153161,
+        "intercept": 67.39930191252104,
+        "r2": 0.0005837966322443933,
+        "n": 105
+      },
+      "diag_loglog_real": {
+        "beta_mass": -1.0142634887968918,
+        "beta_r": -1.8363042524283861,
+        "const": 1.0841261780091984,
+        "r2": 0.29616310778469224,
+        "n": 105
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": -0.023484782899059756,
+        "beta_r": -1.8631121533176709,
+        "const": -0.7709086868264243,
+        "r2": 0.264594060280932,
+        "n": 105
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 8191,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 20,
+      "snapshot_step": 260,
+      "n_in_range_real": 120,
+      "n_in_range_shuffle_avg": 120,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 8.69867474274648,
+        "intercept": 13.201442780369128,
+        "r2": 0.042319737421999015,
+        "n": 120
+      },
+      "fit_shuffle": {
+        "slope": -0.4264067768295087,
+        "intercept": 69.97581318853423,
+        "r2": 0.0001064419075157419,
+        "n": 120
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.8586507793659596,
+        "beta_r": -1.5116974061280577,
+        "const": 0.2552476283051871,
+        "r2": 0.5066345659851608,
+        "n": 120
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.10357305941208324,
+        "beta_r": -1.4923510629117887,
+        "const": -1.5229016023812818,
+        "r2": 0.46065508485300444,
+        "n": 120
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 99991,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 16,
+      "snapshot_step": 260,
+      "n_in_range_real": 90,
+      "n_in_range_shuffle_avg": 90,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 13.686087547084261,
+        "intercept": 0.06418291087845177,
+        "r2": 0.031103134873796567,
+        "n": 90
+      },
+      "fit_shuffle": {
+        "slope": 0.7006774067208554,
+        "intercept": 83.11072353337535,
+        "r2": 9.248441293685516e-05,
+        "n": 90
+      },
+      "diag_loglog_real": {
+        "beta_mass": -1.0177222219957043,
+        "beta_r": -1.879178147795727,
+        "const": 1.1608036175799006,
+        "r2": 0.19050191140165873,
+        "n": 90
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.03940069238491904,
+        "beta_r": -1.9156135753966983,
+        "const": -0.74046636212083,
+        "r2": 0.17682523277074236,
+        "n": 90
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 12345,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 22,
+      "snapshot_step": 260,
+      "n_in_range_real": 165,
+      "n_in_range_shuffle_avg": 165,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 12.999743691405111,
+        "intercept": -4.950627596159537,
+        "r2": 0.04928284278568362,
+        "n": 165
+      },
+      "fit_shuffle": {
+        "slope": 0.4332609611220871,
+        "intercept": 77.01507764498368,
+        "r2": 6.382663175008574e-05,
+        "n": 165
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.9873998048118862,
+        "beta_r": -1.7767983520373865,
+        "const": 0.9268872199773639,
+        "r2": 0.3652332386325061,
+        "n": 165
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.009978609141235655,
+        "beta_r": -1.801641445553223,
+        "const": -0.9020972988827474,
+        "r2": 0.33993988907791994,
+        "n": 165
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    },
+    {
+      "seed": 54321,
+      "insufficient_atoms": false,
+      "n_atoms_snapshot": 25,
+      "snapshot_step": 260,
+      "n_in_range_real": 160,
+      "n_in_range_shuffle_avg": 160,
+      "off_zero": true,
+      "fit_real": {
+        "slope": 9.224766687687753,
+        "intercept": 14.7404242810163,
+        "r2": 0.0420053623790656,
+        "n": 160
+      },
+      "fit_shuffle": {
+        "slope": 0.20332594112092423,
+        "intercept": 72.24978037912501,
+        "r2": 2.710199750910469e-05,
+        "n": 160
+      },
+      "diag_loglog_real": {
+        "beta_mass": -0.8524448667307656,
+        "beta_r": -1.2464792421711002,
+        "const": -0.19106079083547017,
+        "r2": 0.42298042717350537,
+        "n": 160
+      },
+      "diag_loglog_shuffle": {
+        "beta_mass": 0.14975041825250304,
+        "beta_r": -1.23602904679783,
+        "const": -2.088853873113665,
+        "r2": 0.3772895329889464,
+        "n": 160
+      },
+      "T1_slope_positive": true,
+      "T2_r2_and_gap": false,
+      "PASS_B": false,
+      "invert_sign_ok": true
+    }
+  ]
+}

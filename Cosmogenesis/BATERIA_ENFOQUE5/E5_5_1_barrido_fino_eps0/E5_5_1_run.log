@@ -1,0 +1,14 @@
+[calibracion] N=200 eps_cal=0.01 mediana_lavado=5300 pasos=6095 lavo_todas=True
+[progreso endpoint] 100/384
+[progreso endpoint] 200/384
+[progreso endpoint] 300/384
+[trayectoria] eps=0.0 lista
+[trayectoria] eps=1e-06 lista
+[trayectoria] eps=0.0001 lista
+[trayectoria] eps=0.01 lista
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_1_barrido_fino_eps0/E5_5_1_resultados.json
+[elapsed] 1717.7s
+[resumen] eps_puntos=24 semillas=16 pasos=6095
+[eps=0] E_final=200.000000 X_final=0.0000000000 S_final=5.2983173665 ln_N=5.298317
+[eps=1.00e-02] E_final=200.000675 X_final=0.0000033750 S_final=5.2983106165 deriva_E=9.662e-05

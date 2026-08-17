@@ -1,0 +1,11 @@
+eps= 0.0e+00 | distintos=  0 | std_contraste=0.000 | max=0.000
+eps= 1.0e-09 | distintos= 23 | std_contraste=0.166 | max=1.033
+eps= 1.0e-08 | distintos= 28 | std_contraste=0.175 | max=1.037
+eps= 1.0e-07 | distintos= 29 | std_contraste=0.176 | max=1.037
+eps= 1.0e-06 | distintos= 32 | std_contraste=0.176 | max=1.037
+eps= 1.0e-04 | distintos= 39 | std_contraste=0.176 | max=1.037
+eps= 1.0e-03 | distintos= 42 | std_contraste=0.176 | max=1.037
+eps= 1.0e-02 | distintos= 46 | std_contraste=0.176 | max=1.037
+eps= 1.0e-01 | distintos= 46 | std_contraste=0.176 | max=1.037
+eps= 5.0e-01 | distintos= 46 | std_contraste=0.176 | max=1.037
+eps= 1.0e+00 | distintos= 46 | std_contraste=0.176 | max=1.037

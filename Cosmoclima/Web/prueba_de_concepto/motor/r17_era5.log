@@ -1,0 +1,11 @@
+[era5] meses de 2019+ reemplazados: 0
+[era5] física en 18.0 min
+
+[era5] invariantes contra su umbral
+    inv          p10      p50      p90      máx   umbral
+    LF          0.1809   0.4549   0.7913   0.9999   0.3500
+    Δ_struct    0.6114   0.6975   0.8233   1.0958   0.0000
+    A_sys_env   0.5259   0.7464   0.8878   0.9420   0.7000
+    |e_R|       0.0045   0.0250   0.0726   0.3716   0.2000
+    e_R = 0: 0.00% del tiempo
+[era5] escrito r17_era5_por_anio.csv

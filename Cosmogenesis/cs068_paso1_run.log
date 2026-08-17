@@ -1,0 +1,36 @@
+============================================================================================================
+CS068 PASO 1 — SINTÉTICO (verdad de fondo): ¿el PROCESO estirar-enfriar separa tejido/atajo
+cuando la clasificación es CONOCIDA por construcción, no inferida por soporte?
+N~900 · patches=3 · frac_atajos=0.15 · T: 8.0->0.05 factor 0.6
+============================================================================================================
+
+--- patch 0 (seed=681000) ---
+  sustrato: N=900 side=30 atajos0=261 enlaces_locales=1740 cota_ell=45 diam_inicial=9.00
+  diam final: inflar_dist=48.50  null_corte_azar=42.50
+  atajos vivos al final: inflar_dist=0  null_corte_azar=0
+  corr(dist_centro,E_nolocal) TRAYECTORIA inflar_dist: [(8.0, 39, 0.023), (2.88, 9, -0.001)]
+  corr(dist_centro,E_nolocal) TRAYECTORIA null_corte_azar: [(None, 39, 0.01), (None, 9, 0.006)]
+  corr FINAL: inflar_dist=0.0  null_corte_azar=0.0  inflar_barajado=0.0  null_sin_enfriar=0.0
+
+--- patch 1 (seed=681101) ---
+  sustrato: N=900 side=30 atajos0=261 enlaces_locales=1740 cota_ell=44 diam_inicial=9.00
+  diam final: inflar_dist=44.50  null_corte_azar=45.50
+  atajos vivos al final: inflar_dist=0  null_corte_azar=0
+  corr(dist_centro,E_nolocal) TRAYECTORIA inflar_dist: [(8.0, 46, 0.046), (2.88, 9, 0.039)]
+  corr(dist_centro,E_nolocal) TRAYECTORIA null_corte_azar: [(None, 46, -0.034), (None, 9, -0.035)]
+  corr FINAL: inflar_dist=0.0  null_corte_azar=0.0  inflar_barajado=0.0  null_sin_enfriar=0.0
+
+--- patch 2 (seed=681202) ---
+  sustrato: N=900 side=30 atajos0=261 enlaces_locales=1740 cota_ell=46 diam_inicial=9.00
+  diam final: inflar_dist=43.00  null_corte_azar=42.00
+  atajos vivos al final: inflar_dist=0  null_corte_azar=0
+  corr(dist_centro,E_nolocal) TRAYECTORIA inflar_dist: [(8.0, 40, -0.084), (2.88, 13, -0.016)]
+  corr(dist_centro,E_nolocal) TRAYECTORIA null_corte_azar: [(None, 40, -0.051), (None, 13, -0.025)]
+  corr FINAL: inflar_dist=0.0  null_corte_azar=0.0  inflar_barajado=0.0  null_sin_enfriar=0.0
+
+tiempo total: 0.01 min
+
+LECTURA PRE-INSCRITA (Paso 1, verdad de fondo): inflar_dist debe dar corr fuerte NEGATIVA
+creciendo en magnitud a lo largo de la trayectoria; null_corte_azar/barajado deben quedar cerca de 0
+pese a lograr el MISMO diam/nº de atajos. Si no separa NI AQUÍ -> el proceso de enfriar es el
+problema (no el clasificador de CS067); arreglarlo aquí antes de tocar el blob real (Paso 2).

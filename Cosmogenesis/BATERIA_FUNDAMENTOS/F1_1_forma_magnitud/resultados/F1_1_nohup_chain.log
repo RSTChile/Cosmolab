@@ -1,0 +1,2 @@
+./run_produccion_resto.sh: line 7:  3476 Killed: 9               "$PY" -u F1_1_motor.py produccion --N 400 > resultados/F1_1_stdout_N400.log 2>&1
+./run_produccion_resto.sh: line 8:  4298 Killed: 9               "$PY" -u F1_1_motor.py produccion --N 800 > resultados/F1_1_stdout_N800.log 2>&1

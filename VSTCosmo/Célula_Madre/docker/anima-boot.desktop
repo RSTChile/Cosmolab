@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=ANIMA Boot
+Comment=Organismo ANIMA + observatorio en pantalla
+Exec=/home/ubuntu/anima/celula_madre/docker/anima-boot.sh
+Hidden=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=20

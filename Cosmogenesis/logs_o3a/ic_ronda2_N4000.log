@@ -1,0 +1,10 @@
+[OK] A2-B0-C2-batch3-r5 clase=I N=4000 t_grafo=5.65s t_ic=618.58s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r51 clase=I N=4000 t_grafo=4.76s t_ic=619.76s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r31 clase=III N=4000 t_grafo=5.11s t_ic=620.4s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r35 clase=I N=4000 t_grafo=5.08s t_ic=620.42s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r36 clase=III N=4000 t_grafo=4.75s t_ic=624.29s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r94 clase=III N=4000 t_grafo=5.07s t_ic=624.25s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r12 clase=III N=4000 t_grafo=5.09s t_ic=624.86s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r114 clase=III N=4000 t_grafo=5.62s t_ic=627.12s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r86 clase=I N=4000 t_grafo=5.17s t_ic=629.28s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r13 clase=I N=4000 t_grafo=5.47s t_ic=629.13s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None

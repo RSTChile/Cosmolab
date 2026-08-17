@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Arreglar SDR RSP1
+Name[es]=Arreglar SDR RSP1
+Comment=Repara SDRplay en la Pi (pide contraseña sudo)
+Comment[es]=Repara SDRplay en la Pi (pide contraseña sudo)
+Exec=/home/ubuntu/anima/celula_madre/docker/arreglar-sdr-lanzador.sh
+Path=/home/ubuntu/anima/celula_madre/docker
+Icon=applications-electronics
+Terminal=true
+Categories=System;
+StartupNotify=true

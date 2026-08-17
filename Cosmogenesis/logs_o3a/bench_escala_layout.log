@@ -1,0 +1,4 @@
+N= 1000 t_grafo=   1.19s t_layout=   23.32s
+N= 1414 t_grafo=   2.04s t_layout=   58.17s
+N= 2000 t_grafo=   3.19s t_layout=   98.39s
+N= 2828 t_grafo=   3.98s t_layout=  188.00s

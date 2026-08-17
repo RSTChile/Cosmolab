@@ -1,0 +1,290 @@
+[2026-07-24 20:45:25] === E5_5_5 motor arrancando modo=smoke ===
+[2026-07-24 20:45:25] N=100 semillas=4 eps_list=[0.0, 0.0001, 0.01, 0.3] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul'] r=0(fijo)
+[2026-07-24 20:45:25] [familia=multi_modo] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:45:27] [familia=multi_modo] lavado_mediana=1350 lavo_todas=True -> pasos_muerte=6750 (margen x5.0)
+[2026-07-24 20:45:44]   [familia=multi_modo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:46:09]   [familia=multi_modo] eps=1.000e-04 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:46:31]   [familia=multi_modo] eps=1.000e-02 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:46:55]   [familia=multi_modo] eps=3.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:47:21]   [plateau multi_modo] eps=0.01 dX_medio=0.000001 dS_ent_medio=0.000000
+[2026-07-24 20:47:21] [familia=multi_modo] listo en 115.8s
+[2026-07-24 20:47:21] [familia=modo_unico] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:47:22] [familia=modo_unico] lavado_mediana=50 lavo_todas=True -> pasos_muerte=250 (margen x5.0)
+[2026-07-24 20:47:23]   [familia=modo_unico] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:47:24]   [familia=modo_unico] eps=1.000e-04 X_real=0.037284 S_ent=1.000000 E_frac=1.000000 z_X=0.15
+[2026-07-24 20:47:25]   [familia=modo_unico] eps=1.000e-02 X_real=0.037284 S_ent=1.000000 E_frac=1.000000 z_X=0.15
+[2026-07-24 20:47:26]   [familia=modo_unico] eps=3.000e-01 X_real=0.037284 S_ent=0.999631 E_frac=1.000000 z_X=0.15
+[2026-07-24 20:47:27]   [plateau modo_unico] eps=0.01 dX_medio=0.039515 dS_ent_medio=0.000000
+[2026-07-24 20:47:27] [familia=modo_unico] listo en 5.6s
+[2026-07-24 20:47:27] [familia=bulto_gaussiano] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:47:29] [familia=bulto_gaussiano] lavado_mediana=1225 lavo_todas=True -> pasos_muerte=6125 (margen x5.0)
+[2026-07-24 20:47:49]   [familia=bulto_gaussiano] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:48:09]   [familia=bulto_gaussiano] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:48:29]   [familia=bulto_gaussiano] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:48:50]   [familia=bulto_gaussiano] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:49:13]   [plateau bulto_gaussiano] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 20:49:13] [familia=bulto_gaussiano] listo en 106.4s
+[2026-07-24 20:49:13] [familia=ruido_blanco] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:49:13] [familia=ruido_blanco] lavado_mediana=50 lavo_todas=True -> pasos_muerte=250 (margen x5.0)
+[2026-07-24 20:49:14]   [familia=ruido_blanco] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:49:15]   [familia=ruido_blanco] eps=1.000e-04 X_real=0.015391 S_ent=1.000000 E_frac=1.000000 z_X=0.06
+[2026-07-24 20:49:16]   [familia=ruido_blanco] eps=1.000e-02 X_real=0.015391 S_ent=1.000000 E_frac=1.000000 z_X=0.06
+[2026-07-24 20:49:17]   [familia=ruido_blanco] eps=3.000e-01 X_real=0.015391 S_ent=0.999850 E_frac=1.000000 z_X=0.06
+[2026-07-24 20:49:18]   [plateau ruido_blanco] eps=0.01 dX_medio=0.007463 dS_ent_medio=0.000000
+[2026-07-24 20:49:18] [familia=ruido_blanco] listo en 4.7s
+[2026-07-24 20:49:18] [familia=ruido_rojo] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:49:20] [familia=ruido_rojo] lavado_mediana=1300 lavo_todas=True -> pasos_muerte=6500 (margen x5.0)
+[2026-07-24 20:49:46]   [familia=ruido_rojo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:50:12]   [familia=ruido_rojo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:50:39]   [familia=ruido_rojo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:09]   [familia=ruido_rojo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:42]   [plateau ruido_rojo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 20:51:42] [familia=ruido_rojo] listo en 144.0s
+[2026-07-24 20:51:42] [familia=ruido_azul] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:51:42] [familia=ruido_azul] lavado_mediana=50 lavo_todas=True -> pasos_muerte=250 (margen x5.0)
+[2026-07-24 20:51:43]   [familia=ruido_azul] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:45]   [familia=ruido_azul] eps=1.000e-04 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:46]   [familia=ruido_azul] eps=1.000e-02 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:47]   [familia=ruido_azul] eps=3.000e-01 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:51:48]   [plateau ruido_azul] eps=0.01 dX_medio=0.000020 dS_ent_medio=0.000000
+[2026-07-24 20:51:48] [familia=ruido_azul] listo en 6.6s
+[2026-07-24 20:51:48] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_5_universalidad_limite/resultados/E5_5_5_smoke_resultado.json
+[2026-07-24 20:51:48] [elapsed] 383.1s
+[2026-07-24 20:51:48] === E5_5_5 motor terminado ===
+[2026-07-24 20:54:35] === E5_5_5 motor arrancando modo=smoke ===
+[2026-07-24 20:54:35] N=100 semillas=4 eps_list=[0.0, 0.0001, 0.01, 0.3] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul'] r=0(fijo)
+[2026-07-24 20:54:35] [familia=multi_modo] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:54:39] [familia=multi_modo] lavado_mediana=1350 lavo_todas=True -> pasos_muerte=6750 (margen x5.0, sobre mediana_efectiva=1350)
+[2026-07-24 20:55:15]   [familia=multi_modo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:55:48]   [familia=multi_modo] eps=1.000e-04 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:56:19]   [familia=multi_modo] eps=1.000e-02 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:56:51]   [familia=multi_modo] eps=3.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:57:28]   [plateau multi_modo] eps=0.01 dX_medio=0.000001 dS_ent_medio=0.000000
+[2026-07-24 20:57:28] [familia=multi_modo] listo en 172.4s
+[2026-07-24 20:57:28] [familia=modo_unico] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 20:57:33] [familia=modo_unico] calibracion peor-caso {'m_fijo': 1}: mediana=1550 (vs aleatoria 50) -> mediana_efectiva=1550
+[2026-07-24 20:57:33] [familia=modo_unico] lavado_mediana=50 lavo_todas=True -> pasos_muerte=7750 (margen x5.0, sobre mediana_efectiva=1550)
+[2026-07-24 20:58:09]   [familia=modo_unico] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:58:43]   [familia=modo_unico] eps=1.000e-04 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 20:59:22]   [familia=modo_unico] eps=1.000e-02 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:00:02]   [familia=modo_unico] eps=3.000e-01 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:00:50]   [plateau modo_unico] eps=0.01 dX_medio=0.000000 dS_ent_medio=0.000000
+[2026-07-24 21:00:50] [familia=modo_unico] listo en 202.6s
+[2026-07-24 21:00:50] [familia=bulto_gaussiano] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 21:00:58] [familia=bulto_gaussiano] calibracion peor-caso {'sigma_fijo': 0.08}: mediana=1300 (vs aleatoria 1225) -> mediana_efectiva=1300
+[2026-07-24 21:00:58] [familia=bulto_gaussiano] lavado_mediana=1225 lavo_todas=True -> pasos_muerte=6500 (margen x5.0, sobre mediana_efectiva=1300)
+[2026-07-24 21:01:33]   [familia=bulto_gaussiano] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:02:07]   [familia=bulto_gaussiano] eps=1.000e-04 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:02:46]   [familia=bulto_gaussiano] eps=1.000e-02 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:03:21]   [familia=bulto_gaussiano] eps=3.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:03:53]   [plateau bulto_gaussiano] eps=0.01 dX_medio=0.000001 dS_ent_medio=0.000000
+[2026-07-24 21:03:53] [familia=bulto_gaussiano] listo en 182.6s
+[2026-07-24 21:03:53] [familia=ruido_blanco] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 21:03:53] [familia=ruido_blanco] lavado_mediana=50 lavo_todas=True -> pasos_muerte=250 (margen x5.0, sobre mediana_efectiva=50)
+[2026-07-24 21:03:54]   [familia=ruido_blanco] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:03:55]   [familia=ruido_blanco] eps=1.000e-04 X_real=0.015391 S_ent=1.000000 E_frac=1.000000 z_X=0.06
+[2026-07-24 21:03:56]   [familia=ruido_blanco] eps=1.000e-02 X_real=0.015391 S_ent=1.000000 E_frac=1.000000 z_X=0.06
+[2026-07-24 21:03:58]   [familia=ruido_blanco] eps=3.000e-01 X_real=0.015391 S_ent=0.999850 E_frac=1.000000 z_X=0.06
+[2026-07-24 21:03:59]   [plateau ruido_blanco] eps=0.01 dX_medio=0.007463 dS_ent_medio=0.000000
+[2026-07-24 21:03:59] [familia=ruido_blanco] listo en 6.0s
+[2026-07-24 21:03:59] [familia=ruido_rojo] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 21:04:02] [familia=ruido_rojo] lavado_mediana=1300 lavo_todas=True -> pasos_muerte=6500 (margen x5.0, sobre mediana_efectiva=1300)
+[2026-07-24 21:04:31]   [familia=ruido_rojo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:04:59]   [familia=ruido_rojo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:05:27]   [familia=ruido_rojo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:05:54]   [familia=ruido_rojo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:06:24]   [plateau ruido_rojo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 21:06:24] [familia=ruido_rojo] listo en 144.9s
+[2026-07-24 21:06:24] [familia=ruido_azul] calibrando lavado en eps=0.01 (repr.)
+[2026-07-24 21:06:24] [familia=ruido_azul] lavado_mediana=50 lavo_todas=True -> pasos_muerte=250 (margen x5.0, sobre mediana_efectiva=50)
+[2026-07-24 21:06:25]   [familia=ruido_azul] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:06:26]   [familia=ruido_azul] eps=1.000e-04 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:06:27]   [familia=ruido_azul] eps=1.000e-02 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:06:28]   [familia=ruido_azul] eps=3.000e-01 X_real=0.000031 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:06:29]   [plateau ruido_azul] eps=0.01 dX_medio=0.000020 dS_ent_medio=0.000000
+[2026-07-24 21:06:29] [familia=ruido_azul] listo en 5.1s
+[2026-07-24 21:06:29] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_5_universalidad_limite/resultados/E5_5_5_smoke_resultado.json
+[2026-07-24 21:06:29] [elapsed] 713.7s
+[2026-07-24 21:06:29] === E5_5_5 motor terminado ===
+[2026-07-24 21:09:15] === E5_5_5 motor arrancando modo=smoke ===
+[2026-07-24 21:09:15] N=100 semillas=4 eps_list=[0.0, 0.0001, 0.01, 0.3] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul'] r=0(fijo)
+[2026-07-24 21:09:15] [familia=multi_modo] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:09:17]     [calib-adapt multi_modo] pasos=200 dX_peor=0.179731 dS_ent_peor=0.000002
+[2026-07-24 21:09:19]     [calib-adapt multi_modo] pasos=400 dX_peor=0.175972 dS_ent_peor=0.000002
+[2026-07-24 21:09:24]     [calib-adapt multi_modo] pasos=800 dX_peor=0.111877 dS_ent_peor=0.000001
+[2026-07-24 21:09:34]     [calib-adapt multi_modo] pasos=1600 dX_peor=0.027735 dS_ent_peor=0.000000
+[2026-07-24 21:09:52]     [calib-adapt multi_modo] pasos=3200 dX_peor=0.001228 dS_ent_peor=0.000000
+[2026-07-24 21:09:55] [familia=multi_modo] -> pasos_muerte=6400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=1350)
+[2026-07-24 21:10:19]   [familia=multi_modo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:10:43]   [familia=multi_modo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:11:07]   [familia=multi_modo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:11:34]   [familia=multi_modo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:12:04]   [plateau-final multi_modo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 21:12:04] [familia=multi_modo] listo en 168.5s
+[2026-07-24 21:12:04] [familia=modo_unico] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:12:05]     [calib-adapt modo_unico] pasos=200 dX_peor=0.219366 dS_ent_peor=0.000002
+[2026-07-24 21:12:08]     [calib-adapt modo_unico] pasos=400 dX_peor=0.247393 dS_ent_peor=0.000003
+[2026-07-24 21:12:14]     [calib-adapt modo_unico] pasos=800 dX_peor=0.163300 dS_ent_peor=0.000002
+[2026-07-24 21:12:25]     [calib-adapt modo_unico] pasos=1600 dX_peor=0.040592 dS_ent_peor=0.000000
+[2026-07-24 21:12:48]     [calib-adapt modo_unico] pasos=3200 dX_peor=0.001797 dS_ent_peor=0.000000
+[2026-07-24 21:12:49] [familia=modo_unico] -> pasos_muerte=6400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=50)
+[2026-07-24 21:13:13]   [familia=modo_unico] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:13:38]   [familia=modo_unico] eps=1.000e-04 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:14:02]   [familia=modo_unico] eps=1.000e-02 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:14:28]   [familia=modo_unico] eps=3.000e-01 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:14:55]   [plateau-final modo_unico] eps=0.01 dX_medio=0.000000 dS_ent_medio=0.000000
+[2026-07-24 21:14:55] [familia=modo_unico] listo en 171.2s
+[2026-07-24 21:14:55] [familia=bulto_gaussiano] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:14:56]     [calib-adapt bulto_gaussiano] pasos=200 dX_peor=0.183888 dS_ent_peor=0.000002
+[2026-07-24 21:14:59]     [calib-adapt bulto_gaussiano] pasos=400 dX_peor=0.163809 dS_ent_peor=0.000002
+[2026-07-24 21:15:05]     [calib-adapt bulto_gaussiano] pasos=800 dX_peor=0.100933 dS_ent_peor=0.000001
+[2026-07-24 21:15:16]     [calib-adapt bulto_gaussiano] pasos=1600 dX_peor=0.024963 dS_ent_peor=0.000000
+[2026-07-24 21:15:38]     [calib-adapt bulto_gaussiano] pasos=3200 dX_peor=0.001105 dS_ent_peor=0.000000
+[2026-07-24 21:15:40] [familia=bulto_gaussiano] -> pasos_muerte=6400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=1225)
+[2026-07-24 21:16:03]   [familia=bulto_gaussiano] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:16:25]   [familia=bulto_gaussiano] eps=1.000e-04 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:16:48]   [familia=bulto_gaussiano] eps=1.000e-02 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:17:11]   [familia=bulto_gaussiano] eps=3.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:17:36]   [plateau-final bulto_gaussiano] eps=0.01 dX_medio=0.000001 dS_ent_medio=0.000000
+[2026-07-24 21:17:36] [familia=bulto_gaussiano] listo en 161.1s
+[2026-07-24 21:17:36] [familia=ruido_blanco] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:17:37]     [calib-adapt ruido_blanco] pasos=200 dX_peor=0.008377 dS_ent_peor=0.000000
+[2026-07-24 21:17:37] [familia=ruido_blanco] -> pasos_muerte=400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=50)
+[2026-07-24 21:17:39]   [familia=ruido_blanco] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:17:40]   [familia=ruido_blanco] eps=1.000e-04 X_real=0.010061 S_ent=1.000000 E_frac=1.000000 z_X=0.04
+[2026-07-24 21:17:41]   [familia=ruido_blanco] eps=1.000e-02 X_real=0.010061 S_ent=1.000000 E_frac=1.000000 z_X=0.04
+[2026-07-24 21:17:43]   [familia=ruido_blanco] eps=3.000e-01 X_real=0.010061 S_ent=0.999902 E_frac=1.000000 z_X=0.04
+[2026-07-24 21:17:44]   [plateau-final ruido_blanco] eps=0.01 dX_medio=0.005857 dS_ent_medio=0.000000
+[2026-07-24 21:17:44] [familia=ruido_blanco] listo en 8.3s
+[2026-07-24 21:17:44] [familia=ruido_rojo] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:17:45]     [calib-adapt ruido_rojo] pasos=200 dX_peor=0.161906 dS_ent_peor=0.000002
+[2026-07-24 21:17:47]     [calib-adapt ruido_rojo] pasos=400 dX_peor=0.158521 dS_ent_peor=0.000002
+[2026-07-24 21:17:51]     [calib-adapt ruido_rojo] pasos=800 dX_peor=0.100782 dS_ent_peor=0.000001
+[2026-07-24 21:17:59]     [calib-adapt ruido_rojo] pasos=1600 dX_peor=0.024984 dS_ent_peor=0.000000
+[2026-07-24 21:18:16]     [calib-adapt ruido_rojo] pasos=3200 dX_peor=0.001106 dS_ent_peor=0.000000
+[2026-07-24 21:18:18] [familia=ruido_rojo] -> pasos_muerte=6400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=1300)
+[2026-07-24 21:18:40]   [familia=ruido_rojo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:19:02]   [familia=ruido_rojo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:19:25]   [familia=ruido_rojo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:19:47]   [familia=ruido_rojo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:20:12]   [plateau-final ruido_rojo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 21:20:12] [familia=ruido_rojo] listo en 147.9s
+[2026-07-24 21:20:12] [familia=ruido_azul] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:20:13]     [calib-adapt ruido_azul] pasos=200 dX_peor=0.000028 dS_ent_peor=0.000000
+[2026-07-24 21:20:13] [familia=ruido_azul] -> pasos_muerte=400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=50)
+[2026-07-24 21:20:15]   [familia=ruido_azul] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:20:16]   [familia=ruido_azul] eps=1.000e-04 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:20:18]   [familia=ruido_azul] eps=1.000e-02 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:20:19]   [familia=ruido_azul] eps=3.000e-01 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:20:21]   [plateau-final ruido_azul] eps=0.01 dX_medio=0.000010 dS_ent_medio=0.000000
+[2026-07-24 21:20:21] [familia=ruido_azul] listo en 8.3s
+[2026-07-24 21:20:21] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_5_universalidad_limite/resultados/E5_5_5_smoke_resultado.json
+[2026-07-24 21:20:21] [elapsed] 665.3s
+[2026-07-24 21:20:21] === E5_5_5 motor terminado ===
+[2026-07-24 21:20:58] === E5_5_5 motor arrancando modo=produccion ===
+[2026-07-24 21:20:58] N=200 semillas=12 eps_list=[0.0, 1e-06, 1e-05, 0.0001, 0.001, 0.01, 0.1, 0.3] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul'] r=0(fijo)
+[2026-07-24 21:20:58] [familia=multi_modo] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 21:20:59]     [calib-adapt multi_modo] pasos=200 dX_peor=0.122938 dS_ent_peor=0.000001
+[2026-07-24 21:21:01]     [calib-adapt multi_modo] pasos=400 dX_peor=0.155209 dS_ent_peor=0.000001
+[2026-07-24 21:21:05]     [calib-adapt multi_modo] pasos=800 dX_peor=0.180165 dS_ent_peor=0.000002
+[2026-07-24 21:21:15]     [calib-adapt multi_modo] pasos=1600 dX_peor=0.176278 dS_ent_peor=0.000002
+[2026-07-24 21:21:35]     [calib-adapt multi_modo] pasos=3200 dX_peor=0.112062 dS_ent_peor=0.000001
+[2026-07-24 21:22:17]     [calib-adapt multi_modo] pasos=6400 dX_peor=0.027786 dS_ent_peor=0.000000
+[2026-07-24 21:23:33]     [calib-adapt multi_modo] pasos=12800 dX_peor=0.001231 dS_ent_peor=0.000000
+[2026-07-24 21:23:56] [familia=multi_modo] -> pasos_muerte=25600 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=5300)
+[2026-07-24 21:29:16]   [familia=multi_modo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:36:02]   [familia=multi_modo] eps=1.000e-06 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:45:33]   [familia=multi_modo] eps=1.000e-05 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:53:47]   [familia=multi_modo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 21:59:09]   [familia=multi_modo] eps=1.000e-03 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:04:08]   [familia=multi_modo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:08:55]   [familia=multi_modo] eps=1.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:13:35]   [familia=multi_modo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:15:08]   [plateau-final multi_modo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 22:15:08] [familia=multi_modo] listo en 3249.9s
+[2026-07-24 22:15:08] [familia=modo_unico] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 22:15:09]     [calib-adapt modo_unico] pasos=200 dX_peor=0.219366 dS_ent_peor=0.000002
+[2026-07-24 22:15:11]     [calib-adapt modo_unico] pasos=400 dX_peor=0.247393 dS_ent_peor=0.000002
+[2026-07-24 22:15:16]     [calib-adapt modo_unico] pasos=800 dX_peor=0.219680 dS_ent_peor=0.000002
+[2026-07-24 22:15:25]     [calib-adapt modo_unico] pasos=1600 dX_peor=0.247764 dS_ent_peor=0.000002
+[2026-07-24 22:15:42]     [calib-adapt modo_unico] pasos=3200 dX_peor=0.163565 dS_ent_peor=0.000002
+[2026-07-24 22:16:19]     [calib-adapt modo_unico] pasos=6400 dX_peor=0.040668 dS_ent_peor=0.000000
+[2026-07-24 22:17:33]     [calib-adapt modo_unico] pasos=12800 dX_peor=0.001802 dS_ent_peor=0.000000
+[2026-07-24 22:17:39] [familia=modo_unico] -> pasos_muerte=25600 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=200)
+[2026-07-24 22:21:44]   [familia=modo_unico] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:25:38]   [familia=modo_unico] eps=1.000e-06 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:29:28]   [familia=modo_unico] eps=1.000e-05 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:33:52]   [familia=modo_unico] eps=1.000e-04 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:38:03]   [familia=modo_unico] eps=1.000e-03 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:42:46]   [familia=modo_unico] eps=1.000e-02 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:46:20]   [familia=modo_unico] eps=1.000e-01 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:49:49]   [familia=modo_unico] eps=3.000e-01 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:50:47]   [plateau-final modo_unico] eps=0.01 dX_medio=0.000000 dS_ent_medio=0.000000
+[2026-07-24 22:50:47] [familia=modo_unico] listo en 2139.3s
+[2026-07-24 22:50:47] [familia=bulto_gaussiano] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 22:50:48]     [calib-adapt bulto_gaussiano] pasos=200 dX_peor=0.155333 dS_ent_peor=0.000001
+[2026-07-24 22:50:49]     [calib-adapt bulto_gaussiano] pasos=400 dX_peor=0.173639 dS_ent_peor=0.000002
+[2026-07-24 22:50:52]     [calib-adapt bulto_gaussiano] pasos=800 dX_peor=0.184427 dS_ent_peor=0.000002
+[2026-07-24 22:50:58]     [calib-adapt bulto_gaussiano] pasos=1600 dX_peor=0.164125 dS_ent_peor=0.000002
+[2026-07-24 22:51:08]     [calib-adapt bulto_gaussiano] pasos=3200 dX_peor=0.101101 dS_ent_peor=0.000001
+[2026-07-24 22:51:30]     [calib-adapt bulto_gaussiano] pasos=6400 dX_peor=0.025009 dS_ent_peor=0.000000
+[2026-07-24 22:52:10]     [calib-adapt bulto_gaussiano] pasos=12800 dX_peor=0.001108 dS_ent_peor=0.000000
+[2026-07-24 22:52:18] [familia=bulto_gaussiano] -> pasos_muerte=25600 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=4750)
+[2026-07-24 22:54:00]   [familia=bulto_gaussiano] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:55:27]   [familia=bulto_gaussiano] eps=1.000e-06 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:56:52]   [familia=bulto_gaussiano] eps=1.000e-05 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:58:14]   [familia=bulto_gaussiano] eps=1.000e-04 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 22:59:44]   [familia=bulto_gaussiano] eps=1.000e-03 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:01:15]   [familia=bulto_gaussiano] eps=1.000e-02 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:02:40]   [familia=bulto_gaussiano] eps=1.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:04:10]   [familia=bulto_gaussiano] eps=3.000e-01 X_real=0.000001 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:04:37]   [plateau-final bulto_gaussiano] eps=0.01 dX_medio=0.000001 dS_ent_medio=0.000000
+[2026-07-24 23:04:37] [familia=bulto_gaussiano] listo en 830.2s
+[2026-07-24 23:04:37] [familia=ruido_blanco] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 23:04:38]     [calib-adapt ruido_blanco] pasos=200 dX_peor=0.008288 dS_ent_peor=0.000000
+[2026-07-24 23:04:38] [familia=ruido_blanco] -> pasos_muerte=400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=100)
+[2026-07-24 23:04:39]   [familia=ruido_blanco] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:04:40]   [familia=ruido_blanco] eps=1.000e-06 X_real=0.015026 S_ent=1.000000 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:41]   [familia=ruido_blanco] eps=1.000e-05 X_real=0.015026 S_ent=1.000000 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:43]   [familia=ruido_blanco] eps=1.000e-04 X_real=0.015026 S_ent=1.000000 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:44]   [familia=ruido_blanco] eps=1.000e-03 X_real=0.015026 S_ent=1.000000 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:45]   [familia=ruido_blanco] eps=1.000e-02 X_real=0.015026 S_ent=1.000000 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:46]   [familia=ruido_blanco] eps=1.000e-01 X_real=0.015026 S_ent=0.999986 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:47]   [familia=ruido_blanco] eps=3.000e-01 X_real=0.015026 S_ent=0.999872 E_frac=1.000000 z_X=0.18
+[2026-07-24 23:04:47]   [plateau-final ruido_blanco] eps=0.01 dX_medio=0.005867 dS_ent_medio=0.000000
+[2026-07-24 23:04:47] [familia=ruido_blanco] listo en 10.0s
+[2026-07-24 23:04:47] [familia=ruido_rojo] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 23:04:47]     [calib-adapt ruido_rojo] pasos=200 dX_peor=0.110635 dS_ent_peor=0.000001
+[2026-07-24 23:04:48]     [calib-adapt ruido_rojo] pasos=400 dX_peor=0.138963 dS_ent_peor=0.000001
+[2026-07-24 23:04:49]     [calib-adapt ruido_rojo] pasos=800 dX_peor=0.161290 dS_ent_peor=0.000002
+[2026-07-24 23:04:51]     [calib-adapt ruido_rojo] pasos=1600 dX_peor=0.157810 dS_ent_peor=0.000001
+[2026-07-24 23:04:56]     [calib-adapt ruido_rojo] pasos=3200 dX_peor=0.100322 dS_ent_peor=0.000001
+[2026-07-24 23:05:06]     [calib-adapt ruido_rojo] pasos=6400 dX_peor=0.024875 dS_ent_peor=0.000000
+[2026-07-24 23:05:24]     [calib-adapt ruido_rojo] pasos=12800 dX_peor=0.001102 dS_ent_peor=0.000000
+[2026-07-24 23:05:29] [familia=ruido_rojo] -> pasos_muerte=25600 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=5100)
+[2026-07-24 23:06:44]   [familia=ruido_rojo] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:08:07]   [familia=ruido_rojo] eps=1.000e-06 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:09:29]   [familia=ruido_rojo] eps=1.000e-05 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:10:44]   [familia=ruido_rojo] eps=1.000e-04 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:12:02]   [familia=ruido_rojo] eps=1.000e-03 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:13:16]   [familia=ruido_rojo] eps=1.000e-02 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:14:32]   [familia=ruido_rojo] eps=1.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:15:46]   [familia=ruido_rojo] eps=3.000e-01 X_real=0.000002 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:12]   [plateau-final ruido_rojo] eps=0.01 dX_medio=0.000002 dS_ent_medio=0.000000
+[2026-07-24 23:16:12] [familia=ruido_rojo] listo en 685.2s
+[2026-07-24 23:16:12] [familia=ruido_azul] calibracion adaptativa de plateau (tol=0.01) en eps=0.01
+[2026-07-24 23:16:13]     [calib-adapt ruido_azul] pasos=200 dX_peor=0.000028 dS_ent_peor=0.000000
+[2026-07-24 23:16:13] [familia=ruido_azul] -> pasos_muerte=400 (adaptativo, tol=0.01; diagnóstico lavado P<0.05 mediana=50)
+[2026-07-24 23:16:14]   [familia=ruido_azul] eps=0.000e+00 X_real=0.000000 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:15]   [familia=ruido_azul] eps=1.000e-06 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:16]   [familia=ruido_azul] eps=1.000e-05 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:17]   [familia=ruido_azul] eps=1.000e-04 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:18]   [familia=ruido_azul] eps=1.000e-03 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:19]   [familia=ruido_azul] eps=1.000e-02 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:20]   [familia=ruido_azul] eps=1.000e-01 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:22]   [familia=ruido_azul] eps=3.000e-01 X_real=0.000015 S_ent=1.000000 E_frac=1.000000 z_X=0.00
+[2026-07-24 23:16:22]   [plateau-final ruido_azul] eps=0.01 dX_medio=0.000010 dS_ent_medio=0.000000
+[2026-07-24 23:16:22] [familia=ruido_azul] listo en 9.7s
+[2026-07-24 23:16:22] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_5_universalidad_limite/resultados/E5_5_5_produccion_resultado.json
+[2026-07-24 23:16:22] [elapsed] 6924.2s
+[2026-07-24 23:16:22] === E5_5_5 motor terminado ===

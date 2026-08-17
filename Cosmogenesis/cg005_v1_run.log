@@ -1,0 +1,32 @@
+CG005 v1 — EDS + 'AL LADO DE' = HISTORIA (orden temporal del congelamiento)
+========================================================================================================
+N=600 · color {R,V,A} inmutable · λ=6.0 τ=3.0 (mismos que v0) · W=8 (FIJO por criterio físico) · 4 sem
+
+Anclas (arnés calibrado; el criterio de éxito es ACERCARSE a lattice2D):
+   lattice2D: δ=2.18 turn=1.15 diam=57 dim=1.60 %gig=100
+    arbol_b3: δ=0.00 turn=1.97 diam=12 dim=2.28 %gig=100
+
+--------------------------------------------------------------------------------------------------------
+     brazo sd  %gig  g_med  tri/nod  %entri  diam   δ_med    dim   turn        ver
+  --------------------------------------------------------------------------------------------
+   REGLA_T  1    2   3.56     3.31     89     6     nan    nan   1.69 poco rango
+    NULL_T  1    8   1.79     1.02     62    13     nan   1.03   1.62  GEOMETRIA
+   REGLA_T  2    4   3.65     3.45     90     8     nan    nan   2.28 poco rango
+    NULL_T  2   25   1.91     1.08     65    24    0.09   1.14   1.31  GEOMETRIA
+   REGLA_T  3    2   3.55     3.33     89     5     nan    nan   1.67 poco rango
+    NULL_T  3    2   1.46     0.82     52    14     nan   1.11   1.51  GEOMETRIA
+   REGLA_T  4    2   3.36     3.04     86     6     nan    nan   2.00 poco rango
+    NULL_T  4   24   1.92     1.09     66    22    0.03   1.21   1.49  GEOMETRIA
+
+========================================================================================================
+RESUMEN — promedios (criterio: ¿REGLA_T se ACERCA a lattice2D y NULL_T no?):
+  ancla plana: δ=2.18 turn=1.15 diam=57 dim=1.60
+     REGLA_T: δ=nan turn=1.91 diam=6 dim=nan %gig=2 tri/nodo=3.29 g_med=3.53
+      NULL_T: δ=0.06 turn=1.48 diam=18 dim=1.12 %gig=15 tri/nodo=1.00 g_med=1.77
+
+VEREDICTO (pre-registrado):
+  distancia al ancla plana (|Δturn|+|Δδ|): REGLA_T=nan  NULL_T=2.44  (menor = más plano)
+  → REGLA_T NO se acerca claramente al plano o NO se separa del NULL_T:
+    la ventana temporal sola no genera planitud; reportar lo que salió (sin retunear).
+
+Tiempo: 0.5 min

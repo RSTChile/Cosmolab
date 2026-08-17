@@ -1,0 +1,28 @@
+[chequeo #1] 12 reglas x 4 condiciones: seed regenerado == seed archivado en cs090_fase6_remedicion_mecanismo.csv -- OK
+[lote] 12 reglas admitidas (descartadas por P1-P5 en el lote de 20: 0); seed_base=90211
+[IC] 48 celdas (regla x condicion); faltan 44; workers=8
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.13/3.13.14/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/process.py", line 254, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3c_factorial_mecanistico.py", line 273, in preparar_una
+    assert dif_pend < 1e-6, (
+           ^^^^^^^^^^^^^^^
+AssertionError: CHEQUEO #2 FALLIDO A2-B0-C2-mec-r2/c2-rigido-azar: pendiente fresca 0.515225851 != archivada 0.495041604 (dif=2.02e-02)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3c_factorial_mecanistico.py", line 447, in <module>
+    print(f"[CSV] {len(faltan)} celdas todavia sin corrida completa, NO incluidas: {faltan}",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase6_o3c_factorial_mecanistico.py", line 362, in etapa_ic
+    meta = fut.result()          # si algun chequeo fallo, la excepcion sube y corta la etapa
+  File "/usr/local/Cellar/python@3.13/3.13.14/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 453, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.14/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+AssertionError: CHEQUEO #2 FALLIDO A2-B0-C2-mec-r2/c2-rigido-azar: pendiente fresca 0.515225851 != archivada 0.495041604 (dif=2.02e-02)

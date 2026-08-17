@@ -1,0 +1,33 @@
+[f802] corridas leídas y verificadas: 60   problemas: 1
+   ! A2-B0-C2-batch3-r143_s485700_f802_L4: sin cosmog_00500 (corrida incompleta, se marca)
+[f802] bloques (IC base): 12; los 5 niveles de cada uno comparten grafo, aristas, masa y N: OK
+[f802] CSV crudo: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f802_crudo.csv (60 filas, 59 completas a tmax=0.500)
+[f802] IC excluidas de la estadística de bloques por tener algún nivel incompleto: ['A2-B0-C2-batch3-r143']  (quedan en el CSV crudo, con su dump final marcado)
+     A2-B0-C2-batch3-r143: L0=0.0890  L1=0.1000  L2=0.1090  L3=0.1220  L4=0.1375*(cosmog_00452)
+[f802] L1 (identidad) vs. la corrida histórica de Fase V-B: máx |Δ| = 0.000000  (12/12 idénticas)
+
+[control de la intervención] pico logrado: Page L z=6.51 p=3.69e-11; estrictamente creciente en 9/11 IC
+[PRINCIPAL] frac_masa: Page L z=6.63 p=1.64e-11; estrictamente creciente en 11/11 IC; Friedman χ²=44.0 p=6.42e-09
+
+[contrastes pareados]  (1 partícula = 0.0005; piso práctico ~5 partículas = 0.0025)
+    L0 - L1: Δmediano=-0.01500 (-30.0 part.)  Δmedio=-0.01727 (-34.5 part.)  signos 0/11  Wilcoxon p=9.77e-04  SUPERA el piso de 5 part.
+    L2 - L1: Δmediano=+0.01050 (+21.0 part.)  Δmedio=+0.01073 (+21.5 part.)  signos 11/11  Wilcoxon p=9.77e-04  SUPERA el piso de 5 part.
+    L3 - L1: Δmediano=+0.02250 (+45.0 part.)  Δmedio=+0.02436 (+48.7 part.)  signos 11/11  Wilcoxon p=9.77e-04  SUPERA el piso de 5 part.
+    L4 - L1: Δmediano=+0.06200 (+124.0 part.)  Δmedio=+0.05623 (+112.5 part.)  signos 11/11  Wilcoxon p=9.77e-04  SUPERA el piso de 5 part.
+    L4 - L0: Δmediano=+0.07750 (+155.0 part.)  Δmedio=+0.07350 (+147.0 part.)  signos 11/11  Wilcoxon p=9.77e-04  SUPERA el piso de 5 part.
+
+[dentro de cada IC] Spearman(pico logrado, frac_masa): mediana=+1.000  11/11 positivos  (rango +0.90 a +1.00)
+  agrupado (centrado por IC): pico local (p90/mediana)               ρ=+0.935 (p=1.3e-25)  r=+0.865
+  agrupado (centrado por IC): geometría GLOBAL FoF b=0.30 (eje-1)    ρ=-0.460 (p=4.1e-04)  r=-0.455
+  agrupado (centrado por IC): CV de densidad local                   ρ=+0.959 (p=8.1e-31)  r=+0.852
+
+[secundarios]
+  tiempo al primer sumidero          Page z=-6.63 p=1.00e+00   Δmediano(L4−L1)=-0.028
+  κ_V agregado                       Page z=-6.27 p=1.00e+00   Δmediano(L4−L1)=-0.24082
+  nº de sumideros                    Page z=+4.16 p=1.59e-05   Δmediano(L4−L1)=+9
+  geometría global FoF b=0.30 (eje-1) Page z=-1.96 p=9.75e-01   Δmediano(L4−L1)=-0.0015
+
+[qué se movió] pico local: ×2.21 a ×4.85 dentro de una IC; geometría global FoF: ×1.0008 a ×1.0133
+
+[f802] estadística -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f802_estadistica.csv
+[f802] figura -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase8_f802_pico.png

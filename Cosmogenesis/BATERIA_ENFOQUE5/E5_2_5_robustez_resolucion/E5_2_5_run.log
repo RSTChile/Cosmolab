@@ -1,0 +1,18 @@
+[equivalencia] paso_difusion_dt(dt=0.5) == paso_difusion original (cs074_rcruz.py): OK bit-a-bit
+[inicio] 2026-07-25T00:44:55Z
+[progreso] 80/1120 combos eps=0.0 cond=aislado N=256 dt=1.00e-03 elapsed=595.6s
+[progreso] 160/1120 combos eps=0.0 cond=aislado N=512 dt=3.16e-02 elapsed=1046.4s
+[progreso] 240/1120 combos eps=0.0 cond=aislado N=2048 dt=3.16e-04 elapsed=1809.0s
+[progreso] 320/1120 combos eps=0.0 cond=expansion_r1 N=128 dt=1.00e-02 elapsed=2130.3s
+[progreso] 400/1120 combos eps=0.0 cond=expansion_r1 N=512 dt=1.00e-04 elapsed=2697.5s
+[progreso] 480/1120 combos eps=0.0 cond=expansion_r1 N=1024 dt=3.16e-03 elapsed=3397.2s
+[progreso] 560/1120 combos eps=0.0 cond=expansion_r1 N=2048 dt=1.00e-01 elapsed=4117.4s
+[progreso] 640/1120 combos eps=0.01 cond=aislado N=256 dt=1.00e-03 elapsed=4727.6s
+[progreso] 720/1120 combos eps=0.01 cond=aislado N=512 dt=3.16e-02 elapsed=5051.4s
+[progreso] 800/1120 combos eps=0.01 cond=aislado N=2048 dt=3.16e-04 elapsed=5639.0s
+[progreso] 880/1120 combos eps=0.01 cond=expansion_r1 N=128 dt=1.00e-02 elapsed=5952.4s
+[progreso] 960/1120 combos eps=0.01 cond=expansion_r1 N=512 dt=1.00e-04 elapsed=6436.4s
+[progreso] 1040/1120 combos eps=0.01 cond=expansion_r1 N=1024 dt=3.16e-03 elapsed=6906.3s
+[progreso] 1120/1120 combos eps=0.01 cond=expansion_r1 N=2048 dt=1.00e-01 elapsed=7274.0s
+[fin] 2026-07-25T02:46:09Z  elapsed=7274.0s  filas=1120
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_2_5_robustez_resolucion/E5_2_5_resultado.json

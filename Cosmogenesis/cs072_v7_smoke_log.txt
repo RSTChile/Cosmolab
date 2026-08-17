@@ -1,0 +1,34 @@
+=== CS072 v7 -- correcciones ADJUDICACION_CS072_motor_v6_NO_ADMISIBLE_CS.md (5 fallas) ===
+
+--- 4 BRAZOS DE CONTROL (30q/21aq/10e/7p, pasos=300) ---
+  brazo A (homogeneo=True, expansion=False): n_firmas=6, diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  brazo B (homogeneo=True, expansion=True): n_firmas=6, diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  brazo C (homogeneo=False, expansion=False): n_firmas=68, diametro=4, componentes=38, tam_mayor=31, bariones=0, hidrogeno=0
+  brazo D (homogeneo=False, expansion=True): n_firmas=62, diametro=4, componentes=31, tam_mayor=38, bariones=9, hidrogeno=4
+  D vs A: D>A | D vs B: D>B | D vs C: D<=C (la expansión NO aportó diferencia medible sobre el gradiente solo)
+  *** NO se cumple el patrón esperado -- ver detalle arriba ***
+
+--- INVARIANCIA DURA (brazo D, pasos=300) ---
+  INVARIANCIA DURA (brazo D, N=68): max_dif=1.388e-17 -- *** INVARIANTE (atol 1e-9) ***
+
+--- #22 masa efectiva QCD sobre los bariones del brazo D ---
+  trio (0, 4, 8): masa_valencia=3.0000 E_campo_QCD=0.011906 masa_efectiva=3.0119 (NULL sin QCD=3.0000)
+  trio (12, 16, 20): masa_valencia=3.0000 E_campo_QCD=0.011806 masa_efectiva=3.0118 (NULL sin QCD=3.0000)
+  trio (24, 28, 31): masa_valencia=3.0000 E_campo_QCD=0.011678 masa_efectiva=3.0117 (NULL sin QCD=3.0000)
+  trio (34, 37, 39): masa_valencia=3.0000 E_campo_QCD=0.011605 masa_efectiva=3.0116 (NULL sin QCD=3.0000)
+  trio (41, 43, 45): masa_valencia=3.0000 E_campo_QCD=0.011477 masa_efectiva=3.0115 (NULL sin QCD=3.0000)
+  trio (47, 49, 51): masa_valencia=3.0000 E_campo_QCD=0.011049 masa_efectiva=3.0110 (NULL sin QCD=3.0000)
+  trio (53, 55, 57): masa_valencia=3.0000 E_campo_QCD=0.009972 masa_efectiva=3.0100 (NULL sin QCD=3.0000)
+  trio (59, 60, 61): masa_valencia=3.0000 E_campo_QCD=0.009455 masa_efectiva=3.0095 (NULL sin QCD=3.0000)
+  trio (62, 63, 64): masa_valencia=3.0000 E_campo_QCD=0.006903 masa_efectiva=3.0069 (NULL sin QCD=3.0000)
+
+--- barrido de N (4 brazos, pasos=300) ---
+  N=68 brazo A (q=30,aq=21,e=10,p=7): diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  N=68 brazo B (q=30,aq=21,e=10,p=7): diametro=3, componentes=18, tam_mayor=51, bariones=0, hidrogeno=0
+  N=68 brazo C (q=30,aq=21,e=10,p=7): diametro=4, componentes=38, tam_mayor=31, bariones=0, hidrogeno=0
+  N=68 brazo D (q=30,aq=21,e=10,p=7): diametro=4, componentes=31, tam_mayor=38, bariones=9, hidrogeno=4
+  N=136 brazo A (q=60,aq=42,e=20,p=14): diametro=3, componentes=35, tam_mayor=102, bariones=0, hidrogeno=0
+  N=136 brazo B (q=60,aq=42,e=20,p=14): diametro=3, componentes=35, tam_mayor=102, bariones=0, hidrogeno=0
+  N=136 brazo C (q=60,aq=42,e=20,p=14): diametro=4, componentes=76, tam_mayor=61, bariones=0, hidrogeno=0
+  N=136 brazo D (q=60,aq=42,e=20,p=14): diametro=6, componentes=59, tam_mayor=78, bariones=18, hidrogeno=8
+  *** EL DIÁMETRO (brazo D) CRECE CON N ***

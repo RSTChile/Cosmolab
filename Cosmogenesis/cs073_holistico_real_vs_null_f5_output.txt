@@ -1,0 +1,23 @@
+tiempo total: 156.5 s
+{
+  "ok": true,
+  "n_null_ok": 8,
+  "real_n_estructuras_jeans": 1,
+  "real_n_clusters_ligados": 3,
+  "null_jeans_media": 1.5,
+  "null_jeans_std": 1.414,
+  "null_ligados_media": 3.375,
+  "null_ligados_std": 0.916,
+  "z_n_estructuras_jeans": -0.354,
+  "z_n_clusters_ligados": -0.409,
+  "obs_basal": {
+    "hidrogeno": 250,
+    "helio": 125
+  },
+  "a_final": 7.745966692414833
+}
+detalle real:
+  {'n_miembros': 12, 'masa': 17.278288690266972, 'T_local': 2.5208883931194728, 'rho_local': 0.10631016026686912, 'M_J': np.float64(12.275608847891895), 'supera_jeans': True}
+  {'n_miembros': 6, 'masa': 5.39830255582554, 'T_local': 2.2421879075534243, 'rho_local': 0.11128760964964206, 'M_J': np.float64(10.064323822973797), 'supera_jeans': False}
+  {'n_miembros': 6, 'masa': 4.954655557860274, 'T_local': 3.6717181974724107, 'rho_local': 0.1784391411361467, 'M_J': np.float64(16.655548934855155), 'supera_jeans': False}
+EXIT:0

@@ -1,0 +1,491 @@
+{
+  "synthesis": {
+    "global_verdict": "INCONCLUSO_DATO_INSUFICIENTE",
+    "protocol_id": "TRACKD_KEPLER_2026-07-23",
+    "smoke": true,
+    "pasos": 200,
+    "n_seeds": 4,
+    "rate_D": 0.0,
+    "frac_off_zero_pairs": 1.0,
+    "n_seeds_with_real_pairs": 1,
+    "thresholds": {
+      "PAIR_MIN_STEPS": 5,
+      "CV_RATIO_MIN": 1.15,
+      "RHO_REAL_MIN": 0.25,
+      "RHO_GAP_MIN": 0.15,
+      "SEED_RATE_PASS": 0.55,
+      "OFF_NULL_CLEAN_FRAC": 0.9
+    },
+    "elapsed_s": 141.4306309223175,
+    "no_lineage_ingredients": true,
+    "note": "co_member_score / n_long_co_pairs / fusion_events NO se calculan en este archivo."
+  },
+  "controls_G020": [
+    {
+      "seed": 7,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 0
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 42,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 99,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 0
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 777,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    }
+  ],
+  "sweep_G": [
+    {
+      "seed": 2025,
+      "G": 0.1,
+      "pasos": 200,
+      "T1_stability": false,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 3,
+        "cv_med": 0.629390812219153,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 5,
+        "cv_med": 0.19197139293256588,
+        "rho_mass": 0.09999999999999999
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 3,
+        "cv_med": 0.22016759685935539,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 42,
+      "G": 0.1,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 777,
+      "G": 0.1,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 3141,
+      "G": 0.1,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 17
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 2025,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": true,
+      "T2_correlation": false,
+      "PASS_D": true,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 5,
+        "cv_med": 0.7409009183943073,
+        "rho_mass": 0.7999999999999999,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 9,
+        "cv_med": 0.881348761281448,
+        "rho_mass": 0.7999999999999999
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 3,
+        "cv_med": 0.23097034037951097,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 42,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 777,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 3141,
+      "G": 0.2,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 17
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 2025,
+      "G": 0.3,
+      "pasos": 200,
+      "T1_stability": true,
+      "T2_correlation": false,
+      "PASS_D": true,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 6,
+        "cv_med": 0.4721195661306109,
+        "rho_mass": 0.028571428571428574,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 19,
+        "cv_med": 0.5976918780047565,
+        "rho_mass": 0.1087719298245614
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 2,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 42,
+      "G": 0.3,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 777,
+      "G": 0.3,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 70
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 1,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    },
+    {
+      "seed": 3141,
+      "G": 0.3,
+      "pasos": 200,
+      "T1_stability": null,
+      "T2_correlation": null,
+      "PASS_D": false,
+      "off_zero_pairs": true,
+      "real": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null,
+        "e4_steps": 17
+      },
+      "shuffle": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      },
+      "off": {
+        "n_qualifying_pairs": 0,
+        "n_pairs_any": 0
+      },
+      "invert": {
+        "n_qualifying_pairs": 0,
+        "cv_med": null,
+        "rho_mass": null
+      }
+    }
+  ]
+}

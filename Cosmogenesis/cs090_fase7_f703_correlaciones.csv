@@ -1,0 +1,17 @@
+medida,descripcion,rho,p,n,nota
+frac_aristas_en_triangulo,soporte: aristas en algún triángulo,-0.781427142682471,1.7439227036054973e-13,60,
+tri_por_arista_media,triángulos por arista con triángulo,0.776203179137051,3.197227493218984e-13,60,
+clustering_local,clustering local medio (Watts-Strogatz),-0.7695855736443393,6.734427396882559e-13,60,
+frac_nodos_en_triangulo,soporte: nodos que tocan algún triángulo,-0.7649731172329967,1.1156522478673871e-12,60,
+gini_tri_nodo,concentración: Gini de triángulos por nodo,0.7360757999571143,2.0696385367483505e-11,60,
+tri_por_nodo_max,máximo de triángulos en un solo nodo,0.7118540480747816,1.8133098730504215e-10,60,
+frac_aristas_multi_tri,solapamiento: aristas en >1 triángulo,0.6955374016245265,6.934483671018756e-10,60,
+n_comp_tri,nº de cúmulos de triángulos,-0.5894799728259709,7.21581211386179e-07,60,
+modularidad_tri,modularidad de la partición inducida,-0.5758624043679436,1.4797924655395857e-06,60,
+dist_media_tri,distancia media entre triángulos (saltos),0.511288014609145,2.983804017172177e-05,60,
+gigante,tamaño de la componente gigante,-0.4942652928488227,5.976421861694662e-05,60,
+asortatividad,asortatividad de grados,-0.40083913367488316,0.0015045808064870433,60,
+pendiente_corr,pendiente corregida log(diám)-log(N_cajas),0.3260117534595456,0.011021396608235257,60,
+frac_mayor_comp_tri,fracción de triángulos en el cúmulo mayor,0.18462479029726342,0.15789497425942392,60,
+solapamiento_aristas,aristas compartidas con el grafo original,0.17578218930554707,0.1791270082192263,60,
+transitividad,transitividad global (fija por diseño),nan,nan,5,sin variación entre brazos o sin datos

@@ -63,7 +63,7 @@ CORRELACION_CB_MIN = 0.30
 MEMORIA_CAPACIDAD = 10
 
 # Ruta de audios
-AUDIO_DIR = "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural"
+AUDIO_DIR = "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural"
 
 
 # ============================================================

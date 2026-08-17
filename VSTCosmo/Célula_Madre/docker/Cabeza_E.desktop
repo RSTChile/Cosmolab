@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cabeza de E
+Name[es]=Cabeza de E
+Comment=Pantalla auxiliar: solo la cabeza del organismo E
+Comment[es]=Pantalla auxiliar: solo la cabeza del organismo E
+Exec=/home/ubuntu/bin/abrir-cabeza-e.sh
+Icon=applications-science
+Terminal=false
+Categories=Science;
+StartupNotify=true

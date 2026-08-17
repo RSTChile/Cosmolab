@@ -1,0 +1,26 @@
+[2026-07-26 20:50:26] === FULL: 2000 configuraciones ===
+[2026-07-26 20:50:26] [D] 2000 configuraciones LHS generadas, 12 semillas c/u, REAL+NULL -> 48000 corridas totales
+[2026-07-27 00:08:34] [D] config 100/2000 t=11888s eta=225868s
+[2026-07-27 02:48:31] [D] config 200/2000 t=21485s eta=193361s
+[2026-07-27 04:51:11] [D] config 300/2000 t=28845s eta=163453s
+[2026-07-27 06:27:40] [D] config 400/2000 t=34634s eta=138535s
+[2026-07-27 08:34:28] [D] config 500/2000 t=42242s eta=126725s
+[2026-07-27 11:04:29] [D] config 600/2000 t=51243s eta=119566s
+[2026-07-27 13:26:54] [D] config 700/2000 t=59788s eta=111035s
+[2026-07-27 15:50:32] [D] config 800/2000 t=68406s eta=102609s
+[2026-07-27 17:30:50] [D] config 900/2000 t=74423s eta=90962s
+[2026-07-27 19:53:23] [D] config 1000/2000 t=82977s eta=82977s
+[2026-07-27 23:08:07] [D] config 1100/2000 t=94661s eta=77450s
+[2026-07-28 01:36:43] [D] config 1200/2000 t=103577s eta=69051s
+[2026-07-28 04:03:54] [D] config 1300/2000 t=112408s eta=60527s
+[2026-07-28 06:19:00] [D] config 1400/2000 t=120514s eta=51649s
+[2026-07-28 08:13:40] [D] config 1500/2000 t=127394s eta=42465s
+[2026-07-28 15:04:00] [D] config 1600/2000 t=152014s eta=38004s
+[2026-07-28 22:13:21] [D] config 1700/2000 t=177775s eta=31372s
+[2026-07-29 02:29:11] [D] config 1800/2000 t=193125s eta=21458s
+[2026-07-29 06:52:17] [D] config 1900/2000 t=208911s eta=10995s
+[2026-07-29 09:52:44] [D] config 2000/2000 t=219738s eta=0s
+[2026-07-29 09:52:44] [D] TOTAL elapsed=219738s ok=1647/2000
+[2026-07-29 09:52:44] [D] configuraciones con z>2.0: 0/1647 (0.0%)
+[2026-07-29 09:52:44] [D] conectividad = {'n_hit': 0, 'frac_hit': 0.0, 'tasa_vecinos_hit_obs': None, 'z_conectividad': None, 'lectura': 'sin_hits_z2'}
+[2026-07-29 09:52:44] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/resultados_cs074D_barrido_fino/cs074D_result_FULL.json

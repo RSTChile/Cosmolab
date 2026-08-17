@@ -1,0 +1,6 @@
+[calibracion] modo=control_1d N=256 eps=1e-3 mediana_lavado=8700 pasos=10005 lavo_todas=True tiempos=[8700, 8700, 8700, 8700, 8700, 8700, 8700, 8700]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_3_exergia_2D/E5_1_3_resultado_control_1d.json
+[control_r0_lava] True {'mean_X_r0_eps_gt0': 0.03355054112600187, 'n': 7, 'X_max': 0.15}
+[elapsed] 2214.7s
+EXIT=0

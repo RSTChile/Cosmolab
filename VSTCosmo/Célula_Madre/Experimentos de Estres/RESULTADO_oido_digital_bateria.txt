@@ -1,0 +1,14 @@
+[1] ROBUSTEZ: no lanza con filas sin nrf / vacías ................ OK
+[2] OFF: activo=False ⇒ salida == _NEUTRO (mod=1.000) ............ OK
+
+[3] FALSACIÓN (real vs shuffled vs null)  [fiab/valor = PICO; r = 2a mitad]:
+    modo         fiab_pk  valor_pk      conf   r_acopl   nsym
+    real          0.1716    0.0177    0.6214    0.9524      2
+    shuffled      0.0523    0.0045    0.0000    0.0180      2
+    null          0.0000    0.0000    0.0000    0.0400      0
+
+[4] DÉBIL: |modulación-1| capada a ±cap_mod=0.15; gate saturado ⇒ mod=1.1500 ... OK
+
+================================================================
+RESULTADO: PASA — el oído responde al REAL y colapsa en NULL/SHUFFLED,
+           OFF idempotente, robusto a filas sin nrf, modulación DÉBIL.

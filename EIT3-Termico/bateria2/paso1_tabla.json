@@ -1,0 +1,48 @@
+{
+  "filas": [
+    {
+      "transicion": "150->300",
+      "huella_dif_abs_media": 0.5477735600137889,
+      "huella_dif_abs_max": 2.483689898719768,
+      "huella_dif_rel_max_pct": 128.59023535151113,
+      "entropia_dif_abs_media": 0.41452371498513196,
+      "entropia_dif_abs_max": 0.9767374515846271,
+      "entropia_dif_rel_max_pct": 85.25202463156582
+    },
+    {
+      "transicion": "300->600",
+      "huella_dif_abs_media": 0.28930689634251916,
+      "huella_dif_abs_max": 0.737184490334867,
+      "huella_dif_rel_max_pct": 203.21851377996208,
+      "entropia_dif_abs_media": 0.16986352395543894,
+      "entropia_dif_abs_max": 0.6167014783811917,
+      "entropia_dif_rel_max_pct": 100
+    },
+    {
+      "transicion": "600->1200",
+      "huella_dif_abs_media": 0.17517186596323248,
+      "huella_dif_abs_max": 0.6415027436318623,
+      "huella_dif_rel_max_pct": 106.38526028258994,
+      "entropia_dif_abs_media": 0.07323502096443227,
+      "entropia_dif_abs_max": 0.4632815645633952,
+      "entropia_dif_rel_max_pct": 46.47727265149533
+    },
+    {
+      "transicion": "1200->2400",
+      "huella_dif_abs_media": 0.09208561107554133,
+      "huella_dif_abs_max": 0.3801862678214962,
+      "huella_dif_rel_max_pct": 35.87660681688894,
+      "entropia_dif_abs_media": 0.06813144193710312,
+      "entropia_dif_abs_max": 0.5336685283976179,
+      "entropia_dif_rel_max_pct": 36.55080647055481
+    }
+  ],
+  "tiempos": {
+    "150": 4.298,
+    "300": 6.373,
+    "600": 11.438,
+    "1200": 19.144,
+    "2400": 35.551
+  },
+  "settleEstable": null
+}

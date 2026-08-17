@@ -1,0 +1,19 @@
+============================================================
+VSTCosmos v72-A - Resultado del protocolo de verificación
+============================================================
+
+Condición crítica: alpha = 0.001
+
+Criterio 1 — Asimetría: FALLA
+  ruido→voz: 0.000s, voz→ruido: 0.000s
+
+Criterio 2 — Acoplamiento: PASA
+  min(A_sys-env) = 0.207130
+
+Criterio 3 — Gradiente: FALLA
+  gradiente_voz = 0.0340
+
+============================================================
+DECISIÓN: v72-B requiere MEMORIA ESTRUCTURAL ROBUSTA
+La asimetría de v71 era mayoritariamente inducida por el sesgo externo.
+============================================================

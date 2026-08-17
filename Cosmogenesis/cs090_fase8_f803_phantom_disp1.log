@@ -1,0 +1,7 @@
+patron=*_f803_disp1: 2 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f803_disp1', 'A2-B0-C2-batch4-r36_s575321_f803_disp1']
+[A2-B0-C2-batch3-r0_s471829_f803_disp1] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f803_disp1] exit_setup=0 t_setup=5.94s  exit_run=0 t_run=38.43s
+[A2-B0-C2-batch4-r36_s575321_f803_disp1] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f803_disp1] exit_setup=0 t_setup=4.32s  exit_run=0 t_run=36.86s
+
+[TOTAL] tiempo script=85.6s

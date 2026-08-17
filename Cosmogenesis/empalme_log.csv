@@ -1,0 +1,2 @@
+pair_id,fase,fecha,lado,cg002_script,K,N,d,theta_CP,S_BAND,semilla,excess_L2,exceso_orden,m_eff_over_K,f_persiste,orden_a1,organismo_id,audio_id,tau,mem_ds_L,mem_ds_R,delta_struct,e_R,LF_op,A_sys_env,Lambda_Cos,OI,prop_bienestar,prop_dW,invariantes_ok,kappa_P,kappa_Delta,kappa_O,kappa_V,kappa_LF,kappa_H,notas,veredicto_fase
+EMP-F1-CG002-REF,1,2026-06-30,CG002,cg002_dynamic_l2_sweep.py,8,2000,3,0.0,8.0,1,0.355493,0.014865,0.5,0.5125,0.514865,,,,,,,,,,,,,,,,,,,Punto fijo Fase 1; m_eff/K=0.5 derivado arco cerrado,REF

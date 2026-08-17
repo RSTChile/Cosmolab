@@ -1,0 +1,132 @@
+{
+  "pregunta": "¿existe en CG002 una partición sistema/entorno que el modelo dé?",
+  "respuesta_estructural": "No. El estado es una lista cerrada de N nodos; el único término no-nodal es MU, un sumidero sin estado ni retroacción. Cualquier partición hay que imponerla. Lo que sigue mide cuánto depende A_sys-env de esa imposición.",
+  "corridas": [
+    {
+      "semilla": 1,
+      "n_vivos_fin": 5,
+      "n_aristas": 8,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6763932022498673,
+      "A_mediana": 0.5236067977504401,
+      "frac_biparticiones_con_A_igual_0": 0.05511811023622047,
+      "frac_biparticiones_con_A_menor_1e-3": 0.05511811023622047,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 2,
+      "n_vivos_fin": 4,
+      "n_aristas": 6,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.7071067811865476,
+      "A_mediana": 0.5000000000000017,
+      "frac_biparticiones_con_A_igual_0": 0.11811023622047244,
+      "frac_biparticiones_con_A_menor_1e-3": 0.11811023622047244,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 3,
+      "n_vivos_fin": 4,
+      "n_aristas": 6,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6666666666666667,
+      "A_mediana": 0.5441518440112253,
+      "frac_biparticiones_con_A_igual_0": 0.11811023622047244,
+      "frac_biparticiones_con_A_menor_1e-3": 0.11811023622047244,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 4,
+      "n_vivos_fin": 6,
+      "n_aristas": 15,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6,
+      "A_mediana": 0.5568929081105471,
+      "frac_biparticiones_con_A_igual_0": 0.023622047244094488,
+      "frac_biparticiones_con_A_menor_1e-3": 0.023622047244094488,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 5,
+      "n_vivos_fin": 5,
+      "n_aristas": 10,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6763932022497681,
+      "A_mediana": 0.5236067977507379,
+      "frac_biparticiones_con_A_igual_0": 0.05511811023622047,
+      "frac_biparticiones_con_A_menor_1e-3": 0.05511811023622047,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 6,
+      "n_vivos_fin": 6,
+      "n_aristas": 15,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6804248970460257,
+      "A_mediana": 0.5395042867796367,
+      "frac_biparticiones_con_A_igual_0": 0.023622047244094488,
+      "frac_biparticiones_con_A_menor_1e-3": 0.023622047244094488,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 7,
+      "n_vivos_fin": 7,
+      "n_aristas": 19,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6666670746376422,
+      "A_mediana": 0.5833323111646826,
+      "frac_biparticiones_con_A_igual_0": 0.007874015748031496,
+      "frac_biparticiones_con_A_menor_1e-3": 0.023622047244094488,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 8,
+      "n_vivos_fin": 4,
+      "n_aristas": 6,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.7071067811865475,
+      "A_mediana": 0.5000000000000009,
+      "frac_biparticiones_con_A_igual_0": 0.11811023622047244,
+      "frac_biparticiones_con_A_menor_1e-3": 0.11811023622047244,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 9,
+      "n_vivos_fin": 5,
+      "n_aristas": 7,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6666671110902763,
+      "A_mediana": 0.6666657778195084,
+      "frac_biparticiones_con_A_igual_0": 0.05511811023622047,
+      "frac_biparticiones_con_A_menor_1e-3": 0.11811023622047244,
+      "sistema_roto": false
+    },
+    {
+      "semilla": 10,
+      "n_vivos_fin": 4,
+      "n_aristas": 6,
+      "n_biparticiones": 254,
+      "A_min": 0.0,
+      "A_max": 0.6666666666666667,
+      "A_mediana": 0.5441518440112253,
+      "frac_biparticiones_con_A_igual_0": 0.11811023622047244,
+      "frac_biparticiones_con_A_menor_1e-3": 0.11811023622047244,
+      "sistema_roto": false
+    }
+  ],
+  "sintesis": {
+    "frac_media_de_biparticiones_con_A_exactamente_0": 0.06929133858267716,
+    "corridas_con_alguna_biparticion_A_0": 10,
+    "corridas_rotas": 0,
+    "lectura": "Si hay biparticiones con A_sys-env = 0 exactamente y el sistema NO se rompe, entonces 'el acoplamiento con el entorno no puede caer a cero sin ruptura' no es falsable en CG002: el valor de A es una propiedad del corte que uno eligió, no del sistema."
+  }
+}

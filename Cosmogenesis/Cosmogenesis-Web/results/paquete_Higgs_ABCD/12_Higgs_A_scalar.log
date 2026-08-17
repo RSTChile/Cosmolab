@@ -1,0 +1,7 @@
+12 Higgs A scalar min V=r Phi^2+u Phi^4 r=r0*(T/Tc-1)
+step   0 a=  1.0 T=1.00e+15 r=0.00 <Phi>=-0.008 k1=32 k3=6 mk1=2.143e-02 mk3=6.044e-02 ratio=0.35466
+step 100 a=  4.5 T=2.23e+14 r=-0.78 <Phi>=-0.047 k1=0 k3=0 mk1=0.000e+00 mk3=0.000e+00 ratio=0.00000
+step 200 a= 20.1 T=4.98e+13 r=-0.95 <Phi>=-0.051 k1=0 k3=0 mk1=0.000e+00 mk3=0.000e+00 ratio=0.00000
+step 300 a= 90.0 T=1.11e+13 r=-0.99 <Phi>=-0.052 k1=0 k3=0 mk1=0.000e+00 mk3=0.000e+00 ratio=0.00000
+NULL test: si Phi=0 ratio debe volver a 0.3333 (geometria)
+EXIT:0

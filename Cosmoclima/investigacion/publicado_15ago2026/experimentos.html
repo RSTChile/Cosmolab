@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+
+
+<html lang="es">
+
+
+<head>
+
+
+<meta charset="utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Experimentos · Cosmosemiótica</title>
+
+
+<meta name="description" content="Las máquinas donde la teoría se pone a prueba: cada derivación tiene que medirse y ganarle a su propia versión barajada.">
+
+
+<link rel="canonical" href="https://cosmosemiotica.cl/experimentos.html">
+
+
+<meta property="og:type" content="website">
+
+
+<meta property="og:site_name" content="Cosmosemiótica">
+
+
+<meta property="og:locale" content="es_CL">
+
+
+<meta property="og:title" content="Experimentos · Cosmosemiótica">
+
+
+<meta property="og:description" content="Las máquinas donde la teoría se pone a prueba: cada derivación tiene que medirse y ganarle a su propia versión barajada.">
+
+
+<meta property="og:url" content="https://cosmosemiotica.cl/experimentos.html">
+
+
+<meta property="og:image" content="https://cosmosemiotica.cl/ilus-experimentos.webp">
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,200;9..144,0,300;9..144,1,200;9..144,1,300&family=IBM+Plex+Mono:wght@300;400;500&family=Public+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+*,*::before,*::after{box-sizing:border-box}
+
+
+:root{--ink:#f2efe8;--ink2:#a8adb6;--ink3:#767c87;--gold:#e8c477;--gold-dim:#a8874a;--cold:#8fc4dd;--bg:#0c0f18;--line:#242a37}
+
+
+html{scroll-behavior:smooth}
+
+
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;
+
+
+  background:radial-gradient(66% 52% at 4% 3%,rgba(140,92,26,.17) 0%,transparent 62%),
+
+
+             radial-gradient(70% 56% at 98% 95%,rgba(21,74,102,.20) 0%,transparent 64%)}
+
+
+.wrap{position:relative;z-index:10}
+
+
+nav{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px clamp(20px,4vw,58px);border-bottom:1px solid var(--line)}
+
+
+.brand{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#e2d9c4;text-decoration:none}
+
+
+nav ul{display:flex;gap:clamp(13px,2vw,28px);list-style:none;margin:0;padding:0;flex-wrap:wrap}
+
+
+@media (max-width:400px){nav{gap:12px}nav ul{gap:11px}}
+
+
+nav a{color:#c9c3b4;text-decoration:none;font-size:13.5px;padding:4px 0;border-bottom:1px solid transparent;transition:.22s}
+
+
+nav a:hover,nav a:focus-visible{color:#fff;border-bottom-color:var(--gold)}
+
+
+nav a[aria-current]{color:#fff;border-bottom-color:var(--gold)}
+
+
+main{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,58px)}
+
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 22px}
+
+
+.head{padding:clamp(48px,7vw,104px) 0 clamp(24px,3vw,44px)}
+
+
+h1{font-family:'Fraunces',Georgia,serif;font-weight:200;font-size:clamp(32px,4.9vw,64px);line-height:1.07;letter-spacing:-.022em;margin:0 0 26px;color:var(--ink);max-width:18ch}
+
+
+h1 em{font-style:italic;font-weight:300;color:var(--gold)}
+
+
+.stand{font-size:clamp(16px,1.3vw,18.5px);line-height:1.75;color:#c3c7ce;font-weight:200;max-width:58ch;margin:0 0 16px}
+
+
+.stand strong{font-weight:400;color:var(--ink)}
+
+
+
+
+
+.goal{margin:clamp(30px,4vw,52px) 0 0;padding:clamp(26px,3vw,40px);border:1px solid #2b3444;border-left:2px solid var(--cold);
+
+
+  background:rgba(143,196,221,.05)}
+
+
+.goal .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cold);margin:0 0 14px}
+
+
+.goal h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(22px,2.3vw,31px);line-height:1.2;margin:0 0 18px;color:var(--ink);max-width:24ch}
+
+
+.goal p{font-size:clamp(15px,1.1vw,16.5px);line-height:1.8;color:#b3bac4;font-weight:200;margin:0 0 15px;max-width:68ch}
+
+
+.goal p strong{font-weight:400;color:var(--ink)}
+
+
+.goal .sig{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--cold);margin:20px 0 0}
+
+
+
+
+
+.sec{padding:clamp(52px,6.5vw,96px) 0 0}
+
+
+.sec>.sh{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:0 0 8px}
+
+
+.sec>.sh .n{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold-dim)}
+
+
+.sec>.sh h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.01em;margin:0;color:var(--ink)}
+
+
+.sec>.sd{font-size:14.5px;line-height:1.7;color:var(--ink3);max-width:60ch;margin:0 0 10px;font-weight:300}
+
+
+.sec hr{border:0;border-top:1px solid var(--line);margin:22px 0 0}
+
+
+
+
+
+.exp{margin:clamp(28px,3.4vw,48px) 0 0;border:1px solid var(--line);background:#0e1220}
+
+
+.exp header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:20px clamp(20px,2.4vw,30px) 0}
+
+
+.exp .idx{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--gold-dim)}
+
+
+.exp h3{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(21px,2.1vw,28px);line-height:1.2;margin:0;color:var(--ink)}
+
+
+.chip{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;border:1px solid}
+
+
+.chip.run{color:var(--gold);border-color:rgba(232,196,119,.42)}
+
+
+.chip.done{color:var(--cold);border-color:rgba(143,196,221,.42)}
+
+
+.chip.open{color:#8b93a0;border-color:#39414f}
+
+
+.exp .sub{padding:10px clamp(20px,2.4vw,30px) 0;font-size:14.5px;line-height:1.7;color:#9aa1ac;font-weight:300;max-width:74ch}
+
+
+.split{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;margin-top:20px}
+
+
+.split .c{padding:20px clamp(20px,2.4vw,30px) 24px}
+
+
+.split .seam{background:linear-gradient(to bottom,transparent,rgba(232,196,119,.5),transparent)}
+
+
+.split .lb{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#5c626d;margin:0 0 10px}
+
+
+.split p{font-size:14.5px;line-height:1.72;color:#b3b9c3;font-weight:200;margin:0 0 12px}
+
+
+.split p:last-child{margin-bottom:0}
+
+
+.split p strong{font-weight:400;color:var(--ink)}
+
+
+.split .c.res p{color:#a9b1bc}
+
+
+
+
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0 0}
+
+
+.grid3 article{background:#0e1220;padding:18px 20px;display:flex;flex-direction:column}
+
+
+.grid3 .t{font-size:15.5px;color:var(--ink);margin:0 0 4px;font-weight:400}
+
+
+.grid3 .m{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f6874;margin:0 0 10px}
+
+
+.grid3 .d{font-size:13.5px;line-height:1.62;color:#9aa1ac;margin:0;font-weight:300}
+
+
+
+
+
+.grid3 article a.tt{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:.2s}
+
+
+.grid3 article a.tt:hover,.grid3 article a.tt:focus-visible{color:var(--gold);border-bottom-color:var(--gold)}
+
+
+.grid3 .rd{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cold);text-decoration:none;margin-top:12px;display:inline-block;border-bottom:1px solid rgba(143,196,221,.3);padding-bottom:2px}
+
+
+.grid3 .rd:hover{color:#d3e8f2;border-bottom-color:#d3e8f2}
+
+
+.grid3 .nord{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#4e5561;margin:12px 0 0;display:inline-block}
+
+
+.grid3 a.shot{display:block;margin:0 0 14px;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#080b12;line-height:0;transition:border-color .2s,box-shadow .2s}
+
+
+.grid3 a.shot:hover,.grid3 a.shot:focus-visible{border-color:rgba(232,196,119,.5);box-shadow:0 0 0 1px rgba(232,196,119,.2)}
+
+
+.grid3 a.shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block;vertical-align:middle}
+
+
+.grid3 .links{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:12px;align-items:center}
+
+
+.grid3 .links .rd{margin-top:0}
+
+
+.series{margin:28px 0 0;border:1px solid var(--line)}
+
+
+.series .row{display:grid;grid-template-columns:64px 1fr 1.25fr;gap:0;border-bottom:1px solid var(--line)}
+
+
+.series .row:last-child{border-bottom:0}
+
+
+.series .row>div{padding:13px 16px}
+
+
+.series .id{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold-dim);letter-spacing:.08em}
+
+
+.series .nm{font-size:14px;color:var(--ink);font-weight:300}
+
+
+.series .fd{font-size:13.5px;color:#9aa1ac;line-height:1.6;font-weight:300}
+
+
+.series .hd{background:#111622}
+
+
+.series .hd div{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#5c626d}
+
+
+
+
+
+
+
+
+.end{margin:clamp(56px,7vw,104px) 0 0;padding:clamp(30px,4vw,48px) 0;border-top:1px solid var(--line)}
+
+
+.end p{font-size:15.5px;line-height:1.78;color:var(--ink2);font-weight:200;max-width:60ch;margin:0 0 24px}
+
+
+.acts{display:flex;gap:12px;flex-wrap:wrap}
+
+
+.btn{text-decoration:none;font-size:13.5px;padding:12px 22px;border-radius:2px;transition:.22s;display:inline-block}
+
+
+.btn.p{background:var(--gold);color:#1e1608}
+
+
+.btn.p:hover{background:#f3d894}
+
+
+.btn.s{border:1px solid #3b4351;color:#cfd4dc}
+
+
+.btn.s:hover{border-color:#8d97a6;color:#fff}
+
+
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+
+footer{padding:30px 0 44px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#4b515c}
+
+
+@media (max-width:780px){
+
+
+  .split{grid-template-columns:1fr}
+
+
+  .split .seam{height:1px;background:linear-gradient(to right,transparent,rgba(232,196,119,.5),transparent)}
+
+
+  .series .row{grid-template-columns:52px 1fr}
+
+
+  .series .fd{grid-column:1 / -1;padding-top:0}
+
+
+  .series .hd div:last-child{display:none}
+
+
+}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+
+
+
+
+.ilus{display:block;margin:26px 0 4px;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#0e1220}
+
+
+.ilus img{width:100%;height:auto;aspect-ratio:16/9;display:block;opacity:.88}
+
+
+.exp .ilus{margin:20px 0 0;border-left:0;border-right:0;border-bottom:0;border-radius:0}
+
+
+
+.exp h3 a.tt{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:.2s}
+.exp h3 a.tt:hover,.exp h3 a.tt:focus-visible{color:var(--gold);border-bottom-color:var(--gold)}
+.exp .rd{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cold);text-decoration:none;display:inline-block;border-bottom:1px solid rgba(143,196,221,.3);padding-bottom:2px}
+.exp .rd:hover,.exp .rd:focus-visible{color:#d3e8f2;border-bottom-color:#d3e8f2}
+.exp>.rd{margin:0 clamp(20px,2.4vw,30px) 22px}.exp>.acts{padding:0 clamp(20px,2.4vw,30px) 22px}
+
+.goal .ilus{margin:0 calc(-1 * clamp(26px,3vw,40px)) 20px;border-left:0;border-right:0;border-radius:0}
+.exp.inst a.shot{display:block;margin:16px clamp(20px,2.4vw,30px) 0;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#080b12;line-height:0;transition:border-color .2s,box-shadow .2s}
+.exp.inst a.shot:hover,.exp.inst a.shot:focus-visible{border-color:rgba(232,196,119,.5);box-shadow:0 0 0 1px rgba(232,196,119,.2)}
+.exp.inst a.shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block;vertical-align:middle}
+.exp.inst>p{padding:12px clamp(20px,2.4vw,30px) 0;max-width:74ch}
+.exp.inst .acts{padding:14px clamp(20px,2.4vw,30px) 22px}
+</style>
+
+
+<!-- datos-estructurados -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "url": "https://cosmosemiotica.cl/experimentos.html",
+  "inLanguage": "es-CL",
+  "headline": "Experimentos · Cosmosemiótica",
+  "description": "Las máquinas donde la teoría se pone a prueba: cada derivación tiene que medirse y ganarle a su propia versión barajada.",
+  "image": "https://cosmosemiotica.cl/ilus-experimentos.webp",
+  "dateModified": "2026-08-01",
+  "@type": "CollectionPage",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cosmosemiótica",
+    "url": "https://cosmosemiotica.cl"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Alexis López Tapia",
+    "url": "https://cosmosemiotica.cl/autor.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cosmosemiótica",
+    "url": "https://cosmosemiotica.cl",
+    "email": "contacto@cosmosemiotica.cl"
+  }
+}
+</script>
+</head>
+
+
+<body>
+
+
+<div class="amb" aria-hidden="true"></div>
+
+
+<div class="wrap">
+
+
+<nav>
+
+
+  <a class="brand" href="index.html">Cosmosemiótica</a>
+
+
+  <ul>
+
+
+    <li><a href="teoria.html">Teoría</a></li>
+
+
+    
+
+
+    <li><a href="experimentos.html" aria-current="page">Experimentos</a></li>
+
+
+    <li><a href="https://cosmosemiotica.cl/descargas/anima.html">Descargas</a></li><li><a href="observatorio.html">Observatorio</a></li><li><a href="https://bitacora.cosmosemiotica.cl">Bitácora</a></li>
+
+
+    <li><a href="publicaciones.html">Publicaciones</a></li>
+
+
+  <li><a href="autor.html">Autor</a></li>
+
+
+    <li><a href="mapa-del-sitio.html">Mapa del Sitio</a></li></ul>
+
+
+</nav>
+
+
+
+
+
+<main>
+
+
+  <header class="head">
+
+
+    <p class="eyebrow">Experimentos</p>
+
+
+    <h1>¿Cómo probamos <em>experimentalmente</em> la teoría?</h1>
+
+
+    <p class="stand">Todo lo que la teoría <strong>deriva</strong> tiene que aparecer en algo que se pueda medir, y tiene que ganarle a su propia versión barajada. Estas son las máquinas donde eso se pone a prueba.</p>
+
+
+    <p class="stand">Van desde una simulación del origen del universo hasta un robot que no está programado para cumplir tareas. Parecen ramas distintas. <strong>Son la misma pregunta con instrumentos distintos.</strong></p>
+
+
+<figure class="ilus"><img width="1600" height="900" src="ilus-experimentos.webp" alt="Un objeto sobre una mesa oscura, bajo una luz, esperando ser medido" loading="eager"></figure>
+
+
+  </header>
+
+
+
+
+
+  <section class="sec">
+
+
+    <div class="sh"><span class="n">Origen</span><h2>De dónde salió todo esto</h2></div>
+
+
+    <p class="sd">Antes del programa central hubo un linaje de ciento ochenta versiones. Está cerrado, y es el suelo sobre el que están parados los tres experimentos que le siguen.</p>
+
+
+    <hr>
+
+
+
+
+
+    <article class="exp">
+
+
+      <header><span class="idx">00</span><h3><a class="tt" href="vstcosmo.html">VSTCosmo</a></h3><span class="chip done">Cerrado</span></header>
+
+
+      <p class="sub">El linaje experimental del que salieron la Célula Madre, ÁNIMA y Cosmorobot.</p>
+      <figure class="ilus"><img width="1600" height="900" src="ilus-vstcosmo.webp" alt="Un campo de filamentos azules y naranjas sobre el fondo estrellado, con sus partes rotuladas: osciladores, nodos de acoplamiento, trazas de memoria, regulación y ondas de perturbación" loading="lazy"></figure>
+
+
+      <div class="split">
+
+
+        <div class="c">
+
+
+          <p class="lb">Qué preguntó</p>
+
+
+          <p>¿Puede un sistema desarrollar sentido no porque alguien se lo enseñe, sino porque <strong>debe persistir</strong> en un medio que lo perturba?</p>
+
+
+          <p>Tres meses, de abril a junio de 2026, con un organismo mínimo expuesto a perturbaciones acústicas. Cada versión cerró una hipótesis y delimitó una imposibilidad.</p>
+
+
+        </div>
+
+
+        <div class="seam" aria-hidden="true"></div>
+
+
+        <div class="c res">
+
+
+          <p class="lb">Qué dejó</p>
+
+
+          <p><strong>Cada organelo del organismo actual viene de acá.</strong> El campo que procesa el sonido, la lateralidad, la fatiga como costo del tiempo, el juego, el ritual, la negación operativa y la memoria episódica tienen todos su versión de origen en esta serie.</p>
+
+
+          <p>Y dejó el método: los fracasos publicados como hallazgos. Nueve de diez hitos re-ejecutados y verificados; el décimo, reclasificado.</p>
+
+
+        </div>
+
+
+      </div>
+
+
+        <a class="rd" href="vstcosmo.html">Leer el linaje ↗</a>
+
+
+  </article>
+
+
+  </section>
+
+
+
+
+
+  <section class="sec">
+    <div class="sh"><span class="n">Instrumentos · desde abril de 2026</span><h2>Las máquinas de medir</h2></div>
+    <p class="stand">Cada una mide cuánto y dónde se diferencia algo, en un dominio distinto. Los primeros son <strong>anteriores</strong> a las cuatro etapas del programa central: se construyeron antes, y lo que enseñaron es lo que hizo posible lo que vino después. La serie sigue abierta — Cosmoclima es el último en llegar. Todos abren su registro completo: arquitectura, hipótesis, datos, hallazgos y límites declarados.</p>
+
+    <article class="exp inst">
+      <header><span class="idx">ABR·26</span><h3><a class="tt" href="informe-eit3-optico.html">EIT-3 Óptico</a></h3><span class="chip done">Con informe</span></header>
+      <p class="sub">Simulación · Campo de información</p>
+      <a class="shot" href="sim-eit3-optico.html" title="Abrir simulación EIT-3 Óptico">
+
+
+          <img src="shot-eit3-optico.webp" alt="Miniatura de la simulación EIT-3 Óptico" loading="lazy" width="640" height="400">
+
+
+        </a>
+      <p>Un campo de 256 × 256 que rota sobre sí mismo y desarrolla quiralidad. La zona fértil no se alcanzó, y el porqué obligó a redefinir la variable central. <strong>Abril de 2026.</strong></p>
+      <div class="acts">
+        <a class="rd" href="sim-eit3-optico.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-eit3-optico.html">Leer el informe ↗</a>
+      </div>
+    </article>
+    <article class="exp inst">
+      <header><span class="idx">JUN·26</span><h3><a class="tt" href="informe-dron.html">Dron cosmosemiótico</a></h3><span class="chip done">Con informe</span></header>
+      <p class="sub">Vuelo · Control por viabilidad</p>
+      <a class="shot" href="sim-dron.html" title="Abrir simulación del Dron cosmosemiótico">
+
+
+          <img src="shot-dron.webp" alt="Miniatura de la simulación del Dron cosmosemiótico" loading="lazy" width="640" height="400">
+
+
+        </a>
+      <p>Un dron que no persigue un punto de referencia sino que sostiene condiciones de viabilidad. La rigidez del curso frente al viento emerge del estado de la batería, no de una perilla. <strong>Junio de 2026.</strong></p>
+      <div class="acts">
+        <a class="rd" href="sim-dron.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-dron.html">Leer el informe ↗</a>
+      </div>
+    </article>
+    <article class="exp inst">
+      <header><span class="idx">v6.1</span><h3><a class="tt" href="informe-levitron.html">Levitrón cosmosemiótico</a></h3><span class="chip done">Con informe</span></header>
+      <p class="sub">Magnetismo · Control activo</p>
+      <a class="shot" href="sim-levitron.html" title="Abrir simulación del Levitrón cosmosemiótico">
+
+
+          <img src="shot-levitron.webp" alt="Miniatura de la simulación del Levitrón cosmosemiótico" loading="lazy" width="640" height="400">
+
+
+        </a>
+      <p>Un imán suspendido que por el teorema de Earnshaw no puede sostenerse solo. Sirve para medir la frecuencia mínima bajo la cual un acoplamiento deja de ser posible.</p>
+      <div class="acts">
+        <a class="rd" href="sim-levitron.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-levitron.html">Leer el informe ↗</a>
+      </div>
+    </article>
+    <article class="exp inst">
+      <header><span class="idx">v7.14</span><h3><a class="tt" href="informe-eit3-termico.html">EIT-3 Térmico</a></h3><span class="chip done">Con informe</span></header>
+      <p class="sub">Simulación · Daisyworld</p>
+      <a class="shot" href="sim-eit3-termico.html" title="Abrir simulación EIT-3 Térmico">
+
+
+          <img src="shot-eit3-termico-v2.webp" alt="Instrumento EIT-3 Térmico: el planeta Daisyworld con margaritas claras y oscuras" loading="lazy" width="640" height="400">
+
+
+        </a>
+      <p>El planeta de Lovelock con física real: margaritas claras y oscuras que, al competir por crecer, regulan la temperatura del mundo sin proponérselo. Encima, un umbral de conducta —κ_H— para medir cuándo un sistema hace algo que ya no es puro azar. <strong>Informe y simulador revisados el 2 de agosto de 2026.</strong></p>
+      <div class="acts">
+        <a class="rd" href="sim-eit3-termico.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-eit3-termico.html">Leer el informe ↗</a>
+      </div>
+    </article>
+    <article class="exp inst">
+      <header><span class="idx">AGO·26</span><h3><a class="tt" href="informe-cosmoclima.html">Cosmoclima</a></h3><span class="chip done">Con informe</span></header>
+      <p class="sub">Ecología · Daisyworld con datos reales</p>
+      <a class="shot" href="sim-cosmoclima.html" title="Abrir la simulación de Cosmoclima"><img src="ilus-cosmoclima.webp" alt="El Desierto Florido: la arena cubierta de flores tras la lluvia" loading="lazy" width="1600" height="900"></a>
+      <p>Un instrumento que mide si un ecosistema real está regulando o sólo persiste. Daisyworld reescrito para un interglacial, con 60 años de lluvia y temperatura reales del Desierto Florido y las vaquitas del desierto.</p>
+      <div class="acts">
+        <a class="rd" href="sim-cosmoclima.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-cosmoclima.html">Leer el informe ↗</a>
+      </div>
+    </article>
+  </section>
+
+<section class="sec">
+
+
+    <div class="sh"><span class="n">Programa central · desde julio de 2026</span><h2>Cuatro etapas</h2></div>
+
+
+    <p class="sd">El universo, la célula, la conversación y el cuerpo. Ese orden es <strong>conceptual</strong> —cada una supone la anterior—, no cronológico: los instrumentos de arriba vinieron antes en el tiempo.</p>
+
+
+    <hr>
+
+
+
+
+
+    <article class="exp">
+
+
+      <header><span class="idx">01</span><h3><a class="tt" href="informe-cosmogenesis.html">Cosmogénesis</a></h3><span class="chip run">En curso</span></header>
+
+
+      <p class="sub">Simulación de la emergencia del universo desde S&gt;0 hasta la formación de la primera estrella.</p>
+
+
+<figure class="ilus"><img width="1600" height="900" src="ilus-cosmogenesis.webp" alt="Un tejido que se está formando desde puntos sueltos: la trama existe pero todavía no es un espacio" loading="lazy"></figure>
+
+
+
+
+
+      <div class="split">
+
+
+        <div class="c">
+
+
+          <p class="lb">Qué pregunta</p>
+
+
+          <p>¿Se puede llegar a un universo con distancia, dimensión y dirección partiendo solo de diferencias que persisten y se acoplan localmente, sin poner el espacio ni el tiempo como escenario previo?</p>
+
+
+          <p>El instrumento no supone geometría: la busca. Si el espacio no emerge, la Parte I de la teoría queda sin respaldo.</p>
+
+
+        </div>
+
+
+        <div class="seam" aria-hidden="true"></div>
+
+
+        <div class="c res">
+
+
+          <p class="lb">Qué encontró</p>
+
+
+          <p><strong>La distancia emerge</strong> bajo localidad relacional fuerte, y no se reproduce en los controles barajados ni en los controles sin dinámica local.</p>
+
+
+          <p><strong>La dirección no se estabilizó.</strong> Ni la ruta clásica ni la cuántica produjeron orientación estable mientras el sustrato conservó estructura de mundo pequeño. El resultado acota las rutas ensayadas; no declara imposible la dirección.</p>
+
+
+          <p>π resultó estable donde hay geometría definida e inestable donde hay distancia sin dimensión consolidada.</p>
+
+
+        </div>
+
+
+      </div>
+
+
+          <div class="acts">
+        <a class="rd" href="sim-cosmogenesis.html">Abrir simulación ↗</a>
+        <a class="rd" href="informe-cosmogenesis.html">Leer el informe ↗</a>
+      </div>
+    </article>
+
+
+
+
+
+    <article class="exp">
+
+
+      <header><span class="idx">02</span><h3><a class="tt" href="informe-celula-madre.html">Célula Madre</a></h3><span class="chip run">En curso</span></header>
+
+
+      <p class="sub">Primer organismo mínimo no biológico digital.</p>
+
+
+<figure class="ilus"><img width="1600" height="900" src="ilus-celula-madre.webp" alt="Una membrana con un adentro, sin llegar a ser una célula biológica" loading="lazy"></figure>
+
+
+
+
+
+      <div class="split">
+
+
+        <div class="c">
+
+
+          <p class="lb">Qué pregunta</p>
+
+
+          <p>¿Cuál es el mínimo absoluto que hay que poner para que algo se comporte como organismo y no como programa? ¿Basta con frontera, acoplamiento y error acotado?</p>
+
+
+          <p>La prueba es por sustracción: quitar componentes hasta que deje de sostenerse, y ver qué era imprescindible.</p>
+
+
+        </div>
+
+
+        <div class="seam" aria-hidden="true"></div>
+
+
+        <div class="c res">
+
+
+          <p class="lb">Qué está midiendo</p>
+
+
+          <p>Los cinco invariantes de viabilidad — persistencia, diferencia interna, error acotado, acoplamiento y margen de respuesta — sobre un sustrato que no imita ninguna estructura biológica.</p>
+
+
+          <p>El criterio de éxito no es que parezca vivo. Es que cruce los umbrales, y que al barajar sus datos el comportamiento se pierda.</p>
+
+
+        </div>
+
+
+      </div>
+        <a class="rd" href="informe-celula-madre.html">Leer el informe ↗</a>
+
+
+    </article>
+
+
+
+
+
+    <article class="exp">
+
+
+      <header><span class="idx">03</span><h3><a class="tt" href="informe-anima.html">ÁNIMA</a></h3><span class="chip run">En curso</span></header>
+
+
+      <p class="sub">Organismos mínimos no biológicos que conversan y escuchan.</p>
+      <figure class="ilus"><img width="1600" height="900" src="ilus-anima.webp" alt="Una cabeza que escucha: la música entra por un lado y la onda de su voz sale por el otro, entre nebulosas y una galaxia" loading="lazy"></figure>
+
+
+      <div class="split">
+
+
+        <div class="c">
+
+
+          <p class="lb">Qué pregunta</p>
+
+
+          <p>¿Puede aparecer un código compartido entre organismos que no lo traen puesto? ¿Y qué hace falta exactamente: basta con que coincidan, o se necesita que se comuniquen?</p>
+
+
+          <p>Es la prueba directa del sentido compartido: el punto donde la teoría dice que emerge un entorno semiótico común.</p>
+
+
+        </div>
+
+
+        <div class="seam" aria-hidden="true"></div>
+
+
+        <div class="c res">
+
+
+          <p class="lb">Qué encontró</p>
+
+
+          <p>Comunicación funcional unidireccional confirmada entre organismos, con resultados validados por contraste contra barajado.</p>
+
+
+          <p><strong>La comunicación resultó necesaria y suficiente</strong> para que se fije una convención: sin canal, no hay coordinación estable aunque los organismos compartan el problema.</p>
+
+
+          <p>El programa avanzó de un par a una sociedad de cuatro, con diferenciación léxica y convenciones emergentes.</p>
+
+
+        </div>
+
+
+      </div>
+
+
+        <a class="rd" href="informe-anima.html">Leer el informe ↗</a>
+
+
+  </article>
+
+
+
+
+
+    <article class="exp">
+
+
+      <header><span class="idx">04</span><h3><a class="tt" href="informe-cosmorobot.html">Cosmorobot</a></h3><span class="chip run">En curso</span></header>
+
+
+      <p class="sub">Primer robot cosmosemiótico: no programado para cumplir funciones, sino para responder como organismo no biológico.</p>
+      <figure class="ilus"><img width="1600" height="900" src="ilus-cosmorobot.webp" alt="Un robot pequeño de piezas blancas, con cámara y sensores, sobre un fondo de galaxias y filamentos de luz" loading="lazy"></figure>
+
+
+      <div class="split">
+
+
+        <div class="c">
+
+
+          <p class="lb">Qué pregunta</p>
+
+
+          <p>Un robot convencional recibe objetivos y los persigue. ¿Qué pasa si en vez de objetivos se le dan solo las condiciones de viabilidad, y su conducta tiene que salir de sostenerlas?</p>
+
+
+          <p>Es donde la teoría sale de la pantalla y se enfrenta a un entorno físico que no perdona.</p>
+
+
+        </div>
+
+
+        <div class="seam" aria-hidden="true"></div>
+
+
+        <div class="c res">
+
+
+          <p class="lb">Qué pondría a prueba</p>
+
+
+          <p>Que los invariantes funcionen con ruido real, latencia real y consecuencias irreversibles — no en un mundo simulado donde el experimentador controla las variables.</p>
+
+
+          <p>Y que la conducta observada no sea reproducible por un controlador con objetivos explícitos: si lo fuera, no habría organismo, habría solo un programa con otra estética.</p>
+
+
+        </div>
+
+
+      </div>
+
+
+        <a class="rd" href="informe-cosmorobot.html">Leer el informe ↗</a>
+
+
+        <a class="rd" href="robot/dashboard.html">Abrir observatorio CosmoRobot ↗</a>
+
+
+  </article>
+
+
+  </section>
+
+
+
+
+
+  <section class="sec">
+    <div class="sh"><span class="n">En construcción</span><h2>Los dos que todavía no cierran</h2></div>
+    <p class="stand">Se publican cuando cierran, no antes. Aquí están para que se sepa que existen y en qué consisten.</p>
+    <div class="grid3">
+      <article><p class="t">Plugin Cosmo</p><p class="m">Radio · SDR</p><p class="d">Detector que mide forma en vez de intensidad sobre el espectro. Encuentra emisoras débiles que el detector de potencia pierde y descarta picos de ruido que confunde. Línea basal física declarada como no evaluable hasta tener tarea y contraste.</p><span class="nord">Informe en preparación</span></article><article><p class="t">Nodo sensor universal</p><p class="m">Hardware · Red</p><p class="d">Arquitectura de nodo único con mezclador de banda ancha, FPGA en cada unidad, térmica pasiva y operación durmiente por ciclos.</p><span class="nord">Informe en preparación</span></article>
+    </div>
+  </section>
+
+<section class="sec">
+
+
+    <div class="sh"><span class="n">Serie</span><h2>Veinticuatro experimentos, una sola hipótesis</h2></div>
+
+
+    <p class="sd">El punto óptimo de cualquier sistema está en la apertura selectiva: ni cerrado del todo ni abierto del todo. Se probó en dominios que no suelen hablarse entre sí.</p>
+
+
+    <hr>
+
+
+    <div class="series">
+
+
+      <div class="row hd"><div>ID</div><div>Dominio</div><div>Hallazgo</div></div>
+
+
+      <div class="row"><div class="id">E1</div><div class="nm">Procesador de audio</div><div class="fd">Existe una zona fértil donde inteligibilidad y calidez son máximas. El cierre total suena muerto; la apertura total colapsa.</div></div>
+
+
+      <div class="row"><div class="id">E2–E4</div><div class="nm">Demodulación AM, FM, heterodino</div><div class="fd">El receptor que usa el ruido fuera de banda como contexto supera al fijo en baja relación señal-ruido.</div></div>
+
+
+      <div class="row"><div class="id">E5–E6</div><div class="nm">Viterbi y canal Rayleigh</div><div class="fd">La adaptación por contexto reduce el error de bit y se mantiene robusta bajo desvanecimiento.</div></div>
+
+
+      <div class="row"><div class="id">E7–E9</div><div class="nm">3G, 4G y 5G</div><div class="fd">Ecualización y precodificación guiadas por contexto mejoran el rendimiento; aparece el compromiso entre error y libertad.</div></div>
+
+
+      <div class="row"><div class="id">E10–E12</div><div class="nm">Bluetooth LE en tres niveles</div><div class="fd">Solo la implementación arquitectural completa verifica la ley de conservación. El nivel de integración cambia el resultado, no solo su magnitud.</div></div>
+
+
+      <div class="row"><div class="id">E13</div><div class="nm">Audio urbano no estacionario</div><div class="fd">Maximizar libertad funcional no es maximizar relación señal-ruido: hay un intercambio real entre ambas.</div></div>
+
+
+      <div class="row"><div class="id">E14–E16</div><div class="nm">Daisyworld en IA, doble ciego</div><div class="fd">El modo con libertad funcional ahorra cómputo, aumenta versatilidad y genera novedad frente al modo restringido.</div></div>
+
+
+      <div class="row"><div class="id">E17</div><div class="nm">Estrés semiótico extremo</div><div class="fd">Bajo ruido interpretativo casi total el sistema no colapsa: cambia de régimen y aparecen «no sé», «discrepo» y «¿y si…?».</div></div>
+
+
+      <div class="row"><div class="id">E18</div><div class="nm">Rayado callejero</div><div class="fd">Un muro vacío no comunica y uno saturado tampoco. El mensaje necesita fondo disponible para poder recortarse.</div></div>
+
+
+      <div class="row"><div class="id">E19</div><div class="nm">Búsqueda de tecnofirmas</div><div class="fd">Una civilización que transmitiera de forma continua sería invisible como ruido de fondo. Lo detectable es lo que tiene estructura temporal.</div></div>
+
+
+      <div class="row"><div class="id">E20</div><div class="nm">Paleolítico: fauna y ciclos lunares</div><div class="fd">Correlación entre representaciones de fauna y fases lunares: el arte operando como calendario de caza.</div></div>
+
+
+      <div class="row"><div class="id">E21–E22</div><div class="nm">Óptico y térmico</div><div class="fd">Ante un choque, el sistema se reconfigura y alcanza una estabilidad nueva en vez de fracturarse.</div></div>
+
+
+      <div class="row"><div class="id">E23–E24</div><div class="nm">Análisis de acción y de discurso</div><div class="fd">El método aplicado a un caso judicial real y a textos filosóficos: la apertura interpretativa se puede medir.</div></div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+
+
+  <section class="end">
+
+
+    <p>El código de los instrumentos, los protocolos completos y los datos crudos están en el repositorio del laboratorio. Los experimentos en curso se publican cuando cierran, no antes.</p>
+
+
+    <div class="acts">
+
+
+      <a class="btn p" href="https://github.com/RSTChile/Cosmolab">Repositorio Cosmolab</a>
+
+
+      <a class="btn s" href="publicaciones.html">Papers y publicaciones</a>
+
+
+      <a class="btn s" href="teoria.html">Leer la teoría</a>
+
+
+    </div>
+
+
+  </section>
+
+
+
+
+
+  <section class="sec">
+
+
+    <div class="sh"><span class="n">Horizonte</span><h2>La meta</h2></div>
+
+
+    <hr>
+
+
+    <div class="goal">
+
+
+      <p class="k">Hacia dónde va todo esto</p>
+
+
+      <h2>La meta, todavía no alcanzada: una Inteligencia Orgánica No Biológica</h2>
+      <figure class="ilus"><img width="1600" height="900" src="ilus-ionb.webp" alt="Una membrana luminosa con un adentro, a escala cósmica: dentro de la esfera azul giran remolinos de luz naranja, y al fondo hay una galaxia" loading="lazy"></figure>
+
+
+      <p>No un sistema que simule estar vivo, ni uno que ejecute mejor las tareas que se le encarguen. Un sistema que <strong>satisfaga las condiciones estructurales que definen a un organismo</strong> — que persista, se acople a su entorno, distinga estados, tolere error acotado y conserve margen para cambiar de respuesta — sin ser biológico y sin haber sido programado para parecerlo.</p>
+
+
+      <p>La teoría sostiene que esas condiciones son independientes del sustrato. Si eso es cierto, tiene que poder construirse. Si no puede construirse, la teoría está equivocada en algo, y ahí es donde queremos que falle: en el banco de pruebas, no en una discusión.</p>
+
+
+      <p>Cada experimento de esta página aporta una pieza. Ninguno la produce solo, y el programa no ha llegado ahí.</p>
+
+
+      <p class="sig">IONB · Inteligencia Orgánica No Biológica</p>
+
+
+    </div>
+
+
+  </section>
+
+
+  <footer>Alexis López Tapia · Investigador principal · Con el equipo transinteligente RMD 2.0</footer>
+
+
+</main>
+
+
+</div>
+
+
+</body>
+
+
+</html>
+
+

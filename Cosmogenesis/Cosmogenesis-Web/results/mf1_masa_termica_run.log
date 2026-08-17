@@ -1,0 +1,16 @@
+MF-1 masa termica sobre F0 cerrado
+m ~ sum rho_E exp(-var_in/T_dimless) / (P a^beta) | var=local(phi,theta)
+step   0 a=   1.00 T=1.00e+15 | k1=  0 k3=  0 p8= 0 | var1=0.000e+00 var3=0.000e+00 | Rm_mean=0.0000 Rm_sum=0.0000 geo=0.3333 | err=0.0e+00
+step  50 a=   1.82 T=5.49e+14 | k1= 11 k3=  4 p8= 4 | var1=4.332e-01 var3=3.783e-01 | Rm_mean=0.3130 Rm_sum=0.8609 geo=0.3333 | err=0.0e+00
+step 100 a=   3.32 T=3.01e+14 | k1= 72 k3= 12 p8=12 | var1=3.796e-01 var3=2.923e-01 | Rm_mean=0.3081 Rm_sum=1.8487 geo=0.3333 | err=2.2e-16
+step 150 a=   6.05 T=1.65e+14 | k1=153 k3= 16 p8=16 | var1=3.274e-01 var3=2.520e-01 | Rm_mean=0.3102 Rm_sum=2.9658 geo=0.3333 | err=1.1e-16
+step 200 a=  11.02 T=9.07e+13 | k1=215 k3= 26 p8=26 | var1=3.226e-01 var3=2.384e-01 | Rm_mean=0.3082 Rm_sum=2.5484 geo=0.3333 | err=2.2e-16
+step 250 a=  20.09 T=4.98e+13 | k1=253 k3= 31 p8=31 | var1=3.146e-01 var3=2.436e-01 | Rm_mean=0.3120 Rm_sum=2.5467 geo=0.3333 | err=0.0e+00
+step 300 a=  36.60 T=2.73e+13 | k1=292 k3= 30 p8=30 | var1=3.137e-01 var3=2.394e-01 | Rm_mean=0.3108 Rm_sum=3.0249 geo=0.3333 | err=0.0e+00
+step 350 a=  66.69 T=1.50e+13 | k1=333 k3= 36 p8=36 | var1=3.066e-01 var3=2.188e-01 | Rm_mean=0.3076 Rm_sum=2.8454 geo=0.3333 | err=0.0e+00
+step 400 a= 121.51 T=8.23e+12 | k1=333 k3= 36 p8=36 | var1=3.068e-01 var3=2.193e-01 | Rm_mean=0.3077 Rm_sum=2.8462 geo=0.3333 | err=0.0e+00
+step 450 a= 221.41 T=4.52e+12 | k1=333 k3= 36 p8=36 | var1=3.068e-01 var3=2.195e-01 | Rm_mean=0.3078 Rm_sum=2.8469 geo=0.3333 | err=1.1e-16
+
+SMOKE: PASS max|Ta/T0-1|=2.22e-16
+MF-1: MF1-FAIL-geometric Rm_last=0.3077757532638254
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/mf1_masa_termica_result.json

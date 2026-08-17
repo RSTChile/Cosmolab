@@ -1,0 +1,16 @@
+[OK] A2-B0-C2-batch3-r100 clase=I N=4000 t_grafo=7.41s t_ic=761.45s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r108 clase=III N=4000 t_grafo=7.58s t_ic=762.37s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r43 clase=III N=4000 t_grafo=7.76s t_ic=762.73s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r57 clase=I N=4000 t_grafo=7.97s t_ic=764.64s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r112 clase=I N=4000 t_grafo=7.74s t_ic=764.94s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r19 clase=III N=4000 t_grafo=10.01s t_ic=756.16s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r18 clase=I N=4000 t_grafo=10.63s t_ic=758.29s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch4-r10 clase=III N=4000 t_grafo=7.49s t_ic=807.1s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r0 clase=III N=4000 t_grafo=6.58s t_ic=834.16s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-r39 clase=III N=4000 t_grafo=9.07s t_ic=848.24s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-r9v2fix clase=I N=4000 t_grafo=8.89s t_ic=849.57s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r26 clase=III N=4000 t_grafo=8.71s t_ic=855.3s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-batch3-r76 clase=I N=4000 t_grafo=8.59s t_ic=860.55s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+FIN_IC_N4000
+[OK] A2-B0-C2-r19 clase=III N=4000 t_grafo=9.72s t_ic=721.41s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None
+[OK] A2-B0-C2-r12v1fix clase=I N=4000 t_grafo=10.56s t_ic=721.12s t_phantom=Nones frac=None nsink=None kV=None dump=None timeout=None

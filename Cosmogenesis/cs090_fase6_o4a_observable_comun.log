@@ -1,0 +1,70 @@
+  A2-B0-C2-r1              I   ell0.6: ph=0.102 nb=0.119  ell1.0: ph=0.188 nb=0.180  ell2.0: ph=0.469 nb=0.377
+  A2-B0-C2-r17             III ell0.6: ph=0.177 nb=0.212  ell1.0: ph=0.323 nb=0.295  ell2.0: ph=0.641 nb=0.537
+  A2-B0-C2-batch4-r23      I   ell0.6: ph=0.146 nb=0.206  ell1.0: ph=0.353 nb=0.312  ell2.0: ph=0.629 nb=0.497
+  A2-B0-C2-batch4-r10      III ell0.6: ph=0.194 nb=0.255  ell1.0: ph=0.374 nb=0.327  ell2.0: ph=0.692 nb=0.591
+  A2-B0-C2-batch3-r120     I   ell0.6: ph=0.148 nb=0.195  ell1.0: ph=0.357 nb=0.298  ell2.0: ph=0.642 nb=0.507
+  A2-B0-C2-batch3-r111     III ell0.6: ph=0.166 nb=0.196  ell1.0: ph=0.378 nb=0.316  ell2.0: ph=0.689 nb=0.576
+  A2-B0-C2-batch3-r104     I   ell0.6: ph=0.151 nb=0.220  ell1.0: ph=0.336 nb=0.327  ell2.0: ph=0.641 nb=0.524
+  A2-B0-C2-batch3-r60      III ell0.6: ph=0.189 nb=0.239  ell1.0: ph=0.402 nb=0.352  ell2.0: ph=0.682 nb=0.575
+  A2-B0-C2-r12v1fix        I   ell0.6: ph=0.070 nb=0.074  ell1.0: ph=0.107 nb=0.106  ell2.0: ph=0.340 nb=0.242
+  A2-B0-C2-r19             III ell0.6: ph=0.118 nb=0.169  ell1.0: ph=0.276 nb=0.257  ell2.0: ph=0.568 nb=0.468
+  A2-B0-C2-batch3-r59      I   ell0.6: ph=0.162 nb=0.206  ell1.0: ph=0.370 nb=0.316  ell2.0: ph=0.672 nb=0.584
+  A2-B0-C2-batch3-r58      III ell0.6: ph=0.154 nb=0.214  ell1.0: ph=0.379 nb=0.336  ell2.0: ph=0.675 nb=0.577
+  A2-B0-C2-batch4-r39      I   ell0.6: ph=0.165 nb=0.225  ell1.0: ph=0.381 nb=0.313  ell2.0: ph=0.662 nb=0.555
+  A2-B0-C2-batch4-r26      III ell0.6: ph=0.159 nb=0.220  ell1.0: ph=0.363 nb=0.307  ell2.0: ph=0.657 nb=0.553
+  A2-B0-C2-r6              I   ell0.6: ph=0.145 nb=0.179  ell1.0: ph=0.336 nb=0.281  ell2.0: ph=0.639 nb=0.560
+  A2-B0-C2-r14             III ell0.6: ph=0.157 nb=0.202  ell1.0: ph=0.338 nb=0.304  ell2.0: ph=0.654 nb=0.539
+  A2-B0-C2-batch4-r38      I   ell0.6: ph=0.141 nb=0.203  ell1.0: ph=0.369 nb=0.295  ell2.0: ph=0.671 nb=0.573
+  A2-B0-C2-batch4-r72      III ell0.6: ph=0.164 nb=0.211  ell1.0: ph=0.323 nb=0.300  ell2.0: ph=0.640 nb=0.532
+  A2-B0-C2-r9              I   ell0.6: ph=0.112 nb=0.146  ell1.0: ph=0.254 nb=0.236  ell2.0: ph=0.524 nb=0.436
+  A2-B0-C2-r39             III ell0.6: ph=0.098 nb=0.127  ell1.0: ph=0.213 nb=0.202  ell2.0: ph=0.489 nb=0.383
+
+=== ORDEN POR PAR CON LA MISMA VARA (FoF de masa, masa_min=47) ===
+
+-- ell = 0.6 --
+                                         par estrato  d_sumideros_phantom  d_fofcomun_phantom  d_fofcomun_nbody  d_fofcomun_IC  coincide_ph_vs_nb  coincide_sumideros_vs_nb  coincide_IC_vs_sumideros
+                         PAR_piloto_B_r1_r17  fuerte               0.0340              0.0755            0.0930         0.0590               True                      True                      True
+  A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10  fuerte               0.0325              0.0480            0.0485         0.0670               True                      True                      True
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111  fuerte               0.0295              0.0175            0.0005         0.0480               True                      True                      True
+ A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60  fuerte               0.0270              0.0380            0.0200         0.0310               True                      True                      True
+                       PAR_v2_G_r12v1fix_r19  fuerte               0.0250              0.0485            0.0955         0.0365               True                      True                      True
+  A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58  empate              -0.0010             -0.0075            0.0080         0.0030              False                     False                     False
+  A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26  empate               0.0010             -0.0060           -0.0050        -0.0095               True                     False                     False
+                         PAR_piloto_C_r6_r14  empate              -0.0015              0.0120            0.0225        -0.0090               True                     False                      True
+  A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72  empate               0.0020              0.0225            0.0080         0.0085               True                      True                      True
+                             PAR_v2_H_r9_r39  empate              -0.0020             -0.0145           -0.0200        -0.0085               True                      True                      True
+   coincide_ph_vs_nb           : total 9/10 (fuerte 5/5, empate 4/5)  p=0.0215
+   coincide_sumideros_vs_nb    : total 7/10 (fuerte 5/5, empate 2/5)  p=0.3438
+   coincide_IC_vs_sumideros    : total 8/10 (fuerte 5/5, empate 3/5)  p=0.1094
+
+-- ell = 1.0 --
+                                         par estrato  d_sumideros_phantom  d_fofcomun_phantom  d_fofcomun_nbody  d_fofcomun_IC  coincide_ph_vs_nb  coincide_sumideros_vs_nb  coincide_IC_vs_sumideros
+                         PAR_piloto_B_r1_r17  fuerte               0.0340              0.1345            0.1150         0.1390               True                      True                      True
+  A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10  fuerte               0.0325              0.0210            0.0140         0.0380               True                      True                      True
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111  fuerte               0.0295              0.0200            0.0175         0.0535               True                      True                      True
+ A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60  fuerte               0.0270              0.0655            0.0260         0.0770               True                      True                      True
+                       PAR_v2_G_r12v1fix_r19  fuerte               0.0250              0.1680            0.1505         0.1680               True                      True                      True
+  A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58  empate              -0.0010              0.0090            0.0205        -0.0050               True                     False                      True
+  A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26  empate               0.0010             -0.0175           -0.0060        -0.0280               True                     False                     False
+                         PAR_piloto_C_r6_r14  empate              -0.0015              0.0015            0.0235         0.0050               True                     False                     False
+  A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72  empate               0.0020             -0.0470            0.0045        -0.0410              False                      True                     False
+                             PAR_v2_H_r9_r39  empate              -0.0020             -0.0405           -0.0340        -0.0285               True                      True                      True
+   coincide_ph_vs_nb           : total 9/10 (fuerte 5/5, empate 4/5)  p=0.0215
+   coincide_sumideros_vs_nb    : total 7/10 (fuerte 5/5, empate 2/5)  p=0.3438
+   coincide_IC_vs_sumideros    : total 7/10 (fuerte 5/5, empate 2/5)  p=0.3438
+
+-- ell = 2.0 --
+                                         par estrato  d_sumideros_phantom  d_fofcomun_phantom  d_fofcomun_nbody  d_fofcomun_IC  coincide_ph_vs_nb  coincide_sumideros_vs_nb  coincide_IC_vs_sumideros
+                         PAR_piloto_B_r1_r17  fuerte               0.0340              0.1715            0.1605         0.1495               True                      True                      True
+  A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10  fuerte               0.0325              0.0625            0.0935         0.0590               True                      True                      True
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111  fuerte               0.0295              0.0460            0.0690         0.0380               True                      True                      True
+ A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60  fuerte               0.0270              0.0410            0.0500         0.0385               True                      True                      True
+                       PAR_v2_G_r12v1fix_r19  fuerte               0.0250              0.2280            0.2250         0.2280               True                      True                      True
+  A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58  empate              -0.0010              0.0030           -0.0065         0.0010              False                      True                     False
+  A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26  empate               0.0010             -0.0045           -0.0025        -0.0175               True                     False                     False
+                         PAR_piloto_C_r6_r14  empate              -0.0015              0.0155           -0.0210         0.0005              False                      True                     False
+  A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72  empate               0.0020             -0.0310           -0.0410        -0.0210               True                     False                     False
+                             PAR_v2_H_r9_r39  empate              -0.0020             -0.0350           -0.0535        -0.0455               True                      True                      True
+   coincide_ph_vs_nb           : total 8/10 (fuerte 5/5, empate 3/5)  p=0.1094
+   coincide_sumideros_vs_nb    : total 8/10 (fuerte 5/5, empate 3/5)  p=0.1094
+   coincide_IC_vs_sumideros    : total 6/10 (fuerte 5/5, empate 1/5)  p=0.7539

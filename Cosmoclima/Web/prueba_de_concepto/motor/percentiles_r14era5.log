@@ -1,0 +1,9 @@
+config: PTC=B LF_SIN_V=true KAPPA_CANONICOS=true
+0.0% · 0 ticks/s · faltan ~72733 min
+14.7% · 1071 ticks/s · faltan ~18 min
+29.5% · 991 ticks/s · faltan ~16 min
+44.2% · 952 ticks/s · faltan ~13 min
+58.9% · 980 ticks/s · faltan ~9 min
+73.6% · 1000 ticks/s · faltan ~6 min
+88.4% · 1048 ticks/s · faltan ~3 min
+Listo en 21.1 min. Escrito regimen_r14era5_por_anio.csv y regimen_r14era5_percentiles.json

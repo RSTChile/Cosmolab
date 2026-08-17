@@ -1,0 +1,15 @@
+   [selección] lote 271828: 6 disponibles -> [('A2-B0-C2-r9', 7, 0.556), ('A2-B0-C2-r19', 7, 0.72), ('A2-B0-C2-r14', 5, 0.773)]
+   [selección] lote 371828: 5 disponibles -> [('A2-B0-C2-r2', 6, 0.54), ('A2-B0-C2-r28', 6, 0.706), ('A2-B0-C2-r20', 6, 0.775)]
+   [selección] lote 471828: 34 disponibles -> [('A2-B0-C2-batch3-r9', 6, 0.479), ('A2-B0-C2-batch3-r21', 5, 0.725), ('A2-B0-C2-batch3-r100', 4, 1.255)]
+   [selección] lote 571828: 28 disponibles -> [('A2-B0-C2-batch4-r18', 6, 0.535), ('A2-B0-C2-batch4-r43', 5, 0.745), ('A2-B0-C2-batch4-r51', 4, 1.081)]
+   [selección] 12 grafos -> cs090_fase7_f706_seleccion.csv
+
+[f706] procesando 1 grafos base x 6 brazos (IC para ('alineado', 'permutado', 'anti', 'alin_dil', 'perm_dil'); generar_ic=True)
+[1/1] A2-B0-C2-batch3-r100 (lote 471828, kcap=4, max_pendiente_lote_471828)...
+    multiconjunto idéntico: perm=True anti=True   |  rho(cupo,grado) unif=+nan alineado=+0.983 permutado=+0.016 anti=-0.977
+    aristas    unif=2374 alineado=2500 permutado=2256 anti=1938 alin_dil=1938 perm_dil=1938   unif==motor:True meta5b_ok:True dens_igualada:True
+    clustering unif=0.01650 alineado=0.01419 permutado=0.01896 anti=0.01580 alin_dil=0.00450 perm_dil=0.01113
+    pendiente  unif=1.2879122335233364 alineado=1.0250048787918775 permutado=1.236958552453429 anti=1.320498160870958 alin_dil=1.361664698989335 perm_dil=1.3094328130237307
+    1529.15s  cron={'t_cupos_s': 0.47, 't_dinamica_s': 18.89, 't_verif_motor_s': 5.03, 't_clustering_s': 0.33, 't_pendiente_s': 8.7, 't_ic_s': 1495.41, 't_total_s': 1529.15}
+
+[f706] 1 filas -> cs090_fase7_f706_estructura_shard08.csv  (total 1529s)

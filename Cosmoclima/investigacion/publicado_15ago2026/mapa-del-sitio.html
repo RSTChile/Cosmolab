@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+
+
+
+<html lang="es">
+
+
+
+<head>
+
+
+
+<meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Mapa del Sitio · Cosmosemiótica</title>
+
+
+
+<meta name="description" content="Taxonomía completa de cosmosemiotica.cl: páginas principales, informes, simulaciones, observatorio CosmoRobot y descargas, con un breve resumen de cada una.">
+
+
+
+<link rel="canonical" href="https://cosmosemiotica.cl/mapa-del-sitio.html">
+
+
+
+<meta property="og:type" content="website">
+
+
+
+<meta property="og:site_name" content="Cosmosemiótica">
+
+
+
+<meta property="og:locale" content="es_CL">
+
+
+
+<meta property="og:title" content="Mapa del Sitio · Cosmosemiótica">
+
+
+
+<meta property="og:description" content="Taxonomía completa de cosmosemiotica.cl: páginas principales, informes, simulaciones, observatorio CosmoRobot y descargas.">
+
+
+
+<meta property="og:url" content="https://cosmosemiotica.cl/mapa-del-sitio.html">
+
+
+
+<meta property="og:image" content="https://cosmosemiotica.cl/ilus-experimentos.webp">
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,200;9..144,0,300;9..144,1,300&family=IBM+Plex+Mono:wght@300;400;500&family=Public+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+
+
+<style>
+
+
+
+*,*::before,*::after{box-sizing:border-box}
+
+
+
+:root{--ink:#f2efe8;--ink2:#a8adb6;--ink3:#767c87;--gold:#e8c477;--gold-dim:#a8874a;--cold:#8fc4dd;--bg:#0c0f18;--line:#242a37}
+
+
+
+html{scroll-behavior:smooth}
+
+
+
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+
+
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;
+
+
+
+  background:radial-gradient(64% 50% at 4% 3%,rgba(140,92,26,.15) 0%,transparent 62%),
+
+
+
+             radial-gradient(68% 54% at 98% 96%,rgba(21,74,102,.19) 0%,transparent 64%)}
+
+
+
+.wrap{position:relative;z-index:10}
+
+
+
+nav{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px clamp(20px,4vw,58px);border-bottom:1px solid var(--line)}
+
+
+
+.brand{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#e2d9c4;text-decoration:none}
+
+
+
+nav ul{display:flex;gap:clamp(13px,2vw,28px);list-style:none;margin:0;padding:0;flex-wrap:wrap}
+
+
+
+@media (max-width:400px){nav{gap:12px}nav ul{gap:11px}}
+
+
+
+nav a{color:#c9c3b4;text-decoration:none;font-size:13.5px;padding:4px 0;border-bottom:1px solid transparent;transition:.22s}
+
+
+
+nav a:hover,nav a:focus-visible{color:#fff;border-bottom-color:var(--gold)}
+
+
+
+nav a[aria-current]{color:#fff;border-bottom-color:var(--gold)}
+
+
+
+main{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,58px)}
+
+
+
+.head{padding:clamp(36px,5vw,72px) 0 clamp(22px,3vw,36px);border-bottom:1px solid var(--line)}
+
+
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 18px}
+
+
+
+h1{font-family:'Fraunces',Georgia,serif;font-weight:200;font-size:clamp(30px,4.4vw,56px);line-height:1.08;letter-spacing:-.022em;margin:0 0 16px;color:var(--ink);max-width:16ch}
+
+
+
+.lede{font-size:clamp(15.5px,1.2vw,18px);line-height:1.8;color:#c3c7ce;font-weight:200;max-width:64ch;margin:0}
+
+
+
+.lede strong{font-weight:400;color:var(--ink)}
+
+
+
+
+
+
+
+.branch{padding:clamp(34px,4.4vw,58px) 0 0}
+
+
+
+.branch>h2{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(21px,2.2vw,28px);letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
+
+
+
+.branch>.sn{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 14px}
+
+
+
+.branch hr{border:0;border-top:1px solid var(--line);margin:0 0 22px}
+
+
+
+.branch>p.intro{font-size:15px;line-height:1.75;color:#a9b1bc;font-weight:300;max-width:70ch;margin:0 0 22px}
+
+
+
+
+
+
+
+/* Escalera taxonómica */
+
+
+
+.tax{list-style:none;margin:0;padding:0}
+
+
+
+.tax>li{margin:0 0 10px}
+
+
+
+.tax .node{
+
+
+
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.55fr);gap:12px 22px;
+
+
+
+  align-items:start;padding:14px 16px;background:#0e1220;border:1px solid var(--line);border-radius:2px
+
+
+
+}
+
+
+
+.tax .node.main{border-left:2px solid var(--gold)}
+
+
+
+.tax .node.child{border-left:2px solid #2b3444;background:#0c101a}
+
+
+
+.tax .node.leaf{border-left:2px solid #1e2633;background:#0a0e16}
+
+
+
+.tax a.ttl{color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:400;border-bottom:1px solid transparent;transition:.2s;line-height:1.35}
+
+
+
+.tax a.ttl:hover,.tax a.ttl:focus-visible{color:var(--gold);border-bottom-color:var(--gold)}
+.tax .node a:not([class]){color:var(--cold);text-decoration:none;border-bottom:1px solid rgba(143,196,221,.32)}
+.tax .node a:not([class]):hover{border-bottom-color:var(--cold)}
+
+
+
+
+.tax .url{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#5c626d;margin-top:6px;word-break:break-all}
+
+
+
+.tax .sum{font-size:13.5px;line-height:1.62;color:#9aa1ac;font-weight:300;margin:0}
+
+
+
+.tax .kids{list-style:none;margin:8px 0 0;padding:0 0 0 18px;border-left:1px solid #243040}
+
+
+
+.tax .kids>li{margin:8px 0 0;position:relative}
+
+
+
+.tax .kids>li::before{
+
+
+
+  content:"";position:absolute;left:-18px;top:22px;width:14px;height:1px;background:#243040
+
+
+
+}
+
+
+
+.tax .tag{
+
+
+
+  display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;
+
+
+
+  text-transform:uppercase;color:var(--gold-dim);border:1px solid #333b4a;padding:2px 7px;margin:0 0 6px;border-radius:999px
+
+
+
+}
+
+
+
+.tax .tag.sim{color:var(--cold);border-color:rgba(143,196,221,.35)}
+
+
+
+.tax .tag.pdf{color:#b8a88a;border-color:#3d3628}
+
+
+
+.tax .tag.tool{color:#8b93a0;border-color:#39414f}
+
+
+
+
+
+
+
+.toc{display:flex;flex-wrap:wrap;gap:10px 14px;margin:22px 0 0}
+
+
+
+.toc a{
+
+
+
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+
+
+
+  color:var(--gold-dim);text-decoration:none;border:1px solid #2b3444;padding:7px 11px;border-radius:2px;transition:.2s
+
+
+
+}
+
+
+
+.toc a:hover{color:var(--gold);border-color:rgba(232,196,119,.4)}
+
+
+
+
+
+
+
+.end{margin:clamp(46px,5.5vw,82px) 0 0;padding:clamp(26px,3.2vw,42px) 0;border-top:1px solid var(--line)}
+
+
+
+.acts{display:flex;gap:12px;flex-wrap:wrap}
+
+
+
+.btn{text-decoration:none;font-size:13.5px;padding:12px 22px;border-radius:2px;transition:.22s;display:inline-block}
+
+
+
+.btn.p{background:var(--gold);color:#1e1608}
+
+
+
+.btn.p:hover{background:#f3d894}
+
+
+
+.btn.s{border:1px solid #3b4351;color:#cfd4dc}
+
+
+
+.btn.s:hover{border-color:#8d97a6;color:#fff}
+
+
+
+footer{padding:28px 0 44px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#4b515c}
+
+
+
+@media (max-width:720px){
+
+
+
+  .tax .node{grid-template-columns:1fr}
+
+
+
+  .tax .kids{padding-left:12px}
+
+
+
+}
+
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+
+
+</style>
+
+
+
+<!-- datos-estructurados -->
+
+
+<script type="application/ld+json">
+
+
+{
+
+
+  "@context": "https://schema.org",
+
+
+  "url": "https://cosmosemiotica.cl/mapa-del-sitio.html",
+
+
+  "inLanguage": "es-CL",
+
+
+  "headline": "Mapa del Sitio · Cosmosemiótica",
+
+
+  "description": "Taxonomía completa de cosmosemiotica.cl: páginas principales, informes, simulaciones, observatorio CosmoRobot y descargas.",
+
+
+  "image": "https://cosmosemiotica.cl/ilus-experimentos.webp",
+
+
+  "dateModified": "2026-08-01",
+
+
+  "@type": "CollectionPage",
+
+
+  "isPartOf": {
+
+
+    "@type": "WebSite",
+
+
+    "name": "Cosmosemiótica",
+
+
+    "url": "https://cosmosemiotica.cl"
+
+
+  },
+
+
+  "author": {
+
+
+    "@type": "Person",
+
+
+    "name": "Alexis López Tapia",
+
+
+    "url": "https://cosmosemiotica.cl/autor.html"
+
+
+  },
+
+
+  "publisher": {
+
+
+    "@type": "Organization",
+
+
+    "name": "Cosmosemiótica",
+
+
+    "url": "https://cosmosemiotica.cl",
+
+
+    "email": "contacto@cosmosemiotica.cl"
+
+
+  }
+
+
+}
+
+
+</script>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="amb" aria-hidden="true"></div>
+
+
+
+<div class="wrap">
+
+
+
+<nav>
+
+
+
+  <a class="brand" href="index.html">Cosmosemiótica</a>
+
+
+
+  <ul>
+
+
+
+    <li><a href="teoria.html">Teoría</a></li>
+
+
+
+    <li><a href="experimentos.html">Experimentos</a></li><li><a href="https://cosmosemiotica.cl/descargas/anima.html">Descargas</a></li>
+
+
+
+    <li><a href="observatorio.html">Observatorio</a></li><li><a href="https://bitacora.cosmosemiotica.cl">Bitácora</a></li>
+
+
+
+    <li><a href="publicaciones.html">Publicaciones</a></li>
+
+
+
+    <li><a href="autor.html">Autor</a></li>
+
+
+
+    <li><a href="mapa-del-sitio.html" aria-current="page">Mapa del Sitio</a></li>
+
+
+
+  </ul>
+
+
+
+</nav>
+
+
+
+
+
+
+
+<main>
+
+
+
+  <header class="head">
+
+
+
+    <p class="eyebrow">Navegación · taxonomía del sitio</p>
+
+
+
+    <h1>Mapa del Sitio</h1>
+
+
+
+    <p class="lede">Estructura de <strong>cosmosemiotica.cl</strong> como escalera: cada página principal y lo que cuelga de ella. Pensado para revisión sistemática —título, enlace y un resumen breve del contenido.</p>
+
+
+
+    <div class="toc" aria-label="Saltar a sección">
+
+
+
+      <a href="#entrada">Entrada</a>
+
+
+
+      <a href="#teoria">Teoría</a>
+
+
+
+      <a href="#experimentos">Experimentos</a>
+
+
+
+      <a href="#observatorio">Observatorio</a>
+
+
+
+      <a href="#publicaciones">Publicaciones</a>
+
+
+
+      <a href="#autor">Autor</a>
+
+
+
+      <a href="#utilidades">Utilidades</a>
+
+
+
+    </div>
+
+
+
+  </header>
+
+
+
+
+
+
+
+  <!-- ═══════════════ ENTRADA ═══════════════ -->
+
+
+
+  <section class="branch" id="entrada">
+
+
+
+    <p class="sn">01</p>
+
+
+
+    <h2>Entrada</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">La puerta del sitio y el índice que estás leyendo.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="index.html">Portada · Cosmosemiótica</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Axioma S&nbsp;&gt;&nbsp;0, presentación de la teoría y accesos a teoría y experimentos. Identidad visual del sitio (campos cálido/frío, seam).</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="mapa-del-sitio.html">Mapa del Sitio</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/mapa-del-sitio.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Esta página: taxonomía completa con resúmenes y enlaces para auditoría de navegación y contenido.</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ TEORÍA ═══════════════ -->
+
+
+
+  <section class="branch" id="teoria">
+
+
+
+    <p class="sn">02</p>
+
+
+
+    <h2>Teoría</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">Núcleo doctrinal del sitio: la exposición web de la teoría y su lectura extendida en cuatro entregas —una introducción y tres capítulos—.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="teoria.html">Teoría Cosmosemiótica</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/teoria.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Exposición web de la teoría: persistencia mínima de la distinción, derivaciones y marco del programa experimental.</p>
+
+
+
+        </div>
+
+
+
+        <ul class="kids">
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Lectura</span>
+
+
+
+                <a class="ttl" href="introduccion.html">Introducción · El problema del sentido</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/introduccion.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Punto de partida de la teoría: de dónde nace la pregunta por la persistencia y la lectura del universo, con el axioma S&nbsp;&gt;&nbsp;0.</p>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Lectura</span>
+
+
+
+                <a class="ttl" href="capitulo-I.html">Capítulo I</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/capitulo-I.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Primer capítulo de la exposición extendida de la Teoría Cosmosemiótica.</p>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Lectura</span>
+
+
+
+                <a class="ttl" href="capitulo-II.html">Capítulo II · El cierre que abre</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/capitulo-II.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">La delimitación no clausura: cómo el cierre habilita nuevas trayectorias.</p>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Lectura</span>
+
+
+
+                <a class="ttl" href="capitulo-III.html">Capítulo III · Genealogía</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/capitulo-III.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Genealogía de la teoría: restricción, historia y la emergencia de la irreversibilidad.</p>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+        </ul>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ EXPERIMENTOS ═══════════════ -->
+
+
+
+  <section class="branch" id="experimentos">
+
+
+
+    <p class="sn">03</p>
+
+
+
+    <h2>Experimentos</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">Hub del programa: linaje, cuatro etapas centrales, instrumentos medibles y serie E1–E24. Cada informe y cada simulación cuelga de aquí.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="experimentos.html">Experimentos</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/experimentos.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Mapa del programa experimental: origen (VSTCosmo), etapas centrales, instrumentos con miniaturas a las sims, e índice de los 24 experimentos de dominio.</p>
+
+
+
+        </div>
+
+
+
+        <ul class="kids">
+
+
+
+          <!-- Linaje -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Linaje</span>
+
+
+
+                <a class="ttl" href="vstcosmo.html">VSTCosmo</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/vstcosmo.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Serie cerrada de ~180 versiones: suelo del que salieron Célula Madre, ÁNIMA y CosmoRobot. Método de fracasos publicados como hallazgos.</p>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+          <!-- EIT-3 Óptico -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Instrumento</span>
+
+
+
+                <a class="ttl" href="informe-eit3-optico.html">Informe EIT-3 Óptico</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-eit3-optico.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Campo de información 256×256: rotación, quiralidad y redefinición de la variable central cuando no se alcanza la zona fértil.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag sim">Sim</span>
+
+
+
+                    <a class="ttl" href="sim-eit3-optico.html">Simulación EIT-3 Óptico</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/sim-eit3-optico.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Simulador del campo óptico / informacional.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+          <!-- Instrumentos: Dron -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Instrumento</span>
+
+
+
+                <a class="ttl" href="informe-dron.html">Informe Dron cosmosemiótico</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-dron.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Registro del dron guiado por viabilidad: el curso frente al viento emerge del estado de la batería, no de un setpoint clásico.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag sim">Sim</span>
+
+
+
+                    <a class="ttl" href="sim-dron.html">Simulación Dron</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/sim-dron.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Simulador interactivo del instrumento (física + viabilidad + semiótica).</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+          <!-- Levitrón -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Instrumento</span>
+
+
+
+                <a class="ttl" href="informe-levitron.html">Informe Levitrón cosmosemiótico</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-levitron.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Imán suspendido (Earnshaw): mide la frecuencia mínima bajo la cual el acoplamiento deja de ser posible.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag sim">Sim</span>
+
+
+
+                    <a class="ttl" href="sim-levitron.html">Simulación Levitrón</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/sim-levitron.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Simulador de control activo del levitrón.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+        <!-- EIT-3 Térmico -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Instrumento</span>
+
+
+
+                <a class="ttl" href="informe-eit3-termico.html">Informe EIT-3 Térmico</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-eit3-termico.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Daisyworld con física real y un umbral de conducta (κ_H): el planeta de Lovelock cuya vegetación regula su temperatura sin proponérselo, con una batería de estrés sobre lo que el instrumento puede —y no puede— mostrar.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag sim">Sim</span>
+
+
+
+                    <a class="ttl" href="sim-eit3-termico.html">Instrumento EIT-3 Térmico (en vivo)</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/sim-eit3-termico.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Simulador interactivo de Daisyworld: estaciones, luminosidad, población de margaritas en vivo y la huella κ_H.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag">Guía</span>
+
+
+
+                    <a class="ttl" href="instrumento-eit3-termico.html">Guía del instrumento EIT-3 Térmico</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/instrumento-eit3-termico.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Guía completa del instrumento: qué mide, para qué sirve cada control y cómo leer sus salidas.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+          
+          <!-- Cosmoclima -->
+          <li>
+            <div class="node child">
+              <div>
+                <span class="tag">Instrumento</span>
+                <a class="ttl" href="informe-cosmoclima.html">Informe Cosmoclima</a>
+                <span class="url">https://cosmosemiotica.cl/informe-cosmoclima.html</span>
+              </div>
+              <p class="sum">Mide si un ecosistema real está regulando o sólo persistiendo: Daisyworld reescrito para un interglacial, con 60 años de lluvia y temperatura del Desierto Florido y las vaquitas del desierto (Gyriosomus).</p>
+            </div>
+            <ul class="kids">
+              <li>
+                <div class="node leaf">
+                  <div>
+                    <span class="tag sim">Sim</span>
+                    <a class="ttl" href="sim-cosmoclima.html">Simulador Cosmoclima</a>
+                    <span class="url">https://cosmosemiotica.cl/sim-cosmoclima.html</span>
+                  </div>
+                  <p class="sum">Simulador del Desierto Florido y Gyriosomus, con los datos reales cargados.</p>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Cosmogénesis -->
+          <li>
+            <div class="node child">
+              <div>
+                <span class="tag">Programa</span>
+                <a class="ttl" href="informe-cosmogenesis.html">Informe Cosmogénesis</a>
+                <span class="url">https://cosmosemiotica.cl/informe-cosmogenesis.html</span>
+              </div>
+              <p class="sum">¿Puede una diferencia mínima sobrevivir a la expansión y dar origen al tiempo, la distancia y la forma? La distancia emerge; la dirección no se estabilizó.</p>
+            </div>
+            <ul class="kids">
+              <li>
+                <div class="node leaf">
+                  <div>
+                    <span class="tag sim">Sim</span>
+                    <a class="ttl" href="sim-cosmogenesis.html">Visor del universo</a>
+                    <span class="url">https://cosmosemiotica.cl/sim-cosmogenesis.html</span>
+                  </div>
+                  <p class="sum">Visor en 3D: una asimetría mínima que se expande hasta formar estructura, con las 23 condiciones apagables una por una para ver cuál sostiene el resultado.</p>
+                </div>
+              </li>
+            
+              <li>
+                <div class="node leaf">
+                  <div>
+                    <span class="tag">Documento</span>
+                    <a class="ttl" href="verificacion-cosmogenesis.html">Verificación</a>
+                    <span class="url">https://cosmosemiotica.cl/verificacion-cosmogenesis.html</span>
+                  </div>
+                  <p class="sum">Nodo por nodo, de C-N1 a C-N5.2: qué experimento sostiene cada predicción de la Parte I, cuáles quedaron parciales y cuáles no se sostuvieron.</p>
+                </div>
+              </li>
+              <li>
+                <div class="node leaf">
+                  <div>
+                    <span class="tag">Documento</span>
+                    <a class="ttl" href="auditoria-cosmogenesis.html">Auditoría completa</a>
+                    <span class="url">https://cosmosemiotica.cl/auditoria-cosmogenesis.html</span>
+                  </div>
+                  <p class="sum">La historia del programa desde CS001: fase por fase, lo que funcionó, lo que se retiró y por qué, hasta el intento de encender una estrella.</p>
+                </div>
+              </li>
+</ul>
+          </li>
+          <!-- Célula Madre -->
+          <li>
+            <div class="node child">
+              <div>
+                <span class="tag">Laboratorio</span>
+                <a class="ttl" href="informe-celula-madre.html">Informe Célula Madre</a>
+                <span class="url">https://cosmosemiotica.cl/informe-celula-madre.html</span>
+              </div>
+              <p class="sum">El banco de pruebas de ÁNIMA: un mismo circuito de treinta organelos corriendo en tres cuerpos distintos, nueve órganos de hardware que sólo existen en los físicos, y la escalera que va de la célula única al protocerebro.</p>
+            </div>
+            <ul class="kids">
+              <li>
+                <div class="node leaf">
+                  <div>
+                    <span class="tag sim">Sim</span>
+                    <a class="ttl" href="sim-celula-madre.html">El circuito vivo</a>
+                    <span class="url">https://cosmosemiotica.cl/sim-celula-madre.html</span>
+                  </div>
+                  <p class="sum">El circuito real de un organismo ÁNIMA: sus órganos, el flujo que los recorre y las radios, cámaras y sensores que se le acoplan por fuera.</p>
+                </div>
+              </li>
+            </ul>
+          </li>
+<!-- ANIMA -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Programa</span>
+
+
+
+                <a class="ttl" href="informe-anima.html">Informe ÁNIMA</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-anima.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Organismos mínimos digitales que conversan: comunicación funcional, convenciones emergentes y contraste contra barajado.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <a class="ttl" href="observatorio.html">Observatorio ÁNIMA (en vivo)</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/observatorio.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Panel del experimento ÁNIMA transmitiendo desde el laboratorio (también en el menú principal).</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <a class="ttl" href="descargas/anima.html">Descargas ÁNIMA Desktop</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/descargas/anima.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Instaladores de escritorio (Windows, macOS y Linux) de la aplicación ÁNIMA.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+          <!-- CosmoRobot -->
+
+
+
+          <li>
+
+
+
+            <div class="node child">
+
+
+
+              <div>
+
+
+
+                <span class="tag">Programa</span>
+
+
+
+                <a class="ttl" href="informe-cosmorobot.html">Informe CosmoRobot</a>
+
+
+
+                <span class="url">https://cosmosemiotica.cl/informe-cosmorobot.html</span>
+
+
+
+              </div>
+
+
+
+              <p class="sum">Robot cosmosemiótico en LEGO NXT: organismo mínimo no biológico, capacidades en verificación, horizonte de pares. Video, captura del observatorio y mapa de órganos.</p>
+
+
+
+            </div>
+
+
+
+            <ul class="kids">
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <a class="ttl" href="robot/dashboard.html">Observatorio CosmoRobot</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/robot/dashboard.html</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Dashboard público: reproducir pruebas reales (CSV), telemetría en vivo, pestaña Organismo mínimo, control remoto solo de calibración (sin movimiento físico en la web).</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+              <li>
+
+
+
+                <div class="node leaf">
+
+
+
+                  <div>
+
+
+
+                    <span class="tag tool">Recurso</span>
+
+
+
+                    <a class="ttl" href="robot/">robot/ (redirect)</a>
+
+
+
+                    <span class="url">https://cosmosemiotica.cl/robot/</span>
+
+
+
+                  </div>
+
+
+
+                  <p class="sum">Redirección al dashboard. Incluye modelo 3D, módulos JS, muestras CSV y endpoint de estado vivo.</p>
+
+
+
+                </div>
+
+
+
+              </li>
+
+
+
+            </ul>
+
+
+
+          </li>
+
+
+
+          </ul>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ OBSERVATORIO ═══════════════ -->
+
+
+
+  <section class="branch" id="observatorio">
+
+
+
+    <p class="sn">04</p>
+
+
+
+    <h2>Observatorio</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">Presencia en vivo del programa. ÁNIMA en el menú principal; CosmoRobot bajo Experimentos y su propio dashboard.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="observatorio.html">Observatorio ÁNIMA</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/observatorio.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Vista del panel ÁNIMA en transmisión: organismos mínimos que se acoplan y se equivocan en el laboratorio.</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="robot/dashboard.html">Observatorio CosmoRobot</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/robot/dashboard.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Membrana de observación del robot: solo lee; pruebas CSV, en vivo, organismo mínimo y banco de calibración sin control físico público.</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ PUBLICACIONES ═══════════════ -->
+
+
+
+  <section class="branch" id="publicaciones">
+
+
+
+    <p class="sn">05</p>
+
+
+
+    <h2>Publicaciones</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">Papeles, textos y material publicado fuera del flujo de un solo experimento.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="publicaciones.html">Publicaciones</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/publicaciones.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Compilación de papers y publicaciones del programa cosmosemiótico (página de gran extensión, material de referencia).</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ AUTOR ═══════════════ -->
+
+
+
+  <section class="branch" id="autor">
+
+
+
+    <p class="sn">06</p>
+
+
+
+    <h2>Autor</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">Quién sostiene la investigación y el equipo transinteligente.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node main">
+
+
+
+          <div>
+
+
+
+            <a class="ttl" href="autor.html">Autor · Alexis López Tapia</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/autor.html</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Biografía y trayectoria: entomología, periodismo, dirección de investigación y autoría de la Teoría Cosmosemiótica; mención del equipo.</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════ UTILIDADES ═══════════════ -->
+
+
+
+  <section class="branch" id="utilidades">
+
+
+
+    <p class="sn">07</p>
+
+
+
+    <h2>Utilidades y endpoints</h2>
+
+
+
+    <hr>
+
+
+
+    <p class="intro">No forman parte del relato principal, pero el sitio los usa.</p>
+
+
+
+    <ul class="tax">
+
+
+
+      <li>
+
+
+
+        <div class="node leaf">
+
+
+
+          <div>
+
+
+
+            <span class="tag tool">API</span>
+
+
+
+            <a class="ttl" href="contador.php">contador.php</a>
+
+
+
+            <span class="url">https://cosmosemiotica.cl/contador.php</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Contador de visitas de la portada (JSON / servicio interno).</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+      <li>
+
+
+
+        <div class="node leaf">
+
+
+
+          <div>
+
+
+
+            <span class="tag tool">Alias</span>
+
+
+
+            <a class="ttl" href="https://www.cosmosemiotica.cl/">www.cosmosemiotica.cl</a>
+
+
+
+            <span class="url">https://www.cosmosemiotica.cl/</span>
+
+
+
+          </div>
+
+
+
+          <p class="sum">Mismo sitio bajo el subdominio www (mismo hosting).</p>
+
+
+
+        </div>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <div class="end">
+
+
+
+    <div class="acts">
+
+
+
+      <a class="btn p" href="index.html">Volver a la portada</a>
+
+
+
+      <a class="btn s" href="experimentos.html">Experimentos</a>
+
+
+
+      <a class="btn s" href="robot/dashboard.html">Observatorio CosmoRobot</a>
+
+
+
+      <a class="btn s" href="teoria.html">Teoría</a>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+</main>
+
+
+
+
+
+
+
+<footer style="max-width:1080px;margin:0 auto;padding:28px clamp(20px,4vw,58px) 44px">cosmosemiotica.cl · Mapa del Sitio · revisión 31-07-2026</footer>
+
+
+
+</div>
+
+
+
+</body>
+
+
+
+</html>
+
+
+

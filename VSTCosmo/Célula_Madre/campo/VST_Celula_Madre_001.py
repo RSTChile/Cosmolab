@@ -102,6 +102,17 @@ import json
 from collections import deque
 import time
 
+# ESCALA COMPARTIDA (5-ago-2026). Lo habitual de una magnitud, aprendido de la propia
+# experiencia. NO se reimplementa aquí el patrón r/(1+r): la auditoría avisó por escrito de
+# que si se escribe 168 veces, en tres meses hay 168 variantes. Import defensivo porque este
+# archivo se ejecuta tanto desde el paquete como suelto desde su propia carpeta.
+try:
+    from escala import Escala, rel_contra
+except Exception:                                # suelto: escala.py vive en la raíz del repo
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from escala import Escala, rel_contra
+
 # ============================================================
 # PARAMETROS
 # ============================================================
@@ -457,8 +468,61 @@ class ModoJuego:
 #       crudo. El forzamiento histórico [0]=+e,[-1]=−e es un DIPOLO de media cero, y el audio es oscilante
 #       de media cero → ambos se promedian a 0 en omega → el campo era SORDO al nivel del sonido (E≈0 ⇒ S≈0).
 #       La envolvente es POSITIVA y sostenida → mueve omega → A/ICR responden. Recupera la MEMBRANA SENSORIAL (V111).
+#
+# CORRECCIÓN 5-ago-2026 — EL TRINQUETE (hallazgo de gravedad 10 del plan de constantes).
+# QUÉ ESTABA MAL. `env` es un RMS: siempre ≥ 0. Multiplicado por una ganancia fija (6,0), el
+# forzamiento sobre Φ SÓLO PODÍA EMPUJAR HACIA ARRIBA. Sobre un campo biestable recortado a
+# [−1,1] eso es un trinquete: sube y no vuelve. MEDIDO sobre 100.335 pasos reales del organismo
+# ANIMA_5Z934MWHNNRH (3–5 ago 2026): ω_L ≥ +0,999 el 89,70 % del tiempo y ≤ −0,999 el 0,00 %;
+# ω_A ≥ +0,999 el 44,14 % y ≤ −0,999 el 0,00 %. Cero por ciento en un lado y noventa en el otro
+# no es una preferencia del organismo: es la firma aritmética de un forzamiento de un solo signo.
+# Además `campo_F` superaba el 7,86 % de los pasos el umbral de bifurcación del propio término de
+# reacción Φ(1−Φ²) —2/(3·√3) = 0,3849—, con máximo 2,082 (5,4× el umbral): por encima de ese
+# valor el campo pierde el pozo negativo y con él la capacidad de VOLVER.
+# La palanca de `apertura` (2-ago) alivió la magnitud pero no podía arreglar el SIGNO.
+#
+# POR QUÉ LA CORRECCIÓN ES AUTORREGULADA. El campo ya no oye "cuánto suena" contra una ganancia
+# que alguien eligió, sino CUÁNTO SE APARTA lo que suena de lo que suele sonar para este oído:
+#   e = env − media_móvil(env)                       (desviación respecto del nivel habitual)
+#   u = signo(e) · |e| / (dispersión_habitual + |e|) (0,5 de magnitud en la desviación de siempre)
+#   u = u − media_móvil(u)                           (ver abajo: sin esto queda un trinquete débil)
+#   F = F_MAX · u · gain_vol · apertura
+# `u` sale de rel_contra() de escala.py — sin ninguna constante que elegir: la escala la pone la
+# historia del propio oído. Es lo que hace un sistema sensorial real: uno deja de oír el zumbido
+# de la nevera y oye cuando se apaga. Ahora el silencio EMPUJA HACIA ABAJO (e < 0) y el campo
+# puede volver al pozo negativo, que es lo que se le había quitado.
+#
+# EL SEGUNDO PASO NO ES ADORNO, Y ESTÁ MEDIDO. Con sólo el primero, `u` NO tiene media cero:
+# signo(e)·|e|/(disp+|e|) es cóncava en |e|, y el nivel sonoro del mundo es asimétrico (media 0,1113
+# contra mediana 0,0681 en los 101.159 pasos medidos: muchos ratos flojos, pocos golpes fuertes).
+# Resultado del replay del `campo_env` real por la fórmula nueva SIN este paso: F queda con media
+# −0,0814, el 21,12 % del fondo de escala, empujando siempre hacia abajo. Eso es cambiar un
+# trinquete fuerte por uno débil, que no es arreglarlo. Descontando la media móvil del propio
+# empuje —el mismo principio, aplicado al empuje en vez de al nivel— la media medida pasa a
+# +0,0000 (0,01 % del fondo) y la mediana a +0,0000, con 73,4 % de empujones hacia arriba y 26,6 %
+# hacia abajo (pequeños y frecuentes contra grandes y raros: la forma real del sonido).
+# Contraste con lo que había: F = 6·env tenía media 0,4087 de mediana, el 0,00 % de masa negativa y
+# superaba el umbral de bifurcación el 50,21 % de los pasos, con máximo 5,951 = 15,5 veces el umbral.
 CAMPO_GAIN_AUDIO  = 6.0      # cuánto empuja la sonoridad (envolvente) al campo. Calibrar: E debe IMPORTAR sin tapar I.
-CAMPO_ENV_VENTANA = 1200     # muestras de la ventana de envolvente (RMS local) ≈ 25 ms
+_COTA_CAMPO_ACTIVA = os.environ.get("ANIMA_CAMPO_COTA", "1") != "0"   # A/B, ver el uso
+CAMPO_F_MAX = 2.0 / (3.0 * (3.0 ** 0.5))   # 0,384900… ORIGEN: umbral de bifurcación del término de
+                             # reacción Φ(1−Φ²) del propio campo — el valor de forzamiento a partir del
+                             # cual desaparece el punto fijo negativo. NO es una elección de calibración:
+                             # es el techo derivado por encima del cual el campo deja de poder volver.
+                             # Como |u| < 1, |F| < CAMPO_F_MAX siempre: el organismo puede ser desbordado
+                             # (u→±1) pero no destruido (nunca cruza su propia bifurcación).
+CAMPO_ENV_TASA = 0.005       # ORIGEN: τ = 1/0,005 = 200 subpasos = 2,0 s con SUBPASO = 0,01 s. Es la
+                             # escala de tiempo de "contexto" que el propio campo ya declara para
+                             # CAMPO_TAU_REC ("contexto, τ≈2s", v80h:75). La adaptación sensorial al nivel
+                             # habitual ocurre en el contexto, no en la identidad (τ≈20s): un tono
+                             # sostenido deja de empujar en ~2 s, un cambio de nivel empuja al instante.
+CAMPO_ENV_MINIMO = 200       # una constante de tiempo completa de observaciones antes de que "lo
+                             # habitual" signifique algo. Mientras tanto el forzamiento es 0: el campo
+                             # se abstiene en vez de decidir contra una escala vacía (escala.py).
+CAMPO_ENV_VENTANA = 1200     # muestras a cada lado del instante actual → ventana total 2·1200 = 2400
+                             # muestras = 50 ms a 48 kHz. (El comentario anterior decía "≈ 25 ms": era
+                             # el semiancho, no la ventana. Discrepancia doc/código señalada por la
+                             # auditoría, resuelta aquí a favor del código; el número no se toca.)
 # -- 1. W relacional (BASE) — VERBATIM de v72b_fase3_plasticidad_hebbiana.py --
 CAMPO_ETA_HEBB    = 0.02     # v72b:41  tasa de aprendizaje hebbiano
 CAMPO_TAU_W       = 0.005    # v72b:42  decaimiento de pesos
@@ -526,6 +590,17 @@ class Hemisferio:
         self.entrada = None
         self.sr = 48000
         self.factor_inanicion = 1.0
+        self.env_audio = 0.0           # envolvente (RMS) que el campo oye — instrumentación 2-ago-2026
+        self.F_audio = 0.0             # forzamiento efectivo CON SIGNO = F_MAX·u·gain_vol·apertura.
+        #   Desde el 5-ago-2026 puede ser NEGATIVO: ésa es justamente la corrección (ver CAMPO_F_MAX).
+        self.esc_env = Escala(tasa=CAMPO_ENV_TASA, minimo=CAMPO_ENV_MINIMO)   # lo habitual del nivel
+        #   sonoro PARA ESTE OÍDO. media = nivel habitual; dispersion = cuánto suele apartarse de él.
+        self.esc_emp = Escala(tasa=CAMPO_ENV_TASA, minimo=CAMPO_ENV_MINIMO)   # lo habitual del EMPUJE
+        #   que recibe. Su media es el sesgo que deja la asimetría del mundo, y se descuenta.
+        # APERTURA DE LA MEMBRANA (2-ago-2026). Cuánto del exterior deja entrar el organismo.
+        # 1.0 = comportamiento histórico exacto (membrana siempre abierta del todo). Lo fija el
+        # soma desde `perm_ext` (su propio act_perm, lag 1) cuando ANIMA_MEMBRANA_APERTURA=1.
+        self.apertura = 1.0
         self.gain_vol = 1.0            # ganancia de VOLUMEN del oído (física): el oído que se acerca a la
         #   fuente sube de volumen; el otro baja (como girar la cabeza para oír mejor). Lo fija el soma.
         # --- CAMPO ROBUSTECIDO (Fase B v2): flags + estado de memoria de campo ---
@@ -580,14 +655,121 @@ class Hemisferio:
         reaccion = self.Phi * (1 - self.Phi * self.Phi)
         forzamiento = np.zeros_like(self.Phi)
         forzamiento[0], forzamiento[-1] = entrada, -entrada      # dipolo (lateralidad/estructura; media cero)
-        # ACOPLE AUDIO→CAMPO (S = I·E): MONOPOLO desde la ENVOLVENTE (energía) del audio — el EXTERIOR
-        # entra al INTERIOR y lo desplaza. Sin esto E≈0 ⇒ S≈0 (campo sordo). La envolvente (RMS local) es
-        # positiva y sostenida; el gain_vol (orientación) la modula → enfrentar la fuente la oye más fuerte.
+        # ACOPLE AUDIO→CAMPO (S = I·E): la ENVOLVENTE (energía) del audio — el EXTERIOR entra al
+        # INTERIOR y lo desplaza. Sin esto E≈0 ⇒ S≈0 (campo sordo). El gain_vol (orientación) la
+        # modula → enfrentar la fuente la oye más fuerte.
         if self.cf.get('campo_audio_real') and self.entrada is not None:
             i0 = int(t * self.sr)
             w = self.entrada[max(0, i0 - CAMPO_ENV_VENTANA):i0 + CAMPO_ENV_VENTANA]
             env = float(np.sqrt(np.mean(w * w))) if w.size else 0.0
-            forzamiento += CAMPO_GAIN_AUDIO * env * self.gain_vol   # sonoridad → empuja todo el campo
+            # LA APERTURA ES DEL ORGANISMO. `gain_vol` sólo REDISTRIBUYE entre oídos (un balancín:
+            # lo que sube en uno baja en el otro, la suma se conserva), así que orientarse no
+            # permite escapar de la saturación. `apertura` sí regula CUÁNTO entra en total, y la
+            # fija el propio organismo desde su act_perm. Es la palanca que un ser vivo usa cuando
+            # el mundo lo desborda: cerrarse. Estaba prevista (`perm_ext`, "Cable B") y desconectada
+            # —se probó sólo ABRIR, que siempre empeoraba, y se archivó sin probar CERRAR.
+            #
+            # EL FORZAMIENTO YA NO ES MONOPOLAR (5-ago-2026; ver la nota larga en CAMPO_F_MAX).
+            # Se compara el nivel de ahora con el nivel habitual DE ESTE OÍDO, y se empuja en la
+            # dirección de la diferencia: más fuerte de lo normal empuja hacia arriba, más flojo
+            # empuja hacia abajo, lo de siempre no empuja. Con el descuento del empuje habitual
+            # (abajo) la media medida sobre el `campo_env` real es +0,0000 — no queda trinquete de
+            # ningún signo. Mientras la escala no tiene historia (200 subpasos = 2 s) el forzamiento
+            # es 0: el campo se abstiene en vez de empujar contra una escala vacía.
+            self.esc_env.observar(env)
+            e = env - self.esc_env.media
+            if self.esc_env.madura and self.esc_env.dispersion > 1e-9 and abs(e) > 1e-9:
+                u = rel_contra(abs(e), self.esc_env.dispersion)   # 0,5 en la desviación habitual
+                u = (u if e >= 0.0 else -u)
+            else:
+                # sin historia, o desviación y dispersión ambas por debajo de la guarda numérica del
+                # proyecto (1e-9): no hay con qué comparar. Abstenerse es 0 (no empujar), NUNCA el
+                # neutro 0,5 de una clasificación. Sin esta guarda, en silencio digital prolongado
+                # media y dispersión decaen juntas hacia 0 y el cociente 0/0 daría 0,5 — un empujón
+                # permanente de media escala salido de la nada, que es el defecto que se está
+                # corrigiendo, reaparecido por la puerta de atrás.
+                u = 0.0
+            # Descuento del empuje habitual: lo que queda del sesgo por la asimetría del mundo. El
+            # recorte a ±1 es la guarda que mantiene |F| ≤ CAMPO_F_MAX — el campo puede llegar a
+            # rozar su propia bifurcación (medido: el 0,03 % de los pasos) pero nunca pasarla.
+            # CORREGIDO 5-ago-2026 tras la revisión adversarial. Antes el descuento se aplicaba
+            # sólo `if self.esc_emp.madura`, así que las primeras ~200 muestras de CADA arranque
+            # pasaban sin descontar, con media medida −0,203: un empujón de un solo signo en cada
+            # encendido, que es justo el trinquete que esto viene a quitar. Ahora la escala nace
+            # con la primera muestra y el descuento rige desde el paso 1.
+            #
+            # Y el descuento se hace contra la media INSTANTÁNEA ya actualizada, no contra la
+            # anterior: `u − media` con la media incluyendo a `u` es lo que garantiza que el
+            # residuo tenga media nula por construcción y no por suerte. La revisión midió que
+            # con la versión anterior el signo del sesgo cambiaba según el tramo del corpus
+            # (−0,0692 en el completo, +0,0232 en la segunda mitad): eso no es una propiedad,
+            # es un accidente.
+            # CENTRADO RETIRADO, 5-ago-2026, tras medirlo dos veces.
+            #
+            # El diagnóstico era correcto: el forzamiento empujaba SIEMPRE hacia el mismo lado
+            # (campo_F ≥ 0 en el 100% de los pasos) y eso es un trinquete. Pero la cura estaba
+            # mal elegida, y lo pagó el organismo: con el descuento de la media, campo_F quedó en
+            # 0,0001 de mediana durante 183 minutos, la ingesta en la mitad del gasto y la reserva
+            # en cero de forma estable. Tres horas muerto.
+            #
+            # La razón es conceptual y no de implementación: `env` es una ENVOLVENTE, y su
+            # información está en la MAGNITUD, no en la fluctuación. Restarle su media le quita
+            # justo lo que era comida y deja el temblor alrededor del promedio. Una onda sonora sí
+            # es bipolar —compresión y rarefacción—; su envolvente no lo es, porque ya es un
+            # módulo. Para tener empuje en ambos sentidos hay que tomarlo de la ONDA, no de su
+            # envolvente, y la membrana ya la tiene: ése es el arreglo verdadero y queda pendiente.
+            #
+            # Lo que SÍ se conserva porque está bien derivado y medido: la cota CAMPO_F_MAX =
+            # 2/(3√3), el punto de bifurcación del propio término de reacción Φ(1−Φ²). Con ella
+            # |F| ≤ F_MAX en el 100% de los pasos, contra el 50,6% que antes cruzaba la
+            # bifurcación y dejaba al campo sin pozo negativo al que volver.
+            self.esc_emp.observar(u)     # se sigue aprendiendo el empuje habitual, para medirlo
+            # LA COTA ES UN TOPE, NO UNA GANANCIA (5-ago-2026).
+            # El lote anterior sustituyó la ganancia del acople por CAMPO_F_MAX = 0,3849 y
+            # normalizó la envolvente a su propia dispersión. La cota está bien derivada —es el
+            # punto de bifurcación de Φ(1−Φ²), donde el campo pierde su pozo negativo— pero se usó
+            # como FACTOR en vez de como LÍMITE, y eso dividió el forzamiento por quince: medido,
+            # campo_F pasó de 0,0699 a 0,0050 y el organismo estuvo tres horas sin poder comer.
+            #
+            # Ahora se conservan las dos cosas: el acople con su ganancia real —que es lo que hace
+            # que el sonido MUEVA al campo— y la cota como recorte duro, para que nunca cruce su
+            # propia bifurcación. Es lo que se quería desde el principio.
+            _f = CAMPO_GAIN_AUDIO * env * self.gain_vol * self.apertura
+            # ── A/B DE LA COTA (7-ago-2026) ────────────────────────────────────────────
+            # La cota entró en vigor de verdad el 7-ago a las 05:31 (antes se había
+            # desplegado sin que el proceso la cargara). Desde ese instante, con el MUNDO
+            # IGUAL —oído izquierdo 134,6 → 130,4, un 3 %—, `A_sys_env` cayó de 0,4900 a
+            # 0,2516 y se quedó ahí: ocho horas seguidas entre 0,2467 y 0,2508 sobre 10.727
+            # pasos. Un acoplamiento que no se mueve mientras el mundo varía no está
+            # respondiendo: está atascado.
+            #
+            # Y la cota muerde cuatro veces más que el defecto que venía a corregir: sólo el
+            # 7,07 % de los pasos cruzaba la bifurcación, pero el recorte aplana el 23-31 %
+            # contra un único valor. Eso convierte una escala en una constante — la misma
+            # patología que este proyecto persigue con el nombre de «columna clavada», sólo
+            # que aquí lo clavado es el forzamiento que el organismo recibe del mundo: un
+            # tercio del tiempo, «fuerte» y «mucho más fuerte» le llegan idénticos.
+            #
+            # ANIMA_CAMPO_COTA=0 la desactiva para atribuir. NO es un parámetro del
+            # organismo: es el interruptor de un experimento, y por eso vive en el entorno y
+            # no en `plast`. Con la cota fuera, el campo vuelve a poder cruzar su propia
+            # bifurcación el 7 % de los pasos — que es el defecto conocido y el precio de
+            # esta medición.
+            if _COTA_CAMPO_ACTIVA:
+                _f = max(-CAMPO_F_MAX, min(CAMPO_F_MAX, _f))
+            forzamiento += _f
+            # INSTRUMENTACIÓN (2-ago-2026, ampliada el 5-ago). Esta columna es la que permitió
+            # medir el trinquete: sin ella la calibración pedida en la nota vieja ("E debe
+            # IMPORTAR sin tapar I") no se podía hacer. Ahora F LLEVA SIGNO — es la mitad del
+            # arreglo, y sin publicar el signo nadie puede comprobar que el arreglo sigue en pie.
+            # Centinelas que hay que vigilar al desplegar esto: `campo_F` debe tener mediana
+            # cercana a 0 y masa a ambos lados. CRITERIO DURO (la revisión señaló que decir
+            # "masa a ambos lados" es demasiado laxo: un 68/32 con media −18 % lo pasaría):
+            #     |media(campo_F)| debe ser menor que 0,05 · CAMPO_F_MAX = 0,0192.
+            # Y ω_L / ω_A deben dejar de
+            # estar clavados en +1 (antes: 89,70 % y 44,14 % en ≥ +0,999, 0,00 % en ≤ −0,999).
+            self.env_audio = float(env)
+            self.F_audio = float(_f)   # ya recortado arriba si la cota esta activa
         acoplamiento = np.zeros_like(self.Phi)
         inhibido = False
         if otro_hemisferio is not None:

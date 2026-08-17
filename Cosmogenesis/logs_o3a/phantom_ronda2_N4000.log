@@ -1,0 +1,21 @@
+[OK] A2-B0-C2-batch3-r86 clase=I N=4000 t_grafo=5.17s t_ic=629.28s t_phantom=19.93s frac=0.15549999999999992 nsink=27 kV=0.49999999999999994 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r86 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r12 clase=III N=4000 t_grafo=5.09s t_ic=624.86s t_phantom=21.13s frac=0.1337499999999999 nsink=24 kV=0.41544885177453045 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r12 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch4-r51 clase=I N=4000 t_grafo=4.76s t_ic=619.76s t_phantom=43.25s frac=0.2537499999999999 nsink=65 kV=0.3922470433639948 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch4-r51 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch4-r36 clase=III N=4000 t_grafo=4.75s t_ic=624.29s t_phantom=48.21s frac=0.2742499999999999 nsink=72 kV=0.2550655542312278 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch4-r36 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r5 clase=I N=4000 t_grafo=5.65s t_ic=618.58s t_phantom=20.79s frac=0.10224999999999995 nsink=13 kV=0.4436619718309857 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r5 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r114 clase=III N=4000 t_grafo=5.62s t_ic=627.12s t_phantom=19.11s frac=0.09824999999999995 nsink=12 kV=0.4392764857881135 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r114 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch4-r13 clase=I N=4000 t_grafo=5.47s t_ic=629.13s t_phantom=19.03s frac=0.08599999999999998 nsink=10 kV=0.7352941176470594 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch4-r13 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch4-r94 clase=III N=4000 t_grafo=5.07s t_ic=624.25s t_phantom=25.56s frac=0.13049999999999992 nsink=24 kV=0.451546391752577 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch4-r94 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r35 clase=I N=4000 t_grafo=5.08s t_ic=620.42s t_phantom=25.21s frac=0.14624999999999994 nsink=26 kV=0.4230019493177389 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r35 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r31 clase=III N=4000 t_grafo=5.11s t_ic=620.4s t_phantom=28.62s frac=0.16074999999999987 nsink=25 kV=0.45117845117845135 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r31 III N=4000: conservados cosmog_00000 y cosmog_00500
+FIN_PHANTOM_N4000

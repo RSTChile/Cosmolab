@@ -1,0 +1,132 @@
+=== SUITE ÉPOCAS MASA (E0→E4) ===
+Masa PROHIBIDA hasta E4: gravedad + densificación de H.
+
+  [K1_kill_seeds] 1/12 kill=False E3=True E4=True chain=False seed=7
+  [K1_kill_seeds] 8/12 kill=False E3=True E4=True chain=False seed=3141
+== K1_kill_seeds: KILL=0.00 E0=1.00 E1=1.00 E3=1.00 E4=1.00 chain=0.00 leak_mean_max=0.654 (28.2s)
+  [K2_sweep_potential_leak] 1/60 kill=False E3=False E4=False chain=False TC=0.35_R0=1.0_s=2025
+  [K2_sweep_potential_leak] 8/60 kill=False E3=False E4=False chain=False TC=0.35_R0=2.9_s=42
+  [K2_sweep_potential_leak] 16/60 kill=False E3=False E4=False chain=False TC=0.44_R0=2.2_s=42
+  [K2_sweep_potential_leak] 24/60 kill=False E3=True E4=True chain=False TC=0.53_R0=1.6_s=42
+  [K2_sweep_potential_leak] 32/60 kill=False E3=True E4=True chain=False TC=0.62_R0=1.0_s=42
+  [K2_sweep_potential_leak] 40/60 kill=False E3=True E4=True chain=False TC=0.62_R0=3.5_s=42
+  [K2_sweep_potential_leak] 48/60 kill=False E3=True E4=False chain=False TC=0.71_R0=2.9_s=42
+  [K2_sweep_potential_leak] 56/60 kill=False E3=True E4=False chain=False TC=0.80_R0=2.2_s=42
+== K2_sweep_potential_leak: KILL=0.00 E0=1.00 E1=0.63 E3=0.75 E4=0.53 chain=0.00 leak_mean_max=0.249 (133.0s)
+  [E01_sweep_H_EXP] 1/21 kill=False E3=True E4=True chain=False H=3.0_s=2025
+  [E01_sweep_H_EXP] 8/21 kill=False E3=True E4=True chain=False H=5.0_s=42
+  [E01_sweep_H_EXP] 16/21 kill=False E3=True E4=True chain=False H=8.0_s=2025
+== E01_sweep_H_EXP: KILL=0.00 E0=1.00 E1=1.00 E3=1.00 E4=1.00 chain=0.00 leak_mean_max=0.217 (46.4s)
+  [E3_sweep_atom] 1/25 kill=False E3=True E4=True chain=False L=20_MIX=0.15
+  [E3_sweep_atom] 8/25 kill=False E3=True E4=True chain=False L=24_MIX=0.35
+  [E3_sweep_atom] 16/25 kill=False E3=True E4=True chain=False L=32_MIX=0.15
+  [E3_sweep_atom] 24/25 kill=False E3=True E4=True chain=False L=40_MIX=0.45
+== E3_sweep_atom: KILL=0.00 E0=1.00 E1=1.00 E3=1.00 E4=1.00 chain=0.00 leak_mean_max=0.208 (65.7s)
+  [E4_sweep_G_GRAV] 1/36 kill=False E3=True E4=False chain=False G=0.00_s=2025
+  [E4_sweep_G_GRAV] 8/36 kill=False E3=True E4=True chain=False G=0.05_s=3141
+  [E4_sweep_G_GRAV] 16/36 kill=False E3=True E4=True chain=False G=0.15_s=3141
+  [E4_sweep_G_GRAV] 24/36 kill=False E3=True E4=True chain=False G=0.25_s=3141
+  [E4_sweep_G_GRAV] 32/36 kill=False E3=True E4=True chain=False G=0.35_s=3141
+== E4_sweep_G_GRAV: KILL=0.00 E0=1.00 E1=1.00 E3=1.00 E4=0.89 chain=0.00 leak_mean_max=0.279 (132.6s)
+  [E4_CTRL] seed=2025 ON_mass=12.3231 OFF_mass=0.0000 only_grav=True
+  [E4_CTRL] seed=42 ON_mass=9.4526 OFF_mass=0.0000 only_grav=True
+  [E4_CTRL] seed=777 ON_mass=16.6236 OFF_mass=0.0000 only_grav=True
+  [E4_CTRL] seed=3141 ON_mass=11.3855 OFF_mass=0.0000 only_grav=True
+  [E4_CTRL] seed=99991 ON_mass=29.0594 OFF_mass=0.0000 only_grav=True
+  [E4_CTRL] seed=12345 ON_mass=15.0185 OFF_mass=0.0000 only_grav=True
+== E4_CTRL: mass_only_with_grav=1.00 ON_mass=15.6438 OFF_mass=0.0000
+  [ABL] full: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 1.0, 'rate_chain': 0.0, 'mean_leak': 0.27944854707813327, 'mean_mass_E4': 12.446200623596319, 'mean_mass_pre': 0.0}
+  [ABL] no_medium: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 1.0, 'rate_chain': 0.0, 'mean_leak': 0.23711075134093146, 'mean_mass_E4': 14.249678969624025, 'mean_mass_pre': 0.0}
+  [ABL] no_gravity: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 0.0, 'rate_chain': 0.0, 'mean_leak': 0.27944854707813327, 'mean_mass_E4': 0.0, 'mean_mass_pre': 0.0}
+  [ABL] early_gravity: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 1.0, 'rate_chain': 0.0, 'mean_leak': 0.2688632772581623, 'mean_mass_E4': 136.52124567252926, 'mean_mass_pre': 0.0}
+  [ABL] strong_G: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 1.0, 'rate_chain': 0.0, 'mean_leak': 0.27944854707813327, 'mean_mass_E4': 13.418124641517451, 'mean_mass_pre': 0.0}
+  [ABL] weak_G: {'rate_KILL': 0.0, 'rate_E3': 1.0, 'rate_E4': 1.0, 'rate_chain': 0.0, 'mean_leak': 0.27944854707813327, 'mean_mass_E4': 16.889637686935288, 'mean_mass_pre': 0.0}
+
+JSON → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa/suite_epocas_masa_result.json
+MD  → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa/RESUMEN_SUITE_EPOCAS_MASA.md
+
+=== GLOBAL === MASS_E4_OK_BUT_LEAK_INSTRUMENT
+{
+  "global_verdict": "MASS_E4_OK_BUT_LEAK_INSTRUMENT",
+  "kill_ok_global": false,
+  "mass_only_with_gravity": true,
+  "instrument_premature_leaks": true,
+  "K1_rate_KILL": 0.0,
+  "K2_rate_KILL": 0.0,
+  "K2_mean_leak_max": 0.24895067743261587,
+  "E4_CTRL_rate_only_grav": 1.0,
+  "E4_mean_ON_mass": 15.64377549788392,
+  "E4_mean_OFF_mass": 0.0,
+  "E3_rate_atom": 1.0,
+  "ABL": {
+    "full": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 1.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.27944854707813327,
+      "mean_mass_E4": 12.446200623596319,
+      "mean_mass_pre": 0.0
+    },
+    "no_medium": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 1.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.23711075134093146,
+      "mean_mass_E4": 14.249678969624025,
+      "mean_mass_pre": 0.0
+    },
+    "no_gravity": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 0.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.27944854707813327,
+      "mean_mass_E4": 0.0,
+      "mean_mass_pre": 0.0
+    },
+    "early_gravity": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 1.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.2688632772581623,
+      "mean_mass_E4": 136.52124567252926,
+      "mean_mass_pre": 0.0
+    },
+    "strong_G": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 1.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.27944854707813327,
+      "mean_mass_E4": 13.418124641517451,
+      "mean_mass_pre": 0.0
+    },
+    "weak_G": {
+      "rate_KILL": 0.0,
+      "rate_E3": 1.0,
+      "rate_E4": 1.0,
+      "rate_chain": 0.0,
+      "mean_leak": 0.27944854707813327,
+      "mean_mass_E4": 16.889637686935288,
+      "mean_mass_pre": 0.0
+    }
+  },
+  "thresholds": {
+    "LEAK_SEP_MAX": 0.05,
+    "DENS_ENHANCE_MIN": 1.15,
+    "VEV_PRE_MAX": 0.18,
+    "VEV_POST_MIN": 0.1,
+    "RATE_PASS": 0.55
+  },
+  "contrato": {
+    "E0": "sim\u00e9trico, sin masa",
+    "E1": "VEV, sin masa",
+    "E2": "orden/relaciones, sin masa",
+    "E3": "primer \u00e1tomo H, sin claim masa",
+    "E4": "gravedad + densificaci\u00f3n H \u2192 masa"
+  },
+  "elapsed_total_s": 521.0731739997864
+}

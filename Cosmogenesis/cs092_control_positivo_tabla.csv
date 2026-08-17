@@ -1,0 +1,10 @@
+sustrato,orden_global_conocido,N_max,grado_medio,M_pi_cv,Q_pi_cv,M_pendiente,Q_pendiente,M_diam,M_diam_robusto,Q_diam,M_n_ejes,M_pico,Q_n_ejes,Q_pico,JA_M,JA_Q,JB_M,JB_Q,JBp_M,JBp_Q,JC_M,JC_Q
+anillo1d,True,2500,2.0,0.716,nan,1.0,nan,1250.0,1250.0,nan,2.0,0.832,0.0,0.557,no detecta,NO MEDIBLE,DETECTA,NO MEDIBLE,DETECTA,NO MEDIBLE,no detecta,no detecta
+reticula2d,True,2500,4.0,0.328,0.242,0.5,nan,50.0,50.0,nan,0.0,0.732,0.0,0.589,DETECTA,DETECTA,DETECTA,NO MEDIBLE,DETECTA,NO MEDIBLE,no detecta,no detecta
+reticula3d,True,2197,6.0,0.51,0.411,0.368,0.077,18.0,18.0,19.13,6.0,0.66,0.0,0.689,no detecta,DETECTA,DETECTA,no detecta,no detecta,no detecta,no detecta,no detecta
+reticula4d,True,2401,8.0,0.494,0.556,0.309,0.146,12.0,12.0,18.96,0.0,0.629,0.0,0.656,DETECTA,no detecta,DETECTA,no detecta,no detecta,no detecta,no detecta,no detecta
+aniso2d,True,2500,2.48,0.403,0.47,0.333,nan,72.5,71.2,nan,2.0,0.788,0.0,0.69,DETECTA,DETECTA,DETECTA,NO MEDIBLE,DETECTA,NO MEDIBLE,no detecta,no detecta
+flujo_capas,True,2500,5.76,1.271,0.56,0.508,0.051,50.5,36.8,18.52,1.0,0.968,0.0,0.652,no detecta,no detecta,DETECTA,no detecta,DETECTA,no detecta,DETECTA,no detecta
+er,False,2500,5.99,0.972,1.102,0.166,0.157,9.0,7.2,16.74,0.0,0.652,0.0,0.644,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta
+real,False,2500,6.45,0.641,0.654,0.236,0.153,14.0,11.0,36.26,0.0,0.705,0.0,0.69,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta
+real_barajado,False,2500,6.45,1.009,1.04,0.141,0.214,7.5,6.0,23.85,0.0,0.69,0.0,0.683,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta,no detecta

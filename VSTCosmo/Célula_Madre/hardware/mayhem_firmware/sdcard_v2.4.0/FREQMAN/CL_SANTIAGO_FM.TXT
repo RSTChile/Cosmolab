@@ -1,0 +1,38 @@
+# Santiago de Chile FM broadcast stations.
+# Source basis: public Santiago station list reviewed 2026-07-06.
+f=88100000,d=CL STGO Imagina
+f=88500000,d=CL STGO Concierto
+f=88900000,d=CL STGO Futuro
+f=89300000,d=CL STGO Radio Maria
+f=89700000,d=CL STGO Duna
+f=90500000,d=CL STGO Pudahuel
+f=91300000,d=CL STGO El Conquistador
+f=91700000,d=CL STGO ADN
+f=92100000,d=CL STGO Agricultura
+f=92500000,d=CL STGO Radioactiva
+f=92900000,d=CL STGO La Clave
+f=93300000,d=CL STGO Cooperativa
+f=93700000,d=CL STGO Universo
+f=94100000,d=CL STGO Rock & Pop
+f=94500000,d=CL STGO Usach
+f=95300000,d=CL STGO Disney
+f=95900000,d=CL STGO La Metro
+f=96500000,d=CL STGO Nuevo Tiempo
+f=97100000,d=CL STGO Corporacion
+f=97700000,d=CL STGO Beethoven
+f=98100000,d=CL STGO Carabineros
+f=98500000,d=CL STGO FM Dos
+f=99300000,d=CL STGO Carolina
+f=99700000,d=CL STGO Bio-Bio
+f=100100000,d=CL STGO Infinita
+f=100500000,d=CL STGO Pauta
+f=100900000,d=CL STGO Play
+f=101300000,d=CL STGO Corazon
+f=101700000,d=CL STGO Los 40
+f=102100000,d=CL STGO 13c
+f=102500000,d=CL STGO U Chile
+f=103300000,d=CL STGO T13
+f=104100000,d=CL STGO Romantica
+f=104500000,d=CL STGO Armonia
+f=104900000,d=CL STGO FM Plus
+f=105300000,d=CL STGO Sonar

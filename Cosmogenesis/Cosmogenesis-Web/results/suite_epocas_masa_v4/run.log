@@ -1,0 +1,70 @@
+=== SUITE ÉPOCAS MASA v4 — pares mutuos + linaje de fusión ===
+
+--- controles REAL/OFF/SHUFFLE/INVERT ---
+  seed=    7 E3=True causal=False lin=True mR=0.000 mS=0.000 mutR=0.000 mutS=0.000 nMutR=0 nMutS=0 coR=0.164 coS=0.091 fusR=24 fusS=51 mutR/S=0.00
+  seed=   42 E3=True causal=True lin=True mR=788.850 mS=0.000 mutR=74.903 mutS=47.871 nMutR=11 nMutS=12 coR=0.153 coS=0.098 fusR=30 fusS=19 mutR/S=1.56
+  seed=   99 E3=True causal=True lin=True mR=5527.394 mS=0.000 mutR=74.996 mutS=0.000 nMutR=55 nMutS=0 coR=0.102 coS=0.102 fusR=3 fusS=3 mutR/S=74996033582590.45
+  seed=  777 E3=True causal=False lin=True mR=0.000 mS=0.000 mutR=0.000 mutS=75.623 nMutR=0 nMutS=15 coR=0.149 coS=0.098 fusR=45 fusS=11 mutR/S=0.00
+  seed= 2025 E3=True causal=False lin=False mR=0.000 mS=0.000 mutR=0.000 mutS=47.247 nMutR=0 nMutS=9 coR=0.098 coS=0.097 fusR=3 fusS=18 mutR/S=0.00
+  seed= 3141 E3=True causal=False lin=True mR=0.000 mS=0.000 mutR=0.000 mutS=50.428 nMutR=0 nMutS=8 coR=0.100 coS=0.055 fusR=1 fusS=12 mutR/S=0.00
+  seed= 8191 E3=True causal=False lin=True mR=1556.645 mS=0.000 mutR=69.031 mutS=56.482 nMutR=14 nMutS=12 coR=0.160 coS=0.079 fusR=20 fusS=40 mutR/S=1.22
+  seed=99991 E3=True causal=True lin=True mR=1139.318 mS=0.000 mutR=54.402 mutS=20.672 nMutR=14 nMutS=11 coR=0.104 coS=0.064 fusR=12 fusS=33 mutR/S=2.63
+  seed=12345 E3=True causal=False lin=True mR=0.000 mS=0.000 mutR=0.000 mutS=97.680 nMutR=0 nMutS=33 coR=0.073 coS=0.105 fusR=25 fusS=9 mutR/S=0.00
+  seed=54321 E3=True causal=False lin=True mR=2720.303 mS=0.000 mutR=52.739 mutS=43.430 nMutR=23 nMutS=14 coR=0.108 coS=0.091 fusR=67 fusS=68 mutR/S=1.21
+--- barrido G ---
+  G=0.00 causal=0.00 lin=0.00 mutR/S=0.00 mR=0.000
+  G=0.05 causal=0.25 lin=1.00 mutR/S=1.11 mR=584.549
+  G=0.10 causal=1.00 lin=1.00 mutR/S=16045639534210.51 mR=1899.048
+  G=0.15 causal=0.25 lin=0.75 mutR/S=1.24 mR=980.754
+  G=0.20 causal=0.25 lin=0.75 mutR/S=0.39 mR=197.212
+  G=0.25 causal=0.00 lin=0.50 mutR/S=0.31 mR=1077.762
+  G=0.30 causal=0.50 lin=0.75 mutR/S=15819009679880.12 mR=261.196
+  G=0.35 causal=0.25 lin=0.75 mutR/S=8505289371043.74 mR=185.647
+  G=0.40 causal=0.00 lin=0.25 mutR/S=0.00 mR=0.000
+  G=0.45 causal=0.00 lin=1.00 mutR/S=0.00 mR=0.000
+--- L smoke ---
+  L=24 causal=0.00 mutR/S=0.40 nMutR/S=0.80
+  L=28 causal=0.33 mutR/S=0.52 nMutR/S=0.31
+  L=32 causal=0.00 mutR/S=0.57 nMutR/S=0.36
+  L=40 causal=0.33 mutR/S=20697433562721.28 nMutR/S=4333333333333.33
+
+JSON → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v4/suite_epocas_masa_v4_result.json
+MD  → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v4/RESUMEN_SUITE_EPOCAS_MASA_v4.md
+
+=== GLOBAL === E3_OK_E4_PARTIAL_lineage_weak
+{
+  "global_verdict": "E3_OK_E4_PARTIAL_lineage_weak",
+  "rate_E3": 1.0,
+  "rate_e4_causal": 0.3,
+  "rate_lineage_causal": 0.9,
+  "rate_gyr_causal": 0.4,
+  "mass_nulls_clean": true,
+  "mean_mass_real": 1173.250985391923,
+  "mean_mass_off": 0.0,
+  "mean_mass_shuffle": 0.0,
+  "mean_mass_invert": 0.0,
+  "mean_mutual_real": 32.60719507759724,
+  "mean_mutual_shuffle": 43.943370106697515,
+  "mean_mutual_vs_shuffle": 7499603358259.709,
+  "mean_nmut_real": 11.7,
+  "mean_nmut_shuffle": 11.4,
+  "mean_nmut_vs_shuffle": 5500000000000.499,
+  "mean_comem_real": 0.12106370226652045,
+  "mean_comem_shuffle": 0.08800624793613157,
+  "mean_comem_vs_shuffle": 1.4245342780588217,
+  "mean_fusion_real": 23.0,
+  "mean_fusion_shuffle": 26.4,
+  "mean_dens_real": 41.4048982345156,
+  "mean_dens_shuffle": 40.73962201785831,
+  "rate_causal_sweep_G_gt0": 0.2777777777777778,
+  "rate_lineage_sweep_G_gt0": 0.75,
+  "rate_causal_sweep_L": 0.16666666666666666,
+  "mean_leak_v3_not_mass": 0.19001919298717102,
+  "elapsed_s": 2411.745850801468,
+  "design": {
+    "E4": "N-body + cutoff FORCE_CUTOFF + pares mutuos + linaje fusi\u00f3n",
+    "NULL_SHUFFLE": "permutaci\u00f3n de identidades de masa-fuente",
+    "mass_obs": "solo REAL; f(E_mutual, dens, grupos, n_mutual, compactaci\u00f3n)",
+    "juez_causal": "mutual_bind R/S + (n_mutual R/S o co_member R/S)"
+  }
+}

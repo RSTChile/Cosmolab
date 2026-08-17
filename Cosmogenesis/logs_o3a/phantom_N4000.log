@@ -1,0 +1,20 @@
+[OK] A2-B0-C2-batch4-r10 clase=III N=4000 t_grafo=7.49s t_ic=807.1s t_phantom=35.77s frac=0.18474999999999986 nsink=29 kV=0.47943037974683533 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch4-r10 III N=4000: conservados cosmog_00000 y cosmog_00500
+FIN_PHANTOM_N4000
+[OK] A2-B0-C2-batch3-r0 clase=III N=4000 t_grafo=6.58s t_ic=834.16s t_phantom=61.58s frac=0.25824999999999987 nsink=68 kV=0.24646983311938386 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r0 III N=4000: conservados cosmog_00000 y cosmog_00500
+FIN_PHANTOM_N4000
+[OK] A2-B0-C2-batch3-r26 clase=III N=4000 t_grafo=8.71s t_ic=855.3s t_phantom=27.0s frac=0.1569999999999999 nsink=30 kV=0.44972577696526467 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r26 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-batch3-r76 clase=I N=4000 t_grafo=8.59s t_ic=860.55s t_phantom=27.24s frac=0.12949999999999992 nsink=16 kV=0.35221238938053107 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-batch3-r76 I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-r39 clase=III N=4000 t_grafo=9.07s t_ic=848.24s t_phantom=26.52s frac=0.10099999999999996 nsink=17 kV=0.546218487394958 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-r39 III N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-r9v2fix clase=I N=4000 t_grafo=8.89s t_ic=849.57s t_phantom=28.53s frac=0.09974999999999996 nsink=16 kV=0.6228070175438594 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-r9v2fix I N=4000: conservados cosmog_00000 y cosmog_00500
+FIN_PHANTOM_N4000
+[OK] A2-B0-C2-r12v1fix clase=I N=4000 t_grafo=10.56s t_ic=721.12s t_phantom=24.2s frac=0.07025 nsink=10 kV=0.5468164794007488 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-r12v1fix I N=4000: conservados cosmog_00000 y cosmog_00500
+[OK] A2-B0-C2-r19 clase=III N=4000 t_grafo=9.72s t_ic=721.41s t_phantom=26.11s frac=0.12849999999999992 nsink=24 kV=0.45033112582781465 dump=cosmog_00500 timeout=False
+[PODA] A2-B0-C2-r19 III N=4000: conservados cosmog_00000 y cosmog_00500
+FIN_PHANTOM_N4000

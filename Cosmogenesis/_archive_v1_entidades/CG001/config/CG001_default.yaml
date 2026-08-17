@@ -1,0 +1,50 @@
+# CG001 — parámetros iniciales (protocolo §160: 1.000 entidades para primera corrida)
+experiment: CG001
+seed: 42
+
+universe:
+  grid_size: 64
+  n_entities: 1000
+  initial_radius: 1.0
+  expansion_rate: 0.001
+  r_interaction: 2.5
+
+  # --- Régimen selectivo (Bloque B) — CALIBRAR contra la curva N(t) del §8/§23 ---
+  # objetivo: 95–99% muere en los primeros ~10²–10³ pasos, queda remanente no trivial >0.
+  # Estos valores son un PUNTO DE PARTIDA en la dirección correcta, NO calibrados (calibrar = correr).
+  persist_cost: 0.002          # R₀ subido (antes 0.00012)
+  gain: 0.02                   # refuerzo (Δ y S)
+  s_loss: 0.01                 # cancelación en S (§118 C) — rompe la acreción
+  loss: 0.015                  # cancelación en Δ
+  transfer_frac: 0.05          # intercambio redistribuye Δ y S
+  compat_thr: 0.15
+  deposit_coef: 0.05
+  niche_s_gain: 0.002
+
+  # Regla de S — HIPÓTESIS conmutable (no decidida). El GATE corre AMBOS (env CG_S_RULE por brazo).
+  #   coupled      = §118-completo (H1): S gana/pierde/redistribuye como Δ → C-N11 falsable, muerte por interacción
+  #   persist_only = §8 literal   (H2): S solo sube por refuerzo, solo baja por persist_cost → muerte por costo R₀
+  s_rule: coupled              # operativo para arrancar; NO es default metodológico
+
+  # --- Geometría isótropa (Bloque A) ---
+  sigma_move: 0.3              # difusión gaussiana independiente por eje
+  drift_coef: 0.5             # peso de la deriva por gradiente real de Env
+  env_diffusion: 0.05         # §128 Env += λ∇²Env (punto de partida; FUERZA = palanca de régimen, CALIBRAR)
+  env_decay: 0.999            # §129 memoria ambiental con decaimiento
+  rotate_test: 0              # 1 = rota la grilla al iniciar (test causal); o env CG_ROTATE_TEST
+
+  s0: 1.0
+  epsilon: 0.0                 # CG001-A; B usa CG_EPSILON>0 (solo en S inicial de id=0, §60/§133)
+  kappa_p: 0.01                # κ_P: umbral de colapso
+  kappa_h: 0.05                # κ_H: variación observable mínima (§22)
+  niche_h_crit: 0.5
+  steps_per_tick: 1
+  tick_hz: 10
+
+metrics:
+  niche_cluster_eps: 3.0
+  niche_min_count: 5
+
+server:
+  bind: "0.0.0.0"
+  autostart: true

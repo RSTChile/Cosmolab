@@ -1,0 +1,55 @@
+========================================================================================================
+OBSERVABLE PRINCIPAL: fof_ell1.0_nmin5  (eps=0.6, t_final=0.5, dt=0.002)
+========================================================================================================
+                                         par estrato  phantom_frac_I  phantom_frac_III  phantom_dIII_menos_I  nbody_obs_I  nbody_obs_III  nbody_dIII_menos_I gana_en_phantom gana_en_nbody  orden_coincide
+                         PAR_piloto_B_r1_r17  fuerte          0.0870            0.1210                0.0340       0.1800         0.2950              0.1150             III           III            True
+  A2-B0-C2-batch4-r23_vs_A2-B0-C2-batch4-r10  fuerte          0.0955            0.1280                0.0325       0.3125         0.3265              0.0140             III           III            True
+A2-B0-C2-batch3-r120_vs_A2-B0-C2-batch3-r111  fuerte          0.0925            0.1220                0.0295       0.2980         0.3155              0.0175             III           III            True
+ A2-B0-C2-batch3-r104_vs_A2-B0-C2-batch3-r60  fuerte          0.0985            0.1255                0.0270       0.3265         0.3525              0.0260             III           III            True
+                       PAR_v2_G_r12v1fix_r19  fuerte          0.0620            0.0870                0.0250       0.1065         0.2570              0.1505             III           III            True
+  A2-B0-C2-batch3-r59_vs_A2-B0-C2-batch3-r58  empate          0.1035            0.1025               -0.0010       0.3160         0.3365              0.0205               I           III           False
+  A2-B0-C2-batch4-r39_vs_A2-B0-C2-batch4-r26  empate          0.1015            0.1025                0.0010       0.3130         0.3070             -0.0060             III             I           False
+                         PAR_piloto_C_r6_r14  empate          0.1005            0.0990               -0.0015       0.2805         0.3040              0.0235               I           III           False
+  A2-B0-C2-batch4-r38_vs_A2-B0-C2-batch4-r72  empate          0.0995            0.1015                0.0020       0.2955         0.3000              0.0045             III           III            True
+                             PAR_v2_H_r9_r39  empate          0.0805            0.0785               -0.0020       0.2360         0.2020             -0.0340               I             I            True
+
+[FINAL t=0.5 — la réplica]
+  estrato fuerte : 5/5  p=0.0625
+  estrato empate : 2/5  p=1.0000
+  TOTAL            : 7/10  p=0.3438
+  20 corridas : Pearson r=+0.806 p=0.0000 | Spearman rho=+0.753 p=0.0001
+  10 deltas   : Pearson r=+0.559 p=0.0933 | Spearman rho=+0.430 p=0.2145
+
+[INICIAL t=0 — control: geometría pura, sin dinámica]
+  estrato fuerte : 5/5  p=0.0625
+  estrato empate : 2/5  p=1.0000
+  TOTAL            : 7/10  p=0.3438
+  20 corridas : Pearson r=+0.820 p=0.0000 | Spearman rho=+0.798 p=0.0000
+  10 deltas   : Pearson r=+0.792 p=0.0063 | Spearman rho=+0.661 p=0.0376
+
+[DELTA fin-ini — lo que agregó la dinámica]
+  estrato fuerte : 0/5  p=0.0625
+  estrato empate : 3/5  p=1.0000
+  TOTAL            : 3/10  p=0.3438
+  20 corridas : Pearson r=-0.597 p=0.0054 | Spearman rho=-0.668 p=0.0013
+  10 deltas   : Pearson r=-0.831 p=0.0029 | Spearman rho=-0.657 p=0.0392
+
+--- robustez: misma cuenta con otras definiciones de 'región densa' ---
+               observable  media_fin  media_ini  coinc_fuerte_fin  coinc_empate_fin  coinc_total_fin  coinc_fuerte_ini  coinc_empate_ini  coinc_total_ini  coinc_fuerte_delta  coinc_empate_delta  coinc_total_delta  spearman20_fin
+         fof_ell0.6_nmin3     0.4051     0.1586                 4                 2                6                 5                 5               10                   2                   0                  2           0.805
+         fof_ell0.6_nmin5     0.1910     0.1069                 5                 2                7                 5                 3                8                   2                   2                  4           0.785
+        fof_ell0.6_nmin10     0.0916     0.1002                 5                 4                9                 5                 3                8                   0                   3                  3           0.863
+         fof_ell1.0_nmin3     0.4924     0.4461                 5                 1                6                 5                 2                7                   0                   2                  2           0.821
+         fof_ell1.0_nmin5     0.2830     0.3039                 5                 2                7                 5                 2                7                   0                   3                  3           0.753
+        fof_ell1.0_nmin10     0.1296     0.1796                 5                 2                7                 5                 4                9                   0                   1                  1           0.893
+         fof_ell2.0_nmin3     0.6138     0.6384                 5                 4                9                 5                 2                7                   3                   2                  5           0.934
+         fof_ell2.0_nmin5     0.5093     0.6245                 5                 3                8                 5                 1                6                   4                   4                  8           0.889
+        fof_ell2.0_nmin10     0.2519     0.5745                 5                 3                8                 5                 1                6                   3                   3                  6           0.881
+ knn8_frac_rho_mayor_100x     0.1418     0.0975                 5                 3                8                 5                 5               10                   2                   3                  5           0.911
+knn8_frac_rho_mayor_1000x     0.0923     0.0457                 5                 4                9                 5                 4                9                   5                   4                  9           0.884
+
+--- salud numérica de las corridas ---
+        dt  nsteps  deriva_energia_rel  virial_final  segundos
+min  0.002   250.0       -3.813218e-06      0.042300    217.20
+50%  0.002   250.0       -2.030779e-06      0.076242    276.45
+max  0.002   250.0       -7.803087e-07      0.099945    313.60

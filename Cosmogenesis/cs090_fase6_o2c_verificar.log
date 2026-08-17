@@ -1,0 +1,23 @@
+====================================================================================================
+VERIFICACIÓN 1 — cupo uniforme por vector == C2-hard del motor congelado
+====================================================================================================
+  grafos idénticos tras el corte: 12/12  (esperado 12/12)
+
+====================================================================================================
+VERIFICACIÓN 2 — las fábricas de cupo respetan la media pedida y difieren en dispersión
+====================================================================================================
+  UNIF           media= 6.000  sd= 0.000  CV=0.000  min=6   max=6     p99=6
+  HET-grado      media= 6.042  sd= 2.424  CV=0.401  min=1   max=15    p99=12
+  HET-rango      media= 5.949  sd= 1.779  CV=0.299  min=3   max=8     p99=8
+  HET-lognor     media= 6.002  sd= 5.305  CV=0.884  min=1   max=51    p99=26
+  HET-bimodal    media= 6.000  sd= 4.000  CV=0.667  min=2   max=10    p99=10
+  HET-potencia   media= 6.005  sd=14.521  CV=2.418  min=2   max=434   p99=53
+
+====================================================================================================
+VERIFICACIÓN 3 — secuencias de cupo de cada normalización (Prueba 2)
+====================================================================================================
+  ABS         N=500:kcap=6  N=1000:kcap=6  N=2000:kcap=6  N=4000:kcap=6
+  NORM-log    N=500:kcap=5  N=1000:kcap=5  N=2000:kcap=6  N=4000:kcap=7
+  NORM-pot    N=500:kcap=4  N=1000:kcap=5  N=2000:kcap=6  N=4000:kcap=8
+  NORM-ramif  N=500:kcap=5  N=1000:kcap=5  N=2000:kcap=6  N=4000:kcap=7
+  (NORM-grado no se corre: ⟨grado inicial⟩=meandeg no depende de N -> colapsa sobre ABS)

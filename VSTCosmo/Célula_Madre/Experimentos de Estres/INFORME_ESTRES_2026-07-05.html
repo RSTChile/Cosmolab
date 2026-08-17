@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Informe Test de Estrés — Sistema Completo + Oído Digital</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+    :root{
+      --bg:#FFFFFF; --ink:#152019; --ink-soft:#4C5F55; --line:#D2DCD5; --inset:#F0F4F0;
+      --phosphor:#0E9068; --copper:#AD6428; --amber:#8F6410; --danger:#BC4130;
+      --sans:"Helvetica Neue","Inter",-apple-system,system-ui,"Segoe UI",sans-serif;
+      --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    }
+    html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    @page{margin:16mm 15mm}
+    body{font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:12.5px;
+      line-height:1.6;max-width:760px;margin:0 auto;padding:8px 0}
+    h1{font-size:2.05rem;letter-spacing:-.025em;font-weight:800;line-height:1.08;
+      margin:0 0 6px;text-wrap:balance;break-after:avoid}
+    h2{font-size:1.4rem;letter-spacing:-.02em;font-weight:750;margin:30px 0 10px;
+      padding-top:14px;border-top:2px solid var(--line);break-after:avoid;color:var(--ink)}
+    h3{font-size:1.08rem;font-weight:700;margin:20px 0 7px;color:var(--copper);break-after:avoid}
+    p{margin:0 0 11px;max-width:70ch}
+    strong{font-weight:650}
+    em{font-style:italic}
+    a{color:var(--phosphor);text-decoration:none}
+    code{font-family:var(--mono);font-size:.86em;background:var(--inset);padding:1.5px 5px;
+      border-radius:4px;border:1px solid var(--line);color:var(--copper)}
+    pre{font-family:var(--mono);font-size:11px;line-height:1.5;background:var(--inset);
+      border:1px solid var(--line);border-left:3px solid var(--phosphor);border-radius:8px;
+      padding:12px 14px;overflow-x:auto;margin:8px 0 12px;color:var(--ink-soft);break-inside:avoid}
+    pre code{background:none;border:none;padding:0;color:inherit}
+    blockquote{border-left:3px solid var(--copper);background:var(--inset);margin:14px 0;
+      padding:12px 18px;border-radius:0 8px 8px 0;color:var(--ink-soft);break-inside:avoid}
+    blockquote p{margin:0}
+    ul,ol{margin:0 0 12px;padding-left:22px}
+    li{margin:3px 0}
+    table{border-collapse:collapse;width:100%;font-size:11.5px;margin:12px 0;break-inside:avoid}
+    th,td{text-align:left;padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+    thead th{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--ink-soft);background:var(--inset);font-weight:700}
+    hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+    h1+p em, body>p em{color:var(--ink-soft)}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Informe Test de Estrés — Sistema Completo + Oído
+Digital</h1>
+</header>
+<h1
+id="informe-de-test-de-estrés--sistema-completo-anima--oído-digital">Informe
+de Test de Estrés — Sistema Completo ANIMA + Oído Digital</h1>
+<p><strong>Célula Madre / Cosmosemiótica · 2026-07-05 · corrida autónoma
+nocturna (06:41–10:35)</strong> Autoría técnica: Claude (Opus 4.8).
+Corrida y análisis SIN intervención humana.</p>
+<hr />
+<h2 id="resumen-ejecutivo">Resumen ejecutivo</h2>
+<p>En una sola noche se <strong>desarrolló el "oído digital"</strong>
+(el acoplamiento cognitivo que faltaba para que la radio digital nRF24
+dejara de ser "boca sin oído"), se <strong>desplegó vivo en A y
+E</strong>, y se sometió al <strong>sistema completo a un test de estrés
+de 4 horas</strong> (5 ciclos × 9 bloques). Dos resultados, uno positivo
+y uno negativo, ambos sólidos:</p>
+<ol type="1">
+<li><strong>✅ El sistema es ROBUSTO.</strong> 4 h continuas, <strong>40
+bloques, 4335 paquetes digitales, CERO errores o incidencias</strong>.
+Los organismos se mantuvieron vitales todo el rato (OI 0.25–0.50, sin
+colapso energético). Ni el enlace digital, ni el SDR de E, ni los
+contenedores fallaron una sola vez.</li>
+<li><strong>❌ (honesto) El oído digital NO acopla in vivo.</strong>
+Recibió y procesó <strong>1566 (A) + 1194 (E) eventos</strong>, pero su
+fiabilidad se mantuvo en <strong>0.000</strong> en todos los bloques, y
+el acople <code>r(arousal A,E)</code> no distingue real de los controles
+(<strong>real −0.071 ≈ shuffled −0.108 ≈ null −0.022</strong>). En
+aislamiento (batería sintética) el mismo órgano da r=0.95; in vivo no
+bootstrapea. La causa es conocida y esperada (ver §5).</li>
+</ol>
+<p><strong>Conclusión:</strong> la infraestructura del canal digital y
+del oído está <strong>construida, probada y viva</strong>; falta cerrar
+el <em>bootstrapping</em> del acople (una tarea acotada de diseño, §6).
+El sistema completo demostró aguantar carga sostenida sin romperse.</p>
+<hr />
+<h2 id="1-qué-se-construyó-ingeniería-de-la-sesión">1. Qué se construyó
+(ingeniería de la sesión)</h2>
+<p><strong>El oído digital</strong> (lo central, con agentes vía
+Workflow: 3 diseños → juez → implementación → verificación
+adversarial):</p>
+<ul>
+<li><code>organelos/VST_OrganoOidoDigital.py</code> — organelo gated por
+<code>ANIMA_OIDO_DIGITAL</code>. Diseño ganador:
+<strong>espejo/forward-model del otro</strong> (aprende por
+co-ocurrencia el estado del par —sensado por audio— que acompaña a cada
+firma digital, EMA revisable + olvido) <strong>+ gate de
+consecuencia</strong> (¿atender lo digital precede mejora de
+persistencia?). Modula la <strong>absorción de la voz del par</strong>
+(bus existente, anti-Shannon), NUNCA arousal directo. Débil (±15 %),
+falsable, con Libertad Funcional de no atender. 13 columnas
+<code>oido_dig_*</code>. <strong>Batería 7/7: real r=0.95, NULL/SHUFFLED
+colapsan.</strong></li>
+</ul>
+<p><strong>Endpoints y cajas</strong> (A y E):</p>
+<ul>
+<li><code>POST /nrf/tx</code> (transmitir), <code>GET /nrf</code>
+(estado inmediato del nodo), <code>POST /radio/reactivar</code> (reset
+del SDR), <code>POST /exp_tag</code> (trazabilidad experimental →
+columnas <code>exp_*</code> en cada fila).</li>
+<li>Caja <strong>Radio digital (nRF24)</strong> con botón "Enviar
+mensaje digital" (input + Enter); caja <strong>Radio / SDR</strong> con
+botón "⟳ Reactivar radio". <code>LectorATmega.transmitir()</code> (E
+puede transmitir).</li>
+</ul>
+<p><strong>Fixes de robustez de la sesión</strong> (todos desplegados y
+verificados):</p>
+<ul>
+<li><code>LectorSDRServidor</code>: el hilo moría por
+<code>CancelledError</code> (BaseException, no Exception) al cortar la
+radio → ahora sobrevive y reconecta.</li>
+<li>E/SDR: <code>LD_LIBRARY_PATH</code> faltaba en el lanzador →
+<code>libsdrplay_api.so.3</code> no cargaba; + reset de USB para
+desatascar el RSP1 clon; + auto-sanación del
+<code>LectorSDR</code>.</li>
+<li><strong><code>IntegracionE</code>: el lector WiFi pisaba la
+recepción nRF del USB</strong> (<code>nrf_last_rx=''</code>) → el oído
+nunca veía los paquetes. Invertido el orden de inyección (USB primario
+gana). <em>(Bug encontrado y corregido durante el despliegue del
+oído.)</em></li>
+<li>Cachés web: <code>Cache-Control: no-store</code> + cache-bust
+dinámico de cajas (fin del problema de cajas viejas).</li>
+<li>Imagen Docker re-horneada: todo el código de la sesión quedó durable
+(no solo en el writable layer).</li>
+</ul>
+<hr />
+<h2 id="2-qué-se-probó-la-campaña">2. Qué se probó (la campaña)</h2>
+<p>Orquestador autónomo <code>correr_campaña.py</code>: por bloque
+etiqueta el CSV (<code>/exp_tag</code>), conduce el tráfico digital,
+registra en bitácora (quién habla a quién, cada muestra) y mide el
+acople.</p>
+<p><strong>5 ciclos completos</strong> de 9 bloques de 5 min c/u (40
+bloques cerrados):</p>
+<table>
+<thead>
+<tr>
+<th>Bloque</th>
+<th>Qué estresa</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B00_basal</td>
+<td>línea base</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B04_digital_A_a_E</td>
+<td>canal digital A→E (tokens de estado)</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B04c_shuffled</td>
+<td>idem, tokens barajados</td>
+<td><strong>shuffled</strong></td>
+</tr>
+<tr>
+<td>B05_digital_E_a_A</td>
+<td>canal digital E→A</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B06_digital_bidir</td>
+<td>diálogo digital A↔︎E continuo</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B06c_null</td>
+<td>bidireccional SIN enviar nada</td>
+<td><strong>null</strong></td>
+</tr>
+<tr>
+<td>B07_audio_canales</td>
+<td>mundos de audio (Rode)</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B09_sociedad_ABCD</td>
+<td>sociedad de audio A·B·C·D</td>
+<td>real</td>
+</tr>
+<tr>
+<td>B10_todos_con_todos</td>
+<td>sistema completo bajo carga</td>
+<td>real</td>
+</tr>
+</tbody>
+</table>
+<p>Registro: <code>bitacora_campaña_2026-07-05.md</code> (5211 líneas),
+<code>snapshots_campaña_2026-07-05.csv</code> (40 bloques), + la
+historia longitudinal (CSV por organismo, consultable con
+<code>analisis/analizar.py</code> DuckDB).</p>
+<hr />
+<h2 id="3-resultados--robustez-del-sistema">3. Resultados — robustez del
+sistema</h2>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duración</td>
+<td>06:41 → 10:35 (~4 h) · 5 ciclos · 40 bloques</td>
+</tr>
+<tr>
+<td>Paquetes digitales transmitidos</td>
+<td><strong>4335</strong>, sin un solo fallo de transporte</td>
+</tr>
+<tr>
+<td>Errores / colgadas / rescates</td>
+<td><strong>0</strong> (ni SDR, ni contenedores, ni enlace)</td>
+</tr>
+<tr>
+<td>Vitalidad A (OI)</td>
+<td>media 0.348, rango [0.269 … 0.500] — <strong>nunca
+colapsó</strong></td>
+</tr>
+<tr>
+<td>Vitalidad E (OI)</td>
+<td>media 0.321, rango [0.250 … 0.468] — <strong>nunca
+colapsó</strong></td>
+</tr>
+<tr>
+<td>SDR de E</td>
+<td><code>sdr_vivo=1</code> en todas las vigilancias (pico=1.0)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El sistema completo aguantó 4 h de carga multimodal sostenida
+sin romperse.</strong> Este es el hallazgo positivo grande: la
+arquitectura (5 organismos, radios, SDR, audio, puentes nativos, oído
+nuevo) es estable bajo estrés real.</p>
+<blockquote>
+<p>Observación: <code>H_homeostasis</code> se mantuvo en ~0.000 en A y E
+durante toda la campaña. No es un colapso (OI sano), pero conviene
+revisar si el indicador de homeostasis está registrando bajo esta
+configuración de mundo sonoro.</p>
+</blockquote>
+<hr />
+<h2 id="4-resultados--el-oído-digital-el-negativo-honesto">4. Resultados
+— el oído digital (el negativo honesto)</h2>
+<p>El oído <strong>recibió muchísimo</strong>: <strong>1566 eventos en
+A, 1194 en E</strong> (miles de firmas digitales procesadas). Pero:</p>
+<table>
+<thead>
+<tr>
+<th>Bloque</th>
+<th>Control</th>
+<th>n</th>
+<th>r(arousal A,E)</th>
+<th>A_fiab</th>
+<th>A_valor</th>
+<th>E_fiab</th>
+<th>E_valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B00_basal</td>
+<td>real</td>
+<td>5</td>
+<td>−0.231</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.024</td>
+</tr>
+<tr>
+<td>B04_digital_A_a_E</td>
+<td>real</td>
+<td>5</td>
+<td>−0.037</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.013</td>
+</tr>
+<tr>
+<td>B04c_shuffled</td>
+<td>shuffled</td>
+<td>5</td>
+<td>−0.108</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<td>B05_digital_E_a_A</td>
+<td>real</td>
+<td>5</td>
+<td>−0.142</td>
+<td>0.000</td>
+<td>0.014</td>
+<td>0.000</td>
+<td>0.003</td>
+</tr>
+<tr>
+<td>B06_digital_bidir</td>
+<td>real</td>
+<td>4</td>
+<td>−0.171</td>
+<td>0.000</td>
+<td>0.014</td>
+<td>0.000</td>
+<td>0.027</td>
+</tr>
+<tr>
+<td>B06c_null_bidir</td>
+<td>null</td>
+<td>4</td>
+<td>−0.022</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.028</td>
+</tr>
+<tr>
+<td>B07_audio_canales</td>
+<td>real</td>
+<td>4</td>
+<td>−0.004</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.015</td>
+</tr>
+<tr>
+<td>B09_sociedad_ABCD</td>
+<td>real</td>
+<td>4</td>
+<td>+0.057</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.005</td>
+</tr>
+<tr>
+<td>B10_todos_con_todos</td>
+<td>real</td>
+<td>4</td>
+<td>+0.079</td>
+<td>0.000</td>
+<td>0.041</td>
+<td>0.000</td>
+<td>0.000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Fiabilidad = 0.000 SIEMPRE</strong> (A y E, todos los
+bloques). El <em>espejo</em> nunca ganó poder predictivo: el símbolo
+digital no predijo el estado del otro mejor que la línea base.</li>
+<li><strong>Modulación ≈ 1.000 siempre</strong> → el oído no alteró la
+absorción del par (débil por diseño, pero aquí nulo).</li>
+<li><strong>Valor ecológico = ruido</strong> (0.00–0.09), y aparece
+igual en <code>null</code>/<code>basal</code> que en <code>real</code> →
+no está ligado al tráfico digital real.</li>
+<li><strong>Acople <code>r(arousal A,E)</code>: real (−0.071) ≈ shuffled
+(−0.108) ≈ null (−0.022)</strong> — <strong>sin separación
+real-vs-control.</strong> El canal digital no produjo acople.</li>
+</ul>
+<p><strong>Contraste clave:</strong> en aislamiento (batería sintética
+con símbolos que SÍ predicen el estado del otro) el mismo órgano da
+<strong>r=0.95</strong> y colapsa bajo NULL/SHUFFLED. El mecanismo es
+correcto; lo que falta es el sustrato in vivo.</p>
+<hr />
+<h2 id="5-interpretación-por-qué-no-bootstrapea">5. Interpretación (por
+qué no bootstrapea)</h2>
+<p>El <em>espejo</em> aprende contra el <strong>estado del par sensado
+por AUDIO</strong> (arousal/valencia). Su fiabilidad sube sólo si
+distintas firmas digitales co-ocurren con <strong>estados distintos y
+variables</strong> del otro.</p>
+<p>En vivo, A (Docker, Mac) y E (Pi) tienen <strong>poca co-presencia
+acústica efectiva</strong>: cada uno oye su propio mundo Rode, y su
+lectura del estado del otro es aproximadamente plana. Con un objetivo
+plano, ningún símbolo puede predecir nada → <code>fiabilidad → 0</code>
+→ <code>modulación → 1.0</code> → sin acople.</p>
+<p>Esto es <strong>exactamente el caveat que anticipó el juez del
+diseño</strong>: "el espejo aprende contra el canal de audio; sin
+co-presencia acústica no tiene target y el canal digital nunca gana
+peso". La campaña lo confirmó empíricamente y de forma reproducible (5
+ciclos idénticos). No es un bug: es que el puente de bootstrapping no
+está tendido.</p>
+<hr />
+<h2 id="6-próximos-pasos-para-cerrar-el-acople">6. Próximos pasos (para
+cerrar el acople)</h2>
+<ol type="1">
+<li><strong>Tender la co-presencia acústica A↔︎E</strong>: que E oiga
+realmente la voz de A (y viceversa) por un canal R dedicado, con estado
+variable → el espejo tendrá un target que predecir.</li>
+<li><strong>Bootstrapping digital-only</strong>: dar más peso al
+<em>gate de consecuencia</em> (que funciona sin audio) y/o sembrar el
+espejo con una co-ocurrencia mínima; permitir que la firma digital ancle
+a un estado latente propio, no sólo al del otro sensado.</li>
+<li><strong>Más tiempo / EMA más rápida</strong> en las primeras
+exposiciones (el olvido puede estar borrando el aprendizaje antes de que
+consolide).</li>
+<li><strong>Acoplar el contenido</strong>: hoy los tokens codifican el
+estado del emisor pero el receptor no los usa para nada salvo como firma
+opaca; explorar que la firma module una expectativa concreta.</li>
+</ol>
+<hr />
+<h2 id="7-incidencias-y-fallos-transparencia">7. Incidencias y fallos
+(transparencia)</h2>
+<ul>
+<li><strong>Durante la campaña: 0 incidencias</strong> (ni un ERROR, ni
+un rescate de SDR, ni una colgada).</li>
+<li><strong>Durante el despliegue (antes de la campaña):</strong>
+<ul>
+<li>El oído no se encendía en E: causa raíz = el lector WiFi pisaba las
+columnas nRF del USB. Corregido (orden de inyección). <em>Sin este fix,
+todo el experimento habría sido inválido.</em></li>
+<li><code>analizar.py</code> (DuckDB) tarda &gt;2 min leyendo los ~95
+CSV de E con esquema variable → para este informe se usaron los
+<code>snapshots</code> (que capturan las mismas métricas muestreadas).
+La capa DuckDB queda disponible para análisis más profundo (ver
+§8).</li>
+<li>El directorio de E es <code>organismo_ANIMA_E_PI</code> (no
+<code>_E</code>); se sincronizó con <em>rename</em> al LaCie para el
+análisis unificado.</li>
+<li><code>H_homeostasis ≈ 0</code> sostenido — a revisar (ver §3).</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="8-reproducir-el-análisis-duckdb">8. Reproducir el análisis
+(DuckDB)</h2>
+<pre><code>export VST_HISTORY_BASE=/Volumes/LaCie/Cosmolab_Historia
+# (E ya sincronizada: rsync Pi:history_pi/organismo_ANIMA_E_PI → LaCie/…/organismo_ANIMA_E)
+venv/bin/python Célula_Madre/analisis/analizar.py info
+venv/bin/python …/analizar.py sql \
+  &quot;SELECT org, exp_topologia, exp_control, avg(OI), avg(oido_dig_fiabilidad), count(*)
+   FROM fisio_TODOS WHERE exp_ciclo=&#39;ESTRES_2026-07-05&#39; GROUP BY 1,2,3 ORDER BY 1,2&quot;</code></pre>
+<p>Datos crudos de la campaña:
+<code>snapshots_campaña_2026-07-05.csv</code> (40 bloques × 19 métricas)
+y <code>bitacora_campaña_2026-07-05.md</code> (traza completa: cada
+envío A→E / E→A y muestra de estado).</p>
+<hr />
+<h2 id="cierre">Cierre</h2>
+<p>El sistema completo — cinco organismos, tres vías de radio, SDR,
+audio multicanal, visión, GPS, energía solar y el oído digital nuevo —
+<strong>corrió 4 horas bajo carga sin romperse</strong>. El oído digital
+está <strong>construido, vivo y falsable</strong>; su acople in vivo aún
+no emerge por falta de co-presencia acústica, un hueco de diseño acotado
+y con camino claro. El negativo es tan valioso como el positivo: dice
+exactamente qué construir después.</p>
+<p><em>Informe generado autónomamente por Claude (Opus 4.8) · Célula
+Madre / Cosmosemiótica · 2026-07-05.</em></p>
+</body>
+</html>

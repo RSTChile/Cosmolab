@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Iniciar ANIMA — E Planta
+Name[es]=Iniciar ANIMA — E Planta
+Comment=Organismo E - Planta: arranca y abre observatorio (reanuda tras reinicio)
+Comment[es]=Organismo E - Planta: arranca y abre observatorio (reanuda tras reinicio)
+Exec=/home/ubuntu/anima/celula_madre/docker/anima-iniciar.sh
+Icon=applications-science
+Terminal=false
+Categories=Science;
+StartupNotify=true

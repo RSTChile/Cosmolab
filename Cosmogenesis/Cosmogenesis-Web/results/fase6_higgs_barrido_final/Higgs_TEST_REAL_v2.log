@@ -1,0 +1,20 @@
+=== Higgs_TEST_REAL_v2 (medio no uniforme) ===
+Pregunta: VEV + formula unica + Phi estructurado => masa != geometria?
+sello R0=2.0 U=0.5 TC=0.55 D=0.05 hard_freeze G_RHO=0.8 freeze_T=0.4 Y0=0.3 seed=2025
+step   0 a=  1.00 frz=0 <|Phi|>=0.4533 std=0.1642 wall=0.128 v1=0.4466 v3=0.4556 Rm=0.3755 NULL=0.3815 k1=27 k3=7
+step  50 a=  2.12 frz=0 <|Phi|>=0.2335 std=0.1602 wall=0.462 v1=0.2164 v3=0.2960 Rm=0.2449 NULL=0.3339 k1=14 k3=1
+step 100 a=  4.48 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3091 v3=0.2928 Rm=0.3514 NULL=0.3316 k1=72 k3=4
+step 150 a=  9.49 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3164 v3=0.3445 Rm=0.3042 NULL=0.3314 k1=129 k3=16
+step 200 a= 20.09 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3154 v3=0.2818 Rm=0.3701 NULL=0.3318 k1=179 k3=20
+step 250 a= 42.52 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3096 v3=0.3073 Rm=0.3333 NULL=0.3318 k1=205 k3=20
+step 300 a= 90.02 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3085 v3=0.2918 Rm=0.3490 NULL=0.3307 k1=232 k3=27
+step 350 a=190.57 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3126 v3=0.2999 Rm=0.3432 NULL=0.3301 k1=243 k3=27
+step 399 a=397.42 frz=1 <|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3126 v3=0.2999 Rm=0.3432 NULL=0.3301 k1=243 k3=27
+
+=== VEREDICTO ===
+TEST_FAIL_structure_but_no_mass_signal
+Hay estructura espacial en Φ (muros o std) pero Rm no se separa del NULL: el muestreo por dominios k1/k3 no hereda el contraste del medio.
+<|Phi|>=0.2925 std=0.1749 wall=0.368 v1=0.3120 v3=0.3026
+flags={'vev_ok': True, 'structure_ok': True, 'null_ok': True, 'signal_ok': False, 'hierarchy_Rm_lt_0.1': False}
+Rm_SSB=0.342060428689895  NULL_SSB=0.3310521204193192  |Rm-NULL|=0.011008308270575806
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/fase6_higgs_barrido_final/Higgs_TEST_REAL_v2_result.json

@@ -27,6 +27,17 @@ import os, math, hashlib
 from collections import deque
 import numpy as np
 
+# El patrón «comparar contra lo habitual del propio organismo» se IMPORTA, no se reescribe (escala.py).
+#   rel(x, escala) -> 0,5 cuando x es lo de siempre para este organismo. Sin parámetro libre.
+# `escala` vive en celula_madre/; esto permite importar el organelo suelto (pruebas y smokes)
+# además de dentro del organismo. Unificado el 5-ago-2026: la revisión encontró CUATRO
+# variantes del mismo arranque, que es el problema contra el que existe el módulo compartido.
+import os as _os, sys as _sys
+_RAIZ_CM = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _RAIZ_CM not in _sys.path:
+    _sys.path.insert(0, _RAIZ_CM)
+from escala import Escala, rel as _rel, NEUTRO
+
 COLS_ALT = [
     "alt_otro_presente", "alt_modelo_otro", "alt_prediccion_respuesta", "alt_error_prediccion",
     "alt_efecto_sobre_otro", "alt_efecto_sobre_mi", "alt_valor_emision", "alt_intencion_comunicativa",
@@ -72,6 +83,9 @@ class OrganeloAlteridad:
         # baseline = cuánto cambia el otro POR SU CUENTA, en ventanas SIN emisión mía. La contingencia
         # social = cuánto MÁS cambia el otro tras mi emisión que ese basal. La agencia = qué fracción del
         # cambio del otro depende de MI acto (no de compartir ambiente). Anti-confound: presencia ≠ agencia.
+        # Lo HABITUAL que cambia el otro, aprendido de la propia experiencia. Sustituye al umbral fijo
+        # `efecto_otro > 0.05` que decidía si "el otro respondió" (ver el comentario largo en observar()).
+        self.esc_efecto = Escala()
         self.otro_hist = deque(maxlen=512)   # (t, resumen_otro) para medir el cambio espontáneo del otro
         self.ult_emis_t = -1e9               # t de la última emisión (para excluir ventanas con emisión del basal)
         self.baseline_ema = 0.0              # cambio del otro JUSTO ANTES de emitir (línea-base pre-emisión)
@@ -151,7 +165,15 @@ class OrganeloAlteridad:
         return self._desbucket(bucket)
 
     def gesto_actual(self, fila: dict) -> dict:
-        """Explora una pequeña variación ACÚSTICA espontánea (balbuceo): random walk pequeño y reversible
+        """CÓDIGO MUERTO HOY — comprobado el 4-ago-2026: nadie llama a este método, ni en el repositorio
+        ni en la copia desplegada (C:\\...\\Programs\\ANIMA\\app). Las columnas g_freq / g_intensidad /
+        g_pausa / g_repeticion / g_bucket que SÍ aparecen en el CSV (101.340 pasos, g_freq sd = 0,180) las
+        produce VST_Expresion.py, no esto; `observar()` las lee de la fila ya escritas por aquél. Por eso
+        `explora = 0,10`, `atraccion = 0,05` y el factor `1 + 0,5·necesidad` de aquí NO deciden nada sobre
+        el organismo y no se han tocado: corregirlos sería maquillar código que no corre. Si algún día se
+        vuelve a enchufar este balbuceo, hay que auditarlos ANTES, porque ninguno tiene origen escrito.
+
+        Explora una pequeña variación ACÚSTICA espontánea (balbuceo): random walk pequeño y reversible
         + leve atracción al mejor gesto histórico de este contexto. NO elige etiquetas. Fija el patrón
         (bucket acústico) que 'observar' aprenderá por consecuencias. La exploración domina; el tirón es
         leve (no se acelera el aprendizaje ni se fija convención). Devuelve los parámetros físicos del gesto."""
@@ -199,8 +221,13 @@ class OrganeloAlteridad:
             self.ult_emis_t = t
             self.n_emis[(P, ctx)] = self.n_emis.get((P, ctx), 0) + 1
             self.eventos.append(("alteridad_emision", f"emite {P}", {"ctx": ctx, "presente": presente}))
-            # ¿es una LLAMADA? (emite cuando el otro está ausente o la confianza cae) = "¿sigues ahí?"
-            if presente < 0.5 or (self._presente_prev - presente) > 0.3:
+            # ¿es una LLAMADA? (emite cuando el otro está ausente o acaba de irse) = "¿sigues ahí?"
+            # QUÉ ESTABA MAL: `(self._presente_prev - presente) > 0.3` parecía un umbral, pero `presente`
+            # sólo vale 0 ó 1 (se calcula justo arriba con un `1.0 if ... else 0.0`), así que CUALQUIER
+            # número entre 0 y 1 daba el mismo resultado: el 0,3 no decidía nada, sólo disfrazaba de
+            # umbral la pregunta «¿acabo de perder al otro?». Se escribe la pregunta directamente, sin
+            # número: así nadie tiene que averiguar de dónde salía el 0,3. Comportamiento idéntico.
+            if presente < 0.5 or presente < self._presente_prev:
                 self._llamando = (t, P); contacto_presencia = 1.0
                 self.eventos.append(("alteridad_contacto", f"llamada {P} (otro ausente/lejano)", None))
             self.eventos.append(("alteridad_turno", f"turno: {P}", None))
@@ -215,6 +242,18 @@ class OrganeloAlteridad:
                 self.eventos.append(("alteridad_contacto", "contacto RECUPERADO tras llamada", None))
                 self._llamando = None
             elif t - tll > 5.0:
+                # SE DEJA A PROPÓSITO, con la medición delante. Este 5,0 s es el plazo que el organismo
+                # espera respuesta tras llamar, y sí es un número puesto a mano. Pero MEDIDO sobre
+                # 101.340 pasos (dt = 0,1 s) del organismo ANIMA_5Z934MWHNNRH resulta INERTE: hubo 6
+                # episodios de ausencia del otro y los 6 se registraron como contacto recuperado — el
+                # plazo no descartó ninguno. La razón es que `self._llamando` se re-arma en CADA emisión
+                # hecha con el otro ausente (18.253 pasos de llamada), así que el reloj se reinicia solo
+                # y casi nunca llega a vencer. Cambiarlo sería tocar algo que no ha decidido nada.
+                # PARA CUANDO SÍ IMPORTE: la duración real de las ausencias medidas fue mediana 3,70 s
+                # (p25 2,12 · p75 7,60 · máx 74,30), así que 5,0 s está en el orden de magnitud correcto
+                # por casualidad, no por medida. Con más episodios lo autorregulado sería una Escala de
+                # duraciones de ausencia; con 6 episodios en toda la historia no maduraría nunca (el
+                # mínimo de escala.py son 20), y fabricar una escala con 6 datos sería inventar.
                 self._llamando = None
         self._presente_prev = presente
 
@@ -244,17 +283,35 @@ class OrganeloAlteridad:
             pred = self.modelo_otro.get(P_e, 0.0)
             self.error_pred_ema = (1 - self.ema) * self.error_pred_ema + self.ema * abs(efecto_otro - pred)
             self.modelo_otro[P_e] = (1 - self.lr) * pred + self.lr * efecto_otro     # modelo del otro: efecto esperado de P
+
+            # ¿RESPONDIÓ EL OTRO? — antes: `efecto_otro > 0.05`, escrito tres veces en este bloque.
+            # QUÉ ESTABA MAL: ese 0,05 comparaba el cambio del otro contra una escala que nadie midió, y
+            # MEDIDO sobre 101.340 pasos del organismo ANIMA_5Z934MWHNNRH no discriminaba nada:
+            # alt_efecto_sobre_otro vale exactamente 0 el 42,6 % del tiempo y supera 0,05 el 56,1 %, con
+            # mediana de los no nulos ≈ 0,28. Es decir: entre los pasos en que el otro cambia ALGO,
+            # prácticamente todos pasaban el umbral. Era un «> 0» con aspecto de criterio.
+            # POR QUÉ LA CORRECCIÓN ES AUTORREGULADA: el cambio del otro se compara con LO HABITUAL QUE
+            # CAMBIA EL OTRO para este organismo (su propia escala, misma magnitud y mismas unidades).
+            # Y POR QUÉ NO SE USA `baseline_ema`, que sería la comparación aún más fuerte: porque este
+            # órgano tiene un diseño falsable explícito —intención y valor son NIVEL-PRESENCIA y DEBEN
+            # sobrevivir al shuffle; sólo la AGENCIA debe colapsar—. Usar el pre/post aquí convertiría la
+            # intención en agencia y borraría esa distinción. Con la Escala el diseño se conserva: al
+            # barajar, la distribución marginal de efecto_otro no cambia, así que este criterio tampoco.
+            # Mientras no haya historia, se abstiene (no cuenta como respuesta) en vez de inventar.
+            self.esc_efecto.observar(efecto_otro)
+            respondio = self.esc_efecto.madura and _rel(efecto_otro, self.esc_efecto) > NEUTRO
+
             # VALOR de emisión: cuenta el beneficio SI el otro respondió (anti-Shannon: por consecuencia)
-            valor_obs = efecto_mi if efecto_otro > 0.05 else 0.0
+            valor_obs = efecto_mi if respondio else 0.0
             self.valor[k] = (1 - self.lr) * self.valor.get(k, 0.0) + self.lr * valor_obs
             # INTENCIÓN (nivel-presencia): el otro respondió Y me benefició
-            contrib = (min(1.0, efecto_otro) if efecto_otro > 0.05 else 0.0) * (1.0 if efecto_mi > 0 else 0.0)
+            contrib = (min(1.0, efecto_otro) if respondio else 0.0) * (1.0 if efecto_mi > 0 else 0.0)
             self.intencion = (1 - self.ema) * self.intencion + self.ema * contrib
             self.efecto_otro_ema = (1 - self.ema) * self.efecto_otro_ema + self.ema * efecto_otro
             self.efecto_mi_ema = (1 - self.ema) * self.efecto_mi_ema + self.ema * efecto_mi
-            if efecto_otro > 0.05 and efecto_mi > 0:
+            if respondio and efecto_mi > 0:
                 self.eventos.append(("alteridad_refuerzo", f"{P_e}: el otro cambió y me ayudó", {"valor": round(self.valor[k], 4)}))
-            elif efecto_otro <= 0.05:
+            elif not respondio:
                 self.eventos.append(("alteridad_fallo", f"{P_e}: no movió al otro", None))
             else:
                 self.eventos.append(("alteridad_respuesta", f"{P_e}: movió al otro", {"efecto": round(efecto_otro, 3)}))
@@ -286,7 +343,14 @@ class OrganeloAlteridad:
 
     # --------------------------------------------------------- hook OPCIONAL (OFF por defecto)
     def sesgar_emision(self, P_fisiologico: str, fila: dict, repertorio: list, explorar: float = 0.3):
-        """Sesgo comunicativo APRENDIDO (capa nueva, separada de la voz fisiológica). Devuelve el P a
+        """CÓDIGO MUERTO HOY — comprobado el 4-ago-2026: nadie llama a este hook (está OFF por diseño, y
+        no aparece ni una llamada en el repositorio ni en la copia desplegada). Por eso `explorar = 0,3` y
+        el `necesidad > 0.6` de abajo NO deciden nada sobre el organismo y se dejan intactos. Para cuando
+        se encienda, queda medido: `necesidad > 0,6` se cumple el 12,99 % de 101.340 pasos (mediana real
+        de la necesidad 0,2297), o sea que ese umbral SÍ discriminaría — pero sigue sin tener origen
+        escrito y habría que compararlo contra la escala propia de necesidad del organismo antes de usarlo.
+
+        Sesgo comunicativo APRENDIDO (capa nueva, separada de la voz fisiológica). Devuelve el P a
         emitir: con prob. (1-explorar) el de MAYOR valor aprendido en este contexto; si no, explora
         (variación, más alta si la necesidad es alta o no hay valor aprendido). NO usa etiquetas
         semánticas. SÓLO se usa si el organismo lo activa (anti-Shannon: la conducta también emerge)."""

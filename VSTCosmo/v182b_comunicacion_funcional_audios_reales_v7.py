@@ -31,7 +31,7 @@ DT = 0.01
 PASOS_POR_RONDA = int(SEGUNDOS_POR_RONDA / DT)
 
 # Audios a probar
-AUDIO_DIR = "/Volumes/LaCie/RMD/Cosmolab/VSTCosmo/audio_binaural"
+AUDIO_DIR = "/Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo/audio_binaural"
 AUDIOS_PRUEBA = [
     ("BigBang_neg60deg.wav", -60, "BigBang -60°"),
     ("BigBang_pos60deg.wav", 60, "BigBang +60°"),

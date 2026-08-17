@@ -1,0 +1,38 @@
+=== Higgs_TEST_REAL_v3 ROBUSTEZ ===
+SEP_THR=0.08  (sin retocar física hacia 1/1836)
+plan: [('L30_multiseed', 30, 10), ('L45_multiseed', 45, 5), ('L60_multiseed', 60, 3)]
+
+--- L30_multiseed L=30 n=10 ---
+  seed=  2025  TEST_PARTIAL_medium_coupling          Rm=0.2096 NULL=0.3338 |Δ|=0.1242  v1/v3=0.176/0.285 sig=1
+  seed=     7  TEST_PARTIAL_medium_coupling          Rm=0.1979 NULL=0.3332 |Δ|=0.1353  v1/v3=0.178/0.306 sig=1
+  seed=    42  TEST_PARTIAL_medium_coupling          Rm=0.2170 NULL=0.3340 |Δ|=0.1170  v1/v3=0.166/0.258 sig=1
+  seed=    99  TEST_PARTIAL_medium_coupling          Rm=0.2161 NULL=0.3289 |Δ|=0.1128  v1/v3=0.166/0.259 sig=1
+  seed=   123  TEST_FAIL_inherit_but_no_mass_signal  Rm=0.2546 NULL=0.3320 |Δ|=0.0774  v1/v3=0.173/0.234 sig=0
+  seed=   777  TEST_PARTIAL_medium_coupling          Rm=0.1939 NULL=0.3309 |Δ|=0.1370  v1/v3=0.173/0.299 sig=1
+  seed=  1024  TEST_PARTIAL_medium_coupling          Rm=0.2262 NULL=0.3343 |Δ|=0.1081  v1/v3=0.184/0.277 sig=1
+  seed=  3141  TEST_PARTIAL_medium_coupling          Rm=0.2317 NULL=0.3368 |Δ|=0.1051  v1/v3=0.183/0.272 sig=1
+  seed=  8191  TEST_PARTIAL_medium_coupling          Rm=0.2231 NULL=0.3332 |Δ|=0.1101  v1/v3=0.185/0.277 sig=1
+  seed= 99991  TEST_PARTIAL_medium_coupling          Rm=0.2099 NULL=0.3325 |Δ|=0.1226  v1/v3=0.173/0.276 sig=1
+  >> rate_signal=0.90  partial|pass=0.90  sep_med=0.1149243452807009  NULL_med=0.33319314497303293  robust_signal=True
+
+--- L45_multiseed L=45 n=5 ---
+  seed=  2025  TEST_PARTIAL_medium_coupling          Rm=0.2234 NULL=0.3328 |Δ|=0.1094  v1/v3=0.178/0.271 sig=1
+  seed=    42  TEST_PARTIAL_medium_coupling          Rm=0.2312 NULL=0.3343 |Δ|=0.1031  v1/v3=0.182/0.268 sig=1
+  seed=   777  TEST_PARTIAL_medium_coupling          Rm=0.2051 NULL=0.3318 |Δ|=0.1267  v1/v3=0.172/0.279 sig=1
+  seed=  3141  TEST_PARTIAL_medium_coupling          Rm=0.2188 NULL=0.3355 |Δ|=0.1167  v1/v3=0.171/0.273 sig=1
+  seed= 99991  TEST_PARTIAL_medium_coupling          Rm=0.2263 NULL=0.3347 |Δ|=0.1084  v1/v3=0.180/0.267 sig=1
+  >> rate_signal=1.00  partial|pass=1.00  sep_med=0.10939276369317355  NULL_med=0.3343376427510317  robust_signal=True
+
+--- L60_multiseed L=60 n=3 ---
+  seed=  2025  TEST_PARTIAL_medium_coupling          Rm=0.2068 NULL=0.3329 |Δ|=0.1261  v1/v3=0.180/0.290 sig=1
+  seed=    42  TEST_PARTIAL_medium_coupling          Rm=0.2239 NULL=0.3331 |Δ|=0.1092  v1/v3=0.177/0.269 sig=1
+  seed=   777  TEST_PARTIAL_medium_coupling          Rm=0.2243 NULL=0.3334 |Δ|=0.1091  v1/v3=0.172/0.264 sig=1
+  >> rate_signal=1.00  partial|pass=1.00  sep_med=0.10917742145767495  NULL_med=0.33307249960963536  robust_signal=True
+
+=== VEREDICTO GLOBAL ROBUSTEZ ===
+ROBUST_PARTIAL_medium_coupling
+La señal v3 (Rm vs NULL) se reproduce en multi-seed L=30 (rate_signal=0.90, sep_med=0.1149). Germen de medio estable; no es jerarquía 1/1836.
+  L30_multiseed: signal=0.90 partial|pass=0.90 sep_med=0.1149243452807009 NULL_med=0.33319314497303293 verdicts={'TEST_PARTIAL_medium_coupling': 9, 'TEST_FAIL_inherit_but_no_mass_signal': 1}
+  L45_multiseed: signal=1.00 partial|pass=1.00 sep_med=0.10939276369317355 NULL_med=0.3343376427510317 verdicts={'TEST_PARTIAL_medium_coupling': 5}
+  L60_multiseed: signal=1.00 partial|pass=1.00 sep_med=0.10917742145767495 NULL_med=0.33307249960963536 verdicts={'TEST_PARTIAL_medium_coupling': 3}
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/fase6_higgs_barrido_final/Higgs_TEST_REAL_v3_robustez_result.json

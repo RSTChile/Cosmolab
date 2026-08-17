@@ -1,0 +1,98 @@
+{
+  "verdict": "F0-FAIL",
+  "max_err_Ta": 0.999822714555089,
+  "max_err_rho_a3": 2.220446049250313e-16,
+  "pass_threshold": 0.05,
+  "fail_threshold": 0.2,
+  "seed": 2025,
+  "pasos": 200,
+  "rows_every_40": [
+    {
+      "step": 0,
+      "t_g": 0.0,
+      "a": 1.0,
+      "T": 1000000000000000.0,
+      "rho": 1e+30,
+      "Ta": 1000000000000000.0,
+      "rho_a3": 1e+30,
+      "H_fisico": 0.0025,
+      "edges": 1796,
+      "K_phys": 0.0,
+      "lambda_D": 6.900898067745977e-20
+    },
+    {
+      "step": 40,
+      "t_g": 3.9999999999999994e-37,
+      "a": 1.0408107741923882,
+      "T": 440431654505999.4,
+      "rho": 8.869204367171576e+29,
+      "Ta": 458406011305223.6,
+      "rho_a3": 1e+30,
+      "H_fisico": 0.0011460150282630599,
+      "edges": 1664,
+      "K_phys": 0.0,
+      "lambda_D": 4.862980676703478e-20
+    },
+    {
+      "step": 80,
+      "t_g": 7.999999999999999e-37,
+      "a": 1.0505459678887266,
+      "T": 63994382353586.13,
+      "rho": 8.624914912436516e+29,
+      "Ta": 67229040349089.39,
+      "rho_a3": 1e+30,
+      "H_fisico": 0.0001680726008727235,
+      "edges": 1632,
+      "K_phys": 0.0,
+      "lambda_D": 1.8797458244756126e-20
+    },
+    {
+      "step": 120,
+      "t_g": 1.2e-36,
+      "a": 1.0509662682288512,
+      "T": 8830356670022.527,
+      "rho": 8.614571273684101e+29,
+      "Ta": 9280406996623.32,
+      "rho_a3": 1e+30,
+      "H_fisico": 2.320101749155829e-05,
+      "edges": 1632,
+      "K_phys": 0.0,
+      "lambda_D": 6.986793396611433e-21
+    },
+    {
+      "step": 160,
+      "t_g": 1.5999999999999998e-36,
+      "a": 1.0513867367218994,
+      "T": 1199129155723.1992,
+      "rho": 8.604240039791761e+29,
+      "Ta": 1260748489943.901,
+      "rho_a3": 1e+30,
+      "H_fisico": 3.1518712248597516e-06,
+      "edges": 1632,
+      "K_phys": 0.0,
+      "lambda_D": 2.5762163665672114e-21
+    }
+  ],
+  "final": {
+    "step": 199,
+    "t_g": 1.99e-36,
+    "a": 1.0517968554665897,
+    "T": 168554834509.70953,
+    "rho": 8.594179016096754e+29,
+    "Ta": 177285444911.0039,
+    "rho_a3": 1e+30,
+    "H_fisico": 4.432136122775099e-07,
+    "edges": 1632,
+    "K_phys": 0.0,
+    "lambda_D": 9.664380523123976e-22
+  },
+  "bugs": [
+    "T_new = T/a each step multiplies 1/a cumulatively (not T0/a)",
+    "a(t) piecewise: exp for step<50 then nearly frozen growth",
+    "H_fisico uses H_topo*T/T0 not H_inf from triad",
+    "rho reset to rho0/a^3 OK for mean conservation",
+    "K_phys ~ exp(-1/lambda_D) ~ 0 always for microscopic lambda_D",
+    "k1=k3=0 always at sample steps: media cut + full connectivity or no domain structure",
+    "m_fisica_ratio ill-defined when k3=0"
+  ]
+}

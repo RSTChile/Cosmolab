@@ -1,0 +1,5 @@
+[calibracion] modo=prod_L32 L=32 eps=1e-3 mediana_lavado=50 pasos=58 lavo_todas=True tiempos=[50, 50, 50, 50, 100, 75, 150, 50]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F1_6_2D/F1_6_resultado_prod_L32.json
+[control_r0_lava] True {'mean_P_r0_eps_gt0': 0.05759878094131948, 'n': 7, 'P_max': 0.15}
+[elapsed] 24.1s

@@ -1,0 +1,5 @@
+[calibracion] N=200 eps=1e-3 mediana_lavado=5300 pasos=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs074_rcruz_produccion_resultado.json
+[control_r0_lava] True {'mean_P_r0_eps_gt0': 0.033733706235059745, 'n': 7, 'P_max': 0.15}
+[elapsed] 1035.3s

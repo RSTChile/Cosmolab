@@ -1,0 +1,12 @@
+Package: anima-pi-runtime
+Version: 0.2.8-dev
+Section: science
+Priority: optional
+Architecture: arm64
+Maintainer: VSTCosmo <anima@vstcosmo.local>
+Depends: python3, python3-venv, python3-pip, python3-cryptography, sudo, curl, ffmpeg, libportaudio2, pulseaudio-utils, avahi-daemon, xserver-xorg-core, xserver-xorg-video-fbdev, xinit, x11vnc, xdotool, unclutter
+Recommends: chromium-browser, arduino, v4l-utils, pulseaudio-utils
+Description: ANIMA Pi Runtime para organismos VSTCosmo
+ Runtime autocontenido para Raspberry Pi/Ubuntu ARM64.
+ Instala todos los organelos como potencialidades latentes y deja servicios
+ de arranque para un organismo ANIMA local, cabeza SPI/fb1 y VNC dedicado de cabeza.

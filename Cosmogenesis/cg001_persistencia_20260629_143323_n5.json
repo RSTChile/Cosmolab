@@ -1,0 +1,44 @@
+{
+  "cfg": {
+    "L": 24,
+    "pasos": 120,
+    "lam": 0.5,
+    "sigma": 1.0,
+    "gamma": 8.0,
+    "decay": 0.97,
+    "eps": 0.05,
+    "ruido": 1.0
+  },
+  "pos_eps": [
+    12,
+    12,
+    12
+  ],
+  "resumen": {
+    "1": {
+      "huella_mediana": 0.05075077964107777,
+      "huella_rel_persist": 0.03476234583722121,
+      "dist_mediana": 0.0
+    },
+    "5": {
+      "huella_mediana": 0.0820817594512171,
+      "huella_rel_persist": 0.05622287044948762,
+      "dist_mediana": 0.0
+    },
+    "20": {
+      "huella_mediana": 0.11584419211349939,
+      "huella_rel_persist": 0.07934884740614874,
+      "dist_mediana": 0.0
+    },
+    "60": {
+      "huella_mediana": 0.2672450424008197,
+      "huella_rel_persist": 0.18305264772131197,
+      "dist_mediana": 0.0
+    },
+    "persist": {
+      "huella_mediana": 1.4599354105365698,
+      "huella_rel_persist": 1.0,
+      "dist_mediana": 0.0
+    }
+  }
+}

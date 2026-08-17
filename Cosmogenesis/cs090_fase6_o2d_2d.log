@@ -1,0 +1,123 @@
+
+====================================================================================================
+FILTRO DE ADMISIÓN P1-P5 (ndim=2) — verificado, no asumido
+====================================================================================================
+  FASE00   ADMITIDA
+           P1 persistencia_real=0.788 vs sin_memoria=0.503 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE01   ADMITIDA
+           P1 persistencia_real=0.669 vs sin_memoria=0.484 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE02   ADMITIDA
+           P1 persistencia_real=0.803 vs sin_memoria=0.495 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE03   ADMITIDA
+           P1 persistencia_real=0.728 vs sin_memoria=0.500 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE04   ADMITIDA
+           P1 persistencia_real=0.820 vs sin_memoria=0.493 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE05   ADMITIDA
+           P1 persistencia_real=0.799 vs sin_memoria=0.498 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  FASE06   ADMITIDA
+           P1 persistencia_real=0.663 vs sin_memoria=0.494 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (8 vecinos)
+  FASE07   ADMITIDA
+           P1 persistencia_real=0.724 vs sin_memoria=0.496 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (8 vecinos)
+  FASE08   ADMITIDA
+           P1 persistencia_real=0.885 vs sin_memoria=0.498 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (8 vecinos)
+  FASE09   ADMITIDA
+           P1 persistencia_real=0.783 vs sin_memoria=0.498 (burn-in=40 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos)
+  RD00     ADMITIDA
+           P1 persistencia_real=1.000 vs sin_memoria=0.507 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.375): U→V=7.03e-03, V→U=1.23e-02 (ambos >0 = recíproco)
+  RD01     DESCARTADA (P4=desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=5.09e-23, V→U=2.50e-03 (ambos >0 = recíproco))
+           P1 persistencia_real=1.000 vs sin_memoria=0.495 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=5.09e-23, V→U=2.50e-03 (ambos >0 = recíproco)
+  RD02     ADMITIDA
+           P1 persistencia_real=1.000 vs sin_memoria=0.499 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.380): U→V=7.23e-03, V→U=1.17e-02 (ambos >0 = recíproco)
+  RD03     ADMITIDA
+           P1 persistencia_real=0.995 vs sin_memoria=0.499 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.383): U→V=7.32e-03, V→U=1.14e-02 (ambos >0 = recíproco)
+  RD04     ADMITIDA
+           P1 persistencia_real=0.938 vs sin_memoria=0.912 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.413): U→V=8.54e-03, V→U=1.38e-02 (ambos >0 = recíproco)
+  RD05     DESCARTADA (P4=desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=8.02e-26, V→U=2.50e-03 (ambos >0 = recíproco))
+           P1 persistencia_real=0.943 vs sin_memoria=0.652 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=8.02e-26, V→U=2.50e-03 (ambos >0 = recíproco)
+  RD06     ADMITIDA
+           P1 persistencia_real=0.990 vs sin_memoria=0.497 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.383): U→V=7.32e-03, V→U=1.21e-02 (ambos >0 = recíproco)
+  RD07     DESCARTADA (P4=desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco))
+           P1 persistencia_real=0.938 vs sin_memoria=0.900 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco)
+  RD08     DESCARTADA (P1=persistencia_real=0.938 vs sin_memoria=0.926 (burn-in=400 pasos); P4=desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco))
+           P1 persistencia_real=0.938 vs sin_memoria=0.926 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco)
+  RD09     DESCARTADA (P4=desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco))
+           P1 persistencia_real=0.938 vs sin_memoria=0.882 (burn-in=400 pasos)
+           P4 desplazamientos cerrados bajo negación=True (4 vecinos); en el sitio de V máximo (V=0.000): U→V=0.00e+00, V→U=2.50e-03 (ambos >0 = recíproco)
+
+  admitidas=15/20
+
+====================================================================================================
+BARRIDO ndim=2 L=128: 15 configuraciones × 3 semillas
+====================================================================================================
+  FASE00   s1  k_pico=  1.0 prom=1363.58 (null  1.41)  H_esp=0.306 (null 0.996)  boxD25=1.613 (null 1.667)  H_bloq=0.851 (null 0.999)  qc=0.45 (null 0.6)  xi=9  (5.3s)
+  FASE00   s2  k_pico=  2.0 prom= 598.39 (null  1.43)  H_esp=0.421 (null 0.998)  boxD25=1.617 (null 1.666)  H_bloq=0.853 (null 0.999)  qc=0.5 (null 0.6)  xi=7  (5.1s)
+  FASE00   s3  k_pico=  1.0 prom=2264.64 (null  1.55)  H_esp=0.247 (null 0.997)  boxD25=1.622 (null 1.667)  H_bloq=0.833 (null 1.000)  qc=0.45 (null 0.65)  xi=15  (4.5s)
+  FASE01   s1  k_pico=  2.0 prom= 233.29 (null  1.47)  H_esp=0.548 (null 0.996)  boxD25=1.627 (null 1.668)  H_bloq=0.909 (null 0.999)  qc=0.7 (null 0.65)  xi=3  (5.1s)
+  FASE01   s2  k_pico=  1.0 prom= 242.81 (null  1.23)  H_esp=0.536 (null 0.997)  boxD25=1.623 (null 1.667)  H_bloq=0.901 (null 0.999)  qc=0.65 (null 0.6)  xi=3  (5.7s)
+  FASE01   s3  k_pico=  1.0 prom= 183.13 (null  1.80)  H_esp=0.569 (null 0.997)  boxD25=1.629 (null 1.668)  H_bloq=0.921 (null 0.999)  qc=0.6 (null 0.6)  xi=2  (5.1s)
+  FASE02   s1  k_pico=  2.0 prom= 224.73 (null  1.45)  H_esp=0.537 (null 0.996)  boxD25=1.625 (null 1.665)  H_bloq=0.893 (null 1.000)  qc=0.6 (null 0.6)  xi=3  (5.0s)
+  FASE02   s2  k_pico=  1.0 prom= 150.61 (null  1.39)  H_esp=0.608 (null 0.998)  boxD25=1.623 (null 1.666)  H_bloq=0.903 (null 0.999)  qc=0.5 (null 0.6)  xi=3  (6.1s)
+  FASE02   s3  k_pico=  1.0 prom= 275.79 (null  1.53)  H_esp=0.541 (null 0.996)  boxD25=1.621 (null 1.667)  H_bloq=0.888 (null 0.999)  qc=0.5 (null 0.65)  xi=3  (7.5s)
+  FASE03   s1  k_pico=  1.0 prom=  33.50 (null  1.52)  H_esp=0.791 (null 0.997)  boxD25=1.634 (null 1.667)  H_bloq=0.936 (null 0.999)  qc=0.6 (null 0.65)  xi=2  (7.3s)
+  FASE03   s2  k_pico=  3.0 prom=  35.87 (null  1.45)  H_esp=0.772 (null 0.997)  boxD25=1.637 (null 1.666)  H_bloq=0.936 (null 0.999)  qc=0.6 (null 0.6)  xi=2  (7.1s)
+  FASE03   s3  k_pico=  1.0 prom=  25.84 (null  1.64)  H_esp=0.808 (null 0.998)  boxD25=1.637 (null 1.667)  H_bloq=0.937 (null 1.000)  qc=0.6 (null 0.6)  xi=1  (6.7s)
+  FASE04   s1  k_pico=  1.0 prom= 119.53 (null  1.47)  H_esp=0.651 (null 0.997)  boxD25=1.620 (null 1.667)  H_bloq=0.885 (null 1.000)  qc=0.6 (null 0.6)  xi=3  (5.7s)
+  FASE04   s2  k_pico=  1.0 prom= 156.44 (null  1.25)  H_esp=0.627 (null 0.998)  boxD25=1.621 (null 1.665)  H_bloq=0.879 (null 0.999)  qc=0.55 (null 0.6)  xi=3  (5.9s)
+  FASE04   s3  k_pico=  1.0 prom= 119.21 (null  1.29)  H_esp=0.624 (null 0.998)  boxD25=1.622 (null 1.667)  H_bloq=0.882 (null 1.000)  qc=0.55 (null 0.65)  xi=3  (5.5s)
+  FASE05   s1  k_pico=  4.0 prom=   7.68 (null  1.49)  H_esp=0.904 (null 0.998)  boxD25=1.644 (null 1.667)  H_bloq=0.958 (null 0.999)  qc=0.6 (null 0.6)  xi=1  (5.8s)
+  FASE05   s2  k_pico=  2.0 prom=  11.30 (null  1.55)  H_esp=0.910 (null 0.998)  boxD25=1.644 (null 1.667)  H_bloq=0.963 (null 0.999)  qc=0.6 (null 0.6)  xi=1  (5.9s)
+  FASE05   s3  k_pico=  1.0 prom=  15.39 (null  1.79)  H_esp=0.887 (null 0.998)  boxD25=1.643 (null 1.667)  H_bloq=0.959 (null 0.999)  qc=0.55 (null 0.6)  xi=1  (7.9s)
+  FASE06   s1  k_pico=  1.0 prom= 184.99 (null  2.11)  H_esp=0.573 (null 0.997)  boxD25=1.632 (null 1.667)  H_bloq=0.938 (null 0.999)  qc=0.5 (null 0.6)  xi=2  (8.2s)
+  FASE06   s2  k_pico=  1.0 prom= 159.60 (null  1.31)  H_esp=0.607 (null 0.998)  boxD25=1.636 (null 1.666)  H_bloq=0.941 (null 0.999)  qc=0.5 (null 0.6)  xi=2  (8.8s)
+  FASE06   s3  k_pico=  1.0 prom= 167.04 (null  1.36)  H_esp=0.578 (null 0.997)  boxD25=1.634 (null 1.666)  H_bloq=0.930 (null 0.999)  qc=0.6 (null 0.6)  xi=2  (7.5s)
+  FASE07   s1  k_pico=  1.0 prom= 360.32 (null  1.53)  H_esp=0.497 (null 0.998)  boxD25=1.632 (null 1.667)  H_bloq=0.930 (null 1.000)  qc=0.55 (null 0.65)  xi=3  (6.6s)
+  FASE07   s2  k_pico=  1.0 prom= 205.29 (null  1.38)  H_esp=0.577 (null 0.999)  boxD25=1.637 (null 1.666)  H_bloq=0.940 (null 0.999)  qc=0.55 (null 0.65)  xi=2  (6.1s)
+  FASE07   s3  k_pico=  2.0 prom= 173.94 (null  1.19)  H_esp=0.600 (null 0.998)  boxD25=1.631 (null 1.668)  H_bloq=0.921 (null 0.999)  qc=0.65 (null 0.65)  xi=2  (6.1s)
+  FASE08   s1  k_pico=  1.0 prom=7168.49 (null  1.60)  H_esp=0.167 (null 0.997)  boxD25=1.627 (null 1.665)  H_bloq=0.673 (null 0.999)  qc=0.5 (null 0.65)  xi=22  (6.5s)
+  FASE08   s2  k_pico=  1.0 prom=8308.02 (null  1.32)  H_esp=0.119 (null 0.995)  boxD25=1.618 (null 1.667)  H_bloq=0.717 (null 0.999)  qc=0.45 (null 0.6)  xi=26  (5.7s)
+  FASE08   s3  k_pico=  1.0 prom=6095.52 (null  1.44)  H_esp=0.187 (null 0.998)  boxD25=1.614 (null 1.668)  H_bloq=0.714 (null 1.000)  qc=0.35 (null 0.6)  xi=20  (6.5s)
+  FASE09   s1  k_pico=  1.0 prom=   2.05 (null  1.42)  H_esp=0.993 (null 0.997)  boxD25=1.661 (null 1.667)  H_bloq=0.997 (null 1.000)  qc=0.6 (null 0.6)  xi=1  (5.5s)
+  FASE09   s2  k_pico=  1.0 prom=   2.24 (null  1.17)  H_esp=0.992 (null 0.998)  boxD25=1.662 (null 1.669)  H_bloq=0.997 (null 0.999)  qc=0.6 (null 0.6)  xi=1  (6.0s)
+  FASE09   s3  k_pico=  3.0 prom=   2.02 (null  1.28)  H_esp=0.993 (null 0.998)  boxD25=1.663 (null 1.667)  H_bloq=0.997 (null 1.000)  qc=0.6 (null 0.65)  xi=1  (5.7s)
+  RD00     s1  k_pico=  9.0 prom=1469.90 (null  1.54)  H_esp=0.455 (null 0.997)  boxD25=1.557 (null 1.667)  H_bloq=0.596 (null 0.999)  qc=0.7 (null 0.6)  xi=4  (18.8s)
+  RD00     s2  k_pico= 10.0 prom=2074.17 (null  1.26)  H_esp=0.423 (null 0.998)  boxD25=1.555 (null 1.666)  H_bloq=0.586 (null 1.000)  qc=0.7 (null 0.6)  xi=4  (20.8s)
+  RD00     s3  k_pico= 10.0 prom=1797.71 (null  1.31)  H_esp=0.483 (null 0.997)  boxD25=1.555 (null 1.668)  H_bloq=0.587 (null 1.000)  qc=0.7 (null 0.6)  xi=4  (20.8s)
+  RD02     s1  k_pico= 11.0 prom=3090.51 (null  1.50)  H_esp=0.443 (null 0.998)  boxD25=1.573 (null 1.667)  H_bloq=0.583 (null 0.999)  qc=0.35 (null 0.6)  xi=4  (22.3s)
+  RD02     s2  k_pico= 10.0 prom=2641.14 (null  1.36)  H_esp=0.450 (null 0.998)  boxD25=1.571 (null 1.665)  H_bloq=0.580 (null 0.999)  qc=0.35 (null 0.6)  xi=4  (19.4s)
+  RD02     s3  k_pico= 10.0 prom=2845.28 (null  1.90)  H_esp=0.444 (null 0.996)  boxD25=1.572 (null 1.665)  H_bloq=0.577 (null 1.000)  qc=0.3 (null 0.6)  xi=4  (18.9s)
+  RD03     s1  k_pico= 10.0 prom=5856.51 (null  1.50)  H_esp=0.393 (null 0.997)  boxD25=1.564 (null 1.666)  H_bloq=0.570 (null 1.000)  qc=0.8 (null 0.6)  xi=4  (21.2s)
+  RD03     s2  k_pico= 10.0 prom=6179.76 (null  2.44)  H_esp=0.387 (null 0.996)  boxD25=1.564 (null 1.666)  H_bloq=0.582 (null 1.000)  qc=0.35 (null 0.65)  xi=4  (24.5s)
+  RD03     s3  k_pico= 11.0 prom=4301.85 (null  1.33)  H_esp=0.413 (null 0.997)  boxD25=1.568 (null 1.667)  H_bloq=0.580 (null 0.999)  qc=0.8 (null 0.65)  xi=4  (18.7s)
+  RD04     s1  k_pico= 11.0 prom=1660.75 (null  1.46)  H_esp=0.495 (null 0.997)  boxD25=1.566 (null 1.665)  H_bloq=0.582 (null 0.999)  qc=0.75 (null 0.6)  xi=4  (17.7s)
+  RD04     s2  k_pico= 11.0 prom=1965.81 (null  1.37)  H_esp=0.480 (null 0.998)  boxD25=1.568 (null 1.669)  H_bloq=0.602 (null 0.999)  qc=0.75 (null 0.6)  xi=4  (18.1s)
+  RD04     s3  k_pico= 11.0 prom=1885.02 (null  1.87)  H_esp=0.487 (null 0.997)  boxD25=1.567 (null 1.666)  H_bloq=0.591 (null 1.000)  qc=0.75 (null 0.6)  xi=4  (19.9s)
+  RD06     s1  k_pico=  9.0 prom=1772.69 (null  1.21)  H_esp=0.462 (null 0.998)  boxD25=1.558 (null 1.668)  H_bloq=0.582 (null 0.999)  qc=0.7 (null 0.6)  xi=4  (34.7s)
+  RD06     s2  k_pico= 10.0 prom=2057.30 (null  1.44)  H_esp=0.451 (null 0.997)  boxD25=1.556 (null 1.667)  H_bloq=0.598 (null 0.999)  qc=0.7 (null 0.6)  xi=4  (33.0s)
+  RD06     s3  k_pico= 10.0 prom=1862.85 (null  1.24)  H_esp=0.465 (null 0.998)  boxD25=1.557 (null 1.667)  H_bloq=0.587 (null 1.000)  qc=0.75 (null 0.65)  xi=4  (22.4s)
+
+  -> cs090_fase6_o2d_2d_raw.csv (45 filas)
+  -> cs090_fase6_o2d_2d_filtro_P1P5.csv (20 filas)
+  -> cs090_fase6_o2d_2d_percolacion.csv (285 filas)
+  -> cs090_fase6_o2d_2d_espectros.csv (960 filas)
+
+TOTAL ndim=2: 45 corridas en 532.0s
+  -> cs090_fase6_o2d_2d_campos.npy

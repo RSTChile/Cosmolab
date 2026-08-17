@@ -1,0 +1,197 @@
+{
+  "entrada": "/Users/alexis/Desktop/RMD/Cosmolab/Cosmoclima/Web/prueba_de_concepto/motor/regimen_r13_C3_final_por_anio.csv",
+  "generado_en": "2026-08-12T04:27:24.523Z",
+  "metodo_lectura_lluvia": "node:sqlite",
+  "metricas": {
+    "diferenciacion": {
+      "anios_totales": 62,
+      "valores_distintos_totales": 34,
+      "valores_en_clusters_3mas": 6,
+      "anios_en_clusters_3mas": 23,
+      "tuplas_completas_distintas": 54,
+      "tuplas_en_clusters_3mas": 2,
+      "anios_en_clusters_tupla_3mas": 6
+    },
+    "floracion": {
+      "anios_floracion_n": 13,
+      "anios_control_n": 10,
+      "media_JARDIN_FERTIL_floracion": 38.39769230769231,
+      "media_JARDIN_FERTIL_control": 39.45399999999999,
+      "fraccion_floracion_sobre_media_control": 0.6153846153846154,
+      "anios_floracion": [
+        1983,
+        1991,
+        1997,
+        2000,
+        2002,
+        2005,
+        2011,
+        2012,
+        2015,
+        2017,
+        2021,
+        2022,
+        2024
+      ],
+      "anios_control": [
+        1989,
+        1990,
+        1996,
+        2003,
+        2008,
+        2013,
+        2016,
+        2018,
+        2019,
+        2020
+      ],
+      "solapan_floracion_y_megasequia": [
+        2021,
+        2022,
+        2024
+      ],
+      "solapan_control_y_megasequia": [
+        2019,
+        2020
+      ],
+      "sin_megasequia_n_floracion": 10,
+      "sin_megasequia_n_control": 8,
+      "sin_megasequia_media_floracion": 48.958000000000006,
+      "sin_megasequia_media_control": 47.39874999999999
+    },
+    "megasequia": {
+      "anios_megasequia_n": 7,
+      "media_JARDIN_FERTIL_megasequia": 5.207142857142856,
+      "media_JARDIN_FERTIL_global": 43.99032258064517,
+      "media_COLAPSO_megasequia": 30.411428571428576,
+      "media_COLAPSO_global": 9.186935483870968,
+      "media_CIERRE_megasequia": 59.449999999999996,
+      "media_CIERRE_global": 30.799677419354847,
+      "media_SELVA_megasequia": 4.9314285714285715,
+      "media_SELVA_global": 16.022419354838707
+    },
+    "spearmanRes": {
+      "n_anios_con_dato_de_lluvia": 61,
+      "rho_spearman_JARDIN_FERTIL_vs_lluvia": 0.25892020864730564
+    }
+  },
+  "metricas_por_cobertura_temp_real": {
+    "real": {
+      "diferenciacion": {
+        "anios_totales": 46,
+        "valores_distintos_totales": 29,
+        "valores_en_clusters_3mas": 3,
+        "anios_en_clusters_3mas": 12,
+        "tuplas_completas_distintas": 41,
+        "tuplas_en_clusters_3mas": 1,
+        "anios_en_clusters_tupla_3mas": 3
+      },
+      "floracion": {
+        "anios_floracion_n": 13,
+        "anios_control_n": 10,
+        "media_JARDIN_FERTIL_floracion": 38.39769230769231,
+        "media_JARDIN_FERTIL_control": 39.45399999999999,
+        "fraccion_floracion_sobre_media_control": 0.6153846153846154,
+        "anios_floracion": [
+          1983,
+          1991,
+          1997,
+          2000,
+          2002,
+          2005,
+          2011,
+          2012,
+          2015,
+          2017,
+          2021,
+          2022,
+          2024
+        ],
+        "anios_control": [
+          1989,
+          1990,
+          1996,
+          2003,
+          2008,
+          2013,
+          2016,
+          2018,
+          2019,
+          2020
+        ],
+        "solapan_floracion_y_megasequia": [
+          2021,
+          2022,
+          2024
+        ],
+        "solapan_control_y_megasequia": [
+          2019,
+          2020
+        ],
+        "sin_megasequia_n_floracion": 10,
+        "sin_megasequia_n_control": 8,
+        "sin_megasequia_media_floracion": 48.958000000000006,
+        "sin_megasequia_media_control": 47.39874999999999
+      },
+      "megasequia": {
+        "anios_megasequia_n": 7,
+        "media_JARDIN_FERTIL_megasequia": 5.207142857142856,
+        "media_JARDIN_FERTIL_global": 42.37630434782611,
+        "media_COLAPSO_megasequia": 30.411428571428576,
+        "media_COLAPSO_global": 12.382391304347827,
+        "media_CIERRE_megasequia": 59.449999999999996,
+        "media_CIERRE_global": 23.644999999999996,
+        "media_SELVA_megasequia": 4.9314285714285715,
+        "media_SELVA_global": 21.59543478260869
+      },
+      "spearmanRes": {
+        "n_anios_con_dato_de_lluvia": 46,
+        "rho_spearman_JARDIN_FERTIL_vs_lluvia": 0.30012389085894303
+      }
+    },
+    "sintetico": {
+      "diferenciacion": {
+        "anios_totales": 16,
+        "valores_distintos_totales": 12,
+        "valores_en_clusters_3mas": 1,
+        "anios_en_clusters_3mas": 3,
+        "tuplas_completas_distintas": 13,
+        "tuplas_en_clusters_3mas": 1,
+        "anios_en_clusters_tupla_3mas": 3
+      },
+      "floracion": {
+        "anios_floracion_n": 0,
+        "anios_control_n": 0,
+        "media_JARDIN_FERTIL_floracion": 0,
+        "media_JARDIN_FERTIL_control": 0,
+        "fraccion_floracion_sobre_media_control": null,
+        "anios_floracion": [],
+        "anios_control": [],
+        "solapan_floracion_y_megasequia": [],
+        "solapan_control_y_megasequia": [],
+        "sin_megasequia_n_floracion": 0,
+        "sin_megasequia_n_control": 0,
+        "sin_megasequia_media_floracion": 0,
+        "sin_megasequia_media_control": 0
+      },
+      "megasequia": {
+        "anios_megasequia_n": 0,
+        "media_JARDIN_FERTIL_megasequia": 0,
+        "media_JARDIN_FERTIL_global": 48.630625,
+        "media_COLAPSO_megasequia": 0,
+        "media_COLAPSO_global": 0,
+        "media_CIERRE_megasequia": 0,
+        "media_CIERRE_global": 51.369375,
+        "media_SELVA_megasequia": 0,
+        "media_SELVA_global": 0
+      },
+      "spearmanRes": {
+        "n_anios_con_dato_de_lluvia": 15,
+        "rho_spearman_JARDIN_FERTIL_vs_lluvia": 0.2941733613670119
+      }
+    },
+    "anios_con_cobertura": 46,
+    "anios_sin_cobertura": 16
+  },
+  "contexto_oni_disponible_anios": 61
+}

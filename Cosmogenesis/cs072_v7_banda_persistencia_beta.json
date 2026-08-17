@@ -1,0 +1,46 @@
+{
+  "bandas": {
+    "1": [
+      0.08,
+      0.08
+    ],
+    "5": [
+      0.08,
+      0.08
+    ],
+    "20": [
+      0.05,
+      0.08
+    ]
+  },
+  "resumen_beta": [
+    {
+      "poda_tasa": 0.0,
+      "beta": 0.10080814634965685,
+      "grado_max_N1600": 28,
+      "frac_gigante_N1600": 0.99625,
+      "delta_gromov_N1600": 0.0
+    },
+    {
+      "poda_tasa": 0.04,
+      "beta": 0.12288510042389876,
+      "grado_max_N1600": 17,
+      "frac_gigante_N1600": 0.98875,
+      "delta_gromov_N1600": 0.5
+    },
+    {
+      "poda_tasa": 0.08,
+      "beta": 0.3210804827116754,
+      "grado_max_N1600": 10,
+      "frac_gigante_N1600": 0.72875,
+      "delta_gromov_N1600": 0.5
+    },
+    {
+      "poda_tasa": 0.16,
+      "beta": NaN,
+      "grado_max_N1600": 0,
+      "frac_gigante_N1600": 0.0,
+      "delta_gromov_N1600": NaN
+    }
+  ]
+}

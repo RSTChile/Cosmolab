@@ -1,0 +1,10 @@
+[2026-07-24 05:36:16] modo=produccion N=200 eps_list=[0.0, 1e-09, 1e-06, 0.001, 0.01, 0.1, 0.5, 1.0] r_targets=[0.0, 0.1, 0.3, 0.5, 1.0, 2.0, 5.0, 10.0, 30.0, 100.0] n_semillas=16
+[2026-07-24 05:36:16] calibrando pasos de lavado (N=200, eps=1e-3, 16 semillas)...
+[2026-07-24 05:36:32] pasos_fijo=6095 mediana_lavado=5300 lavo_todas=True
+[2026-07-24 05:36:32] iniciando barrido F2-6 (REAL con historia + NULL-clasico + NULL-secuencia)...
+[2026-07-24 05:55:54] barrido completo: 80 puntos (eps x r)
+[2026-07-24 05:55:54] evaluacion PASS (banda r>=10, eps>1e-6): {'n_puntos_banda': 15, 'frac_puntos_gana_null_clasico': 1.0, 'frac_puntos_gana_null_seq': 0.0, 'frac_puntos_robustos': 0.0, 'frac_puntos_fragiles': 1.0, 'pass_null_clasico_ge_50pct': True, 'pass_null_seq_ge_50pct': False, 'veredicto': 'FRAGIL_GANA_SOLO_UN_NULO'}
+[2026-07-24 05:55:54] controles: eps0_ok=True r0_null_seq_colapsa_ok=True
+[2026-07-24 05:55:54] auto-chequeo grafo_final_identico en TODAS las combinaciones: True
+[2026-07-24 05:55:54] elapsed=1177.9s
+[2026-07-24 05:55:54] escrito: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_FUNDAMENTOS/F2_6_null_alternativo/resultados/F2_6_produccion_resultado.json

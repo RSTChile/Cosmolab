@@ -1,0 +1,80 @@
+CS054 — GRAVEDAD en el filtro: ¿queda 3D-plano cuando el cedazo incluye la gravedad?
+==============================================================================================================
+G_RATE=0.1 (gravedad/contrae) · H_RATE=0.1 (despliegue/estira) FIJOS · T=10 · densidad SOLO relacional (grado) — G-NO-PRESUPONER-ESPACIO
+
+         geom  dim0  turn0 |  con_grav sin_grav(CS53)  grav_sola   NULL
+  ----------------------------------------------------------------------------------
+    cadena_d1  0.94    nan |     muere          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+    cadena_d1  0.94    nan |      VIVE          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+    cadena_d1  0.94    nan |      VIVE          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+    cadena_d1  0.94    nan |      VIVE          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+    cadena_d1  0.94    nan |      VIVE          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+    cadena_d1  0.94    nan |      VIVE          muere      muere   VIVE
+   cuadr_d2pl  1.60   1.15 |     muere           VIVE      muere  muere
+     tri_d2pl  1.57   1.15 |     muere           VIVE      muere  muere
+   hip37_d2cv  2.13   1.65 |     muere           VIVE      muere  muere
+   hip38_d2cv  2.40   1.93 |     muere           VIVE      muere  muere
+    cubo_d3pl  2.02   1.47 |     muere           VIVE      muere  muere
+   hcubo_d4pl  2.29   1.74 |     muere           VIVE      muere  muere
+     arbol_cv  2.27   1.99 |     muere          muere      muere   VIVE
+
+==============================================================================================================
+DISTRIBUCIÓN de supervivientes por brazo (¿la gravedad cambia el patrón de CS053?):
+         geom  dim0  turn0 |  con_grav  sin_grav  grav_sola   NULL
+     arbol_cv  2.27   1.99 | 0/6       0/6       0/6        6/6
+    cadena_d1  0.94    nan | 5/6       0/6       0/6        6/6
+   cuadr_d2pl  1.60   1.15 | 0/6       6/6       0/6        0/6
+    cubo_d3pl  2.02   1.47 | 0/6       6/6       0/6        0/6
+   hcubo_d4pl  2.29   1.74 | 0/6       6/6       0/6        0/6
+   hip37_d2cv  2.13   1.65 | 0/6       6/6       0/6        0/6
+   hip38_d2cv  2.40   1.93 | 0/6       6/6       0/6        0/6
+     tri_d2pl  1.57   1.15 | 0/6       6/6       0/6        0/6
+
+==============================================================================================================
+GUARDIANES:
+  G-BALANCE: gravedad_sola VIVE 0/48 vs con_gravedad 5/48 → OK (grav sola colapsa/curva más, no aplana)
+  G-NO-PRESUPONER-ESPACIO: densidad = grado (relacional), jamás posición → OK (por diseño).
+  G-NO-HORNEAR: el filtro solo vio grados/aristas/tasas — nunca ‘3D/plano/ρ_crítica’.
+
+VEREDICTO (patrón con_gravedad vs sin_gravedad vs NULL):
+  con_gravedad: sobreviven 5 (d≈3-plano=0, otros=5).  sin_gravedad(CS053): 36.
+  → Con gravedad sigue sobreviviendo una MULTITUD (o no sesga a 3D-plano). La gravedad simple
+    tampoco selecciona nuestro universo → falsación honesta. El hueco sigue, acotado por un lado
+    más. NO tunear G_RATE/H_RATE buscando 3D.
+
+Tiempo relativo listo.

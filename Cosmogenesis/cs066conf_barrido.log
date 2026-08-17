@@ -1,0 +1,409 @@
+=== 15:36:02 CELDA k_local=3 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=3 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.4min · ETA 0.05h
+  10/40 parches · 0.8min · ETA 0.04h
+  15/40 parches · 1.1min · ETA 0.03h
+  20/40 parches · 1.4min · ETA 0.02h
+  25/40 parches · 1.9min · ETA 0.02h
+  30/40 parches · 2.0min · ETA 0.01h
+  35/40 parches · 2.3min · ETA 0.01h
+  40/40 parches · 2.6min · ETA 0.00h
+
+COMPLETO: 40 parches en 2.6 min → cs066conf_k3_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 15:38:37 CELDA k_local=3 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=3 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.8min · ETA 0.10h
+  10/40 parches · 1.8min · ETA 0.09h
+  15/40 parches · 2.8min · ETA 0.08h
+  20/40 parches · 4.3min · ETA 0.07h
+  25/40 parches · 6.1min · ETA 0.06h
+  30/40 parches · 7.0min · ETA 0.04h
+  35/40 parches · 8.6min · ETA 0.02h
+  40/40 parches · 9.8min · ETA 0.00h
+
+COMPLETO: 40 parches en 9.8 min → cs066conf_k3_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 15:48:26 CELDA k_local=3 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=3 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 2.9min · ETA 0.34h
+  10/40 parches · 5.5min · ETA 0.28h
+  15/40 parches · 7.2min · ETA 0.20h
+  20/40 parches · 8.4min · ETA 0.14h
+  25/40 parches · 9.5min · ETA 0.09h
+  30/40 parches · 10.0min · ETA 0.06h
+  35/40 parches · 11.3min · ETA 0.03h
+  40/40 parches · 12.3min · ETA 0.00h
+
+COMPLETO: 40 parches en 12.3 min → cs066conf_k3_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:00:47 CELDA k_local=3 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=3 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 2.8min · ETA 0.32h
+  10/40 parches · 5.7min · ETA 0.28h
+  15/40 parches · 8.6min · ETA 0.24h
+  20/40 parches · 11.1min · ETA 0.19h
+  25/40 parches · 13.1min · ETA 0.13h
+  30/40 parches · 14.4min · ETA 0.08h
+  35/40 parches · 16.6min · ETA 0.04h
+  40/40 parches · 18.5min · ETA 0.00h
+
+COMPLETO: 40 parches en 18.5 min → cs066conf_k3_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:19:15 CELDA k_local=4 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=4 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.7min · ETA 0.08h
+  10/40 parches · 1.3min · ETA 0.07h
+  15/40 parches · 1.9min · ETA 0.05h
+  20/40 parches · 2.3min · ETA 0.04h
+  25/40 parches · 2.8min · ETA 0.03h
+  30/40 parches · 3.0min · ETA 0.02h
+  35/40 parches · 3.5min · ETA 0.01h
+  40/40 parches · 3.8min · ETA 0.00h
+
+COMPLETO: 40 parches en 3.8 min → cs066conf_k4_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:23:04 CELDA k_local=4 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=4 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.0min · ETA 0.12h
+  10/40 parches · 1.9min · ETA 0.09h
+  15/40 parches · 2.8min · ETA 0.08h
+  20/40 parches · 3.6min · ETA 0.06h
+  25/40 parches · 4.4min · ETA 0.04h
+  30/40 parches · 4.6min · ETA 0.03h
+  35/40 parches · 5.2min · ETA 0.01h
+  40/40 parches · 6.0min · ETA 0.00h
+
+COMPLETO: 40 parches en 6.0 min → cs066conf_k4_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:29:02 CELDA k_local=4 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=4 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.4min · ETA 0.16h
+  10/40 parches · 2.6min · ETA 0.13h
+  15/40 parches · 4.0min · ETA 0.11h
+  20/40 parches · 5.3min · ETA 0.09h
+  25/40 parches · 6.5min · ETA 0.06h
+  30/40 parches · 6.9min · ETA 0.04h
+  35/40 parches · 8.1min · ETA 0.02h
+  40/40 parches · 8.9min · ETA 0.00h
+
+COMPLETO: 40 parches en 8.9 min → cs066conf_k4_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:37:55 CELDA k_local=4 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=4 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 2.1min · ETA 0.24h
+  10/40 parches · 4.3min · ETA 0.21h
+  15/40 parches · 6.4min · ETA 0.18h
+  20/40 parches · 8.4min · ETA 0.14h
+  25/40 parches · 10.4min · ETA 0.10h
+  30/40 parches · 11.8min · ETA 0.07h
+  35/40 parches · 14.1min · ETA 0.03h
+  40/40 parches · 15.6min · ETA 0.00h
+
+COMPLETO: 40 parches en 15.6 min → cs066conf_k4_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:53:31 CELDA k_local=5 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=5 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.4min · ETA 0.05h
+  10/40 parches · 0.9min · ETA 0.04h
+  15/40 parches · 1.3min · ETA 0.04h
+  20/40 parches · 1.8min · ETA 0.03h
+  25/40 parches · 2.2min · ETA 0.02h
+  30/40 parches · 2.3min · ETA 0.01h
+  35/40 parches · 2.7min · ETA 0.01h
+  40/40 parches · 3.1min · ETA 0.00h
+
+COMPLETO: 40 parches en 3.1 min → cs066conf_k5_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 16:56:36 CELDA k_local=5 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=5 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.9min · ETA 0.10h
+  10/40 parches · 1.8min · ETA 0.09h
+  15/40 parches · 2.6min · ETA 0.07h
+  20/40 parches · 3.4min · ETA 0.06h
+  25/40 parches · 4.2min · ETA 0.04h
+  30/40 parches · 4.4min · ETA 0.02h
+  35/40 parches · 5.3min · ETA 0.01h
+  40/40 parches · 5.9min · ETA 0.00h
+
+COMPLETO: 40 parches en 5.9 min → cs066conf_k5_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:02:32 CELDA k_local=5 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=5 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.3min · ETA 0.15h
+  10/40 parches · 2.8min · ETA 0.14h
+  15/40 parches · 4.0min · ETA 0.11h
+  20/40 parches · 5.3min · ETA 0.09h
+  25/40 parches · 6.3min · ETA 0.06h
+  30/40 parches · 6.8min · ETA 0.04h
+  35/40 parches · 7.9min · ETA 0.02h
+  40/40 parches · 8.9min · ETA 0.00h
+
+COMPLETO: 40 parches en 8.9 min → cs066conf_k5_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:11:26 CELDA k_local=5 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=5 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 2.1min · ETA 0.25h
+  10/40 parches · 4.1min · ETA 0.20h
+  15/40 parches · 6.1min · ETA 0.17h
+  20/40 parches · 8.2min · ETA 0.14h
+  25/40 parches · 9.8min · ETA 0.10h
+  30/40 parches · 10.4min · ETA 0.06h
+  35/40 parches · 12.7min · ETA 0.03h
+  40/40 parches · 14.2min · ETA 0.00h
+
+COMPLETO: 40 parches en 14.2 min → cs066conf_k5_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:25:38 CELDA k_local=6 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=6 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.4min · ETA 0.05h
+  10/40 parches · 0.9min · ETA 0.04h
+  15/40 parches · 1.3min · ETA 0.03h
+  20/40 parches · 1.7min · ETA 0.03h
+  25/40 parches · 2.1min · ETA 0.02h
+  30/40 parches · 2.2min · ETA 0.01h
+  35/40 parches · 2.6min · ETA 0.01h
+  40/40 parches · 3.0min · ETA 0.00h
+
+COMPLETO: 40 parches en 3.0 min → cs066conf_k6_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:28:38 CELDA k_local=6 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=6 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.0min · ETA 0.12h
+  10/40 parches · 1.9min · ETA 0.10h
+  15/40 parches · 2.8min · ETA 0.08h
+  20/40 parches · 3.7min · ETA 0.06h
+  25/40 parches · 4.8min · ETA 0.05h
+  30/40 parches · 4.9min · ETA 0.03h
+  35/40 parches · 5.8min · ETA 0.01h
+  40/40 parches · 6.5min · ETA 0.00h
+
+COMPLETO: 40 parches en 6.5 min → cs066conf_k6_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:35:08 CELDA k_local=6 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=6 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.4min · ETA 0.16h
+  10/40 parches · 2.9min · ETA 0.15h
+  15/40 parches · 4.4min · ETA 0.12h
+  20/40 parches · 6.1min · ETA 0.10h
+  25/40 parches · 8.0min · ETA 0.08h
+  30/40 parches · 8.4min · ETA 0.05h
+  35/40 parches · 10.2min · ETA 0.02h
+  40/40 parches · 11.4min · ETA 0.00h
+
+COMPLETO: 40 parches en 11.4 min → cs066conf_k6_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 17:46:31 CELDA k_local=6 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=6 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 3.2min · ETA 0.38h
+  10/40 parches · 6.2min · ETA 0.31h
+  15/40 parches · 8.9min · ETA 0.25h
+  20/40 parches · 11.6min · ETA 0.19h
+  25/40 parches · 14.1min · ETA 0.14h
+  30/40 parches · 15.1min · ETA 0.08h
+  35/40 parches · 17.8min · ETA 0.04h
+  40/40 parches · 20.0min · ETA 0.00h
+
+COMPLETO: 40 parches en 20.0 min → cs066conf_k6_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 18:06:30 CELDA k_local=8 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=8 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.7min · ETA 0.08h
+  10/40 parches · 1.4min · ETA 0.07h
+  15/40 parches · 2.1min · ETA 0.06h
+  20/40 parches · 2.8min · ETA 0.05h
+  25/40 parches · 3.5min · ETA 0.03h
+  30/40 parches · 3.6min · ETA 0.02h
+  35/40 parches · 4.2min · ETA 0.01h
+  40/40 parches · 4.7min · ETA 0.00h
+
+COMPLETO: 40 parches en 4.7 min → cs066conf_k8_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 18:11:14 CELDA k_local=8 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=8 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.4min · ETA 0.16h
+  10/40 parches · 2.8min · ETA 0.14h
+  15/40 parches · 4.2min · ETA 0.12h
+  20/40 parches · 5.5min · ETA 0.09h
+  25/40 parches · 7.0min · ETA 0.07h
+  30/40 parches · 7.2min · ETA 0.04h
+  35/40 parches · 8.6min · ETA 0.02h
+  40/40 parches · 9.9min · ETA 0.00h
+
+COMPLETO: 40 parches en 9.9 min → cs066conf_k8_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 18:21:06 CELDA k_local=8 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=8 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 3.0min · ETA 0.35h
+  10/40 parches · 5.3min · ETA 0.27h
+  15/40 parches · 7.6min · ETA 0.21h
+  20/40 parches · 10.0min · ETA 0.17h
+  25/40 parches · 11.8min · ETA 0.12h
+  30/40 parches · 12.8min · ETA 0.07h
+  35/40 parches · 14.8min · ETA 0.04h
+  40/40 parches · 16.6min · ETA 0.00h
+
+COMPLETO: 40 parches en 16.6 min → cs066conf_k8_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 18:37:45 CELDA k_local=8 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=8 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 4.0min · ETA 0.47h
+  10/40 parches · 7.2min · ETA 0.36h
+  15/40 parches · 10.0min · ETA 0.28h
+  20/40 parches · 12.8min · ETA 0.21h
+  25/40 parches · 15.5min · ETA 0.15h
+  30/40 parches · 17.4min · ETA 0.10h
+  35/40 parches · 20.3min · ETA 0.05h
+  40/40 parches · 22.4min · ETA 0.00h
+
+COMPLETO: 40 parches en 22.4 min → cs066conf_k8_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 19:00:12 CELDA k_local=10 N=1500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=1500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=10 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 0.8min · ETA 0.10h
+  10/40 parches · 1.6min · ETA 0.08h
+  15/40 parches · 2.3min · ETA 0.06h
+  20/40 parches · 3.0min · ETA 0.05h
+  25/40 parches · 3.6min · ETA 0.04h
+  30/40 parches · 3.9min · ETA 0.02h
+  35/40 parches · 4.6min · ETA 0.01h
+  40/40 parches · 5.2min · ETA 0.00h
+
+COMPLETO: 40 parches en 5.2 min → cs066conf_k10_N1500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 19:05:26 CELDA k_local=10 N=2500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=2500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=10 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 1.5min · ETA 0.17h
+  10/40 parches · 3.0min · ETA 0.15h
+  15/40 parches · 4.6min · ETA 0.13h
+  20/40 parches · 6.1min · ETA 0.10h
+  25/40 parches · 7.7min · ETA 0.08h
+  30/40 parches · 8.0min · ETA 0.04h
+  35/40 parches · 9.6min · ETA 0.02h
+  40/40 parches · 10.9min · ETA 0.00h
+
+COMPLETO: 40 parches en 10.9 min → cs066conf_k10_N2500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 19:16:19 CELDA k_local=10 N=3500 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=3500 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=10 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 2.9min · ETA 0.34h
+  10/40 parches · 5.4min · ETA 0.27h
+  15/40 parches · 8.0min · ETA 0.22h
+  20/40 parches · 10.7min · ETA 0.18h
+  25/40 parches · 13.2min · ETA 0.13h
+  30/40 parches · 14.1min · ETA 0.08h
+  35/40 parches · 16.6min · ETA 0.04h
+  40/40 parches · 18.4min · ETA 0.00h
+
+COMPLETO: 40 parches en 18.4 min → cs066conf_k10_N3500.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 19:34:45 CELDA k_local=10 N=5000 patches=40 ===
+================================================================================================
+CS066 — LOCALIDAD PRIMERO (geometrogénesis en la formación). PRE-REGISTRADO. ¿emerge tejido con 'lejos'?
+================================================================================================
+N=5000 · patches=40 · steps=20 · D_max=8 (G-NO-TOPADO) · k_local=10 FIJO (confirmatorio/malla) · arms=['local', 'sin_local', 'local_barajado', 'local_marco_congelado']
+PRE-INSCRITO §5 (se lee contra esto, NO se acomoda): (A) diam CRECE~N^(1/d) Y d_s se estabiliza Y n_ejes≥2 Y local>local_barajado → LOCALIDAD era lo que faltaba ; (B) diam crece PERO sigue colapsando a 1 eje → espacio y direcciones son problemas SEPARADOS ; (C) diam sigue plano → no hay geometrogénesis en este sustrato ; (D) placebo: local≈local_barajado → solo acotar grado ; (E) depende de N. NIVEL 1 (¿hay tejido? diam-vs-N) SE ADJUDICA ANTES QUE NIVEL 2 (¿cuántos ejes?). G-TEJIDO-ANTES-QUE-EJES.
+  5/40 parches · 4.9min · ETA 0.57h
+  10/40 parches · 9.8min · ETA 0.49h
+  15/40 parches · 14.6min · ETA 0.41h
+  20/40 parches · 19.8min · ETA 0.33h
+  25/40 parches · 23.7min · ETA 0.24h
+  30/40 parches · 25.0min · ETA 0.14h
+  35/40 parches · 28.7min · ETA 0.07h
+  40/40 parches · 31.1min · ETA 0.00h
+
+COMPLETO: 40 parches en 31.1 min → cs066conf_k10_N5000.csv
+RECORDATORIO: NIVEL 1 primero (¿diam crece con N?). No leer ejes de un brazo sin tejido. — CC
+=== 20:05:51 CONFIRMATORIO CS066 COMPLETO ===

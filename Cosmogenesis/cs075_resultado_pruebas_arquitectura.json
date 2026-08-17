@@ -1,0 +1,297 @@
+{
+  "P1": {
+    "paso": true,
+    "filas": [
+      {
+        "aspecto": "difusion",
+        "dif": 14.547067870862023,
+        "relativo": 3.2949610431757845,
+        "aporta": true
+      },
+      {
+        "aspecto": "reaccion",
+        "dif": 2.4008749952160175,
+        "relativo": 0.5438064666362797,
+        "aporta": true
+      },
+      {
+        "aspecto": "expansion",
+        "dif": 0.08857009830404991,
+        "relativo": 0.02006143272945359,
+        "aporta": true
+      },
+      {
+        "aspecto": "enfriamiento",
+        "dif": 0.9017521782350246,
+        "relativo": 0.20424997836400724,
+        "aporta": true
+      },
+      {
+        "aspecto": "plasticidad",
+        "dif": 0.45442924900444015,
+        "relativo": 0.10292979215065219,
+        "aporta": true
+      }
+    ],
+    "norma_base": 4.414943812762385
+  },
+  "P2": {
+    "paso": true,
+    "peor_relativo": 3.6138268126610166e-16,
+    "filas": [
+      {
+        "orden": "original",
+        "dif": 0.0,
+        "relativo": 0.0
+      },
+      {
+        "orden": "[np.int64(2), np.int64(4), np.int64(0), np.int64(1), np.int64(3)]",
+        "dif": 1.4976056000840254e-15,
+        "relativo": 3.3921283341247987e-16,
+        "nivel": "punto flotante"
+      },
+      {
+        "orden": "[np.int64(0), np.int64(1), np.int64(3), np.int64(2), np.int64(4)]",
+        "dif": 8.563010384798464e-16,
+        "relativo": 1.9395513845601305e-16,
+        "nivel": "punto flotante"
+      },
+      {
+        "orden": "[np.int64(1), np.int64(0), np.int64(4), np.int64(2), np.int64(3)]",
+        "dif": 1.0128801561197326e-15,
+        "relativo": 2.29420848616867e-16,
+        "nivel": "punto flotante"
+      },
+      {
+        "orden": "[np.int64(2), np.int64(4), np.int64(3), np.int64(0), np.int64(1)]",
+        "dif": 1.5954842326952564e-15,
+        "relativo": 3.6138268126610166e-16,
+        "nivel": "punto flotante"
+      }
+    ]
+  },
+  "P3": {
+    "paso": true,
+    "distancia": 8,
+    "filas": [
+      {
+        "agente": "difusion",
+        "radio": 1,
+        "cambio": 0.0,
+        "respeta_radio": true
+      },
+      {
+        "agente": "reaccion",
+        "radio": 0,
+        "cambio": 0.0,
+        "respeta_radio": true
+      },
+      {
+        "agente": "expansion",
+        "radio": 0,
+        "cambio": 0.0,
+        "respeta_radio": true
+      },
+      {
+        "agente": "enfriamiento",
+        "radio": 0,
+        "cambio": 0.0,
+        "respeta_radio": true
+      },
+      {
+        "agente": "plasticidad",
+        "radio": 1,
+        "cambio": 0.0,
+        "respeta_radio": true
+      }
+    ]
+  },
+  "P4": {
+    "paso": true,
+    "identica": 0.0,
+    "distinta": 0.37893245065660486
+  },
+  "P5": {
+    "paso": true,
+    "sin_nan": true,
+    "acotado": true,
+    "final": {
+      "t": 9.999999999999831,
+      "a": 1.1051709180756457,
+      "frac_activa": 0.724609375,
+      "energia_campo": 435.7638231469108,
+      "phi_abs_medio": 0.6801181775329923,
+      "phi_max": 1.0,
+      "n_grumos": 7,
+      "hay_nan": false
+    },
+    "historia": [
+      {
+        "t": 0.01,
+        "a": 1.0001000050001667,
+        "frac_activa": 0.0,
+        "energia_campo": 1004.0335246802547,
+        "phi_abs_medio": 0.07986387169886248,
+        "phi_max": 0.3586926351919657,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 1.0100000000000007,
+        "a": 1.0101511771512957,
+        "frac_activa": 0.0,
+        "energia_campo": 1053.592040247488,
+        "phi_abs_medio": 0.05748703157861322,
+        "phi_max": 0.29313312421730947,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 2.010000000000001,
+        "a": 1.0203033652619353,
+        "frac_activa": 0.0,
+        "energia_campo": 1075.2151532642122,
+        "phi_abs_medio": 0.05370803409366659,
+        "phi_max": 0.27658062257930516,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 3.00999999999998,
+        "a": 1.0305575845593564,
+        "frac_activa": 0.0,
+        "energia_campo": 1068.8619729546303,
+        "phi_abs_medio": 0.058165150783988956,
+        "phi_max": 0.25565760780633706,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 4.009999999999959,
+        "a": 1.0409148604740344,
+        "frac_activa": 0.0,
+        "energia_campo": 1064.6959458553442,
+        "phi_abs_medio": 0.06236899047243777,
+        "phi_max": 0.3038546809683417,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 5.009999999999938,
+        "a": 1.0513762287421917,
+        "frac_activa": 0.0,
+        "energia_campo": 1058.936930815979,
+        "phi_abs_medio": 0.07487897919457752,
+        "phi_max": 0.32996420735946946,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 6.009999999999916,
+        "a": 1.061942735509373,
+        "frac_activa": 0.0,
+        "energia_campo": 1048.3151539515611,
+        "phi_abs_medio": 0.10605449198710529,
+        "phi_max": 0.48860030217263895,
+        "n_grumos": 0,
+        "hay_nan": false
+      },
+      {
+        "t": 7.009999999999895,
+        "a": 1.0726154374350605,
+        "frac_activa": 0.008056640625,
+        "energia_campo": 1017.7246047393818,
+        "phi_abs_medio": 0.1764196371163827,
+        "phi_max": 0.618331876645792,
+        "n_grumos": 26,
+        "hay_nan": false
+      },
+      {
+        "t": 8.009999999999874,
+        "a": 1.0833954017983405,
+        "frac_activa": 0.2041015625,
+        "energia_campo": 921.1491399513226,
+        "phi_abs_medio": 0.3123829546248838,
+        "phi_max": 0.8923096909966985,
+        "n_grumos": 26,
+        "hay_nan": false
+      },
+      {
+        "t": 9.009999999999852,
+        "a": 1.0942837066046331,
+        "frac_activa": 0.514892578125,
+        "energia_campo": 699.1253112105192,
+        "phi_abs_medio": 0.5140390503244863,
+        "phi_max": 1.0,
+        "n_grumos": 15,
+        "hay_nan": false
+      },
+      {
+        "t": 9.999999999999831,
+        "a": 1.1051709180756457,
+        "frac_activa": 0.724609375,
+        "energia_campo": 435.7638231469108,
+        "phi_abs_medio": 0.6801181775329923,
+        "phi_max": 1.0,
+        "n_grumos": 7,
+        "hay_nan": false
+      }
+    ]
+  },
+  "P6": {
+    "paso": true,
+    "crece": true,
+    "corr_con_campo": 0.6662815711426615,
+    "serie": [
+      {
+        "t": 2.0000000000000013,
+        "w_abs_medio": 4.147210688302894e-05,
+        "w_max": 0.0005410914765115903,
+        "frac_activa": 0.0
+      },
+      {
+        "t": 3.9999999999999587,
+        "w_abs_medio": 7.915459676546821e-05,
+        "w_max": 0.0006890458033688146,
+        "frac_activa": 0.0
+      },
+      {
+        "t": 5.9999999999999165,
+        "w_abs_medio": 0.00022296112788486915,
+        "w_max": 0.0016842291071400275,
+        "frac_activa": 0.015625
+      },
+      {
+        "t": 7.999999999999874,
+        "w_abs_medio": 0.0017996616237776963,
+        "w_max": 0.01159809276878741,
+        "frac_activa": 0.5283203125
+      },
+      {
+        "t": 9.999999999999831,
+        "w_abs_medio": 0.01290232340657909,
+        "w_max": 0.04084534386701505,
+        "frac_activa": 0.866943359375
+      },
+      {
+        "t": 11.999999999999789,
+        "w_abs_medio": 0.031877971558761584,
+        "w_max": 0.06385962407797988,
+        "frac_activa": 0.958740234375
+      }
+    ]
+  },
+  "_resumen": {
+    "estado": {
+      "P1": true,
+      "P2": true,
+      "P3": true,
+      "P4": true,
+      "P5": true,
+      "P6": true
+    },
+    "todas_pasan": true,
+    "elapsed_s": 18.10880708694458,
+    "N": 16
+  }
+}

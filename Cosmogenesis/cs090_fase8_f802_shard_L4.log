@@ -1,0 +1,48 @@
+patron=*_f802_L4: 12 carpetas -> ['A2-B0-C2-batch3-r111_s482596_f802_L4', 'A2-B0-C2-batch3-r120_s483469_f802_L4', 'A2-B0-C2-batch3-r143_s485700_f802_L4', 'A2-B0-C2-batch4-r12_s572993_f802_L4', 'A2-B0-C2-batch4-r1_s571926_f802_L4', 'A2-B0-C2-batch4-r31_s574836_f802_L4', 'A2-B0-C2-batch4-r47_s576388_f802_L4', 'A2-B0-C2-r14_s273187_f802_L4', 'A2-B0-C2-r17_s273478_f802_L4', 'A2-B0-C2-r1_s271926_f802_L4', 'A2-B0-C2-r2_s372023_f802_L4', 'A2-B0-C2-r39_s375612_f802_L4']
+[A2-B0-C2-batch3-r111_s482596_f802_L4] setup + run...
+[A2-B0-C2-batch3-r111_s482596_f802_L4] exit_setup=0 t_setup=6.52s  exit_run=0 t_run=53.55s
+[A2-B0-C2-batch3-r120_s483469_f802_L4] setup + run...
+[A2-B0-C2-batch3-r120_s483469_f802_L4] exit_setup=0 t_setup=7.05s  exit_run=0 t_run=50.0s
+[A2-B0-C2-batch3-r143_s485700_f802_L4] setup + run...
+[A2-B0-C2-batch3-r143_s485700_f802_L4] exit_setup=0 t_setup=6.65s  exit_run=1 t_run=43.5s
+  AVISO: exit_run != 0. Tail run.log:
+  
+   npart=      2000, n_alive=      1725, n_dead_or_accreted=       275, nptmass=        12
+   Etot=-2.764E+06, Ekin= 6.561E+04, Etherm= 4.500E-01, Epot=-2.829E+06
+   Linm= 4.483E+03, Angm= 2.886E+05
+   Centre of Mass =  4.856E+01,  4.943E+01,  4.923E+01
+   density  (max)= 5.990E+03 (mean)= 2.636E+01 (max)= 5.990E+03 g/cm^3
+   alpha(max)= 1.000E+00
+   RMS Mach #= 4.753E+00
+  
+  
+  > step 1 / 2 t = 0.4525000 dt = 5.00E-04 moved 1 in 0.051 cpu-s <
+  > step 2 / 2 t = 0.4530000 dt = 5.00E-04 moved 1725 in 0.084 cpu-s <
+  
+   ERROR! evolve: Large error in angular momentum conservation  : err =  1.152E-01
+  
+  
+   You can ignore this error and continue by setting the 
+   environment variable I_WILL_NOT_PUBLISH_CRAP=yes to continue
+  
+   FATAL ERROR! evolve: Conservation errors too large to continue simulation
+[A2-B0-C2-batch4-r12_s572993_f802_L4] setup + run...
+[A2-B0-C2-batch4-r12_s572993_f802_L4] exit_setup=0 t_setup=6.83s  exit_run=0 t_run=56.75s
+[A2-B0-C2-batch4-r1_s571926_f802_L4] setup + run...
+[A2-B0-C2-batch4-r1_s571926_f802_L4] exit_setup=0 t_setup=6.68s  exit_run=0 t_run=40.37s
+[A2-B0-C2-batch4-r31_s574836_f802_L4] setup + run...
+[A2-B0-C2-batch4-r31_s574836_f802_L4] exit_setup=0 t_setup=4.19s  exit_run=0 t_run=34.86s
+[A2-B0-C2-batch4-r47_s576388_f802_L4] setup + run...
+[A2-B0-C2-batch4-r47_s576388_f802_L4] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-r14_s273187_f802_L4] setup + run...
+[A2-B0-C2-r14_s273187_f802_L4] exit_setup=0 t_setup=4.35s  exit_run=0 t_run=35.53s
+[A2-B0-C2-r17_s273478_f802_L4] setup + run...
+[A2-B0-C2-r17_s273478_f802_L4] exit_setup=0 t_setup=4.87s  exit_run=0 t_run=36.9s
+[A2-B0-C2-r1_s271926_f802_L4] setup + run...
+[A2-B0-C2-r1_s271926_f802_L4] exit_setup=0 t_setup=5.96s  exit_run=0 t_run=35.23s
+[A2-B0-C2-r2_s372023_f802_L4] setup + run...
+[A2-B0-C2-r2_s372023_f802_L4] exit_setup=0 t_setup=5.21s  exit_run=0 t_run=36.33s
+[A2-B0-C2-r39_s375612_f802_L4] setup + run...
+[A2-B0-C2-r39_s375612_f802_L4] exit_setup=0 t_setup=6.64s  exit_run=0 t_run=35.13s
+
+[TOTAL] tiempo script=523.1s

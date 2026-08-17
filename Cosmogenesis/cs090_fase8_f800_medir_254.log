@@ -1,0 +1,415 @@
+==========================================================================================
+F8-00 · regenerar, medir y GUARDAR los grafos de las 254 corridas del dataset unificado
+==========================================================================================
+
+Dataset unificado: 254 filas x 54 columnas
+Composición (exp x brazo):
+exp               brazo              
+F5B_40pares       unico                  76
+O3A_N4000         unico                  26
+O3B_rewiring      orig                   12
+                  rewire                 12
+O3C_factorial     c1-rigido-soporte      11
+                  c2-rigido-azar         12
+                  c3-elastico-soporte    12
+                  c4-elastico-azar       12
+O3D_control_hist  control_historico       2
+O3D_kcap          control_ER              6
+                  regla                  32
+O3E_memoria       mem                    15
+                  nomem                  15
+OUT_pendNEG       unico                  11
+
+Filas con clustering YA medido en el dataset: 24
+Caché previa: 16 filas ya medidas
+
+--- Midiendo 238 filas (14 proceso(s)) ---
+  [  1/238] F5B_40pares      A2-B0-C2-batch3-r59                unico        aristas= 3159 tri=    7 gini=0.992 tri/ar_max=2 (13.9s)
+  [  2/238] F5B_40pares      A2-B0-C2-batch3-r53                unico        aristas= 3204 tri=    7 gini=0.990 tri/ar_max=1 (14.1s)
+  [  3/238] F5B_40pares      A2-B0-C2-batch3-r58                unico        aristas= 3150 tri=    7 gini=0.990 tri/ar_max=1 (14.0s)
+  [  4/238] F5B_40pares      A2-B0-C2-batch3-r44                unico        aristas= 3252 tri=    8 gini=0.988 tri/ar_max=1 (14.1s)
+  [  5/238] F5B_40pares      A2-B0-C2-batch3-r48                unico        aristas= 3271 tri=    8 gini=0.988 tri/ar_max=1 (14.5s)
+  [  6/238] F5B_40pares      A2-B0-C2-batch3-r35                unico        aristas= 3369 tri=    8 gini=0.988 tri/ar_max=1 (14.6s)
+  [  7/238] F5B_40pares      A2-B0-C2-batch3-r60                unico        aristas= 3068 tri=   41 gini=0.942 tri/ar_max=2 (14.7s)
+  [  8/238] F5B_40pares      A2-B0-C2-batch3-r26                unico        aristas= 3258 tri=   19 gini=0.972 tri/ar_max=1 (14.9s)
+  [  9/238] F5B_40pares      A2-B0-C2-batch3-r50                unico        aristas= 3271 tri=   15 gini=0.978 tri/ar_max=1 (14.7s)
+  [ 10/238] F5B_40pares      A2-B0-C2-batch3-r69                unico        aristas= 3678 tri=    7 gini=0.990 tri/ar_max=1 (14.9s)
+  [ 11/238] F5B_40pares      A2-B0-C2-batch3-r31                unico        aristas= 3234 tri=   30 gini=0.958 tri/ar_max=2 (15.4s)
+  [ 12/238] F5B_40pares      A2-B0-C2-batch3-r70                unico        aristas= 3398 tri=   18 gini=0.973 tri/ar_max=1 (15.1s)
+  [ 13/238] F5B_40pares      A2-B0-C2-batch3-r71                unico        aristas= 3012 tri=   50 gini=0.933 tri/ar_max=2 (15.1s)
+  [ 14/238] F5B_40pares      A2-B0-C2-batch3-r5                 unico        aristas= 3981 tri=   40 gini=0.948 tri/ar_max=2 (16.9s)
+  [ 15/238] F5B_40pares      A2-B0-C2-batch3-r83                unico        aristas= 3567 tri=   10 gini=0.985 tri/ar_max=1 (13.5s)
+  [ 16/238] F5B_40pares      A2-B0-C2-batch3-r76                unico        aristas= 3332 tri=   20 gini=0.973 tri/ar_max=2 (13.7s)
+  [ 17/238] F5B_40pares      A2-B0-C2-batch4-r15                unico        aristas= 3098 tri=    6 gini=0.991 tri/ar_max=1 (12.7s)
+  [ 18/238] F5B_40pares      A2-B0-C2-batch4-r10                unico        aristas= 2994 tri=   25 gini=0.964 tri/ar_max=2 (13.4s)
+  [ 19/238] F5B_40pares      A2-B0-C2-batch4-r1                 unico        aristas= 3224 tri=   23 gini=0.967 tri/ar_max=1 (13.6s)
+  [ 20/238] F5B_40pares      A2-B0-C2-batch3-r86                unico        aristas= 3407 tri=   22 gini=0.968 tri/ar_max=1 (14.1s)
+  [ 21/238] F5B_40pares      A2-B0-C2-batch4-r12                unico        aristas= 3340 tri=   15 gini=0.978 tri/ar_max=1 (13.8s)
+  [ 22/238] F5B_40pares      A2-B0-C2-batch4-r19                unico        aristas= 3498 tri=    7 gini=0.990 tri/ar_max=1 (13.1s)
+  [ 23/238] F5B_40pares      A2-B0-C2-batch3-r9                 unico        aristas= 4069 tri=   20 gini=0.973 tri/ar_max=2 (15.0s)
+  [ 24/238] F5B_40pares      A2-B0-C2-batch4-r0                 unico        aristas= 3897 tri=   36 gini=0.949 tri/ar_max=2 (14.9s)
+  [ 25/238] F5B_40pares      A2-B0-C2-batch4-r11                unico        aristas= 3920 tri=   28 gini=0.961 tri/ar_max=2 (14.8s)
+  [ 26/238] F5B_40pares      A2-B0-C2-batch4-r13                unico        aristas= 4061 tri=   19 gini=0.972 tri/ar_max=1 (14.6s)
+  [ 27/238] F5B_40pares      A2-B0-C2-batch4-r23                unico        aristas= 3393 tri=   12 gini=0.983 tri/ar_max=1 (12.7s)
+  [ 28/238] F5B_40pares      A2-B0-C2-batch4-r18                unico        aristas= 3986 tri=   13 gini=0.982 tri/ar_max=2 (14.3s)
+  [ 29/238] F5B_40pares      A2-B0-C2-batch4-r36                unico        aristas= 2343 tri=   30 gini=0.958 tri/ar_max=2 (9.3s)
+  [ 30/238] F5B_40pares      A2-B0-C2-batch4-r28                unico        aristas= 3220 tri=   22 gini=0.968 tri/ar_max=1 (10.6s)
+  [ 31/238] F5B_40pares      A2-B0-C2-batch4-r38                unico        aristas= 3296 tri=   11 gini=0.984 tri/ar_max=1 (10.0s)
+  [ 32/238] F5B_40pares      A2-B0-C2-batch4-r26                unico        aristas= 3308 tri=   15 gini=0.979 tri/ar_max=1 (10.7s)
+  [ 33/238] F5B_40pares      A2-B0-C2-batch4-r31                unico        aristas= 3332 tri=   14 gini=0.979 tri/ar_max=1 (10.7s)
+  [ 34/238] F5B_40pares      A2-B0-C2-batch4-r51                unico        aristas= 2483 tri=   14 gini=0.979 tri/ar_max=1 (9.2s)
+  [ 35/238] F5B_40pares      A2-B0-C2-batch4-r39                unico        aristas= 3314 tri=   14 gini=0.979 tri/ar_max=1 (10.5s)
+  [ 36/238] F5B_40pares      A2-B0-C2-batch4-r41                unico        aristas= 3391 tri=    8 gini=0.988 tri/ar_max=1 (10.2s)
+  [ 37/238] F5B_40pares      A2-B0-C2-batch4-r43                unico        aristas= 3269 tri=    8 gini=0.988 tri/ar_max=1 (10.2s)
+  [ 38/238] F5B_40pares      A2-B0-C2-batch4-r44                unico        aristas= 3308 tri=   10 gini=0.987 tri/ar_max=2 (10.2s)
+  [ 39/238] F5B_40pares      A2-B0-C2-batch4-r47                unico        aristas= 3282 tri=    6 gini=0.992 tri/ar_max=1 (10.0s)
+  [ 40/238] F5B_40pares      A2-B0-C2-batch4-r3                 unico        aristas= 4196 tri=   16 gini=0.976 tri/ar_max=1 (11.6s)
+  [ 41/238] F5B_40pares      A2-B0-C2-batch4-r57                unico        aristas= 3343 tri=   10 gini=0.985 tri/ar_max=1 (10.4s)
+  [ 42/238] F5B_40pares      A2-B0-C2-batch4-r62                unico        aristas= 3299 tri=   15 gini=0.978 tri/ar_max=1 (10.6s)
+  [ 43/238] F5B_40pares      A2-B0-C2-batch4-r70                unico        aristas= 3261 tri=   12 gini=0.982 tri/ar_max=1 (10.2s)
+  [ 44/238] F5B_40pares      A2-B0-C2-batch4-r94                unico        aristas= 3553 tri=    4 gini=0.994 tri/ar_max=1 (10.1s)
+  [ 45/238] F5B_40pares      A2-B0-C2-batch4-r72                unico        aristas= 3337 tri=   25 gini=0.964 tri/ar_max=2 (10.6s)
+  [ 46/238] F5B_40pares      A2-B0-C2-batch4-r9                 unico        aristas= 3750 tri=    7 gini=0.990 tri/ar_max=1 (10.6s)
+  [ 47/238] F5B_40pares      A2-B0-C2-r14                       unico        aristas= 3296 tri=   19 gini=0.972 tri/ar_max=1 (10.4s)
+  [ 48/238] F5B_40pares      A2-B0-C2-r17                       unico        aristas= 3165 tri=   29 gini=0.961 tri/ar_max=2 (10.2s)
+  [ 49/238] F5B_40pares      A2-B0-C2-r19                       unico        aristas= 3679 tri=    6 gini=0.991 tri/ar_max=1 (10.3s)
+  [ 50/238] F5B_40pares      A2-B0-C2-r1                        unico        aristas= 4078 tri=   25 gini=0.963 tri/ar_max=1 (11.5s)
+  [ 51/238] F5B_40pares      A2-B0-C2-r12                       unico        aristas= 3978 tri=   31 gini=0.955 tri/ar_max=2 (11.5s)
+  [ 52/238] F5B_40pares      A2-B0-C2-r20                       unico        aristas= 3706 tri=   12 gini=0.985 tri/ar_max=2 (10.7s)
+  [ 53/238] F5B_40pares      A2-B0-C2-r2v1fix                   unico        aristas= 3057 tri=   28 gini=0.964 tri/ar_max=2 (10.4s)
+  [ 54/238] F5B_40pares      A2-B0-C2-r2                        unico        aristas= 4094 tri=   15 gini=0.978 tri/ar_max=1 (11.5s)
+  [ 55/238] F5B_40pares      A2-B0-C2-r12v1fix                  unico        aristas= 4777 tri=   18 gini=0.975 tri/ar_max=2 (12.2s)
+  [ 56/238] F5B_40pares      A2-B0-C2-r28                       unico        aristas= 3947 tri=   37 gini=0.949 tri/ar_max=2 (11.6s)
+  [ 57/238] F5B_40pares      A2-B0-C2-r6                        unico        aristas= 3381 tri=   16 gini=0.979 tri/ar_max=2 (10.5s)
+  [ 58/238] F5B_40pares      A2-B0-C2-r39                       unico        aristas= 4083 tri=   20 gini=0.972 tri/ar_max=1 (11.4s)
+  [ 59/238] F5B_40pares      A2-B0-C2-r9                        unico        aristas= 3939 tri=    8 gini=0.988 tri/ar_max=1 (10.7s)
+  [ 60/238] F5B_40pares      A2-B0-C2-r9v2fix                   unico        aristas= 4138 tri=   15 gini=0.978 tri/ar_max=1 (11.2s)
+  [ 61/238] O3A_N4000        A2-B0-C2-batch3-r100               unico        aristas= 4723 tri=   28 gini=0.979 tri/ar_max=1 (18.3s)
+  [ 62/238] O3A_N4000        A2-B0-C2-batch3-r0                 unico        aristas= 4714 tri=   28 gini=0.980 tri/ar_max=1 (18.6s)
+  [ 63/238] O3A_N4000        A2-B0-C2-batch3-r108               unico        aristas= 6448 tri=    4 gini=0.997 tri/ar_max=1 (20.2s)
+  [ 64/238] O3A_N4000        A2-B0-C2-batch3-r112               unico        aristas= 6574 tri=    6 gini=0.996 tri/ar_max=1 (20.3s)
+  [ 65/238] O3A_N4000        A2-B0-C2-batch3-r12                unico        aristas= 6713 tri=    6 gini=0.996 tri/ar_max=1 (20.4s)
+  [ 66/238] O3A_N4000        A2-B0-C2-batch3-r35                unico        aristas= 6721 tri=   12 gini=0.992 tri/ar_max=2 (20.6s)
+  [ 67/238] O3A_N4000        A2-B0-C2-batch3-r31                unico        aristas= 6445 tri=   32 gini=0.976 tri/ar_max=1 (20.7s)
+  [ 68/238] O3A_N4000        A2-B0-C2-batch3-r26                unico        aristas= 6621 tri=   21 gini=0.985 tri/ar_max=1 (21.0s)
+  [ 69/238] O3A_N4000        A2-B0-C2-batch3-r114               unico        aristas= 8138 tri=   36 gini=0.974 tri/ar_max=2 (23.5s)
+  [ 70/238] O3A_N4000        A2-B0-C2-batch3-r5                 unico        aristas= 7942 tri=   37 gini=0.974 tri/ar_max=2 (22.9s)
+  [ 71/238] O3A_N4000        A2-B0-C2-batch3-r76                unico        aristas= 6691 tri=   19 gini=0.987 tri/ar_max=1 (20.6s)
+  [ 72/238] O3A_N4000        A2-B0-C2-batch4-r10                unico        aristas= 6087 tri=   30 gini=0.978 tri/ar_max=1 (20.1s)
+  [ 73/238] O3A_N4000        A2-B0-C2-batch3-r86                unico        aristas= 6686 tri=   22 gini=0.984 tri/ar_max=1 (20.8s)
+  [ 74/238] O3A_N4000        A2-B0-C2-batch4-r13                unico        aristas= 8185 tri=   15 gini=0.989 tri/ar_max=1 (22.2s)
+  [ 75/238] O3A_N4000        A2-B0-C2-batch4-r19                unico        aristas= 7159 tri=    4 gini=0.997 tri/ar_max=1 (20.2s)
+  [ 76/238] O3A_N4000        A2-B0-C2-batch4-r36                unico        aristas= 4586 tri=   39 gini=0.971 tri/ar_max=1 (18.1s)
+  [ 77/238] O3B_rewiring     A2-B0-C2-batch3-r0                 orig         aristas= 2308 tri=   27 gini=0.961 tri/ar_max=1 (9.2s)
+  [ 78/238] O3A_N4000        A2-B0-C2-batch4-r51                unico        aristas= 5006 tri=   14 gini=0.990 tri/ar_max=1 (18.2s)
+  [ 79/238] O3A_N4000        A2-B0-C2-batch4-r18                unico        aristas= 8079 tri=   19 gini=0.986 tri/ar_max=1 (22.4s)
+  [ 80/238] O3A_N4000        A2-B0-C2-batch4-r23                unico        aristas= 6724 tri=   11 gini=0.992 tri/ar_max=1 (20.3s)
+  [ 81/238] O3A_N4000        A2-B0-C2-batch4-r43                unico        aristas= 6451 tri=    8 gini=0.994 tri/ar_max=1 (20.1s)
+  [ 82/238] O3A_N4000        A2-B0-C2-batch4-r57                unico        aristas= 6715 tri=    8 gini=0.994 tri/ar_max=1 (20.1s)
+  [ 83/238] O3A_N4000        A2-B0-C2-batch4-r94                unico        aristas= 7151 tri=    3 gini=0.998 tri/ar_max=1 (20.6s)
+  [ 84/238] O3B_rewiring     A2-B0-C2-batch3-r0                 rewire       aristas= 2308 tri=    0 gini=nan tri/ar_max=0 (12.4s)
+  [ 85/238] O3A_N4000        A2-B0-C2-r19                       unico        aristas= 7337 tri=    2 gini=0.999 tri/ar_max=1 (20.7s)
+  [ 86/238] O3A_N4000        A2-B0-C2-r12v1fix                  unico        aristas= 9458 tri=   17 gini=0.987 tri/ar_max=1 (23.9s)
+  [ 87/238] O3B_rewiring     A2-B0-C2-batch3-r111               orig         aristas= 3017 tri=   37 gini=0.946 tri/ar_max=1 (9.8s)
+  [ 88/238] O3B_rewiring     A2-B0-C2-batch3-r60                orig         aristas= 3068 tri=   41 gini=0.942 tri/ar_max=2 (9.8s)
+  [ 89/238] O3B_rewiring     A2-B0-C2-batch4-r36                orig         aristas= 2343 tri=   30 gini=0.958 tri/ar_max=2 (8.7s)
+  [ 90/238] O3B_rewiring     A2-B0-C2-batch4-r10                orig         aristas= 2994 tri=   25 gini=0.964 tri/ar_max=2 (9.8s)
+  [ 91/238] O3A_N4000        A2-B0-C2-r9v2fix                   unico        aristas= 8233 tri=   18 gini=0.987 tri/ar_max=2 (22.8s)
+  [ 92/238] O3A_N4000        A2-B0-C2-r39                       unico        aristas= 8289 tri=   17 gini=0.987 tri/ar_max=1 (23.1s)
+  [ 93/238] O3B_rewiring     A2-B0-C2-batch4-r62                orig         aristas= 3299 tri=   15 gini=0.978 tri/ar_max=1 (10.0s)
+  [ 94/238] O3B_rewiring     A2-B0-C2-batch3-r111               rewire       aristas= 3017 tri=    1 gini=0.999 tri/ar_max=1 (14.3s)
+  [ 95/238] O3B_rewiring     A2-B0-C2-batch4-r36                rewire       aristas= 2343 tri=    1 gini=0.999 tri/ar_max=1 (12.3s)
+  [ 96/238] O3B_rewiring     A2-B0-C2-batch3-r60                rewire       aristas= 3068 tri=    6 gini=0.991 tri/ar_max=1 (14.6s)
+  [ 97/238] O3B_rewiring     A2-B0-C2-batch4-r10                rewire       aristas= 2994 tri=    6 gini=0.991 tri/ar_max=1 (14.4s)
+  [ 98/238] O3B_rewiring     A2-B0-C2-r14                       orig         aristas= 3296 tri=   19 gini=0.972 tri/ar_max=1 (9.8s)
+  [ 99/238] O3B_rewiring     A2-B0-C2-r17                       orig         aristas= 3165 tri=   29 gini=0.961 tri/ar_max=2 (9.8s)
+  [100/238] O3B_rewiring     A2-B0-C2-batch4-r62                rewire       aristas= 3299 tri=    2 gini=0.997 tri/ar_max=1 (14.6s)
+  [101/238] O3B_rewiring     A2-B0-C2-r19                       orig         aristas= 3679 tri=    6 gini=0.991 tri/ar_max=1 (9.7s)
+  [102/238] O3B_rewiring     A2-B0-C2-r20                       orig         aristas= 3706 tri=   12 gini=0.985 tri/ar_max=2 (9.9s)
+  [103/238] O3B_rewiring     A2-B0-C2-r14                       rewire       aristas= 3296 tri=    3 gini=0.996 tri/ar_max=1 (15.0s)
+  [104/238] O3B_rewiring     A2-B0-C2-r28                       orig         aristas= 3947 tri=   37 gini=0.949 tri/ar_max=2 (10.6s)
+  [105/238] O3B_rewiring     A2-B0-C2-r17                       rewire       aristas= 3165 tri=    4 gini=0.994 tri/ar_max=1 (14.5s)
+  [106/238] O3C_factorial    A2-B0-C2-mec-r0                    c1-rigido-so aristas= 3467 tri=   30 gini=0.955 tri/ar_max=1 (9.9s)
+  [107/238] O3B_rewiring     A2-B0-C2-r39                       orig         aristas= 4083 tri=   20 gini=0.972 tri/ar_max=1 (10.7s)
+  [108/238] O3B_rewiring     A2-B0-C2-r19                       rewire       aristas= 3679 tri=    7 gini=0.991 tri/ar_max=2 (15.5s)
+  [109/238] O3C_factorial    A2-B0-C2-mec-r0                    c2-rigido-az aristas= 4379 tri=    5 gini=0.993 tri/ar_max=1 (10.8s)
+  [110/238] O3B_rewiring     A2-B0-C2-r20                       rewire       aristas= 3706 tri=    3 gini=0.996 tri/ar_max=1 (15.4s)
+  [111/238] O3B_rewiring     A2-B0-C2-r28                       rewire       aristas= 3947 tri=   10 gini=0.985 tri/ar_max=1 (16.4s)
+  [112/238] O3C_factorial    A2-B0-C2-mec-r0                    c3-elastico- aristas= 4312 tri=   10 gini=0.985 tri/ar_max=1 (12.0s)
+  [113/238] O3C_factorial    A2-B0-C2-mec-r0                    c4-elastico- aristas= 3890 tri=    7 gini=0.990 tri/ar_max=1 (11.7s)
+  [114/238] O3B_rewiring     A2-B0-C2-r39                       rewire       aristas= 4083 tri=    9 gini=0.987 tri/ar_max=1 (16.6s)
+  [115/238] O3C_factorial    A2-B0-C2-mec-r1                    c1-rigido-so aristas= 5624 tri=   17 gini=0.977 tri/ar_max=2 (11.9s)
+  [116/238] O3C_factorial    A2-B0-C2-mec-r1                    c2-rigido-az aristas= 5633 tri=   16 gini=0.980 tri/ar_max=2 (11.5s)
+  [117/238] O3C_factorial    A2-B0-C2-mec-r1                    c3-elastico- aristas= 5504 tri=   15 gini=0.980 tri/ar_max=2 (12.4s)
+  [118/238] O3C_factorial    A2-B0-C2-mec-r10                   c2-rigido-az aristas= 6060 tri=   27 gini=0.962 tri/ar_max=2 (12.0s)
+  [119/238] O3C_factorial    A2-B0-C2-mec-r1                    c4-elastico- aristas= 5494 tri=    9 gini=0.987 tri/ar_max=1 (12.8s)
+  [120/238] O3C_factorial    A2-B0-C2-mec-r11                   c1-rigido-so aristas= 4880 tri=   30 gini=0.957 tri/ar_max=1 (10.8s)
+  [121/238] O3C_factorial    A2-B0-C2-mec-r11                   c2-rigido-az aristas= 5273 tri=   16 gini=0.978 tri/ar_max=2 (11.5s)
+  [122/238] O3C_factorial    A2-B0-C2-mec-r10                   c3-elastico- aristas= 5787 tri=   22 gini=0.968 tri/ar_max=1 (13.0s)
+  [123/238] O3C_factorial    A2-B0-C2-mec-r10                   c4-elastico- aristas= 5774 tri=   24 gini=0.968 tri/ar_max=2 (13.7s)
+  [124/238] O3C_factorial    A2-B0-C2-mec-r2                    c1-rigido-so aristas= 3578 tri=   34 gini=0.952 tri/ar_max=2 (9.6s)
+  [125/238] O3C_factorial    A2-B0-C2-mec-r11                   c3-elastico- aristas= 5044 tri=   19 gini=0.977 tri/ar_max=2 (12.7s)
+  [126/238] O3C_factorial    A2-B0-C2-mec-r2                    c2-rigido-az aristas= 4267 tri=    8 gini=0.988 tri/ar_max=1 (10.4s)
+  [127/238] O3C_factorial    A2-B0-C2-mec-r11                   c4-elastico- aristas= 4782 tri=   16 gini=0.976 tri/ar_max=1 (12.7s)
+  [128/238] O3C_factorial    A2-B0-C2-mec-r2                    c4-elastico- aristas= 3867 tri=    7 gini=0.990 tri/ar_max=1 (11.3s)
+  [129/238] O3C_factorial    A2-B0-C2-mec-r2                    c3-elastico- aristas= 4265 tri=   16 gini=0.976 tri/ar_max=1 (11.7s)
+  [130/238] O3C_factorial    A2-B0-C2-mec-r3                    c1-rigido-so aristas= 4850 tri=   18 gini=0.976 tri/ar_max=2 (11.3s)
+  [131/238] O3C_factorial    A2-B0-C2-mec-r3                    c2-rigido-az aristas= 4880 tri=   14 gini=0.980 tri/ar_max=1 (11.1s)
+  [132/238] O3C_factorial    A2-B0-C2-mec-r3                    c3-elastico- aristas= 4364 tri=   10 gini=0.985 tri/ar_max=1 (11.8s)
+  [133/238] O3C_factorial    A2-B0-C2-mec-r4                    c1-rigido-so aristas= 5068 tri=   12 gini=0.982 tri/ar_max=1 (11.2s)
+  [134/238] O3C_factorial    A2-B0-C2-mec-r3                    c4-elastico- aristas= 4005 tri=    8 gini=0.989 tri/ar_max=1 (11.9s)
+  [135/238] O3C_factorial    A2-B0-C2-mec-r4                    c2-rigido-az aristas= 5054 tri=   13 gini=0.981 tri/ar_max=1 (11.5s)
+  [136/238] O3C_factorial    A2-B0-C2-mec-r5                    c1-rigido-so aristas= 4879 tri=   14 gini=0.980 tri/ar_max=1 (11.0s)
+  [137/238] O3C_factorial    A2-B0-C2-mec-r4                    c3-elastico- aristas= 5022 tri=   14 gini=0.981 tri/ar_max=2 (12.8s)
+  [138/238] O3C_factorial    A2-B0-C2-mec-r5                    c2-rigido-az aristas= 4869 tri=   11 gini=0.984 tri/ar_max=1 (10.8s)
+  [139/238] O3C_factorial    A2-B0-C2-mec-r4                    c4-elastico- aristas= 5012 tri=   14 gini=0.981 tri/ar_max=2 (12.9s)
+  [140/238] O3C_factorial    A2-B0-C2-mec-r6                    c1-rigido-so aristas= 3315 tri=   25 gini=0.963 tri/ar_max=1 (9.7s)
+  [141/238] O3C_factorial    A2-B0-C2-mec-r5                    c3-elastico- aristas= 4587 tri=    8 gini=0.988 tri/ar_max=1 (11.7s)
+  [142/238] O3C_factorial    A2-B0-C2-mec-r6                    c2-rigido-az aristas= 4091 tri=    3 gini=0.996 tri/ar_max=1 (11.0s)
+  [143/238] O3C_factorial    A2-B0-C2-mec-r5                    c4-elastico- aristas= 4697 tri=   11 gini=0.984 tri/ar_max=1 (12.7s)
+  [144/238] O3C_factorial    A2-B0-C2-mec-r7                    c1-rigido-so aristas= 3460 tri=   32 gini=0.956 tri/ar_max=2 (10.2s)
+  [145/238] O3C_factorial    A2-B0-C2-mec-r6                    c3-elastico- aristas= 4225 tri=   13 gini=0.981 tri/ar_max=1 (12.5s)
+  [146/238] O3C_factorial    A2-B0-C2-mec-r6                    c4-elastico- aristas= 3750 tri=    6 gini=0.991 tri/ar_max=1 (12.0s)
+  [147/238] O3C_factorial    A2-B0-C2-mec-r7                    c2-rigido-az aristas= 4239 tri=    8 gini=0.988 tri/ar_max=1 (11.3s)
+  [148/238] O3C_factorial    A2-B0-C2-mec-r7                    c3-elastico- aristas= 4303 tri=   12 gini=0.984 tri/ar_max=2 (12.4s)
+  [149/238] O3C_factorial    A2-B0-C2-mec-r8                    c1-rigido-so aristas= 4054 tri=    9 gini=0.987 tri/ar_max=1 (10.4s)
+  [150/238] O3C_factorial    A2-B0-C2-mec-r8                    c2-rigido-az aristas= 4043 tri=    9 gini=0.987 tri/ar_max=1 (10.4s)
+  [151/238] O3C_factorial    A2-B0-C2-mec-r7                    c4-elastico- aristas= 3873 tri=    4 gini=0.994 tri/ar_max=1 (12.0s)
+  [152/238] O3C_factorial    A2-B0-C2-mec-r8                    c3-elastico- aristas= 4047 tri=   10 gini=0.985 tri/ar_max=1 (11.4s)
+  [153/238] O3C_factorial    A2-B0-C2-mec-r8                    c4-elastico- aristas= 4040 tri=    8 gini=0.988 tri/ar_max=1 (11.6s)
+  [154/238] O3D_control_hist CONTROL-ER-HIST-ic_masaFija_N2000_ control_hist aristas= 4945 tri=   19 gini=0.972 tri/ar_max=1 (6.1s)
+  [155/238] O3D_control_hist CONTROL-ER-HIST-ic_masaFija_N2000_ control_hist aristas= 4945 tri=   19 gini=0.972 tri/ar_max=1 (6.3s)
+  [156/238] O3C_factorial    A2-B0-C2-mec-r9                    c1-rigido-so aristas= 5195 tri=   10 gini=0.987 tri/ar_max=2 (11.9s)
+  [157/238] O3C_factorial    A2-B0-C2-mec-r9                    c2-rigido-az aristas= 5202 tri=    9 gini=0.987 tri/ar_max=1 (11.6s)
+  [158/238] O3D_kcap         A2-B0-C2-kbar-r0                   regla        aristas= 2294 tri=   24 gini=0.965 tri/ar_max=1 (8.3s)
+  [159/238] O3C_factorial    A2-B0-C2-mec-r9                    c3-elastico- aristas= 5164 tri=   11 gini=0.985 tri/ar_max=2 (12.8s)
+  [160/238] O3C_factorial    A2-B0-C2-mec-r9                    c4-elastico- aristas= 5169 tri=    9 gini=0.987 tri/ar_max=1 (13.2s)
+  [161/238] O3D_kcap         A2-B0-C2-kbar-r10                  regla        aristas= 3193 tri=   39 gini=0.946 tri/ar_max=2 (9.8s)
+  [162/238] O3D_kcap         A2-B0-C2-kbar-r11                  regla        aristas= 3086 tri=   46 gini=0.942 tri/ar_max=2 (9.8s)
+  [163/238] O3D_kcap         A2-B0-C2-kbar-r132                 regla        aristas= 4204 tri=   11 gini=0.984 tri/ar_max=1 (10.6s)
+  [164/238] O3D_kcap         A2-B0-C2-kbar-r19                  regla        aristas= 2479 tri=   13 gini=0.981 tri/ar_max=1 (8.4s)
+  [165/238] O3D_kcap         A2-B0-C2-kbar-r128                 regla        aristas= 4732 tri=   16 gini=0.979 tri/ar_max=1 (11.5s)
+  [166/238] O3D_kcap         A2-B0-C2-kbar-r12                  regla        aristas= 5036 tri=   28 gini=0.960 tri/ar_max=2 (11.9s)
+  [167/238] O3D_kcap         A2-B0-C2-kbar-r15                  regla        aristas= 3123 tri=   29 gini=0.960 tri/ar_max=2 (9.7s)
+  [168/238] O3D_kcap         A2-B0-C2-kbar-r14                  regla        aristas= 3865 tri=    4 gini=0.994 tri/ar_max=1 (9.9s)
+  [169/238] O3D_kcap         A2-B0-C2-kbar-r2                   regla        aristas= 2303 tri=   28 gini=0.963 tri/ar_max=2 (8.5s)
+  [170/238] O3D_kcap         A2-B0-C2-kbar-r18                  regla        aristas= 3835 tri=   27 gini=0.967 tri/ar_max=3 (10.5s)
+  [171/238] O3D_kcap         A2-B0-C2-kbar-r20                  regla        aristas= 3188 tri=   38 gini=0.952 tri/ar_max=2 (9.6s)
+  [172/238] O3D_kcap         A2-B0-C2-kbar-r21                  regla        aristas= 3330 tri=    9 gini=0.987 tri/ar_max=1 (9.0s)
+  [173/238] O3D_kcap         A2-B0-C2-kbar-r26                  regla        aristas= 3159 tri=    5 gini=0.993 tri/ar_max=1 (8.5s)
+  [174/238] O3D_kcap         A2-B0-C2-kbar-r25                  regla        aristas= 3244 tri=   21 gini=0.970 tri/ar_max=2 (9.2s)
+  [175/238] O3D_kcap         A2-B0-C2-kbar-r22                  regla        aristas= 4767 tri=   29 gini=0.961 tri/ar_max=2 (11.1s)
+  [176/238] O3D_kcap         A2-B0-C2-kbar-r27                  regla        aristas= 4524 tri=   15 gini=0.978 tri/ar_max=1 (10.0s)
+  [177/238] O3D_kcap         A2-B0-C2-kbar-r32                  regla        aristas= 2340 tri=   32 gini=0.955 tri/ar_max=2 (8.0s)
+  [178/238] O3D_kcap         A2-B0-C2-kbar-r28                  regla        aristas= 4089 tri=   19 gini=0.974 tri/ar_max=2 (9.7s)
+  [179/238] O3D_kcap         A2-B0-C2-kbar-r3                   regla        aristas= 3880 tri=   13 gini=0.981 tri/ar_max=1 (9.3s)
+  [180/238] O3D_kcap         A2-B0-C2-kbar-r36                  regla        aristas= 3316 tri=   15 gini=0.979 tri/ar_max=2 (8.8s)
+  [181/238] O3D_kcap         A2-B0-C2-kbar-r31                  regla        aristas= 4403 tri=    8 gini=0.988 tri/ar_max=1 (9.9s)
+  [182/238] O3D_kcap         A2-B0-C2-kbar-r35                  regla        aristas= 4086 tri=   22 gini=0.969 tri/ar_max=2 (9.7s)
+  [183/238] O3D_kcap         A2-B0-C2-kbar-r33                  regla        aristas= 4678 tri=   16 gini=0.976 tri/ar_max=1 (10.4s)
+  [184/238] O3D_kcap         A2-B0-C2-kbar-r6                   regla        aristas= 2556 tri=   14 gini=0.979 tri/ar_max=1 (7.9s)
+  [185/238] O3D_kcap         A2-B0-C2-kbar-r54                  regla        aristas= 4093 tri=   11 gini=0.984 tri/ar_max=1 (9.6s)
+  [186/238] O3D_kcap         A2-B0-C2-kbar-r4                   regla        aristas= 3923 tri=   41 gini=0.940 tri/ar_max=1 (10.2s)
+  [187/238] O3D_kcap         CONTROL-ER-a2321-s3000001          control_ER   aristas= 2321 tri=    3 gini=0.996 tri/ar_max=1 (3.3s)
+  [188/238] O3D_kcap         CONTROL-ER-a2321-s3000002          control_ER   aristas= 2321 tri=    0 gini=nan tri/ar_max=0 (3.2s)
+  [189/238] O3D_kcap         A2-B0-C2-kbar-r65                  regla        aristas= 2372 tri=   20 gini=0.971 tri/ar_max=1 (7.7s)
+  [190/238] O3D_kcap         A2-B0-C2-kbar-r7                   regla        aristas= 2270 tri=   33 gini=0.953 tri/ar_max=2 (7.7s)
+  [191/238] O3D_kcap         CONTROL-ER-a2321-s3000003          control_ER   aristas= 2321 tri=    1 gini=0.999 tri/ar_max=1 (3.2s)
+  [192/238] O3D_kcap         A2-B0-C2-kbar-r74                  regla        aristas= 2224 tri=   41 gini=0.943 tri/ar_max=2 (7.7s)
+  [193/238] O3D_kcap         CONTROL-ER-a4608-s3000011          control_ER   aristas= 4608 tri=   14 gini=0.979 tri/ar_max=1 (5.5s)
+  [194/238] O3D_kcap         CONTROL-ER-a4608-s3000012          control_ER   aristas= 4608 tri=   13 gini=0.981 tri/ar_max=1 (5.8s)
+  [195/238] O3D_kcap         CONTROL-ER-a4608-s3000013          control_ER   aristas= 4608 tri=   14 gini=0.981 tri/ar_max=2 (5.7s)
+  [196/238] O3D_kcap         A2-B0-C2-kbar-r9                   regla        aristas= 3849 tri=   11 gini=0.984 tri/ar_max=1 (9.5s)
+  [197/238] O3D_kcap         A2-B0-C2-kbar-r8                   regla        aristas= 4539 tri=    7 gini=0.990 tri/ar_max=1 (10.1s)
+  [198/238] O3E_memoria      A2-B0-C2-o3e-s273381-mem           mem          aristas= 2228 tri=   23 gini=0.967 tri/ar_max=1 (7.8s)
+  [199/238] O3E_memoria      A2-B0-C2-o3e-s273381-nomem         nomem        aristas= 2289 tri=   26 gini=0.963 tri/ar_max=1 (7.9s)
+  [200/238] O3E_memoria      A2-B0-C2-o3e-s477455-mem           mem          aristas= 3150 tri=    7 gini=0.990 tri/ar_max=1 (8.7s)
+  [201/238] O3E_memoria      A2-B0-C2-o3e-s477455-nomem         nomem        aristas= 3230 tri=    7 gini=0.990 tri/ar_max=1 (8.8s)
+  [202/238] O3E_memoria      A2-B0-C2-o3e-s475321-mem           mem          aristas= 3581 tri=    7 gini=0.990 tri/ar_max=1 (9.1s)
+  [203/238] O3E_memoria      A2-B0-C2-o3e-s375224-mem           mem          aristas= 3965 tri=   14 gini=0.979 tri/ar_max=1 (9.6s)
+  [204/238] O3E_memoria      A2-B0-C2-o3e-s475321-nomem         nomem        aristas= 3706 tri=    7 gini=0.990 tri/ar_max=1 (9.3s)
+  [205/238] O3E_memoria      A2-B0-C2-o3e-s375224-nomem         nomem        aristas= 4092 tri=   15 gini=0.978 tri/ar_max=1 (10.0s)
+  [206/238] O3E_memoria      A2-B0-C2-o3e-s478716-mem           mem          aristas= 3012 tri=   50 gini=0.933 tri/ar_max=2 (9.3s)
+  [207/238] O3E_memoria      A2-B0-C2-o3e-s478716-nomem         nomem        aristas= 3096 tri=   51 gini=0.931 tri/ar_max=2 (9.3s)
+  [208/238] O3E_memoria      A2-B0-C2-o3e-s484633-mem           mem          aristas= 3273 tri=   21 gini=0.969 tri/ar_max=1 (9.0s)
+  [209/238] O3E_memoria      A2-B0-C2-o3e-s484633-nomem         nomem        aristas= 3325 tri=   21 gini=0.969 tri/ar_max=1 (9.2s)
+  [210/238] O3E_memoria      A2-B0-C2-o3e-s573963-mem           mem          aristas= 3361 tri=    6 gini=0.991 tri/ar_max=1 (8.8s)
+  [211/238] O3E_memoria      A2-B0-C2-o3e-s573963-nomem         nomem        aristas= 3443 tri=    6 gini=0.991 tri/ar_max=1 (9.1s)
+  [212/238] O3E_memoria      A2-B0-C2-o3e-s485506-mem           mem          aristas= 4794 tri=   23 gini=0.968 tri/ar_max=2 (10.9s)
+  [213/238] O3E_memoria      A2-B0-C2-o3e-s485506-nomem         nomem        aristas= 4943 tri=   23 gini=0.968 tri/ar_max=2 (11.2s)
+  [214/238] O3E_memoria      A2-B0-C2-o3e-s576679-mem           mem          aristas= 3366 tri=   13 gini=0.981 tri/ar_max=1 (9.1s)
+  [215/238] O3E_memoria      A2-B0-C2-o3e-s575709-mem           mem          aristas= 3731 tri=   13 gini=0.982 tri/ar_max=1 (9.4s)
+  [216/238] O3E_memoria      A2-B0-C2-o3e-s576679-nomem         nomem        aristas= 3427 tri=   16 gini=0.976 tri/ar_max=1 (9.1s)
+  [217/238] O3E_memoria      A2-B0-C2-o3e-s575709-nomem         nomem        aristas= 3833 tri=   14 gini=0.981 tri/ar_max=1 (9.5s)
+  [218/238] O3E_memoria      A2-B0-C2-o3e-s577261-mem           mem          aristas= 3249 tri=   36 gini=0.957 tri/ar_max=2 (9.1s)
+  [219/238] O3E_memoria      A2-B0-C2-o3e-s577261-nomem         nomem        aristas= 3296 tri=   36 gini=0.957 tri/ar_max=2 (9.0s)
+  [220/238] O3E_memoria      A2-B0-C2-o3e-s582111-mem           mem          aristas= 4254 tri=   27 gini=0.968 tri/ar_max=3 (10.0s)
+  [221/238] O3E_memoria      A2-B0-C2-o3e-s582111-nomem         nomem        aristas= 4281 tri=   27 gini=0.968 tri/ar_max=3 (9.7s)
+  [222/238] O3E_memoria      A2-B0-C2-o3e-s586573-mem           mem          aristas= 2046 tri=   58 gini=0.922 tri/ar_max=2 (7.1s)
+  [223/238] O3E_memoria      A2-B0-C2-o3e-s586573-nomem         nomem        aristas= 2085 tri=   59 gini=0.920 tri/ar_max=2 (7.1s)
+  [224/238] O3E_memoria      A2-B0-C2-o3e-s584342-mem           mem          aristas= 4892 tri=   29 gini=0.961 tri/ar_max=2 (10.6s)
+  [225/238] O3E_memoria      A2-B0-C2-o3e-s584342-nomem         nomem        aristas= 5018 tri=   33 gini=0.957 tri/ar_max=2 (10.7s)
+  [226/238] OUT_pendNEG      A2-B0-C2-batch3-r40                unico        aristas= 2319 tri=   21 gini=0.973 tri/ar_max=2 (7.2s)
+  [227/238] OUT_pendNEG      A2-B0-C2-batch3-r45                unico        aristas= 2281 tri=   29 gini=0.958 tri/ar_max=2 (7.2s)
+  [228/238] OUT_pendNEG      A2-B0-C2-batch4-r110               unico        aristas= 2154 tri=   43 gini=0.940 tri/ar_max=2 (7.2s)
+  [229/238] O3E_memoria      A2-B0-C2-o3e-s588998-mem           mem          aristas= 4971 tri=   35 gini=0.950 tri/ar_max=2 (10.3s)
+  [230/238] OUT_pendNEG      A2-B0-C2-batch4-r118               unico        aristas= 3060 tri=   39 gini=0.944 tri/ar_max=2 (8.3s)
+  [231/238] O3E_memoria      A2-B0-C2-o3e-s588998-nomem         nomem        aristas= 5025 tri=   37 gini=0.947 tri/ar_max=2 (10.1s)
+  [232/238] OUT_pendNEG      A2-B0-C2-batch4-r156               unico        aristas= 3067 tri=   36 gini=0.949 tri/ar_max=2 (8.1s)
+  [233/238] OUT_pendNEG      A2-B0-C2-batch4-r178               unico        aristas= 2332 tri=   27 gini=0.963 tri/ar_max=1 (7.0s)
+  [234/238] OUT_pendNEG      A2-B0-C2-batch3-r15                unico        aristas= 4205 tri=   24 gini=0.967 tri/ar_max=2 (9.1s)
+  [235/238] OUT_pendNEG      A2-B0-C2-batch4-r49                unico        aristas= 2102 tri=   44 gini=0.941 tri/ar_max=2 (6.5s)
+  [236/238] OUT_pendNEG      A2-B0-C2-batch4-r53                unico        aristas= 2076 tri=   48 gini=0.933 tri/ar_max=2 (6.2s)
+  [237/238] OUT_pendNEG      A2-B0-C2-r0                        unico        aristas= 2479 tri=   26 gini=0.962 tri/ar_max=1 (6.2s)
+  [238/238] OUT_pendNEG      A2-B0-C2-batch4-r56                unico        aristas= 3249 tri=   36 gini=0.957 tri/ar_max=2 (6.8s)
+
+ESCRITO: cs090_fase8_f800_dataset_enriquecido.csv  (254 filas x 89 columnas)
+Medidas con éxito: 254 / 254
+
+==========================================================================================
+VERIFICACIÓN 1 — las 24 filas de O3-B que YA tenían clustering medido
+==========================================================================================
+  A2-B0-C2-batch3-r0         orig    clus 0.0170000000 vs 0.0170000000 (Δ=0.00e+00)  trans Δ=3.82e-17  tri 27 vs 27
+  A2-B0-C2-batch3-r0         rewire  clus 0.0000000000 vs 0.0000000000 (Δ=0.00e+00)  trans Δ=0.00e+00  tri 0 vs 0
+  A2-B0-C2-batch3-r111       orig    clus 0.0170666667 vs 0.0170666667 (Δ=6.94e-17)  trans Δ=5.90e-17  tri 37 vs 37
+  A2-B0-C2-batch3-r111       rewire  clus 0.0001833333 vs 0.0001833333 (Δ=3.33e-17)  trans Δ=7.19e-17  tri 1 vs 1
+  A2-B0-C2-batch3-r60        orig    clus 0.0190000000 vs 0.0190000000 (Δ=0.00e+00)  trans Δ=3.30e-17  tri 41 vs 41
+  A2-B0-C2-batch3-r60        rewire  clus 0.0018000000 vs 0.0018000000 (Δ=0.00e+00)  trans Δ=8.54e-17  tri 6 vs 6
+  A2-B0-C2-batch4-r10        orig    clus 0.0115500000 vs 0.0115500000 (Δ=1.73e-18)  trans Δ=4.86e-17  tri 25 vs 25
+  A2-B0-C2-batch4-r10        rewire  clus 0.0011833333 vs 0.0011833333 (Δ=3.34e-17)  trans Δ=4.34e-17  tri 6 vs 6
+  A2-B0-C2-batch4-r36        orig    clus 0.0213333333 vs 0.0213333333 (Δ=3.47e-17)  trans Δ=3.47e-17  tri 30 vs 30
+  A2-B0-C2-batch4-r36        rewire  clus 0.0003333333 vs 0.0003333333 (Δ=3.33e-17)  trans Δ=4.45e-17  tri 1 vs 1
+  A2-B0-C2-batch4-r62        orig    clus 0.0052500000 vs 0.0052500000 (Δ=0.00e+00)  trans Δ=1.82e-17  tri 15 vs 15
+  A2-B0-C2-batch4-r62        rewire  clus 0.0004833333 vs 0.0004833333 (Δ=3.33e-17)  trans Δ=1.57e-17  tri 2 vs 2
+  A2-B0-C2-r14               orig    clus 0.0049666667 vs 0.0049666667 (Δ=6.68e-17)  trans Δ=1.91e-17  tri 19 vs 19
+  A2-B0-C2-r14               rewire  clus 0.0012000000 vs 0.0012000000 (Δ=2.17e-19)  trans Δ=2.41e-17  tri 3 vs 3
+  A2-B0-C2-r17               orig    clus 0.0118833333 vs 0.0118833333 (Δ=3.12e-17)  trans Δ=4.68e-17  tri 29 vs 29
+  A2-B0-C2-r17               rewire  clus 0.0013500000 vs 0.0013500000 (Δ=0.00e+00)  trans Δ=4.79e-17  tri 4 vs 4
+  A2-B0-C2-r19               orig    clus 0.0010047619 vs 0.0010047619 (Δ=4.77e-18)  trans Δ=9.39e-17  tri 6 vs 6
+  A2-B0-C2-r19               rewire  clus 0.0012357143 vs 0.0012357143 (Δ=8.57e-17)  trans Δ=9.30e-17  tri 7 vs 7
+  A2-B0-C2-r20               orig    clus 0.0023166667 vs 0.0023166667 (Δ=6.64e-17)  trans Δ=1.21e-17  tri 12 vs 12
+  A2-B0-C2-r20               rewire  clus 0.0007500000 vs 0.0007500000 (Δ=0.00e+00)  trans Δ=5.31e-17  tri 3 vs 3
+  A2-B0-C2-r28               orig    clus 0.0105166667 vs 0.0105166667 (Δ=6.59e-17)  trans Δ=7.29e-17  tri 37 vs 37
+  A2-B0-C2-r28               rewire  clus 0.0017833333 vs 0.0017833333 (Δ=3.34e-17)  trans Δ=4.34e-19  tri 10 vs 10
+  A2-B0-C2-r39               orig    clus 0.0032333333 vs 0.0032333333 (Δ=3.34e-17)  trans Δ=9.63e-17  tri 20 vs 20
+  A2-B0-C2-r39               rewire  clus 0.0016000000 vs 0.0016000000 (Δ=1.00e-16)  trans Δ=9.82e-17  tri 9 vs 9
+
+  n verificadas = 24
+  max |Δ clustering|    = 9.996e-17
+  max |Δ transitividad| = 9.823e-17
+  max |Δ nº triángulos| = 0
+  -> COINCIDENCIA EXACTA (tol 1e-12): True
+  pendiente: max |Δ nativa-histórica| = 1.268e-01 · max |Δ canónica-histórica| = 2.220e-16
+  ESCRITO: cs090_fase8_f800_verificacion.csv
+
+==========================================================================================
+VERIFICACIÓN 2 — nº de aristas reconstruido vs. histórico (las 254)
+==========================================================================================
+  filas comparadas: 254 · coinciden exacto: 246 · max |Δ| = 21
+    DISCREPA O3A_N4000        A2-B0-C2-batch3-r5               unico        hist=7936 f800=7942
+    DISCREPA O3A_N4000        A2-B0-C2-batch3-r76              unico        hist=6692 f800=6691
+    DISCREPA O3A_N4000        A2-B0-C2-batch4-r94              unico        hist=7150 f800=7151
+    DISCREPA O3C_factorial    A2-B0-C2-mec-r11                 c2-rigido-azar hist=5252 f800=5273
+    DISCREPA O3C_factorial    A2-B0-C2-mec-r2                  c2-rigido-azar hist=4275 f800=4267
+    DISCREPA O3C_factorial    A2-B0-C2-mec-r6                  c2-rigido-azar hist=4092 f800=4091
+    DISCREPA O3C_factorial    A2-B0-C2-mec-r6                  c4-elastico-azar hist=3751 f800=3750
+    DISCREPA O3C_factorial    A2-B0-C2-mec-r7                  c2-rigido-azar hist=4260 f800=4239
+
+==========================================================================================
+VERIFICACIÓN 3 — pendiente corregida reconstruida vs. histórica
+==========================================================================================
+  filas con pendiente histórica: 217
+  nativa   : idénticas (<1e-12) 165 · |Δ|<0.01 188 · max |Δ| 2.5398 · mediana |Δ| 1.11e-16
+  canónica : idénticas (<1e-12) 24 · |Δ|<0.01 70 · max |Δ| 2.5528 · mediana |Δ| 2.39e-02
+    F5B_40pares        n= 73  nativa: idénticas  73, max|Δ| 0.0000
+    O3B_rewiring       n= 24  nativa: idénticas   0, max|Δ| 0.1268
+    O3C_factorial      n= 47  nativa: idénticas  39, max|Δ| 0.0337
+    O3D_kcap           n= 32  nativa: idénticas  32, max|Δ| 0.0000
+    O3E_memoria        n= 30  nativa: idénticas  21, max|Δ| 0.0007
+    OUT_pendNEG        n= 11  nativa: idénticas   0, max|Δ| 2.5398
+
+==========================================================================================
+VERIFICACIÓN 4 — sello sha256 e ida y vuelta a disco
+==========================================================================================
+  grafos guardados: 254 · releídos idénticos arista por arista: 254
+  sellos únicos: 239 de 254 (sellos repetidos = grafos genuinamente idénticos entre filas)
+  espacio total en disco: 3660 KB (14755 bytes por grafo)
+
+==========================================================================================
+MATRIZ DE CORRELACIONES entre las medidas de apiñamiento (n = filas medidas)
+==========================================================================================
+  n usado: 254 filas
+  ESCRITO (pares, ordenados por |Spearman|): cs090_fase8_f800_correlaciones.csv
+
+  Spearman entre las medidas de apiñamiento nucleares:
+                           tri_ar_media_s  tri_ar_mediana  tri_ar_max  tri_ar_p99_sop  tri_ar_media_t  frac_aristas_e  frac_aristas_m  gini_tri_nodo  tri_por_nodo_m  n_triangulos  transitividad  clustering
+tri_ar_media_sop                    1.000             NaN       0.972           0.933           0.424           0.414           1.000         -0.453           0.685         0.485          0.340       0.315
+tri_ar_mediana_sop                    NaN             NaN         NaN             NaN             NaN             NaN             NaN            NaN             NaN           NaN            NaN         NaN
+tri_ar_max                          0.972             NaN       1.000           0.854           0.518           0.510           0.970         -0.542           0.710         0.580          0.431       0.413
+tri_ar_p99_sop                      0.933             NaN       0.854           1.000           0.336           0.327           0.932         -0.353           0.615         0.382          0.265       0.234
+tri_ar_media_todas                  0.424             NaN       0.518           0.336           1.000           1.000           0.422         -0.963           0.638         0.936          0.964       0.950
+frac_aristas_en_triangulo           0.414             NaN       0.510           0.327           1.000           1.000           0.412         -0.963           0.633         0.935          0.965       0.952
+frac_aristas_multi_tri              1.000             NaN       0.970           0.932           0.422           0.412           1.000         -0.451           0.683         0.482          0.338       0.313
+gini_tri_nodo                      -0.453             NaN      -0.542          -0.353          -0.963          -0.963          -0.451          1.000          -0.637        -0.957         -0.866      -0.867
+tri_por_nodo_max                    0.685             NaN       0.710           0.615           0.638           0.633           0.683         -0.637           1.000         0.691          0.557       0.536
+n_triangulos                        0.485             NaN       0.580           0.382           0.936           0.935           0.482         -0.957           0.691         1.000          0.853       0.862
+transitividad                       0.340             NaN       0.431           0.265           0.964           0.965           0.338         -0.866           0.557         0.853          1.000       0.970
+clustering                          0.315             NaN       0.413           0.234           0.950           0.952           0.313         -0.867           0.536         0.862          0.970       1.000
+
+  Pares MÁS colineales (|Spearman| >= 0.90):
+    frac_aristas_en_triangulo    ~ modularidad_tri              rho=+1.000  (Pearson +1.000, n=252)
+    tri_ar_media_todas           ~ frac_aristas_en_triangulo    rho=+1.000  (Pearson +1.000, n=254)
+    tri_ar_media_todas           ~ modularidad_tri              rho=+1.000  (Pearson +1.000, n=252)
+    tri_ar_media_sop             ~ frac_aristas_multi_tri       rho=+1.000  (Pearson +0.993, n=252)
+    gini_tri_nodo                ~ frac_nodos_en_triangulo      rho=-0.999  (Pearson -0.999, n=252)
+    n_triangulos                 ~ n_comp_tri_arista            rho=+0.999  (Pearson +0.998, n=252)
+    n_comp_tri                   ~ n_comp_tri_arista            rho=+0.997  (Pearson +0.996, n=252)
+    n_triangulos                 ~ n_comp_tri                   rho=+0.995  (Pearson +0.993, n=252)
+    tri_ar_media_sop             ~ tri_ar_max                   rho=+0.972  (Pearson +0.842, n=252)
+    tri_ar_max                   ~ frac_aristas_multi_tri       rho=+0.970  (Pearson +0.823, n=252)
+    transitividad                ~ clustering                   rho=+0.970  (Pearson +0.977, n=254)
+    frac_aristas_en_triangulo    ~ transitividad                rho=+0.965  (Pearson +0.969, n=254)
+    transitividad                ~ modularidad_tri              rho=+0.964  (Pearson +0.969, n=252)
+    tri_ar_media_todas           ~ transitividad                rho=+0.964  (Pearson +0.968, n=254)
+    tri_ar_media_todas           ~ frac_nodos_en_triangulo      rho=+0.964  (Pearson +0.924, n=254)
+    frac_aristas_en_triangulo    ~ frac_nodos_en_triangulo      rho=+0.963  (Pearson +0.923, n=254)
+    tri_ar_media_todas           ~ gini_tri_nodo                rho=-0.963  (Pearson -0.922, n=252)
+    frac_aristas_en_triangulo    ~ gini_tri_nodo                rho=-0.963  (Pearson -0.921, n=252)
+    gini_tri_nodo                ~ modularidad_tri              rho=-0.962  (Pearson -0.921, n=252)
+    frac_nodos_en_triangulo      ~ modularidad_tri              rho=+0.962  (Pearson +0.922, n=252)
+    frac_nodos_en_triangulo      ~ n_triangulos                 rho=+0.960  (Pearson +0.964, n=254)
+    gini_tri_nodo                ~ n_triangulos                 rho=-0.957  (Pearson -0.961, n=252)
+    frac_nodos_en_triangulo      ~ n_comp_tri_arista            rho=+0.957  (Pearson +0.961, n=252)
+    gini_tri_nodo                ~ n_comp_tri_arista            rho=-0.957  (Pearson -0.961, n=252)
+    gini_tri_nodo                ~ n_comp_tri                   rho=-0.955  (Pearson -0.956, n=252)
+    frac_nodos_en_triangulo      ~ n_comp_tri                   rho=+0.953  (Pearson +0.953, n=252)
+    frac_aristas_en_triangulo    ~ clustering                   rho=+0.952  (Pearson +0.977, n=254)
+    clustering                   ~ modularidad_tri              rho=+0.951  (Pearson +0.977, n=252)
+    tri_ar_media_todas           ~ clustering                   rho=+0.950  (Pearson +0.976, n=254)
+    grado_medio                  ~ giant                        rho=+0.937  (Pearson +0.793, n=254)
+    tri_ar_media_todas           ~ n_triangulos                 rho=+0.936  (Pearson +0.899, n=254)
+    tri_ar_media_todas           ~ n_comp_tri_arista            rho=+0.936  (Pearson +0.899, n=252)
+    frac_aristas_en_triangulo    ~ n_triangulos                 rho=+0.935  (Pearson +0.898, n=254)
+    n_comp_tri_arista            ~ modularidad_tri              rho=+0.935  (Pearson +0.898, n=252)
+    frac_aristas_en_triangulo    ~ n_comp_tri_arista            rho=+0.935  (Pearson +0.899, n=252)
+    n_triangulos                 ~ modularidad_tri              rho=+0.934  (Pearson +0.897, n=252)
+    tri_ar_media_sop             ~ tri_ar_p99_sop               rho=+0.933  (Pearson +0.909, n=252)
+    tri_ar_p99_sop               ~ frac_aristas_multi_tri       rho=+0.932  (Pearson +0.891, n=252)
+    tri_ar_media_todas           ~ n_comp_tri                   rho=+0.932  (Pearson +0.885, n=252)
+    n_comp_tri                   ~ modularidad_tri              rho=+0.932  (Pearson +0.885, n=252)
+    frac_aristas_en_triangulo    ~ n_comp_tri                   rho=+0.932  (Pearson +0.885, n=252)
+    tri_por_nodo_max             ~ tam_medio_comp_tri           rho=+0.926  (Pearson +0.813, n=252)
+    pendiente_nativa             ~ diam                         rho=+0.919  (Pearson +0.925, n=254)
+    dist_media_tri               ~ grado_medio                  rho=-0.907  (Pearson -0.890, n=249)
+
+  Pares MENOS acoplados entre medidas de apiñamiento (|Spearman| <= 0.35):
+    tri_ar_media_sop             ~ transitividad                rho=+0.340  (n=252)
+    frac_aristas_multi_tri       ~ transitividad                rho=+0.338  (n=252)
+    tri_ar_p99_sop               ~ tri_ar_media_todas           rho=+0.336  (n=252)
+    tri_ar_p99_sop               ~ frac_aristas_en_triangulo    rho=+0.327  (n=252)
+    tri_ar_media_sop             ~ clustering                   rho=+0.315  (n=252)
+    frac_aristas_multi_tri       ~ clustering                   rho=+0.313  (n=252)
+    tri_ar_p99_sop               ~ transitividad                rho=+0.265  (n=252)
+    tri_ar_p99_sop               ~ clustering                   rho=+0.234  (n=252)
+
+Tiempo total: 219s

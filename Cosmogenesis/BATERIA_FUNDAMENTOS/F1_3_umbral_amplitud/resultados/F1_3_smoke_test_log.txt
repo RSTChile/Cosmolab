@@ -1,0 +1,16 @@
+[14:54:32] F1-3 — inicio de la corrida de producción (protocolo congelado 2026-07-24)
+[14:54:35] calibracion: N=200 eps_cal=0.001 D=8.413668e-04 mediana_lavado=5300 pasos_fijo=6095 lavo_todas=True
+[14:54:35] grid eps: 24 puntos log en [1e-15,1e-01]
+[14:54:35] semillas: 4  ruidos: [0.0, 1e-08]  r_fijo=100.0
+[15:10:39] barrido principal: 192/192 corridas (pares real+null_perm)
+[15:10:39] NULL primario (eps=0 estricto) sobre semillas x ruido
+[15:11:11] NULL eps=0 estricto: 8 filas
+[15:11:11] cross-check de precision (longdouble): mismo grid de eps, ruido=0
+[15:12:21] longdouble: 4/24 valores de eps completados
+[15:13:36] longdouble: 8/24 valores de eps completados
+[15:14:40] longdouble: 12/24 valores de eps completados
+[15:15:43] longdouble: 16/24 valores de eps completados
+[15:16:52] longdouble: 20/24 valores de eps completados
+[15:17:59] longdouble: 24/24 valores de eps completados
+[15:18:15] NULL eps=0 longdouble: 4 filas
+[15:18:15] corrida completa en 1422.2s (23.7 min)

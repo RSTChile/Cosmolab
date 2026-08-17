@@ -1,0 +1,65 @@
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 0 carpetas -> []
+
+[TOTAL] tiempo script=0.0s
+patron=*_f801_malla: 2 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_malla', 'A2-B0-C2-batch4-r36_s575321_f801_malla']
+[A2-B0-C2-batch3-r0_s471829_f801_malla] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_malla] exit_setup=0 t_setup=2.1s  exit_run=0 t_run=22.02s
+[A2-B0-C2-batch4-r36_s575321_f801_malla] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_malla] exit_setup=0 t_setup=1.8s  exit_run=0 t_run=21.53s
+
+[TOTAL] tiempo script=47.5s
+patron=*_f801_malla: 8 carpetas -> ['A2-B0-C2-batch3-r0_s471829_f801_malla', 'A2-B0-C2-batch3-r60_s477649_f801_malla', 'A2-B0-C2-batch4-r10_s572799_f801_malla', 'A2-B0-C2-batch4-r36_s575321_f801_malla', 'A2-B0-C2-r14_s273187_f801_malla', 'A2-B0-C2-r17_s273478_f801_malla', 'A2-B0-C2-r20_s373769_f801_malla', 'A2-B0-C2-r39_s375612_f801_malla']
+[A2-B0-C2-batch3-r0_s471829_f801_malla] setup + run...
+[A2-B0-C2-batch3-r0_s471829_f801_malla] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-batch3-r60_s477649_f801_malla] setup + run...
+[A2-B0-C2-batch3-r60_s477649_f801_malla] exit_setup=0 t_setup=1.5s  exit_run=0 t_run=18.95s
+[A2-B0-C2-batch4-r10_s572799_f801_malla] setup + run...
+[A2-B0-C2-batch4-r10_s572799_f801_malla] exit_setup=0 t_setup=1.53s  exit_run=0 t_run=18.3s
+[A2-B0-C2-batch4-r36_s575321_f801_malla] setup + run...
+[A2-B0-C2-batch4-r36_s575321_f801_malla] ya tenía cosmog_00500 -- se salta
+[A2-B0-C2-r14_s273187_f801_malla] setup + run...
+[A2-B0-C2-r14_s273187_f801_malla] exit_setup=0 t_setup=1.31s  exit_run=0 t_run=20.55s
+[A2-B0-C2-r17_s273478_f801_malla] setup + run...
+[A2-B0-C2-r17_s273478_f801_malla] exit_setup=0 t_setup=1.33s  exit_run=0 t_run=19.83s
+[A2-B0-C2-r20_s373769_f801_malla] setup + run...
+[A2-B0-C2-r20_s373769_f801_malla] exit_setup=0 t_setup=1.22s  exit_run=0 t_run=12.92s
+[A2-B0-C2-r39_s375612_f801_malla] setup + run...
+[A2-B0-C2-r39_s375612_f801_malla] exit_setup=0 t_setup=0.73s  exit_run=0 t_run=8.75s
+
+[TOTAL] tiempo script=106.9s

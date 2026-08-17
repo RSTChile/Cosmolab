@@ -1,0 +1,56 @@
+{
+  "cfg": {
+    "L": 24,
+    "pasos": 80,
+    "lam": 0.5,
+    "sigma": 1.0,
+    "gamma": 0.0,
+    "decay": 0.97,
+    "eps": 0.05,
+    "ruido": 1.0,
+    "q_nicho": 0.999
+  },
+  "radio": 3.0,
+  "posiciones": {
+    "centro": {
+      "pos": [
+        12,
+        12,
+        12
+      ],
+      "mediana_dist": 0.0,
+      "frac_en_arruga": 1.0,
+      "max_D_medio": 0.007566243186716702
+    },
+    "esquina": {
+      "pos": [
+        3,
+        3,
+        3
+      ],
+      "mediana_dist": 0.0,
+      "frac_en_arruga": 1.0,
+      "max_D_medio": 0.008741410894668301
+    },
+    "rand1": {
+      "pos": [
+        16,
+        5,
+        18
+      ],
+      "mediana_dist": 0.0,
+      "frac_en_arruga": 1.0,
+      "max_D_medio": 0.009397949401455994
+    },
+    "rand2": {
+      "pos": [
+        7,
+        4,
+        19
+      ],
+      "mediana_dist": 0.0,
+      "frac_en_arruga": 1.0,
+      "max_D_medio": 0.009217575053663322
+    }
+  }
+}

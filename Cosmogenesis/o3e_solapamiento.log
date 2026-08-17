@@ -1,0 +1,17 @@
+{'par_seed': 273381, 'aristas_mem': 2228, 'aristas_nomem': 2289, 'solo_mem': 0, 'solo_nomem': 61, 'jaccard': 0.9733508082131935}
+{'par_seed': 375224, 'aristas_mem': 3965, 'aristas_nomem': 4092, 'solo_mem': 0, 'solo_nomem': 127, 'jaccard': 0.9689638318670577}
+{'par_seed': 475321, 'aristas_mem': 3581, 'aristas_nomem': 3706, 'solo_mem': 0, 'solo_nomem': 125, 'jaccard': 0.9662709120345386}
+{'par_seed': 477455, 'aristas_mem': 3150, 'aristas_nomem': 3230, 'solo_mem': 0, 'solo_nomem': 80, 'jaccard': 0.9752321981424149}
+{'par_seed': 478716, 'aristas_mem': 3012, 'aristas_nomem': 3096, 'solo_mem': 0, 'solo_nomem': 84, 'jaccard': 0.9728682170542635}
+{'par_seed': 484633, 'aristas_mem': 3273, 'aristas_nomem': 3325, 'solo_mem': 0, 'solo_nomem': 52, 'jaccard': 0.9843609022556391}
+{'par_seed': 485506, 'aristas_mem': 4794, 'aristas_nomem': 4943, 'solo_mem': 0, 'solo_nomem': 149, 'jaccard': 0.9698563625328748}
+{'par_seed': 573963, 'aristas_mem': 3361, 'aristas_nomem': 3443, 'solo_mem': 0, 'solo_nomem': 82, 'jaccard': 0.9761835608480975}
+{'par_seed': 575709, 'aristas_mem': 3731, 'aristas_nomem': 3833, 'solo_mem': 0, 'solo_nomem': 102, 'jaccard': 0.9733889903469867}
+{'par_seed': 576679, 'aristas_mem': 3366, 'aristas_nomem': 3427, 'solo_mem': 0, 'solo_nomem': 61, 'jaccard': 0.9822001750802452}
+{'par_seed': 577261, 'aristas_mem': 3249, 'aristas_nomem': 3296, 'solo_mem': 0, 'solo_nomem': 47, 'jaccard': 0.9857402912621359}
+{'par_seed': 582111, 'aristas_mem': 4254, 'aristas_nomem': 4281, 'solo_mem': 0, 'solo_nomem': 27, 'jaccard': 0.9936930623686054}
+{'par_seed': 584342, 'aristas_mem': 4892, 'aristas_nomem': 5018, 'solo_mem': 0, 'solo_nomem': 126, 'jaccard': 0.9748903945795138}
+{'par_seed': 586573, 'aristas_mem': 2046, 'aristas_nomem': 2085, 'solo_mem': 0, 'solo_nomem': 39, 'jaccard': 0.981294964028777}
+{'par_seed': 588998, 'aristas_mem': 4971, 'aristas_nomem': 5025, 'solo_mem': 0, 'solo_nomem': 54, 'jaccard': 0.9892537313432835}
+JACCARD: mediana 0.9752 rango [0.9663,0.9937]
+aristas solo en mem: mediana 0 ; solo en nomem: mediana 80

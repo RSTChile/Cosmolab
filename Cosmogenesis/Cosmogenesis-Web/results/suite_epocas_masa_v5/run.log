@@ -1,0 +1,64 @@
+=== SUITE ÉPOCAS MASA v5 — juez LINAJE (V5_LINEAGE_PRIMARY_2026-07-23) ===
+
+--- controles REAL/OFF/SHUFFLE/INVERT ---
+  seed=    7 E3=True e4_lin=False v4diag=False mR=0.000 mS=0.000 coR=0.164 coS=0.091 coR/S=1.79 fusR=24 fusS=51 mutR/S=0.00
+  seed=   42 E3=True e4_lin=True v4diag=True mR=788.850 mS=0.000 coR=0.153 coS=0.098 coR/S=1.56 fusR=30 fusS=19 mutR/S=1.56
+  seed=   99 E3=True e4_lin=False v4diag=True mR=5527.394 mS=0.000 coR=0.102 coS=0.102 coR/S=1.00 fusR=3 fusS=3 mutR/S=74996033582590.45
+  seed=  777 E3=True e4_lin=False v4diag=False mR=0.000 mS=0.000 coR=0.149 coS=0.098 coR/S=1.51 fusR=45 fusS=11 mutR/S=0.00
+  seed= 2025 E3=True e4_lin=False v4diag=False mR=0.000 mS=0.000 coR=0.098 coS=0.097 coR/S=1.01 fusR=3 fusS=18 mutR/S=0.00
+  seed= 3141 E3=True e4_lin=False v4diag=False mR=0.000 mS=0.000 coR=0.100 coS=0.055 coR/S=1.82 fusR=1 fusS=12 mutR/S=0.00
+  seed= 8191 E3=True e4_lin=True v4diag=False mR=1556.645 mS=0.000 coR=0.160 coS=0.079 coR/S=2.03 fusR=20 fusS=40 mutR/S=1.22
+  seed=99991 E3=True e4_lin=True v4diag=True mR=1139.318 mS=0.000 coR=0.104 coS=0.064 coR/S=1.63 fusR=12 fusS=33 mutR/S=2.63
+  seed=12345 E3=True e4_lin=False v4diag=False mR=0.000 mS=0.000 coR=0.073 coS=0.105 coR/S=0.70 fusR=25 fusS=9 mutR/S=0.00
+  seed=54321 E3=True e4_lin=True v4diag=False mR=2720.303 mS=0.000 coR=0.108 coS=0.091 coR/S=1.18 fusR=67 fusS=68 mutR/S=1.21
+--- barrido G ---
+  G=0.00 e4_lin=0.00 coR/S=0.84 mR=0.000
+  G=0.05 e4_lin=1.00 coR/S=1.51 mR=584.549
+  G=0.10 e4_lin=1.00 coR/S=1.45 mR=1899.048
+  G=0.15 e4_lin=1.00 coR/S=1.47 mR=980.754
+  G=0.20 e4_lin=0.25 coR/S=1.48 mR=197.212
+  G=0.25 e4_lin=0.25 coR/S=1.18 mR=1077.762
+  G=0.30 e4_lin=0.50 coR/S=1.02 mR=261.196
+  G=0.35 e4_lin=0.25 coR/S=1.02 mR=185.647
+  G=0.40 e4_lin=0.00 coR/S=1.01 mR=0.000
+  G=0.45 e4_lin=0.00 coR/S=1.08 mR=0.000
+--- L smoke ---
+  L=24 e4_lin=0.33 coR/S=1.97
+  L=28 e4_lin=0.33 coR/S=1.36
+  L=32 e4_lin=0.33 coR/S=1.63
+  L=40 e4_lin=0.33 coR/S=1.09
+
+JSON → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v5/suite_epocas_masa_v5_result.json
+MD  → /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/suite_epocas_masa_v5/RESUMEN_SUITE_EPOCAS_MASA_v5.md
+
+=== GLOBAL === E3_OK_E4_PARTIAL_lineage
+{
+  "global_verdict": "E3_OK_E4_PARTIAL_lineage",
+  "protocol_id": "V5_LINEAGE_PRIMARY_2026-07-23",
+  "rate_E3": 1.0,
+  "rate_e4_lineage_pass": 0.4,
+  "rate_e4_v4_stack_diag": 0.3,
+  "rate_lineage_ok": 0.8,
+  "mass_nulls_clean": true,
+  "mean_mass_real": 1173.250985391923,
+  "mean_mass_off": 0.0,
+  "mean_mass_shuffle": 0.0,
+  "mean_mass_invert": 0.0,
+  "mean_comem_real": 0.12106370226652045,
+  "mean_comem_shuffle": 0.08800624793613157,
+  "mean_comem_vs_shuffle": 1.4245342780588217,
+  "mean_fusion_vs_shuffle": 1.2017152953685462,
+  "mean_mutual_vs_shuffle": 7499603358259.709,
+  "mean_dens_real": 41.4048982345156,
+  "mean_dens_shuffle": 40.73962201785831,
+  "rate_lineage_sweep_G_gt0": 0.4722222222222222,
+  "rate_lineage_sweep_L": 0.3333333333333333,
+  "mean_leak_v3_not_mass": 0.19001919298717102,
+  "elapsed_s": 2195.0159080028534,
+  "design": {
+    "juez_primario": "linaje (co_member / fusion / n_long_co) REAL\u227bSHUFFLE",
+    "diagnostico": "mutual_bind R/S (stack v4) \u2014 no gatea PASS",
+    "pre_registro": "PROTOCOLO_V5_LINAJE_PREREGISTRO.md",
+    "mass_obs": "solo REAL; nulls OFF/SHUFFLE/INVERT"
+  }
+}

@@ -1,0 +1,12 @@
+# Chile amateur radio useful/common channels and listening points.
+# Verify local repeater tones/offsets before transmit. Operator: CD3LZK.
+f=144390000,d=CL APRS 2m common
+f=145800000,d=ISS voice downlink
+f=145825000,d=ISS/APRS packet
+f=146520000,d=2m simplex calling
+f=146910000,d=RM rpt salida CE3ETE
+f=146940000,d=RM rpt salida CE3AA
+f=433920000,d=ISM/LDP common monitor
+f=435000000,d=UHF satellite center
+f=436500000,d=UHF sat/ham monitor
+f=437800000,d=UHF sat/ham monitor

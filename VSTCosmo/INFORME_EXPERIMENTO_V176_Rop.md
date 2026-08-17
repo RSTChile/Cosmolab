@@ -257,7 +257,7 @@ V176_logs/
 
 Comando para reproducir
 bash
-cd /Volumes/LaCie/RMD/Cosmolab/VSTCosmo
+cd /Users/alexis/Desktop/RMD/Cosmolab/VSTCosmo
 source venv/bin/activate
 python3 V176.py
 

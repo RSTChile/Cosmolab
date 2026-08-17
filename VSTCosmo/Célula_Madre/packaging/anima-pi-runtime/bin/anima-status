@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "ANIMA Pi Runtime"
+echo
+echo "Servicios:"
+systemctl --user --no-pager -l status anima-organismo.service anima-watchdog.service cabeza-e-fb1.service cabeza-e-fb1-vnc.service 2>/dev/null | sed -n '1,220p' || true
+echo
+echo "Puertos:"
+ss -ltnp 2>/dev/null | grep -E ':7788|:5901|:5000' || true
+echo
+echo "Estado organismo:"
+curl -fsS --max-time 3 http://127.0.0.1:7788/estado 2>/dev/null | head -c 800 || echo "(sin respuesta en :7788)"
+echo

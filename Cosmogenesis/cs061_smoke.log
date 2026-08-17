@@ -1,0 +1,25 @@
+CS061 — LA MASA QUE EMERGE (vértice de 3 puntos tipo Higgs): ¿selecciona dim donde el 2-puntos no?
+==========================================================================================================
+PREDICCIÓN CIEGA: (a) si el 3-puntos es el ingrediente, su holonomía por dim, CONTROLADA por longitud
+  de ciclo, seleccionará una dim que el 2-puntos (CS059) no pudo, y colapsará bajo null_campo/vertice.
+  (b) la inercia emergente dará un ESPECTRO no-trivial (algunos ~0 tipo fotón, algunos altos) sin
+  asignarlo. Comparación con 1:207:3477 SOLO a posteriori. Éxito NUNCA = 'salió 3D'.
+dims=['d2', 'd3', 'd4', 'curv'] K=[3, 4] brazos=['2punto', '3punto', 'null_campo', 'null_vertice'] seeds=10 · corridas=16 · workers=14
+  1/16 · 1.1s
+  2/16 · 2.0s
+  3/16 · 3.0s
+  4/16 · 4.7s
+  5/16 · 5.6s
+  6/16 · 6.9s
+  7/16 · 8.4s
+  8/16 · 10.0s
+  9/16 · 11.2s
+  10/16 · 12.8s
+  11/16 · 14.9s
+  12/16 · 17.8s
+  13/16 · 19.5s
+  14/16 · 21.3s
+  15/16 · 23.1s
+  16/16 · 26.1s
+
+COMPLETO: 16 corridas en 0.4 min → cs061_smoke.csv

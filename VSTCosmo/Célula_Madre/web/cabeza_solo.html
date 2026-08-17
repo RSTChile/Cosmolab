@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>ANIMA — Cabeza</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<style>
+:root{--line:#243246;--titlebar-h:28px}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#1a1f28;font:13px/1.4 'Helvetica Neue',Arial,sans-serif}
+.desktop{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:6px}
+.app-window{width:100%;height:100%;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.55);background:#121925}
+.app-window.maximized{position:fixed;inset:0;border-radius:0;padding:0;margin:0;z-index:9999}
+.app-window.maximized .desktop{padding:0}
+.app-window.minimized .window-body{display:none}
+.app-window.minimized{height:auto;align-self:flex-start;width:min(100%,320px)}
+.titlebar{height:var(--titlebar-h);min-height:var(--titlebar-h);background:linear-gradient(180deg,#2a3548,#1e2838);display:flex;align-items:center;padding:0 8px;flex-shrink:0;user-select:none;border-bottom:1px solid var(--line);cursor:default}
+.titlebar .title{flex:1;font-size:11px;color:#dfe7f0;letter-spacing:.02em}
+.winbtns{display:flex;gap:5px;align-items:center}
+.winbtn{width:22px;height:20px;border:1px solid #4a5a70;border-radius:4px;cursor:pointer;font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;background:#3a4a60;color:#dfe7f0;padding:0}
+.winbtn:hover{background:#4a5a70}
+.winbtn.close:hover{background:#b43c3c;border-color:#d65555;color:#fff}
+.window-body{flex:1;min-height:0;position:relative}
+.actscene{height:100%;position:relative;background:radial-gradient(circle at 50% 35%,#172231,#080b10 75%);overflow:hidden;perspective:900px}
+.actscene:before{content:"";position:absolute;inset:52% -20% -25% -20%;background:
+ linear-gradient(rgba(109,182,255,.07) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(109,182,255,.07) 1px,transparent 1px);
+ background-size:42px 42px;transform:perspective(600px) rotateX(62deg);transform-origin:50% 0;pointer-events:none}
+.orbit{position:absolute;left:50%;top:64%;width:min(450px,120%);height:128px;margin:-64px 0 0 -50%;transform:translateX(-50%) perspective(780px) rotateX(70deg);border-radius:50%;border:1px solid rgba(151,182,213,.26);box-shadow:0 0 28px rgba(109,182,255,.08),inset 0 0 35px rgba(109,182,255,.05);pointer-events:none}
+.orbit:before{content:"";position:absolute;inset:16px;border-radius:50%;border:1px dashed rgba(151,182,213,.15)}
+.orbit:after{content:"";position:absolute;left:50%;top:-7px;width:1px;height:142px;background:linear-gradient(transparent,rgba(151,182,213,.35),transparent)}
+.headBoxLive{position:absolute;left:50%;top:50%;width:min(420px,92%);height:min(320px,78%);transform:translate(-50%,-50%);z-index:4;filter:drop-shadow(0 30px 38px rgba(0,0,0,.62))}
+.closed-msg{display:none;color:#8aa0b8;text-align:center;padding:40px 16px;font-size:13px}
+.app-window.closed .window-body{display:none}
+.app-window.closed .closed-msg{display:block;padding:12px;text-align:center}
+</style>
+</head><body>
+<div class="desktop">
+  <div class="app-window" id="win">
+    <div class="titlebar">
+      <span class="title">ANIMA — Cabeza 3D</span>
+      <div class="winbtns">
+        <button class="winbtn min" id="btnMin" title="Minimizar" aria-label="Minimizar">−</button>
+        <button class="winbtn max" id="btnMax" title="Maximizar" aria-label="Maximizar">+</button>
+        <button class="winbtn close" id="btnClose" title="Cerrar" aria-label="Cerrar">×</button>
+      </div>
+    </div>
+    <div class="closed-msg" id="closedMsg">Ventana cerrada</div>
+    <div class="window-body">
+      <div class="actscene">
+        <div class="orbit"></div>
+        <div class="headBoxLive" id="head3dLive"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+
+function clamp01(x){ x=Number(x||0); return Math.max(0, Math.min(1, x)); }
+
+// Cabeza 3D real estética: un solo grupo orgánico; ojos hundidos, orejas suaves y cabeza clara.
+// Código idéntico al observatorio (VST_CelulaMadre_WebLive_A · drawVSTCabeza3DReal).
+window.drawVSTCabeza3DReal = function(container, thetaDeg, params={}){
+  if(!container) return;
+
+  if(!container._vstHeadReal){
+    container.innerHTML = '';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+    camera.position.set(0, 0.08, 4.45);
+
+    const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    container.appendChild(renderer.domElement);
+
+    const hemi = new THREE.HemisphereLight(0xddeeff, 0x182231, 1.7);
+    scene.add(hemi);
+
+    const key = new THREE.DirectionalLight(0xffffff, 2.6);
+    key.position.set(3.8, 4.2, 5.0);
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0xb7d7ff, 1.1);
+    fill.position.set(-3.5, 1.8, 2.2);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0x66cfff, 1.2);
+    rim.position.set(-4.0, 1.2, -3.0);
+    scene.add(rim);
+
+    const warm = new THREE.PointLight(0xffd7b0, 1.5, 6);
+    warm.position.set(1.0, 1.2, 2.3);
+    scene.add(warm);
+
+    const cabeza = new THREE.Group();
+    scene.add(cabeza);
+
+    const headGeo = new THREE.SphereGeometry(1, 96, 96);
+    const headMat = new THREE.MeshPhysicalMaterial({
+      color:0xe6dfd5,
+      metalness:0.14,
+      roughness:0.32,
+      clearcoat:0.38,
+      clearcoatRoughness:0.24,
+      reflectivity:0.55
+    });
+    const head = new THREE.Mesh(headGeo, headMat);
+    head.scale.set(1.05, 1.0, 1.02);
+    cabeza.add(head);
+
+    function crearOjo(x){
+      const grupo = new THREE.Group();
+
+      const cuencaGeo = new THREE.SphereGeometry(0.215, 56, 56);
+      const cuencaMat = new THREE.MeshPhysicalMaterial({
+        color:0xc9c2b8,
+        metalness:0.05,
+        roughness:0.36,
+        clearcoat:0.25,
+        clearcoatRoughness:0.20
+      });
+      const cuenca = new THREE.Mesh(cuencaGeo, cuencaMat);
+      cuenca.scale.set(1.15, 1.0, 0.34);
+      cuenca.position.z = -0.035;
+      grupo.add(cuenca);
+
+      const blancoGeo = new THREE.SphereGeometry(0.165, 64, 64);
+      const blancoMat = new THREE.MeshPhysicalMaterial({
+        color:0xf3f6fb,
+        roughness:0.10,
+        clearcoat:1.0,
+        clearcoatRoughness:0.04,
+        reflectivity:0.65
+      });
+      const blanco = new THREE.Mesh(blancoGeo, blancoMat);
+      blanco.scale.set(1.0, 1.0, 0.45);
+      blanco.position.z = 0.018;
+      grupo.add(blanco);
+
+      const irisGeo = new THREE.SphereGeometry(0.094, 48, 48);
+      const irisMat = new THREE.MeshPhysicalMaterial({
+        color:0x063f78,
+        emissive:0x031a3a,
+        emissiveIntensity:0.22,
+        roughness:0.04,
+        clearcoat:1.0,
+        clearcoatRoughness:0.015,
+        reflectivity:0.9
+      });
+      const iris = new THREE.Mesh(irisGeo, irisMat);
+      iris.scale.set(1.0, 1.0, 0.30);
+      iris.position.z = 0.090;
+      grupo.add(iris);
+
+      const irisLuzGeo = new THREE.SphereGeometry(0.062, 32, 32);
+      const irisLuzMat = new THREE.MeshBasicMaterial({
+        color:0x0d8cff,
+        transparent:true,
+        opacity:0.42
+      });
+      const irisLuz = new THREE.Mesh(irisLuzGeo, irisLuzMat);
+      irisLuz.scale.set(1.0, 1.0, 0.18);
+      irisLuz.position.set(-0.012, 0.012, 0.112);
+      grupo.add(irisLuz);
+
+      const pupilaGeo = new THREE.SphereGeometry(0.045, 32, 32);
+      const pupilaMat = new THREE.MeshBasicMaterial({color:0x000711});
+      const pupila = new THREE.Mesh(pupilaGeo, pupilaMat);
+      pupila.scale.set(1.0, 1.0, 0.22);
+      pupila.position.z = 0.132;
+      grupo.add(pupila);
+
+      const brilloGeo = new THREE.SphereGeometry(0.029, 16, 16);
+      const brilloMat = new THREE.MeshBasicMaterial({color:0xffffff});
+      const brillo = new THREE.Mesh(brilloGeo, brilloMat);
+      brillo.position.set(-0.045, 0.052, 0.154);
+      grupo.add(brillo);
+
+      grupo.position.set(x, 0.16, 0.925);
+      grupo.rotation.x = -0.04;
+      return grupo;
+    }
+
+    const ojoL = crearOjo(-0.23);
+    const ojoR = crearOjo(0.23);
+    cabeza.add(ojoL, ojoR);
+
+    const bocaMat = new THREE.MeshBasicMaterial({color:0x3a3633, transparent:true, opacity:0.7, depthTest:false});
+    let _boca = null;
+    function _zSup(x,y){ const r2 = 1 - (x/1.05)*(x/1.05) - y*y; return 1.02*Math.sqrt(Math.max(0.02, r2)) + 0.03; }
+    function construirBoca(cara){
+      const dy = (cara>0 ? -0.055 : (cara<0 ? 0.055 : 0.0));
+      const xs = [-0.16, -0.055, 0.055, 0.16], ys = [-0.305, -0.305+dy, -0.305+dy, -0.305];
+      const pts = xs.map((x,i)=> new THREE.Vector3(x, ys[i], _zSup(x, ys[i])));
+      const geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 28, 0.012, 8, false);
+      if(_boca){ _boca.geometry.dispose(); _boca.geometry = geo; }
+      else { _boca = new THREE.Mesh(geo, bocaMat); _boca.renderOrder = 5; cabeza.add(_boca); }
+    }
+    construirBoca(0);
+
+    function crearOreja(colorNeon, lado){
+      const grupo = new THREE.Group();
+
+      const baseGeo = new THREE.SphereGeometry(0.34, 56, 56);
+      baseGeo.scale(0.54, 0.95, 0.28);
+      const baseMat = new THREE.MeshPhysicalMaterial({
+        color:0xded9cf,
+        metalness:0.18,
+        roughness:0.24,
+        clearcoat:0.65,
+        clearcoatRoughness:0.12,
+        reflectivity:0.55
+      });
+      const base = new THREE.Mesh(baseGeo, baseMat);
+      grupo.add(base);
+
+      const innerGeo = new THREE.SphereGeometry(0.235, 48, 48);
+      innerGeo.scale(0.40, 0.80, 0.16);
+      const innerMat = new THREE.MeshPhysicalMaterial({
+        color:0xc6c5c0,
+        metalness:0.20,
+        roughness:0.17,
+        clearcoat:0.85,
+        clearcoatRoughness:0.05
+      });
+      const inner = new THREE.Mesh(innerGeo, innerMat);
+      inner.position.z = 0.045;
+      grupo.add(inner);
+
+      const ringGeo = new THREE.TorusGeometry(0.225, 0.020, 16, 96);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color:colorNeon,
+        emissive:colorNeon,
+        emissiveIntensity:0.45,
+        roughness:0.16,
+        metalness:0.12
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.scale.set(0.68, 1.0, 1.0);
+      grupo.add(ring);
+
+      const glowGeo = new THREE.TorusGeometry(0.225, 0.044, 12, 96);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color:colorNeon,
+        transparent:true,
+        opacity:0.12,
+        depthWrite:false
+      });
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      glow.scale.set(0.68, 1.0, 1.0);
+      grupo.add(glow);
+
+      grupo.position.set(lado * 1.04, 0.02, 0.02);
+      grupo.rotation.y = lado > 0 ? Math.PI / 2 : -Math.PI / 2;
+      grupo.ringMat = ringMat;
+      grupo.glowMat = glowMat;
+      return grupo;
+    }
+
+    const orejaL = crearOreja(0x33eaff, -1);
+    const orejaR = crearOreja(0xff5264, 1);
+    cabeza.add(orejaL, orejaR);
+
+    function resize(){
+      const r = container.getBoundingClientRect();
+      const w = Math.max(160, r.width || 320);
+      const h = Math.max(120, r.height || 240);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    container._vstHeadReal = {scene, camera, renderer, cabeza, orejaL, orejaR, resize, construirBoca, _cara:0};
+  }
+
+  const h = container._vstHeadReal;
+  h.resize();
+
+  const pitchDeg = Number(params.pitchDeg ?? params.pitch ?? 0);
+  h.cabeza.rotation.x = THREE.MathUtils.degToRad(pitchDeg);
+  h.cabeza.rotation.y = THREE.MathUtils.degToRad(Number(thetaDeg || 0));
+
+  const energiaL = clamp01(params.energiaL ?? params.energyL ?? 0);
+  const energiaR = clamp01(params.energiaR ?? params.energyR ?? 0);
+  if(h.orejaL.ringMat) h.orejaL.ringMat.emissiveIntensity = 0.45 + energiaL * 2.8;
+  if(h.orejaR.ringMat) h.orejaR.ringMat.emissiveIntensity = 0.45 + energiaR * 2.8;
+  if(h.orejaL.glowMat) h.orejaL.glowMat.opacity = 0.10 + Math.min(0.35, energiaL * 0.60);
+  if(h.orejaR.glowMat) h.orejaR.glowMat.opacity = 0.10 + Math.min(0.35, energiaR * 0.60);
+
+  const cara = Math.sign(Number(params.cara || 0));
+  if(h.construirBoca && cara !== h._cara){ h.construirBoca(cara); h._cara = cara; }
+
+  h.renderer.render(h.scene, h.camera);
+};
+
+const win = document.getElementById('win');
+const head = document.getElementById('head3dLive');
+const btnMin = document.getElementById('btnMin');
+const btnMax = document.getElementById('btnMax');
+const btnClose = document.getElementById('btnClose');
+let running = true;
+let maximized = false;
+
+function nudgeResize(){ setTimeout(() => window.dispatchEvent(new Event('resize')), 40); }
+
+btnMin.addEventListener('click', () => {
+  win.classList.toggle('minimized');
+  if (win.classList.contains('minimized')) win.classList.remove('maximized');
+  nudgeResize();
+});
+
+btnMax.addEventListener('click', () => {
+  maximized = !maximized;
+  win.classList.toggle('maximized', maximized);
+  btnMax.textContent = maximized ? '⧉' : '+';
+  btnMax.title = maximized ? 'Restaurar' : 'Maximizar';
+  if (maximized) win.classList.remove('minimized');
+  nudgeResize();
+});
+
+btnClose.addEventListener('click', () => {
+  running = false;
+  win.classList.add('closed');
+  win.classList.remove('minimized', 'maximized');
+  try { window.close(); } catch (_) {}
+});
+
+async function poll(){
+  if (!running) return;
+  try {
+    const r = await fetch('/estado');
+    const d = await r.json();
+    const theta = Number(d.orientacion_deg ?? d.act_orientacion_deg ?? 0);
+    const pitch = Number(d.pitch_deg ?? d.act_pitch_deg ?? 0);
+    drawVSTCabeza3DReal(head, theta, {
+      pitchDeg: pitch,
+      energiaL: Number(d.energia_L || 0),
+      energiaR: Number(d.energia_R || 0),
+      cara: Number(d.cara_valoracion || 0)
+    });
+  } catch (_) {}
+  setTimeout(poll, 120);
+}
+
+drawVSTCabeza3DReal(head, 0, {energiaL:0, energiaR:0, cara:0});
+poll();
+</script>
+</body></html>

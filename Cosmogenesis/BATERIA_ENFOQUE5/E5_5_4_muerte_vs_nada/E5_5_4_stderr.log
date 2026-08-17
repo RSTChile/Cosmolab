@@ -1,0 +1,13 @@
+[E5.5-4] inicio 2026-07-24 20:48:24
+[calibracion] pasos_base=6095 (mediana=5300) pasos_largo=24380 lavo_todas=True
+[progreso] 40/360 combos (11.1%) t=592.5s
+[progreso] 80/360 combos (22.2%) t=1188.3s
+[progreso] 120/360 combos (33.3%) t=1711.7s
+[progreso] 160/360 combos (44.4%) t=2207.4s
+[progreso] 200/360 combos (55.6%) t=2825.2s
+[progreso] 240/360 combos (66.7%) t=3795.0s
+[progreso] 280/360 combos (77.8%) t=4345.0s
+[progreso] 320/360 combos (88.9%) t=4835.3s
+[progreso] 360/360 combos (100.0%) t=5280.0s
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_5_4_muerte_vs_nada/E5_5_4_resultado_crudo.json
+[elapsed] 5280.0s

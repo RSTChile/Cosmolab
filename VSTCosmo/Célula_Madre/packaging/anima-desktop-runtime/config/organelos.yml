@@ -1,0 +1,36 @@
+# Perfil desktop/PC instalable: sensores remotos NO se exponen en UI
+# (oculto = sin caja; el código puede seguir en el paquete). ANIMA_UI_PERFIL=limpio.
+organelos:
+  cloroplasto:
+    estado: oculto
+    hardware: atmega_usb_o_wifi
+    ui: false
+  gps:
+    estado: oculto
+    hardware: ublox_neo_m8n
+    ui: false
+  wifi_cloroplasto:
+    estado: oculto
+    hardware: rd_wifi_esp8266_at
+    ui: false
+  radio_digital:
+    estado: oculto
+    hardware: nrf24l01
+    ui: false
+  sdr:
+    estado: oculto
+    hardware: sdrplay_rsp
+    ui: false
+  vision:
+    estado: oculto
+    hardware: rtsp_onvif_o_esp32cam
+    ui: false
+  cabeza_local:
+    estado: latente
+    hardware: navegador_observatorio
+  audio:
+    estado: activo
+    hardware: entrada_local_o_servidor_opcional
+  presencia:
+    estado: activo
+    hardware: mdns_udp_plaza_opcional

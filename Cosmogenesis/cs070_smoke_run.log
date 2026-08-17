@@ -1,0 +1,44 @@
+
+====================================================================================================
+ANCLA 1 — SIN_SEMILLA: ¿reproduce el no-encendido de CS067 (no certificado)?
+====================================================================================================
+  seed=0: n_ejes=0 pico_medio=0.925 certificado=True
+  seed=1: n_ejes=6 pico_medio=0.769 certificado=False
+  seed=2: n_ejes=0 pico_medio=0.859 certificado=True
+  seed=3: n_ejes=0 pico_medio=0.789 certificado=False
+  seed=4: n_ejes=0 pico_medio=0.778 certificado=False
+  seed=5: n_ejes=0 pico_medio=0.883 certificado=True
+  frac_certificado=0.50  FALLA: consistente con el no-encendido de CS067
+
+====================================================================================================
+ANCLA 2 — retícula 2D 8-vecinos (métrica, control): ¿SEMILLA_COHERENTE preserva el eje sembrado
+y SEMILLA_BARAJADA no (misma magnitud de peso_semilla)?
+====================================================================================================
+  seed=0: peso_semilla=0.114  frac_eje0(coherente)=0.325  frac_eje0(barajada)=0.117  Δ=+0.208
+  seed=1: peso_semilla=0.117  frac_eje0(coherente)=0.333  frac_eje0(barajada)=0.125  Δ=+0.208
+  seed=2: peso_semilla=0.097  frac_eje0(coherente)=0.333  frac_eje0(barajada)=0.235  Δ=+0.098
+  seed=3: peso_semilla=0.087  frac_eje0(coherente)=0.305  frac_eje0(barajada)=0.182  Δ=+0.122
+  seed=4: peso_semilla=0.179  frac_eje0(coherente)=0.795  frac_eje0(barajada)=0.175  Δ=+0.620
+
+  Δ medio=+0.251  PASA: la retícula métrica SÍ sostiene la semilla coherente
+
+====================================================================================================
+ANCLA 3 — juez de trampa: ¿certificado=True con n_ejes<=1 se EXCLUYE de 'dirección real'?
+====================================================================================================
+  seed=0: n_ejes=0 certificado=False direccion_real=False
+  seed=1: n_ejes=0 certificado=False direccion_real=False
+  seed=2: n_ejes=0 certificado=False direccion_real=False
+  seed=3: n_ejes=0 certificado=False direccion_real=False
+  seed=4: n_ejes=0 certificado=False direccion_real=False
+  seed=5: n_ejes=0 certificado=False direccion_real=False
+  seed=6: n_ejes=0 certificado=False direccion_real=False
+  seed=7: n_ejes=0 certificado=False direccion_real=False
+
+  casos certificado=True con n_ejes<=1 (trampa potencial): 0
+  PASA: el juez de trampa SÍ excluye colapso-a-1-eje de dirección
+
+====================================================================================================
+RESUMEN: ancla1(sin_semilla~CS067)=FALLA  ancla2(retícula sostiene semilla)=PASA  ancla3(juez de trampa)=PASA
+tiempo total: 1.53 min
+
+AL MENOS UN ANCLA FALLA. NO correr la tanda -- reportar a CS antes de seguir.

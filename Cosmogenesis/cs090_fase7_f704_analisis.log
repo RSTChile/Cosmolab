@@ -1,0 +1,112 @@
+[f704] estructura consolidada: 12 grafos base -> cs090_fase7_f704_estructura.csv
+[A2-B0-C2-batch3-r100_f704_anticosto] brazo=anticosto aristas=2374 frac_masa=0.15099999999999997 kappaV=1.3424657534246576
+[A2-B0-C2-batch3-r100_f704_antisoporte] brazo=antisoporte aristas=2374 frac_masa=0.15049999999999994 kappaV=1.3739130434782603
+[A2-B0-C2-batch3-r100_f704_azar] brazo=azar aristas=2374 frac_masa=0.14999999999999994 kappaV=1.333333333333333
+[A2-B0-C2-batch3-r100_f704_c2] brazo=c2 aristas=2374 frac_masa=0.15199999999999997 kappaV=1.375
+[A2-B0-C2-batch3-r100_f704_soporte] brazo=soporte aristas=2374 frac_masa=0.14849999999999997 kappaV=1.2444444444444438
+[A2-B0-C2-batch3-r21_f704_anticosto] brazo=anticosto aristas=3308 frac_masa=0.09900000000000003 kappaV=0.5
+[A2-B0-C2-batch3-r21_f704_antisoporte] brazo=antisoporte aristas=3308 frac_masa=0.09700000000000002 kappaV=0.44776119402985076
+[A2-B0-C2-batch3-r21_f704_azar] brazo=azar aristas=3308 frac_masa=0.10050000000000002 kappaV=0.5925925925925919
+[A2-B0-C2-batch3-r21_f704_c2] brazo=c2 aristas=3308 frac_masa=0.09750000000000003 kappaV=0.5483870967741936
+[A2-B0-C2-batch3-r21_f704_soporte] brazo=soporte aristas=3308 frac_masa=0.10350000000000005 kappaV=0.6153846153846154
+[A2-B0-C2-batch3-r9_f704_anticosto] brazo=anticosto aristas=4069 frac_masa=0.07950000000000002 kappaV=0.4528301886792453
+[A2-B0-C2-batch3-r9_f704_antisoporte] brazo=antisoporte aristas=4069 frac_masa=0.07650000000000001 kappaV=0.27999999999999986
+[A2-B0-C2-batch3-r9_f704_azar] brazo=azar aristas=4069 frac_masa=0.07800000000000001 kappaV=0.35294117647058804
+[A2-B0-C2-batch3-r9_f704_c2] brazo=c2 aristas=4069 frac_masa=0.07450000000000002 kappaV=0.3829787234042555
+[A2-B0-C2-batch3-r9_f704_soporte] brazo=soporte aristas=4069 frac_masa=0.07650000000000001 kappaV=0.3076923076923076
+[A2-B0-C2-batch4-r18_f704_anticosto] brazo=anticosto aristas=3986 frac_masa=0.07700000000000001 kappaV=0.30188679245283
+[A2-B0-C2-batch4-r18_f704_antisoporte] brazo=antisoporte aristas=3986 frac_masa=0.07700000000000001 kappaV=0.4315068493150683
+[A2-B0-C2-batch4-r18_f704_azar] brazo=azar aristas=3986 frac_masa=0.07800000000000001 kappaV=0.4807692307692307
+[A2-B0-C2-batch4-r18_f704_c2] brazo=c2 aristas=3986 frac_masa=0.08200000000000002 kappaV=0.3773584905660377
+[A2-B0-C2-batch4-r18_f704_soporte] brazo=soporte aristas=3986 frac_masa=0.07850000000000003 kappaV=0.44594594594594594
+[A2-B0-C2-batch4-r43_f704_anticosto] brazo=anticosto aristas=3269 frac_masa=0.09300000000000001 kappaV=0.5000000000000001
+[A2-B0-C2-batch4-r43_f704_antisoporte] brazo=antisoporte aristas=3269 frac_masa=0.08800000000000001 kappaV=0.4098360655737705
+[A2-B0-C2-batch4-r43_f704_azar] brazo=azar aristas=3269 frac_masa=0.098 kappaV=0.6174863387978138
+[A2-B0-C2-batch4-r43_f704_c2] brazo=c2 aristas=3269 frac_masa=0.09200000000000003 kappaV=0.42187500000000006
+[A2-B0-C2-batch4-r43_f704_soporte] brazo=soporte aristas=3269 frac_masa=0.09600000000000003 kappaV=0.5762711864406779
+[A2-B0-C2-batch4-r51_f704_anticosto] brazo=anticosto aristas=2483 frac_masa=0.14449999999999996 kappaV=1.3428571428571427
+[A2-B0-C2-batch4-r51_f704_antisoporte] brazo=antisoporte aristas=2483 frac_masa=0.14399999999999996 kappaV=1.365
+[A2-B0-C2-batch4-r51_f704_azar] brazo=azar aristas=2483 frac_masa=0.1455 kappaV=1.0952380952380942
+[A2-B0-C2-batch4-r51_f704_c2] brazo=c2 aristas=2483 frac_masa=0.13849999999999998 kappaV=1.1927083333333324
+[A2-B0-C2-batch4-r51_f704_soporte] brazo=soporte aristas=2483 frac_masa=0.14399999999999996 kappaV=1.1936936936936933
+[A2-B0-C2-r14_f704_anticosto] brazo=anticosto aristas=3296 frac_masa=0.09950000000000002 kappaV=0.5161290322580644
+[A2-B0-C2-r14_f704_antisoporte] brazo=antisoporte aristas=3296 frac_masa=0.09900000000000003 kappaV=0.5230769230769229
+[A2-B0-C2-r14_f704_azar] brazo=azar aristas=3296 frac_masa=0.09950000000000002 kappaV=0.5047619047619042
+[A2-B0-C2-r14_f704_c2] brazo=c2 aristas=3296 frac_masa=0.09750000000000003 kappaV=0.5156249999999999
+[A2-B0-C2-r14_f704_soporte] brazo=soporte aristas=3296 frac_masa=0.10000000000000003 kappaV=0.5409836065573771
+[A2-B0-C2-r19_f704_anticosto] brazo=anticosto aristas=3679 frac_masa=0.08650000000000002 kappaV=0.30481283422459876
+[A2-B0-C2-r19_f704_antisoporte] brazo=antisoporte aristas=3679 frac_masa=0.08900000000000004 kappaV=0.39285714285714285
+[A2-B0-C2-r19_f704_azar] brazo=azar aristas=3679 frac_masa=0.08900000000000002 kappaV=0.3709677419354839
+[A2-B0-C2-r19_f704_c2] brazo=c2 aristas=3679 frac_masa=0.08850000000000004 kappaV=0.3898305084745762
+[A2-B0-C2-r19_f704_soporte] brazo=soporte aristas=3679 frac_masa=0.09050000000000001 kappaV=0.5084745762711865
+[A2-B0-C2-r20_f704_anticosto] brazo=anticosto aristas=3706 frac_masa=0.08300000000000002 kappaV=0.42331288343558277
+[A2-B0-C2-r20_f704_antisoporte] brazo=antisoporte aristas=3706 frac_masa=0.08300000000000002 kappaV=0.5
+[A2-B0-C2-r20_f704_azar] brazo=azar aristas=3706 frac_masa=0.08200000000000002 kappaV=0.35668789808917173
+[A2-B0-C2-r20_f704_c2] brazo=c2 aristas=3706 frac_masa=0.08500000000000002 kappaV=0.3502824858757061
+[A2-B0-C2-r20_f704_soporte] brazo=soporte aristas=3706 frac_masa=0.0855 kappaV=0.41818181818181827
+[A2-B0-C2-r28_f704_anticosto] brazo=anticosto aristas=3947 frac_masa=0.08700000000000001 kappaV=0.4482758620689655
+[A2-B0-C2-r28_f704_antisoporte] brazo=antisoporte aristas=3947 frac_masa=0.08800000000000001 kappaV=0.38297872340425526
+[A2-B0-C2-r28_f704_azar] brazo=azar aristas=3947 frac_masa=0.08800000000000001 kappaV=0.35483870967741943
+[A2-B0-C2-r28_f704_c2] brazo=c2 aristas=3947 frac_masa=0.09100000000000004 kappaV=0.4193548387096774
+[A2-B0-C2-r28_f704_soporte] brazo=soporte aristas=3947 frac_masa=0.08900000000000004 kappaV=0.44262295081967207
+[A2-B0-C2-r2_f704_anticosto] brazo=anticosto aristas=4094 frac_masa=0.07700000000000001 kappaV=0.4259259259259259
+[A2-B0-C2-r2_f704_antisoporte] brazo=antisoporte aristas=4094 frac_masa=0.07350000000000002 kappaV=0.326923076923077
+[A2-B0-C2-r2_f704_azar] brazo=azar aristas=4094 frac_masa=0.07650000000000001 kappaV=0.38461538461538464
+[A2-B0-C2-r2_f704_c2] brazo=c2 aristas=4094 frac_masa=0.07650000000000001 kappaV=0.33333333333333304
+[A2-B0-C2-r2_f704_soporte] brazo=soporte aristas=4094 frac_masa=0.07700000000000001 kappaV=0.4339622641509433
+[A2-B0-C2-r9_f704_anticosto] brazo=anticosto aristas=3939 frac_masa=0.08250000000000002 kappaV=0.4799999999999999
+[A2-B0-C2-r9_f704_antisoporte] brazo=antisoporte aristas=3939 frac_masa=0.08400000000000003 kappaV=0.4285714285714287
+[A2-B0-C2-r9_f704_azar] brazo=azar aristas=3939 frac_masa=0.08250000000000002 kappaV=0.43636363636363634
+[A2-B0-C2-r9_f704_c2] brazo=c2 aristas=3939 frac_masa=0.08150000000000003 kappaV=0.48000000000000015
+[A2-B0-C2-r9_f704_soporte] brazo=soporte aristas=3939 frac_masa=0.08000000000000003 kappaV=0.3563218390804594
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/venv/lib/python3.13/site-packages/scipy/stats/_wilcoxon.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  z = (r_plus - mn) / se
+
+[f704] 60 corridas -> cs090_fase7_f704_phantom_crudo.csv
+[f704] 12 grafos con los 5 brazos -> cs090_fase7_f704_pares.csv
+
+=== contrastes pareados, endpoint primario (fracción de masa en sumideros), n=12 grafos ===
+  c2           vs azar          medias 0.09638 / 0.09729  Δ=-0.00092 (-0.94%)  signos 4/11 p=0.5488  Wilcoxon p=0.5771
+  c2           vs anticosto     medias 0.09638 / 0.09663  Δ=-0.00025 (-0.26%)  signos 5/12 p=0.7744  Wilcoxon p=1.0000
+  c2           vs soporte       medias 0.09638 / 0.09742  Δ=-0.00104 (-1.07%)  signos 4/12 p=0.3877  Wilcoxon p=0.3394
+  c2           vs antisoporte   medias 0.09638 / 0.09579  Δ=+0.00058 (+0.61%)  signos 7/12 p=0.7744  Wilcoxon p=0.4238
+  azar         vs anticosto     medias 0.09729 / 0.09663  Δ=+0.00067 (+0.69%)  signos 6/10 p=0.7539  Wilcoxon p=0.3320
+  azar         vs soporte       medias 0.09729 / 0.09742  Δ=-0.00013 (-0.13%)  signos 5/12 p=0.7744  Wilcoxon p=1.0000
+  azar         vs antisoporte   medias 0.09729 / 0.09579  Δ=+0.00150 (+1.57%)  signos 7/11 p=0.5488  Wilcoxon p=0.1299
+  anticosto    vs soporte       medias 0.09663 / 0.09742  Δ=-0.00079 (-0.81%)  signos 4/11 p=0.5488  Wilcoxon p=0.3301
+  anticosto    vs antisoporte   medias 0.09663 / 0.09579  Δ=+0.00083 (+0.87%)  signos 7/10 p=0.3438  Wilcoxon p=0.2754
+  soporte      vs antisoporte   medias 0.09742 / 0.09579  Δ=+0.00163 (+1.70%)  signos 8/10 p=0.1094  Wilcoxon p=0.1602
+
+  orden c2 > azar > anticosto   se cumple en 2/12 grafos (esperado por azar: 2.0)
+  orden c2 > azar > antisoporte se cumple en 1/12
+  orden soporte > azar > antisop se cumple en 4/12
+  M idéntico en los 5 brazos: 12/12 grafos
+
+=== la manipulación, comprobada: medias por brazo (mismo nº de aristas en los 5) ===
+  brazo          aristas  clustering  pendiente  frac_masa  kappa_V  n_sink
+  c2              3512.5     0.00511     0.7348    0.09638   0.5656    8.00
+  azar            3512.5     0.00819     0.7217    0.09729   0.5734    8.08
+  anticosto       3512.5     0.00397     0.7362    0.09663   0.5865    8.00
+  soporte         3512.5     0.00903     0.7366    0.09742   0.5903    8.08
+  antisoporte     3512.5     0.00011     0.7464    0.09579   0.5719    8.00
+
+=== omnibus Friedman (bloques = grafo base, 5 brazos) ===
+  fraccion_masa_en_sumideros       chi2=4.641 p=0.3262
+  n_sumideros                      chi2=4.000 p=0.4060
+
+  resolución del endpoint: 1 partícula = 1/2000 = 0.0005 de fracción de masa; rango observado 0.0735-0.1520; |Δ| medio entre brazos ≈ 0.00292 (≈5.8 partículas)
+
+=== ¿la masa sigue al CLUSTERING con nº de aristas fijo? (centrado por grafo, 60 corridas) ===
+  clustering vs fracción de masa: Spearman ρ=+0.310 (p=0.0160)
+  pendiente  vs fracción de masa: Spearman ρ=-0.277 (p=0.0323)
+  ρ intra-grafo (5 brazos c/u): mediana +0.385, positivo en 9/12 grafos, signos p=0.1460
+  (clustering vs pendiente, centrados: ρ=-0.116)
+  parcial clustering vs masa | pendiente : r=+0.291 (p=0.0241)
+  parcial pendiente  vs masa | clustering: r=-0.255 (p=0.0492)
+  permutación intra-grafo (20000): p_una_cola = 0.0120
+
+=== ¿qué acompaña al Δ de masa? (Spearman sobre los mismos grafos) ===
+  c2−azar        : Δmasa vs Δclustering ρ=+0.091 (p=0.779) | Δmasa vs Δpendiente ρ=-0.329 (p=0.297)
+  c2−anticosto   : Δmasa vs Δclustering ρ=-0.056 (p=0.863) | Δmasa vs Δpendiente ρ=-0.007 (p=0.983)
+  c2−soporte     : Δmasa vs Δclustering ρ=+0.028 (p=0.931) | Δmasa vs Δpendiente ρ=-0.126 (p=0.697)
+  c2−antisoporte : Δmasa vs Δclustering ρ=-0.091 (p=0.779) | Δmasa vs Δpendiente ρ=+0.266 (p=0.404)

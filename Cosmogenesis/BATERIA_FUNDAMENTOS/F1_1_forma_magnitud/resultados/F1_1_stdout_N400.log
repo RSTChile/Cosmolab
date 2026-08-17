@@ -1,0 +1,3 @@
+[2026-07-24T16:10:22-04:00] === F1-1 PRODUCCION N=400 (grid COMPLETO): inicio. eps=13pts r=34pts semillas=12 ===
+[2026-07-24T16:12:26-04:00] [N=400] calibracion lavado: eps_cal=0.001 pasos=24380 mediana=21200 lavo_todas=True tiempos=[21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200]
+[2026-07-24T16:15:10-04:00] [N=400] eps 1/13 (eps=0.000e+00, D=0.000000e+00) completado. t=288.4s (4.8min)

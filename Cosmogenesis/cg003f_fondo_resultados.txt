@@ -1,0 +1,144 @@
+CG003-f — planitud EMERGENTE (costo holonomía + 2ª ley)
+================================================================================================
+Pre-vuelo · control de no-degeneración de la métrica (ciclo cerrado):
+  Dtan=2: std(24 dir)=8.875e-01  ->  OK (orienta)
+  Dtan=3: std(24 dir)=3.596e-01  ->  OK (orienta)
+
+λ_H=0 → baseline hiperbólico.  λ_H>0 → selección de lazos planos baratos.
+
+  λ_H Dt      N sd  %gig  diam   δ_med d_grow        ver
+--------------------------------------------------------
+  0.0  2   1024  1    58    20    0.00   2.06  AZAR(exp)
+  0.0  2   1024  2    57    20    0.00   2.10  AZAR(exp)
+  0.0  2   1024  3    61    22    0.00   2.01  GEOMETRIA
+  -> λ_H=0.0 Dt=2: diam-pend=0.03  δ_media~0.00  %gig~59%
+  0.0  2   4096  1    58    26    0.00   2.45  AZAR(exp)
+  0.0  2   4096  2    58    25    0.00   2.52  AZAR(exp)
+  0.0  2   4096  3    59    29    0.00   2.34  AZAR(exp)
+  -> λ_H=0.0 Dt=2: diam-pend=0.04  δ_media~0.00  %gig~58%
+  0.0  2  16384  1    58    30    0.00   2.88  AZAR(exp)
+  0.0  2  16384  2    58    31    0.00   2.88  AZAR(exp)
+  0.0  2  16384  3    59    31    0.00   2.83  AZAR(exp)
+  -> λ_H=0.0 Dt=2: diam-pend=0.01  δ_media~0.00  %gig~58%
+  0.0  3   1024  1    77    17    0.00   2.47  AZAR(exp)
+  0.0  3   1024  2    79    16    0.00   2.51  AZAR(exp)
+  0.0  3   1024  3    80    21    0.00   2.40  GEOMETRIA
+  -> λ_H=0.0 Dt=3: diam-pend=0.08  δ_media~0.00  %gig~79%
+  0.0  3   4096  1    77    19    0.00   2.88  AZAR(exp)
+  0.0  3   4096  2    78    20    0.00   2.82  AZAR(exp)
+  0.0  3   4096  3    78    19    0.02   2.82  AZAR(exp)
+  -> λ_H=0.0 Dt=3: diam-pend=0.00  δ_media~0.01  %gig~77%
+  0.0  3  16384  1    77    26    0.01   3.32  AZAR(exp)
+  0.0  3  16384  2    77    24    0.00   3.33  AZAR(exp)
+  0.0  3  16384  3    77    25    0.00   3.23  AZAR(exp)
+  -> λ_H=0.0 Dt=3: diam-pend=-0.01  δ_media~0.00  %gig~77%
+  0.5  2   1024  1    64    21    0.00   2.18  AZAR(exp)
+  0.5  2   1024  2    61    22    0.00   2.10  AZAR(exp)
+  0.5  2   1024  3    58    20    0.00   2.04  GEOMETRIA
+  -> λ_H=0.5 Dt=2: diam-pend=-0.02  δ_media~0.00  %gig~61%
+  0.5  2   4096  1    59    25    0.00   2.53  AZAR(exp)
+  0.5  2   4096  2    59    27    0.00   2.46  AZAR(exp)
+  0.5  2   4096  3    59    26    0.00   2.44  GEOMETRIA
+  -> λ_H=0.5 Dt=2: diam-pend=0.01  δ_media~0.00  %gig~59%
+  0.5  2  16384  1    59    31    0.00   2.89  AZAR(exp)
+  0.5  2  16384  2    59    31    0.00   2.94  AZAR(exp)
+  0.5  2  16384  3    59    30    0.00   2.83  AZAR(exp)
+  -> λ_H=0.5 Dt=2: diam-pend=-0.01  δ_media~0.00  %gig~59%
+  0.5  3   1024  1    79    18    0.00   2.50  AZAR(exp)
+  0.5  3   1024  2    75    17    0.01   2.40  AZAR(exp)
+  0.5  3   1024  3    79    18    0.00   2.41  GEOMETRIA
+  -> λ_H=0.5 Dt=3: diam-pend=0.00  δ_media~0.00  %gig~78%
+  0.5  3   4096  1    78    22    0.00   2.76  AZAR(exp)
+  0.5  3   4096  2    77    18    0.00   2.84  AZAR(exp)
+  0.5  3   4096  3    77    21    0.00   2.82  AZAR(exp)
+  -> λ_H=0.5 Dt=3: diam-pend=-0.02  δ_media~0.00  %gig~77%
+  0.5  3  16384  1    77    28    0.00   3.24  AZAR(exp)
+  0.5  3  16384  2    77    25    0.00   3.25  AZAR(exp)
+  0.5  3  16384  3    76    25    0.00   3.23  AZAR(exp)
+  -> λ_H=0.5 Dt=3: diam-pend=-0.04  δ_media~0.00  %gig~77%
+  1.0  2   1024  1    64    21    0.00   2.18  AZAR(exp)
+  1.0  2   1024  2    61    22    0.00   2.10  AZAR(exp)
+  1.0  2   1024  3    58    20    0.00   2.04  GEOMETRIA
+  -> λ_H=1.0 Dt=2: diam-pend=-0.02  δ_media~0.00  %gig~61%
+  1.0  2   4096  1    59    25    0.00   2.53  AZAR(exp)
+  1.0  2   4096  2    59    27    0.00   2.46  AZAR(exp)
+  1.0  2   4096  3    59    26    0.00   2.44  GEOMETRIA
+  -> λ_H=1.0 Dt=2: diam-pend=0.01  δ_media~0.00  %gig~59%
+  1.0  2  16384  1    59    31    0.00   2.89  AZAR(exp)
+  1.0  2  16384  2    59    31    0.00   2.94  AZAR(exp)
+  1.0  2  16384  3    59    30    0.00   2.83  AZAR(exp)
+  -> λ_H=1.0 Dt=2: diam-pend=-0.01  δ_media~0.00  %gig~59%
+  1.0  3   1024  1    79    18    0.00   2.42  GEOMETRIA
+  1.0  3   1024  2    78    18    0.00   2.46  AZAR(exp)
+  1.0  3   1024  3    79    14    0.00   2.49  GEOMETRIA
+  -> λ_H=1.0 Dt=3: diam-pend=-0.09  δ_media~0.00  %gig~79%
+  1.0  3   4096  1    77    24    0.00   2.77  AZAR(exp)
+  1.0  3   4096  2    78    24    0.01   2.81  AZAR(exp)
+  1.0  3   4096  3    77    19    0.01   2.86  GEOMETRIA
+  -> λ_H=1.0 Dt=3: diam-pend=-0.08  δ_media~0.01  %gig~77%
+  1.0  3  16384  1    76    26    0.00   3.30  AZAR(exp)
+  1.0  3  16384  2    77    28    0.00   3.24  AZAR(exp)
+  1.0  3  16384  3    77    25    0.00   3.24  AZAR(exp)
+  -> λ_H=1.0 Dt=3: diam-pend=-0.01  δ_media~0.00  %gig~77%
+  2.0  2   1024  1    64    21    0.00   2.18  AZAR(exp)
+  2.0  2   1024  2    61    22    0.00   2.10  AZAR(exp)
+  2.0  2   1024  3    58    20    0.00   2.04  GEOMETRIA
+  -> λ_H=2.0 Dt=2: diam-pend=-0.02  δ_media~0.00  %gig~61%
+  2.0  2   4096  1    59    25    0.00   2.53  AZAR(exp)
+  2.0  2   4096  2    59    27    0.00   2.46  AZAR(exp)
+  2.0  2   4096  3    59    26    0.00   2.44  GEOMETRIA
+  -> λ_H=2.0 Dt=2: diam-pend=0.01  δ_media~0.00  %gig~59%
+  2.0  2  16384  1    59    31    0.00   2.89  AZAR(exp)
+  2.0  2  16384  2    59    31    0.00   2.94  AZAR(exp)
+  2.0  2  16384  3    59    30    0.00   2.83  AZAR(exp)
+  -> λ_H=2.0 Dt=2: diam-pend=-0.01  δ_media~0.00  %gig~59%
+  2.0  3   1024  1    76    20    0.00   2.41  GEOMETRIA
+  2.0  3   1024  2    79    20    0.02   2.36  AZAR(exp)
+  2.0  3   1024  3    79    17    0.00   2.44  GEOMETRIA
+  -> λ_H=2.0 Dt=3: diam-pend=-0.06  δ_media~0.01  %gig~78%
+  2.0  3   4096  1    77    23    0.00   2.83  AZAR(exp)
+  2.0  3   4096  2    78    21    0.02   2.87  AZAR(exp)
+  2.0  3   4096  3    77    22    0.00   2.73  AZAR(exp)
+  -> λ_H=2.0 Dt=3: diam-pend=-0.02  δ_media~0.01  %gig~77%
+  2.0  3  16384  1    77    25    0.00   3.23  AZAR(exp)
+  2.0  3  16384  2    77    25    0.02   3.27  AZAR(exp)
+  2.0  3  16384  3    76    27    0.00   3.20  AZAR(exp)
+  -> λ_H=2.0 Dt=3: diam-pend=0.03  δ_media~0.01  %gig~77%
+  4.0  2   1024  1    64    21    0.00   2.18  AZAR(exp)
+  4.0  2   1024  2    61    22    0.00   2.10  AZAR(exp)
+  4.0  2   1024  3    58    20    0.00   2.04  GEOMETRIA
+  -> λ_H=4.0 Dt=2: diam-pend=-0.02  δ_media~0.00  %gig~61%
+  4.0  2   4096  1    59    25    0.00   2.53  AZAR(exp)
+  4.0  2   4096  2    59    27    0.00   2.46  AZAR(exp)
+  4.0  2   4096  3    59    26    0.00   2.44  GEOMETRIA
+  -> λ_H=4.0 Dt=2: diam-pend=0.01  δ_media~0.00  %gig~59%
+  4.0  2  16384  1    59    31    0.00   2.89  AZAR(exp)
+  4.0  2  16384  2    59    31    0.00   2.94  AZAR(exp)
+  4.0  2  16384  3    59    30    0.00   2.83  AZAR(exp)
+  -> λ_H=4.0 Dt=2: diam-pend=-0.01  δ_media~0.00  %gig~59%
+  4.0  3   1024  1    78    20    0.00   2.29  GEOMETRIA
+  4.0  3   1024  2    80    18    0.03   2.42  AZAR(exp)
+  4.0  3   1024  3    77    17    0.01   2.39  GEOMETRIA
+  -> λ_H=4.0 Dt=3: diam-pend=-0.06  δ_media~0.01  %gig~78%
+  4.0  3   4096  1    77    24    0.00   2.71  AZAR(exp)
+  4.0  3   4096  2    77    24    0.02   2.81  AZAR(exp)
+  4.0  3   4096  3    77    26    0.00   2.80  GEOMETRIA
+  -> λ_H=4.0 Dt=3: diam-pend=0.03  δ_media~0.01  %gig~77%
+  4.0  3  16384  1    77    34    0.00   3.20  AZAR(exp)
+  4.0  3  16384  2    77    30    0.02   3.26  AZAR(exp)
+  4.0  3  16384  3    76    29    0.00   3.20  AZAR(exp)
+  -> λ_H=4.0 Dt=3: diam-pend=-0.06  δ_media~0.01  %gig~77%
+
+================================================================================================
+Baseline cg003d (λ_H=0 debe ≈ hiperbólico):
+  cg003d Dt=2 N=1024: %gig=58% diam=24 δ=0.00
+  cg003d Dt=2 N=4096: %gig=58% diam=29 δ=0.00
+  cg003d Dt=3 N=1024: %gig=76% diam=16 δ=0.00
+  cg003d Dt=3 N=4096: %gig=77% diam=22 δ=0.00
+
+Criterio de ÉXITO (emergencia, no impuesto):
+  · λ_H=0: δ≈0, diam-pend~0.1 (hiperbólico — control)
+  · λ_H>0 en régimen: δ CRECE, diam-pend→0.5, %gig↑, shuffle destruye
+  · Litmus: λ_H distintos dan lecturas DISTINTAS (no siempre plano)
+
+Tiempo: 802.3s

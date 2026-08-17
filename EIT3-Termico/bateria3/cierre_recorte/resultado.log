@@ -1,0 +1,75 @@
+Corriendo SOLO la versión CON recorte (escala completa, 60 puntos, settle=300, measure=120), semilla=7...
+lista, calculando...
+
+=== CON recorte (como un navegador real de verdad haría), escala completa ===
+filas: 60, puntos fuera de [0.6,1.4] (por el x pedido): 33
+de esos, footprint distintos entre sí (debería ser >1 si NO hay recorte, y muy bajo si SÍ hay recorte): 13 de 13
+correlación huella<->entropía (Pearson) sobre las 60 filas: -0.3179
+primeros 5 puntos (x, footprint, H_absLocal):
+  x=0.2500  footprint=0.6390  H_absLocal=0.9264
+  x=0.2788  footprint=0.5717  H_absLocal=0.9710
+  x=0.3076  footprint=0.6021  H_absLocal=0.9756
+  x=0.3364  footprint=0.5569  H_absLocal=0.9950
+  x=0.3653  footprint=0.6129  H_absLocal=1.1550
+
+curva completa (x, footprint):
+  x=0.2500  footprint=0.6390  H_absLocal=0.9264
+  x=0.2788  footprint=0.5717  H_absLocal=0.9710
+  x=0.3076  footprint=0.6021  H_absLocal=0.9756
+  x=0.3364  footprint=0.5569  H_absLocal=0.9950
+  x=0.3653  footprint=0.6129  H_absLocal=1.1550
+  x=0.3941  footprint=0.6755  H_absLocal=0.9413
+  x=0.4229  footprint=1.4990  H_absLocal=1.8967
+  x=0.4517  footprint=3.1657  H_absLocal=1.7380
+  x=0.4805  footprint=4.0608  H_absLocal=0.9799
+  x=0.5093  footprint=4.4797  H_absLocal=0.9998
+  x=0.5381  footprint=4.6118  H_absLocal=0.9659
+  x=0.5669  footprint=4.6495  H_absLocal=0.8600
+  x=0.5958  footprint=4.6815  H_absLocal=0.9659
+  x=0.6246  footprint=4.6333  H_absLocal=0.9992
+  x=0.6534  footprint=4.5867  H_absLocal=0.8366
+  x=0.6822  footprint=4.6306  H_absLocal=0.7540
+  x=0.7110  footprint=4.5437  H_absLocal=0.9604
+  x=0.7398  footprint=4.5477  H_absLocal=0.9982
+  x=0.7686  footprint=4.4467  H_absLocal=0.9968
+  x=0.7975  footprint=4.3322  H_absLocal=0.9659
+  x=0.8263  footprint=3.7449  H_absLocal=0.9007
+  x=0.8551  footprint=1.8987  H_absLocal=0.8600
+  x=0.8839  footprint=0.1019  H_absLocal=0.9928
+  x=0.9127  footprint=1.2268  H_absLocal=0.9097
+  x=0.9415  footprint=2.0714  H_absLocal=0.9837
+  x=0.9703  footprint=2.5705  H_absLocal=0.8485
+  x=0.9992  footprint=3.0501  H_absLocal=0.7838
+  x=1.0280  footprint=3.5614  H_absLocal=0.9710
+  x=1.0568  footprint=3.8914  H_absLocal=0.9799
+  x=1.0856  footprint=4.2080  H_absLocal=0.6873
+  x=1.1144  footprint=4.4772  H_absLocal=0.9756
+  x=1.1432  footprint=4.8310  H_absLocal=0.9928
+  x=1.1720  footprint=5.0206  H_absLocal=0.9097
+  x=1.2008  footprint=5.2521  H_absLocal=0.9982
+  x=1.2297  footprint=5.5101  H_absLocal=0.9183
+  x=1.2585  footprint=5.7035  H_absLocal=0.9902
+  x=1.2873  footprint=5.9364  H_absLocal=1.0000
+  x=1.3161  footprint=6.1959  H_absLocal=1.0000
+  x=1.3449  footprint=6.4242  H_absLocal=0.8709
+  x=1.3737  footprint=6.6133  H_absLocal=0.9837
+  x=1.4025  footprint=6.8434  H_absLocal=0.9413
+  x=1.4314  footprint=6.8929  H_absLocal=0.9902
+  x=1.4602  footprint=6.8682  H_absLocal=0.6873
+  x=1.4890  footprint=6.8825  H_absLocal=0.9756
+  x=1.5178  footprint=6.8485  H_absLocal=0.9950
+  x=1.5466  footprint=6.9330  H_absLocal=0.9264
+  x=1.5754  footprint=6.8400  H_absLocal=0.8912
+  x=1.6042  footprint=6.8263  H_absLocal=0.6873
+  x=1.6331  footprint=6.8221  H_absLocal=0.9481
+  x=1.6619  footprint=6.8290  H_absLocal=0.7838
+  x=1.6907  footprint=6.8605  H_absLocal=0.8242
+  x=1.7195  footprint=6.8370  H_absLocal=0.9544
+  x=1.7483  footprint=6.8451  H_absLocal=0.6303
+  x=1.7771  footprint=6.8645  H_absLocal=0.9871
+  x=1.8059  footprint=6.8471  H_absLocal=0.9007
+  x=1.8347  footprint=6.8381  H_absLocal=0.9604
+  x=1.8636  footprint=6.9131  H_absLocal=0.9604
+  x=1.8924  footprint=6.8659  H_absLocal=0.8366
+  x=1.9212  footprint=6.8791  H_absLocal=0.8366
+  x=1.9500  footprint=6.7938  H_absLocal=0.7978

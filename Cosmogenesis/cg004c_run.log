@@ -1,0 +1,190 @@
+CG004-c — ROBUSTIFICACIÓN (Dt∈{2,3}, 8 semillas) — ¿aguanta el negativo global?
+====================================================================================================
+CICLOS: λ_H=0 · cos_min=0.6 · m_cross=8 (gate relajado, triángulos abundantes)
+
+Pre-vuelo · no-degeneración de la métrica:
+  Dtan=2: std(24 dir)=8.875e-01 -> OK
+  Dtan=3: std(24 dir)=3.596e-01 -> OK
+
+Anclas (escala): lattice2D plano (δ CRECE) · árbol_b3 (δ=0):
+       ancla      N   clu  %gig  diam   δ_med d_grow        ver
+   lattice2D   1024  0.00  100    57    2.18   1.60  GEOMETRIA
+    arbol_b3   1024  0.00  100    12    0.00   2.28  AZAR(exp)
+   lattice2D  16384  0.00  100   235    8.88   1.78  GEOMETRIA
+    arbol_b3  16384  0.00  100    17    0.00   3.18  AZAR(exp)
+
+filas totales=144  ya hechas=0  faltan=144   LOG=cg004c_robusto.csv
+
+  brazo Dt      N sd   clu    ev  %gig   diam   δ_med d_grow        ver
+-----------------------------------------------------------------------
+  ARBOL  2   1024  1  0.00  1.00   64     21    0.00   2.18  AZAR(exp)
+ CICLOS  2   1024  1  0.43  1.34   57     20    0.01   2.00  AZAR(exp)
+   AZAR  2   1024  1  0.00  1.34   64     34    0.92   1.92  AZAR(exp)
+  ARBOL  2   1024  2  0.00  1.00   61     22    0.00   2.10  AZAR(exp)
+ CICLOS  2   1024  2  0.40  1.31   58     21    0.01   2.01  AZAR(exp)
+   AZAR  2   1024  2  0.00  1.31   60     24    1.02   1.92  GEOMETRIA
+  ARBOL  2   1024  3  0.00  1.00   58     20    0.00   2.04  GEOMETRIA
+ CICLOS  2   1024  3  0.45  1.34   58     25    0.01   1.94  AZAR(exp)
+   AZAR  2   1024  3  0.00  1.34   63     33    1.00   2.02  GEOMETRIA
+  ARBOL  2   1024  4  0.00  1.00   62     20    0.00   2.05  AZAR(exp)
+ CICLOS  2   1024  4  0.48  1.33   58     21    0.02   1.94  AZAR(exp)
+   AZAR  2   1024  4  0.00  1.33   58     31    0.74   1.94  AZAR(exp)
+  ARBOL  2   1024  5  0.00  1.00   60     20    0.00   2.09  AZAR(exp)
+ CICLOS  2   1024  5  0.46  1.34   58     19    0.05   2.06  AZAR(exp)
+   AZAR  2   1024  5  0.00  1.34   63     25    1.03   1.99  AZAR(exp)
+  ARBOL  2   1024  6  0.00  1.00   61     22    0.00   2.10  AZAR(exp)
+ CICLOS  2   1024  6  0.45  1.33   55     18    0.05   2.03  AZAR(exp)
+   AZAR  2   1024  6  0.00  1.33   52     26    0.81   1.91  GEOMETRIA
+  ARBOL  2   1024  7  0.00  1.00   58     21    0.00   2.07  GEOMETRIA
+ CICLOS  2   1024  7  0.45  1.35   59     25    0.05   2.01  AZAR(exp)
+   AZAR  2   1024  7  0.00  1.35   63     24    0.86   2.01  AZAR(exp)
+  ARBOL  2   1024  8  0.00  1.00   58     20    0.00   2.06  AZAR(exp)
+ CICLOS  2   1024  8  0.44  1.34   59     19    0.03   1.98  AZAR(exp)
+   AZAR  2   1024  8  0.00  1.34   65     25    0.96   2.02  GEOMETRIA
+  ARBOL  2   4096  1  0.00  1.00   59     25    0.00   2.53  AZAR(exp)
+ CICLOS  2   4096  1  0.48  1.35   56     26    0.01   2.48  AZAR(exp)
+   AZAR  2   4096  1  0.00  1.35   61     40    1.23   2.33  AZAR(exp)
+  ARBOL  2   4096  2  0.00  1.00   59     27    0.00   2.46  AZAR(exp)
+ CICLOS  2   4096  2  0.44  1.33   57     24    0.01   2.40  AZAR(exp)
+   AZAR  2   4096  2  0.00  1.33   59     32    1.22   2.32  AZAR(exp)
+  ARBOL  2   4096  3  0.00  1.00   59     26    0.00   2.44  GEOMETRIA
+ CICLOS  2   4096  3  0.47  1.33   56     28    0.01   2.35  GEOMETRIA
+   AZAR  2   4096  3  0.00  1.33   57     34    1.24   2.30  AZAR(exp)
+  ARBOL  2   4096  4  0.00  1.00   59     27    0.00   2.41  AZAR(exp)
+ CICLOS  2   4096  4  0.46  1.35   55     26    0.02   2.43  AZAR(exp)
+   AZAR  2   4096  4  0.00  1.35   58     37    1.33   2.29  AZAR(exp)
+  ARBOL  2   4096  5  0.00  1.00   59     25    0.00   2.47  AZAR(exp)
+ CICLOS  2   4096  5  0.46  1.35   57     24    0.05   2.41  AZAR(exp)
+   AZAR  2   4096  5  0.00  1.35   61     38    1.17   2.34  AZAR(exp)
+  ARBOL  2   4096  6  0.00  1.00   59     28    0.00   2.43  AZAR(exp)
+ CICLOS  2   4096  6  0.49  1.35   55     25    0.05   2.43  AZAR(exp)
+   AZAR  2   4096  6  0.00  1.35   55     37    1.16   2.29  AZAR(exp)
+  ARBOL  2   4096  7  0.00  1.00   59     30    0.00   2.47  AZAR(exp)
+ CICLOS  2   4096  7  0.44  1.35   56     27    0.02   2.34  AZAR(exp)
+   AZAR  2   4096  7  0.00  1.35   58     35    1.08   2.46  AZAR(exp)
+  ARBOL  2   4096  8  0.00  1.00   58     26    0.00   2.49  AZAR(exp)
+ CICLOS  2   4096  8  0.46  1.34   56     26    0.02   2.44  AZAR(exp)
+   AZAR  2   4096  8  0.00  1.34   58     41    1.19   2.36  AZAR(exp)
+  ARBOL  2  16384  1  0.00  1.00   59     31    0.00   2.89  AZAR(exp)
+ CICLOS  2  16384  1  0.45  1.34   55     35    0.00   2.81  AZAR(exp)
+   AZAR  2  16384  1  0.00  1.34   57     41    1.40   2.72  AZAR(exp)
+  ARBOL  2  16384  2  0.00  1.00   59     31    0.00   2.94  AZAR(exp)
+ CICLOS  2  16384  2  0.50  1.33   57     31    0.01   2.80  AZAR(exp)
+   AZAR  2  16384  2  0.00  1.33   60     38    1.44   2.72  AZAR(exp)
+  ARBOL  2  16384  3  0.00  1.00   59     30    0.00   2.83  AZAR(exp)
+ CICLOS  2  16384  3  0.45  1.32   56     35    0.01   2.80  AZAR(exp)
+   AZAR  2  16384  3  0.00  1.32   58     49    1.46   2.68  AZAR(exp)
+  ARBOL  2  16384  4  0.00  1.00   59     31    0.00   2.89  AZAR(exp)
+ CICLOS  2  16384  4  0.49  1.34   55     32    0.02   2.80  AZAR(exp)
+   AZAR  2  16384  4  0.00  1.34   58     47    1.45   2.65  AZAR(exp)
+  ARBOL  2  16384  5  0.00  1.00   58     33    0.00   2.89  AZAR(exp)
+ CICLOS  2  16384  5  0.43  1.34   55     28    0.06   2.82  AZAR(exp)
+   AZAR  2  16384  5  0.00  1.34   57     40    1.38   2.68  AZAR(exp)
+  ARBOL  2  16384  6  0.00  1.00   58     36    0.00   2.93  AZAR(exp)
+ CICLOS  2  16384  6  0.45  1.33   55     32    0.07   2.71  AZAR(exp)
+   AZAR  2  16384  6  0.00  1.33   56     42    1.52   2.67  AZAR(exp)
+  ARBOL  2  16384  7  0.00  1.00   59     34    0.00   2.87  AZAR(exp)
+ CICLOS  2  16384  7  0.43  1.34   55     32    0.03   2.78  AZAR(exp)
+   AZAR  2  16384  7  0.00  1.34   57     49    1.48   2.70  AZAR(exp)
+  ARBOL  2  16384  8  0.00  1.00   58     30    0.00   2.85  AZAR(exp)
+ CICLOS  2  16384  8  0.46  1.33   57     30    0.04   2.76  AZAR(exp)
+   AZAR  2  16384  8  0.00  1.33   59     44    1.31   2.80  AZAR(exp)
+  ARBOL  3   1024  1  0.02  1.01   76     20    0.00   2.41  GEOMETRIA
+ CICLOS  3   1024  1  0.53  1.51   82     17    0.02   2.35  AZAR(exp)
+   AZAR  3   1024  1  0.00  1.51   89     14    0.64   2.55  AZAR(exp)
+  ARBOL  3   1024  2  0.04  1.01   79     20    0.02   2.36  AZAR(exp)
+ CICLOS  3   1024  2  0.57  1.56   83     17    0.05   2.34  GEOMETRIA
+   AZAR  3   1024  2  0.00  1.56   91     16    0.61   2.59  AZAR(exp)
+  ARBOL  3   1024  3  0.02  1.01   79     17    0.00   2.44  GEOMETRIA
+ CICLOS  3   1024  3  0.55  1.50   82     18    0.05   2.37  AZAR(exp)
+   AZAR  3   1024  3  0.00  1.50   88     15    0.59   2.60  AZAR(exp)
+  ARBOL  3   1024  4  0.04  1.01   78     18    0.00   2.33  AZAR(exp)
+ CICLOS  3   1024  4  0.55  1.53   85     19    0.01   2.34  AZAR(exp)
+   AZAR  3   1024  4  0.00  1.53   91     14    0.63   2.61  AZAR(exp)
+  ARBOL  3   1024  5  0.02  1.01   75     17    0.00   2.39  AZAR(exp)
+ CICLOS  3   1024  5  0.55  1.50   81     17    0.03   2.42  GEOMETRIA
+   AZAR  3   1024  5  0.00  1.50   90     16    0.62   2.56  AZAR(exp)
+  ARBOL  3   1024  6  0.04  1.02   80     21    0.00   2.37  AZAR(exp)
+ CICLOS  3   1024  6  0.52  1.49   83     16    0.02   2.37  AZAR(exp)
+   AZAR  3   1024  6  0.00  1.49   89     18    0.59   2.56  AZAR(exp)
+  ARBOL  3   1024  7  0.05  1.02   81     21    0.04   2.42  AZAR(exp)
+ CICLOS  3   1024  7  0.54  1.49   82     17    0.01   2.39  GEOMETRIA
+   AZAR  3   1024  7  0.01  1.49   89     14    0.64   2.57  AZAR(exp)
+  ARBOL  3   1024  8  0.04  1.01   78     17    0.02   2.56  AZAR(exp)
+ CICLOS  3   1024  8  0.54  1.50   82     14    0.07   2.46  AZAR(exp)
+   AZAR  3   1024  8  0.00  1.50   88     13    0.60   2.61  AZAR(exp)
+  ARBOL  3   4096  1  0.02  1.01   77     23    0.00   2.83  AZAR(exp)
+ CICLOS  3   4096  1  0.55  1.51   82     20    0.02   2.81  AZAR(exp)
+   AZAR  3   4096  1  0.00  1.51   88     19    0.67   3.05  AZAR(exp)
+  ARBOL  3   4096  2  0.03  1.01   78     21    0.02   2.87  AZAR(exp)
+ CICLOS  3   4096  2  0.52  1.52   82     21    0.06   2.83  AZAR(exp)
+   AZAR  3   4096  2  0.00  1.52   89     20    0.65   3.07  AZAR(exp)
+  ARBOL  3   4096  3  0.02  1.01   77     22    0.00   2.73  AZAR(exp)
+ CICLOS  3   4096  3  0.53  1.50   82     24    0.05   2.72  AZAR(exp)
+   AZAR  3   4096  3  0.00  1.50   88     18    0.67   3.05  AZAR(exp)
+  ARBOL  3   4096  4  0.03  1.01   77     27    0.00   2.75  AZAR(exp)
+ CICLOS  3   4096  4  0.54  1.50   81     24    0.02   2.80  AZAR(exp)
+   AZAR  3   4096  4  0.00  1.50   88     17    0.68   2.99  AZAR(exp)
+  ARBOL  3   4096  5  0.03  1.01   78     22    0.00   2.82  AZAR(exp)
+ CICLOS  3   4096  5  0.52  1.51   82     20    0.04   2.80  AZAR(exp)
+   AZAR  3   4096  5  0.00  1.51   89     17    0.66   3.04  AZAR(exp)
+  ARBOL  3   4096  6  0.04  1.01   78     23    0.00   2.73  AZAR(exp)
+ CICLOS  3   4096  6  0.54  1.50   82     21    0.04   2.79  AZAR(exp)
+   AZAR  3   4096  6  0.00  1.50   88     20    0.67   3.03  AZAR(exp)
+  ARBOL  3   4096  7  0.03  1.01   78     22    0.04   2.84  AZAR(exp)
+ CICLOS  3   4096  7  0.54  1.51   83     21    0.02   2.89  AZAR(exp)
+   AZAR  3   4096  7  0.00  1.51   89     20    0.66   3.08  AZAR(exp)
+  ARBOL  3   4096  8  0.03  1.01   77     22    0.02   2.85  AZAR(exp)
+ CICLOS  3   4096  8  0.53  1.51   83     18    0.06   2.98  AZAR(exp)
+   AZAR  3   4096  8  0.00  1.51   89     16    0.67   3.07  AZAR(exp)
+  ARBOL  3  16384  1  0.03  1.01   77     25    0.00   3.23  AZAR(exp)
+ CICLOS  3  16384  1  0.57  1.52   81     24    0.03   3.21  AZAR(exp)
+   AZAR  3  16384  1  0.00  1.52   89     22    0.70   3.44  AZAR(exp)
+  ARBOL  3  16384  2  0.01  1.01   77     25    0.02   3.27  AZAR(exp)
+ CICLOS  3  16384  2  0.54  1.55   82     25    0.04   3.20  AZAR(exp)
+   AZAR  3  16384  2  0.00  1.55   89     19    0.68   3.54  AZAR(exp)
+  ARBOL  3  16384  3  0.02  1.01   76     27    0.00   3.20  AZAR(exp)
+ CICLOS  3  16384  3  0.56  1.53   81     23    0.06   3.18  AZAR(exp)
+   AZAR  3  16384  3  0.00  1.53   89     21    0.67   3.59  AZAR(exp)
+  ARBOL  3  16384  4  0.02  1.01   77     31    0.00   3.22  AZAR(exp)
+ CICLOS  3  16384  4  0.57  1.52   81     30    0.03   3.17  AZAR(exp)
+   AZAR  3  16384  4  0.00  1.52   89     21    0.70   3.43  AZAR(exp)
+  ARBOL  3  16384  5  0.02  1.01   77     30    0.00   3.19  AZAR(exp)
+ CICLOS  3  16384  5  0.55  1.54   82     26    0.04   3.20  AZAR(exp)
+   AZAR  3  16384  5  0.00  1.54   90     19    0.68   3.47  AZAR(exp)
+  ARBOL  3  16384  6  0.01  1.01   77     28    0.00   3.16  AZAR(exp)
+ CICLOS  3  16384  6  0.51  1.54   81     27    0.05   3.21  AZAR(exp)
+   AZAR  3  16384  6  0.00  1.54   89     20    0.69   3.52  AZAR(exp)
+  ARBOL  3  16384  7  0.01  1.01   77     28    0.03   3.28  AZAR(exp)
+ CICLOS  3  16384  7  0.54  1.53   82     26    0.03   3.22  AZAR(exp)
+   AZAR  3  16384  7  0.00  1.53   90     21    0.67   3.48  AZAR(exp)
+  ARBOL  3  16384  8  0.04  1.01   76     27    0.02   3.39  AZAR(exp)
+ CICLOS  3  16384  8  0.52  1.55   82     23    0.06   3.25  AZAR(exp)
+   AZAR  3  16384  8  0.00  1.55   90     21    0.68   3.48  AZAR(exp)
+
+====================================================================================================
+RESUMEN ROBUSTO (media ± std sobre semillas) — objetivo plano: diam-pend→1/Dt, δ CRECE, dim CONVERGE
+
+  ── Dtan=2  (objetivo diam-pend=0.50) ──
+      ARBOL: clu=0.00 %gig= 59  diam-pend= 0.16±0.02  δ→ ACOTADA(hiperb)
+             d_grow(N): N=1024:2.08±0.04  N=4096:2.46±0.04  N=16384:2.88±0.04   δ_med(N): 0.00  0.00  0.00
+     CICLOS: clu=0.46 %gig= 56  diam-pend= 0.15±0.04  δ→ ACOTADA(hiperb)
+             d_grow(N): N=1024:1.99±0.04  N=4096:2.41±0.04  N=16384:2.79±0.03   δ_med(N): 0.03  0.02  0.03
+       AZAR: clu=0.00 %gig= 58  diam-pend= 0.17±0.05  δ→    CRECE(plano)
+             d_grow(N): N=1024:1.97±0.05  N=4096:2.34±0.05  N=16384:2.70±0.04   δ_med(N): 0.92  1.20  1.43
+
+  ── Dtan=3  (objetivo diam-pend=0.33) ──
+      ARBOL: clu=0.02 %gig= 77  diam-pend= 0.14±0.05  δ→ ACOTADA(hiperb)
+             d_grow(N): N=1024:2.41±0.06  N=4096:2.80±0.05  N=16384:3.24±0.07   δ_med(N): 0.01  0.01  0.01
+     CICLOS: clu=0.55 %gig= 81  diam-pend= 0.15±0.03  δ→ ACOTADA(hiperb)
+             d_grow(N): N=1024:2.38±0.04  N=4096:2.83±0.07  N=16384:3.21±0.02   δ_med(N): 0.03  0.04  0.04
+       AZAR: clu=0.00 %gig= 89  diam-pend= 0.11±0.05  δ→ ACOTADA(hiperb)
+             d_grow(N): N=1024:2.58±0.02  N=4096:3.05±0.03  N=16384:3.49±0.05   δ_med(N): 0.61  0.67  0.68
+
+LECTURA (pre-registrada, redacción CS):
+  · Si CICLOS NO se separa de ARBOL hacia lo plano en Dt∈{2,3}×8 semillas (diam-pend<<1/Dt,
+    δ acotada, dim trepa) => negativo ROBUSTO: 'el espacio plano no emerge de crecimiento
+    relacional local en la familia probada; la obstrucción aparece GLOBAL, no local'.
+  · Si CICLOS SÍ separa en algún régimen => el negativo NO era robusto: revisar antes de fijar.
+
+Tiempo: 7.0 min · CSV: cg004c_robusto.csv

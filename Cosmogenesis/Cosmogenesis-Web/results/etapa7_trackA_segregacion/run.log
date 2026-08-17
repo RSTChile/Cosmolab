@@ -1,0 +1,28 @@
+=== ETAPA 7 / TRACK A — segregación gravitacional (TRACKA_SEGREGACION_2026-07-23) ===
+
+--- controles principales (10 semillas, G=0.20) ---
+  seed=    7 r_real=0.303 r_shuf=0.429 r_off=0.275 r_inv=None n_pop=17
+  seed=   42 r_real=0.347 r_shuf=0.41 r_off=-0.205 r_inv=None n_pop=20
+  seed=   99 r_real=0.839 r_shuf=0.688 r_off=-0.428 r_inv=None n_pop=17
+  seed=  777 r_real=0.737 r_shuf=-0.032 r_off=0.363 r_inv=0.007 n_pop=23
+  seed= 2025 r_real=0.222 r_shuf=0.719 r_off=0.408 r_inv=None n_pop=14
+  seed= 3141 r_real=0.513 r_shuf=0.587 r_off=-0.028 r_inv=None n_pop=18
+  seed= 8191 r_real=0.274 r_shuf=0.432 r_off=0.803 r_inv=None n_pop=20
+  seed=99991 r_real=0.274 r_shuf=0.797 r_off=0.134 r_inv=None n_pop=16
+  seed=12345 r_real=-0.206 r_shuf=0.723 r_off=0.231 r_inv=None n_pop=22
+  seed=54321 r_real=0.695 r_shuf=-0.108 r_off=-0.561 r_inv=0.192 n_pop=25
+
+rate seed_win (REAL segrega, R/S separado) = 0.10 sobre n_valid=10 semillas
+veredicto controles principales: FAIL
+
+--- barrido G_GRAV (4 semillas) ---
+  G=0.05 rate_win=0.0 (n_valid=4)
+  G=0.10 rate_win=0.0 (n_valid=4)
+  G=0.20 rate_win=0.0 (n_valid=4)
+  G=0.30 rate_win=0.0 (n_valid=4)
+  G=0.45 rate_win=0.0 (n_valid=4)
+
+JSON -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/etapa7_trackA_segregacion/trackA_01_segregacion_result.json
+elapsed = 317.7s
+
+=== VEREDICTO GLOBAL: FAIL (rate=0.10, n_valid=10) ===

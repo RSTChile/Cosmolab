@@ -1,0 +1,20 @@
+CS057 — PAISAJE COMPLETO: barrido Sobol de las 6 fuerzas (0→1) + alcance + sync/async
+============================================================================================================
+[SMOKE] 8 puntos × 3 semillas × 2 brazos × 5 clases — validación+cronometraje
+puntos=8 semillas=3 pasos=16 workers=14 ensemble=['d1', 'd2', 'd3', 'd4', 'curv']
+tasas base g=0.1 s=0.1 em=0.1 wk=0.02 exp=0.12 · alcances FIJOS (grav 2-6/EM 2/fuerte-débil vecindad)
+salida CHECKPOINT: cs057_smoke.csv
+total puntos (Sobol + físico + denso) = 9  → corridas ≈ 54
+  1/9 · 1.7s · 1.65s/pt
+  2/9 · 29.0s · 14.50s/pt
+  3/9 · 42.8s · 14.27s/pt
+  4/9 · 75.8s · 18.96s/pt
+  5/9 · 109.1s · 21.83s/pt
+  6/9 · 110.8s · 18.47s/pt
+  7/9 · 160.2s · 22.89s/pt
+  8/9 · 165.2s · 20.66s/pt
+  9/9 · 166.1s · 18.45s/pt
+
+COMPLETO: 9 puntos en 2.8 min → cs057_smoke.csv
+[SMOKE] cronometraje: 3.075 s/corrida. Para la tanda completa (4096 pts):
+        ~1.5 h con 14 workers (paralelizado por puntos).

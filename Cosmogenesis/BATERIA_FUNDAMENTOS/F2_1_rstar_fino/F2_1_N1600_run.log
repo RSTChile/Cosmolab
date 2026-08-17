@@ -1,0 +1,2 @@
+[F2-1] inicio N=1600 eps=0.001 sub_grid=True n_r=19 t0=2026-07-24T18:54:35Z
+[F2-1] D=1.317018e-05 pasos_lavado_mediana=200000 pasos_fijo=230000 lavo_todas=False

@@ -1,0 +1,13 @@
+HIGGS D L=30 curvatura d2E
+step   0 a=   1.0 k1=0 k3=0 ratio=0.000 ratio_NULL=0.000 <var>=8.12e-03
+step  50 a=   1.8 k1=17 k3=3 ratio=0.499 ratio_NULL=0.500 <var>=1.57e-03
+step 100 a=   3.3 k1=74 k3=2 ratio=0.498 ratio_NULL=0.500 <var>=1.08e-03
+step 150 a=   6.0 k1=148 k3=19 ratio=0.500 ratio_NULL=0.500 <var>=1.04e-03
+step 200 a=  11.0 k1=205 k3=28 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+step 250 a=  20.1 k1=255 k3=24 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+step 300 a=  36.6 k1=296 k3=37 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+step 350 a=  66.7 k1=334 k3=41 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+step 400 a= 121.5 k1=334 k3=41 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+step 450 a= 221.4 k1=334 k3=41 ratio=0.500 ratio_NULL=0.500 <var>=1.05e-03
+FIN D
+EXIT:0

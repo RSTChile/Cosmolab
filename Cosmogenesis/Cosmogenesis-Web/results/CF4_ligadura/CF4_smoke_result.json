@@ -1,0 +1,143 @@
+{
+  "protocol_id": "CF4_LIGADURA_2026-07-23",
+  "mode": "smoke",
+  "params": {
+    "L": 16,
+    "pasos": 120,
+    "H_TOPO_sweep": [
+      0.005,
+      0.02,
+      0.08
+    ],
+    "seeds": [
+      7,
+      42
+    ]
+  },
+  "summary": {
+    "n_records_total": 322,
+    "n_k_ge2": 128,
+    "n_k_ge3_with_null": 77,
+    "k_histogram": {
+      "1": 194,
+      "2": 51,
+      "3": 19,
+      "4": 7,
+      "5": 9,
+      "6": 2,
+      "7": 3,
+      "8": 4,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 2,
+      "14": 1,
+      "23": 1,
+      "24": 1,
+      "27": 1,
+      "63": 1,
+      "91": 1,
+      "95": 1,
+      "182": 1,
+      "231": 1,
+      "245": 1,
+      "253": 1,
+      "255": 1,
+      "256": 16
+    },
+    "ratio_lig_median": 0.04127979355449094,
+    "ratio_lig_mean": 0.08360137575897174,
+    "ratio_lig_p10_p90": [
+      0.002227770144391393,
+      0.22118865024417805
+    ],
+    "ratio_null_median": 1.0659037308540684,
+    "ratio_null_mean": 1.1635833863656262,
+    "rate_pass_joint": 0.0,
+    "rate_pass_ref_055": false,
+    "mean_m2_real_k3plus": 0.09799633706615221,
+    "mean_m2_null_k3plus": 0.09782598802551652,
+    "T4_null_falls": true,
+    "by_H_TOPO": {
+      "0.0050": {
+        "n_joint_pop": 8,
+        "rate_pass": 0.0,
+        "median_ratio_lig": 0.19619374606357015,
+        "median_ratio_null": 0.9893565398586261,
+        "mean_k": 256.0
+      },
+      "0.0200": {
+        "n_joint_pop": 8,
+        "rate_pass": 0.0,
+        "median_ratio_lig": 0.18969257297259873,
+        "median_ratio_null": 0.9898591550362766,
+        "mean_k": 170.66666666666666
+      },
+      "0.0800": {
+        "n_joint_pop": 61,
+        "rate_pass": 0.0,
+        "median_ratio_lig": 0.033732373506696875,
+        "median_ratio_null": 1.2089221510282704,
+        "mean_k": 6.781456953642384
+      }
+    },
+    "THRESH_BIG": 5.0,
+    "THRESH_NULL": 1.25
+  },
+  "per_seed_H": [
+    {
+      "H_TOPO": 0.005,
+      "seed": 7,
+      "n_closures_k_ge2": 4,
+      "n_closures_k_ge3": 4,
+      "ratio_lig_mean": 0.18464679488174113,
+      "ratio_null_mean": 1.0087156917493023,
+      "k_max": 256
+    },
+    {
+      "H_TOPO": 0.005,
+      "seed": 42,
+      "n_closures_k_ge2": 4,
+      "n_closures_k_ge3": 4,
+      "ratio_lig_mean": 0.18547462898324074,
+      "ratio_null_mean": 0.9524825699998918,
+      "k_max": 256
+    },
+    {
+      "H_TOPO": 0.02,
+      "seed": 7,
+      "n_closures_k_ge2": 4,
+      "n_closures_k_ge3": 4,
+      "ratio_lig_mean": 0.16615156557568606,
+      "ratio_null_mean": 0.9846453416985137,
+      "k_max": 256
+    },
+    {
+      "H_TOPO": 0.02,
+      "seed": 42,
+      "n_closures_k_ge2": 4,
+      "n_closures_k_ge3": 4,
+      "ratio_lig_mean": 0.17160356988865097,
+      "ratio_null_mean": 0.9815556736842945,
+      "k_max": 256
+    },
+    {
+      "H_TOPO": 0.08,
+      "seed": 7,
+      "n_closures_k_ge2": 58,
+      "n_closures_k_ge3": 28,
+      "ratio_lig_mean": 0.06091907666701724,
+      "ratio_null_mean": 1.127399708933773,
+      "k_max": 256
+    },
+    {
+      "H_TOPO": 0.08,
+      "seed": 42,
+      "n_closures_k_ge2": 54,
+      "n_closures_k_ge3": 33,
+      "ratio_lig_mean": 0.0802993224656316,
+      "ratio_null_mean": 1.2823979330751385,
+      "k_max": 256
+    }
+  ]
+}

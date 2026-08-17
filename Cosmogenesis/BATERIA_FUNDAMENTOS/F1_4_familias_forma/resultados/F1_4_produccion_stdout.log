@@ -1,0 +1,10 @@
+[2026-07-24 14:55:47] === F1-4 motor arrancando modo=produccion ===
+[2026-07-24 14:55:47] N=200 semillas=12 eps_list=[0.0, np.float64(0.0001), np.float64(0.0003727594), np.float64(0.0013894955), np.float64(0.0051794747), np.float64(0.0193069773), np.float64(0.0719685673), np.float64(0.2682695795), np.float64(1.0)] r_targets=[0.0, 0.1, 0.3, 0.5, 1.0, 2.0, 5.0, 10.0, 30.0, 100.0] familias=['multi_modo', 'modo_unico', 'bulto_gaussiano', 'ruido_blanco', 'ruido_rojo', 'ruido_azul']
+[2026-07-24 14:55:47] [familia=multi_modo] calibrando D/pasos en eps=0.01 (repr.)
+[2026-07-24 14:55:53] [familia=multi_modo] pasos_fijo=6095 lavo_todas=True mediana=5300
+[2026-07-24 15:04:40]   [familia=multi_modo] eps=0.000e+00 D=0.00000 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:18:50]   [familia=multi_modo] eps=1.000e-04 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:33:30]   [familia=multi_modo] eps=3.728e-04 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 15:48:31]   [familia=multi_modo] eps=1.389e-03 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 16:00:34]   [familia=multi_modo] eps=5.179e-03 D=0.00084 pasos=6095 -> 10 puntos r listos
+[2026-07-24 16:12:09]   [familia=multi_modo] eps=1.931e-02 D=0.00084 pasos=6095 -> 10 puntos r listos

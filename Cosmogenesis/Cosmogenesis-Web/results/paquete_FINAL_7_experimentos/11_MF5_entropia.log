@@ -1,0 +1,13 @@
+MF-5 entropia S = a^3 (rho+P)/T * 1/H_fis^3
+step   0 a=   1.0 T=1.00e+15 rho=1.00e+30 H_fis=1.0000e-02 V_cut=1.00e+06 S=1.33e+21
+step  50 a=   1.8 T=5.49e+14 rho=1.65e+29 H_fis=7.4082e-03 V_cut=2.46e+06 S=5.98e+21
+step 100 a=   3.3 T=3.01e+14 rho=2.73e+28 H_fis=5.4881e-03 V_cut=6.05e+06 S=2.68e+22
+step 150 a=   6.0 T=1.65e+14 rho=4.52e+27 H_fis=4.0657e-03 V_cut=1.49e+07 S=1.20e+23
+step 200 a=  11.0 T=9.07e+13 rho=7.47e+26 H_fis=3.0119e-03 V_cut=3.66e+07 S=5.38e+23
+step 250 a=  20.1 T=4.98e+13 rho=1.23e+26 H_fis=2.2313e-03 V_cut=9.00e+07 S=2.41e+24
+step 300 a=  36.6 T=2.73e+13 rho=2.04e+25 H_fis=1.6530e-03 V_cut=2.21e+08 S=1.08e+25
+step 350 a=  66.7 T=1.50e+13 rho=3.37e+24 H_fis=1.2246e-03 V_cut=5.45e+08 S=4.84e+25
+step 400 a= 121.5 T=8.23e+12 rho=5.57e+23 H_fis=9.0718e-04 V_cut=1.34e+09 S=2.17e+26
+step 450 a= 221.4 T=4.52e+12 rho=9.21e+22 H_fis=6.7206e-04 V_cut=3.29e+09 S=9.73e+26
+FIN MF-5: S ~ a^3 * a^-3 / a^-1 * 1/(a^-1.5) = a * a^{1.5}=a^{2.5} crece => 2do principio OK
+EXIT:0

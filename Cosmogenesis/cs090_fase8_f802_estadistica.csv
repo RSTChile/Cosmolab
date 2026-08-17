@@ -1,0 +1,18 @@
+prueba,variable,L,z,p,detalle,delta_mediano,delta_medio,particulas,signos,p_wilcoxon,p_signos,supera_piso
+Page L (tendencia ordenada),pico logrado,603.0,6.512645042879694,3.6919428347119274e-11,9/11 IC con pico estrictamente creciente en los 5 niveles,,,,,,,
+Page L (tendencia ordenada),frac_masa,605.0,6.633249580710799,1.6418793249367032e-11,11/11 IC con masa estrictamente creciente en los 5 niveles,,,,,,,
+Friedman (cualquier diferencia),frac_masa,44.0,,6.41577661359853e-09,11 bloques × 5 niveles,,,,,,,
+contraste pareado,frac_masa L0 - L1,,,,,-0.015000000000000013,-0.017272727272727283,-34.54545454545457,0/11,0.0009765625,0.0009765625,True
+contraste pareado,frac_masa L2 - L1,,,,,0.010499999999999982,0.010727272727272724,21.454545454545446,11/11,0.0009765625,0.0009765625,True
+contraste pareado,frac_masa L3 - L1,,,,,0.022500000000000006,0.02436363636363636,48.72727272727272,11/11,0.0009765625,0.0009765625,True
+contraste pareado,frac_masa L4 - L1,,,,,0.062000000000000055,0.05622727272727272,112.45454545454544,11/11,0.0009765625,0.0009765625,True
+contraste pareado,frac_masa L4 - L0,,,,,0.07750000000000001,0.07350000000000001,147.00000000000003,11/11,0.0009765625,0.0009765625,True
+Spearman dentro de IC,pico logrado vs frac_masa,,,,rango +0.90 a +1.00,0.9999999999999999,,,11/11,,0.0009765625,
+agrupado con efectos fijos de IC,pico local (p90/mediana),,,1.316183131607652e-25,"Pearson r=+0.865 (p=1.7e-17), n=55",0.9354978354978356,,,,,,
+agrupado con efectos fijos de IC,geometría GLOBAL FoF b=0.30 (eje-1),,,0.0004146582612495088,"Pearson r=-0.455 (p=4.8e-04), n=55",-0.4596764011642668,,,,,,
+agrupado con efectos fijos de IC,CV de densidad local,,,8.089171452019673e-31,"Pearson r=+0.852 (p=1.6e-16), n=55",0.9594516594516596,,,,,,
+Page L (tendencia ordenada),t_primer_sumidero,385.0,-6.633249580710799,0.9999999999835812,,-0.027999999999999997,,,0/11,,,
+Page L (tendencia ordenada),kappa_v,391.0,-6.271435967217482,0.9999999998211333,,-0.24081523196567461,,,0/11,,,
+Page L (tendencia ordenada),n_sumideros,564.0,4.160856555173138,1.585280959047609e-05,,9.0,,,11/11,,,
+Page L (tendencia ordenada),fof030_logrado,462.5,-1.9598237397554634,0.9749918022571772,,-0.0014999999999971703,,,3/11,,,
+recorrido dentro de IC,pico local / geometría global,,,,pico ×2.21-×4.85 vs FoF global ×1.0008-×1.0133,,,,,,,

@@ -1,0 +1,69 @@
+====================================================================================================
+CS072-II -- EXPLORATORIA NUCLEO-II: barrido p_exp x n_focos (N=200, II-DET)
+====================================================================================================
+
+--- n_focos=1 (SUB-CONTROL sin gravedad) ---
+  p_exp=0.000  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0593  k_eff=119.4  logdisp=0.258  (t=0.0min)
+  p_exp=0.005  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0325  k_eff=171.3  logdisp=0.192  (t=0.0min)
+  p_exp=0.010  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0228  k_eff=186.6  logdisp=0.155  (t=0.0min)
+  p_exp=0.020  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0149  k_eff=195.0  logdisp=0.111  (t=0.0min)
+  p_exp=0.030  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0116  k_eff=197.2  logdisp=0.085  (t=0.0min)
+  p_exp=0.050  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0087  k_eff=198.5  logdisp=0.055  (t=0.0min)
+  p_exp=0.080  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0069  k_eff=198.9  logdisp=0.033  (t=0.0min)
+  p_exp=0.120  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0060  k_eff=199.0  logdisp=0.018  (t=0.0min)
+  p_exp=0.200  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0053  k_eff=199.0  logdisp=0.007  (t=0.0min)
+  p_exp=0.350  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0051  k_eff=199.0  logdisp=0.001  (t=0.0min)
+  p_exp=0.500  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0053  k_eff=199.0  logdisp=0.007  (t=0.0min)
+  p_exp=1.000  regimen=COHESION    inicio_tramo=0.01  tramos=[(0.01, 1.0)]  max_h=0.0161  k_eff=194.0  logdisp=0.119  (t=0.0min)
+
+--- n_focos=2  ---
+  p_exp=0.000  regimen=COHESION    inicio_tramo=0.019899497487437186  tramos=[(0.019899497487437186, 1.0)]  max_h=0.0533  k_eff=91.8  logdisp=0.362  (t=0.0min)
+  p_exp=0.005  regimen=COHESION    inicio_tramo=0.019899497487437186  tramos=[(0.019899497487437186, 1.0)]  max_h=0.0315  k_eff=150.6  logdisp=0.273  (t=0.0min)
+  p_exp=0.010  regimen=COHESION    inicio_tramo=0.019899497487437186  tramos=[(0.019899497487437186, 1.0)]  max_h=0.0226  k_eff=175.2  logdisp=0.221  (t=0.1min)
+  p_exp=0.020  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0150  k_eff=190.9  logdisp=0.159  (t=0.1min)
+  p_exp=0.030  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0117  k_eff=195.4  logdisp=0.122  (t=0.1min)
+  p_exp=0.050  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0087  k_eff=197.9  logdisp=0.080  (t=0.1min)
+  p_exp=0.080  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0070  k_eff=198.7  logdisp=0.048  (t=0.1min)
+  p_exp=0.120  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0060  k_eff=198.9  logdisp=0.027  (t=0.1min)
+  p_exp=0.200  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0054  k_eff=198.9  logdisp=0.013  (t=0.1min)
+  p_exp=0.350  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0051  k_eff=198.9  logdisp=0.010  (t=0.1min)
+  p_exp=0.500  regimen=COHESION    inicio_tramo=0.019949748743718593  tramos=[(0.019949748743718593, 1.0)]  max_h=0.0058  k_eff=197.7  logdisp=0.023  (t=0.1min)
+  p_exp=1.000  regimen=COHESION    inicio_tramo=0.019899497487437186  tramos=[(0.019899497487437186, 1.0)]  max_h=0.0158  k_eff=189.4  logdisp=0.169  (t=0.1min)
+
+--- n_focos=5  ---
+  p_exp=0.000  regimen=COHESION    inicio_tramo=0.048994974874371856  tramos=[(0.048994974874371856, 1.0)]  max_h=0.0402  k_eff=69.0  logdisp=0.552  (t=0.1min)
+  p_exp=0.005  regimen=COHESION    inicio_tramo=0.048994974874371856  tramos=[(0.048994974874371856, 1.0)]  max_h=0.0279  k_eff=116.5  logdisp=0.433  (t=0.1min)
+  p_exp=0.010  regimen=COHESION    inicio_tramo=0.048994974874371856  tramos=[(0.048994974874371856, 1.0)]  max_h=0.0213  k_eff=149.5  logdisp=0.355  (t=0.1min)
+  p_exp=0.020  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0147  k_eff=179.5  logdisp=0.257  (t=0.1min)
+  p_exp=0.030  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0116  k_eff=189.8  logdisp=0.197  (t=0.1min)
+  p_exp=0.050  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0088  k_eff=196.1  logdisp=0.129  (t=0.1min)
+  p_exp=0.080  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0071  k_eff=198.0  logdisp=0.078  (t=0.1min)
+  p_exp=0.120  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0061  k_eff=198.4  logdisp=0.048  (t=0.1min)
+  p_exp=0.200  regimen=COHESION    inicio_tramo=0.04949748743718593  tramos=[(0.04949748743718593, 1.0)]  max_h=0.0055  k_eff=198.4  logdisp=0.032  (t=0.1min)
+  p_exp=0.350  regimen=BORDE       inicio_tramo=0.9510050251256281  tramos=[(0.9510050251256281, 1.0)]  max_h=0.0052  k_eff=198.2  logdisp=0.033  (t=0.1min)
+  p_exp=0.500  regimen=BORDE       inicio_tramo=0.9510050251256281  tramos=[(0.9510050251256281, 1.0)]  max_h=0.0070  k_eff=195.0  logdisp=0.069  (t=0.1min)
+  p_exp=1.000  regimen=COHESION    inicio_tramo=0.048994974874371856  tramos=[(0.048994974874371856, 1.0)]  max_h=0.0150  k_eff=177.2  logdisp=0.269  (t=0.1min)
+
+--- n_focos=20  ---
+  p_exp=0.000  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0200  k_eff=71.5  logdisp=0.981  (t=0.1min)
+  p_exp=0.005  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0182  k_eff=86.6  logdisp=0.853  (t=0.1min)
+  p_exp=0.010  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0165  k_eff=103.3  logdisp=0.745  (t=0.1min)
+  p_exp=0.020  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0137  k_eff=135.6  logdisp=0.579  (t=0.1min)
+  p_exp=0.030  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0118  k_eff=159.5  logdisp=0.462  (t=0.1min)
+  p_exp=0.050  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0095  k_eff=182.9  logdisp=0.313  (t=0.2min)
+  p_exp=0.080  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0078  k_eff=192.3  logdisp=0.202  (t=0.2min)
+  p_exp=0.120  regimen=BORDE       inicio_tramo=0.19045226130653267  tramos=[(0.19045226130653267, 1.0)]  max_h=0.0068  k_eff=193.9  logdisp=0.144  (t=0.2min)
+  p_exp=0.200  regimen=BORDE       inicio_tramo=0.8190954773869347  tramos=[(0.8190954773869347, 1.0)]  max_h=0.0060  k_eff=192.8  logdisp=0.130  (t=0.2min)
+  p_exp=0.350  regimen=BORDE       inicio_tramo=0.8190954773869347  tramos=[(0.8190954773869347, 1.0)]  max_h=0.0056  k_eff=191.1  logdisp=0.150  (t=0.2min)
+  p_exp=0.500  regimen=BORDE       inicio_tramo=0.8190954773869347  tramos=[(0.8190954773869347, 1.0)]  max_h=0.0104  k_eff=182.3  logdisp=0.293  (t=0.2min)
+  p_exp=1.000  regimen=BORDE       inicio_tramo=0.18090452261306533  tramos=[(0.18090452261306533, 1.0)]  max_h=0.0117  k_eff=141.0  logdisp=0.553  (t=0.2min)
+
+====================================================================================================
+ANCLAS CANDIDATAS (por n_focos, vía persistencia-de-conectividad, N=200)
+====================================================================================================
+n_focos=1: COHESION(p_exp)=[0.0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.2, 0.35, 0.5, 1.0]  BORDE(p_exp)=[]  DISOLUCION(p_exp)=[]
+n_focos=2: COHESION(p_exp)=[0.0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.2, 0.35, 0.5, 1.0]  BORDE(p_exp)=[]  DISOLUCION(p_exp)=[]
+n_focos=5: COHESION(p_exp)=[0.0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.2, 1.0]  BORDE(p_exp)=[0.35, 0.5]  DISOLUCION(p_exp)=[]
+n_focos=20: COHESION(p_exp)=[]  BORDE(p_exp)=[0.0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.2, 0.35, 0.5, 1.0]  DISOLUCION(p_exp)=[]
+
+tiempo barrido grueso: 0.18 min

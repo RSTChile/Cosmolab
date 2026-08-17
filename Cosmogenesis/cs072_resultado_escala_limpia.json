@@ -1,0 +1,26 @@
+[
+  {
+    "factor": 1,
+    "N_total": 69,
+    "bariones": 3,
+    "hidrogeno": 2,
+    "ratio_bariones": 0.043478260869565216,
+    "tiempo_s": 1.6761829853057861
+  },
+  {
+    "factor": 3,
+    "N_total": 207,
+    "bariones": 10,
+    "hidrogeno": 5,
+    "ratio_bariones": 0.04830917874396135,
+    "tiempo_s": 9.111114978790283
+  },
+  {
+    "factor": 10,
+    "N_total": 690,
+    "bariones": 33,
+    "hidrogeno": 16,
+    "ratio_bariones": 0.04782608695652174,
+    "tiempo_s": 138.98997688293457
+  }
+]

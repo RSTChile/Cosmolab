@@ -1,0 +1,19 @@
+=== Higgs_TEST_REAL ===
+Pregunta: VEV + formula unica => masa != geometria?  (exito != 1/1836)
+sello R0=2.0 U=0.5 TC=0.55 SIGMA0=0.08 D_PHI=0.05 Y0=0.3 L=30 seed=2025
+step   0 a=  1.00 r=+0.900 <|Phi|>=0.3906 v1=0.3896 v3=0.4093 Rm=0.3648 NULL=0.3815 k1=27 k3=7
+step  50 a=  2.12 r=-0.155 <|Phi|>=0.1994 v1=0.1824 v3=0.2585 Rm=0.2362 NULL=0.3339 k1=14 k3=1
+step 100 a=  4.48 r=-0.654 <|Phi|>=0.6431 v1=0.6331 v3=0.6413 Rm=0.3303 NULL=0.3347 k1=67 k3=10
+step 150 a=  9.49 r=-0.889 <|Phi|>=0.8895 v1=0.8863 v3=0.8748 Rm=0.3366 NULL=0.3321 k1=116 k3=14
+step 200 a= 20.09 r=-1.000 <|Phi|>=0.9559 v1=0.9537 v3=0.9566 Rm=0.3313 NULL=0.3323 k1=157 k3=24
+step 250 a= 42.52 r=-1.053 <|Phi|>=0.9865 v1=0.9866 v3=0.9868 Rm=0.3329 NULL=0.3330 k1=191 k3=25
+step 300 a= 90.02 r=-1.078 <|Phi|>=0.9976 v1=0.9992 v3=0.9964 Rm=0.3342 NULL=0.3334 k1=223 k3=31
+step 350 a=190.57 r=-1.090 <|Phi|>=1.0045 v1=1.0059 v3=1.0026 Rm=0.3346 NULL=0.3336 k1=229 k3=33
+step 399 a=397.42 r=-1.095 <|Phi|>=1.0072 v1=1.0082 v3=1.0047 Rm=0.3347 NULL=0.3336 k1=229 k3=33
+
+=== VEREDICTO ===
+TEST_FAIL_VEV_but_no_mass_signal
+Hay VEV pero Rm no se separa del NULL geometrico: el acople y0*|Phi|*sum_rho no discrimina dominios (Phi casi uniforme o residual de tamano).
+<|Phi|>_SSB=0.9263  flags={'vev_ok': True, 'null_ok': True, 'signal_ok': False, 'hierarchy_Rm_lt_0.1': False}
+Rm_SSB=0.3335076352647516  NULL_SSB=0.3332294891046615  |Rm-NULL|=0.00027814616009008697
+wrote /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/fase6_higgs_barrido_final/Higgs_TEST_REAL_result.json

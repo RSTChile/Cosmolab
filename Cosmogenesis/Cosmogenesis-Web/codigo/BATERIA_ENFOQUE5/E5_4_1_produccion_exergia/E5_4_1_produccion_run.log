@@ -1,0 +1,16 @@
+=== E5.4-1 producción de exergía — modo=produccion ===
+seeds=[7, 42, 99, 777, 2025, 3141, 8191, 99991, 12345, 54321, 271828, 161803]
+eps_grid=[0.0, 1e-12, 1e-09, 1e-06, 0.001, 0.1, 1.0]
+a_grid: 1 .. 1e+04 (31 pts)
+
+=== RESUMEN CRUDO (sin adjudicar) ===
+  median|r| REAL = 0.9975  (frac|r|>=0.5 = 1.000, n_def=84/84)
+  median|r| NULL = 0.8294  (frac indefinido = 0.000, n_def=84/84)
+  median collapse_ratio_X NULL (X_final/X_first) = 0.591578
+  median X_NULL_final / X_REAL_final = 0.627886
+  P1=True  P2=False  P3=False
+  VERDICT = E5_4_1_FAIL
+
+runtime = 168.26 s
+
+JSON -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/codigo/BATERIA_ENFOQUE5/E5_4_1_produccion_exergia/results/E5_4_1_produccion_result.json

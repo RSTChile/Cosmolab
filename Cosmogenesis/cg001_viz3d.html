@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>CG001 — Visor de campo 3D</title>
+<style>
+  :root { --bg:#060a14; --panel:#0e1626cc; --ink:#cfe0ff; --dim:#7e93b8; --acc:#5ad1ff; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink);
+    font:13px/1.4 -apple-system,system-ui,sans-serif; overflow:hidden; }
+  #canvas { position:fixed; inset:0; }
+  #panel { position:fixed; top:8px; left:8px; width:248px; max-height:calc(100% - 16px);
+    overflow:auto; background:var(--panel); backdrop-filter:blur(8px);
+    border:1px solid #25406e; border-radius:10px; padding:10px 11px; }
+  h1 { font-size:13px; margin:0 0 2px; letter-spacing:.3px; }
+  .sub { color:var(--dim); font-size:11px; margin-bottom:8px; }
+  .row { display:flex; align-items:center; justify-content:space-between; gap:6px; margin:5px 0; }
+  .row label { color:var(--dim); flex:0 0 78px; }
+  .row input[type=range] { flex:1; }
+  .row input[type=number], .row select { flex:1; background:#0a1322; color:var(--ink);
+    border:1px solid #25406e; border-radius:6px; padding:3px 5px; }
+  .val { flex:0 0 42px; text-align:right; color:var(--ink); font-variant-numeric:tabular-nums; }
+  .btns { display:flex; flex-wrap:wrap; gap:5px; margin:8px 0; }
+  button { background:#16233c; color:var(--ink); border:1px solid #2c4a7e;
+    border-radius:7px; padding:5px 9px; cursor:pointer; font-size:12px; }
+  button:hover { background:#1f3155; }
+  button.acc { background:#13405a; border-color:#2b7aa3; }
+  .hr { height:1px; background:#25406e; margin:9px 0; }
+  .metrics { font-variant-numeric:tabular-nums; font-size:12px; }
+  .metrics div { display:flex; justify-content:space-between; margin:2px 0; }
+  .metrics span { color:var(--acc); }
+  .note { color:var(--dim); font-size:10.5px; margin-top:8px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div id="panel">
+  <h1>CG001 · campo 3D</h1>
+  <div class="sub">nichos (m alto) = estructura · física validada vs Python</div>
+
+  <div class="row"><label>L (universo)</label>
+    <select id="L"><option>16</option><option selected>24</option><option>32</option><option>40</option></select></div>
+  <div class="row"><label>semilla</label><input type="number" id="seed" value="1" step="1" style="flex:1"></div>
+  <div class="row"><label>condición</label>
+    <select id="modo"><option value="B">B (con ε)</option><option value="A">A (sin ε)</option>
+      <option value="F">footprint |m_B−m_A|</option></select></div>
+  <div class="row"><label>ε posición</label>
+    <select id="epspos"><option value="c">centro</option><option value="e">esquina</option><option value="r">aleatoria</option></select></div>
+
+  <div class="hr"></div>
+  <div class="row"><label>RUIDO</label><input type="range" id="ruido" min="0.2" max="2" step="0.05" value="1"><span class="val" id="ruido_v">1.00</span></div>
+  <div class="row"><label>γ nicho</label><input type="range" id="gamma" min="0" max="20" step="0.5" value="8"><span class="val" id="gamma_v">8.0</span></div>
+  <div class="row"><label>λ relaj.</label><input type="range" id="lam" min="0.1" max="0.9" step="0.05" value="0.5"><span class="val" id="lam_v">0.50</span></div>
+  <div class="row"><label>decay</label><input type="range" id="decay" min="0.8" max="0.999" step="0.001" value="0.97"><span class="val" id="decay_v">0.970</span></div>
+  <div class="row"><label>σ vecind.</label><input type="range" id="sigma" min="0.6" max="2.5" step="0.1" value="1"><span class="val" id="sigma_v">1.0</span></div>
+  <div class="row"><label>ε arruga</label><input type="range" id="eps" min="0.01" max="0.5" step="0.01" value="0.05"><span class="val" id="eps_v">0.05</span></div>
+
+  <div class="hr"></div>
+  <div class="row"><label>umbral iso</label><input type="range" id="thr" min="0.05" max="0.95" step="0.01" value="0.45"><span class="val" id="thr_v">0.45</span></div>
+
+  <div class="btns">
+    <button id="reset">⟲ Reset</button>
+    <button id="step">▸ Paso</button>
+    <button id="play" class="acc">▶ Play</button>
+    <button id="step50">+50</button>
+  </div>
+  <div class="btns">
+    <button id="presetG0">control γ=0</button>
+    <button id="presetF">A vs B</button>
+  </div>
+
+  <div class="hr"></div>
+  <div class="metrics">
+    <div>paso <span id="m_t">0</span></div>
+    <div>max(m) <span id="m_max">0</span></div>
+    <div>concentración <span id="m_conc">0</span></div>
+    <div>nichos (sobre umbral) <span id="m_n">0</span></div>
+  </div>
+  <div class="note" id="note">Arrastra para rotar · rueda para zoom. ✦ cian = posición de ε.</div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ===================== MOTOR DE CAMPO (validado vs scipy, dif 2e-14) ===================== */
+function gauss1dWeights(sigma, truncate=4.0){
+  const r = Math.floor(truncate*sigma + 0.5);
+  const w = new Float64Array(2*r+1); let s=0;
+  for(let d=-r; d<=r; d++){ const v=Math.exp(-0.5*(d/sigma)*(d/sigma)); w[d+r]=v; s+=v; }
+  for(let i=0;i<w.length;i++) w[i]/=s;
+  return {r, w};
+}
+function blurAxis(arr, L, r, w, axis){
+  const out = new Float64Array(L*L*L), LL=L*L;
+  for(let x=0;x<L;x++) for(let y=0;y<L;y++) for(let z=0;z<L;z++){
+    let acc=0;
+    for(let k=-r;k<=r;k++){
+      let xx=x,yy=y,zz=z;
+      if(axis===0) xx=((x+k)%L+L)%L; else if(axis===1) yy=((y+k)%L+L)%L; else zz=((z+k)%L+L)%L;
+      acc += w[k+r]*arr[xx*LL+yy*L+zz];
+    }
+    out[x*LL+y*L+z]=acc;
+  }
+  return out;
+}
+function blur3d(arr, L, sigma){ const {r,w}=gauss1dWeights(sigma);
+  let c=arr; c=blurAxis(c,L,r,w,0); c=blurAxis(c,L,r,w,1); c=blurAxis(c,L,r,w,2); return c; }
+function stepField(phi, m, L, p){
+  const b=blur3d(phi,L,p.sigma), N=L*L*L;
+  for(let i=0;i<N;i++){ const a=phi[i]-b[i];
+    m[i]=p.decay*m[i]+Math.abs(a);
+    phi[i]=phi[i]-(p.lam/(1+p.gamma*m[i]))*a; }
+}
+/* RNG sembrado (mulberry32 + Marsaglia polar) para el control de 'semilla' */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function makeNoise(seed,L,ruido){
+  const rng=mulberry32(seed>>>0||1), N=L*L*L, out=new Float64Array(N); let spare=null;
+  for(let i=0;i<N;i++){
+    if(spare!==null){ out[i]=spare*ruido; spare=null; continue; }
+    let u,v,s; do{ u=rng()*2-1; v=rng()*2-1; s=u*u+v*v; }while(s>=1||s===0);
+    const mul=Math.sqrt(-2*Math.log(s)/s); out[i]=u*mul*ruido; spare=v*mul;
+  }
+  return out;
+}
+function epsCell(kind,L,seed){
+  if(kind==='c') return [L>>1,L>>1,L>>1];
+  if(kind==='e') return [3,3,3];
+  const r=mulberry32((seed*2654435761)>>>0||7);
+  return [Math.floor(r()*L),Math.floor(r()*L),Math.floor(r()*L)];
+}
+
+/* ===================== ESTADO DE SIMULACIÓN ===================== */
+const S = { L:24, t:0, phi:null, m:null, phiA:null, mA:null, field:null, eps:[12,12,12], p:{} };
+function params(){ return {
+  ruido:+ruido.value, gamma:+gamma.value, lam:+lam.value, decay:+decay.value,
+  sigma:+sigma.value, eps:+eps.value }; }
+
+function reset(){
+  S.L = +L.value; S.t = 0; S.p = params();
+  const seed = +seed_.value|0;
+  S.eps = epsCell(epspos.value, S.L, seed);
+  const noise = makeNoise(seed, S.L, S.p.ruido);
+  // B (con ε) y, si hace falta footprint, A (sin ε) sobre el MISMO ruido
+  S.phi = Float64Array.from(noise);
+  const [ex,ey,ez]=S.eps, LL=S.L*S.L;
+  if(modo.value!=='A') S.phi[ex*LL+ey*S.L+ez]+=S.p.eps;
+  S.m = new Float64Array(S.L*S.L*S.L);
+  if(modo.value==='F'){ S.phiA=Float64Array.from(noise); S.mA=new Float64Array(S.L*S.L*S.L); }
+  else { S.phiA=null; S.mA=null; }
+  rebuildEpsMarker();
+  refresh();
+}
+function advance(n){
+  for(let k=0;k<n;k++){
+    stepField(S.phi, S.m, S.L, S.p);
+    if(S.mA) stepField(S.phiA, S.mA, S.L, S.p);
+    S.t++;
+  }
+  refresh();
+}
+function currentField(){
+  if(modo.value==='F' && S.mA){
+    const N=S.m.length, d=new Float64Array(N);
+    for(let i=0;i<N;i++) d[i]=Math.abs(S.m[i]-S.mA[i]); return d;
+  }
+  return S.m;
+}
+
+/* ===================== THREE.JS — isosuperficie por esferas luminosas ===================== */
+const canvas = document.getElementById('canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x060a14);
+scene.fog = new THREE.FogExp2(0x060a14, 0.018);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 2000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.07;
+scene.add(new THREE.AmbientLight(0x445577, 0.7));
+const key = new THREE.DirectionalLight(0xbfe6ff, 0.8); key.position.set(1,1,1); scene.add(key);
+
+let boxGroup = new THREE.Group(); scene.add(boxGroup);
+let inst = null, epsMarker = null;
+const MAXI = 30000;
+const sphereGeo = new THREE.IcosahedronGeometry(0.46, 1);
+const sphereMat = new THREE.MeshBasicMaterial({ fog:true });  // unlit -> nichos luminosos sobre fondo oscuro
+const _mat = new THREE.Matrix4(), _col = new THREE.Color();
+
+function rebuildScene(){
+  // limpiar
+  boxGroup.clear();
+  if(inst){ scene.remove(inst); inst.dispose && inst.dispose(); inst=null; }
+  const L=S.L;
+  // caja
+  const box = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.BoxGeometry(L,L,L)),
+    new THREE.LineBasicMaterial({ color:0x2a4a7e }));
+  boxGroup.add(box);
+  // instancias
+  inst = new THREE.InstancedMesh(sphereGeo, sphereMat, MAXI);
+  inst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  inst.count = 0;
+  inst.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(MAXI*3),3);
+  scene.add(inst);
+  // cámara
+  camera.position.set(L*0.9, L*0.75, L*1.25);
+  controls.target.set(0,0,0); controls.update();
+  rebuildEpsMarker();
+}
+function rebuildEpsMarker(){
+  if(epsMarker){ scene.remove(epsMarker); epsMarker=null; }
+  const L=S.L; const [x,y,z]=S.eps;
+  const wx=x-L/2+0.5, wy=y-L/2+0.5, wz=z-L/2+0.5;
+  epsMarker = new THREE.Mesh(new THREE.OctahedronGeometry(1.1,0),
+    new THREE.MeshBasicMaterial({ color:0x5ad1ff, wireframe:true }));
+  epsMarker.position.set(wx,wy,wz);
+  scene.add(epsMarker);
+}
+function hot(t){ // 0..1 -> negro->rojo->amarillo->blanco
+  t=Math.max(0,Math.min(1,t));
+  const r=Math.min(1, t*1.8), g=Math.max(0,Math.min(1,(t-0.35)*1.7)), b=Math.max(0,(t-0.75)*4);
+  return [r,g,b];
+}
+function updateInstances(field){
+  if(!inst) return;
+  const L=S.L, N=field.length;
+  let mx=1e-12; for(let i=0;i<N;i++) if(field[i]>mx) mx=field[i];
+  const thrFrac=+thr.value, thrAbs=thrFrac*mx;
+  let c=0;
+  for(let i=0;i<N && c<MAXI;i++){
+    const v=field[i]; if(v<thrAbs) continue;
+    const x=(i/(L*L))|0, y=((i/L)|0)%L, z=i%L;
+    const t=(v-thrAbs)/(mx-thrAbs+1e-12);
+    const sc=0.45+0.85*t;
+    _mat.makeScale(sc,sc,sc); _mat.setPosition(x-L/2+0.5,y-L/2+0.5,z-L/2+0.5);
+    inst.setMatrixAt(c,_mat);
+    const [r,g,b]=hot(0.25+0.75*t); _col.setRGB(r,g,b); inst.setColorAt(c,_col);
+    c++;
+  }
+  inst.count=c;
+  inst.instanceMatrix.needsUpdate=true;
+  if(inst.instanceColor) inst.instanceColor.needsUpdate=true;
+  return {mx, n:c};
+}
+function refresh(){
+  const field=currentField();
+  const info=updateInstances(field);
+  // métricas
+  let sum=0,mx=0,N=S.m.length; for(let i=0;i<N;i++){ sum+=S.m[i]; if(S.m[i]>mx)mx=S.m[i]; }
+  const mean=sum/N;
+  m_t.textContent=S.t;
+  m_max.textContent=mx.toExponential(2);
+  m_conc.textContent=(mx/(mean+1e-12)).toFixed(2);
+  m_n.textContent=info?info.n:0;
+}
+
+/* ===================== UI ===================== */
+const seed_=document.getElementById('seed');
+const L=document.getElementById('L'), modo=document.getElementById('modo'),
+  epspos=document.getElementById('epspos'), ruido=document.getElementById('ruido'),
+  gamma=document.getElementById('gamma'), lam=document.getElementById('lam'),
+  decay=document.getElementById('decay'), sigma=document.getElementById('sigma'),
+  eps=document.getElementById('eps'), thr=document.getElementById('thr');
+const vmap={ruido:2,gamma:1,lam:2,decay:3,sigma:1,eps:2,thr:2};
+for(const id in vmap){ const el=document.getElementById(id);
+  const upd=()=>document.getElementById(id+'_v').textContent=(+el.value).toFixed(vmap[id]); el.addEventListener('input',upd); upd(); }
+thr.addEventListener('input',refresh);
+for(const el of [L,seed_,modo,epspos,ruido,gamma,lam,decay,sigma,eps])
+  el.addEventListener('change',()=>{ if(el===L) rebuildScene(); reset(); });
+
+let playing=false, raf=null;
+document.getElementById('reset').onclick=reset;
+document.getElementById('step').onclick=()=>advance(1);
+document.getElementById('step50').onclick=()=>advance(50);
+const playBtn=document.getElementById('play');
+playBtn.onclick=()=>{ playing=!playing; playBtn.textContent=playing?'⏸ Pausa':'▶ Play';
+  playBtn.classList.toggle('acc',!playing); };
+document.getElementById('presetG0').onclick=()=>{ gamma.value=0; gamma.dispatchEvent(new Event('input')); reset(); };
+document.getElementById('presetF').onclick=()=>{ modo.value='F'; reset(); };
+
+function resize(){ const w=innerWidth,h=innerHeight; renderer.setSize(w,h); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+addEventListener('resize',resize);
+
+function loop(){ raf=requestAnimationFrame(loop);
+  if(playing && S.t<600) advance(2);
+  if(epsMarker) epsMarker.rotation.y+=0.02;
+  controls.update(); renderer.render(scene,camera);
+}
+resize(); rebuildScene(); reset(); loop();
+</script>
+</body>
+</html>

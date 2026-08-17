@@ -1,0 +1,60 @@
+{
+  "todo_pass": true,
+  "casos": [
+    {
+      "N": 200,
+      "eps": 0.0,
+      "H": 0.0,
+      "pasos": 300,
+      "seed": 1,
+      "max_diff_phi": 0.0,
+      "max_diff_activo_count": 0,
+      "primer_paso_con_diferencia": null,
+      "PASS": true
+    },
+    {
+      "N": 200,
+      "eps": 0.3,
+      "H": 0.0,
+      "pasos": 300,
+      "seed": 2,
+      "max_diff_phi": 0.0,
+      "max_diff_activo_count": 0,
+      "primer_paso_con_diferencia": null,
+      "PASS": true
+    },
+    {
+      "N": 200,
+      "eps": 0.3,
+      "H": 0.02,
+      "pasos": 500,
+      "seed": 3,
+      "max_diff_phi": 0.0,
+      "max_diff_activo_count": 0,
+      "primer_paso_con_diferencia": null,
+      "PASS": true
+    },
+    {
+      "N": 200,
+      "eps": 1.0,
+      "H": 0.2,
+      "pasos": 800,
+      "seed": 4,
+      "max_diff_phi": 0.0,
+      "max_diff_activo_count": 0,
+      "primer_paso_con_diferencia": null,
+      "PASS": true
+    },
+    {
+      "N": 200,
+      "eps": 1e-06,
+      "H": 1.0,
+      "pasos": 200,
+      "seed": 5,
+      "max_diff_phi": 0.0,
+      "max_diff_activo_count": 0,
+      "primer_paso_con_diferencia": null,
+      "PASS": true
+    }
+  ]
+}

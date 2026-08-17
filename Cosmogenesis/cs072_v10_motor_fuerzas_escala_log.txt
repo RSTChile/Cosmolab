@@ -1,0 +1,58 @@
+====================================================================================================
+PUNTO 0 -- pasos de equilibrio por N (brazo D, con confinamiento)
+====================================================================================================
+  N=68 (quarks=30, antiquarks=21, electrones=10, positrones=7)
+    [equilibrio] pasos=300 bariones(con confin)=10
+    [equilibrio] pasos=400 bariones(con confin)=10
+  -> pasos equilibrados N=68: 300 (estabilizó: True)
+  N=136 (quarks=60, antiquarks=42, electrones=20, positrones=14)
+    [equilibrio] pasos=300 bariones(con confin)=20
+    [equilibrio] pasos=400 bariones(con confin)=20
+  -> pasos equilibrados N=136: 300 (estabilizó: True)
+  N=272 (quarks=120, antiquarks=84, electrones=40, positrones=28)
+    [equilibrio] pasos=300 bariones(con confin)=40
+    [equilibrio] pasos=400 bariones(con confin)=40
+  -> pasos equilibrados N=272: 300 (estabilizó: True)
+  N=544 (quarks=240, antiquarks=168, electrones=80, positrones=56)
+    [equilibrio] pasos=300 bariones(con confin)=80
+    [equilibrio] pasos=400 bariones(con confin)=80
+  -> pasos equilibrados N=544: 300 (estabilizó: True)
+(t=0.08 min)
+
+====================================================================================================
+TAREA 1 -- apagar confinamiento debe dar 0 bariones a TODA escala
+====================================================================================================
+  N=  68 (pasos=300): con_confinamiento= 10  sin_confinamiento=  0  ADMISIBLE
+  N= 136 (pasos=300): con_confinamiento= 20  sin_confinamiento=  0  ADMISIBLE
+  N= 272 (pasos=300): con_confinamiento= 40  sin_confinamiento=  0  ADMISIBLE
+  N= 544 (pasos=300): con_confinamiento= 80  sin_confinamiento=  0  ADMISIBLE
+  VEREDICTO TAREA 1: TODAS LAS ESCALAS DAN 0 SIN CONFINAMIENTO -- ADMISIBLE
+(t=0.21 min)
+
+====================================================================================================
+TAREA 2 -- escala: ¿bariones ~ n_quarks/3?
+====================================================================================================
+  N=  68: n_quarks= 30  bariones= 10  n_quarks/3= 10.00  ratio=1.000
+  N= 136: n_quarks= 60  bariones= 20  n_quarks/3= 20.00  ratio=1.000
+  N= 272: n_quarks=120  bariones= 40  n_quarks/3= 40.00  ratio=1.000
+  N= 544: n_quarks=240  bariones= 80  n_quarks/3= 80.00  ratio=1.000
+(t=0.21 min)
+
+====================================================================================================
+TAREA 3 -- auditoría de apagado (confinamiento, em, gravedad, aniquilacion) -- N=68 y N=544
+====================================================================================================
+  N=68 (pasos=300) -- base (todas activas): 10 bariones
+    sin confinamiento  :   0 bariones  ACTÚA
+    sin em             :  10 bariones  NO ACTÚA (apagarla no cambió nada)
+    sin gravedad       :  10 bariones  NO ACTÚA (apagarla no cambió nada)
+    sin aniquilacion   :  10 bariones  NO ACTÚA (apagarla no cambió nada)
+  N=544 (pasos=300) -- base (todas activas): 80 bariones
+    sin confinamiento  :   0 bariones  ACTÚA
+    sin em             :  80 bariones  NO ACTÚA (apagarla no cambió nada)
+    sin gravedad       :  80 bariones  NO ACTÚA (apagarla no cambió nada)
+    sin aniquilacion   :  80 bariones  NO ACTÚA (apagarla no cambió nada)
+(t=0.43 min)
+
+====================================================================================================
+TIEMPO TOTAL: 0.43 min
+====================================================================================================

@@ -1,0 +1,78 @@
+==============================================================================
+F7-05 · Unificación de corridas de Phantom
+==============================================================================
+
+--- Lectura de fuentes ---
+  [OK] cs090_fase5b_TOTAL_40pares.csv: 80 filas
+  [OK] cs090_fase5b_escala_v2_metricas_FINAL.csv: 16 filas
+  [OK] cs090_fase5b_escala_v3_metricas.csv: 24 filas
+  [OK] cs090_fase5b_escala_v4_metricas.csv: 40 filas
+  [OK] cs090_fase5b_metricas.csv: 6 filas
+  [OK] cs090_fase6_remedicion_430.csv: 430 filas
+  [OK] cs090_fase6_outliers_diam_gigante.csv: 87 filas
+  [OK] cs090_fase6_o3a_resolucion_crudo.csv: 106 filas
+  [OK] cs090_fase6_o3b_phantom_crudo.csv: 24 filas
+  [OK] cs090_fase6_o3b_estructura.csv: 12 filas
+  [OK] cs090_fase6_o3c_crudo.csv: 47 filas
+  [OK] cs090_fase6_o3d_crudo.csv: 38 filas
+  [OK] cs090_fase6_o3d_control_historico.csv: 2 filas
+  [OK] cs090_fase6_o3e_memoria_crudo.csv: 30 filas
+  [OK] cs090_fase6_outliers_phantom_metricas.csv: 11 filas
+
+Filas leídas en bruto (todas las fuentes): 258
+
+--- Verificación de la clave (rule_id, seed) ---
+rule_id con MÁS DE UN seed dentro del propio dataset de Phantom: 0
+  [OK] cs090_fase5_mapa_transicion_grid.csv: 400 filas
+Cruce con cs090_fase5_mapa_transicion_grid: 12 coinciden por rule_id SOLO, 0 por (rule_id, seed).
+  -> confirma el bug documentado: unir por rule_id solo pegaría 12 filas de grafos EQUIVOCADOS.
+
+Filas con clave (rule_id, seed, brazo, N) repetida: 8
+  A2-B0-C2-r19 seed=273672.0 brazo=unico N=2000 -> exp ['F5B_40pares', 'F5B_40pares'] frac_masa [np.float64(0.087), np.float64(0.087)]
+  A2-B0-C2-r39 seed=375612.0 brazo=unico N=2000 -> exp ['F5B_40pares', 'F5B_40pares'] frac_masa [np.float64(0.0785), np.float64(0.0785)]
+  A2-B0-C2-r6 seed=272411.0 brazo=unico N=2000 -> exp ['F5B_40pares', 'F5B_40pares'] frac_masa [np.float64(0.1005), np.float64(0.1005)]
+  A2-B0-C2-r9 seed=272702.0 brazo=unico N=2000 -> exp ['F5B_40pares', 'F5B_40pares'] frac_masa [np.float64(0.0805), np.float64(0.0805)]
+Descartadas por duplicación exacta de corrida: 4 (quedan 254 de 258)
+
+--- Variables derivadas ---
+grado_medio reconstruido como 2E/N en 76 filas
+Chequeo grado_medio == 2E/N (N=2000): max |dif| = 0.000e+00 sobre 228 filas
+
+--- Geometría inicial (FoF sobre las IC) ---
+  [OK] cs090_fase6_o3a_geometria_ic.csv: 52 filas
+geometría IC (O3-A) pegada en 62 filas
+  [OK] cs090_fase6_o4a_corridas_nbody.csv: 20 filas
+geometría IC (O4-A, pegada SÓLO por rule_id, sin seed) en 39 filas — marcada como no verificada
+
+--- Cobertura por experimento ---
+                   n  con_masa  con_aristas  con_grado  con_pendiente  con_clustering  con_holon  con_geoIC
+exp                                                                                                        
+F5B_40pares       76        76           76         76             73               0          0         26
+O3A_N4000         26        26           26         26              0               0         26         26
+O3B_rewiring      24        24           24         24             24              24          0         10
+O3C_factorial     47        47           47         47             47               0         47          0
+O3D_control_hist   2         2            2          2              0               0          0          0
+O3D_kcap          38        38           38         38             32               0         32          0
+O3E_memoria       30        30           30         30             30               0         30          0
+OUT_pendNEG       11        11           11         11             11               0          0          0
+
+--- Cobertura global de cada variable ---
+  frac_masa               254 / 254
+  masa_acretada           254 / 254
+  n_aristas               254 / 254
+  grado_medio             254 / 254
+  densidad                254 / 254
+  pendiente               217 / 254
+  clustering               24 / 254
+  transitividad            24 / 254
+  holon                   135 / 254
+  giant                   193 / 254
+  diam                    222 / 254
+  kappa_v                 254 / 254
+  geo_fof030               62 / 254
+  geo_o4a_fof06            39 / 254
+
+Filas sin desenlace (frac_masa NaN): 0
+
+ESCRITO: /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase7_f705_dataset_unificado.csv  (254 filas x 41 columnas)
+ESCRITO (auditoría): /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs090_fase7_f705_filas_descartadas.csv  (4 filas descartadas por duplicación)

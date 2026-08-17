@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ANIMA_USER="${ANIMA_USER:-ubuntu}"
+ANIMA_HOME="/home/${ANIMA_USER}"
+ANIMA_ROOT="/opt/anima"
+CM_DIR="${ANIMA_ROOT}/celula_madre"
+LEGACY_DIR="${ANIMA_HOME}/anima"
+USER_UID="$(id -u "$ANIMA_USER" 2>/dev/null || true)"
+
+if [ -z "$USER_UID" ]; then
+  echo "anima-pi-runtime: usuario '$ANIMA_USER' no existe; crea el usuario o instala con ANIMA_USER=<usuario>." >&2
+  exit 1
+fi
+
+mkdir -p /etc/anima /var/lib/anima/{historia,voces_creadas,snapshots,logs} "$LEGACY_DIR"
+chown -R "$ANIMA_USER:$ANIMA_USER" /var/lib/anima "$LEGACY_DIR"
+
+sync_template() {
+  src="$1"
+  dst="$2"
+  if [ ! -f "$dst" ]; then
+    cp "$src" "$dst"
+    return
+  fi
+  if ! cmp -s "$src" "$dst"; then
+    cp "$dst" "${dst}.bak.$(date +%Y%m%d%H%M%S)"
+    cp "$src" "$dst"
+  fi
+}
+
+sync_template /usr/share/anima-pi-runtime/config/organelos.yml /etc/anima/organelos.yml
+sync_template /usr/share/anima-pi-runtime/config/hardware.yml /etc/anima/hardware.yml
+
+if [ ! -e "${LEGACY_DIR}/celula_madre" ]; then
+  ln -s "$CM_DIR" "${LEGACY_DIR}/celula_madre"
+fi
+
+chown -R "$ANIMA_USER:$ANIMA_USER" "$ANIMA_ROOT" || true
+
+install -d -m 0755 /etc/X11
+if [ -f "$CM_DIR/docker/xorg-fb1-cabeza-e.conf" ]; then
+  cp "$CM_DIR/docker/xorg-fb1-cabeza-e.conf" /etc/X11/xorg-fb1-cabeza-e.conf
+fi
+
+if [ ! -f /etc/anima/identity.configured ] && [ "${ANIMA_SKIP_SETUP:-0}" != "1" ]; then
+  if [ -r /dev/tty ] && [ -w /dev/tty ]; then
+    /usr/bin/anima setup --perfil "${ANIMA_PERFIL:-limpio}" </dev/tty >/dev/tty || true
+  else
+    /usr/bin/anima setup --perfil "${ANIMA_PERFIL:-limpio}" --nombre "${ANIMA_NOMBRE:-Animalito}" || true
+  fi
+fi
+
+install -d -o "$ANIMA_USER" -g "$ANIMA_USER" "${ANIMA_HOME}/.config/systemd/user"
+cp /usr/share/anima-pi-runtime/systemd-user/*.service "${ANIMA_HOME}/.config/systemd/user/"
+chown -R "$ANIMA_USER:$ANIMA_USER" "${ANIMA_HOME}/.config/systemd"
+
+if command -v loginctl >/dev/null 2>&1; then
+  loginctl enable-linger "$ANIMA_USER" || true
+fi
+
+if [ -f "$CM_DIR/requirements-pi.txt" ]; then
+  sudo -H -u "$ANIMA_USER" python3 -m venv "$CM_DIR/.venv-pi" || true
+  if [ -x "$CM_DIR/.venv-pi/bin/pip" ]; then
+    sudo -H -u "$ANIMA_USER" "$CM_DIR/.venv-pi/bin/pip" install -q --upgrade pip || true
+    sudo -H -u "$ANIMA_USER" "$CM_DIR/.venv-pi/bin/pip" install -q -r "$CM_DIR/requirements-pi.txt" || true
+  fi
+fi
+
+RUNTIME_DIR="/run/user/${USER_UID}"
+if [ -d "$RUNTIME_DIR" ]; then
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user daemon-reload || true
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user enable anima-organismo.service anima-watchdog.service || true
+  sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user start anima-organismo.service anima-watchdog.service || true
+  if [ "${ANIMA_ENABLE_HEAD:-0}" = "1" ] || [ -e /dev/fb1 ]; then
+    sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user enable cabeza-e-fb1.service cabeza-e-fb1-vnc.service || true
+    sudo -H -u "$ANIMA_USER" XDG_RUNTIME_DIR="$RUNTIME_DIR" systemctl --user start cabeza-e-fb1.service cabeza-e-fb1-vnc.service || true
+  fi
+fi
+
+echo "anima-pi-runtime instalado. Para cambiar identidad: sudo anima setup --perfil limpio --nombre \"Nombre\""

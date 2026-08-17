@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "${1:-show}" in
+  show)
+    echo "/etc/anima/organismo.env"
+    sed -n '1,160p' /etc/anima/organismo.env 2>/dev/null || true
+    echo
+    echo "/etc/anima/organelos.yml"
+    sed -n '1,220p' /etc/anima/organelos.yml 2>/dev/null || true
+    echo
+    echo "/etc/anima/hardware.yml"
+    sed -n '1,220p' /etc/anima/hardware.yml 2>/dev/null || true
+    ;;
+  edit)
+    exec "${EDITOR:-nano}" /etc/anima/organismo.env
+    ;;
+  *)
+    echo "Uso: anima-config [show|edit]" >&2
+    exit 2
+    ;;
+esac

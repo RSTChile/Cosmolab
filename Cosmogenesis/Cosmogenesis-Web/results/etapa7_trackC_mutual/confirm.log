@@ -1,0 +1,13 @@
+[05:32:42] === CONFIRMACION fuera de muestra: mean_instant, 10 semillas nuevas ===
+[05:32:53]   seed=    111 real=43.013 shuffle=46.065 RS=0.9337366006016156 (11.1s)
+[05:33:03]   seed=    222 real=100.486 shuffle=83.892 RS=1.197805437311727 (10.8s)
+[05:33:14]   seed=    333 real=65.864 shuffle=46.611 RS=1.4130517581958228 (10.8s)
+[05:33:26]   seed=    444 real=72.021 shuffle=104.396 RS=0.68988544087441 (11.3s)
+[05:33:36]   seed=    555 real=64.466 shuffle=56.987 RS=1.1312447239396544 (10.4s)
+[05:33:47]   seed=    666 real=33.550 shuffle=45.630 RS=0.7352468748184514 (10.9s)
+[05:33:57]   seed= 777777 real=84.704 shuffle=66.142 RS=1.280637808189826 (10.2s)
+[05:34:09]   seed=     13 real=52.968 shuffle=66.597 RS=0.7953561316141902 (11.6s)
+[05:34:19]   seed=     31 real=20.384 shuffle=22.780 RS=0.8948102145386928 (10.3s)
+[05:34:30]   seed= 271828 real=75.852 shuffle=86.234 RS=0.8796095695167628 (11.2s)
+[05:34:30] summary: {'n': 10, 'mean_RS_finite': 0.9951384559601152, 'n_finite': 10, 'rate_RS_gt_1': 0.4, 'n_RS_gt_1': 4} -> NO REPLICA / candidato no confirmado (posible artefacto de seleccion de estadistico)
+[05:34:30] JSON -> /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/results/etapa7_trackC_mutual/trackC_H4_mean_instant_confirmacion.json

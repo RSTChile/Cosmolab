@@ -1,0 +1,531 @@
+{
+  "ic_real": {
+    "kappa_v": 0.84375,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 601.6,
+    "masa_ultimo_tercio": 507.6,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.462,
+        "dm_primer": 75.2,
+        "dm_ultimo": 75.19999999999999
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.461,
+        "dm_primer": 94.00000000000001,
+        "dm_ultimo": 94.0
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.456,
+        "dm_primer": 84.60000000000001,
+        "dm_ultimo": 103.4
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.455,
+        "dm_primer": 75.2,
+        "dm_ultimo": 65.80000000000001
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.452,
+        "dm_primer": 56.39999999999999,
+        "dm_ultimo": 28.19999999999999
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.449,
+        "dm_primer": 75.2,
+        "dm_ultimo": 47.0
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.448,
+        "dm_primer": 65.8,
+        "dm_ultimo": 37.599999999999994
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.443,
+        "dm_primer": 75.2,
+        "dm_ultimo": 56.400000000000006
+      }
+    ]
+  },
+  "ic_null1": {
+    "kappa_v": 0.6,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 94.00000000000001,
+    "masa_ultimo_tercio": 56.400000000000006,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.33799999999999997,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 18.799999999999997
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.324,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.31,
+        "dm_primer": 9.399999999999991,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.302,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.299,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.253,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 18.799999999999997
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.195,
+        "dm_primer": 0.0,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.178,
+        "dm_primer": 18.799999999999997,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "ic_null2": {
+    "kappa_v": 0.4000000000000001,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 94.0,
+    "masa_ultimo_tercio": 37.60000000000001,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.35,
+        "dm_primer": 18.799999999999997,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.33699999999999997,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.33299999999999996,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.278,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.257,
+        "dm_primer": 0.0,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.244,
+        "dm_primer": 0.0,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.21500000000000002,
+        "dm_primer": 0.0,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.13,
+        "dm_primer": 0.0,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "ic_null3": {
+    "kappa_v": 0.5833333333333335,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 112.80000000000001,
+    "masa_ultimo_tercio": 65.80000000000003,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.356,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.35,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.325,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.28300000000000003,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 18.80000000000001
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.273,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.249,
+        "dm_primer": 0.0,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.245,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.10999999999999999,
+        "dm_primer": 0.0,
+        "dm_ultimo": 9.400000000000006
+      }
+    ]
+  },
+  "ic_null4": {
+    "kappa_v": 0.8181818181818183,
+    "n_sumideros_usados": 7,
+    "masa_primer_tercio": 103.39999999999999,
+    "masa_ultimo_tercio": 84.60000000000001,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.385,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.316,
+        "dm_primer": 18.799999999999997,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.309,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 18.80000000000001
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.299,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.261,
+        "dm_primer": 18.799999999999997,
+        "dm_ultimo": 28.200000000000003
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.22599999999999998,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.16299999999999998,
+        "dm_primer": 18.799999999999997,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "ic_null5": {
+    "kappa_v": 0.5833333333333333,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 112.80000000000004,
+    "masa_ultimo_tercio": 65.80000000000001,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.326,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.325,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.306,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 18.80000000000001
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.281,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.245,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.22599999999999998,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.20500000000000002,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.16899999999999998,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "ic_null6": {
+    "kappa_v": 0.18749999999999997,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 150.40000000000003,
+    "masa_ultimo_tercio": 28.200000000000003,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.4,
+        "dm_primer": 28.200000000000003,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.379,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.33499999999999996,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.32999999999999996,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.323,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.262,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.20900000000000002,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.189,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "ic_null7": {
+    "kappa_v": 0.4117647058823529,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 159.8,
+    "masa_ultimo_tercio": 65.8,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.368,
+        "dm_primer": 37.6,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.303,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.28900000000000003,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.28200000000000003,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.278,
+        "dm_primer": 37.6,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.276,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 18.799999999999997
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.15400000000000003,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 18.799999999999997
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.14800000000000002,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 9.400000000000006
+      }
+    ]
+  },
+  "ic_null8": {
+    "kappa_v": 0.3636363636363635,
+    "n_sumideros_usados": 8,
+    "masa_primer_tercio": 103.40000000000003,
+    "masa_ultimo_tercio": 37.599999999999994,
+    "detalle_por_sumidero": [
+      {
+        "sink_id": 1,
+        "vida": 0.353,
+        "dm_primer": 28.199999999999996,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 2,
+        "vida": 0.321,
+        "dm_primer": 9.400000000000006,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 3,
+        "vida": 0.306,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.400000000000006
+      },
+      {
+        "sink_id": 4,
+        "vida": 0.28300000000000003,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 5,
+        "vida": 0.278,
+        "dm_primer": 18.800000000000004,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 6,
+        "vida": 0.22999999999999998,
+        "dm_primer": 0.0,
+        "dm_ultimo": 9.399999999999991
+      },
+      {
+        "sink_id": 7,
+        "vida": 0.201,
+        "dm_primer": 0.0,
+        "dm_ultimo": 0.0
+      },
+      {
+        "sink_id": 8,
+        "vida": 0.197,
+        "dm_primer": 9.399999999999999,
+        "dm_ultimo": 0.0
+      }
+    ]
+  },
+  "resumen": {
+    "kappa_v_real": 0.84375,
+    "kappas_v_null": [
+      0.6,
+      0.4000000000000001,
+      0.5833333333333335,
+      0.8181818181818183,
+      0.5833333333333333,
+      0.18749999999999997,
+      0.4117647058823529,
+      0.3636363636363635
+    ],
+    "n_null": 8,
+    "bootstrap_ic95_media_null": {
+      "media_null": 0.4934686942959002,
+      "ic_95": [
+        0.3671958556149732,
+        0.6219223484848486
+      ],
+      "n_boot": 20000
+    },
+    "permutacion_p_valor": {
+      "p_valor_una_cola": 0.1111111111111111,
+      "resolucion_minima": 0.1111111111111111,
+      "n_total": 9
+    },
+    "z_clasico_referencia_anterior": 1.821644651370458,
+    "interpretacion": "REAL cae fuera del IC 95% bootstrap de la media NULL",
+    "nota_compute_pendiente": "Esta es una re-lectura estadística de los 8 NULL + 1 REAL YA EXISTENTES en bateria_n2000. NO se corrió ninguna simulación Phantom nueva. Una replicación genuina de kappa_V (más NULL independientes, más semillas REAL) requeriría nuevas corridas de Phantom -- horas de cómputo -- que quedan pendientes de autorización explícita de Alexis, no se lanzaron en automático.",
+    "veredicto": "NO declarado -- el cierre de este experimento es decisión de Alexis, no de CC."
+  }
+}

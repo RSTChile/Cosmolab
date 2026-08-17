@@ -1,0 +1,85 @@
+{
+  "A_LIGADO_FRAC_modulo": [
+    {
+      "LIGADO_FRAC": 1.1,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 1.3,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 1.5,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 1.7,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 2.0,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 2.5,
+      "bariones": 3,
+      "hidrogeno": 2
+    },
+    {
+      "LIGADO_FRAC": 3.0,
+      "bariones": 3,
+      "hidrogeno": 2
+    }
+  ],
+  "B_umbral_deteccion": {
+    "referencia_oficial": {
+      "bariones": 3,
+      "antibariones": 0,
+      "protones": 2,
+      "hidrogeno": 2,
+      "quarks_sueltos": 1
+    },
+    "filas": [
+      {
+        "factor_umbral": 1.1,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 1.3,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 1.5,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 1.7,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 2.0,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 2.5,
+        "bariones": 3,
+        "hidrogeno": 2
+      },
+      {
+        "factor_umbral": 3.0,
+        "bariones": 3,
+        "hidrogeno": 2
+      }
+    ]
+  }
+}

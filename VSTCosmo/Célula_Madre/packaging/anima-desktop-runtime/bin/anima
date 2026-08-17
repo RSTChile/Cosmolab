@@ -1,0 +1,255 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+detect_cm_dir() {
+  if [ -n "${ANIMA_CM_DIR:-}" ] && [ -d "$ANIMA_CM_DIR" ]; then
+    echo "$ANIMA_CM_DIR"
+    return
+  fi
+  if [ -d "/opt/anima/celula_madre" ]; then
+    echo "/opt/anima/celula_madre"
+    return
+  fi
+  case "$(uname -s)" in
+    Darwin)
+      echo "$HOME/Library/Application Support/ANIMA/celula_madre"
+      ;;
+    *)
+      if [ -d "$HOME/.local/share/anima/celula_madre" ]; then
+        echo "$HOME/.local/share/anima/celula_madre"
+      else
+        echo "/opt/anima/celula_madre"
+      fi
+      ;;
+  esac
+}
+
+CM_DIR="$(detect_cm_dir)"
+CONFIG_DIR="${ANIMA_CONFIG_DIR:-$HOME/.config/anima}"
+
+if [ "${EUID:-$(id -u)}" = "0" ] && [ "${1:-status}" != "setup" ] && [ "$(uname -s)" = "Linux" ]; then
+  target_user="${SUDO_USER:-${ANIMA_USER:-}}"
+  if [ -n "$target_user" ] && [ "$target_user" != "root" ]; then
+    uid="$(id -u "$target_user")"
+    exec sudo -H -u "$target_user" XDG_RUNTIME_DIR="/run/user/$uid" "$0" "$@"
+  fi
+fi
+
+usage() {
+  cat <<'EOF'
+ANIMA Desktop Runtime
+
+Uso:
+  anima setup
+  anima setup --perfil limpio
+  anima setup --perfil limpio --nombre "Nombre del animalito"
+  anima start
+  anima stop
+  anima restart
+  anima status
+  anima open
+EOF
+}
+
+config_file() {
+  echo "$CONFIG_DIR/organismo.env"
+}
+
+set_env_key() {
+  local key="$1" value="$2" file
+  file="$(config_file)"
+  install -d -m 0755 "$CONFIG_DIR"
+  touch "$file"
+  local tmp
+  tmp="$(mktemp)"
+  if grep -q "^${key}=" "$file"; then
+    awk -v k="$key" -v v="$value" 'BEGIN{done=0} $0 ~ "^" k "=" {print k "=" v; done=1; next} {print} END{if(!done) print k "=" v}' "$file" > "$tmp"
+  else
+    cat "$file" > "$tmp"
+    printf '%s=%s\n' "$key" "$value" >> "$tmp"
+  fi
+  cat "$tmp" > "$file"
+  rm -f "$tmp"
+}
+
+cmd="${1:-status}"
+case "$cmd" in
+  setup)
+    shift || true
+    perfil="limpio"
+    nombre="${ANIMA_NOMBRE:-}"
+    while [ "$#" -gt 0 ]; do
+      case "$1" in
+        --perfil) perfil="${2:-limpio}"; shift 2 ;;
+        --nombre) nombre="${2:-}"; shift 2 ;;
+        *) shift ;;
+      esac
+    done
+    install -d -m 0755 "$CONFIG_DIR"
+    share_config=""
+    for candidate in \
+      "/usr/share/anima-desktop-runtime/config" \
+      "$(dirname "$0")/../config" \
+      "$CM_DIR/../packaging/anima-desktop-runtime/config"; do
+      if [ -f "$candidate/organismo.env" ]; then
+        share_config="$candidate"
+        break
+      fi
+    done
+    if [ -z "$share_config" ]; then
+      echo "No se encontró plantilla de configuración." >&2
+      exit 1
+    fi
+    sync_template() {
+      local src="$1" dst="$2"
+      if [ ! -f "$dst" ]; then
+        cp "$src" "$dst"
+        return
+      fi
+      if ! cmp -s "$src" "$dst"; then
+        cp "$dst" "${dst}.bak.$(date +%Y%m%d%H%M%S)"
+        cp "$src" "$dst"
+      fi
+    }
+    sync_template "$share_config/organismo.env" "$(config_file)"
+    sync_template "$share_config/organelos.yml" "$CONFIG_DIR/organelos.yml"
+    sync_template "$share_config/hardware.yml" "$CONFIG_DIR/hardware.yml"
+    if [ -z "$nombre" ] && [ -t 0 ]; then
+      printf "Nombre propio del animalito [%s]: " "Animalito $perfil"
+      IFS= read -r nombre || true
+    fi
+    nombre="${nombre:-Animalito $perfil}"
+    slug="$(printf '%s' "$nombre" | tr '[:lower:]' '[:upper:]' | sed 's/[^A-Z0-9]/_/g; s/__*/_/g; s/^_//; s/_$//')"
+    slug="${slug:-${perfil}}"
+    organismo_id="ANIMA_${slug}_PC"
+    tmp="$(mktemp)"
+    awk -v nombre="$nombre" -v oid="$organismo_id" '
+      BEGIN { set_nombre=0; set_label=0; set_id=0 }
+      /^VST_ORGANISMO_ID=/ { print "VST_ORGANISMO_ID=" oid; set_id=1; next }
+      /^VST_ORGANISMO_NOMBRE=/ { print "VST_ORGANISMO_NOMBRE=\"" nombre "\""; set_nombre=1; next }
+      /^VST_ORGANISMO_LABEL=/ { print "VST_ORGANISMO_LABEL=\"" nombre "\""; set_label=1; next }
+      { print }
+      END {
+        if (!set_id) print "VST_ORGANISMO_ID=" oid
+        if (!set_nombre) print "VST_ORGANISMO_NOMBRE=\"" nombre "\""
+        if (!set_label) print "VST_ORGANISMO_LABEL=\"" nombre "\""
+      }
+    ' "$(config_file)" > "$tmp"
+    cat "$tmp" > "$(config_file)"
+    rm -f "$tmp"
+    while IFS= read -r line; do
+      case "$line" in
+        ""|\#*) continue ;;
+        *=*)
+          key="${line%%=*}"
+          if ! grep -q "^${key}=" "$(config_file)"; then
+            printf '%s\n' "$line" >> "$(config_file)"
+          fi
+          ;;
+      esac
+    done < "$share_config/organismo.env"
+    set_env_key ANIMA_AUDIO_MODE local
+    set_env_key ANIMA_AUDIO_LOCAL_POLICY prefer-system-input
+    set_env_key ANIMA_AUDIO_SERVER_OPTIONAL 1
+    set_env_key VST_DISABLE_DIRECT_AUDIO 0
+    set_env_key ANIMA_SDR_ENABLE 0
+    set_env_key ANIMA_PRESENCE_MODE local
+    set_env_key ANIMA_VISIBILITY local
+    set_env_key ANIMA_AISLAMIENTO_TIEMPO_SATURACION 300
+    set_env_key ANIMA_DISPLAY desktop
+    install -d -m 0700 "$HOME/.anima"
+    if [ ! -f "$HOME/.anima/identity.json" ]; then
+      ANIMA_IDENTITY_DIR="$HOME/.anima" \
+      ANIMA_IDENTITY_NAME="$nombre" \
+      ANIMA_IDENTITY_ORGANISM_ID="$organismo_id" \
+      python3 <<'PY'
+import base64, json, os, secrets, uuid
+from datetime import datetime, timezone
+from pathlib import Path
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+
+identity_dir = Path(os.environ["ANIMA_IDENTITY_DIR"])
+name = os.environ["ANIMA_IDENTITY_NAME"]
+organism_id = os.environ["ANIMA_IDENTITY_ORGANISM_ID"]
+installation_id = uuid.uuid4().hex + secrets.token_hex(16)
+private_key = Ed25519PrivateKey.generate()
+public_key = private_key.public_key()
+priv_bytes = private_key.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption(),
+)
+pub_raw = public_key.public_bytes(
+    encoding=serialization.Encoding.Raw,
+    format=serialization.PublicFormat.Raw,
+)
+kid = base64.urlsafe_b64encode(pub_raw[:12]).decode("ascii").rstrip("=")
+(identity_dir / "identity_ed25519_private.pem").write_bytes(priv_bytes)
+os.chmod(identity_dir / "identity_ed25519_private.pem", 0o600)
+identity = {
+    "schema": "anima.identity.v1",
+    "installation_id": installation_id,
+    "organism_id": organism_id,
+    "name": name,
+    "created_at": datetime.now(timezone.utc).isoformat(),
+    "public_key": {
+        "alg": "Ed25519",
+        "kid": kid,
+        "value": base64.b64encode(pub_raw).decode("ascii"),
+    },
+    "private_key_ref": str(identity_dir / "identity_ed25519_private.pem"),
+}
+(identity_dir / "identity.json").write_text(json.dumps(identity, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+os.chmod(identity_dir / "identity.json", 0o600)
+PY
+    fi
+    touch "$CONFIG_DIR/identity.configured"
+    echo "Perfil $perfil configurado para '$nombre' ($organismo_id)."
+    echo "Identidad persistente: $HOME/.anima/identity.json"
+    echo "Configuración: $(config_file)"
+    ;;
+  start)
+    "$CM_DIR/docker/run_native_desktop.sh" start
+    case "$(uname -s)" in
+      Darwin)
+        launchctl kickstart -k "gui/$(id -u)/com.vstcosmo.anima-watchdog" 2>/dev/null || true
+        ;;
+      Linux)
+        systemctl --user start anima-organismo.service anima-watchdog.service 2>/dev/null || true
+        ;;
+    esac
+    ;;
+  stop)
+    case "$(uname -s)" in
+      Darwin)
+        launchctl bootout "gui/$(id -u)/com.vstcosmo.anima-watchdog" 2>/dev/null || true
+        launchctl bootout "gui/$(id -u)/com.vstcosmo.anima-organismo" 2>/dev/null || true
+        ;;
+      Linux)
+        systemctl --user stop anima-watchdog.service anima-organismo.service 2>/dev/null || true
+        ;;
+    esac
+    "$CM_DIR/docker/run_native_desktop.sh" stop
+    ;;
+  restart)
+    "$0" stop || true
+    sleep 1
+    "$0" start
+    ;;
+  status)
+    exec anima-status
+    ;;
+  open)
+    url="http://127.0.0.1:${VST_PUERTO:-7788}/"
+    case "$(uname -s)" in
+      Darwin) open "$url" ;;
+      Linux) xdg-open "$url" 2>/dev/null || sensible-browser "$url" 2>/dev/null || true ;;
+      *) echo "$url" ;;
+    esac
+    ;;
+  *)
+    usage
+    exit 2
+    ;;
+esac

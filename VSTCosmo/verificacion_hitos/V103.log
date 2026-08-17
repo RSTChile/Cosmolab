@@ -1,0 +1,196 @@
+==== VERIFICACIÓN HITO V103 ====
+script   : V103.py
+sha1[:12]: 1e4b4bac9d86
+mtime    : 2026-05-27T15:22:51.357430
+reporta  : Síntesis V90-103: clasificación multiestímulo Ω
+inicio   : 2026-06-22T00:47:48.550667
+======================================================================
+
+====================================================================================================
+VSTCosmos v103 — Clasificacion de multiples estimulos
+
+  Preguntas:
+    1. ¿Omega produce valores caracteristicos para cada estimulo/direccion?
+    2. ¿Podemos clasificar estimulos nuevos usando solo Omega?
+
+  Diseno:
+    - Entrenamiento: solo BigBang ± (60s c/u)
+    - Evaluacion: TODOS los estimulos disponibles (120s c/u)
+    - Registro: Omega final para cada combinacion
+
+  Estimulos a evaluar: 28
+  BANDA_TRANS=11 (F>1960Hz)
+  DIM_TOTAL=112
+====================================================================================================
+
+[Carga] Desde 'audio_binaural/'...
+    [OK] BigBang_pos                    (232.9s, 48000Hz)
+    [OK] BigBang_neg                    (232.9s, 48000Hz)
+    [OK] Voz_Estudio_pos                (35.0s, 48000Hz)
+    [OK] Voz_Estudio_neg                (35.0s, 48000Hz)
+    [OK] voz_pos                        (35.0s, 48000Hz)
+    [OK] voz_neg                        (35.0s, 48000Hz)
+    [OK] Tono puro_pos                  (35.0s, 48000Hz)
+    [OK] Tono puro_neg                  (35.0s, 48000Hz)
+    [OK] Ruido blanco_pos               (35.0s, 48000Hz)
+    [OK] Ruido blanco_neg               (35.0s, 48000Hz)
+    [OK] Ritmos aleatorios_pos          (35.0s, 48000Hz)
+    [OK] Ritmos aleatorios_neg          (35.0s, 48000Hz)
+    [OK] Ondas mixtas_pos               (35.0s, 48000Hz)
+    [OK] Ondas mixtas_neg               (35.0s, 48000Hz)
+    [OK] Pulso logaritmico_pos          (35.0s, 48000Hz)
+    [OK] Pulso logaritmico_neg          (35.0s, 48000Hz)
+    [OK] Viento_pos                     (35.0s, 48000Hz)
+    [OK] Viento_neg                     (35.0s, 48000Hz)
+    [OK] Voz+Viento_1_pos               (35.0s, 48000Hz)
+    [OK] Voz+Viento_1_neg               (35.0s, 48000Hz)
+    [OK] Voz+Viento_2_pos               (35.0s, 48000Hz)
+    [OK] Voz+Viento_2_neg               (35.0s, 48000Hz)
+    [OK] Brandemburgo_pos               (35.0s, 48000Hz)
+    [OK] Brandemburgo_neg               (35.0s, 48000Hz)
+    [OK] musica_pos                     (35.0s, 48000Hz)
+    [OK] tono_pos                       (35.0s, 48000Hz)
+    [OK] ruido_pos                      (35.0s, 48000Hz)
+    [OK] voz_viento_pos                 (35.0s, 48000Hz)
+  Carga completada: 28 archivos.
+
+████████████████████████████████████████████████████████████████████████████████████████████████████
+EXPERIMENTO UNICO — Entrenamiento con BigBang ±, evaluacion con TODOS los estimulos
+████████████████████████████████████████████████████████████████████████████████████████████████████
+
+[Entrenamiento] BigBang_pos + BigBang_neg (60s c/u = 120s total)
+    Entrenando con BigBang_pos... error_final=0.194780
+    Entrenando con BigBang_neg... error_final=0.193291
+  ERROR_EQUILIBRIO: 0.110662
+  W_prof: 0.0001
+  W_rec:  0.0009
+
+[Evaluacion] Todos los estimulos (orden fijo, 120.0s c/u)
+    Evaluando BigBang_pos (120.0s)... Omega=0.7609
+    Evaluando BigBang_neg (120.0s)... Omega=0.6507
+    Evaluando Voz_Estudio_pos (120.0s)... Omega=0.8512
+    Evaluando Voz_Estudio_neg (120.0s)... Omega=0.5236
+    Evaluando voz_pos (120.0s)... Omega=0.8517
+    Evaluando voz_neg (120.0s)... Omega=0.5236
+    Evaluando musica_pos (120.0s)... Omega=0.9612
+    Evaluando Tono puro_pos (120.0s)... Omega=0.0004
+    Evaluando Tono puro_neg (120.0s)... Omega=1.0000
+    Evaluando tono_pos (120.0s)... Omega=0.0000
+    Evaluando Ruido blanco_pos (120.0s)... Omega=0.9989
+    Evaluando Ruido blanco_neg (120.0s)... Omega=0.0542
+    Evaluando ruido_pos (120.0s)... Omega=-0.0002
+    Evaluando Ritmos aleatorios_pos (120.0s)... Omega=0.4900
+    Evaluando Ritmos aleatorios_neg (120.0s)... Omega=0.5031
+    Evaluando Ondas mixtas_pos (120.0s)... Omega=0.6154
+    Evaluando Ondas mixtas_neg (120.0s)... Omega=0.7816
+    Evaluando Pulso logaritmico_pos (120.0s)... Omega=0.7067
+    Evaluando Pulso logaritmico_neg (120.0s)... Omega=0.7075
+    Evaluando Viento_pos (120.0s)... Omega=0.8215
+    Evaluando Viento_neg (120.0s)... Omega=0.5696
+    Evaluando Voz+Viento_1_pos (120.0s)... Omega=0.8373
+    Evaluando Voz+Viento_1_neg (120.0s)... Omega=0.5520
+    Evaluando Voz+Viento_2_pos (120.0s)... Omega=0.7904
+    Evaluando Voz+Viento_2_neg (120.0s)... Omega=0.6140
+    Evaluando voz_viento_pos (120.0s)... Omega=0.8374
+    Evaluando Brandemburgo_pos (120.0s)... Omega=0.9619
+    Evaluando Brandemburgo_neg (120.0s)... Omega=0.2431
+
+====================================================================================================
+REPORTE DE OBSERVACIONES - v103
+====================================================================================================
+
+  OMEGA PARA CADA ESTIMULO
+  ------------------------------------------------------------
+  Estimulo                                 Omega
+  ------------------------------------------------------------
+
+  BigBang:
+    BigBang_pos                             0.7609
+    BigBang_neg                             0.6507
+
+  Voz:
+    Voz_Estudio_pos                         0.8512
+    Voz_Estudio_neg                         0.5236
+    voz_pos                                 0.8517
+    voz_neg                                 0.5236
+
+  Musica/Tono:
+    musica_pos                              0.9612
+    Tono puro_pos                           0.0004
+    Tono puro_neg                           1.0000
+    tono_pos                                0.0000
+
+  Ruido:
+    Ruido blanco_pos                        0.9989
+    Ruido blanco_neg                        0.0542
+    ruido_pos                              -0.0002
+
+  Ritmos/Ondas/Pulso:
+    Ritmos aleatorios_pos                   0.4900
+    Ritmos aleatorios_neg                   0.5031
+    Ondas mixtas_pos                        0.6154
+    Ondas mixtas_neg                        0.7816
+    Pulso logaritmico_pos                   0.7067
+    Pulso logaritmico_neg                   0.7075
+
+  Viento:
+    Viento_pos                              0.8215
+    Viento_neg                              0.5696
+
+  Voz+Viento:
+    Voz+Viento_1_pos                        0.8373
+    Voz+Viento_1_neg                        0.5520
+    Voz+Viento_2_pos                        0.7904
+    Voz+Viento_2_neg                        0.6140
+    voz_viento_pos                          0.8374
+
+  Brandemburgo:
+    Brandemburgo_pos                        0.9619
+    Brandemburgo_neg                        0.2431
+
+====================================================================================================
+ANALISIS DE CLASIFICACION
+====================================================================================================
+
+  VALORES DE REFERENCIA (de v102):
+    BigBang_pos: 0.7609
+    BigBang_neg: 0.6507
+    voz_pos:     0.8512
+    voz_neg:     0.5236
+
+  CLASIFICACION POR CERCANIA A VALORES DE REFERENCIA:
+  ----------------------------------------------------------------------
+    Voz_Estudio_pos                     -> Omega=0.8512 -> mas cercano a voz_pos (diff=0.0000)
+    Voz_Estudio_neg                     -> Omega=0.5236 -> mas cercano a voz_neg (diff=0.0000)
+    musica_pos                          -> Omega=0.9612 -> mas cercano a voz_pos (diff=0.1100)
+    Tono puro_pos                       -> Omega=0.0004 -> mas cercano a voz_neg (diff=0.5232)
+    Tono puro_neg                       -> Omega=1.0000 -> mas cercano a voz_pos (diff=0.1488)
+    tono_pos                            -> Omega=0.0000 -> mas cercano a voz_neg (diff=0.5236)
+    Ruido blanco_pos                    -> Omega=0.9989 -> mas cercano a voz_pos (diff=0.1477)
+    Ruido blanco_neg                    -> Omega=0.0542 -> mas cercano a voz_neg (diff=0.4694)
+    ruido_pos                           -> Omega=-0.0002 -> mas cercano a voz_neg (diff=0.5238)
+    Ritmos aleatorios_pos               -> Omega=0.4900 -> mas cercano a voz_neg (diff=0.0336)
+    Ritmos aleatorios_neg               -> Omega=0.5031 -> mas cercano a voz_neg (diff=0.0205)
+    Ondas mixtas_pos                    -> Omega=0.6154 -> mas cercano a BigBang_neg (diff=0.0353)
+    Ondas mixtas_neg                    -> Omega=0.7816 -> mas cercano a BigBang_pos (diff=0.0207)
+    Pulso logaritmico_pos               -> Omega=0.7067 -> mas cercano a BigBang_pos (diff=0.0542)
+    Pulso logaritmico_neg               -> Omega=0.7075 -> mas cercano a BigBang_pos (diff=0.0534)
+    Viento_pos                          -> Omega=0.8215 -> mas cercano a voz_pos (diff=0.0297)
+    Viento_neg                          -> Omega=0.5696 -> mas cercano a voz_neg (diff=0.0460)
+    Voz+Viento_1_pos                    -> Omega=0.8373 -> mas cercano a voz_pos (diff=0.0139)
+    Voz+Viento_1_neg                    -> Omega=0.5520 -> mas cercano a voz_neg (diff=0.0284)
+    Voz+Viento_2_pos                    -> Omega=0.7904 -> mas cercano a BigBang_pos (diff=0.0295)
+    Voz+Viento_2_neg                    -> Omega=0.6140 -> mas cercano a BigBang_neg (diff=0.0367)
+    voz_viento_pos                      -> Omega=0.8374 -> mas cercano a voz_pos (diff=0.0138)
+    Brandemburgo_pos                    -> Omega=0.9619 -> mas cercano a voz_pos (diff=0.1107)
+    Brandemburgo_neg                    -> Omega=0.2431 -> mas cercano a voz_neg (diff=0.2805)
+
+  Grafico guardado: v103_logs/v103_resultados_20260622_005918.png
+  Resultados guardados: v103_logs/v103_resultados_20260622_005918.csv
+
+====================================================================================================
+EXPERIMENTO COMPLETADO - Revise los datos y extraiga sus propias conclusiones
+====================================================================================================
+
+
+[fin rc=0 700s]

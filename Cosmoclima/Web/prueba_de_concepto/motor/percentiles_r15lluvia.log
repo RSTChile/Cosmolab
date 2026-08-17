@@ -1,0 +1,9 @@
+config: PTC=B LF_SIN_V=true KAPPA_CANONICOS=true
+0.0% · 0 ticks/s · faltan ~47546 min
+14.7% · 1523 ticks/s · faltan ~13 min
+29.5% · 1543 ticks/s · faltan ~10 min
+44.2% · 1593 ticks/s · faltan ~8 min
+58.9% · 1606 ticks/s · faltan ~6 min
+73.6% · 1608 ticks/s · faltan ~4 min
+88.4% · 1603 ticks/s · faltan ~2 min
+Listo en 14.4 min. Escrito regimen_r15lluvia_por_anio.csv y regimen_r15lluvia_percentiles.json

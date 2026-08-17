@@ -1,0 +1,8 @@
+[calibracion] N=200 eps=0.001 D=0.00084136679 mediana_lavado=5300 pasos=6095 lavo_todas=True
+[barrido_principal] 132 filas listas t=2552.8s
+[mini_jitter] 4 filas listas t=2647.7s
+[robustez X] 6 bins evaluados t=2647.7s
+[robustez Xh] 6 bins evaluados t=2647.7s
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_1_5_expansion_no_monotona/E5_1_5_resultado_crudo.json
+[controles] X_null_max=0.9991586332135638 Xh_null_max=9.98317974325196e-07 P_null_max=0.031381030280739575 X_eps0_max=0.0 Xh_eps0_max=0.0 P_eps0_max=0.0 E_drift_max=5.743506362705375e-06
+[elapsed] 2647.7s

@@ -1,0 +1,51 @@
+[
+ {
+  "sustrato": "reticula2d",
+  "N": 2500,
+  "diam_bfs": 50.0,
+  "frac_alcanzada_L8": 0.058,
+  "diam_q": null
+ },
+ {
+  "sustrato": "reticula3d",
+  "N": 2197,
+  "diam_bfs": 18.0,
+  "frac_alcanzada_L8": 0.3627674101046882,
+  "diam_q": 19.11457677453587
+ },
+ {
+  "sustrato": "anillo1d",
+  "N": 2500,
+  "diam_bfs": 1250.0,
+  "frac_alcanzada_L8": 0.0068,
+  "diam_q": null
+ },
+ {
+  "sustrato": "aniso2d",
+  "N": 2500,
+  "diam_bfs": 73.0,
+  "frac_alcanzada_L8": 0.02841024,
+  "diam_q": null
+ },
+ {
+  "sustrato": "flujo_capas",
+  "N": 2500,
+  "diam_bfs": 50.0,
+  "frac_alcanzada_L8": 0.30764032,
+  "diam_q": 18.501231935961147
+ },
+ {
+  "sustrato": "er",
+  "N": 2500,
+  "diam_bfs": 8.0,
+  "frac_alcanzada_L8": 0.99042496,
+  "diam_q": 15.788116023055274
+ },
+ {
+  "sustrato": "real",
+  "N": 2500,
+  "diam_bfs": 15.0,
+  "frac_alcanzada_L8": 0.74533632,
+  "diam_q": 36.472329919210566
+ }
+]

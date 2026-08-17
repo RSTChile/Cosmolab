@@ -1,0 +1,19 @@
+prueba,estadistico,p,n,detalle
+Friedman (¿algún escalón difiere?),44.93723849372385,4.097228492360038e-09,12,"bloques=grafos, tratamientos=5 escalones"
+Page L (tendencia creciente e0<=..<=e4),655.5,1.2930744917062619e-11,12,z=6.668
+grafos con masa monótona creciente,10,nan,12,10/12
+grafos con Spearman intra-grafo > 0,12,nan,12,12/12
+signos e4 vs e0,12,0.00048828125,12,binomial exacto 2 colas
+Wilcoxon e4 vs e0,nan,0.00048828125,12,"rangos con signo, 2 colas"
+Spearman GLOBAL crudo clustering-masa,0.3809299407081431,0.0026759765150788104,60,mezcla variación entre y dentro de grafos
+Spearman GLOBAL centrado por grafo,0.9602656367223316,7.73228440624199e-34,60,equivalente pareado
+Spearman centrado clustering-pendiente,0.5782797761015991,1.3057408328995608e-06,60,¿el clustering mueve la geometría?
+Spearman centrado pendiente-masa,0.544742216532378,6.802809498074813e-06,60,¿la geometría mueve la masa?
+parcial clustering-masa | pendiente,0.9431235867960682,2.0064889786548804e-29,60,"sobre rangos, centrado por grafo"
+Spearman centrado clustering-asortatividad,0.8012614791198257,1.4877711672672966e-14,60,covariable arrastrada por los swaps dirigidos
+Spearman centrado asortatividad-masa,0.7428833410461442,1.0771937775483647e-11,60,¿la asortatividad explica la masa?
+parcial clustering-masa | asortatividad,0.9113604247068257,4.9812331932534604e-24,60,descontando la asortatividad
+Spearman centrado clustering-gigante,-0.6604753700549957,9.366837682211082e-09,60,covariable arrastrada (conectividad)
+Spearman centrado gigante-masa,-0.6231319430359303,1.0538229782279259e-07,60,¿la conectividad explica la masa?
+parcial clustering-masa | gigante,0.9343581352316017,1.1339925018422356e-27,60,descontando el tamaño de la componente gigante
+media rho intra-grafo,0.9645566195400747,nan,12,promedio simple de los ρ por grafo

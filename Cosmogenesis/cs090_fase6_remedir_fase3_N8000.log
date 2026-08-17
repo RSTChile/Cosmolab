@@ -1,0 +1,75 @@
+  local           seed=80100 b=1   n_cajas=8000  diam viejo=9 corregido=9  comp_medida=7320   gigante=7320   comps=39   aislados=592  
+  local           seed=80100 b=2   n_cajas=4664  diam viejo=7 corregido=7  comp_medida=4024   gigante=4024   comps=11   aislados=620  
+  local           seed=80100 b=4   n_cajas=2921  diam viejo=6 corregido=6  comp_medida=2291   gigante=2291   comps=1    aislados=630  
+  local           seed=80100 b=8   n_cajas=1946  diam viejo=6 corregido=6  comp_medida=1316   gigante=1316   comps=1    aislados=630  
+  local           seed=80100 b=16  n_cajas=1412  diam viejo=4 corregido=4  comp_medida=782    gigante=782    comps=1    aislados=630  
+  local           seed=80100 b=32  n_cajas=1139  diam viejo=4 corregido=4  comp_medida=509    gigante=509    comps=1    aislados=630  
+  >>> local           seed=80100  pendiente VIEJA=+0.4110  CORREGIDA=+0.4110  (diferencia +0.0000)
+
+  local_barajado  seed=80100 b=1   n_cajas=8000  diam viejo=7 corregido=7  comp_medida=7287   gigante=7287   comps=39   aislados=625  
+  local_barajado  seed=80100 b=2   n_cajas=4584  diam viejo=5 corregido=5  comp_medida=3911   gigante=3911   comps=11   aislados=653  
+  local_barajado  seed=80100 b=4   n_cajas=2840  diam viejo=4 corregido=4  comp_medida=2177   gigante=2177   comps=1    aislados=663  
+  local_barajado  seed=80100 b=8   n_cajas=1873  diam viejo=4 corregido=4  comp_medida=1210   gigante=1210   comps=1    aislados=663  
+  local_barajado  seed=80100 b=16  n_cajas=1443  diam viejo=4 corregido=4  comp_medida=780    gigante=780    comps=1    aislados=663  
+  local_barajado  seed=80100 b=32  n_cajas=1199  diam viejo=3 corregido=3  comp_medida=536    gigante=536    comps=1    aislados=663  
+  >>> local_barajado  seed=80100  pendiente VIEJA=+0.3671  CORREGIDA=+0.3671  (diferencia +0.0000)
+
+  er_null         seed=80100 b=1   n_cajas=8000  diam viejo=10 corregido=10  comp_medida=7982   gigante=7982   comps=1    aislados=18   
+  er_null         seed=80100 b=2   n_cajas=4461  diam viejo=6 corregido=6  comp_medida=4443   gigante=4443   comps=1    aislados=18   
+  er_null         seed=80100 b=4   n_cajas=2649  diam viejo=6 corregido=6  comp_medida=2631   gigante=2631   comps=1    aislados=18   
+  er_null         seed=80100 b=8   n_cajas=1663  diam viejo=5 corregido=5  comp_medida=1645   gigante=1645   comps=1    aislados=18   
+  er_null         seed=80100 b=16  n_cajas=1197  diam viejo=4 corregido=4  comp_medida=1179   gigante=1179   comps=1    aislados=18   
+  er_null         seed=80100 b=32  n_cajas=910   diam viejo=4 corregido=4  comp_medida=892    gigante=892    comps=1    aislados=18   
+  >>> er_null         seed=80100  pendiente VIEJA=+0.3965  CORREGIDA=+0.3965  (diferencia +0.0000)
+
+  local           seed=80200 b=1   n_cajas=8000  diam viejo=10 corregido=10  comp_medida=7330   gigante=7330   comps=39   aislados=584  
+  local           seed=80200 b=2   n_cajas=4642  diam viejo=8 corregido=8  comp_medida=4011   gigante=4011   comps=10   aislados=613  
+  local           seed=80200 b=4   n_cajas=2910  diam viejo=6 corregido=6  comp_medida=2288   gigante=2288   comps=1    aislados=622  
+  local           seed=80200 b=8   n_cajas=1933  diam viejo=6 corregido=6  comp_medida=1311   gigante=1311   comps=1    aislados=622  
+  local           seed=80200 b=16  n_cajas=1407  diam viejo=5 corregido=5  comp_medida=785    gigante=785    comps=1    aislados=622  
+  local           seed=80200 b=32  n_cajas=1123  diam viejo=5 corregido=5  comp_medida=501    gigante=501    comps=1    aislados=622  
+  >>> local           seed=80200  pendiente VIEJA=+0.3600  CORREGIDA=+0.3600  (diferencia +0.0000)
+
+  local_barajado  seed=80200 b=1   n_cajas=8000  diam viejo=7 corregido=7  comp_medida=7284   gigante=7284   comps=39   aislados=629  
+  local_barajado  seed=80200 b=2   n_cajas=4581  diam viejo=5 corregido=5  comp_medida=3906   gigante=3906   comps=8    aislados=660  
+  local_barajado  seed=80200 b=4   n_cajas=2816  diam viejo=4 corregido=4  comp_medida=2148   gigante=2148   comps=2    aislados=666  
+  local_barajado  seed=80200 b=8   n_cajas=1910  diam viejo=4 corregido=4  comp_medida=1243   gigante=1243   comps=1    aislados=667  
+  local_barajado  seed=80200 b=16  n_cajas=1424  diam viejo=3 corregido=3  comp_medida=757    gigante=757    comps=1    aislados=667  
+  local_barajado  seed=80200 b=32  n_cajas=1174  diam viejo=3 corregido=3  comp_medida=507    gigante=507    comps=1    aislados=667  
+  >>> local_barajado  seed=80200  pendiente VIEJA=+0.4311  CORREGIDA=+0.4311  (diferencia +0.0000)
+
+  er_null         seed=80200 b=1   n_cajas=8000  diam viejo=9 corregido=9  comp_medida=7978   gigante=7978   comps=1    aislados=22   
+  er_null         seed=80200 b=2   n_cajas=4444  diam viejo=7 corregido=7  comp_medida=4422   gigante=4422   comps=1    aislados=22   
+  er_null         seed=80200 b=4   n_cajas=2624  diam viejo=5 corregido=5  comp_medida=2602   gigante=2602   comps=1    aislados=22   
+  er_null         seed=80200 b=8   n_cajas=1692  diam viejo=5 corregido=5  comp_medida=1670   gigante=1670   comps=1    aislados=22   
+  er_null         seed=80200 b=16  n_cajas=1202  diam viejo=4 corregido=4  comp_medida=1180   gigante=1180   comps=1    aislados=22   
+  er_null         seed=80200 b=32  n_cajas=949   diam viejo=4 corregido=4  comp_medida=927    gigante=927    comps=1    aislados=22   
+  >>> er_null         seed=80200  pendiente VIEJA=+0.3885  CORREGIDA=+0.3885  (diferencia +0.0000)
+
+  local           seed=80300 b=1   n_cajas=8000  diam viejo=9 corregido=9  comp_medida=7260   gigante=7260   comps=56   aislados=611  
+  local           seed=80300 b=2   n_cajas=4664  diam viejo=7 corregido=7  comp_medida=3985   gigante=3985   comps=13   aislados=654  
+  local           seed=80300 b=4   n_cajas=2930  diam viejo=6 corregido=6  comp_medida=2263   gigante=2263   comps=2    aislados=665  
+  local           seed=80300 b=8   n_cajas=1965  diam viejo=5 corregido=5  comp_medida=1299   gigante=1299   comps=1    aislados=666  
+  local           seed=80300 b=16  n_cajas=1470  diam viejo=5 corregido=5  comp_medida=804    gigante=804    comps=1    aislados=666  
+  local           seed=80300 b=32  n_cajas=1195  diam viejo=4 corregido=4  comp_medida=529    gigante=529    comps=1    aislados=666  
+  >>> local           seed=80300  pendiente VIEJA=+0.3904  CORREGIDA=+0.3904  (diferencia +0.0000)
+
+  local_barajado  seed=80300 b=1   n_cajas=8000  diam viejo=7 corregido=7  comp_medida=7251   gigante=7251   comps=40   aislados=654  
+  local_barajado  seed=80300 b=2   n_cajas=4600  diam viejo=5 corregido=5  comp_medida=3895   gigante=3895   comps=12   aislados=682  
+  local_barajado  seed=80300 b=4   n_cajas=2849  diam viejo=4 corregido=4  comp_medida=2155   gigante=2155   comps=2    aislados=692  
+  local_barajado  seed=80300 b=8   n_cajas=1904  diam viejo=4 corregido=4  comp_medida=1211   gigante=1211   comps=1    aislados=693  
+  local_barajado  seed=80300 b=16  n_cajas=1447  diam viejo=4 corregido=4  comp_medida=754    gigante=754    comps=1    aislados=693  
+  local_barajado  seed=80300 b=32  n_cajas=1214  diam viejo=3 corregido=3  comp_medida=521    gigante=521    comps=1    aislados=693  
+  >>> local_barajado  seed=80300  pendiente VIEJA=+0.3690  CORREGIDA=+0.3690  (diferencia +0.0000)
+
+  er_null         seed=80300 b=1   n_cajas=8000  diam viejo=9 corregido=9  comp_medida=7979   gigante=7979   comps=2    aislados=19   
+  er_null         seed=80300 b=2   n_cajas=4461  diam viejo=7 corregido=7  comp_medida=4441   gigante=4441   comps=1    aislados=20   
+  er_null         seed=80300 b=4   n_cajas=2645  diam viejo=6 corregido=6  comp_medida=2625   gigante=2625   comps=1    aislados=20   
+  er_null         seed=80300 b=8   n_cajas=1658  diam viejo=5 corregido=5  comp_medida=1638   gigante=1638   comps=1    aislados=20   
+  er_null         seed=80300 b=16  n_cajas=1182  diam viejo=4 corregido=4  comp_medida=1162   gigante=1162   comps=1    aislados=20   
+  er_null         seed=80300 b=32  n_cajas=942   diam viejo=4 corregido=4  comp_medida=922    gigante=922    comps=1    aislados=20   
+  >>> er_null         seed=80300  pendiente VIEJA=+0.3907  CORREGIDA=+0.3907  (diferencia +0.0000)
+
+[csv] cs090_fase6_remedicion_fase3.csv (54 filas, 218s)
+[resultado] escalas donde la medición vieja DESCARRILA: 0/54
+[resultado] escalas donde viejo != corregido:           0/54

@@ -1,0 +1,4 @@
+# CosmoRobot — dependencias
+# El motor de deliberación y el genoma son stdlib puro (sin dependencias).
+# Solo la capa de hardware necesita esto:
+nxt-python

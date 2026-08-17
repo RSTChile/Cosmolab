@@ -1,0 +1,413 @@
+====================================================================================================
+O1-C — cierre A0: método viejo (histórico + corregido) vs. métricas nativas, muestra grande
+====================================================================================================
+[combos A0] C1 idéntico a C0: True | C2 idéntico a C0: True | A0-B1 ejecutable: False (KeyError: 'adj')
+[combos A0] -> el barrido se hace variando semillas dentro de A0-B0-C0 (única combinación con dinámica propia en el Eje A0).
+
+[gen] admitidas=400 descartadas=0 (filtro P1-P5 real, 3.1s)
+  [1/400] A0-B0-C0-r0      pend=0.356 clase=II                       | nativo corr=0.623 dom=2.079 giant_b1=1.000 | II=1 (2.6s)  <-- CLASE II
+  [2/400] A0-B0-C0-r1      pend=0.296 clase=I                        | nativo corr=0.500 dom=2.036 giant_b1=1.000 | II=1 (2.2s)
+  [3/400] A0-B0-C0-r2      pend=0.277 clase=I                        | nativo corr=0.417 dom=1.360 giant_b1=0.139 | II=1 (1.7s)
+  [4/400] A0-B0-C0-r3      pend=0.282 clase=I                        | nativo corr=0.623 dom=2.117 giant_b1=1.000 | II=1 (2.5s)
+  [5/400] A0-B0-C0-r4      pend=0.296 clase=I                        | nativo corr=0.500 dom=1.273 giant_b1=0.109 | II=1 (1.7s)
+  [6/400] A0-B0-C0-r5      pend=0.363 clase=II                       | nativo corr=0.417 dom=1.227 giant_b1=0.077 | II=2 (1.4s)  <-- CLASE II
+  [7/400] A0-B0-C0-r6      pend=0.231 clase=I                        | nativo corr=0.720 dom=2.280 giant_b1=1.000 | II=2 (1.5s)
+  [8/400] A0-B0-C0-r7      pend=0.226 clase=I                        | nativo corr=0.500 dom=1.306 giant_b1=0.141 | II=2 (2.1s)
+  [9/400] A0-B0-C0-r8      pend=0.302 clase=I                        | nativo corr=0.500 dom=1.637 giant_b1=0.488 | II=2 (2.0s)
+  [10/400] A0-B0-C0-r9      pend=0.289 clase=I                        | nativo corr=0.623 dom=1.737 giant_b1=0.446 | II=2 (2.4s)
+  [11/400] A0-B0-C0-r10     pend=0.299 clase=I                        | nativo corr=0.500 dom=1.383 giant_b1=0.246 | II=2 (2.0s)
+  [12/400] A0-B0-C0-r11     pend=0.308 clase=I                        | nativo corr=0.500 dom=1.460 giant_b1=0.183 | II=2 (1.6s)
+  [13/400] A0-B0-C0-r12     pend=0.233 clase=I                        | nativo corr=0.500 dom=1.666 giant_b1=0.257 | II=2 (1.6s)
+  [14/400] A0-B0-C0-r13     pend=0.180 clase=I                        | nativo corr=0.500 dom=0.972 giant_b1=0.040 | II=2 (1.3s)
+  [15/400] A0-B0-C0-r14     pend=0.290 clase=I                        | nativo corr=0.500 dom=1.318 giant_b1=0.071 | II=2 (1.1s)
+  [16/400] A0-B0-C0-r15     pend=0.290 clase=I                        | nativo corr=0.417 dom=1.428 giant_b1=0.303 | II=2 (2.3s)
+  [17/400] A0-B0-C0-r16     pend=0.297 clase=I                        | nativo corr=0.500 dom=1.803 giant_b1=0.431 | II=2 (2.3s)
+  [18/400] A0-B0-C0-r17     pend=0.292 clase=I                        | nativo corr=0.500 dom=1.664 giant_b1=0.399 | II=2 (2.3s)
+  [19/400] A0-B0-C0-r18     pend=0.227 clase=I                        | nativo corr=0.623 dom=2.031 giant_b1=1.000 | II=2 (1.8s)
+  [20/400] A0-B0-C0-r19     pend=0.286 clase=I                        | nativo corr=0.300 dom=0.755 giant_b1=0.032 | II=2 (2.1s)
+  [21/400] A0-B0-C0-r20     pend=0.362 clase=II                       | nativo corr=0.500 dom=1.824 giant_b1=0.522 | II=3 (1.6s)  <-- CLASE II
+  [22/400] A0-B0-C0-r21     pend=0.286 clase=I                        | nativo corr=0.500 dom=0.920 giant_b1=0.028 | II=3 (1.3s)
+  [23/400] A0-B0-C0-r22     pend=0.189 clase=I                        | nativo corr=0.500 dom=1.533 giant_b1=0.216 | II=3 (1.2s)
+  [24/400] A0-B0-C0-r23     pend=0.293 clase=I                        | nativo corr=0.500 dom=1.256 giant_b1=0.231 | II=3 (2.4s)
+  [25/400] A0-B0-C0-r24     pend=0.229 clase=I                        | nativo corr=0.500 dom=1.741 giant_b1=0.582 | II=3 (1.7s)
+  [26/400] A0-B0-C0-r25     pend=0.295 clase=I                        | nativo corr=0.623 dom=2.043 giant_b1=1.000 | II=3 (2.4s)
+  [27/400] A0-B0-C0-r26     pend=0.249 clase=I                        | nativo corr=0.500 dom=0.727 giant_b1=0.014 | II=3 (1.2s)
+  [28/400] A0-B0-C0-r27     pend=0.151 clase=I                        | nativo corr=0.500 dom=1.022 giant_b1=0.057 | II=3 (1.2s)
+  [29/400] A0-B0-C0-r28     pend=0.352 clase=II                       | nativo corr=0.623 dom=1.249 giant_b1=0.141 | II=4 (1.1s)  <-- CLASE II
+  [30/400] A0-B0-C0-r29     pend=0.233 clase=I                        | nativo corr=0.417 dom=1.054 giant_b1=0.051 | II=4 (1.4s)
+  [31/400] A0-B0-C0-r30     pend=0.289 clase=I                        | nativo corr=0.500 dom=1.913 giant_b1=0.549 | II=4 (2.0s)
+  [32/400] A0-B0-C0-r31     pend=0.297 clase=I                        | nativo corr=0.500 dom=1.712 giant_b1=0.299 | II=4 (1.9s)
+  [33/400] A0-B0-C0-r32     pend=0.355 clase=II                       | nativo corr=0.500 dom=1.368 giant_b1=0.149 | II=5 (1.9s)  <-- CLASE II
+  [34/400] A0-B0-C0-r33     pend=0.310 clase=I                        | nativo corr=0.623 dom=2.112 giant_b1=1.000 | II=5 (1.9s)
+  [35/400] A0-B0-C0-r34     pend=0.303 clase=I                        | nativo corr=0.500 dom=1.795 giant_b1=0.403 | II=5 (1.8s)
+  [36/400] A0-B0-C0-r35     pend=0.299 clase=I                        | nativo corr=0.500 dom=2.113 giant_b1=1.000 | II=5 (2.0s)
+  [37/400] A0-B0-C0-r36     pend=0.248 clase=I                        | nativo corr=0.500 dom=1.003 giant_b1=0.032 | II=5 (1.3s)
+  [38/400] A0-B0-C0-r37     pend=0.315 clase=I                        | nativo corr=0.500 dom=1.411 giant_b1=0.159 | II=5 (1.6s)
+  [39/400] A0-B0-C0-r38     pend=0.300 clase=I                        | nativo corr=0.623 dom=2.085 giant_b1=1.000 | II=5 (1.8s)
+  [40/400] A0-B0-C0-r39     pend=0.292 clase=I                        | nativo corr=0.500 dom=1.319 giant_b1=0.252 | II=5 (1.9s)
+  [41/400] A0-B0-C0-r40     pend=0.336 clase=I                        | nativo corr=0.500 dom=1.255 giant_b1=0.094 | II=5 (1.4s)
+  [42/400] A0-B0-C0-r41     pend=0.313 clase=I                        | nativo corr=0.500 dom=1.652 giant_b1=0.252 | II=5 (1.7s)
+  [43/400] A0-B0-C0-r42     pend=0.234 clase=I                        | nativo corr=0.417 dom=1.317 giant_b1=0.150 | II=5 (1.7s)
+  [44/400] A0-B0-C0-r43     pend=0.228 clase=I                        | nativo corr=0.500 dom=1.948 giant_b1=0.929 | II=5 (2.2s)
+  [45/400] A0-B0-C0-r44     pend=0.292 clase=I                        | nativo corr=0.500 dom=2.057 giant_b1=1.000 | II=5 (2.5s)
+  [46/400] A0-B0-C0-r45     pend=0.229 clase=I                        | nativo corr=0.500 dom=2.009 giant_b1=1.000 | II=5 (2.1s)
+  [47/400] A0-B0-C0-r46     pend=0.293 clase=I                        | nativo corr=0.500 dom=1.673 giant_b1=0.524 | II=5 (2.1s)
+  [48/400] A0-B0-C0-r47     pend=0.295 clase=I                        | nativo corr=0.500 dom=1.839 giant_b1=0.778 | II=5 (1.7s)
+  [49/400] A0-B0-C0-r48     pend=0.260 clase=I                        | nativo corr=0.500 dom=1.816 giant_b1=0.368 | II=5 (1.2s)
+  [50/400] A0-B0-C0-r49     pend=0.356 clase=II                       | nativo corr=0.500 dom=1.143 giant_b1=0.041 | II=6 (1.4s)  <-- CLASE II
+  [51/400] A0-B0-C0-r50     pend=0.234 clase=I                        | nativo corr=0.623 dom=1.347 giant_b1=0.179 | II=6 (1.4s)
+  [52/400] A0-B0-C0-r51     pend=0.294 clase=I                        | nativo corr=0.500 dom=1.532 giant_b1=0.389 | II=6 (2.2s)
+  [53/400] A0-B0-C0-r52     pend=0.233 clase=I                        | nativo corr=0.500 dom=1.266 giant_b1=0.092 | II=6 (1.5s)
+  [54/400] A0-B0-C0-r53     pend=0.230 clase=I                        | nativo corr=0.500 dom=1.350 giant_b1=0.144 | II=6 (1.7s)
+  [55/400] A0-B0-C0-r54     pend=0.253 clase=I                        | nativo corr=0.500 dom=0.673 giant_b1=0.011 | II=6 (1.2s)
+  [56/400] A0-B0-C0-r55     pend=0.294 clase=I                        | nativo corr=0.417 dom=0.800 giant_b1=0.052 | II=6 (2.5s)
+  [57/400] A0-B0-C0-r56     pend=0.359 clase=II                       | nativo corr=0.500 dom=1.126 giant_b1=0.070 | II=7 (1.8s)  <-- CLASE II
+  [58/400] A0-B0-C0-r57     pend=0.306 clase=I                        | nativo corr=0.500 dom=1.630 giant_b1=0.526 | II=7 (2.1s)
+  [59/400] A0-B0-C0-r58     pend=0.236 clase=I                        | nativo corr=0.500 dom=1.414 giant_b1=0.158 | II=7 (1.9s)
+  [60/400] A0-B0-C0-r59     pend=0.294 clase=I                        | nativo corr=0.300 dom=0.972 giant_b1=0.083 | II=7 (2.1s)
+  [61/400] A0-B0-C0-r60     pend=0.298 clase=I                        | nativo corr=0.417 dom=1.503 giant_b1=0.206 | II=7 (1.9s)
+  [62/400] A0-B0-C0-r61     pend=0.239 clase=I                        | nativo corr=0.500 dom=1.783 giant_b1=0.393 | II=7 (1.5s)
+  [63/400] A0-B0-C0-r62     pend=0.346 clase=I                        | nativo corr=0.500 dom=1.270 giant_b1=0.070 | II=7 (1.1s)
+  [64/400] A0-B0-C0-r63     pend=0.297 clase=I                        | nativo corr=0.417 dom=1.395 giant_b1=0.142 | II=7 (1.7s)
+  [65/400] A0-B0-C0-r64     pend=0.226 clase=I                        | nativo corr=0.417 dom=0.930 giant_b1=0.044 | II=7 (1.5s)
+  [66/400] A0-B0-C0-r65     pend=0.293 clase=I                        | nativo corr=0.558 dom=1.672 giant_b1=0.513 | II=7 (2.4s)
+  [67/400] A0-B0-C0-r66     pend=0.297 clase=I                        | nativo corr=0.500 dom=2.081 giant_b1=1.000 | II=7 (2.5s)
+  [68/400] A0-B0-C0-r67     pend=0.295 clase=I                        | nativo corr=0.417 dom=1.305 giant_b1=0.294 | II=7 (2.5s)
+  [69/400] A0-B0-C0-r68     pend=0.390 clase=II                       | nativo corr=0.500 dom=1.345 giant_b1=0.085 | II=8 (1.4s)  <-- CLASE II
+  [70/400] A0-B0-C0-r69     pend=0.307 clase=I                        | nativo corr=0.500 dom=1.197 giant_b1=0.073 | II=8 (1.9s)
+  [71/400] A0-B0-C0-r70     pend=0.367 clase=II                       | nativo corr=0.500 dom=0.810 giant_b1=0.018 | II=9 (1.4s)  <-- CLASE II
+  [72/400] A0-B0-C0-r71     pend=0.231 clase=I                        | nativo corr=0.623 dom=1.604 giant_b1=0.269 | II=9 (2.1s)
+  [73/400] A0-B0-C0-r72     pend=0.304 clase=I                        | nativo corr=0.500 dom=0.858 giant_b1=0.027 | II=9 (1.4s)
+  [74/400] A0-B0-C0-r73     pend=0.190 clase=I                        | nativo corr=0.500 dom=1.281 giant_b1=0.098 | II=9 (1.3s)
+  [75/400] A0-B0-C0-r74     pend=0.299 clase=I                        | nativo corr=0.500 dom=2.098 giant_b1=1.000 | II=9 (2.5s)
+  [76/400] A0-B0-C0-r75     pend=0.363 clase=II                       | nativo corr=0.417 dom=1.117 giant_b1=0.084 | II=10 (2.1s)  <-- CLASE II
+  [77/400] A0-B0-C0-r76     pend=0.295 clase=I                        | nativo corr=0.417 dom=1.369 giant_b1=0.243 | II=10 (2.5s)
+  [78/400] A0-B0-C0-r77     pend=0.362 clase=II                       | nativo corr=0.417 dom=1.440 giant_b1=0.227 | II=11 (2.1s)  <-- CLASE II
+  [79/400] A0-B0-C0-r78     pend=0.227 clase=I                        | nativo corr=0.623 dom=1.933 giant_b1=0.422 | II=11 (1.5s)
+  [80/400] A0-B0-C0-r79     pend=0.300 clase=I                        | nativo corr=0.417 dom=1.311 giant_b1=0.136 | II=11 (2.4s)
+  [81/400] A0-B0-C0-r80     pend=0.286 clase=I                        | nativo corr=0.500 dom=1.917 giant_b1=1.000 | II=11 (2.6s)
+  [82/400] A0-B0-C0-r81     pend=0.301 clase=I                        | nativo corr=0.500 dom=1.721 giant_b1=0.518 | II=11 (2.6s)
+  [83/400] A0-B0-C0-r82     pend=0.218 clase=I                        | nativo corr=0.417 dom=1.478 giant_b1=0.286 | II=11 (2.7s)
+  [84/400] A0-B0-C0-r83     pend=0.231 clase=I                        | nativo corr=0.500 dom=1.160 giant_b1=0.080 | II=11 (2.2s)
+  [85/400] A0-B0-C0-r84     pend=0.357 clase=II                       | nativo corr=0.500 dom=1.206 giant_b1=0.097 | II=12 (1.9s)  <-- CLASE II
+  [86/400] A0-B0-C0-r85     pend=0.256 clase=I                        | nativo corr=0.558 dom=1.160 giant_b1=0.048 | II=12 (1.5s)
+  [87/400] A0-B0-C0-r86     pend=0.303 clase=I                        | nativo corr=0.500 dom=1.029 giant_b1=0.056 | II=12 (1.7s)
+  [88/400] A0-B0-C0-r87     pend=0.295 clase=I                        | nativo corr=0.500 dom=1.902 giant_b1=1.000 | II=12 (2.7s)
+  [89/400] A0-B0-C0-r88     pend=0.370 clase=II                       | nativo corr=0.500 dom=1.476 giant_b1=0.173 | II=13 (1.9s)  <-- CLASE II
+  [90/400] A0-B0-C0-r89     pend=0.361 clase=II                       | nativo corr=0.500 dom=1.744 giant_b1=0.532 | II=14 (1.9s)  <-- CLASE II
+  [91/400] A0-B0-C0-r90     pend=0.195 clase=I                        | nativo corr=0.623 dom=1.521 giant_b1=0.217 | II=14 (1.5s)
+  [92/400] A0-B0-C0-r91     pend=0.291 clase=I                        | nativo corr=0.500 dom=1.817 giant_b1=1.000 | II=14 (2.7s)
+  [93/400] A0-B0-C0-r92     pend=0.296 clase=I                        | nativo corr=0.623 dom=1.975 giant_b1=1.000 | II=14 (2.4s)
+  [94/400] A0-B0-C0-r93     pend=0.193 clase=I                        | nativo corr=0.558 dom=0.934 giant_b1=0.026 | II=14 (1.3s)
+  [95/400] A0-B0-C0-r94     pend=0.232 clase=I                        | nativo corr=0.417 dom=1.289 giant_b1=0.178 | II=14 (1.9s)
+  [96/400] A0-B0-C0-r95     pend=0.302 clase=I                        | nativo corr=0.500 dom=1.126 giant_b1=0.084 | II=14 (2.2s)
+  [97/400] A0-B0-C0-r96     pend=0.302 clase=I                        | nativo corr=0.500 dom=1.345 giant_b1=0.277 | II=14 (2.6s)
+  [98/400] A0-B0-C0-r97     pend=0.227 clase=I                        | nativo corr=0.500 dom=1.686 giant_b1=0.465 | II=14 (2.2s)
+  [99/400] A0-B0-C0-r98     pend=0.236 clase=I                        | nativo corr=0.623 dom=1.444 giant_b1=0.088 | II=14 (1.7s)
+  [100/400] A0-B0-C0-r99     pend=0.230 clase=I                        | nativo corr=0.500 dom=2.128 giant_b1=1.000 | II=14 (2.3s)
+  [101/400] A0-B0-C0-r100    pend=0.280 clase=I                        | nativo corr=0.500 dom=2.068 giant_b1=1.000 | II=14 (2.1s)
+  [102/400] A0-B0-C0-r101    pend=0.230 clase=I                        | nativo corr=0.623 dom=1.502 giant_b1=0.185 | II=14 (2.4s)
+  [103/400] A0-B0-C0-r102    pend=0.299 clase=I                        | nativo corr=0.500 dom=1.933 giant_b1=1.000 | II=14 (2.7s)
+  [104/400] A0-B0-C0-r103    pend=0.368 clase=II                       | nativo corr=0.500 dom=1.652 giant_b1=0.448 | II=15 (2.5s)  <-- CLASE II
+  [105/400] A0-B0-C0-r104    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.818 giant_b1=0.713 | II=15 (2.9s)
+  [106/400] A0-B0-C0-r105    pend=0.294 clase=I                        | nativo corr=0.623 dom=1.932 giant_b1=1.000 | II=15 (2.9s)
+  [107/400] A0-B0-C0-r106    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.849 giant_b1=0.621 | II=15 (2.5s)
+  [108/400] A0-B0-C0-r107    pend=0.238 clase=I                        | nativo corr=0.417 dom=1.007 giant_b1=0.040 | II=15 (1.8s)
+  [109/400] A0-B0-C0-r108    pend=0.312 clase=I                        | nativo corr=0.500 dom=1.238 giant_b1=0.088 | II=15 (1.7s)
+  [110/400] A0-B0-C0-r109    pend=0.298 clase=I                        | nativo corr=0.500 dom=1.776 giant_b1=0.449 | II=15 (2.3s)
+  [111/400] A0-B0-C0-r110    pend=0.282 clase=I                        | nativo corr=0.500 dom=1.452 giant_b1=0.155 | II=15 (2.0s)
+  [112/400] A0-B0-C0-r111    pend=0.291 clase=I                        | nativo corr=0.500 dom=2.031 giant_b1=1.000 | II=15 (3.2s)
+  [113/400] A0-B0-C0-r112    pend=0.294 clase=I                        | nativo corr=0.500 dom=1.248 giant_b1=0.150 | II=15 (2.7s)
+  [114/400] A0-B0-C0-r113    pend=0.307 clase=I                        | nativo corr=0.500 dom=1.110 giant_b1=0.080 | II=15 (1.7s)
+  [115/400] A0-B0-C0-r114    pend=0.235 clase=I                        | nativo corr=0.623 dom=1.747 giant_b1=0.354 | II=15 (1.8s)
+  [116/400] A0-B0-C0-r115    pend=0.289 clase=I                        | nativo corr=0.417 dom=1.087 giant_b1=0.109 | II=15 (2.5s)
+  [117/400] A0-B0-C0-r116    pend=0.333 clase=I                        | nativo corr=0.500 dom=1.846 giant_b1=0.523 | II=15 (2.5s)
+  [118/400] A0-B0-C0-r117    pend=0.360 clase=II                       | nativo corr=0.417 dom=1.133 giant_b1=0.061 | II=16 (1.6s)  <-- CLASE II
+  [119/400] A0-B0-C0-r118    pend=0.302 clase=I                        | nativo corr=0.500 dom=1.274 giant_b1=0.120 | II=16 (2.4s)
+  [120/400] A0-B0-C0-r119    pend=0.302 clase=I                        | nativo corr=0.623 dom=0.909 giant_b1=0.061 | II=16 (1.5s)
+  [121/400] A0-B0-C0-r120    pend=0.368 clase=II                       | nativo corr=0.558 dom=1.343 giant_b1=0.143 | II=17 (2.0s)  <-- CLASE II
+  [122/400] A0-B0-C0-r121    pend=0.296 clase=I                        | nativo corr=0.500 dom=1.417 giant_b1=0.434 | II=17 (3.0s)
+  [123/400] A0-B0-C0-r122    pend=0.279 clase=I                        | nativo corr=0.500 dom=1.117 giant_b1=0.064 | II=17 (2.4s)
+  [124/400] A0-B0-C0-r123    pend=0.297 clase=I                        | nativo corr=0.500 dom=1.990 giant_b1=1.000 | II=17 (2.6s)
+  [125/400] A0-B0-C0-r124    pend=0.240 clase=I                        | nativo corr=0.623 dom=1.447 giant_b1=0.166 | II=17 (1.7s)
+  [126/400] A0-B0-C0-r125    pend=0.370 clase=II                       | nativo corr=0.623 dom=2.045 giant_b1=0.966 | II=18 (1.8s)  <-- CLASE II
+  [127/400] A0-B0-C0-r126    pend=0.339 clase=I                        | nativo corr=0.500 dom=1.971 giant_b1=1.000 | II=18 (2.7s)
+  [128/400] A0-B0-C0-r127    pend=0.373 clase=II                       | nativo corr=0.417 dom=1.050 giant_b1=0.051 | II=19 (2.5s)  <-- CLASE II
+  [129/400] A0-B0-C0-r128    pend=0.295 clase=I                        | nativo corr=0.417 dom=1.319 giant_b1=0.166 | II=19 (2.8s)
+  [130/400] A0-B0-C0-r129    pend=0.348 clase=I                        | nativo corr=0.417 dom=0.733 giant_b1=0.020 | II=19 (1.5s)
+  [131/400] A0-B0-C0-r130    pend=0.370 clase=II                       | nativo corr=0.500 dom=1.549 giant_b1=0.184 | II=20 (2.0s)  <-- CLASE II
+  [132/400] A0-B0-C0-r131    pend=0.229 clase=I                        | nativo corr=0.500 dom=1.108 giant_b1=0.064 | II=20 (1.6s)
+  [133/400] A0-B0-C0-r132    pend=0.366 clase=II                       | nativo corr=0.417 dom=0.799 giant_b1=0.036 | II=21 (1.9s)  <-- CLASE II
+  [134/400] A0-B0-C0-r133    pend=0.364 clase=II                       | nativo corr=0.500 dom=1.315 giant_b1=0.172 | II=22 (1.7s)  <-- CLASE II
+  [135/400] A0-B0-C0-r134    pend=0.230 clase=I                        | nativo corr=0.500 dom=0.979 giant_b1=0.044 | II=22 (1.4s)
+  [136/400] A0-B0-C0-r135    pend=0.298 clase=I                        | nativo corr=0.623 dom=2.015 giant_b1=0.775 | II=22 (2.6s)
+  [137/400] A0-B0-C0-r136    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.557 giant_b1=0.445 | II=22 (2.4s)
+  [138/400] A0-B0-C0-r137    pend=0.366 clase=II                       | nativo corr=0.623 dom=2.039 giant_b1=1.000 | II=23 (2.0s)  <-- CLASE II
+  [139/400] A0-B0-C0-r138    pend=0.291 clase=I                        | nativo corr=0.500 dom=2.004 giant_b1=1.000 | II=23 (2.3s)
+  [140/400] A0-B0-C0-r139    pend=0.351 clase=II                       | nativo corr=0.417 dom=0.820 giant_b1=0.033 | II=24 (1.1s)  <-- CLASE II
+  [141/400] A0-B0-C0-r140    pend=0.291 clase=I                        | nativo corr=0.500 dom=1.720 giant_b1=0.532 | II=24 (2.2s)
+  [142/400] A0-B0-C0-r141    pend=0.324 clase=I                        | nativo corr=0.500 dom=1.093 giant_b1=0.052 | II=24 (1.4s)
+  [143/400] A0-B0-C0-r142    pend=0.319 clase=I                        | nativo corr=0.500 dom=0.905 giant_b1=0.021 | II=24 (1.3s)
+  [144/400] A0-B0-C0-r143    pend=0.348 clase=I                        | nativo corr=0.623 dom=1.514 giant_b1=0.207 | II=24 (1.2s)
+  [145/400] A0-B0-C0-r144    pend=0.235 clase=I                        | nativo corr=0.417 dom=0.813 giant_b1=0.026 | II=24 (1.6s)
+  [146/400] A0-B0-C0-r145    pend=0.233 clase=I                        | nativo corr=0.500 dom=1.088 giant_b1=0.059 | II=24 (1.7s)
+  [147/400] A0-B0-C0-r146    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.652 giant_b1=0.389 | II=24 (2.2s)
+  [148/400] A0-B0-C0-r147    pend=0.281 clase=I                        | nativo corr=0.417 dom=0.925 giant_b1=0.057 | II=24 (2.1s)
+  [149/400] A0-B0-C0-r148    pend=0.228 clase=I                        | nativo corr=0.417 dom=1.377 giant_b1=0.167 | II=24 (2.2s)
+  [150/400] A0-B0-C0-r149    pend=0.291 clase=I                        | nativo corr=0.500 dom=1.699 giant_b1=0.574 | II=24 (2.2s)
+  [151/400] A0-B0-C0-r150    pend=0.293 clase=I                        | nativo corr=0.417 dom=0.604 giant_b1=0.015 | II=24 (1.5s)
+  [152/400] A0-B0-C0-r151    pend=0.340 clase=I                        | nativo corr=0.623 dom=1.228 giant_b1=0.099 | II=24 (1.3s)
+  [153/400] A0-B0-C0-r152    pend=0.193 clase=I                        | nativo corr=0.500 dom=1.449 giant_b1=0.116 | II=24 (1.5s)
+  [154/400] A0-B0-C0-r153    pend=0.224 clase=I                        | nativo corr=0.500 dom=1.903 giant_b1=0.680 | II=24 (2.6s)
+  [155/400] A0-B0-C0-r154    pend=0.288 clase=I                        | nativo corr=0.623 dom=2.041 giant_b1=1.000 | II=24 (3.0s)
+  [156/400] A0-B0-C0-r155    pend=0.361 clase=II                       | nativo corr=0.623 dom=1.808 giant_b1=0.326 | II=25 (1.7s)  <-- CLASE II
+  [157/400] A0-B0-C0-r156    pend=0.340 clase=I                        | nativo corr=0.500 dom=0.992 giant_b1=0.029 | II=25 (1.3s)
+  [158/400] A0-B0-C0-r157    pend=0.357 clase=II                       | nativo corr=0.500 dom=1.304 giant_b1=0.130 | II=26 (2.0s)  <-- CLASE II
+  [159/400] A0-B0-C0-r158    pend=0.243 clase=I                        | nativo corr=0.500 dom=1.211 giant_b1=0.070 | II=26 (1.4s)
+  [160/400] A0-B0-C0-r159    pend=0.368 clase=II                       | nativo corr=0.500 dom=0.793 giant_b1=0.029 | II=27 (1.7s)  <-- CLASE II
+  [161/400] A0-B0-C0-r160    pend=0.362 clase=II                       | nativo corr=0.500 dom=1.601 giant_b1=0.386 | II=28 (1.8s)  <-- CLASE II
+  [162/400] A0-B0-C0-r161    pend=0.307 clase=I                        | nativo corr=0.558 dom=2.112 giant_b1=1.000 | II=28 (2.3s)
+  [163/400] A0-B0-C0-r162    pend=0.301 clase=I                        | nativo corr=0.623 dom=2.068 giant_b1=1.000 | II=28 (2.0s)
+  [164/400] A0-B0-C0-r163    pend=0.354 clase=II                       | nativo corr=0.500 dom=2.072 giant_b1=1.000 | II=29 (2.1s)  <-- CLASE II
+  [165/400] A0-B0-C0-r164    pend=0.358 clase=II                       | nativo corr=0.417 dom=1.029 giant_b1=0.081 | II=30 (2.0s)  <-- CLASE II
+  [166/400] A0-B0-C0-r165    pend=0.297 clase=I                        | nativo corr=0.500 dom=1.846 giant_b1=1.000 | II=30 (2.1s)
+  [167/400] A0-B0-C0-r166    pend=0.309 clase=I                        | nativo corr=0.417 dom=1.267 giant_b1=0.127 | II=30 (1.8s)
+  [168/400] A0-B0-C0-r167    pend=0.297 clase=I                        | nativo corr=0.558 dom=2.032 giant_b1=1.000 | II=30 (2.4s)
+  [169/400] A0-B0-C0-r168    pend=0.295 clase=I                        | nativo corr=0.417 dom=1.168 giant_b1=0.098 | II=30 (2.5s)
+  [170/400] A0-B0-C0-r169    pend=0.292 clase=I                        | nativo corr=0.500 dom=2.014 giant_b1=1.000 | II=30 (2.2s)
+  [171/400] A0-B0-C0-r170    pend=0.299 clase=I                        | nativo corr=0.417 dom=1.464 giant_b1=0.181 | II=30 (1.8s)
+  [172/400] A0-B0-C0-r171    pend=0.304 clase=I                        | nativo corr=0.500 dom=1.416 giant_b1=0.152 | II=30 (1.9s)
+  [173/400] A0-B0-C0-r172    pend=0.293 clase=I                        | nativo corr=0.300 dom=0.819 giant_b1=0.041 | II=30 (2.4s)
+  [174/400] A0-B0-C0-r173    pend=0.232 clase=I                        | nativo corr=0.500 dom=1.437 giant_b1=0.117 | II=30 (1.6s)
+  [175/400] A0-B0-C0-r174    pend=0.287 clase=I                        | nativo corr=0.417 dom=0.924 giant_b1=0.022 | II=30 (1.4s)
+  [176/400] A0-B0-C0-r175    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.743 giant_b1=0.634 | II=30 (2.3s)
+  [177/400] A0-B0-C0-r176    pend=0.296 clase=I                        | nativo corr=0.623 dom=1.940 giant_b1=1.000 | II=30 (2.3s)
+  [178/400] A0-B0-C0-r177    pend=0.228 clase=I                        | nativo corr=0.623 dom=2.065 giant_b1=1.000 | II=30 (2.2s)
+  [179/400] A0-B0-C0-r178    pend=0.323 clase=I                        | nativo corr=0.500 dom=0.594 giant_b1=0.011 | II=30 (1.3s)
+  [180/400] A0-B0-C0-r179    pend=0.359 clase=II                       | nativo corr=0.623 dom=1.382 giant_b1=0.185 | II=31 (1.5s)  <-- CLASE II
+  [181/400] A0-B0-C0-r180    pend=0.361 clase=II                       | nativo corr=0.500 dom=1.432 giant_b1=0.264 | II=32 (1.3s)  <-- CLASE II
+  [182/400] A0-B0-C0-r181    pend=0.233 clase=I                        | nativo corr=0.417 dom=1.237 giant_b1=0.099 | II=32 (1.5s)
+  [183/400] A0-B0-C0-r182    pend=0.297 clase=I                        | nativo corr=0.500 dom=1.622 giant_b1=0.281 | II=32 (2.1s)
+  [184/400] A0-B0-C0-r183    pend=0.356 clase=II                       | nativo corr=0.500 dom=1.894 giant_b1=0.580 | II=33 (1.8s)  <-- CLASE II
+  [185/400] A0-B0-C0-r184    pend=0.225 clase=I                        | nativo corr=0.500 dom=1.716 giant_b1=0.279 | II=33 (1.7s)
+  [186/400] A0-B0-C0-r185    pend=0.287 clase=I                        | nativo corr=0.500 dom=1.359 giant_b1=0.138 | II=33 (1.6s)
+  [187/400] A0-B0-C0-r186    pend=0.190 clase=I                        | nativo corr=0.500 dom=0.955 giant_b1=0.029 | II=33 (1.4s)
+  [188/400] A0-B0-C0-r187    pend=0.360 clase=II                       | nativo corr=0.417 dom=1.097 giant_b1=0.050 | II=34 (1.5s)  <-- CLASE II
+  [189/400] A0-B0-C0-r188    pend=0.363 clase=II                       | nativo corr=0.500 dom=1.402 giant_b1=0.101 | II=35 (1.3s)  <-- CLASE II
+  [190/400] A0-B0-C0-r189    pend=0.294 clase=I                        | nativo corr=0.623 dom=1.372 giant_b1=0.105 | II=35 (1.1s)
+  [191/400] A0-B0-C0-r190    pend=0.294 clase=I                        | nativo corr=0.500 dom=1.715 giant_b1=0.403 | II=35 (1.9s)
+  [192/400] A0-B0-C0-r191    pend=0.242 clase=I                        | nativo corr=0.500 dom=1.141 giant_b1=0.054 | II=35 (1.2s)
+  [193/400] A0-B0-C0-r192    pend=0.358 clase=II                       | nativo corr=0.300 dom=0.564 giant_b1=0.013 | II=36 (1.5s)  <-- CLASE II
+  [194/400] A0-B0-C0-r193    pend=0.359 clase=II                       | nativo corr=0.500 dom=1.493 giant_b1=0.223 | II=37 (1.5s)  <-- CLASE II
+  [195/400] A0-B0-C0-r194    pend=0.299 clase=I                        | nativo corr=0.623 dom=1.647 giant_b1=0.324 | II=37 (2.0s)
+  [196/400] A0-B0-C0-r195    pend=0.261 clase=I                        | nativo corr=0.558 dom=0.747 giant_b1=0.020 | II=37 (1.0s)
+  [197/400] A0-B0-C0-r196    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.485 giant_b1=0.147 | II=37 (1.3s)
+  [198/400] A0-B0-C0-r197    pend=0.362 clase=II                       | nativo corr=0.623 dom=1.833 giant_b1=0.571 | II=38 (1.5s)  <-- CLASE II
+  [199/400] A0-B0-C0-r198    pend=0.359 clase=II                       | nativo corr=0.558 dom=1.555 giant_b1=0.248 | II=39 (1.5s)  <-- CLASE II
+  [200/400] A0-B0-C0-r199    pend=0.310 clase=I                        | nativo corr=0.500 dom=1.421 giant_b1=0.176 | II=39 (1.4s)
+  [201/400] A0-B0-C0-r200    pend=0.304 clase=I                        | nativo corr=0.417 dom=1.378 giant_b1=0.226 | II=39 (1.9s)
+  [202/400] A0-B0-C0-r201    pend=0.231 clase=I                        | nativo corr=0.417 dom=0.910 giant_b1=0.049 | II=39 (1.2s)
+  [203/400] A0-B0-C0-r202    pend=0.229 clase=I                        | nativo corr=0.417 dom=0.880 giant_b1=0.026 | II=39 (1.3s)
+  [204/400] A0-B0-C0-r203    pend=0.300 clase=I                        | nativo corr=0.417 dom=0.789 giant_b1=0.052 | II=39 (1.8s)
+  [205/400] A0-B0-C0-r204    pend=0.189 clase=I                        | nativo corr=0.500 dom=1.734 giant_b1=0.195 | II=39 (1.0s)
+  [206/400] A0-B0-C0-r205    pend=0.282 clase=I                        | nativo corr=0.500 dom=1.261 giant_b1=0.136 | II=39 (1.5s)
+  [207/400] A0-B0-C0-r206    pend=0.286 clase=I                        | nativo corr=0.500 dom=1.416 giant_b1=0.300 | II=39 (1.9s)
+  [208/400] A0-B0-C0-r207    pend=0.231 clase=I                        | nativo corr=0.623 dom=2.043 giant_b1=1.000 | II=39 (1.8s)
+  [209/400] A0-B0-C0-r208    pend=0.292 clase=I                        | nativo corr=0.623 dom=2.038 giant_b1=1.000 | II=39 (2.0s)
+  [210/400] A0-B0-C0-r209    pend=0.355 clase=II                       | nativo corr=0.417 dom=1.036 giant_b1=0.075 | II=40 (1.7s)  <-- CLASE II
+  [211/400] A0-B0-C0-r210    pend=0.221 clase=I                        | nativo corr=0.500 dom=1.493 giant_b1=0.276 | II=40 (2.0s)
+  [212/400] A0-B0-C0-r211    pend=0.279 clase=I                        | nativo corr=0.500 dom=1.140 giant_b1=0.068 | II=40 (1.9s)
+  [213/400] A0-B0-C0-r212    pend=0.363 clase=II                       | nativo corr=0.623 dom=2.023 giant_b1=1.000 | II=41 (1.5s)  <-- CLASE II
+  [214/400] A0-B0-C0-r213    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.304 giant_b1=0.098 | II=41 (1.3s)
+  [215/400] A0-B0-C0-r214    pend=0.361 clase=II                       | nativo corr=0.417 dom=1.121 giant_b1=0.057 | II=42 (1.3s)  <-- CLASE II
+  [216/400] A0-B0-C0-r215    pend=0.280 clase=I                        | nativo corr=0.500 dom=1.758 giant_b1=0.604 | II=42 (1.7s)
+  [217/400] A0-B0-C0-r216    pend=0.235 clase=I                        | nativo corr=0.500 dom=0.880 giant_b1=0.036 | II=42 (1.9s)
+  [218/400] A0-B0-C0-r217    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.472 giant_b1=0.532 | II=42 (1.8s)
+  [219/400] A0-B0-C0-r218    pend=0.364 clase=II                       | nativo corr=0.500 dom=1.150 giant_b1=0.090 | II=43 (1.3s)  <-- CLASE II
+  [220/400] A0-B0-C0-r219    pend=0.293 clase=I                        | nativo corr=0.500 dom=2.050 giant_b1=1.000 | II=43 (1.9s)
+  [221/400] A0-B0-C0-r220    pend=0.299 clase=I                        | nativo corr=0.500 dom=1.018 giant_b1=0.044 | II=43 (1.2s)
+  [222/400] A0-B0-C0-r221    pend=0.307 clase=I                        | nativo corr=0.500 dom=1.821 giant_b1=0.380 | II=43 (1.8s)
+  [223/400] A0-B0-C0-r222    pend=0.235 clase=I                        | nativo corr=0.500 dom=1.874 giant_b1=1.000 | II=43 (1.8s)
+  [224/400] A0-B0-C0-r223    pend=0.288 clase=I                        | nativo corr=0.558 dom=1.102 giant_b1=0.100 | II=43 (1.8s)
+  [225/400] A0-B0-C0-r224    pend=0.360 clase=II                       | nativo corr=0.500 dom=2.086 giant_b1=0.908 | II=44 (1.5s)  <-- CLASE II
+  [226/400] A0-B0-C0-r225    pend=0.240 clase=I                        | nativo corr=0.500 dom=1.084 giant_b1=0.050 | II=44 (1.6s)
+  [227/400] A0-B0-C0-r226    pend=0.351 clase=II                       | nativo corr=0.558 dom=1.494 giant_b1=0.121 | II=45 (1.2s)  <-- CLASE II
+  [228/400] A0-B0-C0-r227    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.587 giant_b1=0.407 | II=45 (2.3s)
+  [229/400] A0-B0-C0-r228    pend=0.292 clase=I                        | nativo corr=0.558 dom=1.960 giant_b1=1.000 | II=45 (2.3s)
+  [230/400] A0-B0-C0-r229    pend=0.300 clase=I                        | nativo corr=0.500 dom=1.211 giant_b1=0.147 | II=45 (1.7s)
+  [231/400] A0-B0-C0-r230    pend=0.370 clase=II                       | nativo corr=0.500 dom=1.767 giant_b1=0.417 | II=46 (1.4s)  <-- CLASE II
+  [232/400] A0-B0-C0-r231    pend=0.231 clase=I                        | nativo corr=0.500 dom=1.200 giant_b1=0.059 | II=46 (1.2s)
+  [233/400] A0-B0-C0-r232    pend=0.366 clase=II                       | nativo corr=0.500 dom=1.462 giant_b1=0.169 | II=47 (1.4s)  <-- CLASE II
+  [234/400] A0-B0-C0-r233    pend=0.291 clase=I                        | nativo corr=0.500 dom=1.215 giant_b1=0.102 | II=47 (1.6s)
+  [235/400] A0-B0-C0-r234    pend=0.374 clase=II                       | nativo corr=0.558 dom=1.266 giant_b1=0.083 | II=48 (1.4s)  <-- CLASE II
+  [236/400] A0-B0-C0-r235    pend=0.296 clase=I                        | nativo corr=0.720 dom=1.631 giant_b1=0.486 | II=48 (1.7s)
+  [237/400] A0-B0-C0-r236    pend=0.178 clase=I                        | nativo corr=0.500 dom=1.483 giant_b1=0.223 | II=48 (0.9s)
+  [238/400] A0-B0-C0-r237    pend=0.229 clase=I                        | nativo corr=0.558 dom=1.634 giant_b1=0.329 | II=48 (1.5s)
+  [239/400] A0-B0-C0-r238    pend=0.380 clase=II                       | nativo corr=0.500 dom=1.142 giant_b1=0.092 | II=49 (1.4s)  <-- CLASE II
+  [240/400] A0-B0-C0-r239    pend=0.233 clase=I                        | nativo corr=0.500 dom=1.612 giant_b1=0.492 | II=49 (1.7s)
+  [241/400] A0-B0-C0-r240    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.987 giant_b1=0.527 | II=49 (1.5s)
+  [242/400] A0-B0-C0-r241    pend=0.358 clase=II                       | nativo corr=0.417 dom=1.141 giant_b1=0.116 | II=50 (1.7s)  <-- CLASE II
+  [243/400] A0-B0-C0-r242    pend=0.290 clase=I                        | nativo corr=0.500 dom=1.981 giant_b1=1.000 | II=50 (2.3s)
+  [244/400] A0-B0-C0-r243    pend=0.357 clase=II                       | nativo corr=0.623 dom=2.025 giant_b1=1.000 | II=51 (1.7s)  <-- CLASE II
+  [245/400] A0-B0-C0-r244    pend=0.296 clase=I                        | nativo corr=0.500 dom=1.412 giant_b1=0.382 | II=51 (2.1s)
+  [246/400] A0-B0-C0-r245    pend=0.298 clase=I                        | nativo corr=0.500 dom=1.698 giant_b1=0.433 | II=51 (2.2s)
+  [247/400] A0-B0-C0-r246    pend=0.296 clase=I                        | nativo corr=0.500 dom=1.544 giant_b1=0.398 | II=51 (2.1s)
+  [248/400] A0-B0-C0-r247    pend=0.232 clase=I                        | nativo corr=0.500 dom=1.331 giant_b1=0.136 | II=51 (1.6s)
+  [249/400] A0-B0-C0-r248    pend=0.358 clase=II                       | nativo corr=0.417 dom=1.081 giant_b1=0.097 | II=52 (1.5s)  <-- CLASE II
+  [250/400] A0-B0-C0-r249    pend=0.230 clase=I                        | nativo corr=0.558 dom=1.611 giant_b1=0.202 | II=52 (1.5s)
+  [251/400] A0-B0-C0-r250    pend=0.230 clase=I                        | nativo corr=0.623 dom=2.128 giant_b1=1.000 | II=52 (2.1s)
+  [252/400] A0-B0-C0-r251    pend=0.232 clase=I                        | nativo corr=0.500 dom=1.312 giant_b1=0.153 | II=52 (2.1s)
+  [253/400] A0-B0-C0-r252    pend=0.288 clase=I                        | nativo corr=0.558 dom=0.766 giant_b1=0.021 | II=52 (1.3s)
+  [254/400] A0-B0-C0-r253    pend=0.315 clase=I                        | nativo corr=0.417 dom=0.874 giant_b1=0.026 | II=52 (1.3s)
+  [255/400] A0-B0-C0-r254    pend=0.233 clase=I                        | nativo corr=0.500 dom=1.712 giant_b1=0.337 | II=52 (2.1s)
+  [256/400] A0-B0-C0-r255    pend=0.288 clase=I                        | nativo corr=0.623 dom=1.337 giant_b1=0.077 | II=52 (1.3s)
+  [257/400] A0-B0-C0-r256    pend=0.297 clase=I                        | nativo corr=0.500 dom=1.990 giant_b1=1.000 | II=52 (2.0s)
+  [258/400] A0-B0-C0-r257    pend=0.232 clase=I                        | nativo corr=0.558 dom=1.167 giant_b1=0.051 | II=52 (1.3s)
+  [259/400] A0-B0-C0-r258    pend=0.288 clase=I                        | nativo corr=0.500 dom=2.067 giant_b1=1.000 | II=52 (2.5s)
+  [260/400] A0-B0-C0-r259    pend=0.230 clase=I                        | nativo corr=0.623 dom=1.995 giant_b1=1.000 | II=52 (1.6s)
+  [261/400] A0-B0-C0-r260    pend=0.288 clase=I                        | nativo corr=0.500 dom=1.432 giant_b1=0.547 | II=52 (2.3s)
+  [262/400] A0-B0-C0-r261    pend=0.294 clase=I                        | nativo corr=0.417 dom=1.264 giant_b1=0.061 | II=52 (1.2s)
+  [263/400] A0-B0-C0-r262    pend=0.301 clase=I                        | nativo corr=0.558 dom=2.039 giant_b1=1.000 | II=52 (2.4s)
+  [264/400] A0-B0-C0-r263    pend=0.297 clase=I                        | nativo corr=0.500 dom=1.552 giant_b1=0.314 | II=52 (2.1s)
+  [265/400] A0-B0-C0-r264    pend=0.312 clase=I                        | nativo corr=0.623 dom=2.058 giant_b1=1.000 | II=52 (1.4s)
+  [266/400] A0-B0-C0-r265    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.677 giant_b1=0.550 | II=52 (2.0s)
+  [267/400] A0-B0-C0-r266    pend=0.301 clase=I                        | nativo corr=0.500 dom=1.651 giant_b1=0.390 | II=52 (2.5s)
+  [268/400] A0-B0-C0-r267    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.491 giant_b1=0.193 | II=52 (2.3s)
+  [269/400] A0-B0-C0-r268    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.515 giant_b1=0.364 | II=52 (2.6s)
+  [270/400] A0-B0-C0-r269    pend=0.321 clase=I                        | nativo corr=0.500 dom=1.262 giant_b1=0.105 | II=52 (1.7s)
+  [271/400] A0-B0-C0-r270    pend=0.252 clase=I                        | nativo corr=0.623 dom=1.378 giant_b1=0.072 | II=52 (1.4s)
+  [272/400] A0-B0-C0-r271    pend=0.230 clase=I                        | nativo corr=0.720 dom=1.350 giant_b1=0.171 | II=52 (2.1s)
+  [273/400] A0-B0-C0-r272    pend=0.231 clase=I                        | nativo corr=0.500 dom=1.812 giant_b1=1.000 | II=52 (2.2s)
+  [274/400] A0-B0-C0-r273    pend=0.302 clase=I                        | nativo corr=0.500 dom=1.700 giant_b1=0.351 | II=52 (2.2s)
+  [275/400] A0-B0-C0-r274    pend=0.250 clase=I                        | nativo corr=0.500 dom=0.818 giant_b1=0.029 | II=52 (1.4s)
+  [276/400] A0-B0-C0-r275    pend=0.224 clase=I                        | nativo corr=0.500 dom=1.891 giant_b1=1.000 | II=52 (2.0s)
+  [277/400] A0-B0-C0-r276    pend=0.273 clase=I                        | nativo corr=0.623 dom=0.999 giant_b1=0.037 | II=52 (1.6s)
+  [278/400] A0-B0-C0-r277    pend=0.374 clase=II                       | nativo corr=0.500 dom=1.105 giant_b1=0.057 | II=53 (1.5s)  <-- CLASE II
+  [279/400] A0-B0-C0-r278    pend=0.287 clase=I                        | nativo corr=0.500 dom=1.557 giant_b1=0.344 | II=53 (2.7s)
+  [280/400] A0-B0-C0-r279    pend=0.298 clase=I                        | nativo corr=0.417 dom=1.459 giant_b1=0.170 | II=53 (2.5s)
+  [281/400] A0-B0-C0-r280    pend=0.291 clase=I                        | nativo corr=0.623 dom=2.023 giant_b1=1.000 | II=53 (2.5s)
+  [282/400] A0-B0-C0-r281    pend=0.231 clase=I                        | nativo corr=0.500 dom=1.071 giant_b1=0.105 | II=53 (2.3s)
+  [283/400] A0-B0-C0-r282    pend=0.296 clase=I                        | nativo corr=0.417 dom=1.252 giant_b1=0.148 | II=53 (2.5s)
+  [284/400] A0-B0-C0-r283    pend=0.343 clase=I                        | nativo corr=0.623 dom=1.439 giant_b1=0.146 | II=53 (1.4s)
+  [285/400] A0-B0-C0-r284    pend=0.210 clase=I                        | nativo corr=0.623 dom=1.620 giant_b1=0.324 | II=53 (1.6s)
+  [286/400] A0-B0-C0-r285    pend=0.361 clase=II                       | nativo corr=0.500 dom=1.664 giant_b1=0.282 | II=54 (1.8s)  <-- CLASE II
+  [287/400] A0-B0-C0-r286    pend=0.364 clase=II                       | nativo corr=0.500 dom=1.160 giant_b1=0.106 | II=55 (1.6s)  <-- CLASE II
+  [288/400] A0-B0-C0-r287    pend=0.302 clase=I                        | nativo corr=0.500 dom=1.997 giant_b1=1.000 | II=55 (2.4s)
+  [289/400] A0-B0-C0-r288    pend=0.294 clase=I                        | nativo corr=0.558 dom=2.008 giant_b1=1.000 | II=55 (2.7s)
+  [290/400] A0-B0-C0-r289    pend=0.230 clase=I                        | nativo corr=0.417 dom=0.893 giant_b1=0.053 | II=55 (2.0s)
+  [291/400] A0-B0-C0-r290    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.940 giant_b1=1.000 | II=55 (2.3s)
+  [292/400] A0-B0-C0-r291    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.954 giant_b1=0.780 | II=55 (2.1s)
+  [293/400] A0-B0-C0-r292    pend=0.317 clase=I                        | nativo corr=0.623 dom=1.480 giant_b1=0.148 | II=55 (1.3s)
+  [294/400] A0-B0-C0-r293    pend=0.300 clase=I                        | nativo corr=0.417 dom=1.112 giant_b1=0.103 | II=55 (1.7s)
+  [295/400] A0-B0-C0-r294    pend=0.290 clase=I                        | nativo corr=0.417 dom=1.390 giant_b1=0.152 | II=55 (1.6s)
+  [296/400] A0-B0-C0-r295    pend=0.296 clase=I                        | nativo corr=0.500 dom=0.838 giant_b1=0.029 | II=55 (1.0s)
+  [297/400] A0-B0-C0-r296    pend=0.367 clase=II                       | nativo corr=0.623 dom=1.671 giant_b1=0.348 | II=56 (1.2s)  <-- CLASE II
+  [298/400] A0-B0-C0-r297    pend=0.230 clase=I                        | nativo corr=0.558 dom=0.971 giant_b1=0.042 | II=56 (1.0s)
+  [299/400] A0-B0-C0-r298    pend=0.312 clase=I                        | nativo corr=0.558 dom=1.498 giant_b1=0.193 | II=56 (1.3s)
+  [300/400] A0-B0-C0-r299    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.489 giant_b1=0.226 | II=56 (1.9s)
+  [301/400] A0-B0-C0-r300    pend=0.236 clase=I                        | nativo corr=0.500 dom=1.465 giant_b1=0.185 | II=56 (1.1s)
+  [302/400] A0-B0-C0-r301    pend=0.241 clase=I                        | nativo corr=0.500 dom=1.582 giant_b1=0.189 | II=56 (1.1s)
+  [303/400] A0-B0-C0-r302    pend=0.297 clase=I                        | nativo corr=0.417 dom=1.216 giant_b1=0.263 | II=56 (1.4s)
+  [304/400] A0-B0-C0-r303    pend=0.286 clase=I                        | nativo corr=0.500 dom=1.496 giant_b1=0.148 | II=56 (1.1s)
+  [305/400] A0-B0-C0-r304    pend=0.307 clase=I                        | nativo corr=0.417 dom=0.612 giant_b1=0.015 | II=56 (0.9s)
+  [306/400] A0-B0-C0-r305    pend=0.299 clase=I                        | nativo corr=0.500 dom=1.313 giant_b1=0.130 | II=56 (1.5s)
+  [307/400] A0-B0-C0-r306    pend=0.314 clase=I                        | nativo corr=0.623 dom=1.493 giant_b1=0.193 | II=56 (1.5s)
+  [308/400] A0-B0-C0-r307    pend=0.298 clase=I                        | nativo corr=0.500 dom=1.989 giant_b1=1.000 | II=56 (2.1s)
+  [309/400] A0-B0-C0-r308    pend=0.237 clase=I                        | nativo corr=0.500 dom=0.695 giant_b1=0.030 | II=56 (1.4s)
+  [310/400] A0-B0-C0-r309    pend=0.234 clase=I                        | nativo corr=0.500 dom=0.973 giant_b1=0.052 | II=56 (1.3s)
+  [311/400] A0-B0-C0-r310    pend=0.230 clase=I                        | nativo corr=0.500 dom=1.967 giant_b1=1.000 | II=56 (1.3s)
+  [312/400] A0-B0-C0-r311    pend=0.188 clase=I                        | nativo corr=0.500 dom=1.475 giant_b1=0.239 | II=56 (1.1s)
+  [313/400] A0-B0-C0-r312    pend=0.228 clase=I                        | nativo corr=0.500 dom=1.768 giant_b1=0.462 | II=56 (1.8s)
+  [314/400] A0-B0-C0-r313    pend=0.277 clase=I                        | nativo corr=0.558 dom=1.849 giant_b1=0.552 | II=56 (1.6s)
+  [315/400] A0-B0-C0-r314    pend=0.340 clase=I                        | nativo corr=0.623 dom=0.846 giant_b1=0.019 | II=56 (1.1s)
+  [316/400] A0-B0-C0-r315    pend=0.252 clase=I                        | nativo corr=0.500 dom=1.272 giant_b1=0.073 | II=56 (1.0s)
+  [317/400] A0-B0-C0-r316    pend=0.291 clase=I                        | nativo corr=0.500 dom=1.984 giant_b1=1.000 | II=56 (2.0s)
+  [318/400] A0-B0-C0-r317    pend=0.289 clase=I                        | nativo corr=0.500 dom=1.514 giant_b1=0.290 | II=56 (2.2s)
+  [319/400] A0-B0-C0-r318    pend=0.225 clase=I                        | nativo corr=0.500 dom=1.400 giant_b1=0.273 | II=56 (1.1s)
+  [320/400] A0-B0-C0-r319    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.048 giant_b1=0.058 | II=56 (1.0s)
+  [321/400] A0-B0-C0-r320    pend=0.296 clase=I                        | nativo corr=0.500 dom=2.095 giant_b1=1.000 | II=56 (2.1s)
+  [322/400] A0-B0-C0-r321    pend=0.294 clase=I                        | nativo corr=0.417 dom=1.093 giant_b1=0.123 | II=56 (2.0s)
+  [323/400] A0-B0-C0-r322    pend=0.290 clase=I                        | nativo corr=0.500 dom=1.801 giant_b1=1.000 | II=56 (1.7s)
+  [324/400] A0-B0-C0-r323    pend=0.231 clase=I                        | nativo corr=0.558 dom=1.901 giant_b1=1.000 | II=56 (1.6s)
+  [325/400] A0-B0-C0-r324    pend=0.231 clase=I                        | nativo corr=0.500 dom=1.318 giant_b1=0.175 | II=56 (1.3s)
+  [326/400] A0-B0-C0-r325    pend=0.229 clase=I                        | nativo corr=0.417 dom=1.217 giant_b1=0.196 | II=56 (1.7s)
+  [327/400] A0-B0-C0-r326    pend=0.287 clase=I                        | nativo corr=0.500 dom=1.987 giant_b1=1.000 | II=56 (2.1s)
+  [328/400] A0-B0-C0-r327    pend=0.368 clase=II                       | nativo corr=0.417 dom=1.152 giant_b1=0.070 | II=57 (1.6s)  <-- CLASE II
+  [329/400] A0-B0-C0-r328    pend=0.280 clase=I                        | nativo corr=0.623 dom=1.571 giant_b1=0.367 | II=57 (1.6s)
+  [330/400] A0-B0-C0-r329    pend=0.288 clase=I                        | nativo corr=0.500 dom=2.072 giant_b1=1.000 | II=57 (1.8s)
+  [331/400] A0-B0-C0-r330    pend=0.296 clase=I                        | nativo corr=0.558 dom=1.718 giant_b1=0.406 | II=57 (1.2s)
+  [332/400] A0-B0-C0-r331    pend=0.371 clase=II                       | nativo corr=0.500 dom=1.306 giant_b1=0.144 | II=58 (1.5s)  <-- CLASE II
+  [333/400] A0-B0-C0-r332    pend=0.296 clase=I                        | nativo corr=0.500 dom=1.606 giant_b1=0.353 | II=58 (1.8s)
+  [334/400] A0-B0-C0-r333    pend=0.330 clase=I                        | nativo corr=0.500 dom=1.074 giant_b1=0.045 | II=58 (1.0s)
+  [335/400] A0-B0-C0-r334    pend=0.233 clase=I                        | nativo corr=0.623 dom=2.025 giant_b1=1.000 | II=58 (1.4s)
+  [336/400] A0-B0-C0-r335    pend=0.227 clase=I                        | nativo corr=0.623 dom=2.013 giant_b1=1.000 | II=58 (1.7s)
+  [337/400] A0-B0-C0-r336    pend=0.297 clase=I                        | nativo corr=0.623 dom=2.314 giant_b1=1.000 | II=58 (1.8s)
+  [338/400] A0-B0-C0-r337    pend=0.255 clase=I                        | nativo corr=0.500 dom=0.911 giant_b1=0.028 | II=58 (1.1s)
+  [339/400] A0-B0-C0-r338    pend=0.275 clase=I                        | nativo corr=0.500 dom=1.263 giant_b1=0.144 | II=58 (1.5s)
+  [340/400] A0-B0-C0-r339    pend=0.282 clase=I                        | nativo corr=0.500 dom=1.395 giant_b1=0.157 | II=58 (1.6s)
+  [341/400] A0-B0-C0-r340    pend=0.225 clase=I                        | nativo corr=0.500 dom=1.642 giant_b1=0.218 | II=58 (1.7s)
+  [342/400] A0-B0-C0-r341    pend=0.233 clase=I                        | nativo corr=0.500 dom=2.139 giant_b1=1.000 | II=58 (1.8s)
+  [343/400] A0-B0-C0-r342    pend=0.301 clase=I                        | nativo corr=0.417 dom=1.257 giant_b1=0.122 | II=58 (1.8s)
+  [344/400] A0-B0-C0-r343    pend=0.293 clase=I                        | nativo corr=0.500 dom=1.923 giant_b1=1.000 | II=58 (1.8s)
+  [345/400] A0-B0-C0-r344    pend=0.296 clase=I                        | nativo corr=0.417 dom=1.191 giant_b1=0.184 | II=58 (1.8s)
+  [346/400] A0-B0-C0-r345    pend=0.289 clase=I                        | nativo corr=0.500 dom=2.125 giant_b1=1.000 | II=58 (2.0s)
+  [347/400] A0-B0-C0-r346    pend=0.417 clase=II                       | nativo corr=0.500 dom=1.194 giant_b1=0.056 | II=59 (1.2s)  <-- CLASE II
+  [348/400] A0-B0-C0-r347    pend=0.253 clase=I                        | nativo corr=0.500 dom=1.355 giant_b1=0.100 | II=59 (1.0s)
+  [349/400] A0-B0-C0-r348    pend=0.303 clase=I                        | nativo corr=0.500 dom=1.175 giant_b1=0.082 | II=59 (1.0s)
+  [350/400] A0-B0-C0-r349    pend=0.352 clase=II                       | nativo corr=0.417 dom=0.842 giant_b1=0.018 | II=60 (1.0s)  <-- CLASE II
+  [351/400] A0-B0-C0-r350    pend=0.317 clase=I                        | nativo corr=0.500 dom=1.851 giant_b1=0.957 | II=60 (1.5s)
+  [352/400] A0-B0-C0-r351    pend=0.305 clase=I                        | nativo corr=0.500 dom=1.155 giant_b1=0.086 | II=60 (1.5s)
+  [353/400] A0-B0-C0-r352    pend=0.154 clase=I                        | nativo corr=0.500 dom=1.214 giant_b1=0.065 | II=60 (1.0s)
+  [354/400] A0-B0-C0-r353    pend=0.290 clase=I                        | nativo corr=0.500 dom=2.021 giant_b1=1.000 | II=60 (2.0s)
+  [355/400] A0-B0-C0-r354    pend=0.296 clase=I                        | nativo corr=0.558 dom=1.552 giant_b1=0.352 | II=60 (1.6s)
+  [356/400] A0-B0-C0-r355    pend=0.232 clase=I                        | nativo corr=0.500 dom=2.016 giant_b1=1.000 | II=60 (1.9s)
+  [357/400] A0-B0-C0-r356    pend=0.226 clase=I                        | nativo corr=0.300 dom=0.494 giant_b1=0.016 | II=60 (1.6s)
+  [358/400] A0-B0-C0-r357    pend=0.347 clase=I                        | nativo corr=0.500 dom=1.316 giant_b1=0.181 | II=60 (1.7s)
+  [359/400] A0-B0-C0-r358    pend=0.226 clase=I                        | nativo corr=0.500 dom=1.597 giant_b1=0.321 | II=60 (1.9s)
+  [360/400] A0-B0-C0-r359    pend=0.276 clase=I                        | nativo corr=0.417 dom=1.104 giant_b1=0.082 | II=60 (1.2s)
+  [361/400] A0-B0-C0-r360    pend=0.374 clase=II                       | nativo corr=0.500 dom=1.134 giant_b1=0.076 | II=61 (1.3s)  <-- CLASE II
+  [362/400] A0-B0-C0-r361    pend=0.293 clase=I                        | nativo corr=0.500 dom=2.163 giant_b1=1.000 | II=61 (2.0s)
+  [363/400] A0-B0-C0-r362    pend=0.290 clase=I                        | nativo corr=0.500 dom=1.602 giant_b1=0.531 | II=61 (2.3s)
+  [364/400] A0-B0-C0-r363    pend=0.226 clase=I                        | nativo corr=0.500 dom=1.492 giant_b1=0.202 | II=61 (1.8s)
+  [365/400] A0-B0-C0-r364    pend=0.287 clase=I                        | nativo corr=0.417 dom=1.275 giant_b1=0.130 | II=61 (2.3s)
+  [366/400] A0-B0-C0-r365    pend=0.299 clase=I                        | nativo corr=0.500 dom=1.786 giant_b1=0.539 | II=61 (1.9s)
+  [367/400] A0-B0-C0-r366    pend=0.291 clase=I                        | nativo corr=0.623 dom=1.983 giant_b1=1.000 | II=61 (2.1s)
+  [368/400] A0-B0-C0-r367    pend=0.230 clase=I                        | nativo corr=0.623 dom=2.028 giant_b1=1.000 | II=61 (1.8s)
+  [369/400] A0-B0-C0-r368    pend=0.298 clase=I                        | nativo corr=0.417 dom=0.994 giant_b1=0.105 | II=61 (2.0s)
+  [370/400] A0-B0-C0-r369    pend=0.355 clase=II                       | nativo corr=0.623 dom=1.248 giant_b1=0.104 | II=62 (1.7s)  <-- CLASE II
+  [371/400] A0-B0-C0-r370    pend=0.304 clase=I                        | nativo corr=0.500 dom=1.598 giant_b1=0.192 | II=62 (1.3s)
+  [372/400] A0-B0-C0-r371    pend=0.281 clase=I                        | nativo corr=0.417 dom=1.057 giant_b1=0.063 | II=62 (1.7s)
+  [373/400] A0-B0-C0-r372    pend=0.294 clase=I                        | nativo corr=0.500 dom=1.988 giant_b1=1.000 | II=62 (2.1s)
+  [374/400] A0-B0-C0-r373    pend=0.294 clase=I                        | nativo corr=0.720 dom=1.703 giant_b1=0.507 | II=62 (2.4s)
+  [375/400] A0-B0-C0-r374    pend=0.365 clase=II                       | nativo corr=0.623 dom=1.714 giant_b1=0.306 | II=63 (1.4s)  <-- CLASE II
+  [376/400] A0-B0-C0-r375    pend=0.366 clase=II                       | nativo corr=0.500 dom=1.366 giant_b1=0.118 | II=64 (1.7s)  <-- CLASE II
+  [377/400] A0-B0-C0-r376    pend=0.297 clase=I                        | nativo corr=0.623 dom=2.070 giant_b1=0.842 | II=64 (2.4s)
+  [378/400] A0-B0-C0-r377    pend=0.292 clase=I                        | nativo corr=0.500 dom=1.973 giant_b1=1.000 | II=64 (2.0s)
+  [379/400] A0-B0-C0-r378    pend=0.292 clase=I                        | nativo corr=0.500 dom=1.747 giant_b1=1.000 | II=64 (2.2s)
+  [380/400] A0-B0-C0-r379    pend=0.364 clase=II                       | nativo corr=0.500 dom=0.671 giant_b1=0.022 | II=65 (1.2s)  <-- CLASE II
+  [381/400] A0-B0-C0-r380    pend=0.385 clase=II                       | nativo corr=0.623 dom=1.807 giant_b1=0.455 | II=66 (2.0s)  <-- CLASE II
+  [382/400] A0-B0-C0-r381    pend=0.291 clase=I                        | nativo corr=0.500 dom=1.846 giant_b1=0.464 | II=66 (2.2s)
+  [383/400] A0-B0-C0-r382    pend=0.310 clase=I                        | nativo corr=0.500 dom=1.421 giant_b1=0.130 | II=66 (1.9s)
+  [384/400] A0-B0-C0-r383    pend=0.226 clase=I                        | nativo corr=0.417 dom=1.068 giant_b1=0.112 | II=66 (2.0s)
+  [385/400] A0-B0-C0-r384    pend=0.306 clase=I                        | nativo corr=0.500 dom=1.416 giant_b1=0.179 | II=66 (1.5s)
+  [386/400] A0-B0-C0-r385    pend=0.289 clase=I                        | nativo corr=0.417 dom=1.527 giant_b1=0.295 | II=66 (2.6s)
+  [387/400] A0-B0-C0-r386    pend=0.358 clase=II                       | nativo corr=0.500 dom=1.169 giant_b1=0.104 | II=67 (2.1s)  <-- CLASE II
+  [388/400] A0-B0-C0-r387    pend=0.256 clase=I                        | nativo corr=0.623 dom=1.350 giant_b1=0.152 | II=67 (1.5s)
+  [389/400] A0-B0-C0-r388    pend=0.290 clase=I                        | nativo corr=0.417 dom=1.181 giant_b1=0.117 | II=67 (2.5s)
+  [390/400] A0-B0-C0-r389    pend=0.227 clase=I                        | nativo corr=0.623 dom=0.914 giant_b1=0.026 | II=67 (2.0s)
+  [391/400] A0-B0-C0-r390    pend=0.242 clase=I                        | nativo corr=0.500 dom=1.464 giant_b1=0.139 | II=67 (2.0s)
+  [392/400] A0-B0-C0-r391    pend=0.295 clase=I                        | nativo corr=0.417 dom=1.285 giant_b1=0.191 | II=67 (2.6s)
+  [393/400] A0-B0-C0-r392    pend=0.296 clase=I                        | nativo corr=0.500 dom=1.955 giant_b1=1.000 | II=67 (2.5s)
+  [394/400] A0-B0-C0-r393    pend=0.320 clase=I                        | nativo corr=0.623 dom=1.721 giant_b1=0.479 | II=67 (1.5s)
+  [395/400] A0-B0-C0-r394    pend=0.376 clase=II                       | nativo corr=0.500 dom=1.313 giant_b1=0.101 | II=68 (1.7s)  <-- CLASE II
+  [396/400] A0-B0-C0-r395    pend=0.305 clase=I                        | nativo corr=0.417 dom=0.521 giant_b1=0.012 | II=68 (1.6s)
+  [397/400] A0-B0-C0-r396    pend=0.295 clase=I                        | nativo corr=0.500 dom=1.912 giant_b1=1.000 | II=68 (2.8s)
+  [398/400] A0-B0-C0-r397    pend=0.351 clase=II                       | nativo corr=0.417 dom=0.986 giant_b1=0.048 | II=69 (1.9s)  <-- CLASE II
+  [399/400] A0-B0-C0-r398    pend=0.371 clase=II                       | nativo corr=0.417 dom=0.718 giant_b1=0.018 | II=70 (1.7s)  <-- CLASE II
+  [400/400] A0-B0-C0-r399    pend=0.304 clase=I                        | nativo corr=0.417 dom=0.970 giant_b1=0.064 | II=70 (2.3s)
+
+TOTAL 400 reglas en 12.2 min
+  Clase II (método viejo histórico):  70/400 = 17.5%
+  Clase II (método viejo corregido):  70/400 = 17.5%
+  distribución de clases (histórico): {'II': 70, 'I': 330}
+  reglas con alguna escala descarrilada (bug de diámetro): 0/400

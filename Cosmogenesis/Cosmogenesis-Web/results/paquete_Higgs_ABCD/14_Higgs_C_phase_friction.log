@@ -1,0 +1,7 @@
+14 Higgs C friccion fase eta=|grad theta|^2 m=sum/(eta+eps)
+step   0 a=  1.0 K=0.368 <eta>=6.282e+00 k1=33 k3=6 ratio=0.48752
+step 100 a=  4.5 K=0.800 <eta>=9.093e-01 k1=0 k3=0 ratio=0.00000
+step 200 a= 20.1 K=0.951 <eta>=9.436e-01 k1=0 k3=0 ratio=0.00000
+step 300 a= 90.0 K=0.989 <eta>=9.994e-01 k1=0 k3=0 ratio=0.00000
+FIN C: NULL eta=0 -> ratio 0.3333, si eta discrimina ratio <0.3333
+EXIT:0

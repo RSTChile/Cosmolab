@@ -1,0 +1,140 @@
+{
+  "E1": {
+    "paso": true,
+    "n_agentes": 23,
+    "sin_repetidos": true,
+    "nombres": [
+      "23_campo",
+      "22_qcd",
+      "9_expansion",
+      "10_enfriamiento",
+      "M1_semilla",
+      "M3_fase_cuantica",
+      "5_debil",
+      "7_masa",
+      "6_catalogo",
+      "16_ssb",
+      "3_fuerte",
+      "8_aniquilacion",
+      "1_espin",
+      "11_tres_cuerpos",
+      "13_pauli",
+      "2_gravedad",
+      "12_localidad",
+      "4_em",
+      "14_correlacion",
+      "M2_memoria",
+      "17_oscuro",
+      "18_poda",
+      "15_causal"
+    ],
+    "sin_justificar": []
+  },
+  "E3": {
+    "paso": true,
+    "n_dormidos_paso0": 17,
+    "casillas_siempre_cero": true
+  },
+  "E4": {
+    "paso": true,
+    "diferencia_relativa": 9.952439161988574e-16
+  },
+  "E5": {
+    "paso": true,
+    "checks": {
+      "T_baja": true,
+      "rho_baja": true,
+      "X_baja": true,
+      "S_sube": true
+    },
+    "inicial": {
+      "paso": 0,
+      "t": 0.0,
+      "dt": 0.001,
+      "a": 1.0,
+      "H": 25.0,
+      "supraluminico": true,
+      "T": 1000.0000000000001,
+      "rho": 0.9999999999999998,
+      "X": 0.009898492339494263,
+      "S": 10.359177899634966,
+      "grad": 0.11179595559202682,
+      "v_c": 25.0,
+      "a_teorico": 1.0,
+      "T_max": 1371.5556585644456,
+      "T_min": 691.0764090543337,
+      "rho_max": 1.3715556585644453
+    },
+    "final": {
+      "paso": 20000,
+      "t": 20.00000000000146,
+      "dt": 0.001,
+      "a": 31.836724926819734,
+      "H": 0.024975024975023154,
+      "supraluminico": false,
+      "T": 31.41026604647967,
+      "rho": 2.9534325095029268e-05,
+      "X": 0.0090988553125847,
+      "S": 15.597861476685335,
+      "grad": 3.429731139747108e-08,
+      "v_c": 0.7901744265512387,
+      "a_teorico": 31.6385840391139,
+      "T_max": 43.08092813306447,
+      "T_min": 21.706893866842545,
+      "rho_max": 3.417824468706206e-05
+    }
+  },
+  "E2": {
+    "paso": true,
+    "violaciones": []
+  },
+  "E6": {
+    "paso": true,
+    "violaciones": [],
+    "primer_despertar_por_nivel": {
+      "0": 0,
+      "1": 5,
+      "2": 36
+    },
+    "despertares": {
+      "23_campo": 0,
+      "22_qcd": 0,
+      "9_expansion": 0,
+      "10_enfriamiento": 0,
+      "M1_semilla": 0,
+      "M3_fase_cuantica": 0,
+      "5_debil": 5,
+      "7_masa": 5,
+      "6_catalogo": 5,
+      "16_ssb": 5,
+      "3_fuerte": 36,
+      "8_aniquilacion": 36,
+      "1_espin": 36,
+      "11_tres_cuerpos": 36,
+      "13_pauli": 36,
+      "2_gravedad": null,
+      "12_localidad": null,
+      "4_em": null,
+      "14_correlacion": null,
+      "M2_memoria": null,
+      "17_oscuro": null,
+      "18_poda": null,
+      "15_causal": null
+    },
+    "n_dormidos": 8
+  },
+  "_resumen": {
+    "estado": {
+      "E1": true,
+      "E3": true,
+      "E4": true,
+      "E5": true,
+      "E2": true,
+      "E6": true
+    },
+    "todas_pasan": true,
+    "elapsed_s": 223.85650897026062,
+    "N": 16,
+    "T_total": 20.0
+  }
+}

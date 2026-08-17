@@ -1,0 +1,20 @@
+n pares totales con I+III completos: 40
+n pares SOLO match exacto K=kcap: 37
+
+=== FRACCION DE MASA EN SUMIDEROS (III - I) ===
+  [fraccion, TODOS] test de signos: n=40 (empates excluidos), III>I en 31/40 (77.5%), I>III en 9/40 -- p (binomial exacta, dos colas, H0 p=0.5) = 0.00068
+  [fraccion, TODOS] Wilcoxon signed-rank: n=40  estadistico W=80.00  p (dos colas, H0 simetria alrededor de 0) = 0.00001
+  [fraccion, SOLO exactos] test de signos: n=37 (empates excluidos), III>I en 30/37 (81.1%), I>III en 7/37 -- p (binomial exacta, dos colas, H0 p=0.5) = 0.00019
+  [fraccion, SOLO exactos] Wilcoxon signed-rank: n=37  estadistico W=59.00  p (dos colas, H0 simetria alrededor de 0) = 0.00001
+
+=== KAPPA_V AGREGADO (III - I) ===
+  [kappa_V, TODOS] test de signos: n=40 (empates excluidos), III>I en 28/40 (70.0%), I>III en 12/40 -- p (binomial exacta, dos colas, H0 p=0.5) = 0.01659
+  [kappa_V, TODOS] Wilcoxon signed-rank: n=40  estadistico W=195.00  p (dos colas, H0 simetria alrededor de 0) = 0.00320
+  [kappa_V, SOLO exactos] test de signos: n=37 (empates excluidos), III>I en 26/37 (70.3%), I>III en 11/37 -- p (binomial exacta, dos colas, H0 p=0.5) = 0.02007
+  [kappa_V, SOLO exactos] Wilcoxon signed-rank: n=37  estadistico W=180.00  p (dos colas, H0 simetria alrededor de 0) = 0.00874
+
+=== RECORDATORIO DE INTERPRETACION (no se declara cierre) ===
+  H0 test de signos: el signo de la diferencia por par es una moneda justa (p=0.5) -- NO es
+  lo mismo que 'no hay ninguna relacion entre clase y fisica'. H0 Wilcoxon: la distribucion
+  de diferencias pareadas es simetrica alrededor de 0 (mas exigente, usa magnitud). Un p bajo
+  es evidencia contra esas H0 puntuales, no una confirmacion de A2-B0-C2. Lectura final: Alexis.

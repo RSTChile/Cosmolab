@@ -1,0 +1,80 @@
+=== 19:52:14 N=1500 patches=100 ===
+================================================================================================
+CS065 — EXCLUSIÓN DE PAULI como anti-colapso. ¿rompe el B' de CS064 y sostiene varios ejes?
+================================================================================================
+N=1500 · patches=100 · steps=20 · arms=['excl', 'sin_excl', 'excl_barajada', 'excl_bosones', 'marco_congelado'] · workers=6
+salida cs065_N1500.csv · lam SORTEADA en [0.15,1.2] por parche (G-NO-CALIBRAR)
+PRE-INSCRITO §6: (A) excl>>sin_excl y correlaciona con frac_ferm ; (B) abre ejes pero no 3 ; (C) excl≈sin_excl (colapso definitivo) ; (D) placebo excl≈excl_bosones ; (E) depende de N. ÉXITO = que DISCRIMINE, no que salga 3. G-CONTINUIDAD: sin_excl≈CS064 (~1.2 ejes); congelado→0.
+  5/100 parches · 1.5min · ETA 0.48h
+  10/100 parches · 3.9min · ETA 0.59h
+  15/100 parches · 6.1min · ETA 0.57h
+  20/100 parches · 8.5min · ETA 0.57h
+  25/100 parches · 11.2min · ETA 0.56h
+  30/100 parches · 11.9min · ETA 0.46h
+  35/100 parches · 15.4min · ETA 0.48h
+  40/100 parches · 18.8min · ETA 0.47h
+  45/100 parches · 23.8min · ETA 0.48h
+  50/100 parches · 27.6min · ETA 0.46h
+  55/100 parches · 29.7min · ETA 0.40h
+  60/100 parches · 30.1min · ETA 0.33h
+  65/100 parches · 34.3min · ETA 0.31h
+  70/100 parches · 39.3min · ETA 0.28h
+  75/100 parches · 43.1min · ETA 0.24h
+  80/100 parches · 47.1min · ETA 0.20h
+  85/100 parches · 49.5min · ETA 0.15h
+  90/100 parches · 49.9min · ETA 0.09h
+  95/100 parches · 52.1min · ETA 0.05h
+  100/100 parches · 53.7min · ETA 0.00h
+
+COMPLETO: 100 parches en 53.7 min → cs065_N1500.csv
+=== 20:46:00 N=2500 patches=100 ===
+================================================================================================
+CS065 — EXCLUSIÓN DE PAULI como anti-colapso. ¿rompe el B' de CS064 y sostiene varios ejes?
+================================================================================================
+N=2500 · patches=100 · steps=20 · arms=['excl', 'sin_excl', 'excl_barajada', 'excl_bosones', 'marco_congelado'] · workers=6
+salida cs065_N2500.csv · lam SORTEADA en [0.15,1.2] por parche (G-NO-CALIBRAR)
+PRE-INSCRITO §6: (A) excl>>sin_excl y correlaciona con frac_ferm ; (B) abre ejes pero no 3 ; (C) excl≈sin_excl (colapso definitivo) ; (D) placebo excl≈excl_bosones ; (E) depende de N. ÉXITO = que DISCRIMINE, no que salga 3. G-CONTINUIDAD: sin_excl≈CS064 (~1.2 ejes); congelado→0.
+  5/100 parches · 5.3min · ETA 1.69h
+  10/100 parches · 11.5min · ETA 1.72h
+  15/100 parches · 16.6min · ETA 1.57h
+  20/100 parches · 21.6min · ETA 1.44h
+  25/100 parches · 26.2min · ETA 1.31h
+  30/100 parches · 28.3min · ETA 1.10h
+  35/100 parches · 32.9min · ETA 1.02h
+  40/100 parches · 38.6min · ETA 0.97h
+  45/100 parches · 44.0min · ETA 0.90h
+  50/100 parches · 49.5min · ETA 0.82h
+  55/100 parches · 54.8min · ETA 0.75h
+  60/100 parches · 57.8min · ETA 0.64h
+  65/100 parches · 63.2min · ETA 0.57h
+  70/100 parches · 67.6min · ETA 0.48h
+  75/100 parches · 72.5min · ETA 0.40h
+  80/100 parches · 76.9min · ETA 0.32h
+  85/100 parches · 81.6min · ETA 0.24h
+  90/100 parches · 83.9min · ETA 0.16h
+  95/100 parches · 87.6min · ETA 0.08h
+  100/100 parches · 91.2min · ETA 0.00h
+
+COMPLETO: 100 parches en 91.2 min → cs065_N2500.csv
+=== 22:17:12 N=3500 patches=60 ===
+================================================================================================
+CS065 — EXCLUSIÓN DE PAULI como anti-colapso. ¿rompe el B' de CS064 y sostiene varios ejes?
+================================================================================================
+N=3500 · patches=60 · steps=20 · arms=['excl', 'sin_excl', 'excl_barajada', 'excl_bosones', 'marco_congelado'] · workers=6
+salida cs065_N3500.csv · lam SORTEADA en [0.15,1.2] por parche (G-NO-CALIBRAR)
+PRE-INSCRITO §6: (A) excl>>sin_excl y correlaciona con frac_ferm ; (B) abre ejes pero no 3 ; (C) excl≈sin_excl (colapso definitivo) ; (D) placebo excl≈excl_bosones ; (E) depende de N. ÉXITO = que DISCRIMINE, no que salga 3. G-CONTINUIDAD: sin_excl≈CS064 (~1.2 ejes); congelado→0.
+  5/60 parches · 8.0min · ETA 1.46h
+  10/60 parches · 15.3min · ETA 1.27h
+  15/60 parches · 25.0min · ETA 1.25h
+  20/60 parches · 40.7min · ETA 1.36h
+  25/60 parches · 51.8min · ETA 1.21h
+  30/60 parches · 54.5min · ETA 0.91h
+  35/60 parches · 67.8min · ETA 0.81h
+  40/60 parches · 78.1min · ETA 0.65h
+  45/60 parches · 87.0min · ETA 0.48h
+  50/60 parches · 95.1min · ETA 0.32h
+  55/60 parches · 103.6min · ETA 0.16h
+  60/60 parches · 105.8min · ETA 0.00h
+
+COMPLETO: 60 parches en 105.8 min → cs065_N3500.csv
+=== 00:03:02 BARRIDO CS065 COMPLETO ===

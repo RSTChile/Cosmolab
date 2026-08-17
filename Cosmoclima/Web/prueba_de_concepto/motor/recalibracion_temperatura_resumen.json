@@ -1,0 +1,25 @@
+{
+  "n_anios_total_documentados": 23,
+  "n_anios_con_temperatura": 23,
+  "anios_excluidos_sin_temp": [],
+  "modelo_solo_lluvia": {
+    "B0": -1.2434,
+    "B1_lluvia": 0.0188,
+    "exactitud_in_sample": 0.6957,
+    "exactitud_loocv": 0.6522,
+    "coeficientes_vigentes_html": {
+      "B0": -1.2123,
+      "B1": 0.0185
+    }
+  },
+  "modelo_lluvia_mas_temperatura": {
+    "B0": 13.8662,
+    "B1_lluvia": 0.0114,
+    "B2_tmax90d": -0.7952,
+    "exactitud_in_sample": 0.6957,
+    "exactitud_loocv": 0.6087
+  },
+  "criterio_adopcion": "LOOCV_temp >= LOOCV_lluvia",
+  "se_adopta_modelo_con_temperatura": false,
+  "ventana_temperatura": "90 dias reales desde el dia 1 del mes de pico de lluvia (Tmax promedio, NASA POWER)"
+}

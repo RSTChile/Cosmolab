@@ -1,0 +1,69 @@
+CG004 (Carnets) — ¿la DINÁMICA DE CRECIMIENTO (attach/frente) despliega lo plano?
+====================================================================================================
+brazos de attach · λ_H=2.0 · tejido_max=4 · Dt=2 · MODO=quick
+
+Pre-vuelo · no-degeneración de la métrica:
+  Dtan=2: std(24 dir)=8.875e-01 -> OK
+
+Sanidad de la medición (lattice2D δ CRECE ; árbol δ=0):
+       ancla      N  %gig  diam   δ_med d_grow        ver
+   lattice2D   1024  100    57    2.18   1.60  GEOMETRIA
+    arbol_b3   1024  100    12    0.00   2.28  AZAR(exp)
+   lattice2D  16384  100   235    8.88   1.78  GEOMETRIA
+    arbol_b3  16384  100    17    0.00   3.18  AZAR(exp)
+
+Brazos: CONTROL · FRENTE · TEJIDO · FRENTE+TEJIDO · AZAR
+filas totales=30  ya hechas=0  faltan=30   LOG=cg004_attach.csv
+
+         brazo Dt      N sd  %gig  diam   δ_med   δ_q95 d_grow        ver
+-------------------------------------------------------------------------
+       CONTROL  2   1024  1   64    21    0.00    0.00   2.18  AZAR(exp)
+        FRENTE  2   1024  1   92    19    0.00    0.00   2.23  AZAR(exp)
+        TEJIDO  2   1024  1   64    21    0.00    0.00   2.18  AZAR(exp)
+ FRENTE+TEJIDO  2   1024  1   92    19    0.00    0.00   2.23  AZAR(exp)
+          AZAR  2   1024  1   75    24    0.88    2.50   2.15  AZAR(exp)
+       CONTROL  2   1024  2   61    22    0.00    0.00   2.10  AZAR(exp)
+        FRENTE  2   1024  2   91    19    0.00    0.00   2.25  AZAR(exp)
+        TEJIDO  2   1024  2   61    22    0.00    0.00   2.10  AZAR(exp)
+ FRENTE+TEJIDO  2   1024  2   91    19    0.00    0.00   2.25  AZAR(exp)
+          AZAR  2   1024  2   73    22    0.86    2.50   2.20  AZAR(exp)
+       CONTROL  2   4096  1   59    25    0.00    0.00   2.53  AZAR(exp)
+        FRENTE  2   4096  1   92    24    0.00    0.00   2.65  AZAR(exp)
+        TEJIDO  2   4096  1   59    25    0.00    0.00   2.53  AZAR(exp)
+ FRENTE+TEJIDO  2   4096  1   92    24    0.00    0.00   2.65  AZAR(exp)
+          AZAR  2   4096  1   75    30    0.90    2.50   2.68  AZAR(exp)
+       CONTROL  2   4096  2   59    27    0.00    0.00   2.46  AZAR(exp)
+        FRENTE  2   4096  2   92    23    0.00    0.00   2.67  AZAR(exp)
+        TEJIDO  2   4096  2   59    27    0.00    0.00   2.46  AZAR(exp)
+ FRENTE+TEJIDO  2   4096  2   92    23    0.00    0.00   2.67  AZAR(exp)
+          AZAR  2   4096  2   74    32    0.92    2.50   2.61  AZAR(exp)
+       CONTROL  2  16384  1   59    31    0.00    0.00   2.89  AZAR(exp)
+        FRENTE  2  16384  1   91    27    0.00    0.00   3.06  AZAR(exp)
+        TEJIDO  2  16384  1   59    31    0.00    0.00   2.89  AZAR(exp)
+ FRENTE+TEJIDO  2  16384  1   91    27    0.00    0.00   3.06  AZAR(exp)
+          AZAR  2  16384  1   74    31    1.01    2.50   3.08  AZAR(exp)
+       CONTROL  2  16384  2   59    31    0.00    0.00   2.94  AZAR(exp)
+        FRENTE  2  16384  2   91    27    0.00    0.00   3.03  AZAR(exp)
+        TEJIDO  2  16384  2   59    31    0.00    0.00   2.94  AZAR(exp)
+ FRENTE+TEJIDO  2  16384  2   91    27    0.00    0.00   3.03  AZAR(exp)
+          AZAR  2  16384  2   74    28    0.99    2.50   3.12  AZAR(exp)
+
+====================================================================================================
+RESUMEN — ¿algún brazo se SEPARA de CONTROL hacia lo plano? (objetivo diam-pend→0.5)
+
+  ── Dtan=2 ──
+           CONTROL: diam-pend= 0.13  δ→ ACOTADA(hiperb)  %gig(N=16384)=  59  [N=1024:d=2.14  N=4096:d=2.50  N=16384:d=2.92]
+            FRENTE: diam-pend= 0.13  δ→ ACOTADA(hiperb)  %gig(N=16384)=  91  [N=1024:d=2.24  N=4096:d=2.66  N=16384:d=3.05]
+            TEJIDO: diam-pend= 0.13  δ→ ACOTADA(hiperb)  %gig(N=16384)=  59  [N=1024:d=2.14  N=4096:d=2.50  N=16384:d=2.92]
+     FRENTE+TEJIDO: diam-pend= 0.13  δ→ ACOTADA(hiperb)  %gig(N=16384)=  91  [N=1024:d=2.24  N=4096:d=2.66  N=16384:d=3.05]
+              AZAR: diam-pend= 0.09  δ→ ACOTADA(hiperb)  %gig(N=16384)=  74  [N=1024:d=2.18  N=4096:d=2.64  N=16384:d=3.10]
+
+LECTURA (pre-registrada):
+  · GANA el brazo con diam-pend→~0.5, δ CRECE, dim CONVERGE, %gig alto, DISTINTO de
+    CONTROL, y que AZAR (shuffle) NO reproduce => la disciplina de crecimiento despliega
+    lo plano (éxito afirmable). El lever es el frente/attach.
+  · Si TODOS ≈ CONTROL (hiperbólicos) => la disciplina de crecimiento tampoco basta:
+    bajar aún más (dimensión del espacio de direcciones, cap de grado).
+  · %gig(brazo) << 100 => ese brazo fragmentó: NO leer su diam/dim.
+
+Tiempo: 2.0 min · CSV: cg004_attach.csv

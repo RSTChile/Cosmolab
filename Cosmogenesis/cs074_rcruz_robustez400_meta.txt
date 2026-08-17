@@ -1,0 +1,5 @@
+[calibracion robustez400] N=400 eps=1e-3 mediana_lavado=21200 pasos=24380 lavo_todas=True tiempos=[21200, 21200, 21200, 21200, 21200, 21200, 21200, 21200]
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/cs074_rcruz_robustez400_resultado.json
+[control_r0_lava] True {'mean_P_r0_eps_gt0': 0.033752184409805666, 'n': 7, 'P_max': 0.15}
+[elapsed] 3617.3s

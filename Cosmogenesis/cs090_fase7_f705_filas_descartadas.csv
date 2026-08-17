@@ -1,0 +1,5 @@
+exp,diseno,rule_id,seed,clase,brazo,N_nodos,K,kcap,J,noise,meandeg,n_aristas,grado_medio,clustering,transitividad,n_triangulos,holon,giant,diam,pendiente,frac_masa,masa_acretada,kappa_v,n_sumideros,t_primer_sumidero,carpeta
+F5B_40pares,pareado,A2-B0-C2-r19,273672.0,III,unico,2000,5.0,7.0,0.341,0.326,4.02,3679.0,,,,,,0.9775,12.0,0.7198659721923732,0.087,1635.6,0.4363636363636363,8,0.038,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r19_III
+F5B_40pares,pareado,A2-B0-C2-r39,375612.0,III,unico,2000,5.0,6.0,0.526,0.152,5.7,4083.0,,,,,,0.983,15.0,0.7271595357141946,0.0785,1475.8000000000002,0.4722222222222217,8,0.045,A2-B0-C2-r39_III
+F5B_40pares,pareado,A2-B0-C2-r6,272411.0,I,unico,2000,7.0,5.0,0.632,0.119,5.38,3381.0,,,,,,0.9705,13.0,0.6017022732300973,0.1005,1889.4,0.5238095238095237,8,0.039,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r6_I
+F5B_40pares,pareado,A2-B0-C2-r9,272702.0,I,unico,2000,5.0,7.0,0.493,0.244,4.25,3939.0,,,,,,0.9785,10.0,0.5562821419510406,0.0805,1513.4,0.3859649122807018,8,0.046,/Users/alexis/phantom_cs073/bateria_fase5b_a2b0c2_piloto/A2-B0-C2-r9_I

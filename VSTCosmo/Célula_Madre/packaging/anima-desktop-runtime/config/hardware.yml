@@ -1,0 +1,20 @@
+hardware:
+  perfil_base: limpio
+  pantalla_spi:
+    enabled: false
+  atmega:
+    puerto: ""
+    wifi_tcp_port: 5000
+  camara_ptz:
+    enabled: false
+    host: ""
+  audio_server:
+    wait_on_boot: false
+  audio_local:
+    enabled: true
+    policy: prefer-system-input
+    match: ""
+  presencia:
+    mode: local
+    mdns: true
+    udp_fallback: true

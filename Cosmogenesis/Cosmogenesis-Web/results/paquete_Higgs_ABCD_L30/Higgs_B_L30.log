@@ -1,0 +1,17 @@
+HIGGS B L=30 lambda(rho)
+step   0 a=   1.0 lam=1.000e+05 <phi>=923.740 k1=62 k3=14 ratio=0.307
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/codigo/paquete_Higgs_ABCD_L30/Higgs_B_L30.py:16: RuntimeWarning: overflow encountered in multiply
+  phi += D*lap - lam*(phi**2 -1)*phi *0.01
+/Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis-Web/codigo/paquete_Higgs_ABCD_L30/Higgs_B_L30.py:21: RuntimeWarning: invalid value encountered in subtract
+  phi_new=phi.copy(); phi_new[cnt>0]=phi[cnt>0]+0.1*(mean[cnt>0]-phi[cnt>0]); phi=phi_new
+step  50 a=   1.8 lam=1.653e+04 <phi>=nan k1=15 k3=1 ratio=nan
+step 100 a=   3.3 lam=2.732e+03 <phi>=nan k1=80 k3=7 ratio=nan
+step 150 a=   6.0 lam=4.517e+02 <phi>=nan k1=147 k3=17 ratio=nan
+step 200 a=  11.0 lam=7.466e+01 <phi>=nan k1=203 k3=30 ratio=nan
+step 250 a=  20.1 lam=1.234e+01 <phi>=nan k1=239 k3=32 ratio=nan
+step 300 a=  36.6 lam=2.040e+00 <phi>=nan k1=287 k3=39 ratio=nan
+step 350 a=  66.7 lam=3.372e-01 <phi>=nan k1=331 k3=37 ratio=nan
+step 400 a= 121.5 lam=5.574e-02 <phi>=nan k1=331 k3=37 ratio=nan
+step 450 a= 221.4 lam=9.214e-03 <phi>=nan k1=331 k3=37 ratio=nan
+FIN B
+EXIT:0

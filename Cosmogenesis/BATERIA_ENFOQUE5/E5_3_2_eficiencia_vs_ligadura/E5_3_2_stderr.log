@@ -1,0 +1,13 @@
+[calibracion] N=200 eps=0.001 mediana_lavado=5300 pasos=6095 lavo_todas=True tiempos=[5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+[eps=0] D=0 H0=0  (10 L-puntos x 12 semillas listos)
+[eps=1e-12] D=0.000840709 H0=0.000840709  (10 L-puntos x 12 semillas listos)
+[eps=1e-09] D=0.000841368 H0=0.000841368  (10 L-puntos x 12 semillas listos)
+[eps=1e-06] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+[eps=0.001] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+[eps=0.01] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+[eps=0.1] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+[eps=0.3] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+[eps=1] D=0.000841367 H0=0.000841367  (10 L-puntos x 12 semillas listos)
+
+[archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/E5_3_2_eficiencia_vs_ligadura/E5_3_2_resultado_crudo.json
+[elapsed] 4334.0s

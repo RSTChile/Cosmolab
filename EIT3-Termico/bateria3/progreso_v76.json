@@ -1,0 +1,23 @@
+{
+  "completados": 1130,
+  "fallidos": 0,
+  "total": 1130,
+  "porTag": {
+    "D": {
+      "done": 20,
+      "total": 20
+    },
+    "Aprima": {
+      "done": 30,
+      "total": 30
+    },
+    "Bprima": {
+      "done": 1080,
+      "total": 1080
+    }
+  },
+  "transcurrido_s": 55478,
+  "promedio_job_s": 684.8,
+  "eta_restante_s": null,
+  "n_workers": 14
+}

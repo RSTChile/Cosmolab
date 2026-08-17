@@ -1,0 +1,616 @@
+{
+  "id": "k0",
+  "config": {
+    "id": "k0",
+    "resolucionLluvia": "mensual",
+    "overrides": {
+      "dayNightMode": true,
+      "seasonMode": true,
+      "tOpt": 13
+    },
+    "kappa": {
+      "LF_POR_SEMANA": [
+        0.01,
+        0.0102,
+        0.01,
+        0.0103,
+        0.0101,
+        0.01,
+        0.01,
+        0.0107,
+        0.0126,
+        0.0159,
+        0.02,
+        0.0234,
+        0.0281,
+        0.0317,
+        0.0363,
+        0.0385,
+        0.042,
+        0.0447,
+        0.0484,
+        0.05,
+        0.0512,
+        0.0511,
+        0.0531,
+        0.0546,
+        0.0534,
+        0.0531,
+        0.0529,
+        0.0519,
+        0.0527,
+        0.051,
+        0.0498,
+        0.0489,
+        0.0488,
+        0.0467,
+        0.0447,
+        0.0428,
+        0.0384,
+        0.0345,
+        0.0307,
+        0.0279,
+        0.0235,
+        0.02,
+        0.016,
+        0.0125,
+        0.0097,
+        0.0079,
+        0.0066,
+        0.0066,
+        0.0075,
+        0.0084,
+        0.0094,
+        0.0099,
+        0.0103
+      ],
+      "DELTA_POR_SEMANA": [
+        0.6986,
+        0.706,
+        0.6921,
+        0.6968,
+        0.6862,
+        0.6894,
+        0.686,
+        0.6832,
+        0.6771,
+        0.6794,
+        0.6729,
+        0.6766,
+        0.6783,
+        0.6737,
+        0.6769,
+        0.6661,
+        0.663,
+        0.6607,
+        0.6578,
+        0.6468,
+        0.6426,
+        0.6334,
+        0.6333,
+        0.6437,
+        0.6379,
+        0.6385,
+        0.6486,
+        0.6493,
+        0.6562,
+        0.662,
+        0.6659,
+        0.6661,
+        0.6847,
+        0.6771,
+        0.6878,
+        0.6878,
+        0.6941,
+        0.7037,
+        0.7078,
+        0.7083,
+        0.7085,
+        0.715,
+        0.7208,
+        0.7163,
+        0.7217,
+        0.7228,
+        0.7174,
+        0.7174,
+        0.711,
+        0.7126,
+        0.7088,
+        0.7052,
+        0.696
+      ],
+      "V_POR_SEMANA": [
+        0.8163,
+        0.8126,
+        0.8148,
+        0.8202,
+        0.8287,
+        0.8424,
+        0.857,
+        0.8724,
+        0.8858,
+        0.8942,
+        0.9023,
+        0.903,
+        0.8997,
+        0.8885,
+        0.8712,
+        0.8403,
+        0.8102,
+        0.7765,
+        0.7494,
+        0.7186,
+        0.6888,
+        0.6593,
+        0.6394,
+        0.6224,
+        0.6024,
+        0.5896,
+        0.5836,
+        0.5767,
+        0.5811,
+        0.5815,
+        0.5916,
+        0.6076,
+        0.6286,
+        0.6489,
+        0.6725,
+        0.7017,
+        0.7237,
+        0.7478,
+        0.7802,
+        0.8136,
+        0.8373,
+        0.8624,
+        0.8794,
+        0.8913,
+        0.8937,
+        0.8906,
+        0.8859,
+        0.8767,
+        0.8681,
+        0.8551,
+        0.8424,
+        0.8298,
+        0.8177
+      ],
+      "O_POR_SEMANA": [
+        0.0217,
+        0.024,
+        0.0149,
+        0.0149,
+        0.0106,
+        0.0013,
+        0.0002,
+        0.0005,
+        0.0005,
+        0.0027,
+        0.0015,
+        0.0107,
+        0.018,
+        0.0258,
+        0.0416,
+        0.0691,
+        0.074,
+        0.0811,
+        0.0827,
+        0.0808,
+        0.0725,
+        0.0769,
+        0.0802,
+        0.0594,
+        0.0871,
+        0.0782,
+        0.0558,
+        0.0477,
+        0.0467,
+        0.058,
+        0.0548,
+        0.0199,
+        0.0298,
+        0.0401,
+        0.0208,
+        0.0311,
+        0.0472,
+        0.0259,
+        0.0009,
+        0.0005,
+        0.0047,
+        0.0032,
+        0.0015,
+        0.0022,
+        0.007,
+        0.0137,
+        0.0205,
+        0.0233,
+        0.0217,
+        0.0284,
+        0.0306,
+        0.0368,
+        0.0374
+      ]
+    },
+    "semilla": "regimen1966-2027"
+  },
+  "conteoGlobal": {
+    "JARDIN_FERTIL": 9249,
+    "CIERRE": 387214,
+    "SELVA_HOSTIL": 157439,
+    "COLAPSO": 803898
+  },
+  "conteoPorAnio": {
+    "1966": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21479,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 420
+    },
+    "1967": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1968": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21481,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 419
+    },
+    "1969": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21481,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 419
+    },
+    "1970": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1971": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1972": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1973": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21481,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 419
+    },
+    "1974": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1975": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21481,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 419
+    },
+    "1976": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1977": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1978": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1979": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1980": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21900,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    },
+    "1981": {
+      "JARDIN_FERTIL": 420,
+      "CIERRE": 1683,
+      "SELVA_HOSTIL": 3358,
+      "COLAPSO": 16439
+    },
+    "1982": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 4,
+      "SELVA_HOSTIL": 2518,
+      "COLAPSO": 19378
+    },
+    "1983": {
+      "JARDIN_FERTIL": 421,
+      "CIERRE": 843,
+      "SELVA_HOSTIL": 4200,
+      "COLAPSO": 16436
+    },
+    "1984": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 423,
+      "SELVA_HOSTIL": 2940,
+      "COLAPSO": 18537
+    },
+    "1985": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 841,
+      "SELVA_HOSTIL": 3359,
+      "COLAPSO": 17699
+    },
+    "1986": {
+      "JARDIN_FERTIL": 421,
+      "CIERRE": 842,
+      "SELVA_HOSTIL": 3776,
+      "COLAPSO": 16861
+    },
+    "1987": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 4621,
+      "COLAPSO": 16854
+    },
+    "1988": {
+      "JARDIN_FERTIL": 420,
+      "CIERRE": 842,
+      "SELVA_HOSTIL": 5038,
+      "COLAPSO": 15600
+    },
+    "1989": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 4,
+      "SELVA_HOSTIL": 2522,
+      "COLAPSO": 19374
+    },
+    "1990": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 2,
+      "SELVA_HOSTIL": 4197,
+      "COLAPSO": 17701
+    },
+    "1991": {
+      "JARDIN_FERTIL": 422,
+      "CIERRE": 424,
+      "SELVA_HOSTIL": 2519,
+      "COLAPSO": 18535
+    },
+    "1992": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 3358,
+      "COLAPSO": 18117
+    },
+    "1993": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 6,
+      "SELVA_HOSTIL": 5876,
+      "COLAPSO": 16017
+    },
+    "1994": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 1262,
+      "SELVA_HOSTIL": 2937,
+      "COLAPSO": 17701
+    },
+    "1995": {
+      "JARDIN_FERTIL": 420,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 3777,
+      "COLAPSO": 17278
+    },
+    "1996": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 422,
+      "SELVA_HOSTIL": 2101,
+      "COLAPSO": 19377
+    },
+    "1997": {
+      "JARDIN_FERTIL": 841,
+      "CIERRE": 1266,
+      "SELVA_HOSTIL": 2939,
+      "COLAPSO": 16854
+    },
+    "1998": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 842,
+      "SELVA_HOSTIL": 3777,
+      "COLAPSO": 17280
+    },
+    "1999": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 845,
+      "SELVA_HOSTIL": 1680,
+      "COLAPSO": 19374
+    },
+    "2000": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 1259,
+      "SELVA_HOSTIL": 1260,
+      "COLAPSO": 19381
+    },
+    "2001": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 424,
+      "SELVA_HOSTIL": 3357,
+      "COLAPSO": 18119
+    },
+    "2002": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 1261,
+      "SELVA_HOSTIL": 3359,
+      "COLAPSO": 17280
+    },
+    "2003": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 422,
+      "SELVA_HOSTIL": 3360,
+      "COLAPSO": 18118
+    },
+    "2004": {
+      "JARDIN_FERTIL": 419,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 2936,
+      "COLAPSO": 18120
+    },
+    "2005": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 1261,
+      "SELVA_HOSTIL": 2521,
+      "COLAPSO": 18118
+    },
+    "2006": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 426,
+      "SELVA_HOSTIL": 3358,
+      "COLAPSO": 18115
+    },
+    "2007": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 841,
+      "SELVA_HOSTIL": 2941,
+      "COLAPSO": 18118
+    },
+    "2008": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 2937,
+      "COLAPSO": 18538
+    },
+    "2009": {
+      "JARDIN_FERTIL": 420,
+      "CIERRE": 845,
+      "SELVA_HOSTIL": 4200,
+      "COLAPSO": 16435
+    },
+    "2010": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 2105,
+      "SELVA_HOSTIL": 2518,
+      "COLAPSO": 17277
+    },
+    "2011": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 1262,
+      "SELVA_HOSTIL": 2099,
+      "COLAPSO": 18539
+    },
+    "2012": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 845,
+      "SELVA_HOSTIL": 4616,
+      "COLAPSO": 16438
+    },
+    "2013": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 422,
+      "SELVA_HOSTIL": 3778,
+      "COLAPSO": 17700
+    },
+    "2014": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 842,
+      "SELVA_HOSTIL": 2519,
+      "COLAPSO": 18539
+    },
+    "2015": {
+      "JARDIN_FERTIL": 1259,
+      "CIERRE": 428,
+      "SELVA_HOSTIL": 2520,
+      "COLAPSO": 17693
+    },
+    "2016": {
+      "JARDIN_FERTIL": 419,
+      "CIERRE": 481,
+      "SELVA_HOSTIL": 5042,
+      "COLAPSO": 15958
+    },
+    "2017": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 423,
+      "SELVA_HOSTIL": 4198,
+      "COLAPSO": 17279
+    },
+    "2018": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 425,
+      "SELVA_HOSTIL": 2938,
+      "COLAPSO": 18537
+    },
+    "2019": {
+      "JARDIN_FERTIL": 419,
+      "CIERRE": 1262,
+      "SELVA_HOSTIL": 4200,
+      "COLAPSO": 16019
+    },
+    "2020": {
+      "JARDIN_FERTIL": 1258,
+      "CIERRE": 427,
+      "SELVA_HOSTIL": 4199,
+      "COLAPSO": 16016
+    },
+    "2021": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 422,
+      "SELVA_HOSTIL": 1681,
+      "COLAPSO": 19797
+    },
+    "2022": {
+      "JARDIN_FERTIL": 420,
+      "CIERRE": 839,
+      "SELVA_HOSTIL": 2940,
+      "COLAPSO": 17701
+    },
+    "2023": {
+      "JARDIN_FERTIL": 1263,
+      "CIERRE": 2,
+      "SELVA_HOSTIL": 5036,
+      "COLAPSO": 15599
+    },
+    "2024": {
+      "JARDIN_FERTIL": 1,
+      "CIERRE": 423,
+      "SELVA_HOSTIL": 5876,
+      "COLAPSO": 15600
+    },
+    "2025": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 423,
+      "SELVA_HOSTIL": 4618,
+      "COLAPSO": 16859
+    },
+    "2026": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 8464,
+      "SELVA_HOSTIL": 2939,
+      "COLAPSO": 10497
+    },
+    "2027": {
+      "JARDIN_FERTIL": 0,
+      "CIERRE": 21901,
+      "SELVA_HOSTIL": 0,
+      "COLAPSO": 0
+    }
+  },
+  "ticksTotales": 1357800
+}

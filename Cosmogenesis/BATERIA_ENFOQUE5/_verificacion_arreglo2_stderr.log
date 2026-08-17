@@ -1,0 +1,38 @@
+[2026-07-25 06:26:00] [verificacion Arreglo 2] inicio
+[2026-07-25 06:26:05] [calibracion K_ref] N_calib=[64, 128, 256] K_ref=4.4709
+[2026-07-25 06:26:05] [N=64] D=8.085958e-03 pasos_fijo=636 H_senal=8.085958e-01
+[2026-07-25 06:26:06]   [viejo] senal: z=14.405 deriva_E_max=8.3928e-02 | lavado deriva_E_max=1.2359e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:06]   [nuevo] senal: z=30.600 deriva_E_max=3.4562e-03 | lavado deriva_E_max=1.9799e-03 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:06] [N=64] completado en 0.6s
+[2026-07-25 06:26:06] [N=128] D=2.048689e-03 pasos_fijo=2510 H_senal=2.048689e-01
+[2026-07-25 06:26:07]   [viejo] senal: z=9.086 deriva_E_max=1.1124e-01 | lavado deriva_E_max=1.6542e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:09]   [nuevo] senal: z=117.647 deriva_E_max=1.7964e-03 | lavado deriva_E_max=1.7961e-03 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:09] [N=128] completado en 2.7s
+[2026-07-25 06:26:09] [N=256] D=5.138975e-04 pasos_fijo=10005 H_senal=5.138975e-02
+[2026-07-25 06:26:14]   [viejo] senal: z=5.048 deriva_E_max=1.1699e-01 | lavado deriva_E_max=2.1087e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:18]   [nuevo] senal: z=71.455 deriva_E_max=1.9004e-03 | lavado deriva_E_max=1.8904e-03 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:26:18] [N=256] completado en 9.9s
+[2026-07-25 06:26:18] [N=512] D=1.285826e-04 pasos_fijo=39987 H_senal=1.285826e-02
+[2026-07-25 06:26:42]   [viejo] senal: z=0.724 deriva_E_max=3.9140e-01 | lavado deriva_E_max=2.3974e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:27:07]   [nuevo] senal: z=85.651 deriva_E_max=9.4437e-04 | lavado deriva_E_max=2.7670e-04 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:27:07] [N=512] completado en 48.7s
+[2026-07-25 06:27:07] [N=1024] D=3.215242e-05 pasos_fijo=159912 H_senal=3.215242e-03
+[2026-07-25 06:29:04]   [viejo] senal: z=-0.192 deriva_E_max=1.8571e-01 | lavado deriva_E_max=4.9503e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:31:08]   [nuevo] senal: z=68.166 deriva_E_max=6.9056e-04 | lavado deriva_E_max=5.4251e-04 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:31:08] [N=1024] completado en 240.7s
+[2026-07-25 06:31:08] [N=2048] D=8.038528e-06 pasos_fijo=639613 H_senal=8.038528e-04
+[2026-07-25 06:40:44]   [viejo] senal: z=0.036 deriva_E_max=4.4285e-01 | lavado deriva_E_max=2.5208e-01 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:50:11]   [nuevo] senal: z=98.514 deriva_E_max=3.4458e-04 | lavado deriva_E_max=8.1781e-04 | cero deriva_E_max=0.0000e+00
+[2026-07-25 06:50:11] [N=2048] completado en 1142.8s
+[2026-07-25 06:50:11] [fin] elapsed=1450.8s
+[2026-07-25 06:50:11] [archivo] /Users/alexis/Desktop/RMD/Cosmolab/Cosmogenesis/BATERIA_ENFOQUE5/_verificacion_arreglo2_resultado.json
+[2026-07-25 06:50:11] [veredicto] {
+  "deriva_E_max_ruido_VIEJO_en_N_mas_grande": 0.4428511153342598,
+  "deriva_E_max_ruido_NUEVO_en_N_mas_chico": 0.0034561905792664938,
+  "deriva_E_max_ruido_NUEVO_en_N_mas_grande": 0.000344577696094861,
+  "z_ruido_NUEVO_en_N_mas_chico": 30.599874975732163,
+  "z_ruido_NUEVO_en_N_mas_grande": 98.5136211721825,
+  "deriva_NUEVO_crece_mas_de_10x_entre_N_extremos": false,
+  "NULL_sigue_discriminando_en_N_grande_nuevo_ruido": true,
+  "ARREGLO_2_VERIFICADO": true
+}

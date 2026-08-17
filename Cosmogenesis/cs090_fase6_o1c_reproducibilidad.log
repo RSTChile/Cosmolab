@@ -1,0 +1,45 @@
+====================================================================================================
+O1-C complemento — test-retest: MISMO campo, medición repetida con otras semillas
+====================================================================================================
+Se re-miden 15 reglas etiquetadas Clase II y 15 etiquetadas Clase I, 6 réplicas cada una.
+
+  [II] A0-B0-C0-r0      réplicas Clase II: 3/6   pendiente 0.311–0.366 (sd=0.025)   clases: II|I|I|I|II|II
+  [II] A0-B0-C0-r5      réplicas Clase II: 1/6   pendiente 0.233–0.363 (sd=0.047)   clases: I|I|I|I|I|II
+  [II] A0-B0-C0-r20     réplicas Clase II: 2/6   pendiente 0.232–0.360 (sd=0.045)   clases: I|I|I|I|II|II
+  [II] A0-B0-C0-r28     réplicas Clase II: 1/6   pendiente 0.223–0.364 (sd=0.046)   clases: I|I|II|I|I|I
+  [II] A0-B0-C0-r32     réplicas Clase II: 1/6   pendiente 0.230–0.359 (sd=0.045)   clases: II|I|I|I|I|I
+  [II] A0-B0-C0-r49     réplicas Clase II: 1/6   pendiente 0.251–0.352 (sd=0.040)   clases: I|I|I|I|I|II
+  [II] A0-B0-C0-r56     réplicas Clase II: 5/6   pendiente 0.316–0.367 (sd=0.018)   clases: II|II|II|II|I|II
+  [II] A0-B0-C0-r68     réplicas Clase II: 2/6   pendiente 0.253–0.352 (sd=0.035)   clases: I|II|I|II|I|I
+  [II] A0-B0-C0-r70     réplicas Clase II: 2/6   pendiente 0.233–0.367 (sd=0.061)   clases: I|II|II|I|I|I
+  [II] A0-B0-C0-r75     réplicas Clase II: 5/6   pendiente 0.225–0.366 (sd=0.052)   clases: II|II|I|II|II|II
+  [II] A0-B0-C0-r77     réplicas Clase II: 6/6   pendiente 0.357–0.364 (sd=0.003)   clases: II|II|II|II|II|II
+  [II] A0-B0-C0-r84     réplicas Clase II: 4/6   pendiente 0.312–0.364 (sd=0.022)   clases: II|I|II|I|II|II
+  [II] A0-B0-C0-r88     réplicas Clase II: 3/6   pendiente 0.228–0.367 (sd=0.065)   clases: II|I|I|II|II|I
+  [II] A0-B0-C0-r89     réplicas Clase II: 3/6   pendiente 0.280–0.364 (sd=0.039)   clases: I|II|I|II|I|II
+  [II] A0-B0-C0-r103    réplicas Clase II: 2/6   pendiente 0.233–0.364 (sd=0.046)   clases: II|I|I|I|I|II
+  [ I] A0-B0-C0-r1      réplicas Clase II: 0/6   pendiente 0.225–0.299 (sd=0.026)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r2      réplicas Clase II: 0/6   pendiente 0.229–0.301 (sd=0.027)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r3      réplicas Clase II: 0/6   pendiente 0.292–0.299 (sd=0.003)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r4      réplicas Clase II: 2/6   pendiente 0.231–0.356 (sd=0.050)   clases: II|I|I|I|II|I
+  [ I] A0-B0-C0-r6      réplicas Clase II: 1/6   pendiente 0.229–0.363 (sd=0.050)   clases: I|I|I|II|I|I
+  [ I] A0-B0-C0-r7      réplicas Clase II: 0/6   pendiente 0.292–0.301 (sd=0.003)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r8      réplicas Clase II: 0/6   pendiente 0.222–0.299 (sd=0.034)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r9      réplicas Clase II: 0/6   pendiente 0.223–0.291 (sd=0.025)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r10     réplicas Clase II: 0/6   pendiente 0.228–0.303 (sd=0.026)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r11     réplicas Clase II: 0/6   pendiente 0.233–0.317 (sd=0.027)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r12     réplicas Clase II: 0/6   pendiente 0.227–0.246 (sd=0.006)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r13     réplicas Clase II: 0/6   pendiente 0.152–0.306 (sd=0.045)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r14     réplicas Clase II: 1/6   pendiente 0.190–0.389 (sd=0.066)   clases: I|I|I|I|I|II
+  [ I] A0-B0-C0-r15     réplicas Clase II: 0/6   pendiente 0.290–0.297 (sd=0.002)   clases: I|I|I|I|I|I
+  [ I] A0-B0-C0-r16     réplicas Clase II: 0/6   pendiente 0.291–0.298 (sd=0.003)   clases: I|I|I|I|I|I
+
+====================================================================================================
+RESUMEN
+====================================================================================================
+  etiquetadas Clase II   n=15  fracción de réplicas que dan Clase II: media=0.456 [0.17, 1.00]  |  reglas 100% estables (6/6 o 0/6): 1/15
+  etiquetadas Clase I    n=15  fracción de réplicas que dan Clase II: media=0.044 [0.00, 0.33]  |  reglas 100% estables (6/6 o 0/6): 12/15
+  variación de la pendiente entre réplicas del MISMO campo: sd media=0.0327 (máx=0.0656); el ancho de la banda que define Clase II es 0.45-0.35 = 0.10
+
+  -> cs090_fase6_o1c_reproducibilidad.csv (30 filas)
+TOTAL 7.6 min
