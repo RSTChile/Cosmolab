@@ -1,5 +1,6 @@
-# EIT-3 Cosmosemiotic Audio Processor
-## RMD 2.0 / Cosmosemiótica Canónica
+# Procesador de audio cosmosemiótico EIT-3 Lite
+
+[Volver a la portada de Cosmolab](../README.md)
 
 Procesador de audio que implementa el módulo analógico EIT-3 Lite
 en DSP digital. Voz mejorada por el contexto ambiental — no limpieza,
