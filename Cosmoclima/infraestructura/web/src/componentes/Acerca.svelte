@@ -27,10 +27,17 @@
   //   que no tiene por qué pagar quien viene a mirar el mapa.
   let cobertura = $state(null);
   let acople = $state(null);
+  let remocion = $state(null);
+  let absorcion = $state(null);
   $effect(() => {
-    if (seccion !== 'cobertura' || cobertura) return;
-    fetch('datos/cobertura.json').then((r) => r.json()).then((d) => (cobertura = d));
-    fetch('datos/acoplamiento.json').then((r) => r.json()).then((d) => (acople = d));
+    if (seccion === 'cobertura' && !cobertura) {
+      fetch('datos/cobertura.json').then((r) => r.json()).then((d) => (cobertura = d));
+    }
+    if (seccion === 'medido' && !acople) {
+      fetch('datos/acoplamiento.json').then((r) => r.json()).then((d) => (acople = d));
+      fetch('datos/umbral_remocion.json').then((r) => r.json()).then((d) => (remocion = d));
+      fetch('datos/absorcion.json').then((r) => r.json()).then((d) => (absorcion = d));
+    }
   });
   const sectores = $derived(
     Object.entries(cobertura?.por_sector ?? {})
@@ -54,7 +61,7 @@
 </script>
 
 <nav class="sub">
-  {#each [['modelo', 'El modelo'], ['fuentes', 'Fuentes'], ['limites', 'Límites'], ['cobertura', 'Cobertura'], ['glosario', 'Glosario']] as [k, t]}
+  {#each [['modelo', 'El modelo'], ['fuentes', 'Fuentes'], ['limites', 'Límites'], ['cobertura', 'Cobertura'], ['medido', 'Lo medido'], ['glosario', 'Glosario']] as [k, t]}
     <button class:activa={seccion === k} onclick={() => (seccion = k)}>{t}</button>
   {/each}
 </nav>
@@ -265,6 +272,80 @@
     </div>
   {/if}
 
+
+{:else if seccion === 'medido'}
+  <h2>Lo que se ha medido</h2>
+  <p class="entrada">
+    Nada de esto es una estimación ni un parámetro elegido: son frecuencias
+    observadas sobre registros públicos con fecha y lugar. Cada bloque dice sobre
+    qué se midió y qué NO permite afirmar.
+  </p>
+
+  <h3>Con cuánta lluvia se activa una remoción en masa</h3>
+  {#if remocion}
+    <p class="entrada">
+      Medido sobre <b>{remocion.medido_sobre} remociones</b> del registro ReTeRM de
+      SERNAGEOMIN detonadas por lluvia, cruzadas contra los 36 años de ERA5-Land de
+      su propia celda. Una quebrada que se activa no es una calzada que se socava:
+      son procesos distintos y ceden con lluvias distintas.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Zona</th><th>Casos</th><th>Lluvia 72 h</th><th>Percentil local</th></tr>
+      </thead>
+      <tbody>
+        {#each Object.entries(remocion.por_zona) as [zona, z]}
+          <tr>
+            <td>{zona}{#if z.confianza === 'baja'}<span class="orig">muestra escasa</span>{/if}</td>
+            <td class="num">{z.n}</td>
+            <td class="num">{z.mm_mediano} mm</td>
+            <td class="num">{(100 * z.pct_mediano).toFixed(2)} %</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+    <div class="caja">
+      <b>El norte árido se activa con {remocion.por_zona['norte árido']?.mm_mediano} mm
+      y el sur necesita {remocion.por_zona['sur']?.mm_mediano} mm.</b> Es la sexta
+      parte de lluvia para el mismo tipo de proceso — y sin embargo ambas cifras
+      están sobre el percentil 99 de su propio lugar. Eso es exactamente lo que
+      justifica medir el umbral en percentiles locales y no en milímetros
+      nacionales. ⚠️ {remocion.advertencia}
+    </div>
+  {/if}
+
+  <h3>Cuánto absorbe el sistema antes de romperse</h3>
+  {#if absorcion}
+    <p class="entrada">
+      De todas las viviendas dañadas en las 50.457 emergencias de SENAPRED, qué
+      fracción quedó como daño reparable en vez de destruida. Es el quinto factor
+      del ICSGS, el único que seguía sin medirse.
+    </p>
+    <table>
+      <thead><tr><th>Tipo de evento</th><th>Viviendas</th><th>Absorción</th></tr></thead>
+      <tbody>
+        {#each [...absorcion.por_tipo.slice(0, 3), ...absorcion.por_tipo.slice(-3)] as x}
+          <tr>
+            <td>{x.tipo}</td>
+            <td class="num">{x.viviendas.toLocaleString('es-CL')}</td>
+            <td class="num">{(100 * x.absorcion).toFixed(1)} %</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+    <div class="caja">
+      <b>La absorción es del proceso, no del territorio.</b> El fuego destruye y
+      el agua moja: los incendios forestales dejan destruida cuatro de cada cinco
+      viviendas dañadas, y las inundaciones menos de una de cada veinte.
+      Comparando regiones <i>dentro de un mismo tipo</i>, el orden se mantiene en
+      incendios —Valparaíso es la peor del país, {(100 * (absorcion.control_por_familia?.incendios?.[0]?.absorcion ?? 0)).toFixed(1)} %—
+      pero se invierte en agua. La lectura regional simple no dice lo que parece.
+    </div>
+    <div class="caja">
+      ⚠️ {absorcion.advertencia}
+    </div>
+  {/if}
+
   <h3>Qué falla junto con qué</h3>
   {#if acople}
     <p class="entrada">
@@ -295,6 +376,7 @@
       no sostiene una cadena de colapso automática. {acople.advertencia}
     </div>
   {/if}
+
 
 {:else}
   <h2>Glosario</h2>

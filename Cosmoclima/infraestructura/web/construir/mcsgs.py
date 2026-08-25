@@ -185,7 +185,13 @@ def main():
                         "(100 secuencias medidas)"),
             },
             "faltan": {
-                "FRC": "resiliencia — pide capacidad de absorción por sistema",
+                "FRC": ("resiliencia — el 25-ago se midió una PROXY sobre el "
+                        "daño en viviendas de las 50.457 emergencias de "
+                        "SENAPRED (ver absorcion.json): de lo dañado, qué "
+                        "fracción no se destruyó. NO se adopta como FRC: el "
+                        "MCSGS lo define sobre el sistema, no sobre la "
+                        "vivienda, y aceptar la equivalencia es una decisión, "
+                        "no una medición"),
             },
             "por_que_no_se_publica": (
                 "Falta un solo factor, pero es FRC y entra como 1/FRC: divide "
