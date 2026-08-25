@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# Los artefactos se generan con `npm run datos`; no se versionan.
+publico/datos/*.json
+publico/datos/*.topo.json

@@ -1,0 +1,15 @@
+/* Base sobria y oscura: el color se reserva para el dato, no para el marco. */
+:root {
+  color-scheme: dark;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #0b0e14;
+  color: #e5e7eb;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+button, input { font-family: inherit; }
+/* La barra de desplazamiento del panel, discreta. */
+*::-webkit-scrollbar { width: 8px; }
+*::-webkit-scrollbar-thumb { background: #2a3040; border-radius: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }

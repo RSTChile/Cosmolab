@@ -6,7 +6,21 @@
 /Falsacion-S/
 /Cosmotesla/
 /Cosmolab_audio_preserved/
-/Cosmoclima/infraestructura/
+# ── Infraestructura (MICR x Clima) ────────────────────────────────────────
+# El CODIGO se versiona. Lo que se ignora es lo pesado y lo reproducible:
+#   datos/            6,8 GB de fuentes espejadas (ERA5-Land, geometrias, crudos)
+#   busqueda/crudo/   descargas exploratorias de los agentes de busqueda
+#   node_modules/     dependencias de npm
+#   dist/             salida del build, se regenera con `npm run build`
+#   historia_*        series climaticas derivadas, se regeneran desde datos/
+/Cosmoclima/infraestructura/datos/
+/Cosmoclima/infraestructura/busqueda/crudo/
+/Cosmoclima/infraestructura/web/node_modules/
+/Cosmoclima/infraestructura/web/dist/
+/Cosmoclima/infraestructura/web/publico/datos/historia_diaria/
+/Cosmoclima/infraestructura/web/publico/datos/historia_mensual.json
+/Cosmoclima/infraestructura/**/__pycache__/
+/Cosmoclima/infraestructura/**/.DS_Store
 /results/
 
 # Estado local de herramientas y editores
@@ -127,3 +141,4 @@
 /VSTCosmo/Célula_Madre/organelos/VST_OrganoVisionPTZ.py
 /VSTCosmo/Célula_Madre/packaging/anima-pi-runtime/bin/anima
 /VSTCosmo/Célula_Madre/web/VST_CelulaMadre_WebLive_[A-D].py
+deepseek_sessions

@@ -1,0 +1,21 @@
+# MICR · Matriz de Infraestructura Crítica y Riesgo × clima
+#
+# Se sirve como Worker de assets estáticos: no hay código de servidor, son
+# archivos. Mismo patrón que la PWA de Captura, que ya vive en esta zona.
+#
+# ★ El subdominio NO se crea a mano en el panel de DNS. Con `custom_domain`,
+#   Cloudflare crea el registro, lo apunta al Worker y emite el certificado en
+#   el primer despliegue. Crear el DNS antes hace que el despliegue choque con
+#   él.
+
+name = "micr-rmd"
+compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./dist"
+# Ruta desconocida → index.html: la aplicación resuelve la vista.
+not_found_handling = "single-page-application"
+
+[[routes]]
+pattern = "micr.cosmosemiotica.cl"
+custom_domain = true
