@@ -365,7 +365,8 @@ def main():
             filas.append(fila)
             n += 1
         por_lote[clave] = n
-        print(f"  {'':<14}→ {n:,} activos")
+        aviso = "   ⚠️ CERO: la fuente existe y no produjo nada" if n == 0 else ""
+        print(f"  {'':<14}→ {n:,} activos{aviso}")
 
     if not filas:
         print("\n  nada que integrar")
@@ -560,7 +561,16 @@ FUENTES += [
 def leer_shp(zip_path, patron="*.shp"):
     """Los shapefiles vienen dentro del ZIP tal como los publica el organismo.
     Se descomprimen a un temporal y se leen con pyshp — sin GDAL, que en este
-    proyecto nunca hizo falta."""
+    proyecto nunca hizo falta.
+
+    ★★ SE LEE EL .prj Y SE REPROYECTA SI HACE FALTA.
+    Las antenas de SUBTEL vienen en grados (WGS 84) y la Hidrografía del IDE en
+    SIRGAS-Chile 2016 / UTM 19S. Sin mirar el .prj, los 122.852 cursos de agua
+    entraban con coordenadas en METROS, la validación de territorio los
+    rechazaba a todos y la función devolvía CERO sin dar ningún error. El
+    archivo existía, el ZIP estaba bien, el lector funcionaba: simplemente no
+    salía nada.
+    """
     import shapefile
     import tempfile
     import zipfile
@@ -573,10 +583,28 @@ def leer_shp(zip_path, patron="*.shp"):
         shps = sorted(Path(tmp).rglob(patron))
         if not shps:
             return
+        transformar = None
+        prj = shps[0].with_suffix(".prj")
+        if prj.exists():
+            wkt = prj.read_text(errors="replace")
+            if "PROJCS" in wkt and "Transverse_Mercator" in wkt:
+                import re as _re
+                import pyproj
+                mer = _re.search(r'"Central_Meridian",\s*(-?[\d.]+)', wkt)
+                zona = int((float(mer.group(1)) + 180) / 6) + 1 if mer else 19
+                epsg = 32700 + zona          # hemisferio sur
+                transformar = pyproj.Transformer.from_crs(
+                    f"EPSG:{epsg}", "EPSG:4326", always_xy=True).transform
+                print(f"        [{z.stem}] reproyectando desde EPSG:{epsg} "
+                      f"(UTM {zona}S)", flush=True)
         r = shapefile.Reader(str(shps[0]))
         campos = [f[0] for f in r.fields[1:]]
         for sr in r.iterShapeRecords():
-            yield dict(zip(campos, sr.record)), sr.shape
+            sh = sr.shape
+            if transformar and getattr(sh, "points", None):
+                sh = type("S", (), {"points": [transformar(x, y)
+                                               for x, y in sh.points]})()
+            yield dict(zip(campos, sr.record)), sh
 
 
 def punto_shape(shape):
