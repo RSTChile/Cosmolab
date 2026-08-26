@@ -555,6 +555,185 @@ FUENTES += [
 ]
 
 
+# ── LOTE 3 · shapefiles y catastros de superficie ───────────────────────────
+
+def leer_shp(zip_path, patron="*.shp"):
+    """Los shapefiles vienen dentro del ZIP tal como los publica el organismo.
+    Se descomprimen a un temporal y se leen con pyshp — sin GDAL, que en este
+    proyecto nunca hizo falta."""
+    import shapefile
+    import tempfile
+    import zipfile
+    z = Path(zip_path)
+    if not z.exists():
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        with zipfile.ZipFile(z) as zf:
+            zf.extractall(tmp)
+        shps = sorted(Path(tmp).rglob(patron))
+        if not shps:
+            return
+        r = shapefile.Reader(str(shps[0]))
+        campos = [f[0] for f in r.fields[1:]]
+        for sr in r.iterShapeRecords():
+            yield dict(zip(campos, sr.record)), sr.shape
+
+
+def punto_shape(shape):
+    pts = getattr(shape, "points", None)
+    if not pts:
+        return None
+    x, y = pts[len(pts) // 2]
+    return (y, x) if dentro(y, x) else None
+
+
+def f_antenas_torres():
+    """Las 18.007 antenas de la Ley de Torres. Van al ítem 183 (Torres de
+    Telecomunicaciones), que ya está poblado: lo que duplique lo descarta la
+    fusión por proximidad, y lo que quede es lo que esa fuente añade."""
+    z = (CRUDO / "subtel_antenas_leydetorres" / "2026-08-25" /
+         "antenas_servicio_ley_torres.zip")
+    for a, shape in leer_shp(z):
+        pt = punto_shape(shape)
+        if not pt:
+            continue
+        yield {"item": "183", "elemento": "Torres de Telecomunicaciones (Celulares)",
+               "nombre": f"{a.get('ALIAS','')} {a.get('TISO_DESCR','')}".strip()[:70],
+               "lat": round(pt[0], 6), "lon": round(pt[1], 6),
+               "comuna": a.get("COMUNA", ""), "region": a.get("REGION", ""),
+               "fuente": "SUBTEL · Antenas en Servicio Ley de Torres",
+               "confianza": "consolidado"}
+
+
+def f_hidrografia():
+    """★ 122.852 cursos de agua. Son LÍNEAS: se toma el vértice central."""
+    z = CRUDO / "ide_hidrografia" / "2026-08-25" / "Hidrografia_V2.zip"
+    for a, shape in leer_shp(z):
+        pt = punto_shape(shape)
+        if not pt:
+            continue
+        nom = ""
+        for k in a:
+            if "nom" in k.lower() and str(a[k]).strip():
+                nom = str(a[k]).strip()
+                break
+        yield {"item": "3", "elemento": "Fuentes Naturales de Agua (Ríos o Lagos)",
+               "nombre": nom[:70], "lat": round(pt[0], 6), "lon": round(pt[1], 6),
+               "comuna": "", "region": "",
+               "fuente": "IDE Chile · Hidrografía V2",
+               "confianza": "consolidado"}
+
+
+def f_geojson(carpeta, archivo, item, elemento, campos_nombre, fuente,
+              campo_comuna="", campo_region=""):
+    """Lector genérico para las capas donde toda la capa es un mismo ítem."""
+    p = CRUDO / carpeta / "2026-08-25" / archivo
+    if not p.exists():
+        return
+    for f in leer_geojson(p):
+        pt = punto_de(f.get("geometry"))
+        if not pt or not dentro(pt[1], pt[0]):
+            continue
+        pr = f.get("properties", {})
+        nom = ""
+        for k in campos_nombre:
+            v = str(pr.get(k) or "").strip()
+            if v and v.lower() not in ("none", "s/i"):
+                nom = v
+                break
+        yield {"item": item, "elemento": elemento, "nombre": nom[:70],
+               "lat": round(pt[1], 6), "lon": round(pt[0], 6),
+               "comuna": pr.get(campo_comuna, "") if campo_comuna else "",
+               "region": pr.get(campo_region, "") if campo_region else "",
+               "fuente": fuente, "confianza": "consolidado"}
+
+
+def f_bovinos():
+    yield from f_geojson("ciren_rol_unico_pecuario",
+                         "rol_unico_pecuario_bovinos_2025.geojson",
+                         "399", "Granjas Ganaderas (Bovinos)", ("rup", "id"),
+                         "SAG/CIREN · Rol Único Pecuario bovinos 2025", "nom_com")
+
+
+def f_fruticola():
+    yield from f_geojson("ciren_catastro_fruticola", "productores_fruticolas.geojson",
+                         "398", "Campos de Cultivo (Frutas y Verduras)",
+                         ("especie_01", "rolpredi"),
+                         "CIREN · Catastro Frutícola", "desccomu")
+
+
+def f_bocatomas():
+    """Bocatomas de la CNR. Van al 403 (Sistemas de Riego Agrícola) y no al 844
+    (Bocatoma de Agua Potable RURAL), que es otra cosa: éstas son de riego."""
+    yield from f_geojson("cnr_infraestructura_riego", "bocatomas.geojson",
+                         "403", "Sistemas de Riego Agrícola", ("nom_can", "cod_boc"),
+                         "CNR · Bocatomas de riego")
+
+
+def f_acuiferos():
+    yield from f_geojson("dga_acuiferos",
+                         "acuiferos_vegas_bofedales_protegidos.geojson",
+                         "5", "Acuíferos Subterráneos", ("NOM_VEGA", "COD_ACUIFVF"),
+                         "DGA · Acuíferos que alimentan vegas y bofedales",
+                         "", "REGION")
+
+
+def f_agricola():
+    """★★ LOS 74.981 POLÍGONOS DE CONAF, AHORA SÍ.
+
+    Estos polígonos no entraban porque la Matriz separaba «Campos de Cultivo
+    (Granos)» de «(Frutas y Verduras)» y el catastro nacional no usa esa
+    división: usa **Rotación Cultivo-Pradera** y **Terreno de Uso Agrícola**.
+
+    En vez de forzar el catastro al ítem, se adaptó el ítem al catastro
+    (`alinear_items_agricolas.py`), que es lo mismo que se hizo en Industrial
+    con las divisiones CIIU:
+
+        397  renombrado a «Terreno de Uso Agrícola»
+        852  ítem nuevo · «Rotación Cultivo-Pradera»
+
+    ⚠️ El catastro escribe la misma clase de tres formas —«Terreno de Uso
+    Agrícola», «Terrenos de Uso Agricola» y «Terrenos de Uso Agrícola»—, con y
+    sin tilde y en singular y plural. Se normalizan: si no, 2.327 polígonos se
+    perderían por una tilde.
+    """
+    import gzip as _gz
+    p = (CRUDO / "conaf_usos_tierra_agricola" / "2026-08-25" /
+         "terrenos_agricolas.geojson.gz")
+    if not p.exists():
+        return
+    m = {"rotacion cultivo-pradera": ("852", "Rotación Cultivo-Pradera"),
+         "terreno de uso agricola": ("397", "Terreno de Uso Agrícola"),
+         "terrenos de uso agricola": ("397", "Terreno de Uso Agrícola")}
+    fs = json.loads(_gz.open(p, "rt", encoding="utf-8").read())["features"]
+    for f in fs:
+        it = m.get(sin_tildes(f["properties"].get("subuso")))
+        pt = punto_de(f.get("geometry"))
+        if not it:
+            DESCARTES["clase de uso de tierra sin ítem"].append(
+                str(f["properties"].get("subuso"))[:40])
+            continue
+        if not pt or not dentro(pt[1], pt[0]):
+            continue
+        pr = f["properties"]
+        yield {"item": it[0], "elemento": it[1],
+               "nombre": "", "lat": round(pt[1], 6), "lon": round(pt[0], 6),
+               "comuna": pr.get("nom_com", ""), "region": pr.get("nom_reg", ""),
+               "fuente": "CONAF/CIREN · Catastro de usos de la tierra",
+               "confianza": "consolidado"}
+
+
+FUENTES += [
+    ("antenas", f_antenas_torres, "antenas de la Ley de Torres"),
+    ("hidrografia", f_hidrografia, "cursos de agua del IDE"),
+    ("bovinos", f_bovinos, "planteles bovinos del Rol Único Pecuario"),
+    ("fruticola", f_fruticola, "predios del catastro frutícola"),
+    ("bocatomas", f_bocatomas, "bocatomas de riego de la CNR"),
+    ("acuiferos", f_acuiferos, "acuíferos protegidos de la DGA"),
+    ("agricola", f_agricola, "usos de tierra agrícola de CONAF"),
+]
+
+
 if __name__ == "__main__":
     print("=" * 78)
     print("INTEGRAR EL BARRIDO · del crudo de los agentes al índice de activos")
