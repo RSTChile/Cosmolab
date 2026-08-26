@@ -67,6 +67,12 @@ FUENTES = [
      "SUBPESCA · Comisión Nacional de Riego",
      lambda r: (r["item"], r.get("nombre", ""), float(r["lat"]), float(r["lon"]),
                 r.get("nombre", ""))),
+    # ── el barrido de los 7 agentes (25-ago) ────────────────────────────────
+    # Trae su propia columna `fuente` por fila, así que el rótulo de aquí es
+    # genérico y el detalle real viaja con cada activo.
+    (RAIZ / "datos" / "barrido_por_item.csv", "consolidado", "barrido 25-ago",
+     lambda r: (r["item"], r.get("nombre", ""), float(r["lat"]), float(r["lon"]),
+                r.get("nombre", ""))),
 ]
 
 
