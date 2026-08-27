@@ -844,16 +844,67 @@ def f_red_acceso():
 
 
 def f_nodos():
-    yield from geojsons_de("subtel_nodos_of213", "190",
-                           "Nodos de Interconexión (IXP)",
-                           "SUBTEL · Nodos Of. 213/2024",
-                           campos=("nombre", "empresa"))
+    """★ Los nodos HFC no son puntos de intercambio de tráfico: son equipamiento
+    de la red de acceso del cable. El ítem 190 es específicamente IXP, así que
+    van al 195 con el resto de la red de distribución."""
+    d = CRUDO / "subtel_nodos_of213" / "2026-08-25"
+    if not d.exists():
+        return
+    for p_ in sorted(d.glob("*.geojson")):
+        if "cruda" in p_.name:
+            continue
+        hfc = "nodohfc" in p_.name
+        it, el = (("195", "Redes de Distribución (Fibra Óptica Local)") if hfc
+                  else ("190", "Nodos de Interconexión (IXP)"))
+        yield from geojsons_de("subtel_nodos_of213", it, el,
+                               "SUBTEL · Nodos Of. 213/2024",
+                               patron=p_.name, campos=("nombre", "empresa"))
 
 
-def f_redcom():
-    yield from geojsons_de("senapred_redcom", "326",
-                           "Infraestructura de Conectividad",
-                           "SENAPRED · Red de comunicaciones de emergencia")
+def f_senapred_territorio():
+    """★★★ EL ERROR MÁS CARO DE TODA LA INTEGRACIÓN, Y FUE POR SUPONER.
+
+    Esta carpeta se llama `senapred_redcom` y di por hecho que era una red de
+    comunicaciones. **No lo es.** Sus 9.716 elementos son senderos, vías de
+    evacuación, líneas férreas, túneles, balsas y el metro de Santiago — y los
+    metí enteros en el ítem 326, «Infraestructura de Conectividad» de Servicios
+    de Emergencia.
+
+    Lo detectó el director: en el Faro Raper, en el Golfo de Penas, aparecían
+    cuatro puntos de «conectividad» donde sólo hay un faro y un helipuerto. Eran
+    **vértices centrales de senderos largos**: el punto medio de una huella de
+    40 km cae donde no hay nada.
+
+    ⚠️ La lección: el nombre de una carpeta no es su contenido. Verificar SIEMPRE
+    qué trae una capa antes de asignarle un ítem, aunque el nombre parezca
+    inequívoco.
+
+    Ahora cada capa va a su ítem, y tres se quedan fuera porque no son activos.
+    """
+    m = {
+        "linea_ferrea.geojson":   ("620", "Ferrocarriles (Vías)"),
+        "metro_red.geojson":      ("620", "Ferrocarriles (Vías)"),
+        "metro_estaciones.geojson": ("621", "Estaciones de Tren"),
+        "tuneles.geojson":        ("619", "Túneles de Carreteras"),
+        "vias_de_evacuacion.geojson": ("650", "Rutas de Evacuación"),
+    }
+    fuera = {
+        "limite_area_evacuacion.geojson":
+            "es un LÍMITE administrativo, no un activo",
+        "huellas_y_senderos.geojson":
+            "la Matriz no tiene ítem de sendero ni huella",
+        "balsas.geojson":
+            "la Matriz no tiene ítem de balsa ni transbordo fluvial",
+    }
+    for arch, (it, el) in m.items():
+        yield from geojsons_de("senapred_redcom", it, el,
+                               f"SENAPRED · visor GRD ({arch[:-8]})",
+                               patron=arch, campos=("nombre", "nombre_ve", "tipo"))
+    for arch, motivo in fuera.items():
+        p_ = CRUDO / "senapred_redcom" / "2026-08-25" / arch
+        if p_.exists():
+            n = sum(1 for _ in leer_geojson(p_))
+            DESCARTES[motivo].append(f"{arch[:-8]} ({n:,})")
 
 
 def f_cables_submarinos():
@@ -891,9 +942,29 @@ def f_cables_submarinos():
 
 
 def f_aguas_lluvias():
-    yield from geojsons_de("mop_doh_aguas_lluvias", "40",
-                           "Canales de Drenaje (Control de Inundaciones)",
-                           "MOP/DOH · Colectores de aguas lluvias")
+    """⚠️ Mismo error que en `senapred_redcom`, encontrado al revisarlo: esta
+    carpeta no son sólo colectores. Trae además **áreas tributarias** y **zonas
+    de plan maestro** —superficies de estudio, no activos— y **puntos de
+    inundación y de remoción en masa**, que son AMENAZAS y no infraestructura.
+    Meterlos en «Canales de Drenaje» convertía un mapa de peligro en un
+    inventario de obras.
+
+    Sólo entran las obras propiamente dichas.
+    """
+    for arch in ("otras_obras_puntos.geojson", "otras_obras_poligono.geojson"):
+        yield from geojsons_de("mop_doh_aguas_lluvias", "40",
+                               "Canales de Drenaje (Control de Inundaciones)",
+                               "MOP/DOH · Obras de aguas lluvias",
+                               patron=arch)
+    for arch, motivo in (
+            ("areas_tributarias.geojson", "es una superficie de estudio, no un activo"),
+            ("zonas_plan_maestro.geojson", "es una zona de planificación, no un activo"),
+            ("puntos_inundacion.geojson", "es una AMENAZA registrada, no infraestructura"),
+            ("puntos_remocion_masa.geojson", "es una AMENAZA registrada, no infraestructura")):
+        p_ = CRUDO / "mop_doh_aguas_lluvias" / "2026-08-25" / arch
+        if p_.exists():
+            n = sum(1 for _ in leer_geojson(p_))
+            DESCARTES[motivo].append(f"aguas lluvias · {arch[:-8]} ({n:,})")
 
 
 def f_fruticola_industria():
@@ -1009,7 +1080,8 @@ FUENTES += [
     ("fibra", f_fibra, "fibra óptica troncal de SUBTEL"),
     ("red_acceso", f_red_acceso, "redes de acceso de SUBTEL"),
     ("nodos", f_nodos, "nodos de interconexión"),
-    ("redcom", f_redcom, "red de comunicaciones de SENAPRED"),
+    ("senapred_terr", f_senapred_territorio,
+     "vías férreas, metro, túneles y rutas de evacuación de SENAPRED"),
     ("submarinos", f_cables_submarinos, "cables submarinos"),
     ("aguas_lluvias", f_aguas_lluvias, "colectores de aguas lluvias"),
     ("fruticola_ind", f_fruticola_industria, "cámaras de frío, embalaje, agroindustria"),
