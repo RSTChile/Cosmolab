@@ -365,7 +365,12 @@ def main():
             filas.append(fila)
             n += 1
         por_lote[clave] = n
-        aviso = "   ⚠️ CERO: la fuente existe y no produjo nada" if n == 0 else ""
+        # Algunos «lotes» no producen activos a propósito: sólo cuentan y
+        # nombran lo que no puede entrar. Ésos no son un fallo.
+        declara = clave in ("jardines", "parvularia")
+        aviso = ("   (declara descarte, no aporta activos)" if n == 0 and declara
+                 else "   ⚠️ CERO: la fuente existe y no produjo nada" if n == 0
+                 else "")
         print(f"  {'':<14}→ {n:,} activos{aviso}")
 
     if not filas:
@@ -759,6 +764,169 @@ FUENTES += [
     ("bocatomas", f_bocatomas, "bocatomas de riego de la CNR"),
     ("acuiferos", f_acuiferos, "acuíferos protegidos de la DGA"),
     ("agricola", f_agricola, "usos de tierra agrícola de CONAF"),
+]
+
+
+# ── LOTE 4 · lo que quedaba ─────────────────────────────────────────────────
+
+def geojsons_de(carpeta, item, elemento, fuente, patron="*.geojson",
+                campos=("nombre", "NOMBRE", "Nombre")):
+    """Varias capas de una misma carpeta que van todas al mismo ítem. Es el caso
+    de la fibra de SUBTEL: 10 archivos, uno por operador, mismo tipo de activo."""
+    d = CRUDO / carpeta / "2026-08-25"
+    if not d.exists():
+        return
+    for p in sorted(d.glob(patron)):
+        if "cruda" in p.name:
+            continue
+        try:
+            fs = list(leer_geojson(p))
+        except Exception as e:  # noqa: BLE001
+            DESCARTES[f"{carpeta}: archivo ilegible"].append(f"{p.name} ({e})")
+            continue
+        for f in fs:
+            pt = punto_de(f.get("geometry"))
+            if not pt or not dentro(pt[1], pt[0]):
+                continue
+            pr = f.get("properties", {})
+            nom = ""
+            for k in campos:
+                v = str(pr.get(k) or "").strip()
+                if v and v.lower() not in ("none", "s/i"):
+                    nom = v
+                    break
+            yield {"item": item, "elemento": elemento, "nombre": nom[:70],
+                   "lat": round(pt[1], 6), "lon": round(pt[0], 6),
+                   "comuna": pr.get("comuna", "") or pr.get("COMUNA", ""),
+                   "region": pr.get("region", "") or pr.get("REGION", ""),
+                   "fuente": fuente, "confianza": "consolidado"}
+
+
+def f_fibra():
+    """★ La fibra troncal, por operador. Son LÍNEAS de decenas de kilómetros:
+    el punto es el vértice central de cada tramo y representa algo extenso."""
+    yield from geojsons_de("subtel_fibra_troncal_of213", "177",
+                           "Cables de Fibra Óptica (Terrestres)",
+                           "SUBTEL · Fibra troncal Of. 213/2024",
+                           campos=("empresa", "nombre", "NOMBRE"))
+
+
+def f_red_acceso():
+    yield from geojsons_de("subtel_red_acceso_of322_of468", "195",
+                           "Redes de Distribución (Fibra Óptica Local)",
+                           "SUBTEL · Red de acceso Of. 322 y 468",
+                           campos=("empresa", "nombre"))
+
+
+def f_nodos():
+    yield from geojsons_de("subtel_nodos_of213", "190",
+                           "Nodos de Interconexión (IXP)",
+                           "SUBTEL · Nodos Of. 213/2024",
+                           campos=("nombre", "empresa"))
+
+
+def f_redcom():
+    yield from geojsons_de("senapred_redcom", "326",
+                           "Infraestructura de Conectividad",
+                           "SENAPRED · Red de comunicaciones de emergencia")
+
+
+def f_cables_submarinos():
+    """★ El catastro de TeleGeography es MUNDIAL: sus 724 cables tienen vértices
+    en Chipre y en Borneo. Tomar el vértice central de un cable Chile-Nueva
+    Zelanda lo deja en mitad del Pacífico, y el filtro de territorio lo descarta
+    —correctamente— dejando el lote en cero.
+
+    Lo que sí es un activo EN Chile es el **punto de amarre**: donde el cable
+    toca tierra. De los 1.922 amarres del mundo se toman los que caen en el
+    territorio.
+    """
+    p = (CRUDO / "telegeography_cables_submarinos" / "2026-08-25" /
+         "landing-point-geo.json")
+    if not p.exists():
+        return
+    fuera = 0
+    for f in leer_geojson(p):
+        pt = punto_de(f.get("geometry"))
+        if not pt:
+            continue
+        if not dentro(pt[1], pt[0]):
+            fuera += 1
+            continue
+        pr = f.get("properties", {})
+        yield {"item": "178", "elemento": "Cables de Fibra Óptica (Submarinos)",
+               "nombre": str(pr.get("name") or pr.get("id") or "")[:70],
+               "lat": round(pt[1], 6), "lon": round(pt[0], 6),
+               "comuna": "", "region": "",
+               "fuente": "TeleGeography · puntos de amarre de cables submarinos",
+               "confianza": "consolidado"}
+    if fuera:
+        DESCARTES["amarres de cable submarino fuera de Chile (catastro mundial)"
+                  ].append(f"{fuera:,} de 1.922 puntos de amarre del mundo")
+
+
+def f_aguas_lluvias():
+    yield from geojsons_de("mop_doh_aguas_lluvias", "40",
+                           "Canales de Drenaje (Control de Inundaciones)",
+                           "MOP/DOH · Colectores de aguas lluvias")
+
+
+def f_fruticola_industria():
+    """Las otras capas del catastro de CIREN: cada una es un ítem distinto."""
+    m = {"camaras_de_frio.geojson": ("405", "Almacenes Refrigerados (Frutas y Verduras)"),
+         "plantas_embalaje.geojson": ("412", "Centros de Logística Alimentaria"),
+         "agroindustrias.geojson": ("409", "Plantas de Envasado (Alimentos)")}
+    for arch, (it, el) in m.items():
+        yield from geojsons_de("ciren_catastro_fruticola", it, el,
+                               f"CIREN · Catastro Frutícola ({arch[:-8]})",
+                               patron=arch, campos=("nombre", "razon_soci"))
+
+
+def f_supermercados():
+    """★ La capa se llama «centros públicos» y son SUPERMERCADOS: el agente que
+    la bajó lo verificó y lo dejó anotado. El nombre del servicio engaña."""
+    for a, la, lo in esri("senapred_centros_publicos"):
+        yield fila("413", "Supermercados y Tiendas", a, la, lo,
+                   "SENAPRED · visor GRD", ("nombre", "razon_social", "local"))
+
+
+def f_recintos_deportivos():
+    for a, la, lo in esri("senapred_recintos_deportivos"):
+        nom = str(a.get("nombre") or "")
+        it, el = (("529", "Estadios Deportivos") if "estadio" in sin_tildes(nom)
+                  else ("567", "Gimnasios y Centros Deportivos"))
+        yield fila(it, el, a, la, lo, "SENAPRED · visor GRD", ("nombre",))
+
+
+def f_jardines():
+    """⚠️ JUNJI (3.015) e Integra (1.160) se suman a los 11.951 de MINEDUC:
+    **16.126 jardines infantiles georreferenciados** que siguen sin poder entrar
+    porque la Matriz no tiene ítem de nivel parvulario. Queda contado."""
+    n = 0
+    for carpeta in ("junji", "integra"):
+        d = CRUDO / carpeta / "2026-08-25"
+        if not d.exists():
+            continue
+        for p in d.glob("*.geojson"):
+            n += sum(1 for _ in leer_geojson(p))
+    if n:
+        DESCARTES["no hay ítem de jardín infantil / nivel parvulario en la Matriz"
+                  ].append(f"JUNJI + Integra ({n:,} establecimientos)")
+    return
+    yield
+
+
+FUENTES += [
+    ("fibra", f_fibra, "fibra óptica troncal de SUBTEL"),
+    ("red_acceso", f_red_acceso, "redes de acceso de SUBTEL"),
+    ("nodos", f_nodos, "nodos de interconexión"),
+    ("redcom", f_redcom, "red de comunicaciones de SENAPRED"),
+    ("submarinos", f_cables_submarinos, "cables submarinos"),
+    ("aguas_lluvias", f_aguas_lluvias, "colectores de aguas lluvias"),
+    ("fruticola_ind", f_fruticola_industria, "cámaras de frío, embalaje, agroindustria"),
+    ("supermercados", f_supermercados, "supermercados del visor GRD"),
+    ("recintos", f_recintos_deportivos, "recintos deportivos del visor GRD"),
+    ("jardines", f_jardines, "jardines infantiles (sin ítem, se declaran)"),
 ]
 
 
