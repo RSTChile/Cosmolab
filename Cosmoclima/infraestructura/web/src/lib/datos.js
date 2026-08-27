@@ -47,10 +47,18 @@ export async function cargarTodo() {
     comunas_geometria: topo.objects.comunas.geometries.length,
     items: matriz.items.length,
   };
+  // ★★ EL PORTERO COMPARA UN PISO, NO UNA IGUALDAD.
+  //    El manifiesto declara «si un conteo BAJA de aquí, algo se perdió» — ésa
+  //    era la intención desde el principio. Pero la comparación era `!==`, así
+  //    que también fallaba cuando el proyecto CRECÍA: al crear los ítems 847-851
+  //    el sitio entero pasó a mostrar «se esperaban 846 y llegaron 852» en vez
+  //    de la aplicación, y siguió desplegándose sin que nada avisara, porque
+  //    wrangler subía los archivos correctamente.
+  //    Crecer no es una falla. Perder, sí.
   const fallas = [];
   for (const [k, v] of Object.entries(real)) {
-    if (esperado[k] != null && esperado[k] !== v) {
-      fallas.push(`${k}: se esperaban ${esperado[k]} y llegaron ${v}`);
+    if (esperado[k] != null && v < esperado[k]) {
+      fallas.push(`${k}: se esperaban al menos ${esperado[k]} y llegaron ${v}`);
     }
   }
   // El pronóstico es lo único que puede venir corto sin ser un error: se baja de

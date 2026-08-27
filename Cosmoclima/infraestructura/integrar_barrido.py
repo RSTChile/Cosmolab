@@ -56,6 +56,8 @@ CAMPOS = ["item", "elemento", "nombre", "lat", "lon", "comuna", "region",
 # ★ Lo que se deja fuera se cuenta y se nombra. Un integrador que descarta en
 #   silencio produce un total que parece completo y no lo es.
 DESCARTES = defaultdict(list)
+# Qué tipos acaban en el cajón 863, para poder revisarlos después
+OTROS_SALUD = Counter()
 
 
 def dentro(la, lo):
@@ -390,6 +392,12 @@ def main():
     print(f"\n  escrito: {SALIDA.name} · {len(filas):,} activos en "
           f"{len(por_item)} ítems ({SALIDA.stat().st_size/1e6:.1f} MB)")
 
+    if OTROS_SALUD:
+        print(f"\n  · al cajón 863 «Otros Establecimientos de Salud»: "
+              f"{sum(OTROS_SALUD.values()):,}")
+        for t, n in OTROS_SALUD.most_common(6):
+            print(f"       {n:>5}  {t}")
+
     if DESCARTES:
         print(f"\n  ⚠️ NO INTEGRADO, y por qué:")
         for motivo, lista in sorted(DESCARTES.items(), key=lambda t: -len(t[1])):
@@ -452,20 +460,37 @@ SALUD = {
     "servicio de atención primaria de urgencia": ("267", "Centros de Atención Primaria"),
     "centro de salud": ("267", "Centros de Atención Primaria"),
     "laboratorio clínico": ("270", "Laboratorios Clínicos"),
+    # ── ítems creados el 26-ago para los tipos que no tenían dónde entrar ──
+    "clínica dental": ("855", "Clínicas Dentales"),
+    "centro de diálisis": ("858", "Centros de Diálisis"),
+    "vacunatorio": ("859", "Vacunatorios"),
+    "salud mental": ("857", "Centros Comunitarios de Salud Mental (COSAM)"),
+    "toma de muestras": ("860", "Salas de Toma de Muestras"),
+    "centro de diagnóstico": ("856", "Clínicas y Centros Médicos Privados"),
+    "clínica": ("856", "Clínicas y Centros Médicos Privados"),
+    # ── y dos que NO necesitaban ítem nuevo: ya existían y describen esto ──
+    "consultorio general rural": ("266", "Clínicas Rurales"),
+    "centro de referencia de salud": ("267", "Centros de Atención Primaria"),
 }
+# El cajón: lo que no calza con ninguno de arriba. Se declara como tal.
+SALUD_OTROS = ("863", "Otros Establecimientos de Salud")
 
 
 def f_senapred_salud():
     for a, la, lo in esri("senapred_salud"):
         t = sin_tildes(a.get("tipo"))
         it = None
-        for clave, destino in SALUD.items():
+        # ⚠️ De la clave MÁS LARGA a la más corta: «clínica» captura «clínica
+        #    dental» si se prueba antes, y mandaría 327 dentales al ítem
+        #    equivocado sin que nada avisara.
+        for clave, destino in sorted(SALUD.items(), key=lambda kv: -len(kv[0])):
             if sin_tildes(clave) in t:
                 it = destino
                 break
         if not it:
-            DESCARTES["salud: tipo sin ítem en la Matriz"].append(str(a.get("tipo"))[:40])
-            continue
+            # Ya no se descarta: hay un cajón declarado para esto.
+            it = SALUD_OTROS
+            OTROS_SALUD[str(a.get("tipo"))[:44]] += 1
         yield fila(it[0], it[1], a, la, lo, "SENAPRED · visor GRD",
                    ("nombre", "nombre_del"))
 
@@ -488,13 +513,14 @@ def f_senapred_simple():
         ("senapred_carabineros", "353", ("nombre_uni", "tipo_de_un")),
         ("senapred_pdi", "353", ("unidad", "inmueble")),
     ]
-    for carpeta, cuantos, motivo in (
-            ("senapred_centros_penitenciarios", 82,
-             "no hay ítem de cárcel ni recinto de detención en la Matriz"),
-            ("senapred_servicio_medico_legal", 47, "no hay ítem forense"),
-            ("senapred_farmacias", 4503,
-             "el único ítem de farmacia (272) es HOSPITALARIA, no comunitaria")):
-        DESCARTES[motivo].append(f"{carpeta} ({cuantos:,} registros verificados)")
+    # ★ Los tres que estaban declarados como imposibles ya tienen ítem propio
+    #   (creados el 26-ago con crear_items_faltantes.py) y entran.
+    capas += [
+        ("senapred_centros_penitenciarios", "862",
+         ("establecim", "nombre_del", "unidad_pen")),
+        ("senapred_servicio_medico_legal", "861", ("nombre", "unidad")),
+        ("senapred_farmacias", "854", ("nombre_loc", "empresa_ra")),
+    ]
     m = json.loads((AQUI / "web" / "publico" / "datos" / "matriz.json")
                    .read_text(encoding="utf-8"))
     valido = {str(i["n"]): i["elemento"] for i in m["items"]}
@@ -530,7 +556,7 @@ def f_deportiva():
                "confianza": "consolidado"}
 
 
-def f_parvularia():
+def f_parvularia_obsoleta():
     """★★ 11.951 JARDINES INFANTILES QUE NO TIENEN DÓNDE ENTRAR.
 
     El sector Educación de la Matriz enumera escuelas primarias, secundarias,
@@ -557,7 +583,6 @@ FUENTES += [
     ("salud", f_senapred_salud, "establecimientos de salud del visor GRD"),
     ("emergencia", f_senapred_simple, "bomberos, policía, cárceles, farmacias"),
     ("deportiva", f_deportiva, "infraestructura deportiva del MINDEP"),
-    ("parvularia", f_parvularia, "educación parvularia"),
 ]
 
 
@@ -899,21 +924,85 @@ def f_recintos_deportivos():
 
 
 def f_jardines():
-    """⚠️ JUNJI (3.015) e Integra (1.160) se suman a los 11.951 de MINEDUC:
-    **16.126 jardines infantiles georreferenciados** que siguen sin poder entrar
-    porque la Matriz no tiene ítem de nivel parvulario. Queda contado."""
-    n = 0
-    for carpeta in ("junji", "integra"):
+    """★★ LOS 16.126 JARDINES INFANTILES, AHORA SÍ.
+
+    MINEDUC (11.951) + JUNJI (3.015) + Integra (1.160). Eran el hueco más grande
+    del barrido: la Matriz no tenía nivel parvulario. Con el ítem 853 entran.
+
+    ★★★ SE DEDUPLICA AQUÍ, Y HAY QUE DISTINGUIR DOS CASOS QUE PARECEN UNO.
+
+    Medido: 9.375 pares de jardines caen a menos de 150 m entre sí. Pero no
+    todos son el mismo jardín:
+
+        4.020  JUNJI ↔ MINEDUC     el MISMO jardín en dos registros  → duplicado
+        1.558  Integra ↔ MINEDUC   ídem                              → duplicado
+        3.581  MINEDUC ↔ MINEDUC   sala cuna y nivel medio en el mismo edificio,
+                                   o dos sedes vecinas               → NO duplicado
+
+    Por eso se deduplica **sólo entre fuentes distintas**. Es la misma regla que
+    ya costó un error al revés: deduplicar dentro de una misma fuente borró
+    21.703 estaciones base 4G que eran legítimas, porque varias operadoras
+    comparten torre.
+
+    ⚠️ La fusión al índice NO resuelve esto: su deduplicación compara contra lo
+    que YA estaba, no dentro de la entrega. Como el ítem 853 nacía vacío, no
+    habría descartado ni uno.
+    """
+    from collections import defaultdict as _dd
+    rejilla = _dd(list)          # celda de ~1 km → puntos ya emitidos
+
+    def repetido(la, lo, fuente):
+        k0, k1 = round(la, 2), round(lo, 2)
+        for dy in (-0.01, 0, 0.01):
+            for dx in (-0.01, 0, 0.01):
+                for ola, olo, ofte in rejilla.get((round(k0 + dy, 2),
+                                                   round(k1 + dx, 2)), ()):
+                    if ofte == fuente:
+                        continue          # misma fuente: no se toca
+                    ddy = (ola - la) * 111320.0
+                    ddx = (olo - lo) * 111320.0 * math.cos(math.radians(la))
+                    if math.hypot(ddx, ddy) <= 150:
+                        return True
+        rejilla[(k0, k1)].append((la, lo, fuente))
+        return False
+    dobles = Counter()
+    for carpeta, arch, campo in (
+            ("parvularia", "establecimientos_parvularia.geojson", "nom_estab"),
+            ("junji", None, "nombre"),
+            ("integra", None, "nombre")):
         d = CRUDO / carpeta / "2026-08-25"
         if not d.exists():
             continue
-        for p in d.glob("*.geojson"):
-            n += sum(1 for _ in leer_geojson(p))
-    if n:
-        DESCARTES["no hay ítem de jardín infantil / nivel parvulario en la Matriz"
-                  ].append(f"JUNJI + Integra ({n:,} establecimientos)")
-    return
-    yield
+        archivos = [d / arch] if arch else list(d.glob("*.geojson"))
+        for p in archivos:
+            if not p.exists():
+                continue
+            for f in leer_geojson(p):
+                pt = punto_de(f.get("geometry"))
+                if not pt or not dentro(pt[1], pt[0]):
+                    continue
+                pr = f.get("properties", {})
+                nom = ""
+                for k in (campo, "nombre", "NOMBRE", "nom_estab", "establecimiento"):
+                    v = str(pr.get(k) or "").strip()
+                    if v and v.lower() != "none":
+                        nom = v
+                        break
+                if repetido(pt[1], pt[0], carpeta):
+                    dobles[carpeta] += 1
+                    continue
+                yield {"item": "853",
+                       "elemento": "Jardines Infantiles y Salas Cuna",
+                       "nombre": nom[:70],
+                       "lat": round(pt[1], 6), "lon": round(pt[0], 6),
+                       "comuna": pr.get("nom_com_es", "") or pr.get("comuna", ""),
+                       "region": pr.get("region", ""),
+                       "fuente": f"{carpeta.upper()} · educación parvularia",
+                       "confianza": "consolidado"}
+    if dobles:
+        DESCARTES["jardines ya presentes en otro registro (mismo jardín, "
+                  "distinta fuente)"].append(
+            " · ".join(f"{k}: {v:,}" for k, v in dobles.most_common()))
 
 
 FUENTES += [

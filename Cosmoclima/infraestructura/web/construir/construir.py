@@ -51,7 +51,11 @@ PASOS = [
     ("umbrales", umbrales.construir, "★ de milímetros a consecuencias"),
 ]
 
-# Lo que el manifiesto EXIGE. Si un conteo baja de aquí, algo se perdió.
+# Lo que el manifiesto EXIGE: un PISO. Si un conteo baja de aquí, algo se perdió;
+# que suba es lo normal según se incorporan fuentes.
+# ⚠️ «items» se deja en 846 A PROPÓSITO: son los del Word oficial. Los ítems
+#    creados después (846-863) son añadidos de este proyecto y no deben subir el
+#    piso, porque entonces el día que alguien los quite el portero no lo notaría.
 ESPERADO = {
     "comunas": 345, "provincias": 56, "regiones": 16,
     "comunas_geometria": 345, "items": 846,
