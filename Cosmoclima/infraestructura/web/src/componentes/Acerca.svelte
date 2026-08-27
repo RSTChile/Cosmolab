@@ -45,8 +45,10 @@
       .sort((a, b) => b.faltan - a.faltan),
   );
 
-  const GLOSARIO = [
-    ['MICR', 'Matriz de Infraestructura Crítica y Riesgo. El inventario que ordena la infraestructura del país en 846 ítems y 20 sectores, y le asigna a cada uno su nivel de riesgo.'],
+  // ★ El glosario cita cifras de la propia Matriz, así que se recalcula con
+  //   ella en vez de quedar escrito a mano y envejecer en silencio.
+  const GLOSARIO = $derived([
+    ['MICR', `Matriz de Infraestructura Crítica y Riesgo. El inventario que ordena la infraestructura del país en ítems y 20 sectores, y le asigna a cada uno su nivel de riesgo. El documento oficial define 846; hoy la Matriz tiene ${itemsTotales}, porque este proyecto añadió ${itemsTotales - 846} categorías que el catastro nacional sí registra y ella no contemplaba —aserraderos, jardines infantiles, farmacias comunitarias—. Cada añadido lleva escrito su motivo.`],
     ['IRMD', 'Índice de Riesgo de la Matriz de Decisión. La calificación de riesgo que la Matriz le da a cada ítem: Alto, Medio o Bajo.'],
     ['SENAPRED', 'Servicio Nacional de Prevención y Respuesta ante Desastres. El organismo que emite las alertas en Chile. Esta página no las emite: le entrega insumo.'],
     ['MOP', 'Ministerio de Obras Públicas. De su registro de vías cortadas salen los umbrales medidos.'],
@@ -57,7 +59,7 @@
     ['p75', 'El cuartil alto. En un territorio con muchas celdas, el valor que sólo supera una de cada cuatro: sirve para ver cuánta diferencia interna hay.'],
     ['Umbral local', 'La lluvia con que un elemento cede EN ESE LUGAR. Se obtiene tomando el percentil que su umbral medido ocupa donde fue medido, y leyéndolo en los 36 años de esa celda concreta.'],
     ['Celda', 'Un cuadrado de 0,1° de lado —unos 9 km— de la malla climática. Todo lo que cae dentro comparte la misma lluvia estimada.'],
-  ];
+  ]);
 </script>
 
 <nav class="sub">

@@ -155,6 +155,19 @@
       //   ámbar se lee como «riesgo moderado», y no lo es: es riesgo sin medir,
       //   que perfectamente puede ser mayor. La forma dice «aquí falta un
       //   dato», el color solo no lo diría.
+      // Anillo fino alrededor de los puntos donde hay más de un activo: sin
+      // esto, un punto con cuatro activos se ve idéntico a uno con uno solo.
+      mapa.addLayer({
+        id: 'apilados', type: 'circle', source: 'puntos',
+        filter: ['>', ['length', ['get', 'juntos']], 40],
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 8, 12, 15, 16, 22],
+          'circle-color': 'rgba(0,0,0,0)',
+          'circle-stroke-color': '#e5e7eb',
+          'circle-stroke-width': 1,
+          'circle-stroke-opacity': 0.45,
+        },
+      });
       mapa.addLayer({
         id: 'riesgo-medido', type: 'circle', source: 'puntos',
         filter: ['==', ['get', 'estado'], 'afectado'],
@@ -239,20 +252,34 @@
       if (p.sector) l.push(`<span class="sec">${esc(p.sector)}</span>`);
       // ★ Por qué está marcado. Sin esto la marca es un color sin motivo.
       if (p.estado === 'afectado') {
-        const u = p.umbral === '' || p.umbral == null
+        // ★ Los milímetros llegan como suma de flotantes: sin redondear, el
+      //   globo llega a decir «57.599999999999994 mm».
+      const mm = p.mm === '' || p.mm == null ? '' : Number(p.mm).toFixed(1);
+      const u = p.umbral === '' || p.umbral == null
           ? null : Number(p.umbral).toFixed(1);
         const donde = p.escala === 'local'
           ? 'el umbral medido para este lugar' : 'el umbral medido';
         l.push(`<span class="riesgo medido">Riesgo medido — le caen ` +
-               `${esc(p.mm)} mm en 72 h` +
+               `${esc(mm)} mm en 72 h` +
                (u ? ` y ${donde} es ${u} mm` : '') +
                `${p.origen ? ` (${esc(p.origen)})` : ''}.</span>`);
       } else if (p.estado === 'expuesto') {
         l.push(`<span class="riesgo desconocido">Riesgo desconocido — le caen ` +
-               `${esc(p.mm)} mm en 72 h y nadie ha medido nunca con cuánta ` +
+               `${esc(mm)} mm en 72 h y nadie ha medido nunca con cuánta ` +
                `lluvia cede este tipo de elemento.</span>`);
       } else if (p.umbral) {
         l.push(`<span class="um">cede con ${esc(p.umbral)} mm/72 h</span>`);
+      }
+
+      // Si varios activos comparten este punto exacto, se nombran todos: de
+      // otro modo el globo describe uno y los demás son invisibles.
+      let j = [];
+      try { j = JSON.parse(p.juntos || '[]'); } catch { j = []; }
+      if (j.length > 1) {
+        l.push(`<hr><span class="tit">${j.length} activos en este mismo punto` +
+               `</span>`);
+        for (const x of j.slice(0, 6)) l.push(`<span class="ant">· ${esc(x)}</span>`);
+        if (j.length > 6) l.push(`<span class="ant">y ${j.length - 6} más</span>`);
       }
 
       let h = [];
@@ -342,6 +369,20 @@
   $effect(() => {
     if (!listo || !mapa?.getSource('puntos')) return;
     const lista = puntos ?? [];
+
+    // ★★ ACTIVOS QUE COMPARTEN COORDENADA EXACTA.
+    //    En Pirque, los 2 aeródromos y los 2 radares están en el MISMO punto:
+    //    el catastro del MOP le da a la radioayuda la posición de la pista. El
+    //    mapa dibujaba cuatro puntos y dos quedaban debajo, así que el panel
+    //    decía «2 y 2» y sólo se veían 2. No se mueven las coordenadas —serían
+    //    falsas—: se cuenta cuántos hay en cada punto y el globo los lista.
+    const enElPunto = new Map();
+    for (const a of lista) {
+      const k = `${a.y.toFixed(5)},${a.x.toFixed(5)}`;
+      if (!enElPunto.has(k)) enElPunto.set(k, []);
+      enElPunto.get(k).push(`${a._elemento || ''}${a.a ? ` · ${a.a}` : ''}`);
+    }
+
     mapa.getSource('puntos').setData({
       type: 'FeatureCollection',
       features: lista.map((a) => ({
@@ -356,6 +397,8 @@
           origen: a._origen ?? '',
           umbral: a._umbral ?? '',
           escala: a._escala ?? '',
+          juntos: JSON.stringify(
+            enElPunto.get(`${a.y.toFixed(5)},${a.x.toFixed(5)}`) ?? []),
           hist: JSON.stringify(a.h ?? []),
         },
         geometry: { type: 'Point', coordinates: [a.x, a.y] },

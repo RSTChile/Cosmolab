@@ -4,10 +4,22 @@
 
   let {
     datos, mmPorComuna, evaluar = null,
-    sector = $bindable(null), cut = $bindable(null), dia = 0,
+    sector = $bindable(null), cut = $bindable(null),
+    sectoresApagados = $bindable(new Set()), dia = 0,
   } = $props();
 
+  /** ★ Enciende o apaga los puntos de un sector en el mapa, sin entrar en su
+   *  detalle. Con 782.531 activos indexados, una comuna grande queda cubierta
+   *  de puntos y deja de leerse: hace falta poder apagarlos. */
+  function alternar(s) {
+    const n = new Set(sectoresApagados);
+    n.has(s) ? n.delete(s) : n.add(s);
+    sectoresApagados = n;
+  }
+
   const resumen = $derived(resumenPorSector(datos, mmPorComuna, evaluar));
+  const conActivos = $derived(resumen.filter((r) => r.activos));
+  const todosEncendidos = $derived(sectoresApagados.size === 0);
   // ★ Cuando hay comuna elegida, los ítems son LOS DE ESA COMUNA. Antes esta
   //   lista era siempre nacional y contradecía al territorio que el usuario
   //   tenía seleccionado.
@@ -80,9 +92,35 @@
     </p>
   </div>
 
+  {#if cut}
+    <p class="filtro">
+      <button class="todos" onclick={() => (sectoresApagados = new Set())}
+              disabled={todosEncendidos}>encender todos</button>
+      <button class="todos" onclick={() =>
+                (sectoresApagados = new Set(conActivos.map((r) => r.sector)))}
+              disabled={sectoresApagados.size === conActivos.length}>apagar todos</button>
+      <span class="ayuda">
+        La casilla enciende o apaga los puntos de ese sector en el mapa. El
+        nombre entra a su detalle.
+      </span>
+    </p>
+  {/if}
+
   <ul class="sectores">
     {#each resumen as r}
-      <li>
+      <li class="fila">
+        {#if r.activos}
+          <input
+            type="checkbox"
+            class="ojo"
+            checked={!sectoresApagados.has(r.sector)}
+            onchange={() => alternar(r.sector)}
+            aria-label="Mostrar {r.sector} en el mapa"
+            style="accent-color: {colorSector(r.sector)}"
+          />
+        {:else}
+          <span class="ojo hueco"></span>
+        {/if}
         <button onclick={() => (sector = r.sector)} class:vacio={!r.activos}>
           <span class="nom">
             <!-- ★ El mismo color con que sus elementos se dibujan en el mapa.
@@ -238,6 +276,23 @@
 {/if}
 
 <style>
+  li.fila { display: flex; align-items: center; gap: 0.5rem; }
+  li.fila > button { flex: 1; min-width: 0; }
+  .ojo { width: 13px; height: 13px; flex: none; cursor: pointer; margin: 0; }
+  .ojo.hueco { visibility: hidden; }
+
+  .filtro {
+    display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+    margin: 0 0 0.75rem; font-size: 0.74rem;
+  }
+  .filtro .todos {
+    background: none; border: 1px solid #2a3140; color: #9ca3af;
+    font: inherit; padding: 0.15rem 0.5rem; border-radius: 3px; cursor: pointer;
+  }
+  .filtro .todos:hover:not(:disabled) { color: #e5e7eb; border-color: #3d4657; }
+  .filtro .todos:disabled { opacity: 0.35; cursor: default; }
+  .filtro .ayuda { color: #6b7280; flex-basis: 100%; line-height: 1.45; }
+
   h2 { margin: 0; font-size: 1.35rem; letter-spacing: -0.01em; }
   h3 {
     margin: 0 0 0.4rem; font-size: 0.78rem; text-transform: uppercase;

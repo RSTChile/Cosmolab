@@ -29,6 +29,10 @@
   })();
   let pestana = $state('comuna');
   let sector = $state(null);
+  // ★ Qué sectores se dibujan en el mapa. Con 782.531 activos, una comuna
+  //   grande queda cubierta de puntos y no se lee nada: hacen falta apagables.
+  //   `null` = todos encendidos, que es el estado inicial.
+  let sectoresApagados = $state(new Set());
   let detalleComuna = $state(null);
   // Desplegado de entrada: el gráfico ya no compite con el mapa por la
   // pantalla, así que no hay razón para esconderlo. (El valor del padre manda
@@ -54,6 +58,7 @@
   //   YA pasaron el filtro de afectación. El mapa no filtra nada, sólo pinta.
   const puntosAfectados = $derived.by(() => {
     if (pestana !== 'sector' || !seleccion || !detalleComuna || !datos) return null;
+    sectoresApagados;   // dependencia explícita: apagar un sector repinta
     const mm = mmPorComuna.get(seleccion);
     if (mm == null) return null;
     const af = datos.afectacion?.por_item ?? {};
@@ -61,7 +66,11 @@
     return detalleComuna
       .filter((a) => {
         const item = porN.get(String(a.n));
-        if (!item || (sector && item.sector !== sector)) return false;
+        if (!item) return false;
+        // Dentro de un sector concreto manda ese sector; en la vista general
+        // se dibujan todos los que no estén apagados.
+        if (sector ? item.sector !== sector
+                   : sectoresApagados.has(item.sector)) return false;
         const e = evaluar(mm, a.n, seleccion);
         return e.estado === 'afectado' || e.estado === 'expuesto';
       })
@@ -355,7 +364,8 @@
         {#if pestana === 'comuna'}
           <Panel {datos} cut={seleccion} {dia} {evaluar} />
         {:else if pestana === 'sector'}
-          <Sectores {datos} {mmPorComuna} {evaluar} bind:sector bind:cut={seleccion} {dia} />
+          <Sectores {datos} {mmPorComuna} {evaluar} bind:sector bind:cut={seleccion}
+                    bind:sectoresApagados {dia} />
         {:else if pestana === 'consulta'}
           <Consulta {datos} {mmPorComuna} {evaluar} {dia} bind:ruta5Traza bind:ruta5Riesgo />
         {:else}
